@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\jsonxx\jsonxx.cpp">
+      <Filter>libs\jsonxx</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\pugixml\pugixml.cpp">
+      <Filter>libs\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\StarsExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\CubeExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\AphUtils.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\ColorWaveExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\TwistExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\GpuParticlesExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\CpuParticlesExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{5eb8526d-1d74-4db0-b092-3f76cc3189fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\jsonxx">
+      <UniqueIdentifier>{7659c987-bece-4ee1-ab70-6a44d565d08d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\pugixml">
+      <UniqueIdentifier>{95355289-283a-4a83-91d4-2ba81285c8f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Examples">
+      <UniqueIdentifier>{8854cb45-4c45-4bfe-bcb5-1ea479017d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{64c4b6e4-16bf-4459-961f-017a98c623d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs\jsonxx\jsonxx.h">
+      <Filter>libs\jsonxx</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\pugixml\pugixml.h">
+      <Filter>libs\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\pugixml\pugiconfig.h">
+      <Filter>libs\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\StarsExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\CubeExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\AphUtils.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\ColorWaveExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\TwistExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\GpuParticlesExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\CpuParticlesExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
