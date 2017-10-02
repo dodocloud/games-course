@@ -1,5 +1,5 @@
 #include "CpuParticlesExample.h"
-
+#include "AphUtils.h"
 
 vector<Force>
 Particle::forces;
@@ -67,8 +67,10 @@ void Particle::addForce(ofVec2f position, float magnitude) {
 
 
 void CpuParticlesExample::setup() {
-	Particle::setup(50000, 100);
-	ofBackground(0);
+	if (CheckAPHVersion()) {
+		Particle::setup(50000, 100);
+		ofBackground(0);
+	}
 }
 
 void CpuParticlesExample::update() {

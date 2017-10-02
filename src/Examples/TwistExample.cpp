@@ -1,15 +1,17 @@
 #include "TwistExample.h"
-
+#include "AphUtils.h"
 
 void TwistExample::setup() {
-	pos = ofPoint(0, 0, 0);	//Start from center of coordinate
-	axeX = ofPoint(1, 0, 0);	//Set initial coordinate system
-	axyY = ofPoint(0, 1, 0);
-	axyZ = ofPoint(0, 0, 1);
+	if (CheckAPHVersion()) {
+		pos = ofPoint(0, 0, 0);	//Start from center of coordinate
+		axeX = ofPoint(1, 0, 0);	//Set initial coordinate system
+		axyY = ofPoint(0, 1, 0);
+		axyZ = ofPoint(0, 0, 1);
 
-	light.enable();				//Enable lighting
+		light.enable();				//Enable lighting
 
-	ofSetFrameRate(60);       //Set the rate of screen redrawing
+		ofSetFrameRate(60);       //Set the rate of screen redrawing
+	}
 }
 
 void TwistExample::update() {

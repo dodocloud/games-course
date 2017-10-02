@@ -3,11 +3,13 @@
 
 
 void CubeExample::setup() {
-	// init video grabber and the mesh
-	vid.initGrabber(w, h);
-	mesh.setMode(OF_PRIMITIVE_POINTS);
-	mesh.addVertices(vector<ofVec3f>(n));
-	mesh.addColors(vector<ofFloatColor>(n));
+	if (CheckAPHVersion()) {
+		// init video grabber and the mesh
+		vid.initGrabber(w, h);
+		mesh.setMode(OF_PRIMITIVE_POINTS);
+		mesh.addVertices(vector<ofVec3f>(n));
+		mesh.addColors(vector<ofFloatColor>(n));
+	}
 }
 
 void CubeExample::update() {
