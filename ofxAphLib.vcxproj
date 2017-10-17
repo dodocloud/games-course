@@ -196,7 +196,6 @@
     <ClCompile Include="src\Examples\CpuParticlesExample.cpp" />
     <ClCompile Include="src\Examples\CubeExample.cpp" />
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp" />
-    <ClCompile Include="src\Examples\QuadTreeExample.cpp" />
     <ClCompile Include="src\Examples\StarsExample.cpp" />
     <ClCompile Include="src\Examples\TwistExample.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -238,7 +237,6 @@
     <ClInclude Include="src\Examples\CpuParticlesExample.h" />
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
-    <ClInclude Include="src\Examples\QuadTreeExample.h" />
     <ClInclude Include="src\Examples\StarsExample.h" />
     <ClInclude Include="src\Examples\TwistExample.h" />
     <ClInclude Include="src\Pacman\GameSprites.h" />

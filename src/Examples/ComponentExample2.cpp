@@ -1,7 +1,6 @@
 #include "ComponentExample2.h"
 #include "AphUtils.h"
 #include "SpriteSheetBuilder.h"
-#include "GameManager.h"
 #include "Movement.h"
 
 StrId WANDER_DESTINATION("WANDER_DESTINATION");

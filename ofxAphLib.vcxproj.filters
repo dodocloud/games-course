@@ -70,9 +70,6 @@
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\QuadTreeExample.cpp">
-      <Filter>src\Examples</Filter>
-    </ClCompile>
     <ClCompile Include="src\Examples\StarsExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
@@ -219,9 +216,6 @@
       <Filter>src\Examples</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\GpuParticlesExample.h">
-      <Filter>src\Examples</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Examples\QuadTreeExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\StarsExample.h">
