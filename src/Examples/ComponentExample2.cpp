@@ -1,6 +1,7 @@
 #include "ComponentExample2.h"
 #include "AphUtils.h"
 #include "SpriteSheetBuilder.h"
+#include "GameManager.h"
 #include "Movement.h"
 
 StrId WANDER_DESTINATION("WANDER_DESTINATION");
@@ -29,7 +30,7 @@ void MovementComponent::Init() {
 	}
 }
 
-void MovementComponent::Update(const uint64 delta, const uint64 absolute) {
+void MovementComponent::Update(const uint64_t delta, const uint64_t absolute) {
 
 	Trans& transform = owner->GetTransform();
 	Movement& movement = owner->GetAttr<Movement>(MOVEMENT);

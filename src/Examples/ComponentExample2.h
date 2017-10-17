@@ -57,9 +57,9 @@ public:
 
 	}
 
-	float WanderComponent::ClampAngle(float x);
+	float ClampAngle(float x);
 
-	void WanderComponent::SetRotationDirection(Movement& movement, Trans& transform, ofVec2f destination, float maxAcceleration, uint64 delta);
+	void SetRotationDirection(Movement& movement, Trans& transform, ofVec2f destination, float maxAcceleration, uint64 delta);
 
 	virtual void Init();
 
