@@ -10,26 +10,98 @@
     <ClCompile Include="libs\pugixml\pugixml.cpp">
       <Filter>libs\pugixml</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\StarsExample.cpp">
+    <ClCompile Include="libs\ofxTextLabel\ofxTextLabel.cpp">
+      <Filter>libs\ofxTextLabel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\CompValues.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\GameObject.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Scene.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Component.cpp">
+      <Filter>src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Renderer.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Sprite.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SpriteSheet.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SpriteSheetBuilder.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SpriteSheetRenderer.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\SteeringMath.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\StrId.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Transform.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\TransformBuilder.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\AphUtils.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Renderable.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\ComponentExample2.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\CpuParticlesExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
     <ClCompile Include="src\Examples\CubeExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\AphUtils.cpp">
-      <Filter>src\Core</Filter>
+    <ClCompile Include="src\Examples\GpuParticlesExample.cpp">
+      <Filter>src\Examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\ColorWaveExample.cpp">
+    <ClCompile Include="src\Examples\QuadTreeExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\StarsExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
     <ClCompile Include="src\Examples\TwistExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\GpuParticlesExample.cpp">
+    <ClCompile Include="src\Examples\ColorWaveExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
-    <ClCompile Include="src\Examples\CpuParticlesExample.cpp">
+    <ClCompile Include="src\Examples\ComponentExample.cpp">
       <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\GameUnit.cpp">
+      <Filter>src\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\Map.cpp">
+      <Filter>src\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\PacmanApp.cpp">
+      <Filter>src\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\Player.cpp">
+      <Filter>src\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\Spider.cpp">
+      <Filter>src\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pacman\GameSprites.cpp">
+      <Filter>src\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +123,15 @@
     <Filter Include="src\Core">
       <UniqueIdentifier>{64c4b6e4-16bf-4459-961f-017a98c623d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs\ofxTextLabel">
+      <UniqueIdentifier>{a4849be9-59c2-4cd6-a43b-f98995f4a717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Components">
+      <UniqueIdentifier>{45d70e40-da60-45d3-b137-4143917befac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pacman">
+      <UniqueIdentifier>{538030c2-daad-44b5-be98-5bd7e0d8ee2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\jsonxx\jsonxx.h">
@@ -62,26 +143,122 @@
     <ClInclude Include="libs\pugixml\pugiconfig.h">
       <Filter>libs\pugixml</Filter>
     </ClInclude>
-    <ClInclude Include="src\Examples\StarsExample.h">
+    <ClInclude Include="libs\ofxTextLabel\ofxTextLabel.h">
+      <Filter>libs\ofxTextLabel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\CompValues.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Context.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\GameObject.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Msg.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Scene.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Attribute.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Components\Component.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Renderer.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Sprite.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\SpriteSheet.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\SpriteSheetBuilder.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\SpriteSheetRenderer.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\SteeringMath.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\StrId.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Transform.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\TransformBuilder.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\AphMain.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\AphUtils.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Movement.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Renderable.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\ComponentExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\ComponentExample2.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\CpuParticlesExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\CubeExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
-    <ClInclude Include="src\Core\AphUtils.h">
-      <Filter>src\Core</Filter>
+    <ClInclude Include="src\Examples\GpuParticlesExample.h">
+      <Filter>src\Examples</Filter>
     </ClInclude>
-    <ClInclude Include="src\Examples\ColorWaveExample.h">
+    <ClInclude Include="src\Examples\QuadTreeExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\StarsExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\TwistExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
-    <ClInclude Include="src\Examples\GpuParticlesExample.h">
+    <ClInclude Include="src\Examples\ColorWaveExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
-    <ClInclude Include="src\Examples\CpuParticlesExample.h">
-      <Filter>src\Examples</Filter>
+    <ClInclude Include="src\Pacman\GameUnit.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\Map.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\MapLoader.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\MovementInfo.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\PacmanApp.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\Player.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\Spider.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\States.h">
+      <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pacman\GameSprites.h">
+      <Filter>src\Pacman</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

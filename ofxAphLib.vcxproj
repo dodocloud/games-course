@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -173,27 +173,83 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="libs\jsonxx\jsonxx.cpp" />
+    <ClCompile Include="libs\ofxTextLabel\ofxTextLabel.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
+    <ClCompile Include="src\Components\Component.cpp" />
+    <ClCompile Include="src\Components\CompValues.cpp" />
+    <ClCompile Include="src\Components\GameObject.cpp" />
+    <ClCompile Include="src\Components\Scene.cpp" />
     <ClCompile Include="src\Core\AphUtils.cpp" />
+    <ClCompile Include="src\Core\Renderable.cpp" />
+    <ClCompile Include="src\Core\Renderer.cpp" />
+    <ClCompile Include="src\Core\Sprite.cpp" />
+    <ClCompile Include="src\Core\SpriteSheet.cpp" />
+    <ClCompile Include="src\Core\SpriteSheetBuilder.cpp" />
+    <ClCompile Include="src\Core\SpriteSheetRenderer.cpp" />
+    <ClCompile Include="src\Core\SteeringMath.cpp" />
+    <ClCompile Include="src\Core\StrId.cpp" />
+    <ClCompile Include="src\Core\Transform.cpp" />
+    <ClCompile Include="src\Core\TransformBuilder.cpp" />
     <ClCompile Include="src\Examples\ColorWaveExample.cpp" />
+    <ClCompile Include="src\Examples\ComponentExample.cpp" />
+    <ClCompile Include="src\Examples\ComponentExample2.cpp" />
+    <ClCompile Include="src\Examples\CpuParticlesExample.cpp" />
     <ClCompile Include="src\Examples\CubeExample.cpp" />
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp" />
-    <ClCompile Include="src\Examples\CpuParticlesExample.cpp" />
+    <ClCompile Include="src\Examples\QuadTreeExample.cpp" />
     <ClCompile Include="src\Examples\StarsExample.cpp" />
     <ClCompile Include="src\Examples\TwistExample.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Pacman\GameSprites.cpp" />
+    <ClCompile Include="src\Pacman\GameUnit.cpp" />
+    <ClCompile Include="src\Pacman\Map.cpp" />
+    <ClCompile Include="src\Pacman\PacmanApp.cpp" />
+    <ClCompile Include="src\Pacman\Player.cpp" />
+    <ClCompile Include="src\Pacman\Spider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\jsonxx\jsonxx.h" />
+    <ClInclude Include="libs\ofxTextLabel\ofxTextLabel.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.h" />
     <ClInclude Include="libs\pugixml\pugixml.h" />
+    <ClInclude Include="src\Components\Attribute.h" />
+    <ClInclude Include="src\Components\Component.h" />
+    <ClInclude Include="src\Components\CompValues.h" />
+    <ClInclude Include="src\Components\Context.h" />
+    <ClInclude Include="src\Components\GameObject.h" />
+    <ClInclude Include="src\Components\Msg.h" />
+    <ClInclude Include="src\Components\Scene.h" />
+    <ClInclude Include="src\Core\AphMain.h" />
     <ClInclude Include="src\Core\AphUtils.h" />
+    <ClInclude Include="src\Core\Movement.h" />
+    <ClInclude Include="src\Core\Renderable.h" />
+    <ClInclude Include="src\Core\Renderer.h" />
+    <ClInclude Include="src\Core\Sprite.h" />
+    <ClInclude Include="src\Core\SpriteSheet.h" />
+    <ClInclude Include="src\Core\SpriteSheetBuilder.h" />
+    <ClInclude Include="src\Core\SpriteSheetRenderer.h" />
+    <ClInclude Include="src\Core\SteeringMath.h" />
+    <ClInclude Include="src\Core\StrId.h" />
+    <ClInclude Include="src\Core\Transform.h" />
+    <ClInclude Include="src\Core\TransformBuilder.h" />
     <ClInclude Include="src\Examples\ColorWaveExample.h" />
+    <ClInclude Include="src\Examples\ComponentExample.h" />
+    <ClInclude Include="src\Examples\ComponentExample2.h" />
+    <ClInclude Include="src\Examples\CpuParticlesExample.h" />
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
-    <ClInclude Include="src\Examples\CpuParticlesExample.h" />
+    <ClInclude Include="src\Examples\QuadTreeExample.h" />
     <ClInclude Include="src\Examples\StarsExample.h" />
     <ClInclude Include="src\Examples\TwistExample.h" />
+    <ClInclude Include="src\Pacman\GameSprites.h" />
+    <ClInclude Include="src\Pacman\GameUnit.h" />
+    <ClInclude Include="src\Pacman\Map.h" />
+    <ClInclude Include="src\Pacman\MapLoader.h" />
+    <ClInclude Include="src\Pacman\MovementInfo.h" />
+    <ClInclude Include="src\Pacman\PacmanApp.h" />
+    <ClInclude Include="src\Pacman\Player.h" />
+    <ClInclude Include="src\Pacman\Spider.h" />
+    <ClInclude Include="src\Pacman\States.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
