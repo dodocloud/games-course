@@ -9,7 +9,7 @@
 * Container for game objects
 */
 struct GameUnit {
-	static int idCounter; // incremental id counter
+	static int idCounter; // incremental id counter (only for debug)
 
 	GameUnit() {
 		this->id = idCounter++;

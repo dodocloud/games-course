@@ -13,7 +13,7 @@ public:
 #define PARSER_MODE_FUNCTIONS 2
 
 	/**
-	 * Loads a map from a file
+	 * Loads a map from a file into output entity
 	 */
 	void LoadMap(string filename, Map& output) {
 
@@ -25,7 +25,7 @@ public:
 		int height = 0;
 		int index = 0;
 
-		// firstly parse paths
+		// parse paths then functions
 		int currentMode = PARSER_MODE_PATHS;
 		
 		if (buffer.size()) {

@@ -43,12 +43,13 @@ public:
 	uint64_t spawnInterval = 6000;
 
 
-	// map size in number of blocks
+	// map size in number of blocks; this level has grid 19x11 blocks
 	int gridWidth = 19;
 	int gridHeight = 11;
 
 	int frameCounter = 0;
 
+	// dynamic entities
 	Player player;
 	vector<Spider> spiders;
 
@@ -58,9 +59,10 @@ public:
 	// transformation of the root element
 	Trans rootTransform;
 
-
-
 	// ================== VIEW ================== 
+	
+	// if the resolution changes, we need to keep original aspect ratio
+	// renderer draws two black rectangles that covers oversized viewport
 	float virtualAspectRatio = 2.0f;
 
 	// images
@@ -70,7 +72,7 @@ public:
 	// all sprites
 	GameSprites sprites;
 
-	// where the [0,0] begins
+	// offset where the first map block starts (measured in pixels of the image map)
 	int gridOffsetX = 17;
 	int gridOffsetY = 20;
 
@@ -80,8 +82,8 @@ public:
 	int blockHeight = 24;
 
 
-	// all game objects
-	vector<Renderable*> gameObjects;
+	// all meshes (sprites, images and score text)
+	vector<Renderable*> meshes;
 	
 	// renderer component
 	Renderer* renderer;
@@ -97,24 +99,34 @@ public:
 		return ofVec3f(fX, fY, fZ);
 	}
 
+	// game reset to its initial state
 	void ResetGame();
 
+	// update logic of spiders
 	void UpdateSpiders();
 
+	// checks for collision with pacman (very simple one-to-many comparing)
 	void CheckCollisions();
 
+	// checks whether the pacman is in the tunnel and teleports it to the second exit
 	bool CheckTunnel(GameUnit& unit, MovementInfo& info);
 
+	// checks whether the rush mode is enabled
 	void CheckRushMode();
 
+	// updates static animations
 	void UpdateStaticAnim();
 
+	// updates player's movement and eating process
 	void UpdatePlayer();
 
+	// updates gate animation
 	void UpdateGate();
 
+	// updates center box
 	void UpdateSpawner();
 
+	// updates score
 	void UpdateText();
 
 	void setup();

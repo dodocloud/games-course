@@ -22,6 +22,6 @@ enum class Direction {
 #define STATE_GATE_CLOSING 4
 
 // game states
-#define STATE_RUSH_MODE 5 // rush mode = spiders are black
+#define STATE_RUSH_MODE 5 // rush mode => spiders are black and pacman can kill them
 #define STATE_DEAD 6
 #define STATE_VICTORY 7

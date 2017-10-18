@@ -20,13 +20,14 @@ void Spider::DecideNextMovement(Map& tileMap, MovementInfo& info) {
 	Direction newDirection = SearchNewDirection(tileMap, dir, info.intPartX, info.intPartY);
 
 	if (newDirection != dir && (lastDecisionX != info.intPartX || lastDecisionY != info.intPartY)) {
-		// we can change direction
+		// there is a new direction to go to
 
 		lastDecisionX = info.intPartX;
 		lastDecisionY = info.intPartY;
 
-		// 50% probability that we change the direction
+		// 50% probability that we will change the direction
 		if (ofRandom(0, 1) > 0.5f) {
+			// did you know that memory span of spiders is only ~5 minutes?
 			dir = newDirection;
 		}
 	}
@@ -39,7 +40,7 @@ void Spider::DecideNextMovement(Map& tileMap, MovementInfo& info) {
 			dir = opposite;
 		}
 		else {
-			// this happens when we actually can change the direction but we didn't decide to do so 
+			// this happens when we actually can change the direction but we decided not to do so 
 			// (there is a 50% probability to change a direction)
 			dir = newDirection;
 		}

@@ -11,8 +11,8 @@ struct MovementInfo {
 	float fractPartX;	// fractional part of position X
 	float fractPartY;	// fractional part of position Y
 	bool canGoDown;		// whether the unit can go down
-	bool canGoLeft;		// whether the unit can go to the left
-	bool canGoRight;	// whether the unit can go to the right
+	bool canGoLeft;		// whether the unit can go left
+	bool canGoRight;	// whether the unit can go right
 	bool canGoUp;		// whether the unit can go up
 	bool isInCenter;	// whether the unit is in the center of a block
 	bool isAroundCenter;// whether the unit is near the center of a block

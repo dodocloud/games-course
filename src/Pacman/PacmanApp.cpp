@@ -29,18 +29,18 @@ void PacmanApp::setup() {
 		sprites.Initialize(mapImage, spritesImage);
 
 		// add all meshes into separate collection for rendering
-		gameObjects.push_back(sprites.background);
-		gameObjects.push_back(sprites.staticMesh);
-		gameObjects.push_back(sprites.dotMesh);
-		gameObjects.push_back(sprites.pelletMesh);
-		gameObjects.push_back(sprites.spiderMesh);
-		gameObjects.push_back(sprites.textMesh);
+		meshes.push_back(sprites.background);
+		meshes.push_back(sprites.staticMesh);
+		meshes.push_back(sprites.dotMesh);
+		meshes.push_back(sprites.pelletMesh);
+		meshes.push_back(sprites.spiderMesh);
+		meshes.push_back(sprites.textMesh);
 
 
-		// set text location
+		// set location of the score text at [12,0] cell
 		auto textPos = MapToWorld(12, 0);
 		auto textTrans = Trans(textPos.x, textPos.y, 50);
-		textTrans.scale = ofVec3f(0.35f); // scale little bit
+		textTrans.scale = ofVec3f(0.35f); // scale a little bit
 		sprites.textMesh->SetTransform(textTrans);
 
 		// assign sprite to the player
@@ -72,7 +72,7 @@ void PacmanApp::ResetGame() {
 			// insert dots and pellets to all free blocks
 			if (tile.IsFree()) {
 				dotsAndPellets.insert(index);
-				auto trans = Trans(MapToWorld(i + 0.5f, j + 0.5f)); // in the center
+				auto trans = Trans(MapToWorld(i + 0.5f, j + 0.5f)); // should be in the center of each block
 
 				if (tile.specialFunction == FUNCTION_BONUS) {
 					// add pellet entity
@@ -85,7 +85,7 @@ void PacmanApp::ResetGame() {
 				}
 			}
 			else if (tile.specialFunction == FUNCTION_PACMAN_SPAWN) {
-				// this is the place the player starts
+				// this is the place where the player starts
 				player.posX = tile.x + 0.5f;
 				player.posY = tile.y + 0.5f;
 			}
@@ -127,6 +127,7 @@ void PacmanApp::UpdateSpiders() {
 		sp.Update(tileMap, info);
 		
 		// actually, spiders shouldn't use the tunnel at all
+		// todo there is a bug - spiders can stuck in the tunnel
 		// CheckTunnel(sp, info);
 
 		// update world transform
@@ -144,7 +145,7 @@ void PacmanApp::CheckCollisions() {
 		for (auto it = spiders.begin(); it != spiders.end();) {
 			auto& spider = *it;
 			// pythagorean theorem :-). Threshold set to 25% of the size of the map cell should be enough
-			bool collides = ((player.posX - spider.posX) * (player.posX - spider.posX) + (player.posY - spider.posY) * (player.posY - spider.posY)) < 0.25f;
+			bool collides = sqrt((player.posX - spider.posX) * (player.posX - spider.posX) + (player.posY - spider.posY) * (player.posY - spider.posY)) < 0.25f;
 
 			if (collides) {
 				if (spider.state == STATE_RUSH_MODE) {
@@ -222,7 +223,7 @@ void PacmanApp::UpdatePlayer() {
 		if (found != dotsAndPellets.end()) {
 
 			if (info.isInCenter) {
-				// remove object when pacman is directly in the middle of the map cell
+				// remove object when pacman is directly in the middle of a map cell
 				dotsAndPellets.erase(found);
 
 				// check if we have eaten a dot or a pellet
@@ -260,7 +261,7 @@ void PacmanApp::UpdatePlayer() {
 	player.FollowPath(info);
 	player.Update(pressedKeys, info);
 
-	// check tunnel
+	// check the tunnel
 	CheckTunnel(player, info);
 
 	// update world transform
@@ -333,8 +334,7 @@ void PacmanApp::UpdateSpawner() {
 
 		if(spawndoor.state == STATE_GATE_OPENED) {
 			// spawn a new spider
-			
-			auto trans = Trans(MapToWorld(9 + 0.5f, 4 + 0.5f));
+			auto trans = Trans(MapToWorld(9 + 0.5f, 4 + 0.5f)); // hardcoded position of the center box :-)
 			auto spiderSprite = sprites.AddSpider(trans);
 
 			Spider spider;
@@ -350,6 +350,7 @@ void PacmanApp::UpdateSpawner() {
 }
 
 void PacmanApp::UpdateText() {
+	// ASCII characters only. ofTextLabel is just a dummy openframeworks plugin
 	sprites.textMesh->SetText(string_format("REMAINING DOTS: %d",remainingDots).c_str());
 }
 
@@ -371,9 +372,10 @@ void PacmanApp::draw() {
 	renderer->BeginRender();
 
 	// add objects into renderer
-	for (auto Node : gameObjects) {
-		Node->GetTransform().CalcAbsTransform(rootTransform);
-		renderer->PushNode(Node);
+	for (auto mesh : meshes) {
+		// update transformation (actually, this may be done in update() method)
+		mesh->GetTransform().CalcAbsTransform(rootTransform);
+		renderer->PushNode(mesh);
 	}
 
 	renderer->Render();

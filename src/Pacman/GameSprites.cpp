@@ -13,7 +13,7 @@ void GameSprites::Initialize(ofImage* mapImage, ofImage* spritesImage) {
 	spritesheets["gems"] = builder.Image(spritesImage).Offset(8, 14).SpriteSize(32, 32).Frames(4).BuildAndReset();
 	spritesheets["pellets"] = builder.Image(spritesImage).Offset(0, 4).SpriteSize(32, 32).Frames(16).BuildAndReset();
 
-	// for those three, offset is set in pixels, because they occupy more than one block
+	// for these three, offset is set in pixels, because they occupy more than one block
 	spritesheets["river"] = builder.Image(spritesImage).OffsetPx(0, 32 * 9).SpriteSize(32 * 2, 32 * 7).Frames(4).BuildAndReset();
 	spritesheets["fountain"] = builder.Image(spritesImage).OffsetPx(32 * 10, 32 * 9).SpriteSize(32 * 3, 32).Frames(4).BuildAndReset();
 	spritesheets["gate"] = builder.Image(spritesImage).OffsetPx(32 * 8, 32 * 11).SpriteSize(32 * 2, 32).Frames(8).BuildAndReset();
@@ -22,8 +22,7 @@ void GameSprites::Initialize(ofImage* mapImage, ofImage* spritesImage) {
 	spritesheets["background"] = builder.Image(mapImage).BuildAndReset();
 
 	// create mesh for background
-	Sprite spr = Sprite(spritesheets["background"], 0, 0);
-	background = new SpriteMesh(spr, "bgrLayer");
+	background = new SpriteMesh(Sprite(spritesheets["background"], 0, 0), "bgrLayer");
 
 	// create mesh for game objects
 	staticMesh = new MultiSpriteMesh("spriteLayer");
@@ -33,20 +32,16 @@ void GameSprites::Initialize(ofImage* mapImage, ofImage* spritesImage) {
 	staticMesh->AddSprite(player);
 
 	// add static elements (fountain, river and gates)
-	Trans trs = Trans(ofVec3f(272, 180, 0));
-	fountain = new Sprite(spritesheets["fountain"], 0, trs);
+	fountain = new Sprite(spritesheets["fountain"], 0, Trans(ofVec3f(272, 180, 0)));
 	staticMesh->AddSprite(fountain);
 
-	trs = Trans(ofVec3f(0, 90, 0));
-	river = new Sprite(spritesheets["river"], 0, trs);
+	river = new Sprite(spritesheets["river"], 0, Trans(ofVec3f(0, 90, 0)));
 	staticMesh->AddSprite(river);
 
-	trs = Trans(ofVec3f(350, 60, 0));
-	gate = new Sprite(spritesheets["gate"], 0, trs);
+	gate = new Sprite(spritesheets["gate"], 0, Trans(ofVec3f(350, 60, 0)));
 	staticMesh->AddSprite(gate);
 
-	trs = Trans(ofVec3f(304, 134, 0));
-	spiderGate = new Sprite(spritesheets["spider_gate"], 0, trs);
+	spiderGate = new Sprite(spritesheets["spider_gate"], 0, Trans(ofVec3f(304, 134, 0)));
 	staticMesh->AddSprite(spiderGate);
 
 	// create mesh for dots
