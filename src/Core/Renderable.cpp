@@ -1,6 +1,13 @@
 #include "Renderable.h"
 #include "ofRectangle.h"
 
+void Renderable::UpdateBoundingBox() {
+	auto absPos = ofVec2f(this->transform.absPos.x, this->transform.absPos.y);
+	this->boundingBox.topLeft = absPos;
+	this->boundingBox.topRight = ofVec2f(absPos.x + this->GetWidth() * this->transform.absScale.x, absPos.y);
+	this->boundingBox.bottomLeft = ofVec2f(absPos.x, absPos.y + this->GetHeight() * this->transform.absScale.y);
+	this->boundingBox.bottomRight = ofVec2f(this->boundingBox.bottomLeft.x + this->GetWidth()* this->transform.absScale.x, this->boundingBox.bottomLeft.y);
+}
 
 void MultiSpriteMesh::Recalc() {
 

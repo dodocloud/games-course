@@ -4,6 +4,8 @@
 #include "Movement.h"
 #include "Transform.h"
 
+#define INT_MIN     (-2147483647 - 1) // minimum (signed) int value
+
 /**
 * Container for Steering Behaviors calculations
 * Supported behaviors are Seek, Arrive, Flee, Follow and Wander

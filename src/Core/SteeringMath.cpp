@@ -13,7 +13,7 @@ ofVec2f SteeringMath::Arrive(Trans& transform, Movement& movement, ofVec2f dest,
 
 	if (distance < stopDistance) {
 		movement.Stop();
-		return ofVec2f(-100000);
+		return ofVec2f(INT_MIN);
 	}
 	// calculate speed
 	float speed = distance / (1.0f / (decelerationSpeed / 10));

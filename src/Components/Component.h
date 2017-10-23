@@ -3,6 +3,8 @@
 #include "Msg.h"
 
 class GameObject;
+class Context;
+class Scene;
 
 /**
  * Game component
@@ -77,4 +79,8 @@ protected:
 	void SendMsg(StrId action, void* data);
 	
 	void SendMsg(Msg& msg);
+
+	Context* GetContext() const;
+
+	Scene* GetScene() const;
 };

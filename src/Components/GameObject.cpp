@@ -1,6 +1,29 @@
 #include "GameObject.h"
 #include "Scene.h"
+#include "CompValues.h"
+
 int GameObject::idCounter = 0;
+
+
+void GameObject::SetFlags(Flags val) {
+	this->flags = val;
+}
+
+bool GameObject::HasFlag(unsigned state) const {
+	return flags.HasState(state);
+}
+
+void GameObject::SetFlag(unsigned state) {
+	flags.SetState(state);
+}
+
+void GameObject::ResetFlag(unsigned state) {
+	flags.ResetState(state);
+}
+
+void GameObject::SwitchFlag(unsigned state1, unsigned state2) {
+	flags.SwitchState(state1, state2);
+}
 
 
 GameObject* GameObject::GetRoot() {
@@ -14,6 +37,10 @@ GameObject* GameObject::GetRoot() {
 	}
 
 	return currentNode;
+}
+
+void GameObject::Remove() {
+	GetParent()->RemoveChild(this);
 }
 
 void GameObject::AddComponent(Component* component) {
@@ -135,7 +162,11 @@ void GameObject::UpdateTransformations() {
 
 	if (parent != nullptr) {
 		GetTransform().CalcAbsTransform(parent->GetTransform());
+	}else {
+		GetTransform().SetAbsAsLocal();
 	}
+
+	this->mesh->UpdateBoundingBox();
 
 	for (auto child : children) {
 		child->UpdateTransformations();

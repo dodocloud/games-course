@@ -102,7 +102,7 @@ bool PacmanApp::CheckTunnel(GameUnit& unit, MovementInfo& info) {
 		if (info.intPartY == 6 // hardcoded check for position of the western tunnel 
 			&& unit.dir == Direction::RIGHT) {
 			unit.dir = Direction::DOWN;
-			unit.posX = 13.5; // move the unit to the center of the second exit
+			unit.posX = 13.5; // move the unit to the center of the second exit [13,4]
 			unit.posY = 4.5;
 			return true;
 
@@ -110,7 +110,7 @@ bool PacmanApp::CheckTunnel(GameUnit& unit, MovementInfo& info) {
 		else if (info.intPartY == 4 // hardcoded check for position of the eastern tunnel 
 			&& unit.dir == Direction::UP) {
 			unit.dir = Direction::LEFT;
-			unit.posX = 5.5; // move the unit to the center of the second exit
+			unit.posX = 5.5; // move the unit to the center of the second exit [5,6]
 			unit.posY = 6.5;
 			return true;
 		}

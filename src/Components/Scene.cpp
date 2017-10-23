@@ -3,13 +3,30 @@
 #include "Component.h"
 #include "CompValues.h"
 
-void Scene::FindGameObjectsByTag(string tag, vector<GameObject*>& output) {
-	// linear search :-(
-	for(auto gameObj : allGameObjects) {
-		if(gameObj->GetTag() == tag) {
+void Scene::FindGameObjectsByFlag(unsigned flag, vector<GameObject*>& output) {
+	for (auto gameObj : allGameObjects) {
+		if (gameObj->HasFlag(flag)) {
 			output.push_back(gameObj);
 		}
 	}
+}
+
+void Scene::FindGameObjectsByName(string name, vector<GameObject*>& output) {
+	// linear search :-(
+	for(auto gameObj : allGameObjects) {
+		if(gameObj->GetName() == name) {
+			output.push_back(gameObj);
+		}
+	}
+}
+
+GameObject* Scene::FindGameObjectByName(string name) {
+	for (auto gameObj : allGameObjects) {
+		if (gameObj->GetName() == name) {
+			return gameObj;
+		}
+	}
+	return nullptr;
 }
 
 void Scene::SendMsg(Msg& msg) {

@@ -21,3 +21,11 @@ void Component::SendMsg(StrId action, void* data) {
 void Component::SendMsg(Msg& msg) {
 	owner->GetScene()->SendMsg(msg);
 }
+
+Context* Component::GetContext() const {
+	return owner->GetContext();
+}
+
+Scene* Component::GetScene() const {
+	return owner->GetScene();
+}

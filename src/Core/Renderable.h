@@ -7,6 +7,8 @@
 #include "ofImage.h"
 #include "Transform.h"
 #include "Sprite.h"
+#include "BoundingBox.h"
+
 using namespace std;
 
 enum class MeshType {
@@ -29,6 +31,8 @@ protected:
 	ofColor color;
 	float width = 1;
 	float height = 1;
+	BoundingBox boundingBox = BoundingBox();
+	bool isVisible = true;
 public:
 
 
@@ -62,6 +66,10 @@ public:
 		return transform;
 	}
 
+	BoundingBox& GetBoundingBox() {
+		return boundingBox;
+	}
+
 	void SetTransform(Trans& trans) {
 		this->transform = trans;
 	}
@@ -85,6 +93,19 @@ public:
 	virtual void SetHeight(float height) {
 		this->height = height;
 	}
+
+	bool IsVisible() const {
+		return isVisible;
+	}
+
+	void SetIsVisible(bool isVisible) {
+		this->isVisible = isVisible;
+	}
+
+	void UpdateBoundingBox();
+
+	friend class GameObject;
+
 };
 
 /**
@@ -99,6 +120,11 @@ private:
 public:
 	Rect(float width, float height)
 		: Renderable(MeshType::RECTANGLE, width, height) {
+	}
+
+	Rect(float width, float height, ofColor color)
+		: Renderable(MeshType::RECTANGLE, width, height) {
+		this->color = color;
 	}
 
 	/**
@@ -141,6 +167,7 @@ public:
 	ImageMesh(ofImage* img) : Renderable(MeshType::IMAGE) {
 		this->image = img; 
 	}
+
 
 	ofImage* GetImage() const {
 		return image;

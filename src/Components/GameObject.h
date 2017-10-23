@@ -4,6 +4,7 @@
 #include <vector>
 #include "Transform.h"
 #include "Sprite.h"
+#include "Flags.h"
 using namespace std;
 #include "Renderable.h"
 #include "Component.h"
@@ -22,7 +23,7 @@ protected:
 	int id;
 	Renderable* mesh = nullptr;
 	GameObject* parent = nullptr;
-	string tag = "";
+	Flags flags;
 	vector<GameObject*> children;
 	vector<Component*> components;			// list of components
 	map<StrId, BaseAttribute*> attributes;  // list of attributes
@@ -32,23 +33,17 @@ protected:
 	// children shouldn't be added nor removed while updating
 	vector<GameObject*> childrenToAdd;
 	vector<GameObject*> childrenToRemove;
+	string name = "";
 public:
 
 
-	GameObject(Context* context, Scene* scene) {
-		this->id = idCounter++;
-		this->context = context;
-		this->scene = scene;
-		// create a default mesh
-		this->mesh = new Rect(0, 0);
-	}
+	GameObject(Context* context, Scene* scene) : id(idCounter++), context(context), scene(scene), mesh(new Rect(0, 0)) { }
 
-	GameObject(Context* context, Scene* scene, Renderable* mesh) {
-		this->id = idCounter++;
-		this->context = context;
-		this->scene = scene;
-		this->mesh = mesh;
-	}
+	GameObject(string name, Context* context, Scene* scene) : id(idCounter++), name(name), context(context), scene(scene), mesh(new Rect(0, 0)) { }
+
+	GameObject(Context* context, Scene* scene, Renderable* mesh) : id(idCounter++), context(context), scene(scene), mesh(mesh) { }
+
+	GameObject(string name, Context* context, Scene* scene, Renderable* mesh) : id(idCounter++), name(name), context(context), scene(scene), mesh(mesh) {}
 
 	~GameObject() {
 		DestroyAllComponents();
@@ -56,18 +51,20 @@ public:
 		for(auto child : children) {
 			delete child;
 		}
+
+		delete mesh;
 	}
 
 	int GetId() {
 		return id;
 	}
 
-	string& GetTag() {
-		return tag;
+	string& GetName() {
+		return name;
 	}
 
-	void SetTag(string& tag) {
-		this->tag = tag;
+	void SetName(string name) {
+		this->name = name;
 	}
 
 	Trans& GetTransform() const {
@@ -86,15 +83,55 @@ public:
 		return this->parent;
 	}
 
+	GameObject* GetParent(string name) {
+		if (this->name == name) return this;
+		if (parent->name == name) return parent;
+		if (parent->parent->name == name) return parent->parent;
+
+		auto currentNode = parent;
+
+		while (currentNode != nullptr && currentNode->name != name) {
+			currentNode = currentNode->parent;
+		}
+
+		return currentNode;
+	}
+
 	void SetParent(GameObject* parent) {
 		this->parent = parent;
 	}
 
 	/**
+	* Sets states of this node
+	*/
+	void SetFlags(Flags val);
+
+	/**
+	* Returns true, if this object has the selected state
+	*/
+	bool HasFlag(unsigned state) const;
+
+	/**
+	* Sets a new state
+	*/
+	void SetFlag(unsigned state);
+
+	/**
+	* Resets the selected state
+	*/
+	void ResetFlag(unsigned state);
+
+	/**
+	* Switches values of two states
+	*/
+	void SwitchFlag(unsigned state1, unsigned state2);
+	
+	/**
 	 * Finds the topmost element in the object hierarchy
 	 */
 	GameObject* GetRoot();
 
+	void Remove();
 
 	Scene* GetScene() {
 		return scene;

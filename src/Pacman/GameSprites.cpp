@@ -22,7 +22,8 @@ void GameSprites::Initialize(ofImage* mapImage, ofImage* spritesImage) {
 	spritesheets["background"] = builder.Image(mapImage).BuildAndReset();
 
 	// create mesh for background
-	background = new SpriteMesh(Sprite(spritesheets["background"], 0, 0), "bgrLayer");
+	Sprite spr = Sprite(spritesheets["background"], 0, 0);
+	background = new SpriteMesh(spr, "bgrLayer");
 
 	// create mesh for game objects
 	staticMesh = new MultiSpriteMesh("spriteLayer");
@@ -32,16 +33,20 @@ void GameSprites::Initialize(ofImage* mapImage, ofImage* spritesImage) {
 	staticMesh->AddSprite(player);
 
 	// add static elements (fountain, river and gates)
-	fountain = new Sprite(spritesheets["fountain"], 0, Trans(ofVec3f(272, 180, 0)));
+	Trans trans = Trans(ofVec3f(272, 180, 0));
+	fountain = new Sprite(spritesheets["fountain"], 0, trans);
 	staticMesh->AddSprite(fountain);
 
-	river = new Sprite(spritesheets["river"], 0, Trans(ofVec3f(0, 90, 0)));
+	trans = Trans(ofVec3f(0, 90, 0));
+	river = new Sprite(spritesheets["river"], 0, trans);
 	staticMesh->AddSprite(river);
 
-	gate = new Sprite(spritesheets["gate"], 0, Trans(ofVec3f(350, 60, 0)));
+	trans = Trans(ofVec3f(350, 60, 0));
+	gate = new Sprite(spritesheets["gate"], 0, trans);
 	staticMesh->AddSprite(gate);
 
-	spiderGate = new Sprite(spritesheets["spider_gate"], 0, Trans(ofVec3f(304, 134, 0)));
+	trans = Trans(ofVec3f(304, 134, 0));
+	spiderGate = new Sprite(spritesheets["spider_gate"], 0, trans);
 	staticMesh->AddSprite(spiderGate);
 
 	// create mesh for dots

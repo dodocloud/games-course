@@ -118,8 +118,10 @@ ofVec3f TransformBuilder::CalcScale(GameObject* node, GameObject* parent, float 
 		break;
 	case CalcType::LOC:
 		// local scale, multiplied by scale of the parent
-		if (width == 0) width = 1;
-		if (height == 0) height = 1;
+		if (width == 0 && height == 0) {
+			width = 1;
+			height = 1;
+		}
 		scaleX = width;
 		scaleY = height;
 		break;
@@ -138,5 +140,5 @@ ofVec3f TransformBuilder::CalcScale(GameObject* node, GameObject* parent, float 
 }
 
 ofVec2f TransformBuilder::GetCenter() {
-	return ofVec2f(ofGetScreenWidth() / 2.0f, ofGetScreenHeight() / 2.0f);
+	return ofVec2f(ofGetWindowSize().x / 2.0f, ofGetWindowSize().y / 2.0f);
 }

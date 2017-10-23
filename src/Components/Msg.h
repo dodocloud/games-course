@@ -107,6 +107,6 @@ public:
 	*/
 	template <class T>
 	T* GetData() {
-		return dynamic_cast<T*>(data);
+		return static_cast<T*>(data);
 	}
 };

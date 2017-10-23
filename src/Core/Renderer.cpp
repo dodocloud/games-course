@@ -35,24 +35,24 @@ void Renderer::ClearBuffers() {
 }
 
 void Renderer::PushNode(Renderable* node) {
+	if (node->IsVisible()) {
+		auto renderType = node->GetMeshType();
+		auto& buffer = (renderType == MeshType::SPRITE || renderType == MeshType::MULTISPRITE)
+			? zIndexSheetBuffer : zIndexImageBuffer;
 
-	auto renderType = node->GetMeshType();
-	auto& buffer = (renderType == MeshType::SPRITE || renderType == MeshType::MULTISPRITE)
-		? zIndexSheetBuffer : zIndexImageBuffer;
 
+		Trans& tr = node->GetTransform();
+		// zIndex will be taken always from local position
+		int zIndex = (int)(tr.localPos.z);
 
-	Trans& tr = node->GetTransform();
-	// zIndex will be taken always from local position
-	int zIndex = (int)(tr.localPos.z);
-
-	auto it = buffer.find(zIndex);
-	if (it != buffer.end()) {
-		(*it).second.push_back(node);
+		auto it = buffer.find(zIndex);
+		if (it != buffer.end()) {
+			(*it).second.push_back(node);
+		}
+		else {
+			buffer[zIndex].push_back(node);
+		}
 	}
-	else {
-		buffer[zIndex].push_back(node);
-	}
-
 }
 
 void Renderer::BeginRender() {

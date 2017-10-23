@@ -12,7 +12,7 @@
 
 // string ids
 extern StrId WANDER_DESTINATION;
-extern StrId MOVEMENT;
+extern StrId WMOVEMENT;
 
 /**
 * Behavior for movement, updates transformations according
@@ -29,6 +29,9 @@ public:
 	virtual void Update(uint64_t delta, uint64_t absolute);
 };
 
+/**
+ * Simple movement that randomly changes direction
+ */
 class SimpleMoveComponent : public Component {
 	virtual void Init();
 
@@ -39,6 +42,9 @@ class SimpleMoveComponent : public Component {
 	virtual void Update(uint64_t delta, uint64_t absolute);
 };
 
+/**
+ * Steering behavior for more sophisticated random movement
+ */
 class WanderComponent : public Component {
 private:
 private:
@@ -106,4 +112,40 @@ public:
 	virtual set<int>& GetPressedKeys() {
 		return pressedKeys;
 	}
+
+	// =============== NOT USED ===============
+
+	virtual int GetVirtualWidth() {
+		return 0;
+	}
+
+	virtual int GetVirtualHeight() {
+		return 0;
+	}
+
+	virtual float GetMeshDefaultScale() {
+		return 0;
+	}
+
+	virtual float GetGameSpeed() {
+		return 0;
+	}
+
+	virtual ofImage* GetImage(string path) {
+		return nullptr;
+	}
+
+	virtual void ResetGame() {
+
+	}
+
+	virtual void PlaySound(string path) {
+
+	}
+
+	virtual int GetMappedKey(StrId action) {
+		return 0;
+	}
+
+	// ========================================
 };

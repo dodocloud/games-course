@@ -90,7 +90,7 @@ public:
 		return *this;
 	}
 
-	TransformBuilder& AbsoluteSize(ofVec2f size) {
+	TransformBuilder& AbsoluteScale(ofVec2f size) {
 		this->size = size;
 		this->sType = CalcType::ABS;
 		return *this;
@@ -98,6 +98,12 @@ public:
 
 	TransformBuilder& LocalScale(ofVec2f size) {
 		this->size = size;
+		this->sType = CalcType::LOC;
+		return *this;
+	}
+
+	TransformBuilder& LocalScale(float x, float y) {
+		this->size = ofVec2f(x,y);
 		this->sType = CalcType::LOC;
 		return *this;
 	}

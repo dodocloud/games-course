@@ -20,14 +20,14 @@ private:
 	// all game objects of the scene
 	vector<GameObject*> allGameObjects;
 
-	GameObject* rootObject;
+	GameObject* rootObject = nullptr;
 public:
 
 	Scene() {
 		
 	}
 
-	Scene(string& name) :name(name) {
+	Scene(string name) :name(name) {
 		
 	}
 
@@ -47,7 +47,11 @@ public:
 		this->name = name;
 	}
 
-	void FindGameObjectsByTag(string tag, vector<GameObject*>& output);
+	void FindGameObjectsByFlag(unsigned flag, vector<GameObject*>& output);
+
+	void FindGameObjectsByName(string name, vector<GameObject*>& output);
+
+	GameObject* FindGameObjectByName(string name);
 
 	void SendMsg(Msg& msg);
 

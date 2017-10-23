@@ -4,7 +4,7 @@
 #include <cstdarg>
 #include "ofUtils.h"
 
-#define CURRENT_VERSION 2
+#define CURRENT_VERSION 3
 using namespace std;
 typedef unsigned long long uint64;
 

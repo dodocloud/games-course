@@ -67,4 +67,40 @@ public:
 	virtual set<int>& GetPressedKeys() {
 		return pressedKeys;
 	}
+
+	// =============== NOT USED ===============
+
+	virtual int GetVirtualWidth() {
+		return 0;
+	}
+
+	virtual int GetVirtualHeight() {
+		return 0;
+	}
+
+	virtual float GetMeshDefaultScale() {
+		return 0;
+	}
+
+	virtual float GetGameSpeed() {
+		return 0;
+	}
+
+	virtual ofImage* GetImage(string path) {
+		return nullptr;
+	}
+
+	virtual void ResetGame() {
+		
+	}
+
+	virtual void PlaySound(string path) {
+		
+	}
+
+	virtual int GetMappedKey(StrId action) {
+		return 0;
+	}
+
+	// ========================================
 };

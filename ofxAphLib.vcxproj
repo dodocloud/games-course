@@ -180,6 +180,7 @@
     <ClCompile Include="src\Components\GameObject.cpp" />
     <ClCompile Include="src\Components\Scene.cpp" />
     <ClCompile Include="src\Core\AphUtils.cpp" />
+    <ClCompile Include="src\Core\Flags.cpp" />
     <ClCompile Include="src\Core\Renderable.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
     <ClCompile Include="src\Core\Sprite.cpp" />
@@ -220,6 +221,8 @@
     <ClInclude Include="src\Components\Scene.h" />
     <ClInclude Include="src\Core\AphMain.h" />
     <ClInclude Include="src\Core\AphUtils.h" />
+    <ClInclude Include="src\Core\BoundingBox.h" />
+    <ClInclude Include="src\Core\Flags.h" />
     <ClInclude Include="src\Core\Movement.h" />
     <ClInclude Include="src\Core\Renderable.h" />
     <ClInclude Include="src\Core\Renderer.h" />

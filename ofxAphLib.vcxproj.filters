@@ -100,6 +100,9 @@
     <ClCompile Include="src\Pacman\GameSprites.cpp">
       <Filter>src\Pacman</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\Flags.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -253,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="src\Pacman\GameSprites.h">
       <Filter>src\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Flags.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\BoundingBox.h">
+      <Filter>src\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

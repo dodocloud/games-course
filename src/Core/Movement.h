@@ -67,7 +67,7 @@ public:
 	/**
 	* Gets velocity vector
 	*/
-	ofVec2f GetVelocity() const {
+	ofVec2f& GetVelocity() {
 		return velocity;
 	}
 
@@ -102,5 +102,14 @@ public:
 		this->velocity = ofVec2f(0);
 		this->acceleration = ofVec2f(0);
 		this->angularSpeed = 0;
+	}
+
+	void UpdateVelocity(uint64_t delta, float gameSpeed) {
+		auto force = CalcForce();
+		velocity += force * delta * gameSpeed;
+	}
+
+	ofVec2f CalcDelta(uint64_t delta, float gameSpeed) const {
+		return velocity * delta * gameSpeed;
 	}
 };
