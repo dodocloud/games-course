@@ -187,7 +187,7 @@ void Renderer::RenderImage(Renderable* owner) {
 }
 
 void Renderer::RenderRectangle(Renderable* owner) {
-	Rect* rect = dynamic_cast<Rect*>(owner);
+	FRect* rect = dynamic_cast<FRect*>(owner);
 
 	if (rect->IsRenderable()) {
 		// calc absolute matrix

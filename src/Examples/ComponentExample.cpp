@@ -43,18 +43,18 @@ void ComponentExample::setup() {
 
 		scene = new Scene();
 
-		auto rootObject = new GameObject(this, scene, new Rect(ofGetWindowSize().x, ofGetWindowSize().y));
-		rootObject->GetMesh<Rect>()->SetColor(ofColor(0, 0, 0));
+		auto rootObject = new GameObject(this, scene, new FRect(ofGetWindowSize().x, ofGetWindowSize().y));
+		rootObject->GetMesh<FRect>()->SetColor(ofColor(0, 0, 0));
 		scene->SetRootObject(rootObject);
 
 		virtualAspectRatio = ((float)ofGetWindowSize().x) / ofGetWindowSize().y;
 		// initialize virtual size
 		windowResized(ofGetWindowSize().x, ofGetWindowSize().y);
 
-		auto redSquareMesh = new Rect(1, 1);
+		auto redSquareMesh = new FRect(1, 1);
 		redSquareMesh->SetColor(ofColor(255, 0, 0));
 
-		auto blueSquareMesh = new Rect(1, 1);
+		auto blueSquareMesh = new FRect(1, 1);
 		blueSquareMesh->SetColor(ofColor(0, 0, 255));
 
 		auto redSquare = new GameObject(this, scene, redSquareMesh);
@@ -143,7 +143,7 @@ void ComponentExample::windowResized(int w, int h) {
 	renderer->SetVirtualWidth(rendererWidth);
 	renderer->SetVirtualHeight(rendererHeight);
 
-	auto rootRect = scene->GetRootObject()->GetMesh<Rect>();
+	auto rootRect = scene->GetRootObject()->GetMesh<FRect>();
 
 	// scale the root object so that the scene fits the screen
 	float aspectDiff = ((float)rendererWidth) / rootRect->GetWidth();

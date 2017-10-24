@@ -59,7 +59,7 @@ void ParatrooperApp::Reset() {
 	this->meshDefaultScale = 1.0f / autoScale * (ofGetWindowSize().x / 800.0f);
 	
 	// create root object
-	auto rootObject = new GameObject(OBJECT_ROOT, this, scene, new Rect(ofGetWindowSize().x / autoScale, ofGetWindowSize().y / autoScale, ofColor(0)));
+	auto rootObject = new GameObject(OBJECT_ROOT, this, scene, new FRect(ofGetWindowSize().x / autoScale, ofGetWindowSize().y / autoScale, ofColor(0)));
 	scene->SetRootObject(rootObject);
 	// initialize virtual size
 	windowResized(ofGetWindowSize().x, ofGetWindowSize().y);
@@ -146,7 +146,7 @@ void ParatrooperApp::windowResized(int w, int h) {
 	renderer->SetVirtualWidth(rendererWidth);
 	renderer->SetVirtualHeight(rendererHeight);
 
-	auto rootRect = scene->GetRootObject()->GetMesh<Rect>();
+	auto rootRect = scene->GetRootObject()->GetMesh<FRect>();
 	float aspectDiff = ((float)rendererWidth) / rootRect->GetWidth();
 	scene->GetRootObject()->GetTransform().scale = originalRootObjScale * ofVec3f(aspectDiff);
 	scene->GetRootObject()->GetTransform().SetAbsAsLocal();

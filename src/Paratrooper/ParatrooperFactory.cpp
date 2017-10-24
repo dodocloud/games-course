@@ -59,7 +59,7 @@ void ParatrooperFactory::InitializeGame(GameObject* rootObject, ParatrooperModel
 	auto tower = new GameObject(OBJECT_TOWER, context, scene, new ImageMesh(context->GetImage(FILE_TOWER)));
 	auto turret = new GameObject(OBJECT_TURRET, context, scene, new ImageMesh(context->GetImage(FILE_TURRET)));
 	auto cannon = new GameObject(OBJECT_CANNON, context, scene, new ImageMesh(context->GetImage(FILE_CANNON)));
-	auto ground = new GameObject(OBJECT_GROUND, context, scene, new Rect(100, 0.3f, ofColor(0, 255, 255)));
+	auto ground = new GameObject(OBJECT_GROUND, context, scene, new FRect(100, 0.3f, ofColor(0, 255, 255)));
 
 	// add game model
 	rootObject->AddAttr(MODEL, model);

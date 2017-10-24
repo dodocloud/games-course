@@ -18,7 +18,7 @@ void TransformBuilder::Build(GameObject* element) {
 	switch (element->GetMesh()->GetMeshType()) {
 	case MeshType::NONE:
 	case MeshType::RECTANGLE:
-		auto rectShape = element->GetMesh<Rect>();
+		auto rectShape = element->GetMesh<FRect>();
 		rectShape->SetWidth(rectShape->GetWidth()*nodeTransform.scale.x);
 		rectShape->SetHeight(rectShape->GetHeight()*nodeTransform.scale.y);
 		nodeTransform.scale = ofVec3f(1);
@@ -39,7 +39,7 @@ void TransformBuilder::Build(GameObject* element, GameObject* parent) {
 	switch (element->GetMesh()->GetMeshType()) {
 	case MeshType::NONE:
 	case MeshType::RECTANGLE:
-		auto rectShape = element->GetMesh<Rect>();
+		auto rectShape = element->GetMesh<FRect>();
 		rectShape->SetWidth(rectShape->GetWidth()*nodeTransform.scale.x);
 		rectShape->SetHeight(rectShape->GetHeight()*nodeTransform.scale.y);
 		nodeTransform.scale = ofVec3f(1);

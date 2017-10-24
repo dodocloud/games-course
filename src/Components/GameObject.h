@@ -37,9 +37,9 @@ protected:
 public:
 
 
-	GameObject(Context* context, Scene* scene) : id(idCounter++), context(context), scene(scene), mesh(new Rect(0, 0)) { }
+	GameObject(Context* context, Scene* scene) : id(idCounter++), context(context), scene(scene), mesh(new FRect(0, 0)) { }
 
-	GameObject(string name, Context* context, Scene* scene) : id(idCounter++), name(name), context(context), scene(scene), mesh(new Rect(0, 0)) { }
+	GameObject(string name, Context* context, Scene* scene) : id(idCounter++), name(name), context(context), scene(scene), mesh(new FRect(0, 0)) { }
 
 	GameObject(Context* context, Scene* scene, Renderable* mesh) : id(idCounter++), context(context), scene(scene), mesh(mesh) { }
 

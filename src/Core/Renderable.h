@@ -111,18 +111,18 @@ public:
 /**
 * Node rectangle
 */
-class Rect : public Renderable {
+class FRect : public Renderable {
 private:
 	// indicator, if only borders should be drawn
 	bool noFill = false;
 	// indicator, if the rectangle is renderable at all
 	bool isRenderable = true;
 public:
-	Rect(float width, float height)
+	FRect(float width, float height)
 		: Renderable(MeshType::RECTANGLE, width, height) {
 	}
 
-	Rect(float width, float height, ofColor color)
+	FRect(float width, float height, ofColor color)
 		: Renderable(MeshType::RECTANGLE, width, height) {
 		this->color = color;
 	}
