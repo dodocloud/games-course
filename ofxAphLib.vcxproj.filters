@@ -103,6 +103,15 @@
     <ClCompile Include="src\Core\Flags.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Paratrooper\GameValues.cpp">
+      <Filter>src\Paratrooper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paratrooper\ParatrooperApp.cpp">
+      <Filter>src\Paratrooper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paratrooper\ParatrooperFactory.cpp">
+      <Filter>src\Paratrooper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -131,6 +140,9 @@
     </Filter>
     <Filter Include="src\Pacman">
       <UniqueIdentifier>{538030c2-daad-44b5-be98-5bd7e0d8ee2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Paratrooper">
+      <UniqueIdentifier>{6018def0-bc81-4e79-b43b-9758e08200bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +274,54 @@
     </ClInclude>
     <ClInclude Include="src\Core\BoundingBox.h">
       <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\GameManager.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\GameValues.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ParatrooperApp.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ParatrooperComponent.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ParatrooperFactory.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ParatrooperModel.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ProjectileComponent.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\ScoreComponent.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\SoundComponent.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\CannonController.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\CollisionManager.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\CopterAnimator.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\CopterComponent.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\CopterSpawner.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\DeathAnimation.h">
+      <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paratrooper\DeathChecker.h">
+      <Filter>src\Paratrooper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

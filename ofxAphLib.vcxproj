@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -206,6 +206,9 @@
     <ClCompile Include="src\Pacman\PacmanApp.cpp" />
     <ClCompile Include="src\Pacman\Player.cpp" />
     <ClCompile Include="src\Pacman\Spider.cpp" />
+    <ClCompile Include="src\Paratrooper\GameValues.cpp" />
+    <ClCompile Include="src\Paratrooper\ParatrooperApp.cpp" />
+    <ClCompile Include="src\Paratrooper\ParatrooperFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\jsonxx\jsonxx.h" />
@@ -251,6 +254,22 @@
     <ClInclude Include="src\Pacman\Player.h" />
     <ClInclude Include="src\Pacman\Spider.h" />
     <ClInclude Include="src\Pacman\States.h" />
+    <ClInclude Include="src\Paratrooper\CannonController.h" />
+    <ClInclude Include="src\Paratrooper\CollisionManager.h" />
+    <ClInclude Include="src\Paratrooper\CopterAnimator.h" />
+    <ClInclude Include="src\Paratrooper\CopterComponent.h" />
+    <ClInclude Include="src\Paratrooper\CopterSpawner.h" />
+    <ClInclude Include="src\Paratrooper\DeathAnimation.h" />
+    <ClInclude Include="src\Paratrooper\DeathChecker.h" />
+    <ClInclude Include="src\Paratrooper\GameManager.h" />
+    <ClInclude Include="src\Paratrooper\GameValues.h" />
+    <ClInclude Include="src\Paratrooper\ParatrooperApp.h" />
+    <ClInclude Include="src\Paratrooper\ParatrooperComponent.h" />
+    <ClInclude Include="src\Paratrooper\ParatrooperFactory.h" />
+    <ClInclude Include="src\Paratrooper\ParatrooperModel.h" />
+    <ClInclude Include="src\Paratrooper\ProjectileComponent.h" />
+    <ClInclude Include="src\Paratrooper\ScoreComponent.h" />
+    <ClInclude Include="src\Paratrooper\SoundComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

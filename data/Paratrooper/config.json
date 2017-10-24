@@ -1,0 +1,21 @@
+{
+	"max_landed_units" : 10,
+	"min_cannon_angle" : -1.35,
+	"max_cannon_angle" : 1.35,
+	"cannon_fire_rate" : 6,
+	"paratrooper_spawn_frequency" : 0.4,
+	"copter_spawn_frequency" : 0.2,
+	"copter_reward" : 10,
+	"paratrooper_falling_reward" : 2,
+	"paratrooper_shot_reward" : 1,
+	"shoot_penalty" : 1,
+	"projectile_velocity" : 0.5,
+	"gravity" : 0.003,
+	"parachute_decceleration" : 0.003,
+	"copter_spawn_min_y" : 0.1,
+	"copter_spawn_max_y" : 0.2,
+	"copter_min_velocity" : 0.1,
+	"copter_max_velocity" : 0.15,
+	"parachute_open_altitude" : 20,
+	"parachute_open_velocity_threshold" : 0.05
+}
