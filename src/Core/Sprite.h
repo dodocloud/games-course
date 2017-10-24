@@ -42,7 +42,7 @@ public:
 	* @param column index of a column in which this sprite is located
 	* @param transform sprite transformation
 	*/
-	Sprite(SpriteSheet* spriteSheet, int row, int column, Trans& transform);
+	Sprite(SpriteSheet* spriteSheet, int row, int column, const Trans& transform);
 
 	/**
 	* Creates a new sprite
@@ -50,7 +50,7 @@ public:
 	* @param frame index of a frame on the sprite sheet
 	* @param transform sprite transformation
 	*/
-	Sprite(SpriteSheet* spriteSheet, int frame, Trans& transform);
+	Sprite(SpriteSheet* spriteSheet, int frame, const Trans& transform);
 
 	int GetFrame() const {
 		return frame;

@@ -12,11 +12,11 @@ Sprite::Sprite(SpriteSheet* spriteSheet, int frame) : spriteSheet(spriteSheet), 
 }
 
 
-Sprite::Sprite(SpriteSheet* spriteSheet, int row, int column, Trans& transform) : Sprite(spriteSheet, row, column) {
+Sprite::Sprite(SpriteSheet* spriteSheet, int row, int column, const Trans& transform) : Sprite(spriteSheet, row, column) {
 	this->transform = transform;
 }
 
-Sprite::Sprite(SpriteSheet* spriteSheet, int frame, Trans& transform) : Sprite(spriteSheet, frame) {
+Sprite::Sprite(SpriteSheet* spriteSheet, int frame, const Trans& transform) : Sprite(spriteSheet, frame) {
 	this->transform = transform;
 }
 

@@ -340,7 +340,7 @@ private:
 	string layerName;
 public:
 
-	SpriteMesh(Sprite& sprite, string layerName)
+	SpriteMesh(const Sprite& sprite, string layerName)
 		: Renderable(MeshType::SPRITE), sprite(sprite), layerName(layerName) {
 	}
 
