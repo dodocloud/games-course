@@ -112,6 +112,18 @@
     <ClCompile Include="src\Paratrooper\ParatrooperFactory.cpp">
       <Filter>src\Paratrooper</Filter>
     </ClCompile>
+    <ClCompile Include="src\Core\GridMap.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\PathFinder.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\PathFindingExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\VerletExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -322,6 +334,21 @@
     </ClInclude>
     <ClInclude Include="src\Paratrooper\DeathChecker.h">
       <Filter>src\Paratrooper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Vec2i.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\GridMap.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\PathFinder.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\PathFindingExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\VerletExample.h">
+      <Filter>src\Examples</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

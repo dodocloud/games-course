@@ -181,6 +181,8 @@
     <ClCompile Include="src\Components\Scene.cpp" />
     <ClCompile Include="src\Core\AphUtils.cpp" />
     <ClCompile Include="src\Core\Flags.cpp" />
+    <ClCompile Include="src\Core\GridMap.cpp" />
+    <ClCompile Include="src\Core\PathFinder.cpp" />
     <ClCompile Include="src\Core\Renderable.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
     <ClCompile Include="src\Core\Sprite.cpp" />
@@ -197,8 +199,10 @@
     <ClCompile Include="src\Examples\CpuParticlesExample.cpp" />
     <ClCompile Include="src\Examples\CubeExample.cpp" />
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp" />
+    <ClCompile Include="src\Examples\PathFindingExample.cpp" />
     <ClCompile Include="src\Examples\StarsExample.cpp" />
     <ClCompile Include="src\Examples\TwistExample.cpp" />
+    <ClCompile Include="src\Examples\VerletExample.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Pacman\GameSprites.cpp" />
     <ClCompile Include="src\Pacman\GameUnit.cpp" />
@@ -226,7 +230,9 @@
     <ClInclude Include="src\Core\AphUtils.h" />
     <ClInclude Include="src\Core\BoundingBox.h" />
     <ClInclude Include="src\Core\Flags.h" />
+    <ClInclude Include="src\Core\GridMap.h" />
     <ClInclude Include="src\Core\Movement.h" />
+    <ClInclude Include="src\Core\PathFinder.h" />
     <ClInclude Include="src\Core\Renderable.h" />
     <ClInclude Include="src\Core\Renderer.h" />
     <ClInclude Include="src\Core\Sprite.h" />
@@ -237,14 +243,17 @@
     <ClInclude Include="src\Core\StrId.h" />
     <ClInclude Include="src\Core\Transform.h" />
     <ClInclude Include="src\Core\TransformBuilder.h" />
+    <ClInclude Include="src\Core\Vec2i.h" />
     <ClInclude Include="src\Examples\ColorWaveExample.h" />
     <ClInclude Include="src\Examples\ComponentExample.h" />
     <ClInclude Include="src\Examples\ComponentExample2.h" />
     <ClInclude Include="src\Examples\CpuParticlesExample.h" />
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
+    <ClInclude Include="src\Examples\PathFindingExample.h" />
     <ClInclude Include="src\Examples\StarsExample.h" />
     <ClInclude Include="src\Examples\TwistExample.h" />
+    <ClInclude Include="src\Examples\VerletExample.h" />
     <ClInclude Include="src\Pacman\GameSprites.h" />
     <ClInclude Include="src\Pacman\GameUnit.h" />
     <ClInclude Include="src\Pacman\Map.h" />
