@@ -78,7 +78,8 @@ bool GameObject::DestroyComponent(Component* component) {
 
 void GameObject::DestroyAllComponents() {
 	for (auto comp : components) {
-		DestroyComponent(comp);
+		scene->RemoveSubscriber(comp);
+		delete comp;
 	}
 
 	components.clear();
@@ -129,8 +130,10 @@ void GameObject::RemoveAllChildren() {
 
 void GameObject::DestroyAllChildren() {
 	for (auto child : children) {
-		DestroyChild(child);
+		scene->RemoveGameObjectInternal(child);
+		delete child;
 	}
+	children.clear();
 }
 
 void GameObject::Update(uint64_t delta, uint64_t absolute) {
