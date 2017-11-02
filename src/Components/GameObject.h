@@ -47,10 +47,7 @@ public:
 
 	~GameObject() {
 		DestroyAllComponents();
-
-		for(auto child : children) {
-			delete child;
-		}
+		DestroyAllChildren();
 
 		delete mesh;
 	}
