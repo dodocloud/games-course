@@ -5,12 +5,14 @@
 #include "ColorWaveExample.h"
 #include "TwistExample.h"
 #include "PacmanApp.h"
+#include "PerlinNoiseExample.h"
+#include "ParatrooperApp.h"
 
 
 //========================================================================
 int main( ){
 
 	ofSetupOpenGL(800,400, OF_WINDOW);	
-	ofRunApp(new PacmanApp());
+	ofRunApp(new ParatrooperApp());
 
 }

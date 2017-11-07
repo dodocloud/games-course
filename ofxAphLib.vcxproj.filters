@@ -124,6 +124,12 @@
     <ClCompile Include="src\Examples\VerletExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
+    <ClCompile Include="src\Examples\QuadTreeExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\PerlinNoiseExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -348,6 +354,12 @@
       <Filter>src\Examples</Filter>
     </ClInclude>
     <ClInclude Include="src\Examples\VerletExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\QuadTreeExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\PerlinNoiseExample.h">
       <Filter>src\Examples</Filter>
     </ClInclude>
   </ItemGroup>

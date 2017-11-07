@@ -242,7 +242,7 @@ void Renderer::RenderSprite(Renderable* owner) {
 	spriteTile.posX = trans.absPos.x + trans.absScale.x*spriteTile.width / 2.0f;  // [0,0] is topleft corner
 	spriteTile.posY = trans.absPos.y + trans.absScale.y*spriteTile.height / 2.0f;
 	spriteTile.posZ = trans.absPos.z;
-	spriteTile.rotation = trans.rotation*DEG_TO_RAD;
+	spriteTile.rotation = trans.rotation;
 	spriteTile.scaleX = trans.absScale.x;
 	spriteTile.scaleY = trans.absScale.y;
 

@@ -200,6 +200,8 @@
     <ClCompile Include="src\Examples\CubeExample.cpp" />
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp" />
     <ClCompile Include="src\Examples\PathFindingExample.cpp" />
+    <ClCompile Include="src\Examples\PerlinNoiseExample.cpp" />
+    <ClCompile Include="src\Examples\QuadTreeExample.cpp" />
     <ClCompile Include="src\Examples\StarsExample.cpp" />
     <ClCompile Include="src\Examples\TwistExample.cpp" />
     <ClCompile Include="src\Examples\VerletExample.cpp" />
@@ -251,6 +253,8 @@
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
     <ClInclude Include="src\Examples\PathFindingExample.h" />
+    <ClInclude Include="src\Examples\PerlinNoiseExample.h" />
+    <ClInclude Include="src\Examples\QuadTreeExample.h" />
     <ClInclude Include="src\Examples\StarsExample.h" />
     <ClInclude Include="src\Examples\TwistExample.h" />
     <ClInclude Include="src\Examples\VerletExample.h" />
