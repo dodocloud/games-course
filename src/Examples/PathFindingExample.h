@@ -25,8 +25,6 @@ using namespace std;
 #define SLOW_PATH_COST 10
 
 
-class GridWithWeights;
-
 class PathFindingExample : public ofBaseApp {
 public:
 	// static map
@@ -92,24 +90,23 @@ public:
 
 	// renderer component
 	Renderer* renderer;
-	
-	
-	Dijkstra pathFinder;
+
+	AStarSearch pathFinder;
 
 	void RecreateMap();
 
 	void Recalc(int x, int y);
 
 	/**
-	 * Sets sprite index according to the type of the block of the map
-	 */
+	* Sets sprite index according to the type of the block of the map
+	*/
 	void SetSpriteIndex(Vec2i mapPos) {
 		auto index = MapIndexByCoord(mapPos.x, mapPos.y);
-		auto cost = grid->GetCost(mapPos);
+		auto elevation = grid->GetElevation(mapPos);
 		bool hasObstr = grid->HasObstruction(mapPos.x, mapPos.y);
-		sprites[index]->SetFrame(hasObstr ? SPRITE_OBSTRUCTION : cost == 1 ? SPRITE_PATH : SPRITE_SLOW_PATH);
+		sprites[index]->SetFrame(hasObstr ? SPRITE_OBSTRUCTION : elevation == 1 ? SPRITE_PATH : SPRITE_SLOW_PATH);
 	}
-	
+
 	/**
 	* Transforms map coordinates into world coordinates
 	*/
@@ -118,22 +115,22 @@ public:
 	}
 
 	/**
-	 * Transforms world coordinates into map coordinates
-	 */
+	* Transforms world coordinates into map coordinates
+	*/
 	Vec2i WorldToMap(float x, float y) {
 		return Vec2i(x / MAP_CELL_SIZE, y / MAP_CELL_SIZE);
 	}
 
 	/**
-	 * Gets map index by coordinate
-	 */
+	* Gets map index by coordinate
+	*/
 	int MapIndexByCoord(int x, int y) {
 		return y*MAP_WIDTH + x;
 	}
 
 	/**
-	 * Gets map coordinate by index
-	 */
+	* Gets map coordinate by index
+	*/
 	Vec2i MapCoordByIndex(int index) {
 		return Vec2i(index % MAP_WIDTH, index / MAP_WIDTH);
 	}

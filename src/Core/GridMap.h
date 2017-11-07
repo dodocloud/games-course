@@ -7,25 +7,30 @@
 #include "Vec2i.h"
 
 
+enum class MapType {
+	TILE, OCTILE
+};
+
 /**
 * Grid-based map for searching algorithms
 */
 class GridMap {
 	// grid size
 	int width, height;
-	// places that couldn't be crossed
+	// places that can't be crossed
 	unordered_set<Vec2i> obstructions;
-	// optimal cost of positions 
-	unordered_map<Vec2i, int> costs;
-
+	// elevations of map blocks
+	unordered_map<Vec2i, int> elevations;
+	MapType mapType = MapType::TILE;
+	int maxElevation;
 public:
 
-	GridMap() : width(0), height(0) {
+	GridMap(MapType mapType, int maxElevation) : mapType(mapType), maxElevation(maxElevation), width(0), height(0) {
 
 	}
 
-	GridMap(int width, int height)
-		: width(width), height(height) {
+	GridMap(MapType mapType, int maxElevation, int width, int height)
+		: mapType(mapType), maxElevation(maxElevation), width(width), height(height) {
 	}
 
 
@@ -38,9 +43,9 @@ public:
 	}
 
 	/**
-	 * Sets cost at given position
-	 */
-	void SetCost(Vec2i pos, int cost);
+	* Sets elevation at given position
+	*/
+	void SetElevation(Vec2i pos, int cost);
 
 	/**
 	* Adds a new obstruction at selected position that can't be crossed
@@ -74,15 +79,28 @@ public:
 	void GetNeighbors(Vec2i pos, vector<Vec2i>& output) const;
 
 	/**
-	* Gets cost of the position; returns 1, if no cost was specified
+	 * Gets elevation of the map block
+	 */
+	int GetElevation(Vec2i position) const {
+		return (elevations.find(position) != elevations.end()) 
+		? elevations.find(position)->second : 1; // return 1 by default
+	}
+
+	/**
+	* Gets cost to pass between two blocks
 	*/
-	int GetCost(Vec2i pos) const {
-		return (costs.find(pos) != costs.end()) ? costs.find(pos)->second : 1;
+	int GetCost(Vec2i from, Vec2i to) const {
+		// TODO place your yode here
+		return GetElevation(from);
 	}
 
 private:
 	/** Returns true, if the position is inside the grid */
 	inline bool IsInside(Vec2i id) const {
 		return 0 <= id.x && id.x < width && 0 <= id.y && id.y < height;
+	}
+
+	inline bool IsInside(int x, int y) const {
+		return 0 <= x && x < width && 0 <= y && y < height;
 	}
 };

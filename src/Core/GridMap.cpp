@@ -1,8 +1,8 @@
 #include "GridMap.h"
 
 
-void GridMap::SetCost(Vec2i pos, int cost) {
-	costs[pos] = cost;
+void GridMap::SetElevation(Vec2i pos, int cost) {
+	elevations[pos] = cost;
 }
 
 
@@ -35,13 +35,33 @@ bool GridMap::HasObstruction(int x, int y) {
 
 void GridMap::GetNeighbors(Vec2i pos, vector<Vec2i>& output) const {
 
-	Vec2i nextLeft = Vec2i(pos.x - 1, pos.y);
-	Vec2i nextRight = Vec2i(pos.x + 1, pos.y);
-	Vec2i nextUp = Vec2i(pos.x, pos.y - 1);
-	Vec2i nextDown = Vec2i(pos.x, pos.y + 1);
+	if (mapType == MapType::TILE) {
+		Vec2i n1 = Vec2i(pos.x - 1, pos.y);
+		Vec2i n2 = Vec2i(pos.x + 1, pos.y);
+		Vec2i n3 = Vec2i(pos.x, pos.y - 1);
+		Vec2i n4 = Vec2i(pos.x, pos.y + 1);
+		if (IsInside(n1) && !obstructions.count(n1)) output.push_back(n1);
+		if (IsInside(n2) && !obstructions.count(n2)) output.push_back(n2);
+		if (IsInside(n3) && !obstructions.count(n3)) output.push_back(n3);
+		if (IsInside(n4) && !obstructions.count(n4)) output.push_back(n4);
+	}
+	else if (mapType == MapType::OCTILE) {
+		Vec2i west = Vec2i(pos.x - 1, pos.y);		
+		Vec2i east = Vec2i(pos.x + 1, pos.y);			
+		Vec2i north = Vec2i(pos.x, pos.y - 1);		
+		Vec2i south = Vec2i(pos.x, pos.y + 1);		
+		Vec2i northWest = Vec2i(pos.x - 1, pos.y - 1);		
+		Vec2i southEast = Vec2i(pos.x + 1, pos.y + 1);		
+		Vec2i northEast = Vec2i(pos.x + 1, pos.y - 1);		
+		Vec2i southWest = Vec2i(pos.x - 1, pos.y + 1);	
 
-	if (IsInside(nextLeft) && !obstructions.count(nextLeft)) output.push_back(nextLeft);
-	if (IsInside(nextDown) && !obstructions.count(nextDown)) output.push_back(nextDown);
-	if (IsInside(nextRight) && !obstructions.count(nextRight)) output.push_back(nextRight);
-	if (IsInside(nextUp) && !obstructions.count(nextUp)) output.push_back(nextUp);
+		if (IsInside(west) && !obstructions.count(west)) output.push_back(west);
+		if (IsInside(east) && !obstructions.count(east)) output.push_back(east);
+		if (IsInside(north) && !obstructions.count(north)) output.push_back(north);
+		if (IsInside(south) && !obstructions.count(south)) output.push_back(south);
+		if (IsInside(northWest) && !obstructions.count(northWest) && !obstructions.count(north) && !obstructions.count(west)) output.push_back(northWest);
+		if (IsInside(southEast) && !obstructions.count(southEast) && !obstructions.count(south) && !obstructions.count(east)) output.push_back(southEast);
+		if (IsInside(northEast) && !obstructions.count(northEast) && !obstructions.count(north) && !obstructions.count(east)) output.push_back(northEast);
+		if (IsInside(southWest) && !obstructions.count(southWest) && !obstructions.count(south) && !obstructions.count(west)) output.push_back(southWest);
+	}
 }

@@ -252,6 +252,7 @@
     <ClInclude Include="src\Examples\CpuParticlesExample.h" />
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
+    <ClInclude Include="src\Examples\Homework2.h" />
     <ClInclude Include="src\Examples\PathFindingExample.h" />
     <ClInclude Include="src\Examples\PerlinNoiseExample.h" />
     <ClInclude Include="src\Examples\QuadTreeExample.h" />

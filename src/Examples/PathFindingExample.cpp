@@ -17,7 +17,7 @@ void PathFindingExample::setup() {
 		// load sprite sheets
 		spritesImage = new ofImage("Examples/pathfinding.png");
 		SpriteSheetBuilder builder;
-		
+
 		sheet = builder.Image(spritesImage).Offset(0, 0).SpriteSize(32, 32).Frames(8).BuildAndReset();
 
 		// initialize virtual size
@@ -34,17 +34,19 @@ void PathFindingExample::setup() {
 		meshes.push_back(arrows);
 
 		// initialize grid from the static array
-		grid = new GridMap(MAP_WIDTH, MAP_HEIGHT);
+		grid = new GridMap(MapType::OCTILE, 10, MAP_WIDTH, MAP_HEIGHT);
 
-		for(int i=0; i<MAP_HEIGHT; i++) {
-			for(int j=0; j<MAP_WIDTH; j++) {
+		for (int i = 0; i < MAP_HEIGHT; i++) {
+			for (int j = 0; j < MAP_WIDTH; j++) {
 				int mapCell = map[i][j];
-				if(mapCell == 1) {
+				if (mapCell == 1) {
 					// add obstacles
 					grid->AddObstruction(j, i);
-				}else if(mapCell == 2) {
-					grid->SetCost(Vec2i(j,i), SLOW_PATH_COST);
-				}else {
+				}
+				else if (mapCell == 2) {
+					grid->SetElevation(Vec2i(j, i), SLOW_PATH_COST);
+				}
+				else {
 					// 0 -> nothing to do
 				}
 			}
@@ -56,14 +58,14 @@ void PathFindingExample::setup() {
 }
 
 void PathFindingExample::RecreateMap() {
-	
+
 	// delete all map blocks
 	mapTiles->RemoveAllSprites(true);
 	sprites.clear();
 
 	// create sprites
-	for (int i = 0; i<MAP_WIDTH; i++) {
-		for (int j = 0; j<MAP_HEIGHT; j++) {
+	for (int i = 0; i < MAP_WIDTH; i++) {
+		for (int j = 0; j < MAP_HEIGHT; j++) {
 
 			Sprite* spr = new Sprite(sheet, 0);
 			spr->GetTransform().localPos = MapToWorld(i, j);
@@ -79,7 +81,7 @@ void PathFindingExample::Recalc(int x, int y) {
 	this->arrows->RemoveAllSprites(true);
 	this->visited->RemoveAllSprites(true);
 
-	for(auto spr : sprites) {
+	for (auto spr : sprites) {
 		Vec2i mapPos = MapCoordByIndex(spr.first);
 		SetSpriteIndex(mapPos);
 	}
@@ -88,9 +90,9 @@ void PathFindingExample::Recalc(int x, int y) {
 	PathFinderContext currentContext;
 	bool found = pathFinder.Search(*grid, Vec2i(0, 15), Vec2i(x, y), currentContext);
 
-	
+
 	// draw visited blocks
-	for(auto visitedBlock : currentContext.visited) {
+	for (auto visitedBlock : currentContext.visited) {
 		Sprite* visitedSpr = new Sprite(sheet, SPRITE_VISITED);
 		visitedSpr->GetTransform().localPos = MapToWorld(visitedBlock.x, visitedBlock.y);
 		visited->AddSprite(visitedSpr);
@@ -105,21 +107,33 @@ void PathFindingExample::Recalc(int x, int y) {
 
 			Sprite* arrow = new Sprite(sheet, 2);
 
-			if (from.x < to.x) {
-				// right arrow
-				arrow->GetTransform().rotation = 0;
-			}
-			else if (from.x > to.x) {
-				// left arrow
-				arrow->GetTransform().rotation = 180;
-			}
-			else if (from.y < to.y) {
-				// bottom arrow
-				arrow->GetTransform().rotation = 90;
-			}
-			else {
-				// top arrow
+			auto dir = Vec2i::GetDirection(from, to);
+
+			switch (dir) {
+			case VDirection::NORTH:
 				arrow->GetTransform().rotation = -90;
+				break;
+			case VDirection::NORTH_EAST:
+				arrow->GetTransform().rotation = -45;
+				break;
+			case VDirection::EAST:
+				arrow->GetTransform().rotation = 0;
+				break;
+			case VDirection::SOUTH_EAST:
+				arrow->GetTransform().rotation = 45;
+				break;
+			case VDirection::SOUTH:
+				arrow->GetTransform().rotation = 90;
+				break;
+			case VDirection::SOUTH_WEST:
+				arrow->GetTransform().rotation = 135;
+				break;
+			case VDirection::WEST:
+				arrow->GetTransform().rotation = 180;
+				break;
+			case VDirection::NORTH_WEST:
+				arrow->GetTransform().rotation = -135;
+				break;
 			}
 
 			arrow->GetTransform().localPos = MapToWorld(from.x, from.y);
@@ -174,7 +188,7 @@ void PathFindingExample::mouseMoved(int x, int y) {
 
 		if (pos.x >= 0 && pos.y >= 0 && pos.x < MAP_WIDTH && pos.y < MAP_HEIGHT) {
 			mouseMapIndex = MapIndexByCoord(pos.x, pos.y);
-			Recalc(pos.x, pos.y);	
+			Recalc(pos.x, pos.y);
 			sprites[index]->SetFrame(3);
 		}
 		else {
@@ -191,9 +205,10 @@ void PathFindingExample::mousePressed(int x, int y, int button) {
 
 	// on mouse click, add or remove obstruction
 	if (pos.x >= 0 && pos.y >= 0 && pos.x < MAP_WIDTH && pos.y < MAP_HEIGHT) {
-		if(grid->HasObstruction(pos.x, pos.y)) {
+		if (grid->HasObstruction(pos.x, pos.y)) {
 			grid->RemoveObstruction(pos.x, pos.y);
-		}else {
+		}
+		else {
 			grid->AddObstruction(pos.x, pos.y);
 		}
 
