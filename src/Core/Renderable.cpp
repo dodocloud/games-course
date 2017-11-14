@@ -25,15 +25,15 @@ void MultiSpriteMesh::Recalc() {
 		int posX = (int)transform.localPos.x;
 		int posY = (int)transform.localPos.y;
 
-		if (posX < minX) minX = posX;
-		if (posY < minY) minY = posY;
+		if (posX <= minX) minX = posX;
+		if (posY <= minY) minY = posY;
 
-		if (posX > maxX) {
+		if (posX >= maxX) {
 			maxX = posX;
 			mWidth = spr->GetWidth();
 		}
 
-		if (posY > maxY) {
+		if (posY >= maxY) {
 			maxY = posY;
 			mHeight = spr->GetHeight();
 		}

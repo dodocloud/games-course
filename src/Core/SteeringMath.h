@@ -3,6 +3,7 @@
 #include "ofVec2f.h"
 #include "Movement.h"
 #include "Transform.h"
+#include "Path.h"
 
 #define INT_MIN     (-2147483647 - 1) // minimum (signed) int value
 
@@ -18,30 +19,36 @@ public:
 	* @param transform current transformation of the object
 	* @param movement current movement attribute of the object
 	* @param dest destination point
-	* @param maxAcceleration maximum acceleration
+	* @param maxVelocity maximum velocity
 	*/
-	ofVec2f Seek(Trans& transform, Movement& movement, ofVec2f dest, float maxAcceleration);
+	ofVec2f Seek(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity);
 
 	/**
 	* Calculates arrive behavior (accelerate and stop at target point)
 	* @param transform current transformation of the object
 	* @param movement current movement attribute of the object
 	* @param dest destination point
-	* @param decelartionSpeed deceleration speed
-	* @param stopDistance distance from target where the object should slow down
+	* @param maxVelocity maximum velocity
+	* @param slowingRadius distance from target where the object should slow down
 	* returns INT_MIN if the object has reached the target position
 	*/
-	ofVec2f Arrive(Trans& transform, Movement& movement, ofVec2f dest, float decelerationSpeed, float stopDistance);
+	ofVec2f Arrive(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity, float slowingRadius);
+
 
 	/**
-	* Calculates flee behavior (accelerate away from target point)
+	* Calculates follow behavior (follow the given path)
 	* @param transform current transformation of the object
 	* @param movement current movement attribute of the object
-	* @param dest destination point
-	* @param fleeDistance the distance from the destination point the object should stop
-	* @param maxAcceleration maximum acceleration
+	* @param path path to follow
+	* @param currentPointIndex current index of segments that is followed
+	* @param pointTolerance maximum tolerated distance between point on the path and the position of the object
+	* @param finalPointTolerance maximum tolerated distance between final point and the position of the object
+	* @param maxVelocity maximum velocity
+	* @param slowingRadius distance from target where the object should slow down
+	* returns INT_MIN if there is nowhere to go
 	*/
-	ofVec2f Flee(Trans& transform, Movement& movement, ofVec2f dest, float fleeDistance, float maxAcceleration);
+	ofVec2f Follow(Trans& transform, Movement& movement, Path* path, int& currentPointIndex,
+		float pointTolerance, float finalPointTolerance, float maxVelocity, float slowingRadius);
 
 	/**
 	* Calculates wander behavior (realistic casual movement which will make the player think

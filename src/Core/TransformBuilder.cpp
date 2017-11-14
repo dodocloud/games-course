@@ -51,6 +51,7 @@ void TransformBuilder::Build(GameObject* element, GameObject* parent) {
 void TransformBuilder::Calculate(Trans& outputTrans, GameObject* element) {
 	GameObject* parent = element->GetParent();
 	CalcTransform(outputTrans, element, parent);
+	SetDefaultVals();
 }
 
 void TransformBuilder::CalcTransform(Trans& outputTrans, GameObject* node, GameObject* parent) {

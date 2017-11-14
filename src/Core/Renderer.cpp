@@ -10,7 +10,7 @@ void Renderer::OnInit() {
 	renderer = new SpriteSheetRenderer();
 	rendererLayers = vector<string>();
 
-	if(virtualWidth == 0 || virtualHeight == 0) {
+	if (virtualWidth == 0 || virtualHeight == 0) {
 		virtualWidth = ofGetWindowWidth();
 		virtualHeight = ofGetWindowHeight();
 	}
@@ -58,7 +58,7 @@ void Renderer::PushNode(Renderable* node) {
 void Renderer::BeginRender() {
 	// set projection and clear background with black color
 	ofSetupScreenOrtho(virtualWidth, virtualHeight, -1000.0f, 1000.0f);
-	ofBackground(0);
+	ofBackground(100);
 
 	// init viewport
 	int screenWidth = ofGetWindowWidth();
@@ -126,6 +126,7 @@ void Renderer::Render() {
 				switch (node->GetMeshType()) {
 				case MeshType::IMAGE:
 				case MeshType::RECTANGLE:
+				case MeshType::CIRCLE:
 				case MeshType::TEXT:
 				case MeshType::LABEL:
 					ofLogError("Trying to render non-sprite node with sprite sheet renderer!");
@@ -160,6 +161,9 @@ void Renderer::Render() {
 				break;
 			case MeshType::RECTANGLE:
 				RenderRectangle(node);
+				break;
+			case MeshType::CIRCLE:
+				RenderCircle(node);
 				break;
 			case MeshType::TEXT:
 				RenderText(node);
@@ -215,6 +219,31 @@ void Renderer::RenderRectangle(Renderable* owner) {
 	}
 }
 
+void Renderer::RenderCircle(Renderable* owner) {
+	FCircle* circ = dynamic_cast<FCircle*>(owner);
+	// calc absolute matrix
+	ofMatrix4x4 absM = owner->GetTransform().CalcAbsMatrix();
+	ofLoadMatrix(absM);
+
+	ofSetColor(0x000000ff);
+
+
+	ofColor color = circ->GetColor();
+	ofSetColor(color);
+
+
+	if (circ->IsNoFill()) {
+		ofNoFill();
+		ofSetLineWidth(1);
+	}
+	else {
+		ofFill();
+		ofSetLineWidth(0);
+	}
+
+	ofCircle(0, 0, circ->GetRadius());
+}
+
 void Renderer::RenderText(Renderable* owner) {
 	// load absolute matrix
 	ofMatrix4x4 absM = owner->GetTransform().CalcAbsMatrix();
@@ -242,7 +271,7 @@ void Renderer::RenderSprite(Renderable* owner) {
 	spriteTile.posX = trans.absPos.x + trans.absScale.x*spriteTile.width / 2.0f;  // [0,0] is topleft corner
 	spriteTile.posY = trans.absPos.y + trans.absScale.y*spriteTile.height / 2.0f;
 	spriteTile.posZ = trans.absPos.z;
-	spriteTile.rotation = trans.rotation;
+	spriteTile.rotation = trans.rotation*DEG_TO_RAD;
 	spriteTile.scaleX = trans.absScale.x;
 	spriteTile.scaleY = trans.absScale.y;
 

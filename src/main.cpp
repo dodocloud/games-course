@@ -6,13 +6,10 @@
 #include "TwistExample.h"
 #include "PacmanApp.h"
 #include "PerlinNoiseExample.h"
-#include "ParatrooperApp.h"
-
+#include "AIAgentsApp.h"
 
 //========================================================================
 int main( ){
-
-	ofSetupOpenGL(800,400, OF_WINDOW);	
-	ofRunApp(new ParatrooperApp());
-
+	ofSetupOpenGL(1024,768, OF_WINDOW);
+	ofRunApp(new AIAgentsApp());
 }

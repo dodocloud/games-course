@@ -4,7 +4,7 @@
 #include <cstdarg>
 #include "ofUtils.h"
 
-#define CURRENT_VERSION 4
+#define CURRENT_VERSION 5
 using namespace std;
 typedef unsigned long long uint64;
 
@@ -20,3 +20,5 @@ void split_string(string str, string delimiter, std::vector<std::string>& output
  * should be executed now
  */
 bool CheckTime(uint64 lastTime, uint64 currentTime, float frequency);
+
+int Modulo(int minValue, int maxValue, int currentValue);

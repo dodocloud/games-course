@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel;src/Paratrooper;src/BTree;src/AIAgents</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -175,6 +175,10 @@
     <ClCompile Include="libs\jsonxx\jsonxx.cpp" />
     <ClCompile Include="libs\ofxTextLabel\ofxTextLabel.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
+    <ClCompile Include="src\AIAgents\AIAgentsApp.cpp" />
+    <ClCompile Include="src\AIAgents\AIAgentsFactory.cpp" />
+    <ClCompile Include="src\AIAgents\AIConstants.cpp" />
+    <ClCompile Include="src\AIAgents\SteeringComponent.cpp" />
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\CompValues.cpp" />
     <ClCompile Include="src\Components\GameObject.cpp" />
@@ -182,6 +186,7 @@
     <ClCompile Include="src\Core\AphUtils.cpp" />
     <ClCompile Include="src\Core\Flags.cpp" />
     <ClCompile Include="src\Core\GridMap.cpp" />
+    <ClCompile Include="src\Core\Path.cpp" />
     <ClCompile Include="src\Core\PathFinder.cpp" />
     <ClCompile Include="src\Core\Renderable.cpp" />
     <ClCompile Include="src\Core\Renderer.cpp" />
@@ -221,6 +226,16 @@
     <ClInclude Include="libs\ofxTextLabel\ofxTextLabel.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.h" />
     <ClInclude Include="libs\pugixml\pugixml.h" />
+    <ClInclude Include="src\AIAgents\AgentAIComponent.h" />
+    <ClInclude Include="src\AIAgents\AgentAnimComponent.h" />
+    <ClInclude Include="src\AIAgents\WarehouseStateComponent.h" />
+    <ClInclude Include="src\AIAgents\WarehouseComponent.h" />
+    <ClInclude Include="src\AIAgents\AIAgentsApp.h" />
+    <ClInclude Include="src\AIAgents\AIAgentsFactory.h" />
+    <ClInclude Include="src\AIAgents\AIConstants.h" />
+    <ClInclude Include="src\AIAgents\AIMap.h" />
+    <ClInclude Include="src\AIAgents\AIModel.h" />
+    <ClInclude Include="src\AIAgents\SteeringComponent.h" />
     <ClInclude Include="src\Components\Attribute.h" />
     <ClInclude Include="src\Components\Component.h" />
     <ClInclude Include="src\Components\CompValues.h" />
@@ -234,6 +249,7 @@
     <ClInclude Include="src\Core\Flags.h" />
     <ClInclude Include="src\Core\GridMap.h" />
     <ClInclude Include="src\Core\Movement.h" />
+    <ClInclude Include="src\Core\Path.h" />
     <ClInclude Include="src\Core\PathFinder.h" />
     <ClInclude Include="src\Core\Renderable.h" />
     <ClInclude Include="src\Core\Renderer.h" />

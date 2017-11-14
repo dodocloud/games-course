@@ -46,7 +46,7 @@ void Trans::CalcAbsTransform(Trans& parent) {
 float Trans::CalcAngle(ofVec2f pos) {
 	ofVec2f diff = pos - localPos;
 	if (abs(diff.x) > 1E-3 || abs(diff.y) > 1E-3) {
-		return (atan2f(diff.x, -diff.y));
+		return RAD_TO_DEG*(atan2f(diff.x, -diff.y));
 	}
 	else return 0;
 }

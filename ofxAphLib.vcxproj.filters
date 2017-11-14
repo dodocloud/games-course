@@ -130,6 +130,21 @@
     <ClCompile Include="src\Examples\PerlinNoiseExample.cpp">
       <Filter>src\Examples</Filter>
     </ClCompile>
+    <ClCompile Include="src\AIAgents\AIAgentsFactory.cpp">
+      <Filter>src\AIAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIAgents\AIAgentsApp.cpp">
+      <Filter>src\AIAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIAgents\AIConstants.cpp">
+      <Filter>src\AIAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AIAgents\SteeringComponent.cpp">
+      <Filter>src\AIAgents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Path.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -161,6 +176,9 @@
     </Filter>
     <Filter Include="src\Paratrooper">
       <UniqueIdentifier>{6018def0-bc81-4e79-b43b-9758e08200bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\AIAgents">
+      <UniqueIdentifier>{caa69fc7-d958-45dd-9133-2b96a1038b54}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +382,39 @@
     </ClInclude>
     <ClInclude Include="src\Examples\Homework2.h">
       <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIAgentsFactory.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIAgentsApp.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIConstants.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIModel.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIMap.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\SteeringComponent.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Path.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AgentAnimComponent.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AgentAIComponent.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\WarehouseComponent.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\WarehouseStateComponent.h">
+      <Filter>src\AIAgents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

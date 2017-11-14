@@ -18,7 +18,8 @@ enum class MeshType {
 	LABEL,				// text not affected by transformations
 	TEXT,				// text
 	SPRITE,				// single sprite
-	MULTISPRITE			// collection of sprites
+	MULTISPRITE,		// collection of sprites
+	CIRCLE				// circle
 };
 
 /**
@@ -153,6 +154,52 @@ public:
 	*/
 	void SetIsRenderable(bool isRenderable) {
 		this->isRenderable = isRenderable;
+	}
+};
+
+/**
+* Node circle
+*/
+class FCircle : public Renderable {
+private:
+	// indicator, if only borders should be drawn
+	bool noFill = false;
+public:
+	FCircle(float radius)
+		: Renderable(MeshType::CIRCLE, radius*2, radius*2) {
+	}
+
+	FCircle(float radius, ofColor color)
+		: Renderable(MeshType::CIRCLE, radius * 2, radius * 2) {
+		this->color = color;
+	}
+
+	FCircle(float radius, ofColor color, bool noFill)
+		: Renderable(MeshType::CIRCLE, radius * 2, radius * 2) {
+		this->color = color;
+		this->noFill = noFill;
+	}
+
+	/**
+	* Gets indicator whether only borders should be drawn
+	*/
+	bool IsNoFill() const {
+		return noFill;
+	}
+
+	/**
+	* Sets the indicator whether only borders should be drawn
+	*/
+	void SetNoFill(bool noFill) {
+		this->noFill = noFill;
+	}
+
+	float GetRadius() const {
+		return width / 2;
+	}
+
+	void SetRadius(float radius) {
+		this->width = this->height = radius * 2;
 	}
 };
 

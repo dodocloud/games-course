@@ -25,6 +25,10 @@ class GridMap {
 	int maxElevation;
 public:
 
+	GridMap() {
+		
+	}
+
 	GridMap(MapType mapType, int maxElevation) : mapType(mapType), maxElevation(maxElevation), width(0), height(0) {
 
 	}
@@ -40,6 +44,26 @@ public:
 
 	int GetHeight() const {
 		return height;
+	}
+
+	void SetWidth(int width) {
+		this->width = width;
+	}
+
+	void SetHeight(int height) {
+		this->height = height;
+	}
+
+	int GetElevation() const {
+		return maxElevation;
+	}
+
+	MapType GetMapType() const {
+		return mapType;
+	}
+
+	void SetMapType(MapType mapType) {
+		this->mapType = mapType;
 	}
 
 	/**

@@ -1,49 +1,56 @@
 #include "SteeringMath.h"
 
-ofVec2f SteeringMath::Seek(Trans& transform, Movement& movement, ofVec2f dest, float maxAcceleration) {
-	ofVec2f direction = dest - transform.localPos;
-	direction = direction.normalize();
-	return direction*maxAcceleration;
+ofVec2f SteeringMath::Seek(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity) {
+	ofVec2f desiredVelocity = (dest - transform.localPos).normalized() * maxVelocity;
+	return desiredVelocity - movement.GetVelocity();
 }
 
-ofVec2f SteeringMath::Arrive(Trans& transform, Movement& movement, ofVec2f dest, float decelerationSpeed, float stopDistance) {
+ofVec2f SteeringMath::Arrive(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity, float slowingRadius) {
+	
+	auto desiredVelocity = dest - ofVec2f(transform.localPos.x, transform.localPos.y);
+	auto distance = desiredVelocity.length();
 
-	ofVec2f direction = dest - transform.localPos;
-	float distance = direction.length();
-
-	if (distance < stopDistance) {
-		movement.Stop();
-		return ofVec2f(INT_MIN);
+	if (distance < slowingRadius) {
+		desiredVelocity = desiredVelocity.normalized() * maxVelocity * (distance / slowingRadius);
 	}
-	// calculate speed
-	float speed = distance / (1.0f / (decelerationSpeed / 10));
-	ofVec2f desiredVelocity = direction * speed / distance;
-
-	auto force = decelerationSpeed * (desiredVelocity - movement.GetVelocity());
-
-	if (distance < 1) {
-		force *= distance;
+	else {
+		desiredVelocity = desiredVelocity.normalized() * maxVelocity;
 	}
 
+	auto force = desiredVelocity - movement.GetVelocity();
 	return force;
 }
 
-ofVec2f SteeringMath::Flee(Trans& transform, Movement& movement, ofVec2f dest, float fleeDistance, float maxAcceleration) {
-	ofVec2f distance = dest - transform.localPos;
-	float length = distance.length();
-	distance.normalize();
-	ofVec2f desiredSpeed;
 
-	if (length > fleeDistance) desiredSpeed = ofVec2f(0);
-	else desiredSpeed = -distance*maxAcceleration;
+ofVec2f SteeringMath::Follow(Trans& transform, Movement& movement, Path* path, int& currentPointIndex,
+	float pointTolerance, float finalPointTolerance, float maxVelocity, float slowingRadius) {
 
-	ofVec2f acceleration = desiredSpeed - movement.GetVelocity();
-	return acceleration;
+	int targetPointIndex;
+	ofVec2f targetPointLocation;
+	ofVec2f currentPointLocation = transform.localPos;
+
+	float radiusTolerance = currentPointIndex == (path->GetSegments().size() - 1) ? finalPointTolerance : pointTolerance;
+
+	path->CalcTargetPoint(currentPointIndex, radiusTolerance, currentPointLocation, targetPointIndex, targetPointLocation);
+	
+	if (targetPointLocation == currentPointLocation) {
+		return ofVec2f(INT_MAX); // nowhere to go to
+	}
+
+	// update index of the current point
+	currentPointIndex = targetPointIndex;
+
+	if(currentPointIndex == (path->GetSegments().size() - 1)) {
+		// final point -> use arrive
+		return Arrive(transform, movement, targetPointLocation, maxVelocity, slowingRadius);
+	}else {
+		return Seek(transform, movement, targetPointLocation, maxVelocity);
+	}
 }
 
 ofVec2f SteeringMath::Wander(Trans& transform, Movement& movement, ofVec2f& wanderTarget, float wanderRadius, float wanderDistance,
-
 	float wanderJitter, uint64_t deltaTime) {
+
 	ofVec2f randomVec = ofVec2f(ofRandomf(), ofRandomf());
 	wanderTarget += randomVec*(deltaTime*wanderJitter);
 	wanderTarget.normalize();

@@ -96,30 +96,35 @@ protected:
 	/**
 	* Renders an image
 	*/
-	void RenderImage(Renderable* Node);
+	void RenderImage(Renderable* owner);
 
 	/**
 	* Renders a rectangle
 	*/
-	void RenderRectangle(Renderable* Node);
+	void RenderRectangle(Renderable* owner);
+
+	/**
+	* Renders a circle
+	*/
+	void RenderCircle(Renderable* owner);
 
 	/**
 	* Renders a text
 	*/
-	void RenderText(Renderable* Node);
+	void RenderText(Renderable* owner);
 
 	/**
 	* Renders a sprite
 	*/
-	void RenderSprite(Renderable* Node);
+	void RenderSprite(Renderable* owner);
 
 	/**
 	* Renders a multisprite (collection of sprites)
 	*/
-	void RenderMultiSprite(Renderable* Node);
+	void RenderMultiSprite(Renderable* owner);
 
 	/**
 	* Renders a label (text that is not affected by transformations)
 	*/
-	void RenderLabel(Renderable* Node);
+	void RenderLabel(Renderable* owner);
 };

@@ -45,8 +45,8 @@ struct Vec2i {
 
 
 	inline operator size_t() const {
-		// prime number
-		return x * 1812433253 + y;
+		// suppose the max map size is 10 000 units
+		return x * 10000 + y;
 	}
 
 	inline operator ofVec2f() const {
@@ -146,7 +146,8 @@ namespace std {
 	template <>
 	struct hash<Vec2i> {
 		inline size_t operator()(const Vec2i& pos) const {
-			return pos.x * 1812433253 + pos.y;
+			// suppose the max map size is 10 000 units
+			return pos.x * 10000 + pos.y;
 		}
 	};
 }
