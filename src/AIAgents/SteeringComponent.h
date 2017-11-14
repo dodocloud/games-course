@@ -107,5 +107,5 @@ public:
 
 	void Init();
 
-	void Update(const uint64 delta, const uint64_t absolute);
+	void Update(uint64_t delta, uint64_t absolute);
 };
