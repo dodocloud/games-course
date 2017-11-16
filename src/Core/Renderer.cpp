@@ -58,7 +58,7 @@ void Renderer::PushNode(Renderable* node) {
 void Renderer::BeginRender() {
 	// set projection and clear background with black color
 	ofSetupScreenOrtho(virtualWidth, virtualHeight, -1000.0f, 1000.0f);
-	ofBackground(100);
+	ofBackground(0);
 
 	// init viewport
 	int screenWidth = ofGetWindowWidth();
