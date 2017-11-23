@@ -20,8 +20,9 @@ public:
 	AgentModel* agentModel;
 
 	// steering behavior used to move around the environment
-	AIWanderComponent* steeringComponent = new AIWanderComponent(10, 20, 123);
 	Path* followPath = new Path();
+	FollowBehavior* steeringComponent = new FollowBehavior(nullptr, 15, 15, 5, 3);
+
 	AgentState lastState = AgentState::IDLE;
 
 	virtual void Init() {
@@ -29,6 +30,7 @@ public:
 		agentModel = owner->GetAttr<AgentModel*>(ATTR_AGENTMODEL);
 
 		steeringComponent->SetOwner(owner);
+		steeringComponent->forceStrength = 0.25f;
 		steeringComponent->Init();
 	}
 
@@ -65,26 +67,88 @@ public:
 	}
 
 	// ================================= TODO =====================================
-
 	AgentState ProcessIdleState(bool isEntering, uint64_t delta, uint64_t absolute) {
-		steeringComponent->Update(delta, absolute);
-		return AgentState::IDLE;
+		if(agentModel->IsLoaded()) {
+			return AgentState::GOING_TO_UNLOAD;
+		}else {
+			return AgentState::GOING_TO_LOAD;
+		}
 	}
 
 	AgentState ProcessGoingToLoadState(bool isEntering, uint64_t delta, uint64_t absolute) {
-		return AgentState::IDLE;
+		if(agentModel->IsLoaded()) {
+			return AgentState::GOING_TO_UNLOAD;
+		}
+		
+		if(isEntering) {
+			GoLoad();
+			return AgentState::GOING_TO_LOAD;
+		} else {
+			steeringComponent->Update(delta, absolute);
+		}
+
+		if(steeringComponent->PathFinished()) {
+			return AgentState::LOADING;
+		}else {
+			return AgentState::GOING_TO_LOAD;
+		}
 	}
 
 	AgentState ProcessGoingToUnloadState(bool isEntering, uint64_t delta, uint64_t absolute) {
-		return AgentState::IDLE;
+		if (!agentModel->IsLoaded()) {
+			return AgentState::GOING_TO_LOAD;
+		}
+
+		if (isEntering) {
+			GoUnload();
+			return AgentState::GOING_TO_UNLOAD;
+		}else {
+			steeringComponent->Update(delta, absolute);
+		}
+
+		if (steeringComponent->PathFinished()) {
+			return AgentState::UNLOADING;
+		}
+		else {
+			return AgentState::GOING_TO_UNLOAD;
+		}
 	}
 
 	AgentState ProcessLoadingState(bool isEntering, uint64_t delta, uint64_t absolute) {
-		return AgentState::IDLE;
+		if(agentModel->currentLoadingTime > agentModel->loadingDelay) {
+			agentModel->currentLoadingTime = 0;
+			agentModel->amount += 10;
+			return AgentState::IDLE;
+		}
+
+		agentModel->currentLoadingTime += delta;
+
+		return AgentState::LOADING;
 	}
 
 	AgentState ProcessUnloadingState(bool isEntering, uint64_t delta, uint64_t absolute) {
-		return AgentState::IDLE;
+		if (agentModel->currentLoadingTime > agentModel->loadingDelay) {
+			agentModel->currentLoadingTime = 0;
+			switch(agentModel->currentCargo) {
+			case CargoType::NONE:
+				break;
+			case CargoType::ORE:
+				gameModel->warehouseModel.ironOre += agentModel->amount;
+				gameModel->goingToLoadOre--;
+				break;
+			case CargoType::PETROL:
+				gameModel->warehouseModel.petrol += agentModel->amount;
+				gameModel->goingToLoadPetrol--;
+				break;
+			}
+			
+			agentModel->amount = 0;
+			return AgentState::IDLE;
+		}
+
+		agentModel->currentLoadingTime += delta;
+
+		return AgentState::UNLOADING;
 	}
 
 	// ============================================================================
@@ -94,15 +158,40 @@ public:
 	 * Selects a loading target and executes follow behavior
 	 */
 	void GoLoad() {
-		
 		vector<MapBlock> ores;
+		vector<MapBlock> petrols;
 		gameModel->map.FindAllMapBlocks(MAP_BLOCK_ORE, ores);
-		// choose a random iron ore
-		MapBlock randomOre = ores[ofRandom(0, ores.size())];
+		gameModel->map.FindAllMapBlocks(MAP_BLOCK_PETROL, petrols);
+
+		int petrol = gameModel->warehouseModel.petrol;
+		int ore = gameModel->warehouseModel.ironOre;
 		
+		int expectedPetrol = petrol + gameModel->goingToLoadPetrol * agentModel->capacity;
+		int expectedOre = ore + gameModel->goingToLoadOre * agentModel->capacity;
+
+		int expectedUnitsPetrol = expectedPetrol / gameModel->warehouseModel.agentPetrolCost;
+		int expectedUnitsOre = expectedOre / gameModel->warehouseModel.agentIronCost;
+
+		MapBlock selectedTarget;
+
+		if(expectedUnitsPetrol > expectedUnitsOre) {
+			selectedTarget = ores[ofRandom(0, ores.size())];
+		}else {
+			selectedTarget = petrols[ofRandom(0, petrols.size())];
+		}
+
 		ofVec2f agentLocation = owner->GetMesh()->GetTransform().localPos;
 		Vec2i agentMapPosition = gameModel->map.LocationToMapBlock(agentLocation);
-		Vec2i orePosition = Vec2i(randomOre.x, randomOre.y);
+		Vec2i orePosition = Vec2i(selectedTarget.x, selectedTarget.y);
+
+		if(selectedTarget.type == MAP_BLOCK_PETROL) {
+			agentModel->currentCargo = CargoType::PETROL;
+			gameModel->goingToLoadPetrol++;
+		}else {
+			agentModel->currentCargo = CargoType::ORE;
+			gameModel->goingToLoadOre++;
+		}
+
 		GoToPoint(agentMapPosition, agentLocation, orePosition);
 	}
 
@@ -126,14 +215,22 @@ public:
 		// 1) find path from start to goal
 		gameModel->map.FindPath(startPos, goal, path, directionPath);
 		
-		// =========== TODO ===========
 		// 2) transform path from map-coords into world-coords
-		// 3) add segments into followPath object
-		// 4) start followBehavior
+		vector<ofVec2f> locPath;
+		gameModel->map.MapBlockToLocations(directionPath, locPath);
 
+		// 3) add segments into followPath object
+		followPath->AddFirstSegment(locPath[0], locPath[1]);
+
+		for(int i=2; i<locPath.size(); i++) {
+			followPath->AddSegment(locPath[i]);
+		}
+
+		// 4) start followBehavior
+		steeringComponent->ResetPath(followPath);
 		
 		// 5) Debugging: render the path
-		// RenderPath(fullPath);
+		RenderPath(path);
 	}
 
 

@@ -135,7 +135,7 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	// choose type randomly (besides color, there is no difference)
 	AgentType type = AgentType::BLUE;
 
-	if(ofRandomf() > 0.1f) {
+	if(ofRandomf() > 0.5f) {
 		type = AgentType::RED;
 	}
 	

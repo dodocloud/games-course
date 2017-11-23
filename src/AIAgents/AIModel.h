@@ -15,9 +15,9 @@ struct WarehouseModel {
 	bool isBuilding = true;
 
 	// current amount of petrol
-	int petrol = 30;
+	int petrol = 40;
 	// current amount of ore
-	int ironOre = 10;
+	int ironOre = 30;
 
 	// warehouse position
 	Vec2i position;
@@ -25,7 +25,7 @@ struct WarehouseModel {
 	// how much petrol does one agent cost
 	int agentPetrolCost = 10;
 	// how much iron does one agent cost
-	int agentIronCost = 10;
+	int agentIronCost = 30;
 };
 
 /**
@@ -33,6 +33,9 @@ struct WarehouseModel {
  */
 class AIModel {
 public:
+	int goingToLoadOre = 0;
+	int goingToLoadPetrol = 0;
+
 	// pointer to sprite sheet
 	SpriteSheet* spriteSheet;
 	
@@ -64,7 +67,8 @@ struct AgentModel {
 	AgentType agentType;
 	AgentState currentState = AgentState::IDLE;
 	CargoType currentCargo = CargoType::NONE;
-	
+
+
 	// loaded amount of cargo
 	int amount = 0;
 	// max capacity of cargo
