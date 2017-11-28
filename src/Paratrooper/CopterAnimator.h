@@ -4,7 +4,7 @@
 #include "CompValues.h"
 #include "TransformBuilder.h"
 #include "GameValues.h"
-#include "Movement.h"
+#include "Dynamics.h"
 
 /**
  * Simple animator that switches between two images
@@ -15,8 +15,8 @@ private:
 public:
 
 	virtual void Update(uint64_t delta, uint64_t absolute) {
-		auto& movement = owner->GetAttr<Movement>(MOVEMENT);
-		auto& velocity = movement.GetVelocity();
+		auto dynamics = owner->GetAttr<Dynamics*>(ATTR_DYNAMICS);
+		auto& velocity = dynamics->GetVelocity();
 
 		if (ofSign(velocity.x) != ofSign(lastVelocity.x) || lastVelocity.x == 0) {
 			if (velocity.x < 0) {

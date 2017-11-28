@@ -68,7 +68,7 @@ public:
 
 private:
 	bool Collides(GameObject* projectile, GameObject* unit) {
-		auto& unitBB = unit->GetMesh()->GetBoundingBox();
+		auto& unitBB = unit->GetRenderable()->GetBoundingBox();
 		
 		auto& projTrans = projectile->GetTransform();
 		

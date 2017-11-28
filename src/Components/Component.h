@@ -17,6 +17,7 @@ protected:
 	static int idCounter; 
 	int id;
 	bool enabled = true;
+	bool isScriptComponent = false;
 public:
 
 	Component() {
@@ -83,4 +84,6 @@ protected:
 	Context* GetContext() const;
 
 	Scene* GetScene() const;
+
+	friend class ScriptManager;
 };

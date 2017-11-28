@@ -1,8 +1,10 @@
+
 #include "AIAgentsApp.h"
 #include "AphUtils.h"
 #include "AIAgentsFactory.h"
 #include "ofLog.h"
 #include "AIConstants.h"
+#include "ScriptManager.h"
 
 //--------------------------------------------------------------
 void AIAgentsApp::setup() {
@@ -42,14 +44,18 @@ void AIAgentsApp::Reset() {
 	// initialize virtual size
 	windowResized(ofGetWindowSize().x, ofGetWindowSize().y);
 
-	// create game model
+	auto scripts = ScriptManager::GetInstance();
+	scripts->Init();
+	AIAgentsFactory::InitLuaMapping(ScriptManager::GetInstance()->GetLua());
+	
+
 	auto gameModel = AIAgentsFactory::LoadGameModel(aiMap);
 	// init game
 	AIAgentsFactory::InitializeGame(rootObject, gameModel);
 }
 
 void AIAgentsApp::PushNodeIntoRenderer(GameObject* node) {
-	renderer->PushNode(node->GetMesh());
+	renderer->PushNode(node->GetRenderable());
 
 	for (auto child : node->GetChildren()) {
 		PushNodeIntoRenderer(child);

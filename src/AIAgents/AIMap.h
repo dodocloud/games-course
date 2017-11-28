@@ -3,6 +3,7 @@
 #include <map>
 #include "GridMap.h"
 #include "PathFinder.h"
+#include "List.h"
 
 using namespace std;
 
@@ -81,6 +82,14 @@ public:
 		for (auto bl : blocks) {
 			if (bl.second.type == type) {
 				output.push_back(bl.second);
+			}
+		}
+	}
+
+	void FindAllMapBlocks(int type, List<MapBlock>* output) const {
+		for (auto bl : blocks) {
+			if (bl.second.type == type) {
+				output->Push(bl.second);
 			}
 		}
 	}
@@ -164,6 +173,4 @@ public:
 			current = path;
 		}
 	}
-
-
 };

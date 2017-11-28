@@ -82,8 +82,8 @@ protected:
 			}
 			else {
 				// paratrooper hit while landing
-				auto& unitBB = trigger->unit->GetMesh()->GetBoundingBox();
-				auto& projectileBB = trigger->projectile->GetMesh()->GetBoundingBox();
+				auto& unitBB = trigger->unit->GetRenderable()->GetBoundingBox();
+				auto& projectileBB = trigger->projectile->GetRenderable()->GetBoundingBox();
 				auto state = trigger->unit->GetAttr<ParaState>(PARA_STATE);
 
 				if (state == ParaState::FALLING_PARACHUTE && projectileBB.topLeft.y <= (unitBB.bottomLeft.y - unitBB.GetSize().y / 2)) {
@@ -109,7 +109,7 @@ protected:
 
 		// change visibility of the game over text 
 		auto gameOver = owner->GetScene()->FindGameObjectByName(OBJECT_GAMEOVER);
-		gameOver->GetMesh()->SetIsVisible(true);
+		gameOver->GetRenderable()->SetIsVisible(true);
 		model->isGameOver = true;
 		gameOverTime = absolute;
 

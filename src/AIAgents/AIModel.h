@@ -10,7 +10,7 @@ struct WarehouseModel {
 	// agent building time in ms
 	int buildDelay = 7000;
 	// building time of current agent
-	uint64_t currentBuildTime = 6000; // immediately spawn the first agent
+	unsigned currentBuildTime = 6000; // immediately spawn the first agent
 	// indicator whether the warehouse is building any agent
 	bool isBuilding = true;
 
@@ -31,8 +31,9 @@ struct WarehouseModel {
 /**
  * Global game model
  */
-class AIModel {
+class AIModel  {
 public:
+
 	int goingToLoadOre = 0;
 	int goingToLoadPetrol = 0;
 
@@ -45,28 +46,38 @@ public:
 	int agentsNum = 0;
 
 	WarehouseModel warehouseModel;
+
+	WarehouseModel& GetWarehouseModel() {
+		return warehouseModel;
+	}
+
+	AIMap& GetMap() {
+		return map;
+	}
 };
 
+#define AGENT_STATE_IDLE 0
+#define AGENT_STATE_GOING_TO_LOAD 1
+#define AGENT_STATE_GOING_TO_UNLOAD 2
+#define AGENT_STATE_LOADING 3
+#define AGENT_STATE_UNLOADING 4
 
-enum class AgentState {
-	IDLE, GOING_TO_LOAD, GOING_TO_UNLOAD, LOADING, UNLOADING
-};
+#define AGENT_TYPE_RED 1
+#define AGENT_TYPE_BLUE 2
 
-enum class AgentType {
-	RED, BLUE
-};
+#define CARGO_TYPE_ORE 1
+#define CARGO_TYPE_PETROL 2
 
-enum class CargoType {
-	NONE, ORE, PETROL
-};
 
 /**
  * Model for an agent
  */
-struct AgentModel {
-	AgentType agentType;
-	AgentState currentState = AgentState::IDLE;
-	CargoType currentCargo = CargoType::NONE;
+class AgentModel  {
+public:
+
+	int agentType;
+	int currentState = AGENT_STATE_IDLE;
+	int currentCargo = CARGO_TYPE_ORE;
 
 
 	// loaded amount of cargo
@@ -78,11 +89,11 @@ struct AgentModel {
 	int speed = 0;
 
 	// un/loading time in ms
-	uint64_t currentLoadingTime = 0;
+	unsigned currentLoadingTime = 0;
 	// how long does it take to load a cargo
 	int loadingDelay = 3000;
 
 	bool IsLoaded() const {
-		return amount != 0 && currentState != AgentState::LOADING;
+		return amount != 0 && currentState != AGENT_STATE_LOADING;
 	}
 };

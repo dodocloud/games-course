@@ -7,16 +7,31 @@
 #include "AphMain.h"
 
 // string ids
-extern StrId WANDER_DEST;
-extern StrId ATTR_MOVEMENT;
-extern StrId ATTR_STEERING_BEH_DEST;
+extern char WANDER_DEST[];
+extern char ATTR_DYNAMICS[];
+extern char ATTR_STEERING_BEH_DEST[];
+
+
 
 /**
 * Behavior for movement, updates transformations according
 * to the Movement attribute
 */
-class AIMovementComponent : public Component {
+class DynamicsComponent : public Component {
 public:
+	virtual void Init();
+
+	virtual void OnMessage(Msg& msg) {
+
+	}
+
+	virtual void Update(uint64_t delta, uint64_t absolute);
+};
+
+/**
+* Simple movement that randomly changes direction
+*/
+class SimpleMoveComponent : public Component {
 	virtual void Init();
 
 	virtual void OnMessage(Msg& msg) {
@@ -31,13 +46,13 @@ protected:
 	SteeringMath steeringMath;
 	float ClampAngle(float x);
 
-	void SetRotationDirection(Movement& movement, Trans& transform, ofVec2f destination, float maxAcceleration, uint64 delta);
+	void SetRotationDirection(Dynamics* dynamics, Trans& transform, ofVec2f destination, float maxAcceleration, uint64 delta);
 };
 
 /**
 * Steering behavior for more sophisticated random movement
 */
-class AIWanderComponent : public SteeringComponent {
+class WanderComponent : public SteeringComponent {
 private:
 	// radius of the wandering circle
 	float wanderRadius = 0;
@@ -48,7 +63,7 @@ private:
 	StrId forceId;
 public:
 
-	AIWanderComponent(float wanderRadius, float wanderDistance, float wanderJitter)
+	WanderComponent(float wanderRadius, float wanderDistance, float wanderJitter)
 		:wanderRadius(wanderRadius), wanderDistance(wanderDistance), wanderJitter(wanderJitter) {
 
 	}
@@ -66,7 +81,7 @@ public:
  * Steering behavior for following
  */
 class FollowBehavior : public SteeringComponent {
-private:
+protected:
 	Path* path;
 	int currentPathIndex = 0;
 	float maxRadialAcceleration = 0;
@@ -75,7 +90,7 @@ private:
 	// indicates how far from the last checkpoint may the character stop
 	float finalPointTolerance = 0;
 	StrId forceId;
-	StrId attrMovement = StrId(ATTR_MOVEMENT);
+	StrId attrMovement = StrId(ATTR_DYNAMICS);
 	bool pathFinished = false;
 public:
 	float maxAcceleration = 0;
@@ -101,8 +116,8 @@ public:
 		this->pathFinished = false;
 	}
 
-	bool PathFinished() {
-		return pathFinished;
+	bool PathFinished() const{
+		return pathFinished || path->GetSegments().size() < 2;
 	}
 
 	void Init();

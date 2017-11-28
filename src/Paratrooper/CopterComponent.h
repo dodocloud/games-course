@@ -5,7 +5,7 @@
 #include "GameValues.h"
 #include "GameManager.h"
 #include "ParatrooperComponent.h"
-#include "Movement.h"
+#include "Dynamics.h"
 #include "ParatrooperFactory.h"
 #include "ParatrooperModel.h"
 
@@ -29,13 +29,13 @@ public:
 	virtual void Update(uint64_t delta, uint64_t absolute) {
 		
 		// update velocity
-		auto& movement = owner->GetAttr<Movement>(MOVEMENT);
-		movement.UpdateVelocity(delta, GetContext()->GetGameSpeed());
-		auto& velocity = movement.GetVelocity();
+		auto dynamics = owner->GetAttr<Dynamics*>(ATTR_DYNAMICS);
+		dynamics->UpdateVelocity(delta, GetContext()->GetGameSpeed());
+		auto& velocity = dynamics->GetVelocity();
 
 		auto& trans = owner->GetTransform();
 		// calculate delta position
-		auto deltaPos = movement.CalcDelta(delta, GetContext()->GetGameSpeed());
+		auto deltaPos = dynamics->CalcDelta(delta, GetContext()->GetGameSpeed());
 
 		trans.localPos.x += deltaPos.x;
 
@@ -55,13 +55,13 @@ private:
 		// check frequency
 		if (CheckTime(lastSpawnTime, absolute, spawnFrequency)) {
 			lastSpawnTime = absolute;
-			auto& thisBB = owner->GetMesh()->GetBoundingBox();
+			auto& thisBB = owner->GetRenderable()->GetBoundingBox();
 
 			// 65% probability at each step
 			if (ofRandom(0, 1) > 0.35f) {
 				// check if this place is free to drop
 				auto tower = GetScene()->FindGameObjectByName(OBJECT_TOWER);
-				auto& towerBB = tower->GetMesh()->GetBoundingBox();
+				auto& towerBB = tower->GetRenderable()->GetBoundingBox();
 
 				// don't drop paratrooper above the tower
 				if (trans.localPos.x > 10 && ((trans.absPos.x + thisBB.GetSize().x) < towerBB.topLeft.x 

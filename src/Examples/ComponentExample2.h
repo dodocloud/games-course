@@ -8,74 +8,7 @@
 #include "Context.h"
 #include "Scene.h"
 #include "StrId.h"
-#include "SteeringMath.h"
-
-// string ids
-extern StrId WANDER_DESTINATION;
-extern StrId WMOVEMENT;
-
-/**
-* Behavior for movement, updates transformations according
-* to the Movement attribute
-*/
-class MovementComponent : public Component {
-public:
-	virtual void Init();
-
-	virtual void OnMessage(Msg& msg) {
-
-	}
-
-	virtual void Update(uint64_t delta, uint64_t absolute);
-};
-
-/**
- * Simple movement that randomly changes direction
- */
-class SimpleMoveComponent : public Component {
-	virtual void Init();
-
-	virtual void OnMessage(Msg& msg) {
-
-	}
-
-	virtual void Update(uint64_t delta, uint64_t absolute);
-};
-
-/**
- * Steering behavior for more sophisticated random movement
- */
-class WanderComponent : public Component {
-private:
-private:
-	// radius of the wandering circle
-	float wanderRadius = 0;
-	// distance of the wandering circle
-	float wanderDistance = 0;
-	// randomness of the point on the circle
-	float wanderJitter = 0;
-	StrId forceId;
-	SteeringMath steeringMath;
-public:
-
-	WanderComponent(float wanderRadius, float wanderDistance, float wanderJitter) 
-		:wanderRadius(wanderRadius), wanderDistance(wanderDistance), wanderJitter(wanderJitter) {
-
-	}
-
-	float ClampAngle(float x);
-
-	void SetRotationDirection(Movement& movement, Trans& transform, ofVec2f destination, float maxAcceleration, uint64 delta);
-
-	virtual void Init();
-
-	virtual void OnMessage(Msg& msg) {
-		
-	}
-
-	virtual void Update(uint64_t delta, uint64_t absolute);
-};
-
+#include "SteeringMath.h""
 
 class ComponentExample2 : public ofBaseApp, Context {
 public:

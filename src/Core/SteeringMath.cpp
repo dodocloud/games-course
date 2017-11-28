@@ -1,11 +1,11 @@
 #include "SteeringMath.h"
 
-ofVec2f SteeringMath::Seek(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity) {
+ofVec2f SteeringMath::Seek(Trans& transform, Dynamics* dynamics, ofVec2f dest, float maxVelocity) {
 	ofVec2f desiredVelocity = (dest - transform.localPos).normalized() * maxVelocity;
-	return desiredVelocity - movement.GetVelocity();
+	return desiredVelocity - dynamics->GetVelocity();
 }
 
-ofVec2f SteeringMath::Arrive(Trans& transform, Movement& movement, ofVec2f dest, float maxVelocity, float slowingRadius) {
+ofVec2f SteeringMath::Arrive(Trans& transform, Dynamics* dynamics, ofVec2f dest, float maxVelocity, float slowingRadius) {
 	
 	auto desiredVelocity = dest - ofVec2f(transform.localPos.x, transform.localPos.y);
 	auto distance = desiredVelocity.length();
@@ -17,12 +17,12 @@ ofVec2f SteeringMath::Arrive(Trans& transform, Movement& movement, ofVec2f dest,
 		desiredVelocity = desiredVelocity.normalized() * maxVelocity;
 	}
 
-	auto force = desiredVelocity - movement.GetVelocity();
+	auto force = desiredVelocity - dynamics->GetVelocity();
 	return force;
 }
 
 
-ofVec2f SteeringMath::Follow(Trans& transform, Movement& movement, Path* path, int& currentPointIndex,
+ofVec2f SteeringMath::Follow(Trans& transform, Dynamics* dynamics, Path* path, int& currentPointIndex,
 	float pointTolerance, float finalPointTolerance, float maxVelocity, float slowingRadius) {
 
 	int targetPointIndex;
@@ -42,13 +42,13 @@ ofVec2f SteeringMath::Follow(Trans& transform, Movement& movement, Path* path, i
 
 	if(currentPointIndex == (path->GetSegments().size() - 1)) {
 		// final point -> use arrive
-		return Arrive(transform, movement, targetPointLocation, maxVelocity, slowingRadius);
+		return Arrive(transform, dynamics, targetPointLocation, maxVelocity, slowingRadius);
 	}else {
-		return Seek(transform, movement, targetPointLocation, maxVelocity);
+		return Seek(transform, dynamics, targetPointLocation, maxVelocity);
 	}
 }
 
-ofVec2f SteeringMath::Wander(Trans& transform, Movement& movement, ofVec2f& wanderTarget, float wanderRadius, float wanderDistance,
+ofVec2f SteeringMath::Wander(Trans& transform, Dynamics* dynamics, ofVec2f& wanderTarget, float wanderRadius, float wanderDistance,
 	float wanderJitter, uint64_t deltaTime) {
 
 	ofVec2f randomVec = ofVec2f(ofRandomf(), ofRandomf());
@@ -56,7 +56,7 @@ ofVec2f SteeringMath::Wander(Trans& transform, Movement& movement, ofVec2f& wand
 	wanderTarget.normalize();
 	wanderTarget *= wanderRadius;
 
-	ofVec2f direction = movement.GetVelocity().normalize();
+	ofVec2f direction = dynamics->GetVelocity().normalize();
 	ofVec2f shift = wanderTarget + (direction*wanderDistance);
 	return shift;
 }

@@ -1,5 +1,4 @@
 #include "AIConstants.h"
 
-
-StrId AI_MODEL("AI_MODEL");
-StrId ATTR_AGENTMODEL("ATTR_AGENTMODEL");
+char AI_MODEL[] = "AI_MODEL";
+char ATTR_AGENTMODEL[] = "ATTR_AGENTMODEL";

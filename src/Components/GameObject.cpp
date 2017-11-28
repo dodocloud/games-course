@@ -26,8 +26,8 @@ void GameObject::SwitchFlag(unsigned state1, unsigned state2) {
 }
 
 
-GameObject* GameObject::GetRoot() {
-	if (parent == nullptr) return this;
+GameObject* GameObject::GetRoot() const {
+	if (parent == nullptr) return const_cast<GameObject*>(this);
 	if (parent->parent == nullptr) return parent;
 
 	auto currentNode = parent;
@@ -200,3 +200,71 @@ void GameObject::DestroyAllAttributes() {
 
 	attributes.clear();
 }
+
+void GameObject::AddAttrString(StrId key, string val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrInt(StrId key, int val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrFloat(StrId key, float val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrVector2f(StrId key, ofVec2f val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrVector3f(StrId key, ofVec3f val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrVec2i(StrId key, Vec2i val) {
+	AddAttr(key, val);
+}
+
+void GameObject::AddAttrPtr(StrId key, void* pointer) {
+	AddAttr(key, pointer);
+}
+
+string GameObject::GetAttrString(StrId key) {
+	return GetAttr<string>(key);
+}
+
+int GameObject::GetAttrInt(StrId key) {
+	return GetAttr<int>(key);
+}
+
+float GameObject::GetAttrFloat(StrId key) {
+	return GetAttr<float>(key);
+}
+
+ofVec2f GameObject::GetAttrVector2f(StrId key) {
+	return GetAttr<ofVec2f>(key);
+}
+
+ofVec3f GameObject::GetAttrVector3f(StrId key) {
+	return GetAttr<ofVec3f>(key);
+}
+
+Vec2i GameObject::GetAttrVec2i(StrId key) {
+	return GetAttr<Vec2i>(key);
+}
+
+void* GameObject::GetAttrPtr(StrId key) {
+	auto it = attributes.find(key);
+	if(it != attributes.end()) {
+		if(it->second->IsPointer()) {
+			// address of a pointer
+			return *(void**)(it->second->RawVal());
+		}else {
+			// address of a value
+			return it->second->RawVal();
+		}
+	}
+
+	return nullptr;
+}
+

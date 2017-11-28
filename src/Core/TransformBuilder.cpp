@@ -15,7 +15,7 @@ void TransformBuilder::Build(GameObject* element) {
 
 
 	// for rectangles, width and height are set directly instead of scale
-	switch (element->GetMesh()->GetMeshType()) {
+	switch (element->GetRenderable()->GetMeshType()) {
 	case MeshType::NONE:
 	case MeshType::RECTANGLE:
 		auto rectShape = element->GetMesh<FRect>();
@@ -36,7 +36,7 @@ void TransformBuilder::Build(GameObject* element, GameObject* parent) {
 
 
 	// for rectangles, width and height are set directly instead of scale
-	switch (element->GetMesh()->GetMeshType()) {
+	switch (element->GetRenderable()->GetMeshType()) {
 	case MeshType::NONE:
 	case MeshType::RECTANGLE:
 		auto rectShape = element->GetMesh<FRect>();
@@ -65,8 +65,8 @@ void TransformBuilder::CalcTransform(Trans& outputTrans, GameObject* node, GameO
 
 
 	// fix position according to the anchor
-	absPos.x += (0.0f - anchor.x) * node->GetMesh()->GetWidth()*scale.x;
-	absPos.y += (0.0f - anchor.y) * node->GetMesh()->GetHeight()*scale.y;
+	absPos.x += (0.0f - anchor.x) * node->GetRenderable()->GetWidth()*scale.x;
+	absPos.y += (0.0f - anchor.y) * node->GetRenderable()->GetHeight()*scale.y;
 
 	// if zIndex is equal to 0, the value will be taken from the parent
 	if (zIndex == 0) zIndex = (int)parentTrans.localPos.z;
@@ -75,7 +75,7 @@ void TransformBuilder::CalcTransform(Trans& outputTrans, GameObject* node, GameO
 	outputTrans.localPos = ofVec3f(absPos.x, absPos.y, (float)zIndex);
 
 	outputTrans.scale = ofVec3f(scale.x, scale.y, 1);
-	outputTrans.rotationCentroid = ofVec2f(node->GetMesh()->GetWidth(), node->GetMesh()->GetHeight()) * rotationCentroid * (scale); // multiply by abs scale
+	outputTrans.rotationCentroid = ofVec2f(node->GetRenderable()->GetWidth(), node->GetRenderable()->GetHeight()) * rotationCentroid * (scale); // multiply by abs scale
 	outputTrans.rotation = rotation;
 }
 
@@ -96,8 +96,8 @@ ofVec2f TransformBuilder::CalcPosition(GameObject* node, GameObject* parent, ofV
 		break;
 	case CalcType::PER:
 		// relative percentage -> parent size is 1.0 x 1.0
-		absPos = ofVec2f(pos.x*parent->GetMesh()->GetWidth(),
-			pos.y*parent->GetMesh()->GetHeight());
+		absPos = ofVec2f(pos.x*parent->GetRenderable()->GetWidth(),
+			pos.y*parent->GetRenderable()->GetHeight());
 		break;
 	}
 
@@ -128,8 +128,8 @@ ofVec3f TransformBuilder::CalcScale(GameObject* node, GameObject* parent, float 
 		break;
 	case CalcType::PER:
 		// relative percentage scale ->1.0 x 1.0 will fit the whole parent
-		scaleX = (width * parent->GetMesh()->GetWidth() / node->GetMesh()->GetWidth());
-		scaleY = (height * parent->GetMesh()->GetHeight() / node->GetMesh()->GetHeight());
+		scaleX = (width * parent->GetRenderable()->GetWidth() / node->GetRenderable()->GetWidth());
+		scaleY = (height * parent->GetRenderable()->GetHeight() / node->GetRenderable()->GetHeight());
 		break;
 	}
 

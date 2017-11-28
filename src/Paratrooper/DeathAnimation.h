@@ -16,7 +16,7 @@ public:
 		
 		if(CheckTime(lastSwitch, absolute, 50)) {
 			lastSwitch = absolute;
-			owner->GetMesh()->SetIsVisible(!owner->GetMesh()->IsVisible());
+			owner->GetRenderable()->SetIsVisible(!owner->GetRenderable()->IsVisible());
 			if(totalSw++ > 4) {
 				this->enabled = false;
 				SendMsg(ANIMATION_ENDED);

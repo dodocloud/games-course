@@ -7,6 +7,7 @@
 #include "PacmanApp.h"
 #include "PerlinNoiseExample.h"
 #include "AIAgentsApp.h"
+#include "Homework2.h"
 
 //========================================================================
 int main( ){

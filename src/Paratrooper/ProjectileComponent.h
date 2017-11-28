@@ -2,7 +2,7 @@
 
 #include "Component.h"
 #include "GameValues.h"
-#include "Movement.h"
+#include "Dynamics.h"
 
 /**
  * Component that controls movement of the projectile
@@ -12,9 +12,9 @@ public:
 	virtual void Update(uint64_t delta, uint64_t absolute) {
 
 		// update location
-		auto& movement = owner->GetAttr<Movement>(MOVEMENT);
-		movement.UpdateVelocity(delta, owner->GetContext()->GetGameSpeed());
-		auto deltaPos = movement.CalcDelta(delta, owner->GetContext()->GetGameSpeed());
+		auto dynamics = owner->GetAttr<Dynamics*>(ATTR_DYNAMICS);
+		dynamics->UpdateVelocity(delta, owner->GetContext()->GetGameSpeed());
+		auto deltaPos = dynamics->CalcDelta(delta, owner->GetContext()->GetGameSpeed());
 
 		auto& trans = owner->GetTransform();
 		trans.localPos.x += deltaPos.x;

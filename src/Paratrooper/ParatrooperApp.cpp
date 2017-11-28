@@ -69,7 +69,7 @@ void ParatrooperApp::Reset() {
 }
 
 void ParatrooperApp::PushNodeIntoRenderer(GameObject* node) {
-	renderer->PushNode(node->GetMesh());
+	renderer->PushNode(node->GetRenderable());
 
 	for (auto child : node->GetChildren()) {
 		PushNodeIntoRenderer(child);

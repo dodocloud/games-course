@@ -1,4 +1,5 @@
 #pragma once
+
 #include "StrId.h"
 
 
@@ -16,5 +17,5 @@
 #define AIMAP_WIDTH 10
 #define AIMAP_HEIGHT 10
 
-extern StrId AI_MODEL;
-extern StrId ATTR_AGENTMODEL;
+extern char AI_MODEL[];
+extern char ATTR_AGENTMODEL[];

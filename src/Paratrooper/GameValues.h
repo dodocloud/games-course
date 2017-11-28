@@ -19,7 +19,6 @@ extern StrId GAME_OVER;
 extern StrId PARATROOPER_CREATED;
 
 // attributes
-extern StrId MOVEMENT;
 extern StrId MODEL;
 extern StrId COLLISION;
 extern StrId PARA_STATE;

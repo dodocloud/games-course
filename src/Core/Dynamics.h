@@ -2,11 +2,12 @@
 
 #include "StrId.h"
 #include "ofVec2f.h"
+#include "Attribute.h"
 
 /**
 * Container for physical forces
 */
-class Movement {
+class Dynamics  {
 private:
 	// map of forces acting on the object
 	map<StrId, ofVec2f>* forces = nullptr;
@@ -15,7 +16,7 @@ private:
 	float angularSpeed = 0;
 public:
 
-	~Movement() {
+	~Dynamics() {
 		delete forces;
 	}
 
@@ -24,7 +25,7 @@ public:
 	* Note: if more forces used, the acceleration vector is usually
 	* calculated, using the CalcForce method
 	*/
-	ofVec2f GetAcceleration() const {
+	ofVec2f& GetAcceleration() {
 		return acceleration;
 	}
 
@@ -67,7 +68,7 @@ public:
 	/**
 	* Gets velocity vector
 	*/
-	ofVec2f& GetVelocity() {
+	ofVec2f& GetVelocity(){
 		return velocity;
 	}
 

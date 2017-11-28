@@ -93,10 +93,10 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel;src/Paratrooper;src/BTree;src/AIAgents</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -131,10 +131,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;libs/ofxTextLabel</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -173,16 +173,209 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="libs\jsonxx\jsonxx.cpp" />
+    <ClCompile Include="libs\lua\lapi.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lauxlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lbaselib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lcode.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ldblib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ldebug.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ldo.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ldump.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lfunc.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lgc.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\linit.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\liolib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\llex.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lmathlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lmem.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\loadlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lobject.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lopcodes.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\loslib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lparser.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lstate.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lstring.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lstrlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ltable.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ltablib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\ltm.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lua.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\luac.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lundump.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lvm.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\lzio.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
+    <ClCompile Include="libs\lua\print.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
+    </ClCompile>
     <ClCompile Include="libs\ofxTextLabel\ofxTextLabel.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
-    <ClCompile Include="src\AIAgents\AIAgentsApp.cpp" />
     <ClCompile Include="src\AIAgents\AIAgentsFactory.cpp" />
     <ClCompile Include="src\AIAgents\AIConstants.cpp" />
-    <ClCompile Include="src\AIAgents\SteeringComponent.cpp" />
+    <ClCompile Include="src\AIAgents\AIAgentsApp.cpp" />
     <ClCompile Include="src\Components\Component.cpp" />
+    <ClCompile Include="src\Components\ComponentLua.cpp" />
     <ClCompile Include="src\Components\CompValues.cpp" />
     <ClCompile Include="src\Components\GameObject.cpp" />
     <ClCompile Include="src\Components\Scene.cpp" />
+    <ClCompile Include="src\Components\ScriptManager.cpp" />
     <ClCompile Include="src\Core\AphUtils.cpp" />
     <ClCompile Include="src\Core\Flags.cpp" />
     <ClCompile Include="src\Core\GridMap.cpp" />
@@ -194,6 +387,7 @@
     <ClCompile Include="src\Core\SpriteSheet.cpp" />
     <ClCompile Include="src\Core\SpriteSheetBuilder.cpp" />
     <ClCompile Include="src\Core\SpriteSheetRenderer.cpp" />
+    <ClCompile Include="src\Core\SteeringComponent.cpp" />
     <ClCompile Include="src\Core\SteeringMath.cpp" />
     <ClCompile Include="src\Core\StrId.cpp" />
     <ClCompile Include="src\Core\Transform.cpp" />
@@ -223,32 +417,75 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\jsonxx\jsonxx.h" />
+    <ClInclude Include="libs\luabridge\CFunctions.h" />
+    <ClInclude Include="libs\luabridge\ClassInfo.h" />
+    <ClInclude Include="libs\luabridge\Constructor.h" />
+    <ClInclude Include="libs\luabridge\dump.h" />
+    <ClInclude Include="libs\luabridge\FuncTraits.h" />
+    <ClInclude Include="libs\luabridge\Iterator.h" />
+    <ClInclude Include="libs\luabridge\LuaBridge.h" />
+    <ClInclude Include="libs\luabridge\LuaException.h" />
+    <ClInclude Include="libs\luabridge\LuaHelpers.h" />
+    <ClInclude Include="libs\luabridge\LuaRef.h" />
+    <ClInclude Include="libs\luabridge\Namespace.h" />
+    <ClInclude Include="libs\luabridge\RefCountedObject.h" />
+    <ClInclude Include="libs\luabridge\RefCountedPtr.h" />
+    <ClInclude Include="libs\luabridge\Stack.h" />
+    <ClInclude Include="libs\luabridge\TypeList.h" />
+    <ClInclude Include="libs\luabridge\TypeTraits.h" />
+    <ClInclude Include="libs\luabridge\Userdata.h" />
+    <ClInclude Include="libs\lua\lapi.h" />
+    <ClInclude Include="libs\lua\lauxlib.h" />
+    <ClInclude Include="libs\lua\lcode.h" />
+    <ClInclude Include="libs\lua\ldebug.h" />
+    <ClInclude Include="libs\lua\ldo.h" />
+    <ClInclude Include="libs\lua\lfunc.h" />
+    <ClInclude Include="libs\lua\lgc.h" />
+    <ClInclude Include="libs\lua\llex.h" />
+    <ClInclude Include="libs\lua\llimits.h" />
+    <ClInclude Include="libs\lua\lmem.h" />
+    <ClInclude Include="libs\lua\lobject.h" />
+    <ClInclude Include="libs\lua\lopcodes.h" />
+    <ClInclude Include="libs\lua\lparser.h" />
+    <ClInclude Include="libs\lua\lstate.h" />
+    <ClInclude Include="libs\lua\lstring.h" />
+    <ClInclude Include="libs\lua\ltable.h" />
+    <ClInclude Include="libs\lua\ltm.h" />
+    <ClInclude Include="libs\lua\lua.h" />
+    <ClInclude Include="libs\lua\luaconf.h" />
+    <ClInclude Include="libs\lua\lualib.h" />
+    <ClInclude Include="libs\lua\lundump.h" />
+    <ClInclude Include="libs\lua\lvm.h" />
+    <ClInclude Include="libs\lua\lzio.h" />
     <ClInclude Include="libs\ofxTextLabel\ofxTextLabel.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.h" />
     <ClInclude Include="libs\pugixml\pugixml.h" />
     <ClInclude Include="src\AIAgents\AgentAIComponent.h" />
+    <ClInclude Include="src\AIAgents\AgentAIMoveComponent.h" />
     <ClInclude Include="src\AIAgents\AgentAnimComponent.h" />
-    <ClInclude Include="src\AIAgents\WarehouseStateComponent.h" />
-    <ClInclude Include="src\AIAgents\WarehouseComponent.h" />
-    <ClInclude Include="src\AIAgents\AIAgentsApp.h" />
     <ClInclude Include="src\AIAgents\AIAgentsFactory.h" />
     <ClInclude Include="src\AIAgents\AIConstants.h" />
     <ClInclude Include="src\AIAgents\AIMap.h" />
     <ClInclude Include="src\AIAgents\AIModel.h" />
-    <ClInclude Include="src\AIAgents\SteeringComponent.h" />
+    <ClInclude Include="src\AIAgents\AIAgentsApp.h" />
+    <ClInclude Include="src\AIAgents\WarehouseComponent.h" />
+    <ClInclude Include="src\AIAgents\WarehouseStateComponent.h" />
     <ClInclude Include="src\Components\Attribute.h" />
     <ClInclude Include="src\Components\Component.h" />
+    <ClInclude Include="src\Components\ComponentLua.h" />
     <ClInclude Include="src\Components\CompValues.h" />
     <ClInclude Include="src\Components\Context.h" />
     <ClInclude Include="src\Components\GameObject.h" />
     <ClInclude Include="src\Components\Msg.h" />
     <ClInclude Include="src\Components\Scene.h" />
+    <ClInclude Include="src\Components\ScriptManager.h" />
     <ClInclude Include="src\Core\AphMain.h" />
     <ClInclude Include="src\Core\AphUtils.h" />
     <ClInclude Include="src\Core\BoundingBox.h" />
     <ClInclude Include="src\Core\Flags.h" />
     <ClInclude Include="src\Core\GridMap.h" />
-    <ClInclude Include="src\Core\Movement.h" />
+    <ClInclude Include="src\Core\Dynamics.h" />
+    <ClInclude Include="src\Core\List.h" />
     <ClInclude Include="src\Core\Path.h" />
     <ClInclude Include="src\Core\PathFinder.h" />
     <ClInclude Include="src\Core\Renderable.h" />
@@ -257,6 +494,7 @@
     <ClInclude Include="src\Core\SpriteSheet.h" />
     <ClInclude Include="src\Core\SpriteSheetBuilder.h" />
     <ClInclude Include="src\Core\SpriteSheetRenderer.h" />
+    <ClInclude Include="src\Core\SteeringComponent.h" />
     <ClInclude Include="src\Core\SteeringMath.h" />
     <ClInclude Include="src\Core\StrId.h" />
     <ClInclude Include="src\Core\Transform.h" />

@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 class Component;
 class GameObject;
 
@@ -54,6 +55,7 @@ public:
 	GameObject* FindGameObjectByName(string name);
 
 	void SendMsg(Msg& msg);
+
 
 	friend class GameObject;
 	friend class Component;

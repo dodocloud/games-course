@@ -4,8 +4,9 @@
 #include "CompValues.h"
 #include "TransformBuilder.h"
 #include "CollisionManager.h"
-#include "Movement.h"
+#include "Dynamics.h"
 #include "ParatrooperModel.h"
+#include "SteeringComponent.h"
 
 /**
  * Paratrooper state
@@ -36,18 +37,18 @@ public:
 
 	virtual void Update(uint64_t delta, uint64_t absolute) {
 		auto& trans = owner->GetTransform();
-		auto& movement = owner->GetAttr<Movement>(MOVEMENT);
+		auto& dynamics = owner->GetAttr<Dynamics*>(ATTR_DYNAMICS);
 		auto state = owner->GetAttr<ParaState>(PARA_STATE);
 
-		movement.UpdateVelocity(delta, owner->GetContext()->GetGameSpeed());
-		auto movementDiff = movement.CalcDelta(delta, owner->GetContext()->GetGameSpeed());
+		dynamics->UpdateVelocity(delta, owner->GetContext()->GetGameSpeed());
+		auto movementDiff = dynamics->CalcDelta(delta, owner->GetContext()->GetGameSpeed());
 
 		trans.localPos.x += movementDiff.x;
 		trans.localPos.y += movementDiff.y;
 
 		if (lastState != state && state == ParaState::FALLING_WIHTOUT_PARACHUTE) {
 			// change acceleration back to gravity
-			movement.SetAcceleration(ofVec2f(0, model->gravity));
+			dynamics->SetAcceleration(ofVec2f(0, model->gravity));
 		}
 
 		state = CheckStateChangeBehavior(state, delta);
@@ -65,8 +66,8 @@ private:
 		// very simple animation -> go to the tower, then up and finally to the center
 		auto& trans = owner->GetTransform();
 		auto tower = owner->GetScene()->FindGameObjectByName(OBJECT_TOWER);
-		auto& towerBB = tower->GetMesh()->GetBoundingBox();
-		auto& thisBB = owner->GetMesh()->GetBoundingBox();
+		auto& towerBB = tower->GetRenderable()->GetBoundingBox();
+		auto& thisBB = owner->GetRenderable()->GetBoundingBox();
 
 		if (thisBB.bottomRight.x < towerBB.bottomLeft.x) {
 			trans.localPos.x += delta * 0.1f * GetContext()->GetGameSpeed();
@@ -87,30 +88,30 @@ private:
 
 
 	ParaState CheckStateChangeBehavior(ParaState state, uint64_t delta) {
-		auto& groundBB = ground->GetMesh()->GetBoundingBox();
-		auto& paraBB = owner->GetMesh()->GetBoundingBox();
+		auto& groundBB = ground->GetRenderable()->GetBoundingBox();
+		auto& paraBB = owner->GetRenderable()->GetBoundingBox();
 		auto& trans = owner->GetTransform();
-		auto& movement = owner->GetAttr<Movement>(MOVEMENT);
+		auto dynamics = owner->GetAttr<Dynamics*>(ATTR_DYNAMICS);
 
 		switch (state) {
 		case ParaState::FALLING:
 			if (trans.localPos.y > model->parachuteOpenAltitude) {
 				state = ParaState::FALLING_PARACHUTE;
 				// parachute opened -> deccelerate
-				movement.SetAcceleration(ofVec2f(0, -model->parachuteDecceleration));
+				dynamics->SetAcceleration(ofVec2f(0, -model->parachuteDecceleration));
 			}
 			break;
 		case ParaState::FALLING_PARACHUTE:
-			if (movement.GetVelocity().y < model->parachuteOpenVelocityThreshold) {
+			if (dynamics->GetVelocity().y < model->parachuteOpenVelocityThreshold) {
 				// deccelerated enough -> reset acceleration and fall with constant velocity
-				movement.SetAcceleration(ofVec2f(0));
-				movement.SetVelocity(ofVec2f(0, model->parachuteOpenVelocityThreshold));
+				dynamics->SetAcceleration(ofVec2f(0));
+				dynamics->SetVelocity(ofVec2f(0, model->parachuteOpenVelocityThreshold));
 			}
 			if (paraBB.bottomLeft.y >= groundBB.topLeft.y) {
 				// on the ground -> reset both velocity and acceleration
 				state = ParaState::ON_GROUND;
-				movement.SetVelocity(ofVec2f(0));
-				movement.SetAcceleration(ofVec2f(0));
+				dynamics->SetVelocity(ofVec2f(0));
+				dynamics->SetAcceleration(ofVec2f(0));
 				SendMsg(UNIT_LANDED, owner);
 			}
 			break;
@@ -118,8 +119,8 @@ private:
 			if (paraBB.bottomLeft.y >= groundBB.topLeft.y) {
 				// kill the paratrooper
 				owner->SetFlag(FLAG_DEAD);
-				movement.SetVelocity(ofVec2f(0));
-				movement.SetAcceleration(ofVec2f(0));
+				dynamics->SetVelocity(ofVec2f(0));
+				dynamics->SetAcceleration(ofVec2f(0));
 				SendMsg(UNIT_KILLED, owner);
 				state = ParaState::DEAD;
 			}
@@ -140,7 +141,7 @@ private:
 			// state changed -> decide what to do next
 
 			TransformBuilder transBld;
-			auto& paraBB = owner->GetMesh()->GetBoundingBox();
+			auto& paraBB = owner->GetRenderable()->GetBoundingBox();
 			auto& trans = owner->GetTransform();
 
 			// change mesh according to the current state

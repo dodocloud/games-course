@@ -73,7 +73,7 @@ void ParatrooperFactory::InitializeGame(GameObject* rootObject, ParatrooperModel
 	// game over label
 	string text = "GAME OVER";
 	auto gameOver = new GameObject(OBJECT_GAMEOVER, context, scene, new Text(font, text));
-	gameOver->GetMesh()->SetIsVisible(false);
+	gameOver->GetRenderable()->SetIsVisible(false);
 	// number of lives
 	auto lives = new GameObject(context, scene, new Text(font));
 	
@@ -127,8 +127,8 @@ void ParatrooperFactory::CreateProjectile(GameObject* canon, ParatrooperModel* m
 	rootObject->AddChild(projectile);
 
 	float rotation = canon->GetTransform().rotation;
-	auto absWidth = canonTrans.absScale.x * canon->GetMesh()->GetWidth();
-	auto absHeight = canonTrans.absScale.y * canon->GetMesh()->GetHeight();
+	auto absWidth = canonTrans.absScale.x * canon->GetRenderable()->GetWidth();
+	auto absHeight = canonTrans.absScale.y * canon->GetRenderable()->GetHeight();
 	auto meshDefaultScale = canon->GetContext()->GetMeshDefaultScale();
 
 	// we need the projectile to be at the same location as the cannon with current rotation
@@ -139,11 +139,11 @@ void ParatrooperFactory::CreateProjectile(GameObject* canon, ParatrooperModel* m
 	float velocityX = model->projectileVelocity * cos(rotation - PI / 2);
 	float velocityY = model->projectileVelocity * sin(rotation - PI / 2);
 
-	auto movement = Movement();
-	movement.SetVelocity(ofVec2f(velocityX, velocityY));
-	movement.SetAcceleration(ofVec2f(0, model->gravity)); // add gravity
+	auto dynamics = new Dynamics();
+	dynamics->SetVelocity(ofVec2f(velocityX, velocityY));
+	dynamics->SetAcceleration(ofVec2f(0, model->gravity)); // add gravity
 
-	projectile->AddAttr(MOVEMENT, movement);
+	projectile->AddAttr(ATTR_DYNAMICS, dynamics);
 	projectile->AddComponent(new ProjectileComponent());
 	ofLogNotice("Factory", "Projectile created");
 }
@@ -154,9 +154,9 @@ void ParatrooperFactory::CreateParatrooper(GameObject* owner, ParatrooperModel* 
 	paratrooper->SetFlag(FLAG_COLLIDABLE);
 	paratrooper->SetTransform(owner->GetTransform());
 
-	auto movement = Movement();
-	movement.SetAcceleration(ofVec2f(0, model->gravity));
-	paratrooper->AddAttr(MOVEMENT, movement);
+	auto dynamics = new Dynamics();
+	dynamics->SetAcceleration(ofVec2f(0, model->gravity));
+	paratrooper->AddAttr(ATTR_DYNAMICS, dynamics);
 
 	auto rootObject = owner->GetRoot();
 	rootObject->AddChild(paratrooper);
@@ -188,9 +188,9 @@ void ParatrooperFactory::CreateCopter(GameObject* owner, ParatrooperModel* model
 	.LocalScale(meshDefaultScale, meshDefaultScale).Build(copter);
 
 	float velocity = (spawnLeft ? 1 : -1) * ofRandom(model->copterMinVelocity, model->copterMaxVelocity);
-	auto movement = Movement();
-	movement.SetVelocity(ofVec2f(velocity, 0));
-	copter->AddAttr(MOVEMENT, movement);
+	auto dynamics = new Dynamics();
+	dynamics->SetVelocity(ofVec2f(velocity, 0));
+	copter->AddAttr(ATTR_DYNAMICS, dynamics);
 
 	copter->AddComponent(new CopterComponent());
 	copter->AddComponent(new CopterAnimator());

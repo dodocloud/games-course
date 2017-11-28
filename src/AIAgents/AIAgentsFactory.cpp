@@ -1,3 +1,4 @@
+#include "ScriptManager.h"
 #include "TransformBuilder.h"
 #include "jsonxx.h"
 #include "AIAgentsFactory.h"
@@ -9,6 +10,10 @@
 #include "AgentAIComponent.h"
 #include "WarehouseComponent.h"
 #include "WarehouseStateComponent.h"
+#include <LuaBridge.h>
+#include "GameObject.h"
+#include "ComponentLua.h"
+#include "List.h"
 
 using namespace jsonxx;
 
@@ -35,6 +40,8 @@ AIModel* AIAgentsFactory::LoadGameModel(int aiMap[AIMAP_WIDTH][AIMAP_HEIGHT]) {
 	return model;
 }
 
+char global[] = "AI_MODEL";
+
 void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 
 	auto scene = rootObject->GetScene();
@@ -59,11 +66,15 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 	rootObject->AddChild(map);
 	rootObject->AddChild(mapPaths);
 	rootObject->AddAttr(AI_MODEL, model);
+	
+	
 	// we have only one warehouse and therefore it isn't necessary to create a special object for it. Warehouse
 	// is rendered via map object that keeps all sprites of the map
+	
+	//rootObject->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseComponent"));
 	rootObject->AddComponent(new WarehouseComponent());
-
-
+	
+	
 	// add sprites
 	for (int i = 0; i < AIMAP_WIDTH; i++) {
 		for (int j = 0; j < AIMAP_HEIGHT; j++) {
@@ -118,8 +129,11 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 	auto status = new GameObject("status", context, scene, statusText);
 	rootObject->AddChild(status);
 	// this component could be in the root. However, we need a TEXT mesh to render the text. That's why we create a special object for it.
+	
+	//status->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseStateComponent"));
 	status->AddComponent(new WarehouseStateComponent());
 	
+
 	// place the status next to the map
 	status->GetTransform().localPos.x = 105;
 	status->GetTransform().localPos.y = 5;
@@ -133,19 +147,19 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	auto scene = owner->GetScene();
 
 	// choose type randomly (besides color, there is no difference)
-	AgentType type = AgentType::BLUE;
+	int type = AGENT_TYPE_BLUE;
 
 	if(ofRandomf() > 0.5f) {
-		type = AgentType::RED;
+		type = AGENT_TYPE_RED;
 	}
 	
-	auto sprite = Sprite(model->spriteSheet, type == AgentType::BLUE ? 0 : 4);
+	auto sprite = Sprite(model->spriteSheet, type == AGENT_TYPE_BLUE ? 0 : 4);
 	auto agent = new GameObject("agent", context, scene, new SpriteMesh(sprite, "spriteLayer"));
 	owner->AddChild(agent);
 
 	// create movement attribute for dynamics
-	auto movement = Movement();
-	agent->AddAttr(ATTR_MOVEMENT, movement);
+	auto dynamics = new Dynamics();
+	agent->AddAttr(ATTR_DYNAMICS, dynamics);
 
 	// create model with random speed
 	auto agentModel = new AgentModel();
@@ -153,9 +167,15 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	agentModel->agentType = type;
 	agent->AddAttr(ATTR_AGENTMODEL, agentModel);
 
-	agent->AddComponent(new AIMovementComponent());
+	agent->AddComponent(new DynamicsComponent());
+	agent->AddComponent(new AgentAIMoveComponent());
+
+
+	//agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAnimComponent"));
+	//agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAIComponent"));
+	
 	agent->AddComponent(new AgentAnimComponent());
-	agent->AddComponent(new AgentAIComponent());
+    agent->AddComponent(new AgentAIComponent());
 	
 	// the scale will be equal to 10% of the height of the screen
 	TransformBuilder trBld;
@@ -165,4 +185,76 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	auto location = model->map.MapBlockToLocation(position.x, position.y);
 	agent->GetTransform().localPos.x = location.x;
 	agent->GetTransform().localPos.y = location.y;
+}
+
+void AIAgentsFactory::InitLuaMapping(luabridge::lua_State* L) {
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<WarehouseModel>("WarehouseModel")
+		.addData("buildDelay", &WarehouseModel::buildDelay)
+		.addData("currentBuildTime", &WarehouseModel::currentBuildTime)
+		.addData("isBuilding", &WarehouseModel::isBuilding)
+		.addData("petrol", &WarehouseModel::petrol)
+		.addData("ironOre", &WarehouseModel::ironOre)
+		.addData("position", &WarehouseModel::position)
+		.addData("agentPetrolCost", &WarehouseModel::agentPetrolCost)
+		.addData("agentIronCost", &WarehouseModel::agentIronCost)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<MapBlock>("MapBlock")
+		.addConstructor<void(*)()>()
+		.addData("x", &MapBlock::x)
+		.addData("y", &MapBlock::y)
+		.addData("type", &MapBlock::type)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<List<MapBlock>>("list_mapblock")
+		.addConstructor<void(*)()>()
+		.addFunction("Size", &List<MapBlock>::Size)
+		.addFunction("At", &List<MapBlock>::At)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<AIMap>("AIMap")
+		.addFunction<void(AIMap::*)(int, List<MapBlock>*) const>("FindAllMapBlocks", &AIMap::FindAllMapBlocks)
+		.addFunction("LocationToMapBlock", &AIMap::LocationToMapBlock)
+		.addFunction("FindNearestMapBlock", &AIMap::FindNearestMapBlock)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<AIModel>("AIModel")
+		.addData("goingToLoadOre", &AIModel::goingToLoadOre)
+		.addData("goingToLoadPetrol", &AIModel::goingToLoadPetrol)
+		.addData("agentsNum", &AIModel::agentsNum)
+		.addFunction("GetWarehouseModel", &AIModel::GetWarehouseModel)
+		.addFunction("GetMap", &AIModel::GetMap)
+		.endClass();;
+
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<AIAgentsFactory>("AIAgentsFactory")
+		.addStaticFunction("CreateAgent", &AIAgentsFactory::CreateAgent)
+		.endClass();
+
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<FollowBehavior>("FollowBehavior")
+		.addFunction("PathFinished", &FollowBehavior::PathFinished)
+		.endClass();
+
+
+	luabridge::getGlobalNamespace(L)
+		.deriveClass<AgentAIMoveComponent, FollowBehavior>("AgentAIMoveComponent")
+		.addFunction("GoToPoint", &AgentAIMoveComponent::GoToPoint)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<GameObject>("GameObject")
+		.addFunction("GetAttr_AIMODEL", reinterpret_cast<AIModel*(GameObject::*)()>(&GameObject::GetAttrPtrStatic<AI_MODEL>))
+		.addFunction("GetAttr_AGENTMODEL", reinterpret_cast<AgentModel*(GameObject::*)()> (&GameObject::GetAttrPtrStatic<ATTR_AGENTMODEL>))
+		.addFunction("GetAttr_DYNAMICS", reinterpret_cast<Dynamics*(GameObject::*)()> (&GameObject::GetAttrPtrStatic<ATTR_DYNAMICS>))
+		.addFunction("GetComponent_AgentAIMoveComponent", &GameObject::GetComponent<AgentAIMoveComponent>)
+		.endClass();
 }

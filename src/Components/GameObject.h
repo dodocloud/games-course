@@ -10,6 +10,7 @@ using namespace std;
 #include "Component.h"
 #include "Attribute.h"
 #include "Context.h"
+#include "Vec2i.h"
 
 class Scene;
 
@@ -35,8 +36,6 @@ protected:
 	vector<GameObject*> childrenToRemove;
 	string name = "";
 public:
-
-
 	GameObject(Context* context, Scene* scene) : id(idCounter++), context(context), scene(scene), mesh(new FRect(0, 0)) { }
 
 	GameObject(string name, Context* context, Scene* scene) : id(idCounter++), name(name), context(context), scene(scene), mesh(new FRect(0, 0)) { }
@@ -48,7 +47,7 @@ public:
 	~GameObject() {
 		DestroyAllComponents();
 		DestroyAllChildren();
-
+		DestroyAllAttributes();
 		delete mesh;
 	}
 
@@ -56,11 +55,11 @@ public:
 		return id;
 	}
 
-	string& GetName() {
+	const string& GetName() const {
 		return name;
 	}
 
-	void SetName(string name) {
+	void SetName(const string& name) {
 		this->name = name;
 	}
 
@@ -126,15 +125,15 @@ public:
 	/**
 	 * Finds the topmost element in the object hierarchy
 	 */
-	GameObject* GetRoot();
+	GameObject* GetRoot() const;
 
 	void Remove();
 
-	Scene* GetScene() {
+	Scene* GetScene() const {
 		return scene;
 	}
 
-	Renderable* GetMesh() {
+	Renderable* GetRenderable() const {
 		return mesh;
 	}
 
@@ -145,6 +144,19 @@ public:
 
 	vector<GameObject*>& GetChildren() {
 		return this->children;
+	}
+
+	/**
+	 * Gets component by its type
+	 */
+	template<class T> T* GetComponent() {
+		for (auto cmp : this->components) {
+			if (typeid(*cmp) == typeid(T)) {
+				return static_cast<T*>(cmp);
+			}
+		}
+
+		return nullptr;
 	}
 
 	void AddComponent(Component* component);
@@ -204,6 +216,7 @@ public:
 		return attr->Get();
 	}
 
+
 	/**
 	* Changes value of selected attribute or adds a new attribute if this one doesn't exist
 	*/
@@ -216,5 +229,46 @@ public:
 		else {
 			AddAttr(key, value);
 		}
+	}
+
+	// Extension methods used especially for Cpp-Lua binding
+
+	void AddAttrString(StrId key, string val);
+
+	void AddAttrInt(StrId key, int val);
+
+	void AddAttrFloat(StrId key, float val);
+
+	void AddAttrVector2f(StrId key, ofVec2f val);
+
+	void AddAttrVector3f(StrId key, ofVec3f val);
+
+	void AddAttrVec2i(StrId key, Vec2i val);
+
+	/**
+	 * Adds a new attribute, represented as a pointer
+	 */
+	void AddAttrPtr(StrId key, void* pointer);
+
+	string GetAttrString(StrId key);
+
+	int GetAttrInt(StrId key);
+
+	float GetAttrFloat(StrId key);
+
+	ofVec2f GetAttrVector2f(StrId key);
+
+	ofVec3f GetAttrVector3f(StrId key);
+
+	Vec2i GetAttrVec2i(StrId key);
+
+	/**
+	 * Gets a pointer attribute by its key
+	 */
+	void* GetAttrPtr(StrId key);
+
+	template <char const *str>
+	void* GetAttrPtrStatic(){
+		return GetAttrPtr(StrId(str));
 	}
 };

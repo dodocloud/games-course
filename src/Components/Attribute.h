@@ -13,11 +13,12 @@ protected:
 	GameObject* owner;
 	// key identifier
 	const unsigned key;
-
+	bool isPointer;
+	void* rawVal; // pointer to raw value
 public:
 
-	BaseAttribute(unsigned key, GameObject* owner) 
-	: owner(owner), key(key) {
+	BaseAttribute(unsigned key, bool isPointer, void* rawVal, GameObject* owner) 
+	: owner(owner), key(key), isPointer(isPointer), rawVal(rawVal) {
 
 	}
 
@@ -38,6 +39,33 @@ public:
 	unsigned GetKey() const {
 		return key;
 	}
+
+	bool IsPointer() const {
+		return isPointer;
+	}
+
+	void* RawVal() const {
+		return rawVal;
+	}
+};
+
+
+template<typename T> class AttrDeleter {
+
+public:
+
+	static void Destroy(T &value) {
+	}
+};
+
+template<typename P>
+class AttrDeleter<P*> {
+
+public:
+
+	static void Destroy(P *value) {
+		delete value;
+	}
 };
 
 
@@ -53,12 +81,16 @@ protected:
 public:
 
 	Attribute(unsigned key, T val, GameObject* owner)
-		: BaseAttribute(key, owner), value(val) {
-
+		: BaseAttribute(key, std::is_pointer<T>(), 0, owner), value(val) {
+		// must be set when its address is determined
+		rawVal = &value;
 	}
 
 	~Attribute() {
-
+		// remove dynamic attribute
+		if(this->isPointer) {
+			AttrDeleter<T>::Destroy(value);
+		}
 	}
 
 	/**

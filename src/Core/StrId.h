@@ -64,4 +64,3 @@ private:
 	unsigned val;
 
 };
-

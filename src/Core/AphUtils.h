@@ -21,4 +21,6 @@ void split_string(string str, string delimiter, std::vector<std::string>& output
  */
 bool CheckTime(uint64 lastTime, uint64 currentTime, float frequency);
 
+bool CheckTimeUnsigned(unsigned lastTime, unsigned currentTime, float frequency);
+
 int Modulo(int minValue, int maxValue, int currentValue);
