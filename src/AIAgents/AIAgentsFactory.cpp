@@ -10,6 +10,7 @@
 #include "AgentAIComponent.h"
 #include "WarehouseComponent.h"
 #include "WarehouseStateComponent.h"
+#undef None // LuaBridge is polluting Ubuntu's global namespace
 #include <LuaBridge.h>
 #include "GameObject.h"
 #include "ComponentLua.h"

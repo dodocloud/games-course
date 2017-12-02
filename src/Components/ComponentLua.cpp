@@ -1,4 +1,5 @@
 #include "ComponentLua.h"
+#undef None // LuaBridge is polluting Ubuntu's global namespace
 #include <LuaBridge.h>
 
 using namespace luabridge;

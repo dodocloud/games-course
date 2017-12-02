@@ -1,5 +1,6 @@
 #include "ScriptManager.h"
 #include "ofLog.h"
+#undef None // LuaBridge is polluting Ubuntu's global namespace
 #include <LuaBridge.h>
 #include "lua.h"
 #include "lualib.h"
