@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -370,12 +370,16 @@
     <ClCompile Include="src\AIAgents\AIAgentsFactory.cpp" />
     <ClCompile Include="src\AIAgents\AIConstants.cpp" />
     <ClCompile Include="src\AIAgents\AIAgentsApp.cpp" />
+    <ClCompile Include="src\Arkanoid\ArkanoidApp.cpp" />
+    <ClCompile Include="src\Arkanoid\ArkanoidConstants.cpp" />
+    <ClCompile Include="src\Arkanoid\ArkanoidFactory.cpp" />
     <ClCompile Include="src\Components\Component.cpp" />
     <ClCompile Include="src\Components\ComponentLua.cpp" />
     <ClCompile Include="src\Components\CompValues.cpp" />
     <ClCompile Include="src\Components\GameObject.cpp" />
     <ClCompile Include="src\Components\Scene.cpp" />
     <ClCompile Include="src\Components\ScriptManager.cpp" />
+    <ClCompile Include="src\Core\AphApp.cpp" />
     <ClCompile Include="src\Core\AphUtils.cpp" />
     <ClCompile Include="src\Core\Flags.cpp" />
     <ClCompile Include="src\Core\GridMap.cpp" />
@@ -470,6 +474,18 @@
     <ClInclude Include="src\AIAgents\AIAgentsApp.h" />
     <ClInclude Include="src\AIAgents\WarehouseComponent.h" />
     <ClInclude Include="src\AIAgents\WarehouseStateComponent.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidApp.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidConstants.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidFactory.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidIntroComponent.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidLifeComponent.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidModel.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidStatusComponent.h" />
+    <ClInclude Include="src\Arkanoid\BallCollisionComponent.h" />
+    <ClInclude Include="src\Arkanoid\BrickCollisionComponent.h" />
+    <ClInclude Include="src\Arkanoid\GameComponent.h" />
+    <ClInclude Include="src\Arkanoid\PaddleComponent.h" />
+    <ClInclude Include="src\Arkanoid\ArkanoidSoundComponent.h" />
     <ClInclude Include="src\Components\Attribute.h" />
     <ClInclude Include="src\Components\Component.h" />
     <ClInclude Include="src\Components\ComponentLua.h" />
@@ -479,6 +495,7 @@
     <ClInclude Include="src\Components\Msg.h" />
     <ClInclude Include="src\Components\Scene.h" />
     <ClInclude Include="src\Components\ScriptManager.h" />
+    <ClInclude Include="src\Core\AphApp.h" />
     <ClInclude Include="src\Core\AphMain.h" />
     <ClInclude Include="src\Core\AphUtils.h" />
     <ClInclude Include="src\Core\BoundingBox.h" />

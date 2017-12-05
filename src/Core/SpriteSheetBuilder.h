@@ -2,6 +2,10 @@
 
 #include "ofImage.h"
 
+namespace jsonxx {
+	class Object;
+}
+
 class SpriteSheet;
 
 /**
@@ -21,6 +25,8 @@ private:
 	int totalFrames = 0;		// total number of frames on the sprite sheet
 	string name;				// name of the sprite sheet
 public:
+
+	void LoadFromJson(jsonxx::Object& obj);
 
 	/**
 	 * Appends a sprite atlas

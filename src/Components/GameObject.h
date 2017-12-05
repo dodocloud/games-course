@@ -48,7 +48,6 @@ public:
 		DestroyAllComponents();
 		DestroyAllChildren();
 		DestroyAllAttributes();
-		delete mesh;
 	}
 
 	int GetId() {
@@ -191,10 +190,10 @@ public:
 	* @param key key of the attribute
 	* @param value reference
 	*/
-	template<class T> void AddAttr(StrId key, T value) {
+	template<class T> void AddAttr(StrId key, T value, bool isShared = false) {
 		RemoveAttr(key, true);
 
-		attributes[key] = new Attribute<T>(key, value, this);
+		attributes[key] = new Attribute<T>(key, value, this, isShared);
 	}
 
 	bool HasAttr(StrId key) {

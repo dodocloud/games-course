@@ -18,4 +18,19 @@ struct BoundingBox {
 	ofVec2f GetCenter() const {
 		return topLeft + GetSize() / 2;
 	}
+
+	bool Intersects(BoundingBox& other) const {
+		return HorizontalIntersection(other) >= 0 &&
+			VerticalIntersection(other) >= 0;
+	}
+
+	float HorizontalIntersection(BoundingBox& other) const {
+		return min(other.topRight.x, topRight.x) - max(other.topLeft.x, topLeft.x);
+	}
+
+	float VerticalIntersection(BoundingBox& other) const {
+		return min(other.bottomLeft.y, bottomLeft.y) - max(other.topLeft.y, topLeft.y);
+	}
+
+
 };

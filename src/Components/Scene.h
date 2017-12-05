@@ -32,7 +32,7 @@ public:
 		
 	}
 
-	string& GetName() {
+	const string& GetName() const {
 		return name;
 	}
 

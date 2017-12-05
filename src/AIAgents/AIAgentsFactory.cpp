@@ -41,8 +41,6 @@ AIModel* AIAgentsFactory::LoadGameModel(int aiMap[AIMAP_WIDTH][AIMAP_HEIGHT]) {
 	return model;
 }
 
-char global[] = "AI_MODEL";
-
 void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 
 	auto scene = rootObject->GetScene();
@@ -72,8 +70,8 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 	// we have only one warehouse and therefore it isn't necessary to create a special object for it. Warehouse
 	// is rendered via map object that keeps all sprites of the map
 	
-	//rootObject->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseComponent"));
-	rootObject->AddComponent(new WarehouseComponent());
+	rootObject->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseComponent"));
+	//rootObject->AddComponent(new WarehouseComponent());
 	
 	
 	// add sprites
@@ -131,8 +129,8 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 	rootObject->AddChild(status);
 	// this component could be in the root. However, we need a TEXT mesh to render the text. That's why we create a special object for it.
 	
-	//status->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseStateComponent"));
-	status->AddComponent(new WarehouseStateComponent());
+	status->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseStateComponent"));
+	//status->AddComponent(new WarehouseStateComponent());
 	
 
 	// place the status next to the map
@@ -172,11 +170,11 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	agent->AddComponent(new AgentAIMoveComponent());
 
 
-	//agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAnimComponent"));
-	//agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAIComponent"));
-	
-	agent->AddComponent(new AgentAnimComponent());
-    agent->AddComponent(new AgentAIComponent());
+	agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAnimComponent"));
+	//agent->AddComponent(new AgentAnimComponent());
+
+	agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAIComponent"));
+    //agent->AddComponent(new AgentAIComponent());
 	
 	// the scale will be equal to 10% of the height of the screen
 	TransformBuilder trBld;
@@ -249,6 +247,19 @@ void AIAgentsFactory::InitLuaMapping(luabridge::lua_State* L) {
 	luabridge::getGlobalNamespace(L)
 		.deriveClass<AgentAIMoveComponent, FollowBehavior>("AgentAIMoveComponent")
 		.addFunction("GoToPoint", &AgentAIMoveComponent::GoToPoint)
+		.endClass();
+
+	luabridge::getGlobalNamespace(L)
+		.beginClass<AgentModel>("AgentModel")
+		.addData("agentType", &AgentModel::agentType)
+		.addData("currentState", &AgentModel::currentState)
+		.addData("currentCargo", &AgentModel::currentCargo)
+		.addData("amount", &AgentModel::amount)
+		.addData("capacity", &AgentModel::capacity)
+		.addData("speed", &AgentModel::speed)
+		.addData("currentLoadingTime", &AgentModel::currentLoadingTime)
+		.addData("loadingDelay", &AgentModel::loadingDelay)
+		.addFunction("IsLoaded", &AgentModel::IsLoaded)
 		.endClass();
 
 	luabridge::getGlobalNamespace(L)

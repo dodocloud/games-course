@@ -51,6 +51,7 @@ Component = {
 			subtype.Update = subtype.Update or self.Update -- keep if already defined
 			subtype.RegisterSubscriber = self.RegisterSubscriber -- override
 			subtype.SendMsg = self.SendMsg -- override
+			subtype.SendMsgWithData = self.SendMsgWithData -- override
 		else
 			subtype = self -- no subtype specified
 		end
@@ -85,7 +86,8 @@ Component = {
 	Update = function(self, delta, absolute) end,
 	-- methods that will call assigned proxy object
 	RegisterSubscriber = function(self, act) if(type(act) == "string") then act = StrId(act) end return self.proxy:RegisterSubscriber(act) end,
-	SendMsg = function(self, msg) return self.proxy:SendMsg(msg) end
+	SendMsg = function(self, msg) if(type(msg) == "string") then return self.proxy:SendMsg(StrId(msg)) else return self.proxy:SendMsg(msg) end end,
+	SendMsgWithData = function(self, msg, data) if(type(msg) == "string") then return self.proxy:SendMsgWithData(StrId(msg), data) else return self.proxy:SendMsgWithData(msg, data) end end
 }
 
 

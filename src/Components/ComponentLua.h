@@ -29,6 +29,8 @@ public:
 
 	virtual void OnMessage(Msg& msg);
 
+	void SendMsgWithData(StrId action, void* data);
+
 	virtual void Update(const uint64_t delta, const uint64_t absolute);
 
 protected:

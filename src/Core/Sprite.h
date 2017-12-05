@@ -3,6 +3,7 @@
 
 #include "SpriteSheet.h"
 #include "Transform.h"
+#include "BoundingBox.h"
 
 /**
 * Sprite entity, a part of a texture image called sprite sheet
@@ -103,7 +104,22 @@ public:
 		return static_cast<int>(transform.localPos.z);
 	}
 
+	void CalcBoundingBox(BoundingBox& output) const {
+		auto absPos = ofVec2f(this->transform.absPos.x, this->transform.absPos.y);
+		output.topLeft = absPos;
+		output.topRight = ofVec2f(absPos.x + this->GetWidth() * this->transform.absScale.x, absPos.y);
+		output.bottomLeft = ofVec2f(absPos.x, absPos.y + this->GetHeight() * this->transform.absScale.y);
+		output.bottomRight = ofVec2f(output.bottomLeft.x + this->GetWidth()* this->transform.absScale.x, output.bottomLeft.y);
+	}
 
+	// this is for Lua scripts
+	void CalcBoundingBoxPtr(BoundingBox* output) const {
+		auto absPos = ofVec2f(this->transform.absPos.x, this->transform.absPos.y);
+		output->topLeft = absPos;
+		output->topRight = ofVec2f(absPos.x + this->GetWidth() * this->transform.absScale.x, absPos.y);
+		output->bottomLeft = ofVec2f(absPos.x, absPos.y + this->GetHeight() * this->transform.absScale.y);
+		output->bottomRight = ofVec2f(output->bottomLeft.x + this->GetWidth()* this->transform.absScale.x, output->bottomLeft.y);
+	}
 protected:
 	/**
 	* Recalculates attributes (width, height), according to values in sprite sheet

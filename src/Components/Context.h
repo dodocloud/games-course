@@ -36,5 +36,9 @@ public:
 
 	virtual int GetMappedKey(StrId action) = 0;
 
+	virtual bool IsKeyPressed(StrId action) {
+		return GetPressedKeys().find(GetMappedKey(action)) != GetPressedKeys().end();
+	}
+
 	// todo place all environment methods here
 };

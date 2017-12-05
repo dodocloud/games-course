@@ -1,13 +1,8 @@
-
-#include "AIAgentsApp.h"
+#include "AphApp.h"
 #include "AphUtils.h"
-#include "AIAgentsFactory.h"
 #include "ofLog.h"
-#include "AIConstants.h"
-#include "ScriptManager.h"
-
 //--------------------------------------------------------------
-void AIAgentsApp::setup() {
+void AphApp::setup() {
 	if (CheckAPHVersion()) {
 		ofSetFrameRate(fps);
 		virtualAspectRatio = ((float)ofGetWindowSize().x) / ofGetWindowSize().y;
@@ -15,47 +10,17 @@ void AIAgentsApp::setup() {
 		// initialize renderer and scene
 		renderer = new Renderer();
 		renderer->OnInit();
-
-		// load sprite sheets
-		auto spritesImage = this->GetImage(FILE_SPRITES);
-		renderer->AddTileLayer(spritesImage, "spriteLayer", 1000, 1);
-
+		this->Init();
+		
 		scene = new Scene();
 		this->Reset();
+		// initialize virtual size
+		windowResized(ofGetWindowSize().x, ofGetWindowSize().y);
 	}
 }
 
-void AIAgentsApp::Reset() {
-	if(scene->GetRootObject() != nullptr) {
-		delete scene->GetRootObject();
-	}
-	
-	// set scale factor so that the whole scene will have the height of 100 units
-	float desiredSceneHeight = 100.0f;
-	float autoScale = ofGetWindowSize().y / desiredSceneHeight;
-	this->meshDefaultScale = 1.0f / autoScale * (ofGetWindowSize().y / 800.0f);
-	
-	// create root object
-	auto boundingRectangle = new FRect(ofGetWindowSize().x / autoScale, ofGetWindowSize().y / autoScale, ofColor(0));
-	boundingRectangle->SetIsRenderable(false);
-	auto rootObject = new GameObject(OBJECT_AI_ROOT, this, scene, boundingRectangle);
-	scene->SetRootObject(rootObject);
 
-	// initialize virtual size
-	windowResized(ofGetWindowSize().x, ofGetWindowSize().y);
-
-	auto scripts = ScriptManager::GetInstance();
-	scripts->Init();
-	scripts->LoadScript(ofFile(string_format("%s/AIAgents.lua", SCRIPTS_PATH)));
-	AIAgentsFactory::InitLuaMapping(ScriptManager::GetInstance()->GetLua());
-	
-
-	auto gameModel = AIAgentsFactory::LoadGameModel(aiMap);
-	// init game
-	AIAgentsFactory::InitializeGame(rootObject, gameModel);
-}
-
-void AIAgentsApp::PushNodeIntoRenderer(GameObject* node) {
+void AphApp::PushNodeIntoRenderer(GameObject* node) {
 	renderer->PushNode(node->GetRenderable());
 
 	for (auto child : node->GetChildren()) {
@@ -64,7 +29,7 @@ void AIAgentsApp::PushNodeIntoRenderer(GameObject* node) {
 }
 
 //--------------------------------------------------------------
-void AIAgentsApp::update() {
+void AphApp::update() {
 	frameCounter++;
 
 	delta = ofGetSystemTime() - absolute;
@@ -77,7 +42,7 @@ void AIAgentsApp::update() {
 	scene->GetRootObject()->Update(fixDelta, absolute);
 	scene->GetRootObject()->UpdateTransformations();
 
-	if(resetGamePending) {
+	if (resetGamePending) {
 		// game has to be reinitialized after the update process
 		resetGamePending = false;
 		this->Reset();
@@ -85,7 +50,7 @@ void AIAgentsApp::update() {
 }
 
 //--------------------------------------------------------------
-void AIAgentsApp::draw() {
+void AphApp::draw() {
 	renderer->ClearBuffers();
 	renderer->BeginRender();
 
@@ -97,17 +62,17 @@ void AIAgentsApp::draw() {
 }
 
 //--------------------------------------------------------------
-void AIAgentsApp::keyPressed(int key) {
+void AphApp::keyPressed(int key) {
 	pressedKeys.insert(key);
 }
 
 //--------------------------------------------------------------
-void AIAgentsApp::keyReleased(int key) {
+void AphApp::keyReleased(int key) {
 	pressedKeys.erase(key);
 }
 
 //--------------------------------------------------------------
-void AIAgentsApp::windowResized(int w, int h) {
+void AphApp::windowResized(int w, int h) {
 
 	// change the scale of the root object in order to fit the screen
 
@@ -138,7 +103,7 @@ void AIAgentsApp::windowResized(int w, int h) {
 	scene->GetRootObject()->GetTransform().SetAbsAsLocal();
 }
 
-ofImage* AIAgentsApp::GetImage(string path) {
+ofImage* AphApp::GetImage(string path) {
 	// place all images into map
 	auto found = images.find(path);
 
@@ -153,11 +118,7 @@ ofImage* AIAgentsApp::GetImage(string path) {
 	}
 }
 
-void AIAgentsApp::PlaySound(string path) {
-	// no sounds here
-}
 
-int AIAgentsApp::GetMappedKey(StrId action) {
-	// no actions here
-	return 0;
+void AphApp::PlaySound(string path) {
+	playingSounds[path]->play();
 }

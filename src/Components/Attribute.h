@@ -15,10 +15,11 @@ protected:
 	const unsigned key;
 	bool isPointer;
 	void* rawVal; // pointer to raw value
+	bool isShared = false;
 public:
 
-	BaseAttribute(unsigned key, bool isPointer, void* rawVal, GameObject* owner) 
-	: owner(owner), key(key), isPointer(isPointer), rawVal(rawVal) {
+	BaseAttribute(unsigned key, bool isPointer, void* rawVal, GameObject* owner, bool isShared) 
+	: owner(owner), key(key), isPointer(isPointer), rawVal(rawVal), isShared(isShared) {
 
 	}
 
@@ -49,7 +50,9 @@ public:
 	}
 };
 
-
+/**
+ * Helper that deletes only pointers
+ */
 template<typename T> class AttrDeleter {
 
 public:
@@ -80,15 +83,15 @@ protected:
 
 public:
 
-	Attribute(unsigned key, T val, GameObject* owner)
-		: BaseAttribute(key, std::is_pointer<T>(), 0, owner), value(val) {
+	Attribute(unsigned key, T val, GameObject* owner, bool isShared = false)
+		: BaseAttribute(key, std::is_pointer<T>(), 0, owner, isShared), value(val) {
 		// must be set when its address is determined
 		rawVal = &value;
 	}
 
 	~Attribute() {
 		// remove dynamic attribute
-		if(this->isPointer) {
+		if(this->isPointer && !isShared) {
 			AttrDeleter<T>::Destroy(value);
 		}
 	}

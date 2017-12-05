@@ -62,6 +62,10 @@ void ComponentLua::OnMessage(Msg& msg) {
 	method(ref, msg);
 }
 
+void ComponentLua::SendMsgWithData(StrId action, void* data) {
+	this->SendMsg(action, data);
+}
+
 void ComponentLua::Update(const uint64_t delta, const uint64_t absolute) {
 	lua_rawgeti(L, LUA_REGISTRYINDEX, reference);
 	LuaRef ref = LuaRef::fromStack(L, lua_gettop(L));

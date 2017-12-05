@@ -180,10 +180,10 @@ void SpriteSheetRenderer::AddTexCoords(SpriteTile& tile) {
 	switch (tile.dir) {
 	case NONE:
 		// rounding errors elimination
-		x1 = tile.offsetX + 1;
-		y1 = tile.offsetY + 1;
-		x2 = tile.offsetX + tile.width - 1;
-		y2 = tile.offsetY + tile.height - 1;
+		x1 = tile.offsetX + 0.5f;
+		y1 = tile.offsetY + 0.5f;
+		x2 = tile.offsetX + tile.width - 0.5f;
+		y2 = tile.offsetY + tile.height - 0.5f;
 		break;
 	case HORIZONTALLY:
 		x1 = tile.offsetX + tile.width;

@@ -8,9 +8,11 @@
 #include "PerlinNoiseExample.h"
 #include "AIAgentsApp.h"
 #include "Homework2.h"
+#include "AIAgentsApp.h"
+#include "ArkanoidApp.h"
 
 //========================================================================
 int main( ){
 	ofSetupOpenGL(1024,768, OF_WINDOW);
-	ofRunApp(new AIAgentsApp());
+	ofRunApp(new ArkanoidApp());
 }

@@ -14,6 +14,7 @@
 #include "Scene.h"
 #include "Dynamics.h"
 #include "AphUtils.h"
+#include "TransformBuilder.h"
 
 using namespace luabridge;
 using namespace std;
@@ -27,7 +28,8 @@ void ScriptManager::Init() {
 	luaL_openlibs(L);
 
 	InitLuaMapping();
-	LoadAllScripts();
+	auto base = ofFile(string_format("%s/base.lua", SCRIPTS_PATH));
+	LoadScript(base);
 }
 
 ComponentLua* ScriptManager::CreateLuaComponent(string name) {
@@ -130,39 +132,61 @@ void ScriptManager::InitLuaMapping() {
 	luabridge::getGlobalNamespace(L)
 		.beginClass<ofVec2f>("ofVec2f")
 		.addConstructor<void(*)(float, float)>()
-		.addFunction("__add", static_cast<ofVec2f(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator+))
-		.addFunction("__mul", static_cast<ofVec2f(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator*))
-		.addFunction("__eq", static_cast<bool(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator==))
+		.addFunction("__add", static_cast<ofVec2f(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator+))// override +
+		.addFunction("__mul", static_cast<ofVec2f(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator*)) // override *
+		.addFunction("__eq", static_cast<bool(ofVec2f::*)(const ofVec2f &)const>(&ofVec2f::operator==))	   // override ==
 		.addData("x", &ofVec2f::x)
 		.addData("y", &ofVec2f::y)
 		.addFunction("length", &ofVec2f::length)
+		.addFunction("lengthSquared", &ofVec2f::lengthSquared)
 		.endClass();
 
 	// ofVec3f
 	luabridge::getGlobalNamespace(L)
 		.beginClass<ofVec3f>("ofVec3f")
 		.addConstructor<void(*)(float, float, float)>()
-		.addFunction("__add", static_cast<ofVec3f(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator+))
-		.addFunction("__mul", static_cast<ofVec3f(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator*))
-		.addFunction("__eq", static_cast<bool(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator==))
+		.addFunction("__add", static_cast<ofVec3f(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator+))	// override +
+		.addFunction("__mul", static_cast<ofVec3f(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator*))	// override *
+		.addFunction("__eq", static_cast<bool(ofVec3f::*)(const ofVec3f &)const>(&ofVec3f::operator==))		// override ==
 		.addData("x", &ofVec3f::x)
 		.addData("y", &ofVec3f::y)
 		.addData("z", &ofVec3f::z)
 		.addFunction("length", &ofVec3f::length)
+		.addFunction("lengthSquared", &ofVec3f::lengthSquared)
 		.endClass();
 
-
+	// Bounding Box
+	luabridge::getGlobalNamespace(L)
+		.beginClass<BoundingBox>("BoundingBox")
+		.addConstructor<void(*)()>()
+		.addFunction("GetCenter", &BoundingBox::GetCenter)
+		.addFunction("GetSize", &BoundingBox::GetSize)
+		.addFunction("HorizontalIntersection", &BoundingBox::HorizontalIntersection)
+		.addFunction("Intersects", &BoundingBox::Intersects)
+		.addFunction("VerticalIntersection", &BoundingBox::VerticalIntersection)
+		.addData("topLeft", &BoundingBox::topLeft)
+		.addData("bottomLeft", &BoundingBox::bottomLeft)
+		.addData("topRight", &BoundingBox::topRight)
+		.addData("bottomRight", &BoundingBox::bottomRight)
+		.endClass();
+	
 	// Renderable 
 	luabridge::getGlobalNamespace(L)
 		.beginClass<Renderable>("Renderable")
 		.addFunction("GetTransform", &Renderable::GetTransform)
+		.addFunction("IsVisible", &Renderable::IsVisible)
+		.addFunction("SetIsVisible", &Renderable::SetIsVisible)
+		.addFunction("GetBoundingBox", &Renderable::GetBoundingBox)
+		.addProperty("isVisible", &Renderable::IsVisible, &Renderable::SetIsVisible)
 		.endClass();
 
 	// Image mesh
 	luabridge::getGlobalNamespace(L)
 		.deriveClass<ImageMesh, Renderable>("Image")
 		.addFunction("GetHeight", &ImageMesh::GetHeight)
-		.addFunction("GetWidth", &ImageMesh::GetWidth)
+		.addProperty("height", &ImageMesh::GetHeight)
+ 	    .addFunction("GetWidth", &ImageMesh::GetWidth)
+		.addProperty("width", &ImageMesh::GetWidth)
 		.endClass();
 
 	// ofImage
@@ -176,26 +200,42 @@ void ScriptManager::InitLuaMapping() {
 	luabridge::getGlobalNamespace(L)
 		.deriveClass<Text, Renderable>("Text")
 		.addProperty("text", &Text::GetText, &Text::SetText)
+		.addFunction("GetText", &Text::GetText)
+		.addFunction("SetText", &Text::SetText)
 		.endClass();
 
 	// Sprite
 	luabridge::getGlobalNamespace(L)
 		.beginClass<Sprite>("Sprite")
 		.addProperty("frame", &Sprite::GetFrame, &Sprite::SetFrame)
+		.addFunction("GetFrame", &Sprite::GetFrame)
+		.addFunction("SetFrame", &Sprite::SetFrame)
 		.addProperty("offsetX", &Sprite::GetOffsetX)
+		.addFunction("GetOffsetX", &Sprite::GetOffsetX)
 		.addProperty("offsetY", &Sprite::GetOffsetY)
+		.addFunction("GetOffsetY", &Sprite::GetOffsetY)
 		.addProperty("width", &Sprite::GetWidth)
+		.addFunction("GetWidth", &Sprite::GetWidth)
 		.addProperty("height", &Sprite::GetHeight)
+		.addFunction("GetHeight", &Sprite::GetHeight)
 		.addFunction("GetTransform", &Sprite::GetTransform)
+		.addFunction("CalcBoundingBox", &Sprite::CalcBoundingBoxPtr)
 		.endClass();
 
 	// Sprite mesh 
 	luabridge::getGlobalNamespace(L)
-		.deriveClass<SpriteMesh, Renderable>("Sprite")
+		.deriveClass<SpriteMesh, Renderable>("SpriteMesh")
 		.addFunction("GetLayerName", &SpriteMesh::GetLayerName)
 		.addFunction("GetSprite", &SpriteMesh::GetSprite)
 	.endClass();
 
+	// Multi Sprite mesh 
+	luabridge::getGlobalNamespace(L)
+		.deriveClass<MultiSpriteMesh, Renderable>("MultiSpriteMesh")
+		.addFunction("GetSprite", &MultiSpriteMesh::GetSprite)
+		.addFunction("RemoveSprite", &MultiSpriteMesh::RemoveSprite)
+		.addFunction("GetSpritesNum", &MultiSpriteMesh::GetSpritesNum)
+		.endClass();
 
 	// Vec2i
 	luabridge::getGlobalNamespace(L)
@@ -203,8 +243,27 @@ void ScriptManager::InitLuaMapping() {
 		.addConstructor<void(*)(int, int)>()
 		.addData("x", &Vec2i::x)
 		.addData("y", &Vec2i::y)
-		.addFunction("__add", static_cast<Vec2i(Vec2i::*)(const Vec2i &)const>(&Vec2i::operator+))
-		.addFunction("__eq", static_cast<bool(Vec2i::*)(const Vec2i &)const>(&Vec2i::operator==))
+		.addFunction("__add", static_cast<Vec2i(Vec2i::*)(const Vec2i &)const>(&Vec2i::operator+)) // override +
+		.addFunction("__eq", static_cast<bool(Vec2i::*)(const Vec2i &)const>(&Vec2i::operator==))  // override ==
+		.endClass();
+
+	// TransformBuilder
+	luabridge::getGlobalNamespace(L)
+		.beginClass<TransformBuilder>("TransformBuilder")
+		.addConstructor<void(*)()>()
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("AbsolutePosition", &TransformBuilder::AbsolutePosition)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("AbsoluteScale", &TransformBuilder::AbsoluteScale)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("Anchor", &TransformBuilder::Anchor)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("LocalPosition", &TransformBuilder::LocalPosition)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("LocalScale", &TransformBuilder::LocalScale)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("RelativePosition", &TransformBuilder::RelativePosition)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("RelativeScale", &TransformBuilder::RelativeScale)
+		.addFunction("Rotation", &TransformBuilder::Rotation)
+		.addFunction<TransformBuilder&(TransformBuilder::*)(ofVec2f)>("RotationCenter", &TransformBuilder::RotationCenter)
+		.addFunction("ZIndex", &TransformBuilder::ZIndex)
+		.addFunction("Calculate", &TransformBuilder::Calculate)
+		.addFunction<void(TransformBuilder::*)(GameObject*)>("Build", &TransformBuilder::Build)
+		.addFunction("BuildAndReset", &TransformBuilder::BuildAndReset)
 		.endClass();
 
 	// Movement
@@ -215,6 +274,8 @@ void ScriptManager::InitLuaMapping() {
 		.addFunction("GetVelocity", &Dynamics::GetVelocity)
 		.addFunction("SetVelocity", &Dynamics::SetVelocity)
 		.addProperty("angularSpeed", &Dynamics::GetAngularSpeed, &Dynamics::SetAngularSpeed)
+		.addFunction("GetAngularSpeed", &Dynamics::GetAngularSpeed)
+		.addFunction("SetAngularSpeed", &Dynamics::SetAngularSpeed)
 		.endClass();
 
 
@@ -227,9 +288,11 @@ void ScriptManager::InitLuaMapping() {
 		.addData("absRotationCentroid", &Trans::absRotationCentroid)
 		.addData("absScale", &Trans::absScale)
 		.addData("localPos", &Trans::localPos)
+		.addFunction("GetLocalPos", &Trans::GetLocalPos)
 		.addData("rotation", &Trans::rotation)
 		.addData("rotationCentroid", &Trans::rotationCentroid)
 		.addData("scale", &Trans::scale)
+		.addFunction("GetScale", &Trans::GetScale)
 		.addData("absPos", &Trans::absPos)
 		.addFunction("SetAbsAsLocal", &Trans::SetAbsAsLocal)
 		.addFunction("CalcAbsTransform", &Trans::CalcAbsTransform)
@@ -243,7 +306,7 @@ void ScriptManager::InitLuaMapping() {
 		.beginClass<StrId>("StrId")
 		.addConstructor<void(*)(string)>()
 		.addFunction("GetValue", &StrId::GetValue)
-		.addFunction("__eq", static_cast<bool(StrId::*)(const StrId &)const>(&StrId::operator==))
+		.addFunction("__eq", static_cast<bool(StrId::*)(const StrId &)const>(&StrId::operator==)) // override ==
 		.endClass();
 
 	// Msg
@@ -251,6 +314,7 @@ void ScriptManager::InitLuaMapping() {
 		.beginClass<Msg>("Msg")
 		.addConstructor<void(*)()>()
 		.addFunction("GetAction", &Msg::GetAction)
+		.addProperty("action", &Msg::GetAction)
 		.addFunction("GetSenderId", &Msg::GetSenderId)
 		.endClass();
 
@@ -268,17 +332,36 @@ void ScriptManager::InitLuaMapping() {
 		.deriveClass<ComponentLua, Component>("ComponentLua")
 		.addConstructor<void(*)(void)>()
 		.addCFunction("RegisterDelegate", &ComponentLua::RegisterDelegateCt)
+		.addFunction("SendMsgWithData", &ComponentLua::SendMsgWithData)
+		.endClass();
+
+	// Context
+	luabridge::getGlobalNamespace(L)
+		.beginClass<Context>("Context")
+		.addFunction("GetImage", &Context::GetImage)
+		.addFunction("ResetGame", &Context::ResetGame)
+		.addFunction("IsKeyPressed", &Context::IsKeyPressed)
+		.addFunction("PlaySound", &Context::PlaySound)
+		.addFunction("GetMappedKey", &Context::GetMappedKey)
+		.addFunction("GetMeshDefaultScale", &Context::GetMeshDefaultScale)
 		.endClass();
 
 	// GameObject
 	luabridge::getGlobalNamespace(L)
 		.beginClass<GameObject>("GameObject")
 		.addProperty("name", &GameObject::GetName, &GameObject::SetName)
+		.addFunction("GetName", &GameObject::GetName)
+		.addFunction("SetName", &GameObject::SetName)
+		.addFunction("GetContext", &GameObject::GetContext)
 		.addProperty("transform", &GameObject::GetTransform, &GameObject::SetTransform)
-		.addProperty("parent", &GameObject::GetParent)
-		.addProperty("root", &GameObject::GetRoot)
+		.addFunction("GetTransform", &GameObject::GetTransform)
+		.addFunction("SetTransform", &GameObject::SetTransform)
+		.addFunction<GameObject* (GameObject::*)() const>("GetParent", &GameObject::GetParent)
+	    .addProperty("root", &GameObject::GetRoot)
+		.addFunction("GetRoot", &GameObject::GetRoot)
 		.addFunction("Remove", &GameObject::Remove)
 		.addProperty("scene", &GameObject::GetScene)
+		.addFunction("GetScene", &GameObject::GetScene)
 		.addFunction("HasAttr", &GameObject::HasAttr)
 		.addFunction("RemoveAttr", &GameObject::RemoveAttr)
 		.addFunction("AddAttrString", &GameObject::AddAttrString)
@@ -297,6 +380,7 @@ void ScriptManager::InitLuaMapping() {
 		.addFunction("GetRenderable", reinterpret_cast<Renderable*(GameObject::*)() const> (&GameObject::GetRenderable))
 		.addFunction("GetImageMesh", reinterpret_cast<ImageMesh*(GameObject::*)() const> (&GameObject::GetRenderable))
 		.addFunction("GetSpriteMesh", reinterpret_cast<SpriteMesh*(GameObject::*)() const> (&GameObject::GetRenderable))
+		.addFunction("GetMultiSpriteMesh", reinterpret_cast<MultiSpriteMesh*(GameObject::*)() const> (&GameObject::GetRenderable))
 		.addFunction("GetText", reinterpret_cast<Text*(GameObject::*)() const> (&GameObject::GetRenderable))
 		.endClass();
 
@@ -305,23 +389,20 @@ void ScriptManager::InitLuaMapping() {
 		.beginClass<Scene>("Scene")
 		.addFunction("GetRootObject", &Scene::GetRootObject)
 		.addFunction("FindGameObjectByName", &Scene::FindGameObjectByName)
+		.addProperty("name", &Scene::GetName)
 		.addFunction("GetName", &Scene::GetName)
 		.endClass();
 }
 
 void ScriptManager::LoadAllScripts() {
 
+	// first of all, load base.lua. It must be loaded first
+	LoadScript(string_format("%s/base.lua", SCRIPTS_PATH));
+
 	ofDirectory dir(ofToDataPath(SCRIPTS_PATH));
 
 	if (dir.exists()) {
 		auto files = dir.getFiles();
-
-		// first of all, load base.lua. It must be loaded first
-		for (auto file : files) {
-			if (file.getFileName() == "base.lua") {
-				LoadScript(file);
-			}
-		}
 
 		// load the rest
 		for (auto file : files) {

@@ -247,6 +247,18 @@
     <ClCompile Include="src\Components\ScriptManager.cpp">
       <Filter>src\Components</Filter>
     </ClCompile>
+    <ClCompile Include="src\Arkanoid\ArkanoidApp.cpp">
+      <Filter>src\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Arkanoid\ArkanoidConstants.cpp">
+      <Filter>src\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Arkanoid\ArkanoidFactory.cpp">
+      <Filter>src\Arkanoid</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\AphApp.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -287,6 +299,9 @@
     </Filter>
     <Filter Include="libs\luabridge">
       <UniqueIdentifier>{d425b160-6d06-4b2a-8b3f-669eb10ff6d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Arkanoid">
+      <UniqueIdentifier>{81ef950f-0f82-4cf4-b198-98c2ab4bb875}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -655,6 +670,45 @@
     </ClInclude>
     <ClInclude Include="src\Components\ScriptManager.h">
       <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidModel.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\GameComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\PaddleComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidApp.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidConstants.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidFactory.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\BallCollisionComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\AphApp.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidSoundComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidStatusComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidIntroComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\ArkanoidLifeComponent.h">
+      <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Arkanoid\BrickCollisionComponent.h">
+      <Filter>src\Arkanoid</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

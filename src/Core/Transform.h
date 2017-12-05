@@ -52,6 +52,10 @@ public:
 	// absolute rotation centroid
 	ofVec3f absRotationCentroid = ofVec3f(0);
 
+	ofVec3f& GetLocalPos() { return localPos; }
+	ofVec3f& GetScale() { return scale; }
+
+
 	/**
 	* Sets absolute coordinates to be the same as local
 	* Mostly used for root objects that haven't any parent

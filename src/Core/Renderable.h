@@ -452,6 +452,13 @@ public:
 		return sprites;
 	}
 
+	Sprite* GetSprite(int index) {
+		return sprites[index];
+	}
+
+	int GetSpritesNum() const {
+		return sprites.size();
+	}
 
 	/**
 	* Recalculates size of this shape, according to the collection of sprites
