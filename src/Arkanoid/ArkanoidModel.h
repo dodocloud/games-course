@@ -48,7 +48,7 @@ public:
 	int currentLives;
 
 	// number of max lives, configurable in JSON file
-	int maxLives;
+	int maxLives = 3;
 
 	// number of levels, configurable in JSON file
 	int maxLevels;
