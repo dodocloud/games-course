@@ -69,7 +69,7 @@ void ArkanoidFactory::LoadGameConfig(GameObject* rootObject, ArkanoidModel* mode
 
 	auto sprites = gameConfig.get<Array>("sprites");
 	model->maxLevels = gameConfig.get<Number>("levels_total");
-	model->maxLives = gameConfig.get<Number>("max_lives");
+	model->maxLives = model->currentLives = gameConfig.get<Number>("max_lives");
 	model->ballSpeed = gameConfig.get<Number>("ball_speed");
 	model->ballSpeedMultiplier = gameConfig.get<Number>("ball_speed_multiplier");
 
