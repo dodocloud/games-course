@@ -259,6 +259,45 @@
     <ClCompile Include="src\Core\AphApp.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Networking\NetworkManager.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\NetWriter.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\UpdateMessage.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\NetMessage.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\NetReader.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\ofxNetwork\ofxTCPManager.cpp">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\ofxNetwork\ofxTCPServer.cpp">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\ofxNetwork\ofxUDPManager.cpp">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\ofxNetwork\ofxTCPClient.cpp">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Examples\NetworkExample.cpp">
+      <Filter>src\Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\Interpolator.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\NetworkHost.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Networking\NetworkClient.cpp">
+      <Filter>src\Networking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -302,6 +341,12 @@
     </Filter>
     <Filter Include="src\Arkanoid">
       <UniqueIdentifier>{81ef950f-0f82-4cf4-b198-98c2ab4bb875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Networking">
+      <UniqueIdentifier>{4a7f6af3-66cf-4b5a-94d2-306cb9420913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\ofxNetwork">
+      <UniqueIdentifier>{3aa596e2-3c74-4ede-8a63-10426c9ff533}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -709,6 +754,63 @@
     </ClInclude>
     <ClInclude Include="src\Arkanoid\BrickCollisionComponent.h">
       <Filter>src\Arkanoid</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetworkManager.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetWriter.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\UpdateInfo.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\UpdateMessage.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetMessage.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetReader.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxTCPManager.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxTCPServer.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxUDPManager.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxNetwork.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxNetworkUtils.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\ofxNetwork\ofxTCPClient.h">
+      <Filter>libs\ofxNetwork</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Examples\NetworkExample.h">
+      <Filter>src\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\Interpolator.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetworkHost.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Networking\NetworkClient.h">
+      <Filter>src\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AgentNetworkingSender.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AgentNetworkingReceiver.h">
+      <Filter>src\AIAgents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIAgents\AIAgentUpdateMessage.h">
+      <Filter>src\AIAgents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

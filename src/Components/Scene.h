@@ -54,6 +54,9 @@ public:
 
 	GameObject* FindGameObjectByName(string name);
 
+	GameObject* FindGameObjectByNetworkId(int id);
+
+
 	void SendMsg(Msg& msg);
 
 

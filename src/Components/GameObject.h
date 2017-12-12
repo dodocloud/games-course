@@ -22,6 +22,7 @@ class GameObject {
 protected:
 	static int idCounter;
 	int id;
+	int networkId;
 	Renderable* mesh = nullptr;
 	GameObject* parent = nullptr;
 	Flags flags;
@@ -50,8 +51,16 @@ public:
 		DestroyAllAttributes();
 	}
 
-	int GetId() {
+	int GetId() const {
 		return id;
+	}
+
+	int GetNetworkId() const {
+		return networkId;
+	}
+
+	void SetNetworkId(int networkId) {
+		this->networkId = networkId;
 	}
 
 	const string& GetName() const {

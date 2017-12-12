@@ -29,6 +29,16 @@ GameObject* Scene::FindGameObjectByName(string name) {
 	return nullptr;
 }
 
+GameObject* Scene::FindGameObjectByNetworkId(int id) {
+	for (auto gameObj : allGameObjects) {
+		if (gameObj->GetNetworkId() == id) {
+			return gameObj;
+		}
+	}
+	return nullptr;
+}
+
+
 void Scene::SendMsg(Msg& msg) {
 	auto registeredSubs = subscribers.find(msg.GetAction());
 

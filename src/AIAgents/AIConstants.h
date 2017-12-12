@@ -19,3 +19,7 @@
 
 extern char AI_MODEL[];
 extern char ATTR_AGENTMODEL[];
+
+extern StrId NET_MSG_AGENT_UPDATE;
+extern StrId NET_MSG_AGENT_CREATED;
+extern StrId NET_MSG_AGENTS_SNAPSHOT;

@@ -21,5 +21,15 @@ using spt = std::shared_ptr<T>;
 				        } \
 		    } while (false)
 #else
-#   define COGASSERT(condition, message, ...) do { } while (false)
+#   define ASSERT(condition, message, ...) do { } while (false)
 #endif
+
+// aliases for data types for networking
+typedef unsigned char ABYTE;
+typedef unsigned int ADWORD;
+typedef unsigned short AWORD;
+
+
+// macro for calculating size of a string used in networking
+// when a string is seralized, the size of a string goes with it
+#define SIZE_STR(str) sizeof(ABYTE)*str.size()+sizeof(ADWORD)

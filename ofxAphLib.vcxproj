@@ -96,7 +96,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid;src/Networking;libs/ofxNetwork</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions);</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;libs/lua;libs/luabridge;libs/jsonxx;libs/ofxSQLite;libs/pugixml;libs/sqlite;src/Examples;src/Core;src/Components;src/Pacman;src/AIScript;src/AIAgents;libs/ofxTextLabel;src/Paratrooper;src/Arkanoid;src/Networking;libs/ofxNetwork</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -365,6 +365,10 @@
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
     </ClCompile>
+    <ClCompile Include="libs\ofxNetwork\ofxTCPClient.cpp" />
+    <ClCompile Include="libs\ofxNetwork\ofxTCPManager.cpp" />
+    <ClCompile Include="libs\ofxNetwork\ofxTCPServer.cpp" />
+    <ClCompile Include="libs\ofxNetwork\ofxUDPManager.cpp" />
     <ClCompile Include="libs\ofxTextLabel\ofxTextLabel.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
     <ClCompile Include="src\AIAgents\AIAgentsFactory.cpp" />
@@ -402,6 +406,7 @@
     <ClCompile Include="src\Examples\CpuParticlesExample.cpp" />
     <ClCompile Include="src\Examples\CubeExample.cpp" />
     <ClCompile Include="src\Examples\GpuParticlesExample.cpp" />
+    <ClCompile Include="src\Examples\NetworkExample.cpp" />
     <ClCompile Include="src\Examples\PathFindingExample.cpp" />
     <ClCompile Include="src\Examples\PerlinNoiseExample.cpp" />
     <ClCompile Include="src\Examples\QuadTreeExample.cpp" />
@@ -409,6 +414,14 @@
     <ClCompile Include="src\Examples\TwistExample.cpp" />
     <ClCompile Include="src\Examples\VerletExample.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Networking\Interpolator.cpp" />
+    <ClCompile Include="src\Networking\NetMessage.cpp" />
+    <ClCompile Include="src\Networking\NetReader.cpp" />
+    <ClCompile Include="src\Networking\NetworkClient.cpp" />
+    <ClCompile Include="src\Networking\NetworkHost.cpp" />
+    <ClCompile Include="src\Networking\NetworkManager.cpp" />
+    <ClCompile Include="src\Networking\NetWriter.cpp" />
+    <ClCompile Include="src\Networking\UpdateMessage.cpp" />
     <ClCompile Include="src\Pacman\GameSprites.cpp" />
     <ClCompile Include="src\Pacman\GameUnit.cpp" />
     <ClCompile Include="src\Pacman\Map.cpp" />
@@ -461,13 +474,22 @@
     <ClInclude Include="libs\lua\lundump.h" />
     <ClInclude Include="libs\lua\lvm.h" />
     <ClInclude Include="libs\lua\lzio.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxNetwork.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxNetworkUtils.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxTCPClient.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxTCPManager.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxTCPServer.h" />
+    <ClInclude Include="libs\ofxNetwork\ofxUDPManager.h" />
     <ClInclude Include="libs\ofxTextLabel\ofxTextLabel.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.h" />
     <ClInclude Include="libs\pugixml\pugixml.h" />
     <ClInclude Include="src\AIAgents\AgentAIComponent.h" />
     <ClInclude Include="src\AIAgents\AgentAIMoveComponent.h" />
     <ClInclude Include="src\AIAgents\AgentAnimComponent.h" />
+    <ClInclude Include="src\AIAgents\AgentNetworkingReceiver.h" />
+    <ClInclude Include="src\AIAgents\AgentNetworkingSender.h" />
     <ClInclude Include="src\AIAgents\AIAgentsFactory.h" />
+    <ClInclude Include="src\AIAgents\AIAgentUpdateMessage.h" />
     <ClInclude Include="src\AIAgents\AIConstants.h" />
     <ClInclude Include="src\AIAgents\AIMap.h" />
     <ClInclude Include="src\AIAgents\AIModel.h" />
@@ -524,12 +546,22 @@
     <ClInclude Include="src\Examples\CubeExample.h" />
     <ClInclude Include="src\Examples\GpuParticlesExample.h" />
     <ClInclude Include="src\Examples\Homework2.h" />
+    <ClInclude Include="src\Examples\NetworkExample.h" />
     <ClInclude Include="src\Examples\PathFindingExample.h" />
     <ClInclude Include="src\Examples\PerlinNoiseExample.h" />
     <ClInclude Include="src\Examples\QuadTreeExample.h" />
     <ClInclude Include="src\Examples\StarsExample.h" />
     <ClInclude Include="src\Examples\TwistExample.h" />
     <ClInclude Include="src\Examples\VerletExample.h" />
+    <ClInclude Include="src\Networking\Interpolator.h" />
+    <ClInclude Include="src\Networking\NetMessage.h" />
+    <ClInclude Include="src\Networking\NetReader.h" />
+    <ClInclude Include="src\Networking\NetworkClient.h" />
+    <ClInclude Include="src\Networking\NetworkHost.h" />
+    <ClInclude Include="src\Networking\NetworkManager.h" />
+    <ClInclude Include="src\Networking\NetWriter.h" />
+    <ClInclude Include="src\Networking\UpdateInfo.h" />
+    <ClInclude Include="src\Networking\UpdateMessage.h" />
     <ClInclude Include="src\Pacman\GameSprites.h" />
     <ClInclude Include="src\Pacman\GameUnit.h" />
     <ClInclude Include="src\Pacman\Map.h" />

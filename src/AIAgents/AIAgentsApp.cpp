@@ -26,15 +26,15 @@ void AIAgentsApp::setup() {
 }
 
 void AIAgentsApp::Reset() {
-	if(scene->GetRootObject() != nullptr) {
+	if (scene->GetRootObject() != nullptr) {
 		delete scene->GetRootObject();
 	}
-	
+
 	// set scale factor so that the whole scene will have the height of 100 units
 	float desiredSceneHeight = 100.0f;
 	float autoScale = ofGetWindowSize().y / desiredSceneHeight;
 	this->meshDefaultScale = 1.0f / autoScale * (ofGetWindowSize().y / 800.0f);
-	
+
 	// create root object
 	auto boundingRectangle = new FRect(ofGetWindowSize().x / autoScale, ofGetWindowSize().y / autoScale, ofColor(0));
 	boundingRectangle->SetIsRenderable(false);
@@ -48,10 +48,11 @@ void AIAgentsApp::Reset() {
 	scripts->Init();
 	scripts->LoadScript(ofFile(string_format("%s/AIAgents.lua", SCRIPTS_PATH)));
 	AIAgentsFactory::InitLuaMapping(ScriptManager::GetInstance()->GetLua());
-	
 
-	auto gameModel = AIAgentsFactory::LoadGameModel(aiMap);
-	// init game
+	if (this->gameModel == nullptr) {
+		this->gameModel = AIAgentsFactory::LoadGameModel(aiMap);
+	}
+		// init game
 	AIAgentsFactory::InitializeGame(rootObject, gameModel);
 }
 
@@ -65,35 +66,62 @@ void AIAgentsApp::PushNodeIntoRenderer(GameObject* node) {
 
 //--------------------------------------------------------------
 void AIAgentsApp::update() {
-	frameCounter++;
+	if(!initialized) {
 
-	delta = ofGetSystemTime() - absolute;
-	absolute = ofGetSystemTime();
+		// check pressed keys for networking mode
+		if(ofGetKeyPressed('c')) {
+			gameModel->networkingType = AIAgentGameType::MULTIPLAYER_CLIENT;
+			initialized = true;
+		}
+		if (ofGetKeyPressed('s')) {
+			gameModel->networkingType = AIAgentGameType::MULTIPLAYER_HOST;
+			initialized = true;
+		}
+		if (ofGetKeyPressed('n')) {
+			gameModel->networkingType = AIAgentGameType::CLASSIC;
+			initialized = true;
+		}
+		if (initialized) Reset();
+	}
+	else {
+		frameCounter++;
 
-	float expectedDelta = 1000 / fps;
-	// when performance goes down, the maximum delta value is fixed
-	uint64 fixDelta = (delta < expectedDelta) ? expectedDelta : (delta < (2 * expectedDelta)) ? delta : (2 * expectedDelta);
+		delta = ofGetSystemTime() - absolute;
+		absolute = ofGetSystemTime();
 
-	scene->GetRootObject()->Update(fixDelta, absolute);
-	scene->GetRootObject()->UpdateTransformations();
+		float expectedDelta = 1000 / fps;
+		// when performance goes down, the maximum delta value is fixed
+		uint64 fixDelta = (delta < expectedDelta) ? expectedDelta : (delta < (2 * expectedDelta)) ? delta : (2 * expectedDelta);
 
-	if(resetGamePending) {
-		// game has to be reinitialized after the update process
-		resetGamePending = false;
-		this->Reset();
+		scene->GetRootObject()->Update(fixDelta, absolute);
+		scene->GetRootObject()->UpdateTransformations();
+
+		if (resetGamePending) {
+			// game has to be reinitialized after the update process
+			resetGamePending = false;
+			this->Reset();
+		}
 	}
 }
 
 //--------------------------------------------------------------
 void AIAgentsApp::draw() {
-	renderer->ClearBuffers();
-	renderer->BeginRender();
+	if (!initialized) {
+		// just display possible options
+		ofClear(0);
+		ofColor(255);
+		ofDrawBitmapString("Press either C for Client mode, S for server mode or N for no-networking mode", 100, 100);
+	}
+	else {
+		renderer->ClearBuffers();
+		renderer->BeginRender();
 
-	// add objects into renderer
-	PushNodeIntoRenderer(scene->GetRootObject());
+		// add objects into renderer
+		PushNodeIntoRenderer(scene->GetRootObject());
 
-	renderer->Render();
-	renderer->EndRender();
+		renderer->Render();
+		renderer->EndRender();
+	}
 }
 
 //--------------------------------------------------------------
@@ -158,6 +186,5 @@ void AIAgentsApp::PlaySound(string path) {
 }
 
 int AIAgentsApp::GetMappedKey(StrId action) {
-	// no actions here
-	return 0;
+	return action.GetValue();
 }

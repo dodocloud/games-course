@@ -8,6 +8,8 @@
 #include "Context.h"
 #include "Scene.h"
 #include "AIConstants.h"
+#include "AIModel.h"
+
 
 class AIAgentsApp : public ofBaseApp, Context {
 public:
@@ -39,9 +41,11 @@ public:
 	float meshDefaultScale;
 	bool resetGamePending = false;
 	float virtualAspectRatio;
-
+	bool initialized = false;
 	// all pressed keys
 	set<int> pressedKeys;
+
+	AIModel* gameModel = nullptr;
 
 	uint64_t delta;
 	uint64_t absolute;

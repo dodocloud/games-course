@@ -15,6 +15,8 @@
 #include "GameObject.h"
 #include "ComponentLua.h"
 #include "List.h"
+#include "AgentNetworkingSender.h"
+#include "AgentNetworkingReceiver.h"
 
 using namespace jsonxx;
 
@@ -64,15 +66,16 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 
 	rootObject->AddChild(map);
 	rootObject->AddChild(mapPaths);
-	rootObject->AddAttr(AI_MODEL, model);
+	rootObject->AddAttr(AI_MODEL, model, true);
 	
 	
 	// we have only one warehouse and therefore it isn't necessary to create a special object for it. Warehouse
 	// is rendered via map object that keeps all sprites of the map
 	
-	rootObject->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseComponent"));
-	//rootObject->AddComponent(new WarehouseComponent());
-	
+	if (model->networkingType != AIAgentGameType::MULTIPLAYER_CLIENT) {
+		rootObject->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("WarehouseComponent"));
+		//rootObject->AddComponent(new WarehouseComponent());
+	}
 	
 	// add sprites
 	for (int i = 0; i < AIMAP_WIDTH; i++) {
@@ -138,6 +141,14 @@ void AIAgentsFactory::InitializeGame(GameObject* rootObject, AIModel* model) {
 	status->GetTransform().localPos.y = 5;
 	status->GetTransform().scale = 1.0f/rootObject->GetTransform().scale; // this changes the absolute scale to (1,1,1)
 	status->GetTransform().scale.z = 1.0f;
+
+	if (model->networkingType == AIAgentGameType::MULTIPLAYER_HOST) {
+		rootObject->AddComponent(new NetworkHost());
+		rootObject->AddComponent(new AgentNetworkingSender());
+	}else if(model->networkingType == AIAgentGameType::MULTIPLAYER_CLIENT) {
+		rootObject->AddComponent(new NetworkClient());
+		rootObject->AddComponent(new AgentNetworkingReceiver());
+	}
 }
 
 void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i position) {
@@ -184,6 +195,37 @@ void AIAgentsFactory::CreateAgent(GameObject* owner, AIModel* model, Vec2i posit
 	auto location = model->map.MapBlockToLocation(position.x, position.y);
 	agent->GetTransform().localPos.x = location.x;
 	agent->GetTransform().localPos.y = location.y;
+}
+
+void AIAgentsFactory::CreateAgentFromNetwork(GameObject* owner, AIModel* model, int agentType, int speed, int networkId) {
+	
+	auto context = owner->GetContext();
+	auto scene = owner->GetScene();
+
+	auto sprite = Sprite(model->spriteSheet, agentType == AGENT_TYPE_BLUE ? 0 : 4);
+	auto agent = new GameObject("agent", context, scene, new SpriteMesh(sprite, "spriteLayer"));
+	agent->SetNetworkId(networkId);
+
+	owner->AddChild(agent);
+
+	// create movement attribute for dynamics
+	auto dynamics = new Dynamics();
+	agent->AddAttr(ATTR_DYNAMICS, dynamics);
+
+	// create model with random speed
+	auto agentModel = new AgentModel();
+	agentModel->speed = speed;
+	agentModel->agentType = agentType;
+	agent->AddAttr(ATTR_AGENTMODEL, agentModel);
+
+	agent->AddComponent(new DynamicsComponent());
+	agent->AddComponent(ScriptManager::GetInstance()->CreateLuaComponent("AgentAnimComponent"));
+	//agent->AddComponent(new AgentAnimComponent());
+
+
+	// the scale will be equal to 10% of the height of the screen
+	TransformBuilder trBld;
+	trBld.RelativePosition(0.5f, 0.5f).ZIndex(10).Anchor(0.5f, 0.5f).RelativeScale(0, 0.1f).BuildAndReset(agent);
 }
 
 void AIAgentsFactory::InitLuaMapping(luabridge::lua_State* L) {

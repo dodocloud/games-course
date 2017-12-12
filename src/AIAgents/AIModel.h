@@ -2,6 +2,9 @@
 
 #include "AIMap.h"
 
+enum class AIAgentGameType {
+	CLASSIC, MULTIPLAYER_CLIENT, MULTIPLAYER_HOST
+};
 
 /**
  * Model for warehouse
@@ -15,9 +18,9 @@ struct WarehouseModel {
 	bool isBuilding = true;
 
 	// current amount of petrol
-	int petrol = 40;
+	int petrol = 400;
 	// current amount of ore
-	int ironOre = 30;
+	int ironOre = 300;
 
 	// warehouse position
 	Vec2i position;
@@ -33,7 +36,7 @@ struct WarehouseModel {
  */
 class AIModel  {
 public:
-
+	AIAgentGameType networkingType = AIAgentGameType::CLASSIC;
 	int goingToLoadOre = 0;
 	int goingToLoadPetrol = 0;
 
