@@ -35,12 +35,61 @@ public:
 		auto data = netMsg->GetData<AIAgentUpdateMessage>();
 		// ======================================================================================
 		// TODO
+		auto& wModel = model->GetWarehouseModel();
+		wModel.petrol = data->petrol;
+		wModel.ironOre = data->ironOre;
+		wModel.currentBuildTime = data->currentBuildTime;
+		wModel.isBuilding = data->isBuilding;
+		model->agentsNum = data->agentsNum;
+
+		auto updateInfo = spt<UpdateInfo>(new UpdateInfo());
+
+		for (auto pair : data->agentsPositions) {
+			int netId = pair.first;
+			auto agent = owner->GetScene()->FindGameObjectByNetworkId(netId);
+
+			if (agent != nullptr) {
+				auto& transform = agent->GetTransform();
+				auto dynamics = agent->GetAttr<Dynamics*>(ATTR_DYNAMICS);
+				auto agentPos = data->agentsPositions[netId];
+				auto agentVel = data->agentsVelocities[netId];
+				auto agentRot = data->agentsRotations[netId];
+
+				//dynamics->SetVelocity(ofVec2f(agentVel.x, agentVel.y));
+
+				updateInfo->GetContinuousValues()[netId * 1000 + 1] = agentPos.x;
+				updateInfo->GetContinuousValues()[netId * 1000 + 2] = agentPos.y;
+				updateInfo->GetContinuousValues()[netId * 1000 + 3] = agentRot;
+
+				if (!interpolationEnabled) {
+					transform.localPos.x = agentPos.x;
+					transform.localPos.y = agentPos.y;
+					transform.rotation = agentRot;
+				}
+			}
+		}
+
+		updateInfo->SetTime(netMsg->GetMsgTime());
+		inp->AcceptUpdateMessage(updateInfo);
 		// ======================================================================================
 	}
 
 	void UpdateInterpolatedValues() {
 		// ======================================================================================
 		// TODO
+		auto actualUpdate = inp->GetCurrentUpdate();
+		if (actualUpdate) {
+			vector<GameObject*> allAgents;
+			owner->GetScene()->FindGameObjectsByName("agent", allAgents);
+
+			for (auto agent : allAgents) {
+				int netId = agent->GetNetworkId();
+				auto& transform = agent->GetTransform();
+				transform.localPos.x = actualUpdate->GetContinuousValues()[netId * 1000 + 1];
+				transform.localPos.y = actualUpdate->GetContinuousValues()[netId * 1000 + 2];
+				transform.rotation = actualUpdate->GetContinuousValues()[netId * 1000 + 3];
+			}
+		}
 		// ======================================================================================
 	}
 

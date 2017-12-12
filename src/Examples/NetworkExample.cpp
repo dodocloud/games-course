@@ -15,22 +15,31 @@ StrId NET_MSG_COMMAND("NET_MSG_COMMAND");
 StrId NET_MSG_UPDATE("NET_MSG_UPDATE");
 
 void NetworkBehavior::ProcessMessageFromHost(NetInputMessage* netMsg) {
-	// ======================================================================================
-	// TODO
-	// ======================================================================================
+	auto updateMsg = netMsg->GetData<NetworkExampleMessage>();
+	auto deltaInfo = std::make_shared<UpdateInfo>(netMsg->GetMsgTime());
+	deltaInfo->GetContinuousValues()[KEY_POSITION_X] = updateMsg->positionX;
+	deltaInfo->GetContinuousValues()[KEY_POSITION_Y] = updateMsg->positionY;
+	deltaInfo->GetContinuousValues()[KEY_ROTATION] = updateMsg->rotation;
+	interpolator->AcceptUpdateMessage(deltaInfo);
 }
 
 void NetworkBehavior::UpdateInterpolatedValues() {
-	// ======================================================================================
-	// TODO
-	// ======================================================================================
+	// set position and rotation according to the message
+	auto delta = this->interpolator->GetCurrentUpdate();
+	if (delta) {
+		owner->GetTransform().rotation = delta->GetVal(KEY_ROTATION);
+		owner->GetTransform().localPos.x = delta->GetVal(KEY_POSITION_X);
+		owner->GetTransform().localPos.y = delta->GetVal(KEY_POSITION_Y);
+	}
 }
 
 NetworkExampleMessage* NetworkBehavior::CreateMessageForClient() {
-	// ======================================================================================
-	// TODO
-	// ======================================================================================
-	return new NetworkExampleMessage();
+	// send values to the client
+	auto updateInfo = new NetworkExampleMessage();
+	updateInfo->rotation = owner->GetTransform().rotation;
+	updateInfo->positionX = owner->GetTransform().localPos.x;
+	updateInfo->positionY = owner->GetTransform().localPos.y;
+	return updateInfo;
 }
 
 

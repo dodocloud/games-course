@@ -37,6 +37,11 @@ public:
 	void OnAgentCreated(GameObject* agent) {
 		// ======================================================================================
 		// TODO
+		agent->SetNetworkId(agentNetworkIdCounter++);
+		auto model = agent->GetAttr<AgentModel*>(ATTR_AGENTMODEL);
+		auto updateMsg = new AIAgentCreationMessage(model->agentType, model->speed, agent->GetNetworkId());
+		auto netMsg = updateMsg->CreateMessage();
+		host->PushMessageForSending(netMsg);
 		// ======================================================================================
 	}
 

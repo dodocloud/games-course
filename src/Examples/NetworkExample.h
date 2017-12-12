@@ -24,19 +24,24 @@ extern StrId NET_MSG_UPDATE;
 
 class NetworkExampleMessage : public NetData {
 public:
-	// TODO
+	float positionX;
+	float positionY;
+	float rotation;
 
 	void LoadFromStream(NetReader* reader) {
-		// TODO
+		positionX = reader->ReadDWord();
+		positionY = reader->ReadDWord();
+		rotation = reader->ReadDWord();
 	}
 
 	void SaveToStream(NetWriter* writer) {
-		// TODO
+		writer->WriteDWord(positionX);
+		writer->WriteDWord(positionY);
+		writer->WriteDWord(rotation);
 	}
 
 	int GetDataLength() {
-		// TODO
-		return 0;
+		return 4 + 4 + 4;
 	}
 };
 
