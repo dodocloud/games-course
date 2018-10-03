@@ -1,0 +1,6 @@
+.vscode/settings.json
+node_modules
+.cache/
+www/
+package-lock.json
+dist/
