@@ -1,37 +1,13 @@
-ofxAphLib - Library for MI-APH
+PixiJS boilerplate for MI-APH
 =========
 
 ## How to start
 
-* Clone content of this repository into your OpenFrameworks folder (OF/addons/ofxAph)
-* Run the ProjectGenerator to create an empty project
-* Select ofxAphLib as your addon
-* Copy the **Data** folder into the bin directory of your new project
-* Open your new project
-* Try to run one of examples listed below:
-
-```cpp
-
-#include "ofMain.h"
-#include "TwistExample.h"
-
-int main( ){
-
-	ofSetupOpenGL(1024,768, OF_WINDOW);
-	ofRunApp(new TwistExample());
-
-}
-
-
-
-``` 
+* Clone content of this repository into your local folder
+* Install [Node Package Manager](https://www.npmjs.com)
+* Execute command `npm install` and `npm start`
+* Open `localhost:1234/creature.html` in your browser
 
 
 ## Examples
-* Stars
-* Color wave
-* CPU particles
-* GPU particles
-* 3D Cube
-* 3D Twist 
-* Component Architecture 
+* Creature - a simple rotation
