@@ -2,8 +2,7 @@
   "scripts": {
     "start": "parcel examples/*.html --out-dir www",
     "start_no_map": "parcel examples/*.html --out-dir www --no-source-maps",
-    "deploy": "parcel build examples/*.html --no-source-maps",
-    "tests": "parcel examples/tests.html --out-dir www"
+    "deploy": "parcel build examples/*.html --no-source-maps"
   },
   "devDependencies": {
     "@types/pixi.js": "^4.7.1",
