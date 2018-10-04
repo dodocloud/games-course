@@ -19,7 +19,7 @@ export default class PixiBoot extends PIXI.Application
         this.creature.anchor.set(0.5);
 		this.creature.x = this.screen.width / 2;
 		this.creature.y = this.screen.height / 2;
-        this.stage.addChild(this.creature);
+		this.stage.addChild(this.creature);
 		this.ticker.add((deltaTime) => this.update(deltaTime));
 	}
 
