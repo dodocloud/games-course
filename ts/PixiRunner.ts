@@ -20,14 +20,14 @@ export class PixiRunner {
             resolution: resolution // resolution/device pixel ratio
         });
     
-        // call the init function
-        initFunc(this.app);
-
         this.loopFunc = loopFunc;
         this.ticker = PIXI.ticker.shared;
         // stop the shared ticket and update it manually
         this.ticker.autoStart = false;
         this.ticker.stop();
+
+        // call the init function
+        initFunc(this.app);
     }
 
     start() {
