@@ -1,4 +1,4 @@
-import GameObject from './GameObject';
+import GameObjectProxy from './GameObject';
 import Msg from './Msg';
 import Scene from './Scene';
 
@@ -9,7 +9,7 @@ import Scene from './Scene';
 export default class Component {
     static idCounter = 0;
     id = 0;
-    owner: GameObject = null;
+    owner: GameObjectProxy = null;
     scene: Scene = null;
     isFinished = false;
     onFinished : (component: Component) => void = null;

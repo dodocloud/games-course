@@ -86,17 +86,17 @@ export class TranslateAnimation extends BaseAnimation {
 
     oninit() {
         super.oninit();
-        this.owner.mesh.position.x = this.srcPosX;
-        this.owner.mesh.position.y = this.srcPosY;
+        this.owner.pixiObject.position.x = this.srcPosX;
+        this.owner.pixiObject.position.y = this.srcPosY;
     }
 
     protected applyAnim(percent, inverted) {
         if (inverted) {
-            this.owner.mesh.position.x = this.targetPosX + percent * (this.srcPosX - this.targetPosX);
-            this.owner.mesh.position.y = this.targetPosY + percent * (this.srcPosY - this.targetPosY);
+            this.owner.pixiObject.position.x = this.targetPosX + percent * (this.srcPosX - this.targetPosX);
+            this.owner.pixiObject.position.y = this.targetPosY + percent * (this.srcPosY - this.targetPosY);
         } else {
-            this.owner.mesh.position.x = this.srcPosX + percent * (this.targetPosX - this.srcPosX);
-            this.owner.mesh.position.y = this.srcPosY + percent * (this.targetPosY - this.srcPosY);
+            this.owner.pixiObject.position.x = this.srcPosX + percent * (this.targetPosX - this.srcPosX);
+            this.owner.pixiObject.position.y = this.srcPosY + percent * (this.targetPosY - this.srcPosY);
         }
     }
 }
@@ -113,14 +113,14 @@ export class RotationAnimation extends BaseAnimation {
 
     oninit() {
         super.oninit();
-        this.owner.mesh.rotation = this.srcRot;
+        this.owner.pixiObject.rotation = this.srcRot;
     }
 
     protected applyAnim(percent, inverted) {
         if (inverted) {
-            this.owner.mesh.rotation = this.targetRot + percent * (this.srcRot - this.targetRot);
+            this.owner.pixiObject.rotation = this.targetRot + percent * (this.srcRot - this.targetRot);
         } else {
-            this.owner.mesh.rotation = this.srcRot + percent * (this.targetRot - this.srcRot);
+            this.owner.pixiObject.rotation = this.srcRot + percent * (this.targetRot - this.srcRot);
         }
     }
 }

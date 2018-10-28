@@ -1,5 +1,5 @@
 import Component from './Component';
-import GameObject from './GameObject';
+import GameObjectProxy from './GameObject';
 
 // Message entity that keeps custom data, a source object and component
 export default class Msg {
@@ -15,7 +15,7 @@ export default class Msg {
     /**
     * GameObject attached to this message
     */
-    gameObject: GameObject = null;
+    gameObject: GameObjectProxy = null;
     /**
      * Data payload
      */

@@ -1,7 +1,8 @@
 import Component from '../engine/Component';
-import GameObject from '../engine/GameObject';
+import GameObjectProxy from '../engine/GameObject';
 import {MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ALL,
     STATE_DRAWABLE, STATE_INACTIVE, STATE_LISTENING, STATE_UPDATABLE} from '../engine/Constants';
+import { PIXICmp } from '../engine/PIXIObject';
 
 /**
  * Debugging component that renders the whole scene graph
@@ -19,9 +20,6 @@ export default class DebugComponent extends Component {
     }
 
     oninit() {
-        if (this.owner.parent != null) {
-            throw new Error("DebugComponent must be attached to the very root!");
-        }
 
         // subscribe to all messages
         this.subscribe(MSG_ALL);
@@ -49,20 +47,20 @@ export default class DebugComponent extends Component {
         return otp;
     }
 
-    protected processNode(node: GameObject, strWrapper, padding = 0) {
+    protected processNode(node: GameObjectProxy, strWrapper, padding = 0) {
 
         // transform:
         strWrapper.str += "<strong><span style=\"color:red\">";
-        let bounds = node.mesh.getBounds();
+        let bounds = node.pixiObject.toGlobal(node.pixiObject.position);
         strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
-            `rel:[${node.mesh.position.x.toFixed(2)},${node.mesh.position.y.toFixed(2)}]|abs:[${bounds.left.toFixed(2)},${bounds.top.toFixed(2)}]|rot: ${node.mesh.rotation.toFixed(2)}` +
+            `rel:[${node.pixiObject.position.x.toFixed(2)},${node.pixiObject.position.y.toFixed(2)}]|abs:[${bounds.x.toFixed(2)},${bounds.y.toFixed(2)}]|rot: ${node.pixiObject.rotation.toFixed(2)}` +
             "<br>");
         strWrapper.str += "</span></strong>";
 
         // mesh
         strWrapper.str += "<strong><span style=\"color:purple\">";
         strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
-            `size:[${node.mesh.width.toFixed(2)} x ${node.mesh.height.toFixed(2)}]` +
+            `size:[${node.pixiObject.width.toFixed(2)} x ${node.pixiObject.height.toFixed(2)}]` +
             "<br>");
         strWrapper.str += "</span></strong>";
 
@@ -83,11 +81,13 @@ export default class DebugComponent extends Component {
         }
 
         // children
-        for (let [id, child] of node.children) {
+        for (let child of node.pixiObject.children) {
+            let cmpChild = <PIXICmp.ComponentObject><any>child;
+
             strWrapper.str += "<span style=\"color:green\">";
             strWrapper.str = strWrapper.str.concat(this.setPadding(padding) +
-                `${child.id}:${child.tag}` + "<br>");
-            this.processNode(child, strWrapper, padding + 4);
+                `${cmpChild.proxy.id}:${cmpChild.proxy.tag}` + "<br>");
+            this.processNode(cmpChild.proxy, strWrapper, padding + 4);
             strWrapper.str += "</span>";
         }
     }

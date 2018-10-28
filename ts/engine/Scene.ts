@@ -1,9 +1,12 @@
-import GameObject from './GameObject';
+import GameObjectProxy from './GameObject';
 import Msg from './Msg';
 import Component from './Component';
 import * as PIXI from 'pixi.js'
 import {MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ALL,
     STATE_DRAWABLE, STATE_INACTIVE, STATE_LISTENING, STATE_UPDATABLE} from './Constants';
+   
+import {PIXICmp} from './PIXIObject';
+
 
 type updateEventFunc = (param1: number, param2: number) => void;
 
@@ -24,7 +27,7 @@ export default class Scene {
     canvasCtx: CanvasRenderingContext2D;
     pixiApp: PIXI.Application;
 
-    root: GameObject = null;
+    root: GameObjectProxy = null;
     
     private pendingInvocations = new Array<Invocation>();
     // message action keys and all subscribers that listens to all these actions
@@ -32,25 +35,15 @@ export default class Scene {
     // component ids and list of all actions they listen to
     private subscribedMessages = new Map<number, Array<string>>();
     // collection of all game objects, mapped by their tag and then by their ids
-    private gameObjectTags = new Map<string, Map<number, GameObject>>();
+    private gameObjectTags = new Map<string, Map<number, GameObjectProxy>>();
     // collection of all game objects, mapped by their ids
-    private gameObjects = new Map<number, GameObject>();
-    // collection of all game object, mapped by their secondary ids
-    private gameObjectSecIds = new Map<number, GameObject>();
+    private gameObjects = new Map<number, GameObjectProxy>();
 
     constructor(canvas: HTMLCanvasElement, pixiApp: PIXI.Application) {
         this.canvas = canvas;
         this.pixiApp = pixiApp;
         this.canvasCtx = canvas.getContext('2d');
         this.clearScene();
-    }
-
-    /**
-     * Submits changes and applies added or removed objects components
-     */
-    submitChanges() {
-        // submit upon the root recursively
-        this.root.submitChanges(true);
     }
 
     /**
@@ -72,14 +65,6 @@ export default class Scene {
 
     removeGlobalComponent(cmp) {
         this.root.removeComponent(cmp);
-    }
-
-    addGlobalGameObject(obj) {
-        this.root.addGameObject(obj);
-    }
-
-    removeGlobalGameObject(obj) {
-        this.root.removeGameObject(obj);
     }
 
     // adds a new global attribute
@@ -128,32 +113,6 @@ export default class Scene {
         return null;
     }
 
-    findObjectBySecondaryId(id) {
-        if (this.gameObjectSecIds.has(id)) {
-            return this.gameObjectSecIds.get(id);
-        }
-        return null;
-    }
-
-    findAllObjectsByFlag(flag) {
-        let result = new Array();
-        for (let [key, gameObject] of this.gameObjects) {
-            if (gameObject.hasFlag(flag)) {
-                result.push(gameObject);
-            }
-        }
-        return result;
-    }
-
-    findFirstObjectByFlag(flag) {
-        for (let [key, gameObject] of this.gameObjects) {
-            if (gameObject.hasFlag(flag)) {
-                return gameObject;
-            }
-        }
-    }
-
-
     // clears the whole scene, all game objects, attributes and components
     clearScene() {
         if (this.gameObjects != null) {
@@ -165,17 +124,12 @@ export default class Scene {
             }
         }
 
-        this.root = new GameObject("root");
-        this.root.scene = this;
-
-        if (this.root.mesh != null) {
-            this.root.mesh.width = this.canvas.width / this.pixiApp.renderer.options.resolution;
-            this.root.mesh.height = this.canvas.height / this.pixiApp.renderer.options.resolution;
-        }
-
-        // create PixiJS container
-        this.root.mesh = new PIXI.Container();
-        this.pixiApp.stage.addChild(this.root.mesh);
+        let newStage = new PIXICmp.Container();
+        this.pixiApp.stage = newStage;
+        newStage.proxy.scene = this; // this will be passed to all children
+        this.root = newStage.proxy;
+        this.addGameObject(newStage.proxy);
+        this.pixiApp.stage.removeChildren();
 
 
         // message action keys and all subscribers that listens to all these actions
@@ -183,37 +137,16 @@ export default class Scene {
         // component ids and list of all actions they listen to
         this.subscribedMessages = new Map<number, Array<string>>();
         // collection of all game objects, mapped by their tag and then by their ids
-        this.gameObjectTags = new Map<string, Map<number, GameObject>>();
+        this.gameObjectTags = new Map<string, Map<number, GameObjectProxy>>();
         // collection of all game objects, mapped by their ids
-        this.gameObjects = new Map<number, GameObject>();
-        // collection of all game object, mapped by their secondary ids
-        this.gameObjectSecIds = new Map<number, GameObject>();
+        this.gameObjects = new Map<number, GameObjectProxy>();
 
         // functions that should be invoked with some delay
         this.pendingInvocations = new Array<Invocation>();
     }
 
-    getWidth(): number {
-        return this.root.mesh.width;
-    }
-
-    setWidth(width) {
-        this.root.mesh.width = width;
-    }
-
-    getHeight(): number {
-        return this.root.mesh.height;
-    }
-
-    setHeight(height) {
-        this.root.mesh.height = height;
-    }
-
     // executes the update cycle
     update(delta, absolute) {
-        // update
-        this.root.update(delta, absolute);
-
         // execute pending invocations
         var i = this.pendingInvocations.length;
         while (i--) {
@@ -225,6 +158,8 @@ export default class Scene {
                 this.pendingInvocations.splice(i, 1);
             }
         }
+
+        this.root.update(delta, absolute);
     }
 
     /**
@@ -241,17 +176,13 @@ export default class Scene {
             let subscribedComponents = this.subscribers.get(msg.action);
             for (let [key, component] of subscribedComponents) {
                 // send message
-                if (component.owner.hasState(STATE_LISTENING)) {
-                    component.onmessage(msg);
-                }
+                component.onmessage(msg);
             }
         }
         if (this.subscribers.has(MSG_ALL)) {
             let globalSubs = this.subscribers.get(MSG_ALL);
             for (let [key, component] of globalSubs) {
-                if (component.owner.hasState(STATE_LISTENING)) {
-                    component.onmessage(msg);
-                }
+                component.onmessage(msg);
             }
         }
     }
@@ -283,7 +214,7 @@ export default class Scene {
         this.subscribedMessages.delete(component.id);
     }
 
-    addGameObject(obj) {
+    addGameObject(obj : GameObjectProxy) {
         // fill all collections
         if (!this.gameObjectTags.has(obj.tag)) {
             this.gameObjectTags.set(obj.tag, new Map());
@@ -291,7 +222,7 @@ export default class Scene {
 
         this.gameObjectTags.get(obj.tag).set(obj.id, obj);
         this.gameObjects.set(obj.id, obj);
-        this.gameObjectSecIds.set(obj.secondaryId, obj);
+        obj.scene = this;
 
         // notify subscribers that a new object has been added to the scene
         this.sendmsgEntity(new Msg(MSG_OBJECT_ADDED, null, obj));
@@ -300,7 +231,6 @@ export default class Scene {
     // immediately removes a given game object
     removeGameObject(obj) {
         this.gameObjectTags.get(obj.tag).delete(obj.id);
-        this.gameObjectSecIds.delete(obj.secondaryId);
         this.gameObjects.delete(obj.id);
 
         // send message that the game object has been removed
