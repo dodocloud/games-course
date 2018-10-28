@@ -42,7 +42,7 @@ export namespace PIXICmp {
         /**
          * Returns an attribute by its key
          */
-        getAttribute(key: string): any;
+        getAttribute<T>(key: string): T;
         /**
          * Removes an existing attribute
          * Returns true if the attribute was successfully removed
