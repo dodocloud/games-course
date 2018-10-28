@@ -1,66 +1,93 @@
-import GameObjectProxy from './GameObject';
 import Msg from './Msg';
 import Scene from './Scene';
+import { PIXICmp } from './PIXIObject';
+import GameObjectProxy from './GameObjectProxy';
 
 
 /**
- * Component that defines functional behavior of the game object (or its part)
+ * Component that defines a functional behavior of an entity it is attached to
  */
 export default class Component {
-    static idCounter = 0;
-    id = 0;
-    owner: GameObjectProxy = null;
-    scene: Scene = null;
-    isFinished = false;
-    onFinished : (component: Component) => void = null;
+    private static idCounter = 0;
+	private isFinished = false;
 
+	// auto-incremented id
+	id = 0;
+	// owner object of this component
+	owner: PIXICmp.ComponentObject = null;
+    scene: Scene = null;
+	
 	constructor() {
 		this.id = Component.idCounter++;
 	}
 
-	// called whenever the component is added to the scene
-	oninit() {
+	/**
+	 * Called once the component is added to the scene
+	 */
+	onInit() {
 		// override
 	}
 
-	// subscribes itself as a listener for action with given key
+	/**
+	 * Handles incoming message
+	 */
+	onMessage(msg : Msg) {
+		// override
+	}
+
+	/**
+	 * Handles update loop
+	 */
+	onUpdate(delta : number, absolute : number) {
+		// override
+	}
+
+	/**
+	 * Called before removing from scene
+	 */
+	onRemove() {
+		// override
+	}
+
+	/**
+	 * Called after finish()
+	 */
+	onFinish(){
+		// override
+	}
+
+	/**
+	 * Subscribes itself as a listener for action with given key
+	 */
 	subscribe(action: string) {
-		this.scene.subscribeComponent(action, this);
+		this.scene._subscribeComponent(action, this);
 	}
 
+	/**
+	 * Unsubscribes itself
+	 */
 	unsubscribe(action : string){
-		this.scene.unsubscribeComponent(action, this);
+		this.scene._unsubscribeComponent(action, this);
 	}
 
-	// sends message to all subscribers
-	sendmsg(action : string, data : any = null) {
-		this.scene.sendmsgEntity(new Msg(action, this, this.owner, data));
+	/**
+	 * Sends a message to all subscribers
+	 */
+	sendMessage(action : string, data : any = null) {
+		this.scene.sendMessage(new Msg(action, this, this.owner, data));
 	}
 
-	// handles incoming message
-	onmessage(msg : Msg) {
-		// override
-	}
-
-	// invokes update cycle
-	update(delta : number, absolute : number) {
-		// override
-	}
-
-	// called whenever the component is to be removed
-	finalize() {
-		// override
-	}
-
-	// finishes this component
+	/**
+	 * Detaches component from scene
+	 */
 	finish() {
 		this.owner.removeComponent(this);
-
-		if (this.onFinished != null) {
-			this.onFinished(this); // call the event
-		}
-
+		this.onFinish();
 		this.isFinished = true;
+	}
+
+	isRunning() {
+		return !this.isFinished;
 	}
 }
 

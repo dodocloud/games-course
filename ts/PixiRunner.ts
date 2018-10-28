@@ -20,7 +20,7 @@ export class PixiRunner {
             resolution: resolution // resolution/device pixel ratio
         });
     
-        this.scene = new Scene(canvas, this.app);
+        this.scene = new Scene(this.app);
 
         this.ticker = PIXI.ticker.shared;
         // stop the shared ticket and update it manually
@@ -35,7 +35,7 @@ export class PixiRunner {
         let dt = (time - this.lastTime) / 1000;
         this.lastTime = time;
         this.gameTime += dt;
-        this.scene.update(dt, this.gameTime);
+        this.scene._update(dt, this.gameTime);
 
         // draw
         this.ticker.update(this.gameTime);

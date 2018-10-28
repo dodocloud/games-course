@@ -1,6 +1,6 @@
-import GameObject from '../engine/GameObject';
 import Msg from '../engine/Msg';
 import Component from '../engine/Component';
+import { PIXICmp } from '../engine/PIXIObject';
 
 const CMD_BEGIN_REPEAT = 1;
 const CMD_END_REPEAT = 2;
@@ -23,6 +23,17 @@ const CMD_REMOVE_COMPONENT = 18;
 const CMD_REMOVE_GAME_OBJECT_BY_TAG = 19;
 const CMD_REMOVE_GAME_OBJECT = 20;
 const CMD_REMOVE_PREVIOUS = 21;
+
+// a function that doesn't return anything
+interface Action<T> {
+    (item: T): void;
+}
+
+// a function that has a return type
+interface Func<T, TResult> {
+    (item: T): TResult;
+}
+
 
 /**
  * Simple stack
@@ -47,7 +58,7 @@ class Stack {
     /**
      * Pops the current node from the stack
      */
-    pop() : ExNode {
+    pop(): ExNode {
         let temp = this.topNode;
         this.topNode = this.topNode.previous;
         this.size -= 1;
@@ -57,7 +68,7 @@ class Stack {
     /**
      * Returns the node on the top
      */
-    top() : ExNode {
+    top(): ExNode {
         return this.topNode;
     }
 }
@@ -74,7 +85,7 @@ class ExNode {
     next: ExNode = null;
     previous: ExNode = null;
 
-    constructor(key: number, param1 : any = null, param2 : any = null, param3 : any = null) {
+    constructor(key: number, param1: any = null, param2: any = null, param3: any = null) {
         this.key = key;
         this.param1 = param1;
         this.param2 = param2;
@@ -157,12 +168,9 @@ export default class ChainingComponent extends Component {
 
     /**
      * Repeats the following part of the chain until endRepeat()
-     * @param {number|function} num number of repetitions, 0 for infinite loop; or function that returns that number
+     * @param num number of repetitions, 0 for infinite loop; or function that returns that number
      */
-    beginRepeat(param: number | Func<void, number>) : ChainingComponent {
-        if(typeof(param) !== `number` && typeof(param) !== `function`){
-            throw Error("Invalid type. Expected number or function");
-        }
+    beginRepeat(param: number | Func<void, number>): ChainingComponent {
         this.enqueue(CMD_BEGIN_REPEAT, param, param == 0);
         return this;
     }
@@ -170,7 +178,7 @@ export default class ChainingComponent extends Component {
     /**
      * Enclosing element for beginRepeat() command
      */
-    endRepeat() : ChainingComponent {
+    endRepeat(): ChainingComponent {
         this.enqueue(CMD_END_REPEAT);
         return this;
     }
@@ -179,10 +187,7 @@ export default class ChainingComponent extends Component {
      * Executes a closure
      * @param {action} func function to execute 
      */
-    execute(func: Action<ChainingComponent>) : ChainingComponent {
-        if(typeof(func) !== `function`){
-            throw Error("Invalid type. Expected function");
-        }
+    execute(func: Action<ChainingComponent>): ChainingComponent {
         this.enqueue(CMD_EXECUTE, func);
         return this;
     }
@@ -190,12 +195,9 @@ export default class ChainingComponent extends Component {
     /**
      * Repeats the following part of the chain up to the endWhile() 
      * till the func() keeps returning true 
-     * @param {function} func function that returns either true or false
+     * @param func function that returns either true or false
      */
-    beginWhile(func: Func<void, boolean>) : ChainingComponent {
-        if(typeof(func) !== `function`){
-            throw Error("Invalid type. Expected function");
-        }
+    beginWhile(func: Func<void, boolean>): ChainingComponent {
         this.enqueue(CMD_BEGIN_WHILE, func);
         return this;
     }
@@ -203,19 +205,16 @@ export default class ChainingComponent extends Component {
     /**
      * Enclosing command for beginWhile()
      */
-    endWhile() : ChainingComponent {
+    endWhile(): ChainingComponent {
         this.enqueue(CMD_END_WHILE);
         return this;
     }
 
     /**
      * Starts an infinite loop that will repeat every num second  
-     * @param {number|function} num number of seconds to wait or function that returns that number
+     * @param num number of seconds to wait or function that returns that number
      */
-    beginInterval(num : number | Func<void, number>) : ChainingComponent {
-        if(typeof(num) !== `number` && typeof(num) !== `function`){
-            throw Error("Invalid type. Expected number or function");
-        }
+    beginInterval(num: number | Func<void, number>): ChainingComponent {
         this.enqueue(CMD_BEGIN_INTERVAL, num);
         return this;
     }
@@ -223,7 +222,7 @@ export default class ChainingComponent extends Component {
     /**
      * Enclosing command for beginInterval()
      */
-    endInterval() : ChainingComponent {
+    endInterval(): ChainingComponent {
         this.enqueue(CMD_END_INTERVAL);
         return this;
     }
@@ -231,12 +230,9 @@ export default class ChainingComponent extends Component {
     /**
      * Checks an IF condition returned by 'func' and jumps to the next element,
      * behind the 'else' element or behind the 'endIf' element, if the condition is not met
-     * @param {function} func function that returns either true or false 
+     * @param func function that returns either true or false 
      */
-    beginIf(func : Func<void, boolean>) : ChainingComponent {
-        if(typeof(func) !== `function`){
-            throw Error("Invalid type. Expected function");
-        }
+    beginIf(func: Func<void, boolean>): ChainingComponent {
         this.enqueue(CMD_BEGIN_IF, func);
         return this;
     }
@@ -245,7 +241,7 @@ export default class ChainingComponent extends Component {
      * Defines a set of commands that are to be executed if the condition of the current
      * beginIf() command is not met
      */
-    else() : ChainingComponent {
+    else(): ChainingComponent {
         this.enqueue(CMD_ELSE);
         return this;
     }
@@ -253,21 +249,17 @@ export default class ChainingComponent extends Component {
     /**
      * Enclosing command for beginIf()
      */
-    endIf() : ChainingComponent {
+    endIf(): ChainingComponent {
         this.enqueue(CMD_END_IF);
         return this;
     }
 
     /**
      * Adds a new component to a given game object (or to an owner if not specified)
-     * @param {Component|function} component component or function that returns a component
-     * @param {GameObject|function} gameObj game object or function that returns a game object 
+     * @param component component or function that returns a component
+     * @param gameObj game object or function that returns a game object 
      */
-    addComponent(component : Component | Func<void, Component>, gameObj : GameObject | Func<void, GameObject> = null) : ChainingComponent {
-        if(typeof(component) == `object` && (!(component instanceof Component)) ||
-        (gameObj != null && typeof(gameObj) == `object` && !(gameObj instanceof GameObject))){
-            throw Error("Wrong type. Expected Component and GameObject");
-        }
+    addComponent(component: Component | Func<void, Component>, gameObj: PIXICmp.ComponentObject | Func<void, PIXICmp.ComponentObject> = null): ChainingComponent {
         this.enqueue(CMD_ADD_COMPONENT, component, gameObj);
         return this;
     }
@@ -275,111 +267,83 @@ export default class ChainingComponent extends Component {
     /**
      * Adds a new component to a given game object (or to an owner if not specified) 
      * and waits until its finished
-     * @param {Component|function} component component or function that returns a component 
-     * @param {GameObject|function} gameObj game object or function that returns a game object 
+     * @param component component or function that returns a component 
+     * @param gameObj game object or function that returns a game object 
      */
-    addComponentAndWait(component : Component | Func<void, Component>, gameObj : GameObject | Func<void, GameObject> = null, removeWhenFinished: boolean = false) : ChainingComponent {
-        if(typeof(component) == `object` && (!(component instanceof Component)) ||
-        (gameObj != null && typeof(gameObj) == `object` && !(gameObj instanceof GameObject))){
-            throw Error("Wrong type. Expected Component and GameObject");
-        }
+    addComponentAndWait(component: Component | Func<void, Component>, gameObj: PIXICmp.ComponentObject | Func<void, PIXICmp.ComponentObject> = null, removeWhenFinished: boolean = false): ChainingComponent {
         this.enqueue(CMD_ADD_COMPONENT_AND_WAIT, component, gameObj, removeWhenFinished);
         return this;
     }
 
     /**
      * Waits given amount of seconds
-     * @param {time|function} time number of seconds to wait; or function that returns this number 
+     * @param time number of seconds to wait; or function that returns this number 
      */
-    waitTime(time : number | Func<void, number>) : ChainingComponent {
-        if(typeof(time) !== `number` && typeof(time) !== `function`){
-            throw Error("Invalid type. Expected number or function");
-        }
+    waitTime(time: number | Func<void, number>): ChainingComponent {
         this.enqueue(CMD_WAIT_TIME, time);
         return this;
     }
 
     /**
      * Waits until given component isn't finished
-     * @param {Component|function} component or function that returns this component 
+     * @param component or function that returns this component 
      */
-    waitForFinish(component : Component | Func<void, Component>) : ChainingComponent {
-        if(typeof(component) == `object` && (!(component instanceof Component))){
-            throw Error("Wrong type. Expected Component");
-        }
+    waitForFinish(component: Component | Func<void, Component>): ChainingComponent {
         this.enqueue(CMD_WAIT_FOR_FINISH, component);
         return this;
     }
 
     /**
      * Waits until given function keeps returning true
-     * @param {Function} func 
+     * @param func 
      */
-    waitUntil(func : Func<void, boolean>) : ChainingComponent {
-        if(typeof(func) !== `function`){
-            throw Error("Invalid type. Expected function");
-        }
+    waitUntil(func: Func<void, boolean>): ChainingComponent {
         this.enqueue(CMD_WAIT_UNTIL, func);
         return this;
     }
 
     /**
      * Waits given number of iterations of update loop
-     * @param {number} num number of frames 
+     * @param num number of frames 
      */
-    waitFrames(num: number) : ChainingComponent {
-        if(typeof(num) !== `number`){
-            throw Error("Invalid type. Expected number");
-        }
+    waitFrames(num: number): ChainingComponent {
         this.enqueue(CMD_WAIT_FRAMES, num);
         return this;
     }
 
     /**
      * Waits until a message with given key isn't sent
-     * @param {String} msg message key 
+     * @param msg message key 
      */
-    waitForMessage(msg : string) : ChainingComponent {
-        if(typeof(msg) !== `string`){
-            throw Error("Invalid type. Expected string");
-        }
+    waitForMessage(msg: string): ChainingComponent {
         this.enqueue(CMD_WAIT_FOR_MESSAGE, msg);
         return this;
     }
 
     /**
      * Removes component from given game object (or the owner if null)
-     * @param {String} cmp name of the component or the component itself
-     * @param {GameObject} gameObj 
+     * @param cmp name of the component or the component itself
+     * @param gameObj 
      */
-    removeComponent(cmp : string, gameObj : GameObject = null) : ChainingComponent {
-        if((gameObj != null && typeof(gameObj) == `object` && !(gameObj instanceof GameObject))){
-            throw Error("Wrong type. Expected GameObject");
-        }
+    removeComponent(cmp: string, gameObj: PIXICmp.ComponentObject = null): ChainingComponent {
         this.enqueue(CMD_REMOVE_COMPONENT, cmp, gameObj);
         return this;
     }
 
     /**
      * Removes a game object with given tag
-     * @param {String} tag 
+     * @param tag 
      */
-    removeGameObjectByTag(tag: string) : ChainingComponent {
-        if(typeof(tag) !== `string`){
-            throw Error("Invalid type. Expected string");
-        }
+    removeGameObjectByTag(tag: string): ChainingComponent {
         this.enqueue(CMD_REMOVE_GAME_OBJECT_BY_TAG, tag);
         return this;
     }
 
     /**
      * Removes given game object
-     * @param {GameObject} obj 
+     * @param obj 
      */
-    removeGameObject(obj: GameObject) : ChainingComponent {
-        if(typeof(obj) == `object` && (!(obj instanceof GameObject))){
-            throw Error("Wrong type. Expected GameObject");
-        }
+    removeGameObject(obj: PIXICmp.ComponentObject): ChainingComponent {
         this.enqueue(CMD_REMOVE_GAME_OBJECT, obj);
         return this;
     }
@@ -387,40 +351,44 @@ export default class ChainingComponent extends Component {
     /**
      * Removes previous node from the chain
      */
-    removePrevious() : ChainingComponent {
+    removePrevious(): ChainingComponent {
         this.enqueue(CMD_REMOVE_PREVIOUS);
         return this;
     }
 
-    onmessage(msg : Msg) {
+    onMessage(msg: Msg) {
         this.helpParam2 = msg.action;
     }
 
-    update(delta: number, absolute: number) {
+    onUpdate(delta: number, absolute: number) {
         if (this.current == null) {
+            // take next item
             this.current = this.dequeue();
         }
 
         if (this.current == null) {
+            // no more items -> finish
             this.finish();
             return;
         }
 
         switch (this.current.key) {
             case CMD_BEGIN_REPEAT:
+                // push context and go to the next item
                 this.current.cacheParams();
                 this.scopeStack.push(this.current);
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_END_REPEAT:
+                // pop context and jump
                 let temp = this.scopeStack.pop();
 
-                temp.setParam1(temp.getParam1() - 1);
+                temp.setParam1(temp.getParam1() - 1); // decrement number of repetitions
                 if (temp.getParam2() == true || // infinite loop
                     temp.getParam1() > 0) {
                     // jump to the beginning
                     this.current = temp;
-                    this.update(delta, absolute);
+                    this.onUpdate(delta, absolute);
                 } else {
                     // reset values to their original state
                     temp.resetCache();
@@ -428,19 +396,24 @@ export default class ChainingComponent extends Component {
                 }
                 break;
             case CMD_EXECUTE:
+                // execute a function and go to the next item
                 this.current.param1(this);
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_BEGIN_WHILE:
+                // push context and go to the next item
                 this.scopeStack.push(this.current);
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_END_WHILE:
+                // pop contex and check condition
                 let temp2 = this.scopeStack.pop();
-                if (temp2.param1()) {
+                if (temp2.param1()) { // check condition inside while()
+                    // condition is true -> jump to the beginning
                     this.current = temp2;
-                    this.update(delta, absolute);
+                    this.onUpdate(delta, absolute);
                 } else {
+                    // condition is false -> go to the next item
                     this.gotoNextImmediately(delta, absolute);
                 }
                 break;
@@ -449,9 +422,10 @@ export default class ChainingComponent extends Component {
                     this.current.cacheParams();
                 }
                 if (this.helpParam == null) {
-                    // save the beginning to a help variable and wait
+                    // save the time into a variable and wait to the next update cycle
                     this.helpParam = absolute;
                 } else if ((absolute - this.helpParam) >= this.current.getParam1()) {
+                    // push context and go to the next ite
                     this.helpParam = null;
                     this.current.resetCache();
                     this.scopeStack.push(this.current);
@@ -459,19 +433,21 @@ export default class ChainingComponent extends Component {
                 }
                 break;
             case CMD_END_INTERVAL:
+                // pop context and jump to the beginning
                 this.current = this.scopeStack.pop();
-                this.update(delta, absolute);
+                this.onUpdate(delta, absolute);
                 break;
             case CMD_BEGIN_IF:
                 if (this.current.param1()) {
-                    // condition fulfilled 
+                    // condition met -> go to then ext item 
                     this.gotoNextImmediately(delta, absolute);
                     break;
                 }
 
-                // condition not fullfiled -> we need to jump to the next ELSE or END-IF node
+                // condition not met -> we need to jump to the next ELSE or END-IF node
                 let deepCounter = 1;
                 while (true) {
+                    // search for the next node we might jump into
                     this.current = this.dequeue();
                     if (this.current.key == CMD_BEGIN_IF) {
                         deepCounter++;
@@ -487,7 +463,7 @@ export default class ChainingComponent extends Component {
                         break;
                     }
                 }
-                this.update(delta, absolute);
+                this.onUpdate(delta, absolute);
                 break;
             case CMD_ELSE:
                 // jump to the first END_IF block of the current branch
@@ -505,25 +481,29 @@ export default class ChainingComponent extends Component {
                         break;
                     }
                 }
-                this.update(delta, absolute);
+                this.onUpdate(delta, absolute);
                 break;
             case CMD_END_IF:
+                // nothing to do here, just go to the next item
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_WAIT_TIME:
                 this.current.cacheParams();
 
                 if (this.helpParam == null) {
+                    // save the current time to a variable
                     this.helpParam = absolute;
                 }
 
                 if ((absolute - this.helpParam) > this.current.getParam1()) {
+                    // it is time to go to the next item
                     this.helpParam = null;
                     this.current.resetCache();
                     this.gotoNextImmediately(delta, absolute);
                 }
                 break;
             case CMD_ADD_COMPONENT:
+                // pop the object and its component, do the zamazingo thingy and go to the next item
                 let gameObj = this.current.getParam2() != null ? this.current.getParam2() : this.owner;
                 gameObj.addComponent(this.current.getParam1());
                 this.gotoNextImmediately(delta, absolute);
@@ -537,10 +517,10 @@ export default class ChainingComponent extends Component {
                 }
                 // wait for finish
                 if (this.current.getParam1().isFinished) {
-                    if(this.current.getParam3() == true) {
+                    if (this.current.getParam3() == true) {
                         let gameObj = this.current.param2A != null ? this.current.param2A : this.owner;
                         // remove when finished
-                        gameObj.removeComponentByName(this.current.getParam1());
+                        gameObj.removeComponentByClass(this.current.getParam1());
                     }
 
                     this.helpParam = null;
@@ -549,11 +529,11 @@ export default class ChainingComponent extends Component {
                 }
                 break;
             case CMD_WAIT_FOR_FINISH:
-
+                // wait until isFinished is true
                 if (!this.current.cached) {
                     this.current.cacheParams();
                 }
-                if (this.current.getParam1().isFinished) {
+                if (!this.current.getParam1().isRunning()) {
                     this.current.resetCache();
                     this.gotoNextImmediately(delta, absolute);
                 }
@@ -564,6 +544,7 @@ export default class ChainingComponent extends Component {
                 }
                 break;
             case CMD_WAIT_FRAMES:
+                // wait given number of update cycles
                 if (this.helpParam == null) {
                     this.helpParam = 0;
                 }
@@ -590,8 +571,9 @@ export default class ChainingComponent extends Component {
                 }
                 break;
             case CMD_REMOVE_COMPONENT:
+                // pop the object, the name of the component, remove it and go to the next item
                 let gameObj2 = this.current.param2 != null ? this.current.param2 : this.owner;
-                gameObj2.removeComponentByName(this.current.param1);
+                gameObj2.removeComponentByClass(this.current.param1);
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_REMOVE_GAME_OBJECT_BY_TAG:
@@ -606,6 +588,7 @@ export default class ChainingComponent extends Component {
                 this.gotoNextImmediately(delta, absolute);
                 break;
             case CMD_REMOVE_PREVIOUS:
+                // remove previous node of this chaining component
                 if (this.current.previous != null) {
                     if (this.current.previous.previous != null) {
                         this.current.previous.previous.next = this.current;
@@ -617,7 +600,7 @@ export default class ChainingComponent extends Component {
         }
     }
 
-    protected enqueue(key: number, param1:any = null, param2:any = null, param3:any = null) {
+    protected enqueue(key: number, param1: any = null, param2: any = null, param3: any = null) {
         var node = new ExNode(key, param1, param2, param3);
 
         if (this.current != null && this.current != this.head) {
@@ -643,11 +626,8 @@ export default class ChainingComponent extends Component {
         }
     }
 
-    /**
-     * Dequeues a new node
-     *  @returns {ExNode} 
-     */
-    protected dequeue() : ExNode {
+    // dequeues a next node
+    protected dequeue(): ExNode {
         if (this.current == null || this.current.next == null) {
             return null;
         } else {
@@ -656,12 +636,14 @@ export default class ChainingComponent extends Component {
         return this.current;
     }
 
+    // goes to the next node
     protected gotoNext() {
         this.current = this.current.next;
     }
 
+    // goes to the next node immediately
     protected gotoNextImmediately(delta: number, absolute: number) {
         this.current = this.current.next;
-        this.update(delta, absolute);
+        this.onUpdate(delta, absolute);
     }
 }

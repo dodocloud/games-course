@@ -1,7 +1,6 @@
 import { TranslateAnimation } from './../ts/components/Animation';
 import Component from '../ts/engine/Component';
 import DebugComponent from '../ts/components/DebugComponent';
-import GameObject from '../ts/engine/GameObject';
 import Scene from '../ts/engine/Scene';
 import ChainingComponent from '../ts/components/ChainingComponent';
 import { PixiRunner } from '../ts/PixiRunner'

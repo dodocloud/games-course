@@ -1,21 +1,26 @@
 import Component from './Component';
-import GameObjectProxy from './GameObject';
+import { PIXICmp } from './PIXIObject';
 
-// Message entity that keeps custom data, a source object and component
+/**
+ * Message that stores type of action, a relevant component and a game object and custom data if needed
+ */
 export default class Msg {
-    
+
     /**
     * Action type identifier
     */
     action: string = null;
+
     /**
     * Component that sent this message
     */
     component: Component = null;
+
     /**
     * GameObject attached to this message
     */
-    gameObject: GameObjectProxy = null;
+    gameObject: PIXICmp.ComponentObject = null;
+    
     /**
      * Data payload
      */

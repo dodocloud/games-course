@@ -31,7 +31,7 @@ export class BaseAnimation extends Component {
         this.interpolation = Interpolation.linear;
     }
 
-    update(delta: number, absolute : number) {
+    onUpdate(delta: number, absolute : number) {
         if (this.startTime == 0) {
             this.startTime = absolute;
         }
@@ -84,19 +84,19 @@ export class TranslateAnimation extends BaseAnimation {
         this.targetPosY = targetPosY;
     }
 
-    oninit() {
-        super.oninit();
-        this.owner.pixiObject.position.x = this.srcPosX;
-        this.owner.pixiObject.position.y = this.srcPosY;
+    onInit() {
+        super.onInit();
+        this.owner.getPixiObj().position.x = this.srcPosX;
+        this.owner.getPixiObj().position.y = this.srcPosY;
     }
 
     protected applyAnim(percent, inverted) {
         if (inverted) {
-            this.owner.pixiObject.position.x = this.targetPosX + percent * (this.srcPosX - this.targetPosX);
-            this.owner.pixiObject.position.y = this.targetPosY + percent * (this.srcPosY - this.targetPosY);
+            this.owner.getPixiObj().position.x = this.targetPosX + percent * (this.srcPosX - this.targetPosX);
+            this.owner.getPixiObj().position.y = this.targetPosY + percent * (this.srcPosY - this.targetPosY);
         } else {
-            this.owner.pixiObject.position.x = this.srcPosX + percent * (this.targetPosX - this.srcPosX);
-            this.owner.pixiObject.position.y = this.srcPosY + percent * (this.targetPosY - this.srcPosY);
+            this.owner.getPixiObj().position.x = this.srcPosX + percent * (this.targetPosX - this.srcPosX);
+            this.owner.getPixiObj().position.y = this.srcPosY + percent * (this.targetPosY - this.srcPosY);
         }
     }
 }
@@ -111,16 +111,16 @@ export class RotationAnimation extends BaseAnimation {
         this.targetRot = targetRot;
     }
 
-    oninit() {
-        super.oninit();
-        this.owner.pixiObject.rotation = this.srcRot;
+    onInit() {
+        super.onInit();
+        this.owner.getPixiObj().rotation = this.srcRot;
     }
 
     protected applyAnim(percent, inverted) {
         if (inverted) {
-            this.owner.pixiObject.rotation = this.targetRot + percent * (this.srcRot - this.targetRot);
+            this.owner.getPixiObj().rotation = this.targetRot + percent * (this.srcRot - this.targetRot);
         } else {
-            this.owner.pixiObject.rotation = this.srcRot + percent * (this.targetRot - this.srcRot);
+            this.owner.getPixiObj().rotation = this.srcRot + percent * (this.targetRot - this.srcRot);
         }
     }
 }
