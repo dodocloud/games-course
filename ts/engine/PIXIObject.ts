@@ -234,8 +234,8 @@ export namespace PIXICmp {
     export class Sprite extends PIXI.Sprite implements ComponentObject {
         proxy: GameObjectProxy;
 
-        constructor(tag: string = "") {
-            super();
+        constructor(tag: string = "", texture?: PIXI.Texture) {
+            super(texture);
             this.proxy = new GameObjectProxy(tag, this);
         }
 

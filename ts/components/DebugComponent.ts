@@ -10,7 +10,7 @@ export default class DebugComponent extends Component {
     targetHtmlElement : HTMLElement = null;
     strWrapper: any = null;
 
-    constructor(displayBBox, targetHtmlElement) {
+    constructor(targetHtmlElement) {
         super();
         this.targetHtmlElement = targetHtmlElement; // TODO add something more generic here
         this.strWrapper = {

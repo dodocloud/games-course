@@ -1,20 +1,20 @@
 import Component from '../engine/Component';
 
-const INPUT_TOUCH = 1;
-const INPUT_DOWN = 1 << 1;
-const INPUT_MOVE = 1 << 2;
-const INPUT_UP = 1 << 3;
+export const INPUT_TOUCH = 1;
+export const INPUT_DOWN = 1 << 1;
+export const INPUT_MOVE = 1 << 2;
+export const INPUT_UP = 1 << 3;
 
-const MSG_TOUCH = "TOUCH";
-const MSG_DOWN = "DOWN";
-const MSG_MOVE = "MOVE";
-const MSG_UP = "UP";
+export const MSG_TOUCH = "TOUCH";
+export const MSG_DOWN = "DOWN";
+export const MSG_MOVE = "MOVE";
+export const MSG_UP = "UP";
 
 /**
  * Component that handles touch and mouse events and transforms them into messages 
  * that can be subscribed by any other component
  */
-class InputManager extends Component {
+export class InputManager extends Component {
     mode = INPUT_TOUCH
     startHandler: (evt: TouchEvent) => void = null;
     endHandler: (evt: TouchEvent) => void = null;

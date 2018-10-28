@@ -516,7 +516,7 @@ export default class ChainingComponent extends Component {
                     gameObj.addComponent(this.current.param1A);
                 }
                 // wait for finish
-                if (this.current.getParam1().isFinished) {
+                if (!this.current.getParam1().isRunning()) {
                     if (this.current.getParam3() == true) {
                         let gameObj = this.current.param2A != null ? this.current.param2A : this.owner;
                         // remove when finished

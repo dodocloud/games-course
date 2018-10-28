@@ -14,7 +14,7 @@ class Chaining {
         engine.init(document.getElementById("gameCanvas") as HTMLCanvasElement, 100);
 
         // debugging
-        engine.scene.addGlobalComponent(new DebugComponent(false, document.getElementById("debugSect")));
+        engine.scene.addGlobalComponent(new DebugComponent(document.getElementById("debugSect")));
 
         let rectangleGfx = new PIXICmp.Graphics();
         rectangleGfx.beginFill(0xfff012, 1);

@@ -56,35 +56,35 @@ export default class Scene {
     /**
      * Adds a component to the stage
      */
-    addGlobalComponent(cmp) {
+    addGlobalComponent(cmp: Component) {
         this.root.addComponent(cmp);
     }
 
     /**
      * Removes a component from a stage
      */
-    removeGlobalComponent(cmp) {
+    removeGlobalComponent(cmp: Component) {
         this.root.removeComponent(cmp);
     }
 
     /**
      * Inserts a global attribute
      */
-    addGlobalAttribute(key, val) {
+    addGlobalAttribute(key: string, val: any) {
         this.root.addAttribute(key, val);
     }
 
     /**
      * Gets a global attribute by its id
      */
-    getGlobalAttribute(key): any {
+    getGlobalAttribute(key: string): any {
         return this.root.getAttribute(key);
     }
 
     /**
      * Removes a global attribute by its key 
      */
-    removeGlobalAttribute(key): boolean {
+    removeGlobalAttribute(key: string): boolean {
         return this.root.removeAttribute(key);
     }
 
