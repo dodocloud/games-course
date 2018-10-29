@@ -2,7 +2,7 @@
 import Component from '../../ts/engine/Component';
 import { GameModel, SpriteManager } from './attributes';
 import { ATTR_GAME_MODEL, ATTR_SPRITE_MGR } from './constants';
-
+import { simplex2 } from './perlinnoise';
 
 // component that renders the road
 export class RoadRenderer extends Component {
@@ -17,7 +17,7 @@ export class RoadRenderer extends Component {
 	// gets random left background
 	getLeftGrass(offset) {
 		// use simplex noise for forest and grass
-		if (noise.simplex2(1, offset) >= 0)
+		if (simplex2(1, offset) >= 0)
 			return this.spriteMgr.getLeftBgr(3);
 		if (offset % 20 == 0)
 			return this.spriteMgr.getLeftBgr(2);
@@ -29,7 +29,7 @@ export class RoadRenderer extends Component {
 	// gets random right background
 	getRightGrass(offset) {
 		// use simplex noise for forest and grass
-		if (noise.simplex2(200, offset) >= 0)
+		if (simplex2(200, offset) >= 0)
 			return this.spriteMgr.getRightBgr(3);
 		if (offset % 20 == 0)
 			return this.spriteMgr.getRightBgr(2);
@@ -83,7 +83,7 @@ export class RoadRenderer extends Component {
 
 // renderer for cars and obstacles
 export class RoadObjectRenderer extends Component {
-	oninit() {
+	onInit() {
 		this.spriteMgr = this.scene.getGlobalAttribute(ATTR_SPRITE_MGR);
 		this.gameModel = this.scene.getGlobalAttribute(ATTR_GAME_MODEL);
 	}

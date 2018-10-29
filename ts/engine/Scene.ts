@@ -104,6 +104,17 @@ export default class Scene {
         return result;
     }
 
+    findAllObjectsByFlag(flag: number): Array<PIXICmp.ComponentObject> {
+        let result = new Array<PIXICmp.ComponentObject>();
+        for (let [key, gameObject] of this.gameObjects) {
+            if (gameObject.hasFlag(flag)) {
+                let cmpObject = <PIXICmp.ComponentObject><any>gameObject.gameObject;
+                result.push(cmpObject);
+            }
+        }
+        return result;
+    }
+
     /**
      * Finds a first object with a given tag
      * @param {String} tag

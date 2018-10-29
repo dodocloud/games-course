@@ -2,6 +2,7 @@ import Component from './Component';
 import Scene from './Scene'
 import Msg from './Msg';
 import { PIXICmp } from './PIXIObject';
+import Flags from './Flags';
 
 import {
 	MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ANY,
@@ -18,6 +19,10 @@ export default class GameObjectProxy {
 	id = 0;
 	// string tag
 	tag: string = null;
+	// bit-array of flags
+	flags = new Flags();
+	// state of this object
+	state = 0;
 	// game object this proxy is attached to
 	gameObject: PIXI.Container = null;
 	// set of all components, mapped by their id
@@ -107,6 +112,46 @@ export default class GameObjectProxy {
 	 */
 	removeAttribute(key: string): boolean {
 		return this.attributes.delete(key);
+	}
+
+	/**
+	 * Sets flag under given index
+	 */
+	setFlag(flag: number) {
+		this.flags.setFlag(flag);
+	}
+
+	/**
+	 * Resets flag under given index
+	 */
+	resetFlag(flag: number) {
+		this.flags.resetFlag(flag);
+	}
+
+	/**
+	 * Returns true, if there is a flag under given index
+	 */
+	hasFlag(flag: number): boolean {
+		return this.flags.hasFlag(flag);
+	}
+
+	/**
+	 * Inverts a flag under given index
+	 */
+	invertFlag(flag: number) {
+		this.flags.invertFlag(flag);
+	}
+	/**
+	 * Gets state of this object
+	 */
+	getState(): number {
+		return this.state;
+	}
+	/**
+	 * Sets state of this object
+	 */
+	setState(state: number) {
+		this.state = state;
 	}
 
 	/**
