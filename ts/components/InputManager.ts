@@ -10,6 +10,42 @@ export const MSG_DOWN = "DOWN";
 export const MSG_MOVE = "MOVE";
 export const MSG_UP = "UP";
 
+
+export const KEY_LEFT = 37;
+export const KEY_UP = 38;
+export const KEY_RIGHT = 39;
+export const KEY_DOWN = 40;
+
+
+export class KeyInputComponent extends Component {
+
+    private keys = new Set<number>();
+
+    onInit() {
+        let canvas = this.scene.app.view;
+        canvas.addEventListener("keyup", this.onKeyUp.bind(this), false);
+        canvas.addEventListener("keydown", this.onKeyDown.bind(this), false);
+    }
+
+    onRemove() {
+        let canvas = this.scene.app.view;
+        canvas.removeEventListener("keyup", this.onKeyUp.bind(this));
+        canvas.removeEventListener("keydown", this.onKeyDown.bind(this));
+    }
+
+    isKeyPressed(keyCode: number) {
+        return this.keys.has(keyCode);
+    }
+
+    private onKeyDown(evt: KeyboardEvent) {
+        this.keys.add(evt.keyCode);
+    }
+
+    private onKeyUp(evt) {
+        this.keys.delete(evt.keyCode);
+    }
+}
+
 /**
  * Component that handles touch and mouse events and transforms them into messages 
  * that can be subscribed by any other component
@@ -112,20 +148,18 @@ export class InputManager extends Component {
             }
 
             // 10px tolerance
-            if (Math.abs(this.lastTouch.pageX - posX) < 10 &&
+            // at last send the message to all subscribers about this event
+            if (isTouch && Math.abs(this.lastTouch.pageX - posX) < 10 &&
                 Math.abs(this.lastTouch.pageY - posY) < 10) {
-                // at last send the message to all subscribers about this event
-                if (isTouch) {
-                    this.sendMessage(MSG_TOUCH, {
-                        mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
-                        isTouch: isTouch
-                    });
-                } else {
-                    this.sendMessage(MSG_UP, {
-                        mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
-                        isTouch: isTouch
-                    });
-                }
+                this.sendMessage(MSG_TOUCH, {
+                    mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
+                    isTouch: isTouch
+                });
+            } else {
+                this.sendMessage(MSG_UP, {
+                    mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
+                    isTouch: isTouch
+                });
             }
         }
     }

@@ -6,9 +6,12 @@ import Scene from '../../ts/engine/Scene';
 import ChainingComponent from '../../ts/components/ChainingComponent';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';
-import { CannonController } from './components';
-import { TEXTURE_BOMBER, TEXTURE_CANNON, TEXTURE_COPTER_LEFT, TEXTURE_PARATROOPER, TEXTURE_COPTER_RIGHT, 
-    TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PROJECTILE, TEXTURE_TOWER, TEXTURE_TURRET } from './constants';
+import { ATTR_FACTORY } from './constants';
+import ParatrooperFactory from './ParatroperFactory';
+import {
+    TEXTURE_BOMBER, TEXTURE_CANNON, TEXTURE_COPTER_LEFT, TEXTURE_PARATROOPER, TEXTURE_COPTER_RIGHT,
+    TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PROJECTILE, TEXTURE_TOWER, TEXTURE_TURRET
+} from './constants';
 
 
 class Paratrooper {
@@ -35,22 +38,10 @@ class Paratrooper {
     }
 
     onAssetsLoaded() {
-        let tower = new PIXICmp.Sprite("tower", PIXI.Texture.fromImage("tower"));
-        tower.anchor.set(0.5, 1);
-        tower.position.set(this.engine.app.screen.width/2, this.engine.app.screen.height);
-        this.engine.app.stage.addChild(tower);
-
-        let turret = new PIXICmp.Sprite("turret", PIXI.Texture.fromImage("turret"));
-        turret.anchor.set(0.5, 1);
-        turret.position.set(0, -tower.height);
-        tower.addChild(turret);
-
-        let cannon = new PIXICmp.Sprite("cannon", PIXI.Texture.fromImage("cannon"));
-        cannon.anchor.set(0.5, 1);
-        cannon.position.set(0, -turret.height*0.7);
-        turret.addChild(cannon);
-
-        cannon.addComponent(new CannonController());
+        let factory = new ParatrooperFactory();
+        let model = factory.loadGameModel();
+        this.engine.scene.addGlobalAttribute(ATTR_FACTORY, factory);
+        factory.initializeGame(this.engine.scene.root, model);
     }
 }
 

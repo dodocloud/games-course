@@ -21,6 +21,10 @@ export namespace PIXICmp {
          */
         getPixiObj(): PIXI.Container;
         /**
+         * Returns tag of this object
+         */
+        getTag(): string;
+        /**
          * Adds a new component
          */
         addComponent(component: Component);
@@ -68,7 +72,7 @@ export namespace PIXICmp {
         /**
          * Gets state of this object
          */
-        getState() : number;
+        getState(): number;
         /**
          * Sets state of this object
          */
@@ -80,7 +84,7 @@ export namespace PIXICmp {
         /**
          * Gets link to a scene
          */
-        getScene() : Scene;
+        getScene(): Scene;
 
     }
 
@@ -143,6 +147,10 @@ export namespace PIXICmp {
             return removed;
         }
 
+        getTag(): string {
+            return this.proxy.tag;
+        }
+
         addComponent(component: Component) {
             this.proxy.addComponent(component);
         }
@@ -176,10 +184,10 @@ export namespace PIXICmp {
         invertFlag(flag: number) {
             this.proxy.invertFlag(flag);
         }
-        getState() : number{
+        getState(): number {
             return this.proxy.getState();
         }
-        setState(state: number){
+        setState(state: number) {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
@@ -188,7 +196,7 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
-        getScene() : Scene{
+        getScene(): Scene {
             return this.proxy.scene;
         }
     }
@@ -252,6 +260,10 @@ export namespace PIXICmp {
             return removed;
         }
 
+        getTag(): string {
+            return this.proxy.tag;
+        }
+
         addComponent(component: Component) {
             this.proxy.addComponent(component);
         }
@@ -285,10 +297,10 @@ export namespace PIXICmp {
         invertFlag(flag: number) {
             this.proxy.invertFlag(flag);
         }
-        getState() : number{
+        getState(): number {
             return this.proxy.getState();
         }
-        setState(state: number){
+        setState(state: number) {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
@@ -297,7 +309,7 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
-        getScene() : Scene{
+        getScene(): Scene {
             return this.proxy.scene;
         }
     }
@@ -360,6 +372,10 @@ export namespace PIXICmp {
             }
             return removed;
         }
+        
+        getTag(): string {
+            return this.proxy.tag;
+        }
 
         addComponent(component: Component) {
             this.proxy.addComponent(component);
@@ -394,10 +410,10 @@ export namespace PIXICmp {
         invertFlag(flag: number) {
             this.proxy.invertFlag(flag);
         }
-        getState() : number{
+        getState(): number {
             return this.proxy.getState();
         }
-        setState(state: number){
+        setState(state: number) {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
@@ -406,7 +422,7 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
-        getScene() : Scene{
+        getScene(): Scene {
             return this.proxy.scene;
         }
     }
@@ -471,6 +487,10 @@ export namespace PIXICmp {
             return removed;
         }
 
+        getTag(): string {
+            return this.proxy.tag;
+        }
+
         addComponent(component: Component) {
             this.proxy.addComponent(component);
         }
@@ -504,10 +524,10 @@ export namespace PIXICmp {
         invertFlag(flag: number) {
             this.proxy.invertFlag(flag);
         }
-        getState() : number{
+        getState(): number {
             return this.proxy.getState();
         }
-        setState(state: number){
+        setState(state: number) {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
@@ -516,7 +536,7 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
-        getScene() : Scene{
+        getScene(): Scene {
             return this.proxy.scene;
         }
     }
@@ -580,6 +600,10 @@ export namespace PIXICmp {
             return removed;
         }
 
+        getTag(): string {
+            return this.proxy.tag;
+        }
+
         addComponent(component: Component) {
             this.proxy.addComponent(component);
         }
@@ -613,10 +637,10 @@ export namespace PIXICmp {
         invertFlag(flag: number) {
             this.proxy.invertFlag(flag);
         }
-        getState() : number{
+        getState(): number {
             return this.proxy.getState();
         }
-        setState(state: number){
+        setState(state: number) {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
@@ -625,7 +649,7 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
-        getScene() : Scene{
+        getScene(): Scene {
             return this.proxy.scene;
         }
     }
