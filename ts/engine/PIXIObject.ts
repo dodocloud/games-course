@@ -1,5 +1,6 @@
 import Component from './Component';
 import GameObjectProxy from './GameObjectProxy';
+import Scene from './Scene';
 
 /**
  * Namespace for all PIXI objects that are to be 
@@ -76,6 +77,10 @@ export namespace PIXICmp {
          * Removes itself from its parent
          */
         remove();
+        /**
+         * Gets link to a scene
+         */
+        getScene() : Scene;
 
     }
 
@@ -183,6 +188,9 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
+        getScene() : Scene{
+            return this.proxy.scene;
+        }
     }
 
     export class Container extends PIXI.Container implements ComponentObject {
@@ -288,6 +296,9 @@ export namespace PIXICmp {
         }
         remove() {
             this.parent.removeChild(this);
+        }
+        getScene() : Scene{
+            return this.proxy.scene;
         }
     }
 
@@ -395,6 +406,9 @@ export namespace PIXICmp {
         remove() {
             this.parent.removeChild(this);
         }
+        getScene() : Scene{
+            return this.proxy.scene;
+        }
     }
 
 
@@ -501,6 +515,118 @@ export namespace PIXICmp {
         }
         remove() {
             this.parent.removeChild(this);
+        }
+        getScene() : Scene{
+            return this.proxy.scene;
+        }
+    }
+
+    export class Text extends PIXI.Text implements ComponentObject {
+        proxy: GameObjectProxy;
+
+        constructor(tag: string = "") {
+            super();
+            this.proxy = new GameObjectProxy(tag, this);
+        }
+
+        // overrides pixijs function
+        addChild<T extends PIXI.DisplayObject>(
+            child: T,
+            ...additionalChildren: PIXI.DisplayObject[]
+        ): T {
+            let newChild = super.addChild(child, ...additionalChildren);
+            let cmbObj = <ComponentObject><any>newChild;
+            this.proxy.onChildAdded(cmbObj.proxy);
+
+            for (let additional of additionalChildren) {
+                cmbObj = <ComponentObject><any>additional;
+                this.proxy.onChildAdded(cmbObj.proxy);
+            }
+
+            return newChild;
+        }
+
+        // overrides pixijs function
+        addChildAt<T extends PIXI.DisplayObject>(child: T, index: number): T {
+            let newChild = super.addChildAt(child, index);
+            let cmbObj = <ComponentObject><any>newChild;
+            this.proxy.onChildAdded(cmbObj.proxy);
+            return newChild;
+        }
+
+        // overrides pixijs function
+        removeChild(child: PIXI.DisplayObject): PIXI.DisplayObject {
+            let removed = super.removeChild(child);
+            let cmpObj = <ComponentObject><any>removed;
+            this.proxy.onChildRemoved(cmpObj.proxy);
+            return removed;
+        }
+
+        // overrides pixijs function
+        removeChildAt(index: number): PIXI.DisplayObject {
+            let removed = super.removeChildAt(index);
+            let cmpObj = <ComponentObject><any>removed;
+            this.proxy.onChildRemoved(cmpObj.proxy);
+            return removed;
+        }
+
+        // overrides pixijs function
+        removeChildren(beginIndex?: number, endIndex?: number): PIXI.DisplayObject[] {
+            let removed = super.removeChildren(beginIndex, endIndex);
+            for (let removedObj of removed) {
+                let cmpObj = <ComponentObject><any>removedObj;
+                this.proxy.onChildRemoved(cmpObj.proxy);
+            }
+            return removed;
+        }
+
+        addComponent(component: Component) {
+            this.proxy.addComponent(component);
+        }
+        removeComponent(component: Component) {
+            this.proxy.removeComponent(component);
+        }
+        removeComponentByClass(name: string): boolean {
+            return this.proxy.removeComponentByClass(name);
+        }
+        findComponentByClass(name: string) {
+            this.proxy.findComponentByClass(name);
+        }
+        addAttribute(key: string, val: any) {
+            this.proxy.addAttribute(key, val);
+        }
+        getAttribute(key: string): any {
+            this.proxy.getAttribute(key);
+        }
+        removeAttribute(key: string): boolean {
+            return this.proxy.removeAttribute(key);
+        }
+        setFlag(flag: number) {
+            this.proxy.setFlag(flag);
+        }
+        resetFlag(flag: number) {
+            this.proxy.resetFlag(flag);
+        }
+        hasFlag(flag: number): boolean {
+            return this.proxy.hasFlag(flag);
+        }
+        invertFlag(flag: number) {
+            this.proxy.invertFlag(flag);
+        }
+        getState() : number{
+            return this.proxy.getState();
+        }
+        setState(state: number){
+            this.proxy.setState(state);
+        }
+        getPixiObj(): PIXI.Container {
+            return this.proxy.gameObject;
+        }
+        remove() {
+            this.parent.removeChild(this);
+        }
+        getScene() : Scene{
+            return this.proxy.scene;
         }
     }
 }

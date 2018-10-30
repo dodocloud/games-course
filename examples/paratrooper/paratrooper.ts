@@ -7,6 +7,8 @@ import ChainingComponent from '../../ts/components/ChainingComponent';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 import { CannonController } from './components';
+import { TEXTURE_BOMBER, TEXTURE_CANNON, TEXTURE_COPTER_LEFT, TEXTURE_PARATROOPER, TEXTURE_COPTER_RIGHT, 
+    TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PROJECTILE, TEXTURE_TOWER, TEXTURE_TURRET } from './constants';
 
 
 class Paratrooper {
@@ -20,15 +22,15 @@ class Paratrooper {
 
         PIXI.loader
             .reset()    // necessary for hot reload
-            .add('bomber', 'bomber.png')
-            .add('cannon', 'cannon.png')
-            .add('copter_left', 'copter_left.png')
-            .add('copter_right', 'copter_right.png')
-            .add('paratrooper_parachute', 'paratrooper_parachute.png')
-            .add('paratrooper', 'paratrooper.png')
-            .add('projectile', 'projectile.png')
-            .add('tower', 'tower.png')
-            .add('turret', 'turret.png')
+            .add(TEXTURE_BOMBER, 'bomber.png')
+            .add(TEXTURE_CANNON, 'cannon.png')
+            .add(TEXTURE_COPTER_LEFT, 'copter_left.png')
+            .add(TEXTURE_COPTER_RIGHT, 'copter_right.png')
+            .add(TEXTURE_PARATROOPER_PARACHUTE, 'paratrooper_parachute.png')
+            .add(TEXTURE_PARATROOPER, 'paratrooper.png')
+            .add(TEXTURE_PROJECTILE, 'projectile.png')
+            .add(TEXTURE_TOWER, 'tower.png')
+            .add(TEXTURE_TURRET, 'turret.png')
             .load(() => this.onAssetsLoaded());
     }
 
