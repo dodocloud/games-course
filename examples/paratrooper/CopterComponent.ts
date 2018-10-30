@@ -26,7 +26,7 @@ export class CopterComponent extends Component {
         this.owner.getPixiObj().position.x += deltaPos.x;
 
         // check boundaries
-        let globalPos = this.owner.getPixiObj().toGlobal(this.owner.getPixiObj().position);
+        let globalPos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
 
         if ((velocity.x > 0 && globalPos.x > this.owner.getScene().app.screen.width)
             || (velocity.x < 0 && globalPos.x < this.owner.getPixiObj().width)) {
@@ -40,7 +40,7 @@ export class CopterComponent extends Component {
         if (this.checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
             this.lastSpawnTime = absolute;
             let bbox = this.owner.getPixiObj().getBounds();
-            let pos = this.owner.getPixiObj().toGlobal(this.owner.getPixiObj().position);
+            let pos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
 
             // 65% prob at each step
             if (Math.random() > 0.35) {

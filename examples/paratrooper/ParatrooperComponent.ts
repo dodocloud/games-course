@@ -1,4 +1,4 @@
-import { STATE_DEAD } from './../cardriver/constants';
+import { STATE_DEAD } from './constants';
 import { TAG_GROUND, ATTR_MODEL, ATTR_DYNAMICS, STATE_FALLING_WITHOUT_PARACHUTE, TAG_TOWER, STATE_FALLING, STATE_FALLING_PARACHUTE, STATE_ON_GROUND, STATE_CAPTURING, MSG_UNIT_LANDED, MSG_UNIT_KILLED, TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PARATROOPER } from './constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import Component from "../../ts/engine/Component";
@@ -17,7 +17,7 @@ export class ParatrooperComponent extends Component {
         this.model = this.scene.root.getAttribute<ParatrooperModel>(ATTR_MODEL);
     }
 
-    update(delta: number, absolute: number) {
+    onUpdate(delta: number, absolute: number) {
         let dynamics = this.owner.getAttribute<Dynamics>(ATTR_DYNAMICS);
         let state = this.owner.getState();
 

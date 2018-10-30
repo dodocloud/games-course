@@ -1,4 +1,4 @@
-import { MSG_ANIM_ENDED } from './../cardriver/constants';
+import { MSG_ANIM_ENDED } from './constants';
 import Component from "../../ts/engine/Component";
 
 export class DeathAnimation extends Component {

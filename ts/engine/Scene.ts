@@ -123,7 +123,7 @@ export default class Scene {
     findFirstObjectByTag(tag): PIXICmp.ComponentObject {
         if (this.gameObjectTags.has(tag)) {
             for (let [key, proxyObject] of this.gameObjectTags.get(tag)) {
-                <PIXICmp.ComponentObject><any>proxyObject.gameObject;
+                return <PIXICmp.ComponentObject><any>proxyObject.gameObject;
             }
         }
         return null;

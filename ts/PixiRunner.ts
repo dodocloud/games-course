@@ -32,7 +32,7 @@ export class PixiRunner {
 
     private loop(time) {
         // update
-        let dt = (time - this.lastTime) / 1000;
+        let dt = (time - this.lastTime);
         this.lastTime = time;
         this.gameTime += dt;
         this.scene._update(dt, this.gameTime);

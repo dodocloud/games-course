@@ -23,9 +23,9 @@ export class CannonController extends Component {
         let pixiObj = this.owner.getPixiObj();
 
         if (direction == DIRECTION_LEFT) {
-            pixiObj.rotation -= 0.1 * delta;
+            pixiObj.rotation -= 0.01 * delta;
         } else {
-            pixiObj.rotation += 0.1 * delta;
+            pixiObj.rotation += 0.01 * delta;
         }
 
         // check boundaries

@@ -39,7 +39,7 @@ export namespace PIXICmp {
         /**
          * Tries to find a component by its class
          */
-        findComponentByClass(name: string);
+        findComponentByClass(name: string): Component;
         /**
          * Adds a new generic attribute
          */
@@ -160,14 +160,14 @@ export namespace PIXICmp {
         removeComponentByClass(name: string): boolean {
             return this.proxy.removeComponentByClass(name);
         }
-        findComponentByClass(name: string) {
-            this.proxy.findComponentByClass(name);
+        findComponentByClass(name: string): Component {
+            return this.proxy.findComponentByClass(name);
         }
         addAttribute(key: string, val: any) {
             this.proxy.addAttribute(key, val);
         }
-        getAttribute(key: string): any {
-            this.proxy.getAttribute(key);
+        getAttribute<T>(key: string): T {
+            return this.proxy.getAttribute<T>(key);
         }
         removeAttribute(key: string): boolean {
             return this.proxy.removeAttribute(key);
@@ -273,14 +273,14 @@ export namespace PIXICmp {
         removeComponentByClass(name: string): boolean {
             return this.proxy.removeComponentByClass(name);
         }
-        findComponentByClass(name: string) {
-            this.proxy.findComponentByClass(name);
+        findComponentByClass(name: string): Component {
+            return this.proxy.findComponentByClass(name);
         }
         addAttribute(key: string, val: any) {
             this.proxy.addAttribute(key, val);
         }
-        getAttribute(key: string): any {
-            this.proxy.getAttribute(key);
+        getAttribute<T>(key: string): T {
+            return this.proxy.getAttribute<T>(key);
         }
         removeAttribute(key: string): boolean {
             return this.proxy.removeAttribute(key);
@@ -372,7 +372,7 @@ export namespace PIXICmp {
             }
             return removed;
         }
-        
+
         getTag(): string {
             return this.proxy.tag;
         }
@@ -386,14 +386,14 @@ export namespace PIXICmp {
         removeComponentByClass(name: string): boolean {
             return this.proxy.removeComponentByClass(name);
         }
-        findComponentByClass(name: string) {
-            this.proxy.findComponentByClass(name);
+        findComponentByClass(name: string): Component {
+            return this.proxy.findComponentByClass(name);
         }
         addAttribute(key: string, val: any) {
             this.proxy.addAttribute(key, val);
         }
-        getAttribute(key: string): any {
-            this.proxy.getAttribute(key);
+        getAttribute<T>(key: string): T {
+            return this.proxy.getAttribute<T>(key);
         }
         removeAttribute(key: string): boolean {
             return this.proxy.removeAttribute(key);
@@ -500,14 +500,14 @@ export namespace PIXICmp {
         removeComponentByClass(name: string): boolean {
             return this.proxy.removeComponentByClass(name);
         }
-        findComponentByClass(name: string) {
-            this.proxy.findComponentByClass(name);
+        findComponentByClass(name: string): Component {
+            return this.proxy.findComponentByClass(name);
         }
         addAttribute(key: string, val: any) {
             this.proxy.addAttribute(key, val);
         }
-        getAttribute(key: string): any {
-            this.proxy.getAttribute(key);
+        getAttribute<T>(key: string): T {
+            return this.proxy.getAttribute<T>(key);
         }
         removeAttribute(key: string): boolean {
             return this.proxy.removeAttribute(key);
@@ -613,14 +613,14 @@ export namespace PIXICmp {
         removeComponentByClass(name: string): boolean {
             return this.proxy.removeComponentByClass(name);
         }
-        findComponentByClass(name: string) {
-            this.proxy.findComponentByClass(name);
+        findComponentByClass(name: string): Component {
+            return this.proxy.findComponentByClass(name);
         }
         addAttribute(key: string, val: any) {
             this.proxy.addAttribute(key, val);
         }
-        getAttribute(key: string): any {
-            this.proxy.getAttribute(key);
+        getAttribute<T>(key: string): T {
+            return this.proxy.getAttribute<T>(key);
         }
         removeAttribute(key: string): boolean {
             return this.proxy.removeAttribute(key);

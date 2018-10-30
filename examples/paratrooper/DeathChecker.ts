@@ -1,7 +1,7 @@
 import Component from "../../ts/engine/Component";
 import { MSG_UNIT_KILLED } from './constants';
 import Msg from '../../ts/engine/Msg';
-import { MSG_ANIM_ENDED } from '../cardriver/constants';
+import { MSG_ANIM_ENDED } from './constants';
 import { DeathAnimation } from './DeathAnimation';
 
 export class DeathChecker extends Component {

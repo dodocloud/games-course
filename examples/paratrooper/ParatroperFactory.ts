@@ -2,10 +2,9 @@ import { CopterAnimator } from './CopterAnimator';
 import { CopterComponent } from './CopterComponent';
 import { ProjectileComponent } from './ProjectileComponent';
 import { SoundComponent } from './SoundComponent';
-import { ATTR_GAME_MODEL, FLAG_PROJECTILE, FLAG_COLLIDABLE } from './../cardriver/constants';
 import { TAG_TOWER, TAG_TURRET, TAG_CANNON, TAG_GROUND, TEXTURE_TOWER, TEXTURE_TURRET, TEXTURE_CANNON, 
     TAG_SCORE, TAG_GAMEOVER, TAG_LIVES, TAG_PROJECTILE, TEXTURE_PROJECTILE, ATTR_DYNAMICS, TAG_PARATROOPER, 
-    TEXTURE_PARATROOPER, STATE_FALLING, TAG_COPTER, TEXTURE_COPTER_LEFT, ATTR_MOVEMENT } from './constants';
+    TEXTURE_PARATROOPER, STATE_FALLING, TAG_COPTER, TEXTURE_COPTER_LEFT, ATTR_MODEL, FLAG_PROJECTILE, FLAG_COLLIDABLE } from './constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 import { DeathChecker } from './DeathChecker';
@@ -44,7 +43,7 @@ export default class ParatrooperFactory {
         model.copterMaxVelocity = 0.15;
         model.parachuteOpenAltitude = 20;
         model.parachuteOpenVelocityThreshold = 0.05;
-        return null;
+        return model;
     }
 
     initializeGame(rootObject: PIXICmp.ComponentObject, model: ParatrooperModel) {
@@ -59,11 +58,11 @@ export default class ParatrooperFactory {
 
         let ground = new PIXICmp.Graphics(TAG_GROUND);
         ground.beginFill(0x00FFFF);
-        ground.drawRect(0, 0, 100, 30);
+        ground.drawRect(0, 0, scene.app.screen.width, 5);
         ground.endFill();
 
         // add game model
-        rootObject.addAttribute(ATTR_GAME_MODEL, model);
+        rootObject.addAttribute(ATTR_MODEL, model);
 
         // create labels
         // score
@@ -103,8 +102,8 @@ export default class ParatrooperFactory {
         new PIXIObjectBuilder(scene).relativePos(0.1, 1.01).anchor(1, 1).zIndex(2).build(lives);
         new PIXIObjectBuilder(scene).relativePos(0.5, 0.5).anchor(0.5, 0.5).zIndex(2).build(gameOver);
         new PIXIObjectBuilder(scene).relativePos(0.5, 0.94).anchor(0.5, 1).zIndex(2).build(tower);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0).anchor(0.5, 1).zIndex(2).build(turret);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0.35).anchor(0.5, 1).zIndex(1).build(cannon);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.82).anchor(0.5, 1).zIndex(2).build(turret);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.78).anchor(0.5, 1).zIndex(1).build(cannon);
         new PIXIObjectBuilder(scene).relativePos(0, 0.94).anchor(0, 1).zIndex(1).build(ground);
     }
 
@@ -120,7 +119,7 @@ export default class ParatrooperFactory {
         let rotation = canonPixi.rotation;
         let width = canonPixi.width;
         let height = canonPixi.height;
-        let canonGlobalPos = canonPixi.toGlobal(canonPixi.position);
+        let canonGlobalPos = canonPixi.toGlobal(new PIXI.Point(0,0));
 
         // we need the projectile to be at the same location as the cannon with current rotation
         new PIXIObjectBuilder(canon.getScene()).absPos(canonGlobalPos.x + width * 0.5 + height * Math.sin(rotation),
@@ -134,7 +133,7 @@ export default class ParatrooperFactory {
         dynamics.acceleration = new Vec2(0, model.gravity); // add gravity
 
         projectile.addAttribute(ATTR_DYNAMICS, dynamics);
-        projectile.addComponent(new ProjectileComponent())
+        projectile.addComponent(new ProjectileComponent());
     }
 
     createParatrooper(owner: PIXICmp.ComponentObject, model: ParatrooperModel) {
@@ -156,6 +155,7 @@ export default class ParatrooperFactory {
         let copter = new PIXICmp.Sprite(TAG_COPTER, PIXI.Texture.fromImage(TEXTURE_COPTER_LEFT));
         copter.setFlag(FLAG_COLLIDABLE);
         let root = owner.getScene().root;
+        root.getPixiObj().addChild(copter);
 
         // 50% probability that the copter will be spawned on the left side
         let spawnLeft = Math.random() > 0.5;
@@ -169,7 +169,7 @@ export default class ParatrooperFactory {
         let dynamics = new Dynamics();
         dynamics.velocity = new Vec2(velocity, 0);
 
-        copter.addAttribute(ATTR_MOVEMENT, dynamics);
+        copter.addAttribute(ATTR_DYNAMICS, dynamics);
         copter.addComponent(new CopterComponent());
         copter.addComponent(new CopterAnimator());
     }

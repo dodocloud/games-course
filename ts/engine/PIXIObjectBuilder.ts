@@ -4,7 +4,6 @@ import { PIXICmp } from '../../ts/engine/PIXIObject';
 export default class PIXIObjectBuilder {
 
     scene: Scene;
-    object: PIXICmp.ComponentObject;
     locPosX?: number;
     locPosY?: number;
     anchorX?: number;
@@ -50,7 +49,7 @@ export default class PIXIObjectBuilder {
     }
 
     build(object: PIXICmp.ComponentObject): PIXICmp.ComponentObject {
-        let pixiObj = this.object.getPixiObj();
+        let pixiObj = object.getPixiObj();
 
         if (this.anchorX != null && pixiObj instanceof PIXICmp.Sprite) {
             pixiObj.anchor.x = this.anchorX;
@@ -69,31 +68,29 @@ export default class PIXIObjectBuilder {
         }
 
         if (this.relPosX != null) {
-            let point = new PIXI.PointLike();
+            let point = new PIXI.Point();
             point.x = this.relPosX * this.scene.app.screen.width;
-            pixiObj.position.x = pixiObj.toLocal(point, pixiObj).x;
+            pixiObj.position.x = pixiObj.toLocal(point, this.scene.root.getPixiObj()).x;
         }
 
         if (this.relPosY != null) {
-            let point = new PIXI.PointLike();
+            let point = new PIXI.Point();
             point.y = this.relPosY * this.scene.app.screen.height;
-            pixiObj.position.y = pixiObj.toLocal(point, pixiObj).y;
+            pixiObj.position.y = pixiObj.toLocal(point, this.scene.root.getPixiObj()).y;
         }
 
         if (this.absPosX != null) {
-            let point = new PIXI.PointLike();
+            let point = new PIXI.Point();
             point.x = this.absPosX;
-            pixiObj.position.x = pixiObj.toLocal(point, pixiObj).x;
+            pixiObj.position.x = pixiObj.toLocal(point, this.scene.root.getPixiObj()).x;
         }
 
         if (this.absPosY != null) {
-            let point = new PIXI.PointLike();
+            let point = new PIXI.Point();
             point.y = this.absPosY;
-            pixiObj.position.y = pixiObj.toLocal(point, pixiObj).y;
+            pixiObj.position.y = pixiObj.toLocal(point, this.scene.root.getPixiObj()).y;
         }
 
-        
-
-        return this.object;
+        return object;
     }
 }

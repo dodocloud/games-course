@@ -5,8 +5,8 @@ export const MSG_PROJECTILE_SHOT = "projectile_shot";
 export const MSG_PARATROOPER_CREATED = "paratrooper_created";
 export const MSG_UNIT_LANDED = "unit_landed";
 export const MSG_GAME_OVER = "game_over";
+export const MSG_ANIM_ENDED = "anim_ended";
 
-export const ATTR_MOVEMENT = "movement";
 export const ATTR_MODEL = "model";
 export const ATTR_FACTORY = "factory";
 export const ATTR_DYNAMICS = "dynamics";
@@ -14,6 +14,9 @@ export const ATTR_DYNAMICS = "dynamics";
 export const TAG_COPTER = "copter";
 export const MSG_COPTER_CREATED = "copter_created";
 export const MSG_COLLISION = "collision";
+
+export const FLAG_PROJECTILE = 1;
+export const FLAG_COLLIDABLE = 2;
 
 export const TAG_TOWER = "tower";
 export const TAG_TURRET = "turret";

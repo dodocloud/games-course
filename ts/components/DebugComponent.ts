@@ -50,7 +50,7 @@ export default class DebugComponent extends Component {
 
         // transform:
         strWrapper.str += "<strong><span style=\"color:red\">";
-        let bounds = node.gameObject.toGlobal(node.gameObject.position);
+        let bounds = node.gameObject.toGlobal(new PIXI.Point(0,0));
         strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
             `rel:[${node.gameObject.position.x.toFixed(2)},${node.gameObject.position.y.toFixed(2)}]|abs:[${bounds.x.toFixed(2)},${bounds.y.toFixed(2)}]|rot: ${node.gameObject.rotation.toFixed(2)}` +
             "<br>");

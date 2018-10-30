@@ -1,10 +1,9 @@
-import { FLAG_COLLIDABLE } from './../cardriver/constants';
 import Component from "../../ts/engine/Component";
 import * as PIXI from 'pixi.js';
 import { PIXICmp } from "../../ts/engine/PIXIObject";
-import { MSG_OBJECT_REMOVED, MSG_OBJECT_ADDED } from '../../ts/engine/Constants';
+import { MSG_OBJECT_REMOVED, MSG_OBJECT_ADDED, } from '../../ts/engine/Constants';
 import Msg from '../../ts/engine/Msg';
-import { FLAG_PROJECTILE, STATE_DEAD, MSG_COLLISION } from '../cardriver/constants';
+import { FLAG_PROJECTILE, STATE_DEAD, MSG_COLLISION, FLAG_COLLIDABLE } from './constants';
 
 
 export class CollisionTrigger {

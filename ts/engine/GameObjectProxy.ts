@@ -103,7 +103,7 @@ export default class GameObjectProxy {
 	/**
 	 * Gets an attribute by its key
 	 */
-	getAttribute(key: string): any {
+	getAttribute<T>(key: string): T {
 		return this.attributes.get(key);
 	}
 

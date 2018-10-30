@@ -15,6 +15,7 @@ export const KEY_LEFT = 37;
 export const KEY_UP = 38;
 export const KEY_RIGHT = 39;
 export const KEY_DOWN = 40;
+export const KEY_X = 88;
 
 
 export class KeyInputComponent extends Component {
@@ -22,15 +23,13 @@ export class KeyInputComponent extends Component {
     private keys = new Set<number>();
 
     onInit() {
-        let canvas = this.scene.app.view;
-        canvas.addEventListener("keyup", this.onKeyUp.bind(this), false);
-        canvas.addEventListener("keydown", this.onKeyDown.bind(this), false);
+        document.addEventListener("keyup", this.onKeyUp.bind(this), false);
+        document.addEventListener("keydown", this.onKeyDown.bind(this), false);
     }
 
     onRemove() {
-        let canvas = this.scene.app.view;
-        canvas.removeEventListener("keyup", this.onKeyUp.bind(this));
-        canvas.removeEventListener("keydown", this.onKeyDown.bind(this));
+        document.removeEventListener("keyup", this.onKeyUp.bind(this));
+        document.removeEventListener("keydown", this.onKeyDown.bind(this));
     }
 
     isKeyPressed(keyCode: number) {
