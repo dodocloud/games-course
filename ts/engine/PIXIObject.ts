@@ -544,8 +544,8 @@ export namespace PIXICmp {
     export class Text extends PIXI.Text implements ComponentObject {
         proxy: GameObjectProxy;
 
-        constructor(tag: string = "") {
-            super();
+        constructor(tag: string = "", text: string = "") {
+            super(text);
             this.proxy = new GameObjectProxy(tag, this);
         }
 

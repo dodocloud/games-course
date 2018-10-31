@@ -42,7 +42,7 @@ export default class Scene {
 
     /**
      * Adds a new function that will be invoked after a given amount of time
-     * @param delay delay in seconds 
+     * @param delay delay in miliseconds 
      * @param aaction function pointer with no arguments
      */
     invokeWithDelay(delay: number, action: () => void) {

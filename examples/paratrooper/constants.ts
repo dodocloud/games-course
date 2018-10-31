@@ -44,3 +44,7 @@ export const TEXTURE_PARATROOPER = "paratrooper";
 export const TEXTURE_PROJECTILE = "projectile";
 export const TEXTURE_TOWER = "tower";
 export const TEXTURE_TURRET = "turret";
+
+export const SOUND_FIRE = "fire";
+export const SOUND_GAMEOVER = "gameover";
+export const SOUND_KILL = "kill";

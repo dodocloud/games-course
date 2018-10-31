@@ -37,7 +37,7 @@ export default class PIXIObjectBuilder {
         return this;
     }
 
-    absPos(x: number, y: number) : PIXIObjectBuilder {
+    absPos(x: number, y: number): PIXIObjectBuilder {
         this.absPosX = x;
         this.absPosY = y;
         return this;
@@ -51,12 +51,20 @@ export default class PIXIObjectBuilder {
     build(object: PIXICmp.ComponentObject): PIXICmp.ComponentObject {
         let pixiObj = object.getPixiObj();
 
-        if (this.anchorX != null && pixiObj instanceof PIXICmp.Sprite) {
-            pixiObj.anchor.x = this.anchorX;
+        if (this.anchorX != null) {
+            if (pixiObj instanceof PIXICmp.Sprite || pixiObj instanceof PIXICmp.Text) {
+                pixiObj.anchor.x = this.anchorX;
+            } else {
+                pixiObj.pivot.x = this.anchorX * pixiObj.width;
+            }
         }
 
-        if (this.anchorY != null && pixiObj instanceof PIXICmp.Sprite) {
-            pixiObj.anchor.y = this.anchorY;
+        if (this.anchorY != null) {
+            if (pixiObj instanceof PIXICmp.Sprite || pixiObj instanceof PIXICmp.Text) {
+                pixiObj.anchor.y = this.anchorY;
+            } else {
+                pixiObj.pivot.y = this.anchorY * pixiObj.height;
+            }
         }
 
         if (this.locPosX != null) {

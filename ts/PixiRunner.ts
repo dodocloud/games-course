@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js'
 import Scene from './engine/Scene';
-
+import '../libs/pixi-sound/pixi-sound.js';
 /**
  * Entry point to the PIXIJS
  */

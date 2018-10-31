@@ -8,8 +8,6 @@ import { CollisionTrigger } from './CollisionManager';
 export class GameManager extends Component {
     model: ParatrooperModel;
     factory: ParatrooperFactory;
-    gameOverTime = 0;
-    lastAbsolute = 0;
 
     onInit() {
         this.subscribe(MSG_COLLISION);
@@ -36,18 +34,8 @@ export class GameManager extends Component {
 
             if (this.model.landedUnits >= this.model.maxLandedUnits) {
                 // GAME MOVER
-                this.gameOver(this.lastAbsolute);
+                this.gameOver();
             }
-        }
-    }
-
-    onUpdate(delta: number, absolute: number) {
-        this.lastAbsolute = absolute;
-
-        // just wait 5 seconds after game over and reset the game 
-        if (this.model.isGameOver && (absolute - this.gameOverTime) > 5000) {
-            this.factory.resetGame();
-            this.finish();
         }
     }
 
@@ -89,10 +77,10 @@ export class GameManager extends Component {
         trigger.projectile.remove();
     }
 
-    gameOver(absolute: number) {
+    gameOver() {
         let gameOverObj = this.scene.findFirstObjectByTag(TAG_GAMEOVER);
         gameOverObj.getPixiObj().visible = true;
-        this.gameOverTime = absolute;
+        this.model.isGameOver = true;
 
         // find all paratroopers and set their state to CAPTURING. This will execute
         // the capturing animation
@@ -106,5 +94,8 @@ export class GameManager extends Component {
 
         // notify everyone interested
         this.sendMessage(MSG_GAME_OVER);
+        this.scene.invokeWithDelay(5000, () => {
+            this.factory.resetGame(this.scene);
+        });
     }
 }
