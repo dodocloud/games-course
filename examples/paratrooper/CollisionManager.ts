@@ -43,7 +43,7 @@ export class CollisionManager extends Component {
                         let boundsA = projectile.getPixiObj().getBounds();
                         let boundsB = unit.getPixiObj().getBounds();
 
-                        let intersectionX = Math.min(boundsA.right, boundsB.right) - Math.max(boundsA.left, boundsB.right);
+                        let intersectionX = Math.min(boundsA.right, boundsB.right) - Math.max(boundsA.left, boundsB.left);
                         let intersectionY = Math.min(boundsA.bottom, boundsB.bottom) - Math.max(boundsA.top, boundsB.top);
 
                         if (intersectionX > 0 && intersectionY > 0) {

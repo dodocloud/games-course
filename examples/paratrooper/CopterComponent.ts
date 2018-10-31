@@ -3,6 +3,7 @@ import Component from "../../ts/engine/Component";
 import { ParatrooperModel } from './ParatrooperModel';
 import ParatrooperFactory from './ParatroperFactory';
 import Dynamics from './Dynamics';
+import { checkTime } from './Utils';
 
 export class CopterComponent extends Component {
     lastSpawnTime = 0;
@@ -29,7 +30,7 @@ export class CopterComponent extends Component {
         let globalPos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
 
         if ((velocity.x > 0 && globalPos.x > this.owner.getScene().app.screen.width)
-            || (velocity.x < 0 && globalPos.x < this.owner.getPixiObj().width)) {
+            || (velocity.x < 0 && globalPos.x < -this.owner.getPixiObj().width)) {
             velocity.x = -velocity.x;
         }
 
@@ -37,7 +38,7 @@ export class CopterComponent extends Component {
     }
 
     tryCreateParatrooper(absolute: number) {
-        if (this.checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
+        if (checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
             this.lastSpawnTime = absolute;
             let bbox = this.owner.getPixiObj().getBounds();
             let pos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
@@ -55,9 +56,5 @@ export class CopterComponent extends Component {
                 }
             }
         }
-    }
-
-    checkTime(lastTime, time, frequency) {
-        return (time - lastTime) > 1000 / frequency;
     }
 }

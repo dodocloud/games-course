@@ -1,5 +1,6 @@
 import { MSG_ANIM_ENDED } from './constants';
 import Component from "../../ts/engine/Component";
+import { checkTime } from './Utils';
 
 export class DeathAnimation extends Component {
     lastSwitch = 0;
@@ -9,12 +10,8 @@ export class DeathAnimation extends Component {
         super();
     }
 
-    private checkTime(currentTime, lastTime, frequency) {
-        return (currentTime - lastTime) > 1000/frequency;
-    }
-
     onUpdate(delta, absolute){
-        if(this.checkTime(this.lastSwitch, absolute, 50)){
+        if(checkTime(this.lastSwitch, absolute, 50)){
             this.lastSwitch = absolute;
             this.owner.getPixiObj().visible = !this.owner.getPixiObj().visible;
 

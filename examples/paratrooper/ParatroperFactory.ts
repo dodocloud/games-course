@@ -35,7 +35,7 @@ export default class ParatrooperFactory {
         model.paratrooperShotReward = 1;
         model.shootPenalty = 1;
         model.projectileVelocity = 0.5;
-        model.gravity = 0.003;
+        model.gravity = 0.0005;
         model.parachuteDecceleration = 0.003;
         model.copterSpawnMinY = 0.1;
         model.copterSpawnMaxY = 0.2;
@@ -122,8 +122,8 @@ export default class ParatrooperFactory {
         let canonGlobalPos = canonPixi.toGlobal(new PIXI.Point(0,0));
 
         // we need the projectile to be at the same location as the cannon with current rotation
-        new PIXIObjectBuilder(canon.getScene()).absPos(canonGlobalPos.x + width * 0.5 + height * Math.sin(rotation),
-            canonGlobalPos.y + height - height * Math.cos(rotation)).build(projectile);
+        new PIXIObjectBuilder(canon.getScene()).absPos(canonGlobalPos.x + height * Math.sin(rotation),
+            canonGlobalPos.y - height * Math.cos(rotation)).build(projectile);
 
         let velocityX = model.projectileVelocity * Math.cos(rotation - Math.PI / 2);
         let velocityY = model.projectileVelocity * Math.sin(rotation - Math.PI / 2);
@@ -138,6 +138,9 @@ export default class ParatrooperFactory {
 
     createParatrooper(owner: PIXICmp.ComponentObject, model: ParatrooperModel) {
         let paratrooper = new PIXICmp.Sprite(TAG_PARATROOPER, PIXI.Texture.fromImage(TEXTURE_PARATROOPER));
+        
+        paratrooper.anchor.set(0.5, 1);
+
         paratrooper.setFlag(FLAG_COLLIDABLE);
         paratrooper.position = owner.getPixiObj().position;
 

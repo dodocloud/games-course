@@ -19,7 +19,7 @@ export class DeathChecker extends Component {
 
     onMessage(msg: Msg){
         if(msg.action == MSG_UNIT_KILLED){
-            let contextObj = msg.gameObject;
+            let contextObj = msg.data; // the object is in data
             let anim = new DeathAnimation();
             contextObj.addComponent(anim);
             this.runningAnimations.set(anim.id, anim);

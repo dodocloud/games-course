@@ -3,6 +3,7 @@ import { ATTR_MODEL, ATTR_FACTORY, MSG_PROJECTILE_SHOT } from './constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import Component from "../../ts/engine/Component";
 import ParatrooperFactory from './ParatroperFactory';
+import { checkTime } from './Utils';
 
 const DIRECTION_UP = 1;
 const DIRECTION_DOWN = 2;
@@ -29,11 +30,11 @@ export class CannonController extends Component {
         }
 
         // check boundaries
-        pixiObj.rotation = Math.max(Math.min(pixiObj.rotation, this.gameModel.maxCannonAngle), this.gameModel.minCannonAngle);
+        pixiObj.rotation = Math.max(Math.min(pixiObj.rotation, PIXI.DEG_TO_RAD*this.gameModel.maxCannonAngle), PIXI.DEG_TO_RAD*this.gameModel.minCannonAngle);
     }
 
     tryFire(absolute: number): boolean {
-        if (this.checkTime(this.lastShot, absolute, this.gameModel.cannonFireRate)) {
+        if (checkTime(this.lastShot, absolute, this.gameModel.cannonFireRate)) {
             this.lastShot = absolute;
             this.factory.createProjectile(this.owner, this.gameModel);
             this.sendMessage(MSG_PROJECTILE_SHOT);
@@ -41,10 +42,6 @@ export class CannonController extends Component {
         } else {
             return false;
         }
-    }
-
-    checkTime(lastTime, time, frequency) {
-        return (time - lastTime) > 1000 / frequency;
     }
 }
 

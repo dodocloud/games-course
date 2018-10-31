@@ -4,6 +4,7 @@ import Component from "../../ts/engine/Component";
 import ParatrooperFactory from './ParatroperFactory';
 import { ATTR_MODEL } from './constants';
 import Msg from '../../ts/engine/Msg';
+import { checkTime } from './Utils';
 
 export class CopterSpawner extends Component {
     lastSpawnTime = 0;
@@ -25,16 +26,12 @@ export class CopterSpawner extends Component {
     }
 
     onUpdate(delta, absolute) {
-        if (this.checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
+        if (checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
             this.model.coptersCreated++;
             this.lastSpawnTime = absolute;
             this.spawnFrequency *= 1.02;
             this.factory.createCopter(this.owner, this.model);
             this.sendMessage(MSG_COPTER_CREATED);
         }
-    }
-
-    private checkTime(lastTime, time, frequency) {
-        return (time - lastTime) > 1000 / frequency;
     }
 }
