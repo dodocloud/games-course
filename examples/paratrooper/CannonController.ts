@@ -1,4 +1,4 @@
-import { KeyInputComponent, KEY_LEFT, KEY_RIGHT, KEY_X } from './../../ts/components/InputManager';
+import { KeyInputComponent, KEY_LEFT, KEY_RIGHT, KEY_X } from '../../ts/components/KeyInputComponent';
 import { ATTR_MODEL, ATTR_FACTORY, MSG_PROJECTILE_SHOT } from './constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import Component from "../../ts/engine/Component";

@@ -13,7 +13,7 @@ export namespace PIXICmp {
      */
     export interface ComponentObject {
         /**
-         * Link to proxy object, shouldn't be used from within any component
+         * Link to proxy object, <<<shouldn't be used from within any custom component>>>
          */
         proxy: GameObjectProxy;
         /**
@@ -54,19 +54,19 @@ export namespace PIXICmp {
          */
         removeAttribute(key: string): boolean;
         /**
-        * Sets flag under given index
+        * Sets flag at given index
         */
         setFlag(flag: number);
         /**
-         * Resets flag under given index
+         * Resets flag at given index
          */
         resetFlag(flag: number);
         /**
-         * Returns true, if there is a flag under given index
+         * Returns true, if there is a flag set at given index
          */
         hasFlag(flag: number): boolean;
         /**
-         * Inverts a flag under given index
+         * Inverts a flag at given index
          */
         invertFlag(flag: number);
         /**
@@ -88,6 +88,9 @@ export namespace PIXICmp {
 
     }
 
+    /**
+     * Wrapper for PIXI.Graphics
+     */
     export class Graphics extends PIXI.Graphics implements ComponentObject {
         proxy: GameObjectProxy;
 
@@ -191,7 +194,7 @@ export namespace PIXICmp {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
-            return this.proxy.gameObject;
+            return this.proxy.pixiObj;
         }
         remove() {
             this.parent.removeChild(this);
@@ -201,6 +204,9 @@ export namespace PIXICmp {
         }
     }
 
+    /**
+     * Wrapper for PIXI.Container
+     */
     export class Container extends PIXI.Container implements ComponentObject {
         proxy: GameObjectProxy;
 
@@ -304,7 +310,7 @@ export namespace PIXICmp {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
-            return this.proxy.gameObject;
+            return this.proxy.pixiObj;
         }
         remove() {
             this.parent.removeChild(this);
@@ -314,6 +320,9 @@ export namespace PIXICmp {
         }
     }
 
+    /**
+     * Wrapper for PIXI.Sprite
+     */
     export class Sprite extends PIXI.Sprite implements ComponentObject {
         proxy: GameObjectProxy;
 
@@ -417,7 +426,7 @@ export namespace PIXICmp {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
-            return this.proxy.gameObject;
+            return this.proxy.pixiObj;
         }
         remove() {
             this.parent.removeChild(this);
@@ -427,7 +436,9 @@ export namespace PIXICmp {
         }
     }
 
-
+    /**
+     * Wrapper for PIXI.ParticleContainer
+     */
     export class ParticleContainer extends PIXI.particles.ParticleContainer implements ComponentObject {
         proxy: GameObjectProxy;
 
@@ -531,7 +542,7 @@ export namespace PIXICmp {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
-            return this.proxy.gameObject;
+            return this.proxy.pixiObj;
         }
         remove() {
             this.parent.removeChild(this);
@@ -541,6 +552,9 @@ export namespace PIXICmp {
         }
     }
 
+    /**
+     * Wrapper for PIXI.Text
+     */
     export class Text extends PIXI.Text implements ComponentObject {
         proxy: GameObjectProxy;
 
@@ -644,7 +658,7 @@ export namespace PIXICmp {
             this.proxy.setState(state);
         }
         getPixiObj(): PIXI.Container {
-            return this.proxy.gameObject;
+            return this.proxy.pixiObj;
         }
         remove() {
             this.parent.removeChild(this);

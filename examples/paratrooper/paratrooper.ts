@@ -3,7 +3,6 @@
 import Component from '../../ts/engine/Component';
 import DebugComponent from '../../ts/components/DebugComponent';
 import Scene from '../../ts/engine/Scene';
-import ChainingComponent from '../../ts/components/ChainingComponent';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 import { ATTR_FACTORY, SOUND_FIRE, SOUND_GAMEOVER, SOUND_KILL } from './constants';

@@ -5,24 +5,25 @@ import GameObjectProxy from './GameObjectProxy';
 
 
 /**
- * Component that defines a functional behavior of an entity it is attached to
+ * Component that defines a functional behavior of an entity which is attached to
  */
 export default class Component {
-    private static idCounter = 0;
+	private static idCounter = 0;
 	private isFinished = false;
 
 	// auto-incremented id
 	id = 0;
 	// owner object of this component
 	owner: PIXICmp.ComponentObject = null;
-    scene: Scene = null;
-	
+	// link to scene
+	scene: Scene = null;
+
 	constructor() {
 		this.id = Component.idCounter++;
 	}
 
 	/**
-	 * Called once the component is added to the scene
+	 * Called when the component is being added to the scene
 	 */
 	onInit() {
 		// override
@@ -31,19 +32,19 @@ export default class Component {
 	/**
 	 * Handles incoming message
 	 */
-	onMessage(msg : Msg) {
+	onMessage(msg: Msg) {
 		// override
 	}
 
 	/**
 	 * Handles update loop
 	 */
-	onUpdate(delta : number, absolute : number) {
+	onUpdate(delta: number, absolute: number) {
 		// override
 	}
 
 	/**
-	 * Called before removing from scene
+	 * Called before removal from scene
 	 */
 	onRemove() {
 		// override
@@ -52,7 +53,7 @@ export default class Component {
 	/**
 	 * Called after finish()
 	 */
-	onFinish(){
+	onFinish() {
 		// override
 	}
 
@@ -66,14 +67,14 @@ export default class Component {
 	/**
 	 * Unsubscribes itself
 	 */
-	unsubscribe(action : string){
+	unsubscribe(action: string) {
 		this.scene._unsubscribeComponent(action, this);
 	}
 
 	/**
 	 * Sends a message to all subscribers
 	 */
-	sendMessage(action : string, data : any = null) {
+	sendMessage(action: string, data: any = null) {
 		this.scene.sendMessage(new Msg(action, this, this.owner, data));
 	}
 

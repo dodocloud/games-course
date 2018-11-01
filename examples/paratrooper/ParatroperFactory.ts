@@ -17,8 +17,9 @@ import PIXIObjectBuilder from '../../ts/engine/PIXIObjectBuilder';
 import Dynamics from './Dynamics';
 import Vec2 from './Vec2';
 import { ParatrooperComponent } from './ParatrooperComponent';
-import { KeyInputComponent } from '../../ts/components/InputManager';
+import { KeyInputComponent } from '../../ts/components/KeyInputComponent';
 import Scene from '../../ts/engine/Scene';
+import DebugComponent from '../../ts/components/DebugComponent';
 
 export default class ParatrooperFactory {
     resetGamePending = false;
@@ -101,19 +102,21 @@ export default class ParatrooperFactory {
         rootObject.addComponent(new CopterSpawner());
         rootObject.addComponent(new CollisionManager());
 
+        rootObject.addComponent(new DebugComponent(document.getElementById("debugSect")));
+
         // add other components
         score.addComponent(new ScoreComponent());
         lives.addComponent(new LivesComponent());
         cannon.addComponent(new CannonInputController());
 
         // use builder to set positions of all children
-        new PIXIObjectBuilder(scene).relativePos(1.0, 1.01).anchor(1, 1).zIndex(2).build(score);
-        new PIXIObjectBuilder(scene).relativePos(0, 1.01).anchor(0, 1).zIndex(2).build(lives);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0.5).anchor(0.5, 0.5).zIndex(2).build(gameOver);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0.92).anchor(0.5, 1).zIndex(2).build(tower);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0.8).anchor(0.5, 1).zIndex(2).build(turret);
-        new PIXIObjectBuilder(scene).relativePos(0.5, 0.75).anchor(0.5, 1).zIndex(1).build(cannon);
-        new PIXIObjectBuilder(scene).relativePos(0, 0.92).anchor(0, 1).zIndex(1).build(ground);
+        new PIXIObjectBuilder(scene).relativePos(1.0, 1.01).anchor(1, 1).build(score);
+        new PIXIObjectBuilder(scene).relativePos(0, 1.01).anchor(0, 1).build(lives);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.5).anchor(0.5, 0.5).build(gameOver);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.92).anchor(0.5, 1).build(tower);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.8).anchor(0.5, 1).build(turret);
+        new PIXIObjectBuilder(scene).relativePos(0.5, 0.75).anchor(0.5, 1).build(cannon);
+        new PIXIObjectBuilder(scene).relativePos(0, 0.92).anchor(0, 1).build(ground);
     }
 
     createProjectile(canon: PIXICmp.ComponentObject, model: ParatrooperModel) {
@@ -131,7 +134,7 @@ export default class ParatrooperFactory {
         let canonGlobalPos = canonPixi.toGlobal(new PIXI.Point(0,0));
 
         // we need the projectile to be at the same location as the cannon with current rotation
-        new PIXIObjectBuilder(canon.getScene()).absPos(canonGlobalPos.x + height * Math.sin(rotation),
+        new PIXIObjectBuilder(canon.getScene()).globalPos(canonGlobalPos.x + height * Math.sin(rotation),
             canonGlobalPos.y - height * Math.cos(rotation)).build(projectile);
 
         let velocityX = model.projectileVelocity * Math.cos(rotation - Math.PI / 2);

@@ -2,7 +2,7 @@ import Component from './Component';
 import { PIXICmp } from './PIXIObject';
 
 /**
- * Message that stores type of action, a relevant component and a game object and custom data if needed
+ * Message that stores type of action, a relevant component, a relevant game object and custom data if needed
  */
 export default class Msg {
 
@@ -26,7 +26,7 @@ export default class Msg {
      */
     data: any = null;
 
-    constructor(action, component, gameObject, data = null) {
+    constructor(action: string, component: Component, gameObject: PIXICmp.ComponentObject, data = null) {
         this.action = action;
         this.component = component;
         this.gameObject = gameObject;

@@ -7,33 +7,32 @@ import { PIXICmp } from './PIXIObject';
 
 
 /**
- * Structure for pending invocation, contains a function and a time 
- * at which it should be invoked
+ * Class for action that is to be executed with certain delay
  */
 class Invocation {
-    delay = 0;
-    time = 0;
-    action: () => void = null;
+    delay = 0; // time of invocation 
+    time = 0; // time of creation
+    action: () => void = null; // action to execute
 }
 
-// Scene that keeps collection of all game
-// objects and calls draw and update upon them
+/**
+ * Scene that keeps collection of all game objects and component listeners
+ */
 export default class Scene {
     app: PIXI.Application;
 
-    // stage in PixiApp
+    // PIXI stage object 
     root: PIXICmp.ComponentObject = null;
     // collection of actions that should be invoked with a delay
-    private pendingInvocations = new Array<Invocation>();
-
+    private pendingInvocations;
     // message action keys and all subscribers that listens to all these actions
-    private subscribers = new Map<string, Map<number, Component>>();
-    // component ids and list of all actions they listen to
-    private subscribedMessages = new Map<number, Array<string>>();
-    // collection of all game objects, mapped by their tag and then by their ids
-    private gameObjectTags = new Map<string, Map<number, GameObjectProxy>>();
+    private subscribers;
+    // component ids and list of all actions they are listening to
+    private subscribedMessages;
+    // collection of all game objects, mapped by their tag and then by their ids (for faster search)
+    private gameObjectTags;
     // collection of all game objects, mapped by their ids
-    private gameObjects = new Map<number, GameObjectProxy>();
+    private gameObjects;
 
     constructor(app: PIXI.Application) {
         this.app = app;
@@ -54,14 +53,14 @@ export default class Scene {
     }
 
     /**
-     * Adds a component to the stage
+     * Adds a component to the stage object
      */
     addGlobalComponent(cmp: Component) {
         this.root.addComponent(cmp);
     }
 
     /**
-     * Removes a component from a stage
+     * Removes a component from a stage object
      */
     removeGlobalComponent(cmp: Component) {
         this.root.removeComponent(cmp);
@@ -97,18 +96,22 @@ export default class Scene {
             let gameObjects = this.gameObjectTags.get(tag);
             for (let [key, proxyObject] of gameObjects) {
                 // cast to ComponentObject
-                result.push(<PIXICmp.ComponentObject><any>proxyObject.gameObject);
+                result.push(<PIXICmp.ComponentObject><any>proxyObject.pixiObj);
             }
         }
 
         return result;
     }
 
+    /**
+     * Finds all game objects that have set given flag
+     */
     findAllObjectsByFlag(flag: number): Array<PIXICmp.ComponentObject> {
         let result = new Array<PIXICmp.ComponentObject>();
+        // no optimization here
         for (let [key, gameObject] of this.gameObjects) {
             if (gameObject.hasFlag(flag)) {
-                let cmpObject = <PIXICmp.ComponentObject><any>gameObject.gameObject;
+                let cmpObject = <PIXICmp.ComponentObject><any>gameObject.pixiObj;
                 result.push(cmpObject);
             }
         }
@@ -117,13 +120,11 @@ export default class Scene {
 
     /**
      * Finds a first object with a given tag
-     * @param {String} tag
-     * @returns {GameObject} 
      */
-    findFirstObjectByTag(tag): PIXICmp.ComponentObject {
+    findFirstObjectByTag(tag: string): PIXICmp.ComponentObject {
         if (this.gameObjectTags.has(tag)) {
             for (let [key, proxyObject] of this.gameObjectTags.get(tag)) {
-                return <PIXICmp.ComponentObject><any>proxyObject.gameObject;
+                return <PIXICmp.ComponentObject><any>proxyObject.pixiObj;
             }
         }
         return null;
@@ -151,10 +152,12 @@ export default class Scene {
         }
     }
 
-    // clears the whole scene, all game objects, attributes and components
+    /**
+     * Removes all objects from scene
+     */
     clearScene() {
         if (this.gameObjects != null) {
-            // call the finalization function
+            // call the finalization function of all components
             for (let [key, gameObj] of this.gameObjects) {
                 for (let [key, component] of gameObj.components) {
                     component.onFinish();
@@ -163,28 +166,24 @@ export default class Scene {
             }
         }
 
+        // reinitialize everything
+        this.subscribers = new Map<string, Map<number, Component>>();
+        this.subscribedMessages = new Map<number, Array<string>>();
+        this.gameObjectTags = new Map<string, Map<number, GameObjectProxy>>();
+        this.gameObjects = new Map<number, GameObjectProxy>();
+        this.pendingInvocations = new Array<Invocation>();
+
         let newStage = new PIXICmp.Container();
-        this.app.stage = newStage; // reassign the default stage with our custom one
-        newStage.proxy.scene = this; // assign scene
+        this.app.stage = newStage; // reassign the default stage with our custom one (we need objects from PIXICmp namespace only)
+        newStage.proxy.scene = this; // assign a scene
         this.root = newStage;
         this._addGameObject(newStage.proxy);
         this.app.stage.removeChildren(); // clear the stage
 
-        // message action keys and all subscribers that listens to all these actions
-        this.subscribers = new Map<string, Map<number, Component>>();
-        // component ids and list of all actions they listen to
-        this.subscribedMessages = new Map<number, Array<string>>();
-        // collection of all game objects, mapped by their tag and then by their ids
-        this.gameObjectTags = new Map<string, Map<number, GameObjectProxy>>();
-        // collection of all game objects, mapped by their ids
-        this.gameObjects = new Map<number, GameObjectProxy>();
-
-        // functions that should be invoked with certain delay
-        this.pendingInvocations = new Array<Invocation>();
     }
 
     // executes the update cycle
-    _update(delta, absolute) {
+    _update(delta: number, absolute: number) {
         // execute pending invocations
         var i = this.pendingInvocations.length;
         while (i--) {
@@ -192,7 +191,7 @@ export default class Scene {
             invocation.time += delta;
 
             if (invocation.time >= invocation.delay) {
-                // it's time to invoke this one
+                // call the function and remove it from the collection
                 invocation.action();
                 this.pendingInvocations.splice(i, 1);
             }
@@ -204,7 +203,7 @@ export default class Scene {
 
 
     // subscribes given component for messaging system
-    _subscribeComponent(msgKey, component) {
+    _subscribeComponent(msgKey: string, component: Component) {
         var subs = this.subscribers.get(msgKey);
         if (subs === undefined) {
             subs = new Map();
@@ -221,7 +220,7 @@ export default class Scene {
     }
 
     // unsubscribes given component
-    _unsubscribeComponent(msgKey, component) {
+    _unsubscribeComponent(msgKey: string, component: Component) {
         var subs = this.subscribers.get(msgKey);
         if (subs !== undefined) {
             subs.delete(component.id);
@@ -241,22 +240,20 @@ export default class Scene {
 
         // assign scene
         obj.scene = this;
-
-        // notify
-        this.sendMessage(new Msg(MSG_OBJECT_ADDED, null, obj));
+        // notify listeners
+        this.sendMessage(new Msg(MSG_OBJECT_ADDED, null, <PIXICmp.ComponentObject><any>obj.pixiObj));
     }
 
     // immediately removes given game object
-    _removeGameObject(obj) {
+    _removeGameObject(obj: GameObjectProxy) {
         this.gameObjectTags.get(obj.tag).delete(obj.id);
         this.gameObjects.delete(obj.id);
-
-        // notify
-        this.sendMessage(new Msg(MSG_OBJECT_REMOVED, null, obj));
+        // notify listeners
+        this.sendMessage(new Msg(MSG_OBJECT_REMOVED, null, <PIXICmp.ComponentObject><any>obj.pixiObj));
     }
 
     // clears up everything that has something to do with given component
-    _removeComponentSubscribing(component) {
+    _removeComponentSubscription(component: Component) {
         this.subscribedMessages.delete(component.id);
 
         if (this.subscribedMessages.has(component.id)) {

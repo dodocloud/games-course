@@ -1,50 +1,58 @@
 import Scene from './Scene';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 
+/**
+ * Builder for PIXI objects from given attributes
+ */
 export default class PIXIObjectBuilder {
 
-    scene: Scene;
-    locPosX?: number;
-    locPosY?: number;
-    anchorX?: number;
-    anchorY?: number;
-    relPosX?: number;
-    relPosY?: number;
-    absPosX?: number;
-    absPosY?: number;
-
-    zIndexVal?: number;
+    private scene: Scene;
+    private locPosX?: number;
+    private locPosY?: number;
+    private anchorX?: number;
+    private anchorY?: number;
+    private relPosX?: number;
+    private relPosY?: number;
+    private absPosX?: number;
+    private absPosY?: number;
 
     constructor(scene: Scene) {
         this.scene = scene;
     }
 
+    /**
+     * Sets an anchor
+     */
     anchor(x: number, y: number): PIXIObjectBuilder {
         this.anchorX = x;
         this.anchorY = y;
         return this;
     }
 
+    /**
+     * Sets position relative to the screen ([0,0] for topleft corner, [1,1] for bottomright corner)
+     */
     relativePos(x: number, y: number): PIXIObjectBuilder {
         this.relPosX = x;
         this.relPosY = y;
         return this;
     }
 
+    /**
+     * Sets local position
+     */
     localPos(x: number, y: number): PIXIObjectBuilder {
         this.locPosX = x;
         this.locPosY = y;
         return this;
     }
 
-    absPos(x: number, y: number): PIXIObjectBuilder {
+    /**
+     * Sets global position
+     */
+    globalPos(x: number, y: number): PIXIObjectBuilder {
         this.absPosX = x;
         this.absPosY = y;
-        return this;
-    }
-
-    zIndex(index: number): PIXIObjectBuilder {
-        this.zIndexVal = index;
         return this;
     }
 
@@ -52,6 +60,7 @@ export default class PIXIObjectBuilder {
         let pixiObj = object.getPixiObj();
 
         if (this.anchorX != null) {
+            // sprites and texts have anchors
             if (pixiObj instanceof PIXICmp.Sprite || pixiObj instanceof PIXICmp.Text) {
                 pixiObj.anchor.x = this.anchorX;
             } else {
@@ -60,6 +69,7 @@ export default class PIXIObjectBuilder {
         }
 
         if (this.anchorY != null) {
+            // sprites and texts have anchors
             if (pixiObj instanceof PIXICmp.Sprite || pixiObj instanceof PIXICmp.Text) {
                 pixiObj.anchor.y = this.anchorY;
             } else {

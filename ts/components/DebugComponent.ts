@@ -1,33 +1,36 @@
 import Component from '../engine/Component';
 import GameObjectProxy from '../engine/GameObjectProxy';
-import {MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ANY} from '../engine/Constants';
+import { MSG_ANY } from '../engine/Constants';
 import { PIXICmp } from '../engine/PIXIObject';
+import Msg from '../engine/Msg';
 
 /**
- * Debugging component that renders the whole scene graph
+ * Debugging component that display a scene graph
  */
 export default class DebugComponent extends Component {
-    targetHtmlElement : HTMLElement = null;
+    targetHtmlElement: HTMLElement = null;
     strWrapper: any = null;
 
-    constructor(targetHtmlElement) {
+    /**
+     * Constructor
+     * @param targetHtmlElement html element to which the debug info will be written (should be a div) 
+     */
+    constructor(targetHtmlElement: HTMLElement) {
         super();
-        this.targetHtmlElement = targetHtmlElement; // TODO add something more generic here
+        this.targetHtmlElement = targetHtmlElement;
         this.strWrapper = {
             str: ""
         };
     }
 
     onInit() {
-
         // subscribe to all messages
         this.subscribe(MSG_ANY);
     }
 
-    onMessage(msg) {
-        let ownerTag = msg.gameObject != null ? msg.gameObject.tag : "";
-        if (typeof (msg.action) == "string") {
-            console.log(msg.action + " >> " + ownerTag);
+    onMessage(msg: Msg) {
+        if (msg.gameObject != null) {
+            console.log(msg.action + " >> " + msg.gameObject.getTag());
         }
     }
 
@@ -48,18 +51,18 @@ export default class DebugComponent extends Component {
 
     protected processNode(node: GameObjectProxy, strWrapper, padding = 0) {
 
-        // transform:
+        // position
         strWrapper.str += "<strong><span style=\"color:red\">";
-        let bounds = node.gameObject.toGlobal(new PIXI.Point(0,0));
+        let bounds = node.pixiObj.toGlobal(new PIXI.Point(0, 0));
         strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
-            `rel:[${node.gameObject.position.x.toFixed(2)},${node.gameObject.position.y.toFixed(2)}]|abs:[${bounds.x.toFixed(2)},${bounds.y.toFixed(2)}]|rot: ${node.gameObject.rotation.toFixed(2)}` +
+            `rel:[${node.pixiObj.position.x.toFixed(2)},${node.pixiObj.position.y.toFixed(2)}]|abs:[${bounds.x.toFixed(2)},${bounds.y.toFixed(2)}]|rot: ${node.pixiObj.rotation.toFixed(2)}` +
             "<br>");
         strWrapper.str += "</span></strong>";
 
-        // mesh
+        // size
         strWrapper.str += "<strong><span style=\"color:purple\">";
         strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
-            `size:[${node.gameObject.width.toFixed(2)} x ${node.gameObject.height.toFixed(2)}]` +
+            `size:[${node.pixiObj.width.toFixed(2)} x ${node.pixiObj.height.toFixed(2)}]` +
             "<br>");
         strWrapper.str += "</span></strong>";
 
@@ -67,7 +70,7 @@ export default class DebugComponent extends Component {
         for (let [key, attr] of node.attributes) {
             strWrapper.str += "<strong><span style=\"color:red\">";
             strWrapper.str = strWrapper.str.concat(this.setPadding(padding + 2) +
-                `${key} => ${attr.toString()}` +
+                `${key} => ${JSON.stringify(attr)}` +
                 "<br>");
             strWrapper.str += "</span></strong>";
         }
@@ -80,7 +83,7 @@ export default class DebugComponent extends Component {
         }
 
         // children
-        for (let child of node.gameObject.children) {
+        for (let child of node.pixiObj.children) {
             let cmpChild = <PIXICmp.ComponentObject><any>child;
 
             strWrapper.str += "<span style=\"color:green\">";

@@ -3,13 +3,60 @@ import { PixiRunner } from '../ts/PixiRunner'
 import '../libs/pixi-display/pixi-layers.js';
 
 /**
+ * PixiRunner class moved from 'ts' folder before it was changed
+ */
+class PixiRunner_Old {
+    app: PIXI.Application = null;
+    lastTime = 0;
+    gameTime = 0;
+    ticker: PIXI.ticker.Ticker = null;
+    loopFunc: (delta: Number, absolute: Number) => void = null;
+
+    init(canvas: HTMLCanvasElement, initFunc: (app: PIXI.Application) => void, loopFunc: (delta: Number, absolute: Number) => void, resolution: number = 1) {
+        this.app = new PIXI.Application({
+            width: canvas.width / resolution,
+            height: canvas.height / resolution,
+            antialias: true,
+            view: canvas,
+            resolution: resolution // resolution/device pixel ratio
+        });
+
+        this.loopFunc = loopFunc;
+        this.ticker = PIXI.ticker.shared;
+        // stop the shared ticket and update it manually
+        this.ticker.autoStart = false;
+        this.ticker.stop();
+
+        // call the init function
+        initFunc(this.app);
+    }
+
+    start() {
+        this.loop(0);
+    }
+
+    private loop(time) {
+
+        let dt = (time - this.lastTime);
+        this.lastTime = time;
+        this.gameTime += dt;
+        // update our own logic 
+        this.loopFunc(dt, this.gameTime);
+        // draw PIXI internal
+        this.ticker.update(this.gameTime);
+        requestAnimationFrame((time) => this.loop(time));
+    }
+}
+
+
+/**
  * Base class for all examples
  */
 class Lecture2_Base {
     app: PIXI.Application;
-    runner: PixiRunner;
+    runner: PixiRunner_Old;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         this.app = app;
         this.runner = runner;
     }
@@ -33,7 +80,7 @@ class Lecture2_Container extends Lecture2_Base {
 
     container: PIXI.Container;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         PIXI.loader
@@ -74,7 +121,7 @@ class Lecture2_Click extends Lecture2_Base {
     sprite: PIXI.Sprite;
     rotationEnabled = true;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         PIXI.loader
@@ -117,7 +164,7 @@ class Lecture2_KeyEvent extends Lecture2_Base {
     playerBox: PIXI.Graphics;
     boxSize = 100;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         this.playerBox = new PIXI.Graphics();
@@ -151,7 +198,7 @@ class Lecture2_Particles extends Lecture2_Base {
     sprites: PIXI.particles.ParticleContainer;
     totalSprites = 2000;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         PIXI.loader
@@ -171,7 +218,7 @@ class Lecture2_Particles extends Lecture2_Base {
         });
 
         // ==TODO: create a new texture and set the frame to point at one of those sprites        
-        
+
         for (var i = 0; i < this.totalSprites; i++) {
             // ==TODO: create a new sprite, set a random position and add it to the collection of sprites
         }
@@ -198,7 +245,7 @@ class Lecture2_ZIndex extends Lecture2_Base {
     sprite1: PIXI.Sprite;
     sprite2: PIXI.Sprite;
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         PIXI.loader
@@ -243,7 +290,7 @@ class Lecture2_ZIndex extends Lecture2_Base {
  */
 class Lecture2_Wizard extends Lecture2_Base {
 
-    init(runner: PixiRunner, app: PIXI.Application) {
+    init(runner: PixiRunner_Old, app: PIXI.Application) {
         super.init(runner, app);
 
         // ==TODO: create anim.json and anim.png using TexturePacker, add it to the static folder 
@@ -270,7 +317,7 @@ class Lecture2_Wizard extends Lecture2_Base {
          */
 
 
-         this.app.stage.addChild(anim);
+        this.app.stage.addChild(anim);
 
         // start the update loop
         this.runner.start();
@@ -286,13 +333,13 @@ class Lecture2_Wizard extends Lecture2_Base {
  */
 export default class Lecture2 {
     app: PIXI.Application;
-    runner: PixiRunner;
+    runner: PixiRunner_Old;
 
     // TODO: assign appropriate example
     currentExample: Lecture2_Base = new Lecture2_Container();
 
     constructor() {
-        this.runner = new PixiRunner();
+        this.runner = new PixiRunner_Old();
         this.runner.init(<HTMLCanvasElement>document.getElementById('gameCanvas'),
             this.init.bind(this),
             this.update.bind(this), 1);
