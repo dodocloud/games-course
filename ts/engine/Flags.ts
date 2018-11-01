@@ -3,7 +3,7 @@
  * Bit array for flags
  */
 export default class Flags {
-    // flag array 1-256
+    // flag array 1-255
     flags1: number = 0;
     flags2: number = 0;
     flags3: number = 0;
@@ -13,8 +13,8 @@ export default class Flags {
      * Returns true, if given flag is set
      */
     hasFlag(flag: number) {
-        if (flag < 1 || flag > 256) {
-            throw new Error("Only flag values between 1-256 are supported");
+        if (flag < 1 || flag > 255) {
+            throw new Error("Only flag values between 1-255 are supported");
         }
         let index = this.getFlagIndex(flag);
         let offset = this.getFlagOffset(flag);
