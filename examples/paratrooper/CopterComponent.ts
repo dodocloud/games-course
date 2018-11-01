@@ -12,9 +12,9 @@ export class CopterComponent extends Component {
     factory: ParatrooperFactory;
 
     onInit() {
-        this.gameModel = this.scene.root.getAttribute<ParatrooperModel>(ATTR_MODEL);
+        this.gameModel = this.scene.stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
         this.spawnFrequency = this.gameModel.paratrooperSpawnFrequency;
-        this.factory = this.scene.root.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
+        this.factory = this.scene.stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
     }
 
     onUpdate(delta: number, absolute: number) {

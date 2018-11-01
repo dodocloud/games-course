@@ -16,8 +16,8 @@ export class CannonController extends Component {
     factory: ParatrooperFactory;
 
     onInit() {
-        this.gameModel = this.owner.getScene().root.getAttribute<ParatrooperModel>(ATTR_MODEL);
-        this.factory = this.owner.getScene().root.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
+        this.gameModel = this.owner.getScene().stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
+        this.factory = this.owner.getScene().stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
     }
 
     rotate(direction: number, delta: number) {
@@ -48,7 +48,7 @@ export class CannonController extends Component {
 
 export class CannonInputController extends CannonController {
     onUpdate(delta: number, absolute: number) {
-        let cmp = this.scene.root.findComponentByClass(KeyInputComponent.name);
+        let cmp = this.scene.stage.findComponentByClass(KeyInputComponent.name);
         let cmpKey = <KeyInputComponent><any>cmp;
 
         if (cmpKey.isKeyPressed(KEY_LEFT)) {

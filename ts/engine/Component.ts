@@ -18,7 +18,7 @@ export default class Component {
 	// link to scene
 	scene: Scene = null;
 
-	constructor() {
+	constructor() { 
 		this.id = Component.idCounter++;
 	}
 

@@ -14,9 +14,9 @@ export class CopterSpawner extends Component {
 
     onInit() {
         this.subscribe(MSG_UNIT_KILLED);
-        this.model = this.scene.root.getAttribute<ParatrooperModel>(ATTR_MODEL);
+        this.model = this.scene.stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
         this.spawnFrequency = this.model.copterSpawnFrequency;
-        this.factory = this.scene.root.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
+        this.factory = this.scene.stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
     }
 
     onMessage(msg: Msg) {

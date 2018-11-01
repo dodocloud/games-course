@@ -1,6 +1,6 @@
 import { ATTR_DYNAMICS, TEXTURE_COPTER_LEFT, TEXTURE_COPTER_RIGHT } from './constants';
 import Component from "../../ts/engine/Component";
-import Vec2 from './Vec2';
+import Vec2 from '../../ts/utils/Vec2';
 import Dynamics from './Dynamics';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 

@@ -1,5 +1,5 @@
 
-import Vec2 from './Vec2';
+import Vec2 from '../../ts/utils/Vec2';
 
 export default class Dynamics {
     acceleration = new Vec2(0);

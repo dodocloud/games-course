@@ -15,8 +15,8 @@ export class GameManager extends Component {
         this.subscribe(MSG_UNIT_KILLED);
         this.subscribe(MSG_UNIT_LANDED);
 
-        this.model = this.scene.root.getAttribute<ParatrooperModel>(ATTR_MODEL);
-        this.factory = this.scene.root.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
+        this.model = this.scene.stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
+        this.factory = this.scene.stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
     }
 
     onMessage(msg: Msg) {

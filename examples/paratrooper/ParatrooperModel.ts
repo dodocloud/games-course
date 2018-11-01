@@ -6,31 +6,31 @@ export class ParatrooperModel {
     isGameOver = false;
 
     // static data
-    maxLandedUnits = 0;
-    minCannonAngle = 0;
-    maxCannonAngle = 0;
-    cannonFireRate = 0;
-    paratrooperSpawnFrequency = 0;
-    copterSpawnFrequency = 0;
-    copterReward = 0;
-    paratrooperFallingReward = 0;
-    paratrooperShotReward = 0;
-    shootPenalty = 0;
-    projectileVelocity = 0;
-    gravity = 0;
-    parachuteDecceleration = 0;
+    maxLandedUnits = 10;
+    minCannonAngle = -45;
+    maxCannonAngle = 45;
+    cannonFireRate = 6;
+    paratrooperSpawnFrequency = 0.4;
+    copterSpawnFrequency = 0.2;
+    copterReward = 10;
+    paratrooperFallingReward = 2;
+    paratrooperShotReward = 1;
+    shootPenalty = 1;
+    projectileVelocity = 0.5;
+    gravity = 0.0005;
+    parachuteDecceleration = 0.013;
 
     // positions for copter spawning (in relative units)
-    copterSpawnMinY = 0;
-    copterSpawnMaxY = 0;
+    copterSpawnMinY = 0.1;
+    copterSpawnMaxY = 0.2;
 
-    copterMinVelocity = 0;
-    copterMaxVelocity = 0;
+    copterMinVelocity = 0.1;
+    copterMaxVelocity = 0.15;
 
     // the altitude where the paratrooper should open his parachute
-    parachuteOpenAltitude = 0;
+    parachuteOpenAltitude = 20;
     // min velocity where the decceleration upon parachute opening should take place
-    parachuteOpenVelocityThreshold = 0;
+    parachuteOpenVelocityThreshold = 0.05;
 
     /**
      * Resets dynamic data

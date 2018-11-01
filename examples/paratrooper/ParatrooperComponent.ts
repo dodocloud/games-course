@@ -4,7 +4,7 @@ import { ParatrooperModel } from './ParatrooperModel';
 import Component from "../../ts/engine/Component";
 import { PIXICmp } from "../../ts/engine/PIXIObject";
 import Dynamics from './Dynamics';
-import Vec2 from './Vec2';
+import Vec2 from '../../ts/utils/Vec2';
 
 export class ParatrooperComponent extends Component {
     ground: PIXICmp.ComponentObject;
@@ -14,7 +14,7 @@ export class ParatrooperComponent extends Component {
     onInit() {
         this.ground = this.scene.findFirstObjectByTag(TAG_GROUND);
         this.lastState = this.owner.getState();
-        this.model = this.scene.root.getAttribute<ParatrooperModel>(ATTR_MODEL);
+        this.model = this.scene.stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
     }
 
     onUpdate(delta: number, absolute: number) {

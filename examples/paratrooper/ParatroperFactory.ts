@@ -15,38 +15,13 @@ import { ScoreComponent, LivesComponent } from './ScoreComponent';
 import { CannonInputController } from './CannonController';
 import PIXIObjectBuilder from '../../ts/engine/PIXIObjectBuilder';
 import Dynamics from './Dynamics';
-import Vec2 from './Vec2';
+import Vec2 from '../../ts/utils/Vec2';
 import { ParatrooperComponent } from './ParatrooperComponent';
 import { KeyInputComponent } from '../../ts/components/KeyInputComponent';
 import Scene from '../../ts/engine/Scene';
 import DebugComponent from '../../ts/components/DebugComponent';
 
 export default class ParatrooperFactory {
-    resetGamePending = false;
-
-    loadGameModel(): ParatrooperModel {
-        let model = new ParatrooperModel();
-        model.maxLandedUnits = 10;
-        model.minCannonAngle = -45;
-        model.maxCannonAngle = 45;
-        model.cannonFireRate = 6;
-        model.paratrooperSpawnFrequency = 0.4;
-        model.copterSpawnFrequency = 0.2;
-        model.copterReward = 10;
-        model.paratrooperFallingReward = 2;
-        model.paratrooperShotReward = 1;
-        model.shootPenalty = 1;
-        model.projectileVelocity = 0.5;
-        model.gravity = 0.0005;
-        model.parachuteDecceleration = 0.003;
-        model.copterSpawnMinY = 0.1;
-        model.copterSpawnMaxY = 0.2;
-        model.copterMinVelocity = 0.1;
-        model.copterMaxVelocity = 0.15;
-        model.parachuteOpenAltitude = 20;
-        model.parachuteOpenVelocityThreshold = 0.05;
-        return model;
-    }
 
     initializeGame(rootObject: PIXICmp.ComponentObject, model: ParatrooperModel) {
         let scene = rootObject.getScene();
@@ -123,7 +98,7 @@ export default class ParatrooperFactory {
         let projectile = new PIXICmp.Sprite(TAG_PROJECTILE, PIXI.Texture.fromImage(TEXTURE_PROJECTILE));
         projectile.setFlag(FLAG_PROJECTILE);
 
-        let rootObject = canon.getScene().root;
+        let rootObject = canon.getScene().stage;
         rootObject.getPixiObj().addChild(projectile);
 
         let canonPixi = canon.getPixiObj();
@@ -160,7 +135,7 @@ export default class ParatrooperFactory {
         dynamics.acceleration = new Vec2(0, model.gravity);
         paratrooper.addAttribute(ATTR_DYNAMICS, dynamics);
 
-        let root = owner.getScene().root;
+        let root = owner.getScene().stage;
         root.getPixiObj().addChild(paratrooper);
         paratrooper.setState(STATE_FALLING);
         paratrooper.addComponent(new ParatrooperComponent());
@@ -169,7 +144,7 @@ export default class ParatrooperFactory {
     createCopter(owner: PIXICmp.ComponentObject, model: ParatrooperModel) {
         let copter = new PIXICmp.Sprite(TAG_COPTER, PIXI.Texture.fromImage(TEXTURE_COPTER_LEFT));
         copter.setFlag(FLAG_COLLIDABLE);
-        let root = owner.getScene().root;
+        let root = owner.getScene().stage;
         root.getPixiObj().addChild(copter);
 
         // 50% probability that the copter will be spawned on the left side
@@ -191,8 +166,8 @@ export default class ParatrooperFactory {
 
     resetGame(scene: Scene) {
         scene.clearScene();
-        let model = this.loadGameModel();
+        let model = new ParatrooperModel();
         scene.addGlobalAttribute(ATTR_FACTORY, this);
-        this.initializeGame(scene.root, model);
+        this.initializeGame(scene.stage, model);
     }
 }

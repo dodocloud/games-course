@@ -59,6 +59,38 @@ export default class PIXIObjectBuilder {
     build(object: PIXICmp.ComponentObject): PIXICmp.ComponentObject {
         let pixiObj = object.getPixiObj();
 
+        if (this.locPosX != null) {
+            pixiObj.position.x = this.locPosX;
+        }
+
+        if (this.locPosY != null) {
+            pixiObj.position.y = this.locPosY;
+        }
+
+        if (this.relPosX != null) {
+            let point = new PIXI.Point();
+            point.x = this.relPosX * this.scene.app.screen.width;
+            pixiObj.position.x = pixiObj.toLocal(point, this.scene.stage.getPixiObj()).x;
+        }
+
+        if (this.relPosY != null) {
+            let point = new PIXI.Point();
+            point.y = this.relPosY * this.scene.app.screen.height;
+            pixiObj.position.y = pixiObj.toLocal(point, this.scene.stage.getPixiObj()).y;
+        }
+
+        if (this.absPosX != null) {
+            let point = new PIXI.Point();
+            point.x = this.absPosX;
+            pixiObj.position.x = pixiObj.toLocal(point, this.scene.stage.getPixiObj()).x;
+        }
+
+        if (this.absPosY != null) {
+            let point = new PIXI.Point();
+            point.y = this.absPosY;
+            pixiObj.position.y = pixiObj.toLocal(point, this.scene.stage.getPixiObj()).y;
+        }
+
         if (this.anchorX != null) {
             // sprites and texts have anchors
             if (pixiObj instanceof PIXICmp.Sprite || pixiObj instanceof PIXICmp.Text) {
@@ -77,37 +109,15 @@ export default class PIXIObjectBuilder {
             }
         }
 
-        if (this.locPosX != null) {
-            pixiObj.position.x = this.locPosX;
-        }
 
-        if (this.locPosY != null) {
-            pixiObj.position.y = this.locPosY;
-        }
-
-        if (this.relPosX != null) {
-            let point = new PIXI.Point();
-            point.x = this.relPosX * this.scene.app.screen.width;
-            pixiObj.position.x = pixiObj.toLocal(point, this.scene.root.getPixiObj()).x;
-        }
-
-        if (this.relPosY != null) {
-            let point = new PIXI.Point();
-            point.y = this.relPosY * this.scene.app.screen.height;
-            pixiObj.position.y = pixiObj.toLocal(point, this.scene.root.getPixiObj()).y;
-        }
-
-        if (this.absPosX != null) {
-            let point = new PIXI.Point();
-            point.x = this.absPosX;
-            pixiObj.position.x = pixiObj.toLocal(point, this.scene.root.getPixiObj()).x;
-        }
-
-        if (this.absPosY != null) {
-            let point = new PIXI.Point();
-            point.y = this.absPosY;
-            pixiObj.position.y = pixiObj.toLocal(point, this.scene.root.getPixiObj()).y;
-        }
+        this.locPosX = null;
+        this.locPosY = null;
+        this.anchorX = null;
+        this.anchorY = null;
+        this.relPosX = null;
+        this.relPosY = null;
+        this.absPosX = null;
+        this.absPosY = null;
 
         return object;
     }

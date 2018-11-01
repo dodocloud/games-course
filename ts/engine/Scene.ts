@@ -22,7 +22,7 @@ export default class Scene {
     app: PIXI.Application;
 
     // PIXI stage object 
-    root: PIXICmp.ComponentObject = null;
+    stage: PIXICmp.ComponentObject = null;
     // collection of actions that should be invoked with a delay
     private pendingInvocations;
     // message action keys and all subscribers that listens to all these actions
@@ -56,35 +56,42 @@ export default class Scene {
      * Adds a component to the stage object
      */
     addGlobalComponent(cmp: Component) {
-        this.root.addComponent(cmp);
+        this.stage.addComponent(cmp);
+    }
+
+    /**
+    * Tries to find a global component by its class
+    */
+    findGlobalComponentByClass(className: string): Component {
+        return this.stage.findComponentByClass(className);
     }
 
     /**
      * Removes a component from a stage object
      */
     removeGlobalComponent(cmp: Component) {
-        this.root.removeComponent(cmp);
+        this.stage.removeComponent(cmp);
     }
 
     /**
      * Inserts a global attribute
      */
     addGlobalAttribute(key: string, val: any) {
-        this.root.addAttribute(key, val);
+        this.stage.addAttribute(key, val);
     }
 
     /**
      * Gets a global attribute by its id
      */
     getGlobalAttribute(key: string): any {
-        return this.root.getAttribute(key);
+        return this.stage.getAttribute(key);
     }
 
     /**
      * Removes a global attribute by its key 
      */
     removeGlobalAttribute(key: string): boolean {
-        return this.root.removeAttribute(key);
+        return this.stage.removeAttribute(key);
     }
 
     /**
@@ -176,7 +183,7 @@ export default class Scene {
         let newStage = new PIXICmp.Container();
         this.app.stage = newStage; // reassign the default stage with our custom one (we need objects from PIXICmp namespace only)
         newStage.proxy.scene = this; // assign a scene
-        this.root = newStage;
+        this.stage = newStage;
         this._addGameObject(newStage.proxy);
         this.app.stage.removeChildren(); // clear the stage
 
@@ -198,7 +205,7 @@ export default class Scene {
         }
 
         // update root object and all other objects recursively
-        this.root.proxy.update(delta, absolute);
+        this.stage.proxy.update(delta, absolute);
     }
 
 
@@ -237,6 +244,11 @@ export default class Scene {
 
         this.gameObjectTags.get(obj.tag).set(obj.id, obj);
         this.gameObjects.set(obj.id, obj);
+
+        // assign scene to all components (must be done for the case when components were added beforehand
+        for (let [key, component] of obj.components) {
+            component.scene = this;
+        }
 
         // assign scene
         obj.scene = this;
