@@ -58,8 +58,6 @@ class Paratrooper {
 
     onAssetsLoaded() {
         let factory = new ParatrooperFactory();
-        let model = new ParatrooperModel();
-        model.loadModel(PIXI.loader.resources[DATA_JSON].data);
         factory.resetGame(this.engine.scene);
     }
 }

@@ -5,9 +5,9 @@ import { ProjectileComponent } from './ProjectileComponent';
 import { SoundComponent } from './SoundComponent';
 import {
     ATTR_FACTORY, TAG_TOWER, TAG_TURRET, TAG_CANNON, TAG_GROUND, TEXTURE_TOWER, TEXTURE_TURRET, TEXTURE_CANNON,
-    TAG_SCORE, TAG_GAMEOVER, TAG_LIVES, TAG_PROJECTILE, TEXTURE_PROJECTILE, TAG_PARATROOPER,
+    TAG_SCORE, TAG_GAMEOVER, TAG_LIVES, TAG_PROJECTILE, TEXTURE_PROJECTILE, TAG_PARATROOPER, MSG_UNIT_KILLED,
     TEXTURE_PARATROOPER, STATE_FALLING, TAG_COPTER, TEXTURE_COPTER_LEFT, ATTR_MODEL, DATA_JSON, FLAG_PROJECTILE, FLAG_COLLIDABLE
-} from './constants';
+} from './Constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
 import { CopterSpawner } from './CopterSpawner';
@@ -23,7 +23,6 @@ import DebugComponent from '../../ts/components/DebugComponent';
 import { GenericComponent } from '../../ts/components/GenericComponent';
 import Dynamics from '../../ts/utils/Dynamics';
 import { CopterMovement } from './CopterMovement';
-import { MSG_UNIT_KILLED } from './Constants';
 import ChainingComponent from '../../ts/components/ChainingComponent';
 import { DeathAnimation } from './DeathAnimation';
 import { CollisionResolver } from './CollisionResolver';
