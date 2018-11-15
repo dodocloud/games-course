@@ -165,19 +165,7 @@ export default class Starshooter {
                     if (cmpKey.isKeyPressed(KEY_I)) camera.size(camera.width / 1.01);
                     if (cmpKey.isKeyPressed(KEY_UP)) dyn.velocity = dyn.velocity.add(new Vec2(2 * Math.cos(player.rotation), 2 * Math.sin(player.rotation))).limit(100);
                     if (cmpKey.isKeyPressed(KEY_X)) {
-                        // spawn projectile
-                        let projectile = new PIXICmp.Graphics();
-                        projectile.beginFill(0xFFFFFF);
-                        projectile.drawCircle(0, 0, 4);
-                        projectile.endFill();
-                        let dynamics = new Dynamics(dyn.velocity.add(new Vec2(10 * Math.cos(cmp.owner.getPixiObj().rotation), 10 * Math.sin(cmp.owner.getPixiObj().rotation))));
-                        new PIXIObjectBuilder(scene)
-                            .withFlag(FLAG_PROJECTILE)
-                            .withAttribute(ATTR_PROJ_OWNER, player)
-                            .localPos(player.position.x + 100 * Math.cos(cmp.owner.getPixiObj().rotation), player.position.y + 100 * Math.sin(cmp.owner.getPixiObj().rotation))
-                            .withComponent(new DynamicsComponent(100))
-                            .withAttribute(ATTR_DYNAMICS, dynamics)
-                            .build(projectile, rootObject);
+                        // TODO Spawn Projectile
                     }
                 })
             )
