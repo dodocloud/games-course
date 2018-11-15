@@ -32,7 +32,7 @@ export const FLAG_PROJECTILE = 2;
 /**
  * Component that prevents objects from penetrating the wall
  */
-class BorderWatcher extends Component {
+class CollisionChecker extends Component {
     borders = new Array<PIXICmp.ComponentObject>();
     rockets = new Array<PIXICmp.ComponentObject>();
     projectiles = new Array<PIXICmp.ComponentObject>();
@@ -144,7 +144,7 @@ export default class Starshooter {
         // add root components
         builder
             .withComponent(new KeyInputComponent())
-            .withComponent(new BorderWatcher())
+            .withComponent(new CollisionChecker())
             .withComponent(camera)
             .build(rootObject);
 
