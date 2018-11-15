@@ -1,6 +1,5 @@
-import * as PIXI from 'pixi.js'
-import { PixiRunner } from '../ts/PixiRunner'
-import '../libs/pixi-display/pixi-layers.js';
+import * as PIXI from 'pixi.js';
+import '../../libs/pixi-display/pixi-layers.js';
 
 /**
  * PixiRunner class moved from 'ts' folder before it was changed

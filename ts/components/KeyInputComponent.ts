@@ -5,6 +5,8 @@ export const KEY_UP = 38;
 export const KEY_RIGHT = 39;
 export const KEY_DOWN = 40;
 export const KEY_X = 88;
+export const KEY_U = 85;
+export const KEY_I = 73;
 
 /**
  * Component for key-input handling

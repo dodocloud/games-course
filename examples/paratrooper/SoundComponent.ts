@@ -1,29 +1,17 @@
-import Component from "../../ts/engine/Component";
 import { MSG_PROJECTILE_SHOT, MSG_GAME_OVER, MSG_UNIT_KILLED, SOUND_FIRE, SOUND_GAMEOVER, SOUND_KILL } from './constants';
-import Msg from '../../ts/engine/Msg';
+import { GenericComponent } from '../../ts/components/GenericComponent';
 
+/**
+ * Sound handler
+ */
+export class SoundComponent extends GenericComponent {
 
-export class SoundComponent extends Component {
-    onInit() {
-        this.subscribe(MSG_PROJECTILE_SHOT);
-        this.subscribe(MSG_GAME_OVER);
-        this.subscribe(MSG_UNIT_KILLED);
-    }
+    constructor(){
+        super(SoundComponent.name);
 
-    onMessage(msg: Msg) {
-        if (msg.action == MSG_PROJECTILE_SHOT) {
-            let sound = <any>PIXI.loader.resources[SOUND_FIRE];
-            sound.sound.play();
-        }
-
-        if (msg.action == MSG_GAME_OVER) {
-            let sound = <any>PIXI.loader.resources[SOUND_GAMEOVER];
-            sound.sound.play();
-        }
-
-        if (msg.action == MSG_UNIT_KILLED) {
-            let sound = <any>PIXI.loader.resources[SOUND_KILL];
-            sound.sound.play();
-        }
+        // using generic component is much simpler in this case
+        this.doOnMessage(MSG_PROJECTILE_SHOT, (cmp, msg) => (<any>PIXI.loader.resources[SOUND_FIRE]).sound.play());
+        this.doOnMessage(MSG_GAME_OVER, (cmp, msg) => (<any>PIXI.loader.resources[SOUND_GAMEOVER]).sound.play());
+        this.doOnMessage(MSG_UNIT_KILLED, (cmp, msg) => (<any>PIXI.loader.resources[SOUND_KILL]).sound.play());
     }
 }

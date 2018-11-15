@@ -1,11 +1,11 @@
+import { GenericComponent } from './../components/GenericComponent';
 import Component from './Component';
 import Scene from './Scene'
 import Msg from './Msg';
 import { PIXICmp } from './PIXIObject';
 import Flags from './Flags';
-
 import {
-	MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ANY,
+	MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ANY, MSG_STATE_CHANGED,
 } from './Constants';
 
 
@@ -32,6 +32,8 @@ export default class GameObjectProxy {
 	attributes: Map<string, any> = new Map<string, any>();
 	// link to scene
 	scene: Scene = null;
+	// list of components that will be added at the end of update loop
+	componentsToAdd = new Array<Component>();
 
 	constructor(tag: string, pixiObj: PIXICmp.ComponentObject) {
 		this.id = GameObjectProxy.idCounter++;
@@ -39,14 +41,12 @@ export default class GameObjectProxy {
 		this.pixiObj = <PIXI.Container><any>pixiObj;
 	}
 
+
 	/**
 	 * Adds a new component
 	 */
 	addComponent(component: Component) {
-		component.owner = <PIXICmp.ComponentObject><any>this.pixiObj;
-		component.scene = this.scene;
-		this.components.set(component.id, component);
-		component.onInit();
+		this.componentsToAdd.push(component);
 	}
 
 	/**
@@ -87,7 +87,7 @@ export default class GameObjectProxy {
 	 */
 	findComponentByClass(name: string) {
 		for (let [key, cmp] of this.components) {
-			if (cmp.constructor.name == name) return cmp;
+			if (cmp.constructor.name == name || (cmp instanceof GenericComponent && cmp.name == name)) return cmp;
 		}
 		return null;
 	}
@@ -147,12 +147,14 @@ export default class GameObjectProxy {
 	getState(): number {
 		return this.state;
 	}
-	
+
 	/**
 	 * Sets state of this object
 	 */
 	setState(state: number) {
+		let previous = this.state;
 		this.state = state;
+		this.scene.sendMessage(new Msg(MSG_STATE_CHANGED, null, <PIXICmp.ComponentObject><any>this.pixiObj, [previous, state]));
 	}
 
 	/**
@@ -180,6 +182,18 @@ export default class GameObjectProxy {
 		for (let child of this.pixiObj.children) {
 			let cmpChild = <PIXICmp.ComponentObject><any>child;
 			cmpChild.proxy.update(delta, absolute);
+		}
+
+		if (this.componentsToAdd.length != 0) {
+			// add components that are to be updated
+			for (let component of this.componentsToAdd) {
+				component.owner = <PIXICmp.ComponentObject><any>this.pixiObj;
+				component.scene = this.scene;
+				this.components.set(component.id, component);
+				component.onInit();
+			}
+
+			this.componentsToAdd = new Array<Component>();
 		}
 	}
 }

@@ -3,7 +3,7 @@
  * operations. All operations on this class produce a new copy of the vector
  * instead of modifying the vector in place.
  */
-class Vec2 {
+export default class Vec2 {
     /** The x-coordinate of the vector */
     x: number;
 
@@ -46,6 +46,13 @@ class Vec2 {
      */
     divide(scalar: number): Vec2 {
         return new Vec2(this.x / scalar, this.y / scalar);
+    }
+
+    /**
+     * Return Euklidean distance between two vectors(points)
+     */
+    distance(other: Vec2) : number {
+        return new Vec2(this.x - other.x, this.y - other.y).magnitude();
     }
 
     /**
@@ -99,6 +106,21 @@ class Vec2 {
     cross(other: Vec2): number {
         return this.x * other.y - other.x * this.y;
     }
-}
 
-export = Vec2;
+    /**
+     * Limits the vector size
+     */
+    limit(magnitude): Vec2 {
+        let mag = this.magnitudeSquared();
+        let limitSqrt = Math.sqrt(magnitude);
+        if (limitSqrt < mag) {
+            return new Vec2(this.x / Math.sqrt(mag / magnitude), this.y / Math.sqrt(mag / magnitude));
+        } else {
+            return this.clone();
+        }
+    }
+
+    clone(): Vec2 {
+        return new Vec2(this.x, this.y);
+    }
+}

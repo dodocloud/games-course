@@ -18,7 +18,7 @@ export default class Component {
 	// link to scene
 	scene: Scene = null;
 
-	constructor() { 
+	constructor() {
 		this.id = Component.idCounter++;
 	}
 
@@ -60,8 +60,11 @@ export default class Component {
 	/**
 	 * Subscribes itself as a listener for action with given key
 	 */
-	subscribe(action: string) {
+	subscribe(action: string, ...actions: string[]) {
 		this.scene._subscribeComponent(action, this);
+		for (let action of actions) {
+			this.scene._subscribeComponent(action, this);
+		}
 	}
 
 	/**

@@ -73,15 +73,22 @@ class Stack {
     }
 }
 
+/**
+ * Node for ChainingComponent, represents a command context
+ */
 class ExNode {
+    // key taken from CMD_XXX constants
     key = 0;
+    // custom parameters
     param1: any = null;
     param2: any = null;
     param3: any = null;
+    // cached custom parameters
     param1A: any = null;
     param2A: any = null;
     param3A: any = null;
     cached: boolean = false;
+    // link to previous and next node
     next: ExNode = null;
     previous: ExNode = null;
 
@@ -96,6 +103,9 @@ class ExNode {
         this.param3A = null;
     }
 
+    /**
+     * Caches params or their results (if a corresponding parameter is a function) into param<num>A variables
+     */
     cacheParams() {
         if (!this.cached) {
             if (this.param1 != null) {
@@ -114,6 +124,9 @@ class ExNode {
         }
     }
 
+    /**
+     * Gets result of param 1
+     */
     getParam1() {
         if (!this.cached) {
             this.cacheParams();
@@ -125,6 +138,9 @@ class ExNode {
         this.param1A = val;
     }
 
+    /**
+     * Gets result of param 2
+     */
     getParam2() {
         if (!this.cached) {
             this.cacheParams();
@@ -136,6 +152,9 @@ class ExNode {
         this.param2A = val;
     }
 
+    /**
+     * Gets result of param 3
+     */
     getParam3() {
         if (!this.cached) {
             this.cacheParams();
@@ -157,12 +176,14 @@ class ExNode {
  * Component that executes a chain of commands during the update loop
  */
 export default class ChainingComponent extends Component {
+    // stack of current scope
     scopeStack = new Stack();
+    // current node
     current: ExNode = null;
     // linked list
     head: ExNode = null;
     tail: ExNode = null;
-    // custom parameters
+    // help parameters used for processing one node
     helpParam: any = null;
     helpParam2: any = null;
 
@@ -641,7 +662,7 @@ export default class ChainingComponent extends Component {
         this.current = this.current.next;
     }
 
-    // goes to the next node immediately
+    // goes to the next node and re-executes the update loop
     protected gotoNextImmediately(delta: number, absolute: number) {
         this.current = this.current.next;
         this.onUpdate(delta, absolute);

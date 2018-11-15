@@ -1,36 +1,60 @@
 export class ParatrooperModel {
-    // dynamic data
+    // ========================= dynamic data
     score = 0;
     landedUnits = 0;
     coptersCreated = 0;
     isGameOver = false;
+    // ========================= 
 
-    // static data
-    maxLandedUnits = 10;
-    minCannonAngle = -45;
-    maxCannonAngle = 45;
-    cannonFireRate = 6;
-    paratrooperSpawnFrequency = 0.4;
-    copterSpawnFrequency = 0.2;
-    copterReward = 10;
-    paratrooperFallingReward = 2;
-    paratrooperShotReward = 1;
-    shootPenalty = 1;
-    projectileVelocity = 0.5;
-    gravity = 0.0005;
-    parachuteDecceleration = 0.013;
+
+    // ========================= static data
+    maxLandedUnits;
+    minCannonAngle;
+    maxCannonAngle;
+    cannonFireRate;
+    paratrooperSpawnFrequency;
+    copterSpawnFrequency;
+    copterReward;
+    paratrooperFallingReward;
+    paratrooperShotReward;
+    shootPenalty;
+    projectileVelocity;
+    gravity;
+    parachuteDecceleration;
 
     // positions for copter spawning (in relative units)
-    copterSpawnMinY = 0.1;
-    copterSpawnMaxY = 0.2;
+    copterSpawnMinY;
+    copterSpawnMaxY;
 
-    copterMinVelocity = 0.1;
-    copterMaxVelocity = 0.15;
+    copterMinVelocity;
+    copterMaxVelocity;
 
     // the altitude where the paratrooper should open his parachute
-    parachuteOpenAltitude = 20;
+    parachuteOpenAltitude;
     // min velocity where the decceleration upon parachute opening should take place
-    parachuteOpenVelocityThreshold = 0.05;
+    parachuteOpenVelocityThreshold;
+
+    loadModel(data: any) {
+        this.maxLandedUnits = data.max_landed_units;
+        this.minCannonAngle = data.min_cannon_angle;
+        this.maxCannonAngle = data.max_cannon_angle;
+        this.cannonFireRate = data.cannon_fire_rate;
+        this.paratrooperSpawnFrequency = data.paratrooper_spawn_frequency;
+        this.copterSpawnFrequency = data.copter_spawn_frequency;
+        this.copterReward = data.copter_reward;
+        this.paratrooperFallingReward = data.paratrooper_falling_reward;
+        this.paratrooperShotReward = data.paratrooper_shot_reward;
+        this.shootPenalty = data.shoot_penalty;
+        this.projectileVelocity = data.projectile_velocity;
+        this.gravity = data.gravity;
+        this.parachuteDecceleration = data.parachute_decceleration;
+        this.copterSpawnMinY = data.copter_spawn_min_y;
+        this.copterSpawnMaxY = data.copter_spawn_max_y;
+        this.copterMinVelocity = data.copter_min_velocity;
+        this.copterMaxVelocity = data.copter_max_velocity;
+        this.parachuteOpenAltitude = data.parachute_open_altitude;
+        this.parachuteOpenVelocityThreshold = data.parachute_open_velocity_threshold;
+    }
 
     /**
      * Resets dynamic data

@@ -23,13 +23,13 @@ class Components {
 
         PIXI.loader
             .reset()    // necessary for hot reload
-            .add(TEXTURE_ROCKET, 'rocket.png')
+            .add(TEXTURE_ROCKET, 'static/examples/rocket.png')
             .load(() => this.onAssetsLoaded());
     }
 
     onAssetsLoaded() {
         // load example
-        new Example2().init(this.engine.scene);
+        new Example1().init(this.engine.scene);
     }
 }
 

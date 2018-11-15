@@ -1,57 +1,41 @@
-import { ATTR_MODEL, ATTR_FACTORY, ATTR_DYNAMICS, TAG_TOWER, MSG_PARATROOPER_CREATED } from './constants';
+import { DynamicsComponent } from './../../ts/components/DynamicsComponent';
+import { ATTR_MODEL, ATTR_FACTORY, TAG_TOWER, MSG_PARATROOPER_CREATED } from './constants';
 import Component from "../../ts/engine/Component";
 import { ParatrooperModel } from './ParatrooperModel';
 import ParatrooperFactory from './ParatroperFactory';
-import Dynamics from './Dynamics';
 import { checkTime } from './Utils';
+import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';
+import Dynamics from '../../ts/utils/Dynamics';
 
-export class CopterComponent extends Component {
+/**
+ * Simple logic for copters
+ */
+export class CopterComponent extends ParatrooperBaseCmp {
     lastSpawnTime = 0;
-    gameModel: ParatrooperModel;
     spawnFrequency = 0;
-    factory: ParatrooperFactory;
 
     onInit() {
-        this.gameModel = this.scene.stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
-        this.spawnFrequency = this.gameModel.paratrooperSpawnFrequency;
-        this.factory = this.scene.stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
+        super.onInit();
+        // store frequency into variable since it's dynamic
+        this.spawnFrequency = this.model.paratrooperSpawnFrequency;
     }
 
     onUpdate(delta: number, absolute: number) {
-        let dynamics = this.owner.getAttribute<Dynamics>(ATTR_DYNAMICS);
-        dynamics.update(delta, 1);
-        let velocity = dynamics.velocity;
-
-        // calculate delta position 
-        let deltaPos = dynamics.calcDelta(delta, 1);
-        this.owner.getPixiObj().position.x += deltaPos.x;
-
-        // check boundaries
-        let globalPos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
-
-        if ((velocity.x > 0 && globalPos.x > this.owner.getScene().app.screen.width)
-            || (velocity.x < 0 && globalPos.x < -this.owner.getPixiObj().width)) {
-            velocity.x = -velocity.x;
-        }
-
-        this.tryCreateParatrooper(absolute);
-    }
-
-    tryCreateParatrooper(absolute: number) {
+        // spawn new paratroopers with at certain frequency
         if (checkTime(this.lastSpawnTime, absolute, this.spawnFrequency)) {
             this.lastSpawnTime = absolute;
+            // copter bounding box
             let bbox = this.owner.getPixiObj().getBounds();
-            let pos = this.owner.getPixiObj().toGlobal(new PIXI.Point(0,0));
-
+            
             // 65% prob at each step
             if (Math.random() > 0.35) {
                 let tower = this.scene.findFirstObjectByTag(TAG_TOWER);
                 let towerBB = tower.getPixiObj().getBounds();
 
-                // don't drop paratrooper above the owner
-                if (pos.x > this.owner.getPixiObj().width && bbox.right < towerBB.left || pos.x > towerBB.right) {
-                    this.spawnFrequency /= 1.1; // drop with lower frequency
-                    this.factory.createParatrooper(this.owner, this.gameModel);
+                // don't drop paratrooper above the tower
+                if (bbox.left > 0 && bbox.right < this.scene.app.screen.width && (bbox.right < towerBB.left || bbox.left > towerBB.right)) {
+                    this.spawnFrequency /= 1.1; // drop next paratroopers with lower frequency
+                    this.factory.createParatrooper(this.owner, this.model);
                     this.sendMessage(MSG_PARATROOPER_CREATED);
                 }
             }

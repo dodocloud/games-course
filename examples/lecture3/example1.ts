@@ -27,8 +27,8 @@ export class Example1 {
         scene.clearScene();
 
         let rocket = new PIXICmp.Sprite(TAG_ROCKET, PIXI.Texture.fromImage(TEXTURE_ROCKET));
-        rocket.addComponent(new RotationComponent());
         new PIXIObjectBuilder(scene).relativePos(0.5, 0.5).anchor(0.5, 0.5).build(rocket);
         scene.stage.getPixiObj().addChild(rocket);
+        rocket.addComponent(new RotationComponent());
     }
 }

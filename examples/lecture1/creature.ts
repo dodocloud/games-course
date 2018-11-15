@@ -15,7 +15,7 @@ export default class PixiBoot extends PIXI.Application
 
 		document.body.appendChild(this.view);
 
-		this.creature = PIXI.Sprite.fromImage('creature.png');
+		this.creature = PIXI.Sprite.fromImage('static/examples/creature.png');
         this.creature.anchor.set(0.5);
 		this.creature.x = this.screen.width / 2;
 		this.creature.y = this.screen.height / 2;

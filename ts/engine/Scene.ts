@@ -24,15 +24,15 @@ export default class Scene {
     // PIXI stage object 
     stage: PIXICmp.ComponentObject = null;
     // collection of actions that should be invoked with a delay
-    private pendingInvocations;
+    private pendingInvocations: Array<any>;
     // message action keys and all subscribers that listens to all these actions
-    private subscribers;
+    private subscribers: Map<string, Map<number, Component>>;
     // component ids and list of all actions they are listening to
-    private subscribedMessages;
+    private subscribedMessages: Map<number, Array<string>>;
     // collection of all game objects, mapped by their tag and then by their ids (for faster search)
-    private gameObjectTags;
+    private gameObjectTags: Map<string, Map<number, GameObjectProxy>>;
     // collection of all game objects, mapped by their ids
-    private gameObjects;
+    private gameObjects: Map<number, GameObjectProxy>;
 
     constructor(app: PIXI.Application) {
         this.app = app;
@@ -83,8 +83,8 @@ export default class Scene {
     /**
      * Gets a global attribute by its id
      */
-    getGlobalAttribute(key: string): any {
-        return this.stage.getAttribute(key);
+    getGlobalAttribute<T>(key: string): T {
+        return this.stage.getAttribute<T>(key);
     }
 
     /**
@@ -199,8 +199,8 @@ export default class Scene {
 
             if (invocation.time >= invocation.delay) {
                 // call the function and remove it from the collection
-                invocation.action();
                 this.pendingInvocations.splice(i, 1);
+                invocation.action();
             }
         }
 
@@ -215,6 +215,11 @@ export default class Scene {
         if (subs === undefined) {
             subs = new Map();
             this.subscribers.set(msgKey, subs);
+        }
+
+        if (subs.has(component.id)) {
+            // this component has been already subscribed!
+            return;
         }
 
         subs.set(component.id, component);

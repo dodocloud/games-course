@@ -41,10 +41,9 @@ export class Example3 {
         builder.relativePos(0.25, 0.5).anchor(0.5, 0.5).build(square);
         builder.relativePos(0.75, 0.5).anchor(0.5, 0.5).build(square2);
 
-        square.addComponent(new RotationAnimation());
-        square2.addComponent(new RotationAnimation());
-
         scene.stage.getPixiObj().addChild(square);
         scene.stage.getPixiObj().addChild(square2);
+        square.addComponent(new RotationAnimation());
+        square2.addComponent(new RotationAnimation());
     }
 }

@@ -1,10 +1,16 @@
-import { ATTR_DYNAMICS, TEXTURE_COPTER_LEFT, TEXTURE_COPTER_RIGHT } from './constants';
+import { TEXTURE_COPTER_LEFT, TEXTURE_COPTER_RIGHT } from './constants';
 import Component from "../../ts/engine/Component";
 import Vec2 from '../../ts/utils/Vec2';
-import Dynamics from './Dynamics';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
+import Msg from '../../ts/engine/Msg';
+import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';
+import { ATTR_DYNAMICS } from '../../ts/engine/Constants';
+import Dynamics from '../../ts/utils/Dynamics';
 
-export class CopterAnimator extends Component {
+/**
+ * Component that only changes sprite according to the direction of attached copter
+ */
+export class CopterAnimator extends ParatrooperBaseCmp {
     lastVelocity = new Vec2(0, 0);
 
     onUpdate(delta: number, absolute: number) {
@@ -17,7 +23,7 @@ export class CopterAnimator extends Component {
                 let sprite = <PIXICmp.Sprite>this.owner.getPixiObj();
                 sprite.texture = PIXI.Texture.fromImage(TEXTURE_COPTER_LEFT);
             } else {
-                // to the rigt
+                // to the right
                 let sprite = <PIXICmp.Sprite>this.owner.getPixiObj();
                 sprite.texture = PIXI.Texture.fromImage(TEXTURE_COPTER_RIGHT);
             }

@@ -1,24 +1,16 @@
 import { KeyInputComponent, KEY_LEFT, KEY_RIGHT, KEY_X } from '../../ts/components/KeyInputComponent';
 import { ATTR_MODEL, ATTR_FACTORY, MSG_PROJECTILE_SHOT } from './constants';
-import { ParatrooperModel } from './ParatrooperModel';
-import Component from "../../ts/engine/Component";
-import ParatrooperFactory from './ParatroperFactory';
 import { checkTime } from './Utils';
+import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';
 
-const DIRECTION_UP = 1;
-const DIRECTION_DOWN = 2;
-const DIRECTION_LEFT = 3;
-const DIRECTION_RIGHT = 4;
+const DIRECTION_LEFT = 1;
+const DIRECTION_RIGHT = 2;
 
-export class CannonController extends Component {
-    lastShot = 0;
-    gameModel: ParatrooperModel;
-    factory: ParatrooperFactory;
-
-    onInit() {
-        this.gameModel = this.owner.getScene().stage.getAttribute<ParatrooperModel>(ATTR_MODEL);
-        this.factory = this.owner.getScene().stage.getAttribute<ParatrooperFactory>(ATTR_FACTORY);
-    }
+/**
+ * Controller for the cannon
+ */
+export class CannonController extends ParatrooperBaseCmp {
+    protected lastShot = 0;
 
     rotate(direction: number, delta: number) {
         let pixiObj = this.owner.getPixiObj();
@@ -30,13 +22,13 @@ export class CannonController extends Component {
         }
 
         // check boundaries
-        pixiObj.rotation = Math.max(Math.min(pixiObj.rotation, PIXI.DEG_TO_RAD*this.gameModel.maxCannonAngle), PIXI.DEG_TO_RAD*this.gameModel.minCannonAngle);
+        pixiObj.rotation = Math.max(Math.min(pixiObj.rotation, PIXI.DEG_TO_RAD*this.model.maxCannonAngle), PIXI.DEG_TO_RAD*this.model.minCannonAngle);
     }
 
     tryFire(absolute: number): boolean {
-        if (checkTime(this.lastShot, absolute, this.gameModel.cannonFireRate)) {
+        if (checkTime(this.lastShot, absolute, this.model.cannonFireRate)) {
             this.lastShot = absolute;
-            this.factory.createProjectile(this.owner, this.gameModel);
+            this.factory.createProjectile(this.owner, this.model);
             this.sendMessage(MSG_PROJECTILE_SHOT);
             return true;
         } else {
@@ -45,7 +37,9 @@ export class CannonController extends Component {
     }
 }
 
-
+/**
+ * Cannon controller for the keyboard
+ */
 export class CannonInputController extends CannonController {
     onUpdate(delta: number, absolute: number) {
         let cmp = this.scene.stage.findComponentByClass(KeyInputComponent.name);
