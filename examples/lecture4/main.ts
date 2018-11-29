@@ -16,6 +16,7 @@ class Lecture4 {
 
         PIXI.loader
             .reset()    // necessary for hot reload
+            .add("droid", "static/examples/droid.png")
             .load(() => this.onAssetsLoaded());
     }
 
