@@ -2,7 +2,6 @@ import Vec2 from '../../ts/utils/Vec2';
 
 export class PathContext {
     currentPointIndex: number = -1;
-    targetPointIndex: number;
     targetLocation: Vec2;
 }
 
@@ -26,15 +25,17 @@ export class PathSegment {
  */
 export class Path {
     // collection of segments
-    segments: Array<PathSegment>;
+    segments = new Array<PathSegment>();
     // total length of the path
     pathLength: number;
 
-    constructor(firstSegmentStart: Vec2, firstSegmentEnd: Vec2) {
-        this.addFirstSegment(firstSegmentStart, firstSegmentEnd);
+    constructor(firstSegmentStart: Vec2 = null, firstSegmentEnd: Vec2 = null) {
+        if (firstSegmentStart != null && firstSegmentEnd != null) {
+            this.addFirstSegment(firstSegmentStart, firstSegmentEnd);
+        }
     }
 
-    private addFirstSegment(firstSegmentStart: Vec2, firstSegmentEnd: Vec2) {
+    addFirstSegment(firstSegmentStart: Vec2, firstSegmentEnd: Vec2) {
         // clear all segments
         this.segments = new Array<PathSegment>();
 
@@ -52,28 +53,32 @@ export class Path {
     }
 
     calcTargetPoint(radiusTolerance: number, location: Vec2, context: PathContext) {
+        // get current followed segment
         let currentSegment = this.segments[context.currentPointIndex != -1 ? context.currentPointIndex : 0];
 
         if (context.currentPointIndex == -1 && location.distance(currentSegment.start) > radiusTolerance) {
-            context.targetPointIndex = -1; // not yet at the beginning
+            context.currentPointIndex = -1; // not yet at the beginning
             context.targetLocation = currentSegment.start;
             return;
         }
 
+        if (context.currentPointIndex == -1) {
+            // arrived to the beginning of the first segment -> set index to 0
+            context.currentPointIndex = 0;
+        }
+
         if (location.distance(currentSegment.end) > radiusTolerance) {
             // still not there. Go to the end of the segment
-            context.targetPointIndex = context.currentPointIndex;
             context.targetLocation = currentSegment.end;
             return;
         } else {
             if (context.currentPointIndex == this.segments.length - 1) {
-                // finish
-                context.targetPointIndex = context.currentPointIndex;
+                // final segment
                 context.targetLocation = location; // stay where you are
             } else {
                 // go to the end of the next segment
-                context.targetPointIndex = context.currentPointIndex + 1;
-                context.targetLocation = this.segments[context.targetPointIndex].end;
+                context.currentPointIndex = context.currentPointIndex + 1;
+                context.targetLocation = this.segments[context.currentPointIndex].end;
             }
 
             return;

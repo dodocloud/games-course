@@ -55,6 +55,13 @@ export default class Vec2 {
         return new Vec2(this.x - other.x, this.y - other.y).magnitude();
     }
 
+        /**
+     * Return Manhattan distance between two vectors(points)
+     */
+    manhattanDistance(other: Vec2) : number {
+        return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);
+    }
+
     /**
      * Returns the normalized form of this vector as a new vector. A normalized
      * vector has a length of 1. This operation is potentially costly so it is
@@ -112,12 +119,15 @@ export default class Vec2 {
      */
     limit(magnitude): Vec2 {
         let mag = this.magnitudeSquared();
-        let limitSqrt = Math.sqrt(magnitude);
-        if (limitSqrt < mag) {
+        if (magnitude < mag) {
             return new Vec2(this.x / Math.sqrt(mag / magnitude), this.y / Math.sqrt(mag / magnitude));
         } else {
             return this.clone();
         }
+    }
+
+    equals(other: Vec2): boolean {
+        return this.x == other.x && this.y == other.y;
     }
 
     clone(): Vec2 {

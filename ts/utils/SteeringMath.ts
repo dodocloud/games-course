@@ -16,7 +16,6 @@ export class SteeringMath {
         }
 
         let force = desired.subtract(currentVelocity);
-
         return force;
     }
 
@@ -27,6 +26,7 @@ export class SteeringMath {
         let force = desired.subtract(currentVelocity);
         return force;
     }
+
 
     evade(target: Vec2, position: Vec2, maxVelocity: number, currentVelocity: Vec2, targetVelocity: Vec2) {
         let distance = target.subtract(position);
@@ -47,19 +47,18 @@ export class SteeringMath {
     follow(position: Vec2, currentVelocity: Vec2, path: Path, context: PathContext, pointTolerance: number, 
         finalPointTolerance: number, maxVelocity: number, slowingRadius: number): Vec2 {
     
-
         let radiusTolerance = context.currentPointIndex == (path.segments.length - 1) ? finalPointTolerance : pointTolerance;
     
         path.calcTargetPoint(radiusTolerance, position, context);
-        context.currentPointIndex = context.targetPointIndex;
-        if (context.targetLocation.x == position.x && context.targetLocation.y == position.y) {
-            return new Vec2(0,0); // nowhere to go to
+
+        if (position.distance(context.targetLocation) <= finalPointTolerance) {
+            return null; // nowhere to go to
         }
     
         if(context.currentPointIndex == (path.segments.length - 1)) {
             // final point -> use arrive
             return this.seek(context.targetLocation, position, currentVelocity, maxVelocity, slowingRadius);
-        }else {
+        } else {
             return this.seek(context.targetLocation, position, currentVelocity, maxVelocity, 0);
         }
     }
@@ -82,7 +81,6 @@ export class SteeringMath {
 
         return shift;
     }
-
 
     setAngle(vector: Vec2, value: number) {
         var len = vector.magnitude();

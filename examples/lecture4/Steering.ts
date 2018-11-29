@@ -30,6 +30,10 @@ abstract class SteeringComponent extends DynamicsComponent {
 
         // update dynamics and set new position
         let force = this.calcForce(delta);
+        if(force == null) {
+            return;
+        }
+
         this.dynamics.aceleration = force;
         this.dynamics.aceleration = this.dynamics.aceleration.limit(30);
         this.dynamics.velocity = this.dynamics.velocity.limit(30);
@@ -127,7 +131,7 @@ class FollowSteering extends SteeringComponent {
     context: PathContext;
 
     constructor(path: Path) {
-        super(3);
+        super(10);
         this.path = path;
         this.context = new PathContext();
     }
@@ -138,7 +142,7 @@ class FollowSteering extends SteeringComponent {
 
     protected calcForce(delta: number): Vec2 {
         let ownerPos = new Vec2(this.owner.getPixiObj().position.x, this.owner.getPixiObj().position.y);
-        return this.math.follow(ownerPos, this.dynamics.velocity, this.path, this.context, 40, 40, 30, 40);
+        return this.math.follow(ownerPos, this.dynamics.velocity, this.path, this.context, 20, 3, 8, 30);
     }
 }
 
@@ -197,7 +201,7 @@ export class Steering {
         target.position.x = scene.app.screen.width / 3;
         target.position.y = scene.app.screen.height / 3;
         scene.stage.getPixiObj().addChild(target);
-
+        target.visible =false;
         let seekPoint = new PIXICmp.Graphics("SEEK");
         seekPoint.beginFill(0xFF0000);
         seekPoint.drawPolygon([-10, -10, -10, 10, 15, 0]);
@@ -214,7 +218,6 @@ export class Steering {
         evadePoint.position.set(scene.app.screen.width / 4, scene.app.screen.height / 2);
         scene.stage.getPixiObj().addChild(evadePoint);
         evadePoint.addComponent(new EvadeSteering(seekPoint));
-        // TODO: set visibility to true
         evadePoint.visible = false;
 
         // ====================== PURSUIT BEHAVIOR ==========================
@@ -237,12 +240,11 @@ export class Steering {
         followPoint.position.set(scene.app.screen.width / 8, scene.app.screen.height / 4);
         scene.stage.getPixiObj().addChild(followPoint);
 
-        let path = new Path(new Vec2(50, 50), new Vec2(150, 150));
-        // TODO add segments to the path
-        //path.addSegment(new Vec2(100, 60));
+        let path = new Path(new Vec2(150, 120),  new Vec2(150, 180));
+
         followPoint.addComponent(new FollowSteering(path));
 
-        /*  TODO: uncomment this to display path segments
+
             for (let segment of path.segments) {
             let seg = new PIXICmp.Graphics("");
             seg.lineStyle(2, 0xFF00FF);
@@ -250,14 +252,14 @@ export class Steering {
             seg.endFill();
             seg.position.set(segment.start.x, segment.start.y);
             scene.stage.getPixiObj().addChild(seg);
-        }*/
+        }
         // TODO: set visibility to true
-        followPoint.visible = false;
+        followPoint.visible = true;
         // ====================== WANDER BEHAVIOR ==========================
 
-        let wanderDistance = 10;
-        let wanderRadius = 200;
-        let wanderJittering = 10;
+        let wanderDistance = 100;
+        let wanderRadius = 50;
+        let wanderJittering = 0.1;
 
         let parent = new PIXICmp.Container("PARENT");
         scene.app.stage.addChild(parent);
@@ -283,6 +285,6 @@ export class Steering {
         parent.addComponent(new WanderSteering(wanderDistance, wanderRadius, wanderJittering));
 
         // TODO: set visibility to true
-        parent.visible = false;
+        parent.visible = true;
     }
 }

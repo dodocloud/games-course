@@ -6,6 +6,7 @@ import { PIXICmp } from './PIXIObject';
 import Flags from './Flags';
 import {
 	MSG_OBJECT_ADDED, MSG_OBJECT_REMOVED, MSG_ANY, MSG_STATE_CHANGED,
+	MSG_COMPONENT_ADDED, MSG_COMPONENT_REMOVED
 } from './Constants';
 
 
@@ -56,6 +57,7 @@ export default class GameObjectProxy {
 		component.onRemove();
 		this.components.delete(component.id);
 		this.scene._removeComponentSubscription(component);
+		this.scene.sendMessage(new Msg(MSG_COMPONENT_REMOVED, component, <PIXICmp.ComponentObject><any>this.pixiObj));
 	}
 
 	/**
@@ -191,6 +193,7 @@ export default class GameObjectProxy {
 				component.scene = this.scene;
 				this.components.set(component.id, component);
 				component.onInit();
+				this.scene.sendMessage(new Msg(MSG_COMPONENT_ADDED, component, <PIXICmp.ComponentObject><any>this.pixiObj));
 			}
 
 			this.componentsToAdd = new Array<Component>();
