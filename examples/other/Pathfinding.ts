@@ -1,4 +1,3 @@
-import { BreadthFirstSearch } from './../../ts/utils/Pathfinding';
 import { MAP_TYPE_OCTILE } from './../../ts/utils/GridMap';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';
