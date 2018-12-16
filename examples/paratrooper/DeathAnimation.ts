@@ -1,4 +1,4 @@
-import { MSG_ANIM_ENDED } from './constants';
+import { MSG_ANIM_ENDED } from './Constants';
 import Component from "../../ts/engine/Component";
 import { checkTime } from './Utils';
 import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';

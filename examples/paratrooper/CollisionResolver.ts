@@ -2,7 +2,7 @@ import { STATE_FALLING_PARACHUTE } from './Constants';
 import {
     MSG_UNIT_KILLED, STATE_DEAD, MSG_COLLISION, TAG_COPTER, TAG_PARATROOPER,
     STATE_FALLING, STATE_FALLING_WITHOUT_PARACHUTE
-} from './constants';
+} from './Constants';
 import Msg from '../../ts/engine/Msg';
 import { CollisionInfo } from './CollisionManager';
 import { ParatrooperBaseCmp } from "./ParatrooperBaseCmp";

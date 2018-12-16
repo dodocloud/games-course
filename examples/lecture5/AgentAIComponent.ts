@@ -5,6 +5,7 @@ import { AGENT_STATE_IDLE, ATTR_AI_MODEL, ATTR_AGENT_MODEL, AGENT_STATE_GOING_TO
     CARGO_TYPE_ORE, CARGO_TYPE_PETROL, MAP_BLOCK_ORE, MAP_BLOCK_PETROL, MAP_BLOCK_WAREHOUSE } from './Constants';
 import Vec2 from '../../ts/utils/Vec2';
 import { MapBlock } from './AIMap';
+import { AGENT_STATE_GOING_TO_UNLOAD, AGENT_STATE_UNLOADING, AGENT_STATE_IDLE, AGENT_STATE_LOADING, CARGO_TYPE_PETROL } from './Constants';
 
 export class AgentAIComponent extends Component {
     gameModel: AIModel;
@@ -46,27 +47,81 @@ export class AgentAIComponent extends Component {
     }
 
     processIdleState(isEntering: boolean, delta: number, absolute: number) {
-        // TODO implement
-        return AGENT_STATE_IDLE;
+        if(this.agentModel.isLoaded()){
+            return AGENT_STATE_GOING_TO_UNLOAD;
+        } else {
+            return AGENT_STATE_GOING_TO_LOAD;
+        }
     }
 
     processGoingToLoadState(isEntering: boolean, delta: number, absolute: number) {
-        // TODO implement
-        return AGENT_STATE_GOING_TO_LOAD;
+        if(this.agentModel.isLoaded()){
+            return AGENT_STATE_GOING_TO_UNLOAD;
+        }
+
+        if(isEntering) {
+            this.goLoad();
+            return AGENT_STATE_GOING_TO_LOAD;
+        }
+
+        if(this.moveComponent.pathFinished) {
+            return AGENT_STATE_LOADING;
+        }else{
+            return AGENT_STATE_GOING_TO_LOAD;
+        }
     }
 
     processGoingToUnloadState(isEntering: boolean, delta: number, absolute: number) {
-         // TODO implement
-        return AGENT_STATE_GOING_TO_UNLOAD;
+        if(!this.agentModel.isLoaded()){
+            return AGENT_STATE_GOING_TO_LOAD;
+        }
+
+        if(isEntering) {
+            this.goUnload();
+            return AGENT_STATE_GOING_TO_UNLOAD;
+        }
+
+        if(this.moveComponent.pathFinished) {
+            return AGENT_STATE_UNLOADING;
+        }else{
+            return AGENT_STATE_GOING_TO_UNLOAD;
+        }
     }
 
     processLoadingState(isEntering: boolean, delta: number, absolute: number) {
-        // TODO implement
+        if(this.agentModel.currentLoadingTime > this.agentModel.loadingDelay) {
+            this.agentModel.currentLoadingTime = 0;
+            this.agentModel.amount += 10;
+
+            return AGENT_STATE_IDLE;
+        }
+
+        this.agentModel.currentLoadingTime += delta;
         return AGENT_STATE_LOADING;
     }
 
     processUnloadingState(isEntering: boolean, delta: number, absolute: number) {
-        // TODO implement
+        if(this.agentModel.currentLoadingTime > this.agentModel.loadingDelay){
+            this.agentModel.currentLoadingTime = 0;
+
+            switch(this.agentModel.currentCargo){
+                case CARGO_TYPE_ORE:
+                this.gameModel.goingToLoadOre--;   
+                this.gameModel.warehouseModel.ironOre += this.agentModel.amount;        
+                break;
+
+                case CARGO_TYPE_PETROL :
+                this.gameModel.goingToLoadPetrol--;
+                this.gameModel.warehouseModel.petrol += this.agentModel.amount;
+                break;
+            }
+
+            this.agentModel.amount = 0;
+
+            return AGENT_STATE_IDLE;
+        }
+
+        this.agentModel.currentLoadingTime += delta;
         return AGENT_STATE_UNLOADING;
     }
 
@@ -83,10 +138,17 @@ export class AgentAIComponent extends Component {
         let petrol = this.gameModel.warehouseModel.petrol; // current amount of petrol
         let ore = this.gameModel.warehouseModel.ironOre; // current amount of iron
 
-        let selectedTarget: MapBlock = ores[Math.floor(Math.random() * ores.length)];
+        let expectedPetrol = petrol + this.gameModel.goingToLoadPetrol * this.agentModel.capacity;
+        let expectedOre = ore + this.gameModel.goingToLoadOre * this.agentModel.capacity;
+        
+        let selectedTarget: MapBlock;
 
-        // TODO implement also petrol
-
+        if(expectedPetrol > expectedOre) {
+            selectedTarget = ores[Math.floor(Math.random() * ores.length)];
+        } else {
+            selectedTarget = petrols[Math.floor(Math.random() * petrols.length)];
+        }
+    
         let agentLocation = new Vec2(this.owner.getPixiObj().position.x, this.owner.getPixiObj().position.y);
         let agentMapPosition = this.gameModel.map.locationToMapBlock(agentLocation);
         let orePosition = new Vec2(selectedTarget.x, selectedTarget.y);

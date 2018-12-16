@@ -154,8 +154,8 @@ export class AStarSearch extends PathFinder {
                     costSoFar.set(indexMapper(next), newCost);
                     
                     // priority is price + distance between next position and the target
-                    let heuristics = next.distance(goal);
-                    let priority = newCost + heuristics;
+                    let heuristics = next.manhattanDistance(goal);
+                    let priority = newCost + heuristics*1.1;
 
                     outputCtx.cameFrom.set(indexMapper(next), current.first);
                     frontier.add(new Pair<Vec2, number>(next, priority));

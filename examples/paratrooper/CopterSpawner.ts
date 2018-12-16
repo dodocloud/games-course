@@ -1,4 +1,4 @@
-import { MSG_UNIT_KILLED, ATTR_FACTORY, TAG_COPTER, MSG_COPTER_CREATED } from './constants';
+import { MSG_UNIT_KILLED, ATTR_FACTORY, TAG_COPTER, MSG_COPTER_CREATED } from './Constants';
 import Msg from '../../ts/engine/Msg';
 import { checkTime } from './Utils';
 import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';

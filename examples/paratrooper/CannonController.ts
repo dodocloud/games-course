@@ -1,5 +1,5 @@
 import { KeyInputComponent, KEY_LEFT, KEY_RIGHT, KEY_X } from '../../ts/components/KeyInputComponent';
-import { ATTR_MODEL, ATTR_FACTORY, MSG_PROJECTILE_SHOT } from './constants';
+import { ATTR_MODEL, ATTR_FACTORY, MSG_PROJECTILE_SHOT } from './Constants';
 import { checkTime } from './Utils';
 import { ParatrooperBaseCmp } from './ParatrooperBaseCmp';
 

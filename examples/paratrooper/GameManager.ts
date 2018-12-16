@@ -1,7 +1,7 @@
 import {
     MSG_PROJECTILE_SHOT, MSG_UNIT_KILLED, MSG_UNIT_LANDED, STATE_DEAD, MSG_COLLISION, TAG_COPTER, TAG_PARATROOPER, STATE_FALLING,
     STATE_FALLING_WITHOUT_PARACHUTE, TAG_GAMEOVER, STATE_ON_GROUND, STATE_CAPTURING, MSG_GAME_OVER
-} from './constants';
+} from './Constants';
 import Msg from '../../ts/engine/Msg';
 import { CollisionInfo } from './CollisionManager';
 import { ParatrooperBaseCmp } from "./ParatrooperBaseCmp";

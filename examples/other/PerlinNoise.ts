@@ -173,9 +173,9 @@ class PerlinNoiseDemo {
 
         // perlin noise configurations
         let persistence = 0.8;
-        let octaves = 4; // number of iterations
-        let zoom = 6;
-        let scale = 16; // size of one noise-pixel
+        let octaves = 10; // number of iterations
+        let zoom = 30;
+        let scale = 1; // size of one noise-pixel
 
         let context =canvas.getContext("2d");
         // allocate bitmap

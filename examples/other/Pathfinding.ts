@@ -1,3 +1,4 @@
+import { AStarSearch } from './../../ts/utils/Pathfinding';
 import { MAP_TYPE_OCTILE } from './../../ts/utils/GridMap';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';
@@ -67,7 +68,7 @@ class Pathfinding {
     // sprites of visited blocks
     visitedBlocks = new Set<PIXICmp.Sprite>();
     // pathfinding algorithm
-    pathFinder = new BreadthFirstSearch();
+    pathFinder = new AStarSearch();
 
     // frames for sprite atlas
     pathRect = new PIXI.Rectangle(0, 0, 32, 32);

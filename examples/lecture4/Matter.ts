@@ -1,3 +1,4 @@
+import { CameraComponent } from './../../ts/components/CameraComponent';
 import Component from '../../ts/engine/Component';
 import Scene from '../../ts/engine/Scene';
 import { PIXICmp } from '../../ts/engine/PIXIObject';
@@ -7,6 +8,7 @@ import * as Matter from 'matter-js'
 // workaround for require
 import decomp from 'poly-decomp';
 import { KeyInputComponent, KEY_LEFT, KEY_RIGHT, KEY_UP } from '../../ts/components/KeyInputComponent';
+import { CameraComponent } from '../../ts/components/CameraComponent';
 window.decomp = decomp;
 
 /**
@@ -24,7 +26,17 @@ class PlatformComponent extends Component {
 
     onUpdate(delta: number, absolute: number) {
         let ownerMatter = <PIXICmp.MatterBody>this.owner.getPixiObj();
-        // TODO move the platform upwards
+        if(ownerMatter.body.position.y -1 >= -this.platformHeight) {
+            Matter.Body.setPosition(ownerMatter.body, {
+                x: ownerMatter.body.position.x, 
+                y: ownerMatter.body.position.y - 1
+            })
+        } else {
+            Matter.Body.setPosition(ownerMatter.body, {
+                x: ownerMatter.body.position.x,
+                y: ownerMatter.body.position.y + this.shift
+            })
+        }
     }
 }
 
@@ -37,7 +49,20 @@ class CubeController extends Component {
         let cmpKey = <KeyInputComponent><any>cmp;
         let ownerMatter = <PIXICmp.MatterBody>this.owner.getPixiObj();
 
-        // TODO add controller
+        if(cmpKey.isKeyPressed(KEY_LEFT)){
+            Matter.Body.applyForce(ownerMatter.body, {x: ownerMatter.body.position.x, y: ownerMatter.body.position.y},
+                {x: -0.03, y: 0.0});
+        }
+
+        if(cmpKey.isKeyPressed(KEY_RIGHT)){
+            Matter.Body.applyForce(ownerMatter.body, {x: ownerMatter.body.position.x, y: ownerMatter.body.position.y},
+                {x: 0.03, y: 0.0});
+        }
+
+        if(cmpKey.isKeyPressed(KEY_UP)){
+            Matter.Body.applyForce(ownerMatter.body, {x: ownerMatter.body.position.x, y: ownerMatter.body.position.y},
+                {x: 0, y: -0.1});
+        }
     }
 }
 
@@ -62,6 +87,7 @@ export class MatterExample {
         var runner = Runner.create({});
         Runner.run(runner, engine);
 
+        
         let sWidth = scene.app.screen.width;
         let sHeight = scene.app.screen.height;
         let spaceHeight = sHeight * 0.25;
@@ -121,6 +147,9 @@ export class MatterExample {
                     options.strokeStyle = "0xFFFFFF";
                     bodyPrim = new PIXICmp.MatterBody("", body, world, options);
                     bodyPrim.addComponent(new CubeController());
+                    let camera = new CameraComponent();
+                    camera.lookAt(bodyPrim);
+                    bodyPrim.addComponent(camera);
                 } else {
                     bodyPrim = new PIXICmp.MatterBody("", body, world);
                 }

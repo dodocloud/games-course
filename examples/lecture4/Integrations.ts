@@ -45,8 +45,9 @@ class EulerIntegration extends IntegrationCmp {
     }
 
     updateDynamics(deltaSec: number) {
-        // TODO implement dynamics
+        this.velocity = this.velocity.add(this.aceleration.multiply(deltaSec));
         this.position = this.position.add(this.velocity.multiply(deltaSec));
+
     }
 }
 
@@ -62,8 +63,9 @@ class EulerImproved extends IntegrationCmp {
     }
 
     updateDynamics(deltaSec: number) {
-        // TODO implement dynamics
-        this.position = this.position.add(this.velocity.multiply(deltaSec * 0.5));
+        let previous = this.velocity.clone();
+        this.velocity = this.velocity.add(this.aceleration.multiply(deltaSec));
+        this.position = this.position.add(this.velocity.add(previous).multiply(0.5*deltaSec));
     }
 }
 
@@ -79,8 +81,8 @@ class VelocityVerletIntegration extends IntegrationCmp {
     }
 
     updateDynamics(deltaSec: number) {
-        // TODO implement dynamics
-        this.position = this.position.add(this.velocity.multiply(deltaSec * 0.25));
+        this.position = this.position.add(this.velocity.multiply(deltaSec).add(this.aceleration.multiply(0.5*deltaSec*deltaSec)));
+        this.velocity = this.velocity.add(this.aceleration.multiply(deltaSec));
     }
 }
 
@@ -113,7 +115,7 @@ class CannonComponent extends Component {
             // green projectile with improved euler integration
             let projectile2 = new PIXICmp.Graphics("");
             projectile2.beginFill(0x00FF00);
-            projectile2.drawCircle(0, 0, 2);
+            projectile2.drawCircle(0, 0, 3);
             projectile2.endFill();
             projectile2.pivot.set(1, 1);
 

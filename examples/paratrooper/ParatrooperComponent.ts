@@ -1,7 +1,7 @@
 import { DynamicsComponent } from './../../ts/components/DynamicsComponent';
-import { STATE_DEAD } from './constants';
+import { STATE_DEAD } from './Constants';
 import { TAG_GROUND, ATTR_MODEL, STATE_FALLING_WITHOUT_PARACHUTE, TAG_TOWER, STATE_FALLING, STATE_FALLING_PARACHUTE, 
-    STATE_ON_GROUND, STATE_CAPTURING, MSG_UNIT_LANDED, MSG_UNIT_KILLED, TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PARATROOPER } from './constants';
+    STATE_ON_GROUND, STATE_CAPTURING, MSG_UNIT_LANDED, MSG_UNIT_KILLED, TEXTURE_PARATROOPER_PARACHUTE, TEXTURE_PARATROOPER } from './Constants';
 import { ParatrooperModel } from './ParatrooperModel';
 import { PIXICmp } from "../../ts/engine/PIXIObject";
 import Vec2 from '../../ts/utils/Vec2';

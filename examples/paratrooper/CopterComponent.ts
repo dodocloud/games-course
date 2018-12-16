@@ -1,5 +1,5 @@
 import { DynamicsComponent } from './../../ts/components/DynamicsComponent';
-import { ATTR_MODEL, ATTR_FACTORY, TAG_TOWER, MSG_PARATROOPER_CREATED } from './constants';
+import { ATTR_MODEL, ATTR_FACTORY, TAG_TOWER, MSG_PARATROOPER_CREATED } from './Constants';
 import Component from "../../ts/engine/Component";
 import { ParatrooperModel } from './ParatrooperModel';
 import ParatrooperFactory from './ParatroperFactory';

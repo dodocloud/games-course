@@ -1,4 +1,4 @@
-import { MSG_PROJECTILE_SHOT, MSG_GAME_OVER, MSG_UNIT_KILLED, SOUND_FIRE, SOUND_GAMEOVER, SOUND_KILL } from './constants';
+import { MSG_PROJECTILE_SHOT, MSG_GAME_OVER, MSG_UNIT_KILLED, SOUND_FIRE, SOUND_GAMEOVER, SOUND_KILL } from './Constants';
 import { GenericComponent } from '../../ts/components/GenericComponent';
 
 /**

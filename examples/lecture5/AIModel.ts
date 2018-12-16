@@ -1,7 +1,6 @@
 import Vec2 from '../../ts/utils/Vec2';
 import { AIMap, MapBlock } from './AIMap';
 import { AGENT_STATE_IDLE, CARGO_TYPE_ORE, AGENT_STATE_LOADING, MAP_BLOCK_WAREHOUSE } from './Constants';
-import Lecture2 from '../lecture2/lecture2';
 
 export class WarehouseModel {
     // indicator whether the warehouse is building any agent
@@ -11,7 +10,7 @@ export class WarehouseModel {
     // agent building time in ms
     buildDelay = 7000;
     // current amount of ore
-    ironOre = 30;
+    ironOre = 60;
     // current amount of petrol
     petrol = 40;
     // how much iron does one agent take

@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js';
 import { PIXICmp } from "../../ts/engine/PIXIObject";
 import { MSG_OBJECT_REMOVED, MSG_OBJECT_ADDED, } from '../../ts/engine/Constants';
 import Msg from '../../ts/engine/Msg';
-import { FLAG_PROJECTILE, STATE_DEAD, MSG_COLLISION, FLAG_COLLIDABLE } from './constants';
+import { FLAG_PROJECTILE, STATE_DEAD, MSG_COLLISION, FLAG_COLLIDABLE } from './Constants';
 import { ParatrooperBaseCmp } from "./ParatrooperBaseCmp";
 
 /**

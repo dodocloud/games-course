@@ -1,5 +1,5 @@
 import { MatterExample } from './Matter';
-import { Integrations } from './integrations';
+import { Integrations } from './Integrations';
 import { Steering } from './Steering';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { PIXICmp } from '../../ts/engine/PIXIObject';

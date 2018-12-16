@@ -1,4 +1,4 @@
-import { TEXTURE_COPTER_LEFT, TEXTURE_COPTER_RIGHT } from './constants';
+import { TEXTURE_COPTER_LEFT, TEXTURE_COPTER_RIGHT } from './Constants';
 import Component from "../../ts/engine/Component";
 import Vec2 from '../../ts/utils/Vec2';
 import { PIXICmp } from '../../ts/engine/PIXIObject';

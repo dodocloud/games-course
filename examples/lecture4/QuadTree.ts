@@ -5,8 +5,8 @@ import PIXIObjectBuilder from '../../ts/engine/PIXIObjectBuilder';
 import { GenericComponent } from '../../ts/components/GenericComponent';
 
 const OBJECT_NUM = 100;
-const MAX_OBJECTS_IN_LEAF = 2;
-const MAX_TREE_LEVELS = 5;
+const MAX_OBJECTS_IN_LEAF = 1;
+const MAX_TREE_LEVELS = 10;
 
 
 export class QuadTreeExample {

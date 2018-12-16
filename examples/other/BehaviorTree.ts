@@ -96,10 +96,16 @@ class BehaviorTree {
             return result;
         }
 
-    
-        // TODO create structure of the node and place it as a parameter to the BTreeComponent
-        //let btreeNode = null;
-        //this.engine.scene.addGlobalComponent(new BTreeComponent(btreeNode));
+        let btreeNode = new InfiniteLoopDecorator()
+            .child(new BTSelector()
+                .child(new BTSelectorCondition(missingIron)
+                    .childSuccess(new BTSequence().child(new GoLoadAction()).child(new LoadAction()).child(new GoUnLoadAction()).child(new UnLoadAction()))
+                )
+                .child(new BTSelectorCondition(missingOre)
+                    .childSuccess(new BTSequence().child(new GoLoadAction()).child(new LoadAction()).child(new GoUnLoadAction()).child(new UnLoadAction()))
+                )
+            );
+        this.engine.scene.addGlobalComponent(new BTreeComponent(btreeNode));
     }
 }
 

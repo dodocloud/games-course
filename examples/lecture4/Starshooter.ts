@@ -1,3 +1,4 @@
+import { ATTR_PROJ_OWNER } from './Starshooter';
 import DebugComponent from '../../ts/components/DebugComponent';
 import { PixiRunner } from '../../ts/PixiRunner'
 import { KEY_U } from './../../ts/components/KeyInputComponent';
@@ -13,6 +14,8 @@ import Dynamics from '../../ts/utils/Dynamics';
 import Vec2 from '../../ts/utils/Vec2';
 import Component from '../../ts/engine/Component';
 import Msg from '../../ts/engine/Msg';
+import { DynamicsComponent } from '../../ts/components/DynamicsComponent';
+import { GenericComponent } from '../../ts/components/GenericComponent';
 
 
 
@@ -130,11 +133,34 @@ export default class Starshooter {
         this.createBorder(rootObject, TAG_BORDER_BOTTOM, 5000, 5000, Math.PI / 2);
 
         // add player
-        let player = new PIXICmp.Graphics("PLAYER");
-        player.beginFill(0xFF0000);
-        player.drawPolygon([-30, -30, -30, 30, 50, 0]);
-        player.rotation = -Math.PI / 2;
-        player.endFill();
+        let droid = PIXI.Texture.fromImage("droid");
+        let frame1 = new PIXI.Rectangle(128 * 0, 0, 100, 100);
+        let frame2 = new PIXI.Rectangle(128 * 1, 0, 128, 128);
+        let frame3 = new PIXI.Rectangle(128 * 2, 0, 128, 128);
+        let frame4 = new PIXI.Rectangle(128 * 3, 0, 128, 128);
+        let player = new PIXICmp.Sprite("PLAYER", droid);
+
+        droid.frame = frame1;
+        player.anchor.set(0.5);
+
+        player.addComponent(new GenericComponent("SpriteAnimator")
+            .doOnUpdate((cmp, delta, absolute) => {
+                let dynamics = cmp.owner.getAttribute<Dynamics>(ATTR_DYNAMICS);
+                if(dynamics.velocity.magnitudeSquared() > 0){
+                    if(droid.frame == frame1){
+                        droid.frame = frame2;
+                    }else if(droid.frame == frame2){
+                        droid.frame = frame3;
+                    }else if(droid.frame == frame3) {
+                        droid.frame = frame4;
+                    }else{
+                        droid.frame = frame2;
+                    }
+                }else{
+                    droid.frame = frame1;
+                }
+            })
+        );
 
         // add camera that will be looking at the player
         let camera = new CameraComponent();
@@ -165,7 +191,21 @@ export default class Starshooter {
                     if (cmpKey.isKeyPressed(KEY_I)) camera.size(camera.width / 1.01);
                     if (cmpKey.isKeyPressed(KEY_UP)) dyn.velocity = dyn.velocity.add(new Vec2(2 * Math.cos(player.rotation), 2 * Math.sin(player.rotation))).limit(100);
                     if (cmpKey.isKeyPressed(KEY_X)) {
-                        // TODO Spawn Projectile
+
+                        let projectile = new PIXICmp.Graphics();
+                        projectile.beginFill(0xFFFFFF);
+                        projectile.drawCircle(0, 0, 4);
+                        projectile.endFill();
+                        let dynamics = new Dynamics(dyn.velocity.add(new Vec2(10 * Math.cos(cmp.owner.getPixiObj().rotation),
+                            10 * Math.sin(cmp.owner.getPixiObj().rotation))));
+
+                        new PIXIObjectBuilder(scene)
+                            .withFlag(FLAG_PROJECTILE)
+                            .withAttribute(ATTR_PROJ_OWNER, player)
+                            .localPos(player.position.x + 100 * Math.cos(cmp.owner.getPixiObj().rotation), player.position.y + 100 * Math.sin(cmp.owner.getPixiObj().rotation))
+                            .withComponent(new DynamicsComponent(100))
+                            .withAttribute(ATTR_DYNAMICS, dynamics)
+                            .build(projectile, rootObject);
                     }
                 })
             )
