@@ -84,22 +84,27 @@ class Lecture2_Container extends Lecture2_Base {
 
         PIXI.loader
             .reset()    // necessary for hot reload
-            .add('beetle.png')
+            .add('static/examples/beetle.png')
             .load(() => this.onAssetsLoaded());
     }
 
     onAssetsLoaded() {
-        this.container = new PIXI.Container();
-        this.app.stage.addChild(this.container);
+        this.container = new PIXI.Container(); // creates new container
+        this.app.stage.addChild(this.container); // adds it to the scene
 
-        // ==TODO: create a new texture and set the frame to point at one of those sprites
+        let texture = PIXI.Texture.fromImage("static/examples/beetle.png");
+        texture.frame = new PIXI.Rectangle(0, 0, 130, 130);
 
-        // ==TODO: create a 4x4 grid of sprites
         for (var i = 0; i < 16; i++) {
-            // ==TODO add each sprite into the container
+            const sprite = new PIXI.Sprite(texture);
+            sprite.x = (i % 4) * 138;
+            sprite.y = Math.floor(i / 4) * 138;
+            this.container.addChild(sprite);
         }
 
-        // ==TODO: set pivot for rotation
+        this.container.position.set(this.app.screen.width/2, this.app.screen.height/2);
+        this.container.pivot.set(this.container.width/2, this.container.height/2);
+        this.container.scale.set(0.25);
 
         // start pixi update loop
         this.runner.start();

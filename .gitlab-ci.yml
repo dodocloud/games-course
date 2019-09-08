@@ -1,0 +1,12 @@
+image: node
+
+stages:
+  - pingtest
+
+master_deploy:
+  stage: pingtest
+  only:
+    - master
+  script:
+    - echo "Ping test..."
+    - ping 10.38.5.57
