@@ -1,0 +1,223 @@
+@import "./fonts.css";
+
+.game-def :nth-child(2) {
+  left: 20%;
+}
+
+.game-def :nth-child(3) {
+  left: 40%;
+}
+
+.game-topics > p {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  color: #78f08f;
+}
+
+.game-topics :nth-child(1) { /* curiosity */
+  left: calc(50% - 0px);
+  top: calc(50% - 300px);
+}
+
+.game-topics :nth-child(2) { /* system */
+  left: calc(50% - 200px);
+  top: calc(50% - 250px);
+}
+
+.game-topics :nth-child(3) { /* outcome */
+  left: calc(50% + 200px);
+  top: calc(50% - 250px);
+}
+
+.game-topics :nth-child(4) { /* conflict */
+  left: calc(50% - 300px);
+  top: calc(50% - 150px);
+}
+
+.game-topics :nth-child(5) { /* activity */
+  left: calc(50% + 300px);
+  top: calc(50% - 150px);
+}
+
+.game-topics :nth-child(6) { /* endogeneous */
+  left: calc(50% - 400px);
+  top: calc(50% - 0px);
+}
+
+.game-topics :nth-child(7) { /* goal */
+  left: calc(50% + 400px);
+  top: calc(50% - 0px);
+}
+
+.game-topics :nth-child(8) { /* surprise */
+  left: calc(50% - 300px);
+  top: calc(50% + 150px);
+}
+
+.game-topics :nth-child(9) { /* rules */
+  left: calc(50% + 300px);
+  top: calc(50% + 150px);
+}
+
+.game-topics :nth-child(10) { /* disequlibrium */
+  left: calc(50% - 0px);
+  top: calc(50% + 300px);
+}
+
+.habitica > .img-with-desc {
+  float:right; 
+  width: 500px;
+}
+
+.habitica > .computer-games-label {
+  float: left;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.games-vs-apps img {
+  height: 200px;
+}
+
+.games-vs-apps p {
+  font-size: 50px;
+}
+
+.terms h4 {
+  margin-top: 4px;
+}
+
+.terms h4 + ul {
+  margin-bottom: 0px;
+}
+
+.issues img {
+  height: 200px;
+}
+
+img.basic-elements {
+  position: absolute;
+  width: 650px;
+  bottom: 50px;
+}
+
+.story img {
+  width: 120%;
+}
+
+.factorio-1, .factorio-2 {
+  position: relative;
+  height: 500px;
+}
+
+.mech-invaders, .mech-doom, .mech-noman, .mech-lol , .mech-pong  {
+  top: auto;
+  transform: translate(-50%);
+  bottom: -1%;
+}
+
+.mech-invaders img, .mech-doom img, .mech-noman img, .mech-lol img {
+  width: 1000px;
+}
+
+.mech-pong img {
+  width: 700px;
+}
+
+.img-unlocked {
+  position: absolute;
+  width: 650px;
+  right: -4%;
+  bottom: -1%;
+}
+
+.breakout-code > p {
+  font-family: "Dos";
+  line-height: 18px;
+}
+
+.prince-code > p {
+  font-family: "Dos";
+  line-height: 30px;
+}
+
+.idtech-games {
+  margin-top: 100px;
+}
+
+.doom-code > p {
+  font-family: "Inconsolata";
+  line-height: 11px;
+  font-size: 30px;
+}
+
+.wad {
+  margin-top: 40px;
+}
+
+.wad .carmack {
+  height: 61%;
+}
+
+.quake-code > p {
+  font-family: "Inconsolata";
+  line-height: 11px;
+  font-size: 30px;
+}
+
+.unreal-images, .cryengine-images {
+  position: absolute;
+  width: 100%;
+  top: 20%;
+}
+
+.unreal-images > *, .cryengine-images > * {
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.unity-images > img {
+  position:absolute;
+  width: 700px;
+}
+
+.unity-images :nth-child(1) {
+  right: 0;
+  top: 0;
+}
+
+.unity-images :nth-child(2) {
+  left: 0;
+  bottom: 1%;
+}
+
+.unity-images :nth-child(3) {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.games-evolution > img {
+  position: absolute;
+  width: 100%;
+}
+
+.games-evolution > .games-evolution-image {
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%);
+  top: 10%;
+}
+
+.engines > img:nth-child(1) {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
+
+.engines > img:nth-child(2) {
+  position: absolute;
+  top: 126px;
+  left: 428px;
+  width: 71%;
+}

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>MI-APH - Lecture 01 - Introduction</title>
+  <meta name="description" content="Lecture 1: Introduction to the world of games and game engines" />
+  <meta name="author" content="Adam Vesecký" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
+  <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.css" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.css" />
+  <link rel="stylesheet" href="../static/slides/css/lecture01.css" />
+
+  <script type="text/javascript" src="../libs/revealjs/print.js"></script>
+
+</head>
+
+<body>
+  <!-- ===================================================== SLIDES ===================================================== -->
+  <div class="reveal">
+    <div class="stripes"></div>
+    <div class="slides">
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="lecture-logo">
+          <svg version="1.1" class="animated inactive" id="lecture01Logo" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="750" height="400"
+            viewBox="0 0 198.44 105.83" viewBox="0 0 194.26 55.827" enable-background="new 0 0 198.44 105.83"
+            xml:space="preserve">
+            <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
+            <path
+              d="m55.902 7.3241c-1.3136 0.15407-2.9338 0.42919-4.2146 0.72632-2.7368 0.63828-4.1708 1.3426-5.4188 2.6632-0.9086 0.96842-2.0143 3.7746-2.682 6.845-0.1861 0.86937-0.35031 1.6067-0.3722 1.6177-0.011 0.011-0.59114 0.44019-1.2918 0.9354-3.4921 2.5091-6.0647 4.9081-7.1594 6.6909-1.1385 1.8708-2.1237 4.3359-2.9995 7.5493-0.64587 2.377-0.62398 2.234-1.7406 14.625-1.0181 11.214-1.2589 15.693-1.2699 23.44 0 6.0086 0.13137 9.6732 0.43788 12.171 0.38315 3.0593 1.4669 5.4254 3.4155 7.4832 2.5616 2.6962 5.2108 4.2258 8.6044 4.9632 1.5764 0.34115 4.543 0.34115 5.791 0 1.7844-0.4842 3.5359-1.5077 5.4845-3.2024 2.6601-2.311 4.6963-5.3703 7.8162-11.786 0.7444-1.5407 1.6202-3.3234 1.9267-3.9617 0.38314-0.78134 0.77724-1.3866 1.2151-1.8708 0.36125-0.39617 0.9086-1.0785 1.237-1.5077l0.59114-0.80335 1.1166 0.9134c2.5288 2.0579 3.7658 2.6632 6.6667 3.2794 1.3574 0.28613 4.0395 0.34115 5.3421 0.11004 2.9885-0.52823 5.572-1.5077 7.7724-2.9603 1.8829-1.2545 3.0214-2.7072 4.5211-5.7665l0.78818-1.6067h14.56l0.78818 1.6067c1.4998 3.0593 2.6382 4.512 4.5211 5.7665 2.1675 1.4416 4.7838 2.4321 7.7724 2.9603 1.3027 0.2311 3.9847 0.17608 5.3422-0.11004 2.901-0.61627 4.138-1.2215 6.6667-3.2794l1.1166-0.9134 0.59114 0.80335c0.31746 0.42919 0.85387 1.0895 1.1932 1.4526 0.68967 0.75933 0.87577 1.1115 2.8681 5.2273 3.317 6.889 5.2655 9.9043 7.9475 12.292 1.9486 1.7388 3.8424 2.8612 5.6596 3.3565 1.2589 0.34115 4.2146 0.34115 5.8019 0 3.3936-0.73732 6.0428-2.267 8.6044-4.9632 1.9486-2.0579 3.0323-4.4239 3.4155-7.4832 0.30652-2.4981 0.43788-6.1627 0.43788-12.171-0.011-7.7584-0.25178-12.237-1.2699-23.44-1.0947-12.182-1.1385-12.512-1.9157-15.22-0.9524-3.3124-1.9048-5.5464-3.1528-7.4282-1.029-1.5627-3.7548-4.0388-6.9295-6.2837l-1.2261-0.88039-0.12041-0.60526c-0.0657-0.34115-0.29557-1.2986-0.50357-2.1349-1.0509-4.2368-2.2332-6.1407-4.5321-7.2632-1.4997-0.73731-3.8205-1.3426-6.6777-1.7388-1.5326-0.22009-4.751-0.18707-5.9552 0.055-1.1166 0.2201-2.4959 0.70431-3.1965 1.1115-1.0619 0.62727-2.3317 2.0139-3.6454 3.9837-0.82103 1.2436-1.0947 1.8488-1.4778 3.2904-0.30652 1.1885-0.83198 4.1598-0.83198 4.732v0.34115h-57.143v-0.34115c0-1.1555-0.89766-5.3043-1.3793-6.4158-0.36125-0.84737-1.9048-3.0814-2.7587-4.0058-1.3684-1.4856-2.6273-2.1789-4.7838-2.6521-1.1494-0.24211-3.9957-0.35215-5.364-0.19809z"
+              fill="none" stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m144.96 22.577c2.1675 0.60527 3.6235 2.5861 3.6344 4.9412 0 1.1335-0.22989 1.9148-0.86481 2.8943-1.4122 2.1569-4.4883 2.8832-6.7105 1.5847-2.6273-1.5297-3.4155-4.8641-1.7406-7.3842 0.53641-0.81435 1.1385-1.3206 2.0799-1.7608 1.1932-0.56125 2.2551-0.63828 3.6016-0.27513z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m58.037 28.332v3.0703l-0.60209 0.75932c-0.99618 1.2215-2.5616 2.7622-3.0761 3.0153l-0.48167 0.2311-0.48167-0.2311c-0.5583-0.27511-1.7734-1.4416-2.89-2.7732l-0.78818-0.94641v-6.1957h8.3197z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m132.84 33.626c1.3903 0.52823 2.6382 1.8488 3.0871 3.2464 0.28462 0.86938 0.28462 2.311 0.011 3.1364-0.38315 1.1335-0.99618 1.9699-1.9376 2.6411-0.94145 0.66029-1.7077 0.90239-2.89 0.9244-1.2042 0.01102-2.0142-0.2311-2.9557-0.86938-2.6382-1.8048-2.9885-5.6234-0.7225-7.8684 0.68966-0.6823 1.4341-1.1225 2.3208-1.3756 0.82103-0.23111 2.2551-0.15407 3.0871 0.16507z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m157.02 33.416c1.4888 0.31914 2.8681 1.4086 3.5578 2.8282 0.38314 0.75933 0.41598 0.9134 0.44882 1.9589 0.0657 1.6507-0.27368 2.6081-1.3574 3.7746-1.9595 2.1349-5.2436 2.1679-7.3345 0.07703-1.0181-1.0234-1.456-2.1349-1.4669-3.6646-0.011-3.1914 3.0104-5.6345 6.1522-4.9742z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m48.546 34.286c1.7734 1.4306 3.1418 2.9933 3.1418 3.5766 0 0.53923-1.248 1.9589-3.0542 3.4555l-0.81008 0.67129h-6.207v-4.1048c0-2.267 0.03286-4.1488 0.07664-4.1818 0.03287-0.044 1.4122-0.077 3.0542-0.077h2.9885z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m66.083 37.807v4.1268l-3.0542 0.03301-3.0542 0.02201-0.60209-0.4622c-0.96334-0.73732-2.6492-2.41-2.9995-2.9383-0.1642-0.27512-0.30651-0.62727-0.30651-0.79234 0-0.59426 1.4997-2.245 3.3826-3.7086l0.58019-0.4622 3.0323 0.022 3.0214 0.033z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m112.52 37.213c2.1347 0.7043 3.8424 1.3096 3.7986 1.3646-0.0547 0.044-0.51451 0.2091-1.029 0.37416-0.51452 0.15407-2.2442 0.72631-3.8534 1.2656l-2.9338 0.97943v-2.6301c0-1.4416 0.0329-2.6301 0.0657-2.6301 0.0329 0 1.8172 0.57225 3.9519 1.2766z"
+              stroke="#fff" stroke-width=".70565" />
+            <path d="m88.36 38.523v2.4761h-7.9913v-4.9522h7.9913z" stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m54.479 40.548c0.60208 0.37416 1.4012 1.1555 2.485 2.4321l1.0728 1.2656-0.0219 3.0813-0.03287 3.0813h-8.2103l-0.03287-3.0923-0.0219-3.0923 0.7225-0.86938c1.0838-1.2986 1.7734-1.9919 2.4959-2.5311 0.7006-0.53923 1.04-0.59426 1.5435-0.27512z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m145.62 44.762c1.9376 0.9354 2.9666 2.5421 2.9666 4.655 0 1.5187-0.5364 2.7952-1.5983 3.7746-1.0838 1.0014-2.1785 1.3866-3.7877 1.3206-0.96333-0.03301-1.1385-0.07704-1.9048-0.4622-4.1927-2.0799-3.7658-8.0665 0.67871-9.5411 0.49262-0.16508 0.86482-0.19809 1.7296-0.17608 1.0071 0.03301 1.1932 0.07703 1.9157 0.42919z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m77.829 53.5c2.4084 0.49522 4.6963 1.9809 6.1084 3.9617 0.63493 0.88038 1.3027 2.322 1.5873 3.4005 0.36125 1.3206 0.36125 3.7196 0 5.0072-0.71156 2.5421-2.1456 4.534-4.2365 5.9096-1.7515 1.1445-3.3717 1.6177-5.5173 1.6177-2.058-0.01102-3.7548-0.50622-5.4188-1.6067-3.8424-2.5311-5.4735-7.3072-3.9957-11.72 0.49261-1.4746 1.1275-2.4871 2.3536-3.7306 1.5326-1.5627 3.0433-2.399 5.0904-2.8392 0.98523-0.2201 2.9885-0.2201 4.0285 0z"
+              stroke="#fff" stroke-width=".70565" />
+            <path
+              d="m123.03 53.489c3.306 0.7043 5.999 2.8833 7.2688 5.8986 2.4302 5.7335-0.83197 12.27-6.8747 13.767-1.3465 0.33014-3.317 0.33014-4.6634 0-2.3646-0.58325-4.5102-2.0579-5.8567-4.0167-0.88671-1.2986-1.3684-2.4321-1.664-3.9727-0.1861-0.9134-0.15326-2.9383 0.0438-3.9067 0.83197-3.8957 3.8424-6.889 7.8381-7.7804 0.85387-0.18708 3.0104-0.18708 3.9081 0.01102z"
+              stroke="#fff" stroke-width=".70565" />
+          </svg>
+
+        </div>
+        <h1>Introduction to the world of games and game engines</h1>
+        <div class="cvut-logo">
+          <div>
+            <img alt="CVUT Logo" src="../static/slides/images/cvut_logo.png" />
+          </div>
+          <div>
+            <div>FIT ČVUT, ZS 2019</div>
+            <div>Ing. Adam Vesecký</div>
+            <div>vesecky.adam@gmail.com</div>
+          </div>
+        </div>
+        <div class="frame-sticky cpr inline">
+          <div>Czech technical University in Prague</div>
+          <div>Faculty of Information Technology</div>
+          <div>Department of Software Engineering</div>
+          <div>© Adam Vesecký, MI-APH, 2019</div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+            <h2 class="centered">Chapter 1: <br />What is a game?</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>What is a game?</h3>
+          <div class="vertical-spread game-def">
+              <div class="frame-sticky s45">
+                  A <span class="highlight">game</span> is something you <span class="highlight">play</span>. Something that is <span class="highlight">fun</span> to play. A fun
+                  is a pleasure with <span class="highlight">surprises</span> <span class="author">(Jesse Schell)</span>.
+                </div>
+                <div class="frame-sticky s45">
+                  A game is an interactive structure of <span class="highlight">endogeneous</span> meaning that
+                  requires players to struggle toward a goal  <span class="author">(Greg Costikyan)</span>.
+                </div>
+                <div class="frame-sticky s45">
+                  Games are an exercise of control systems, in which there is a
+                  contest between powers, confined by <span class="highlight">rules</span> in order to produce a
+                  disequlibrial outcome  <span class="author">(Elliot Avendon)</span>.
+                </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container game-def">
+          <h3>What is a game?</h3>
+          <div class="vertical-spread game-def">
+              <div class="frame-sticky s45">
+                  A game is a <span class="highlight">system</span> in which players engage in an artificial
+                  <span class="highlight">conflict</span>, defined by <span class="highlight">rules</span>, that results in a quantifiable <span class="highlight">outcome</span>
+                  <span class="author">(Salen & Zimmerman, 2004)</span>.
+                </div>
+                <div class="frame-sticky s45">
+                  A game is an <span class="highlight">activity</span> defined by rules in which players try to
+                  reach some sort of <span class="highlight">goal</span>  <span class="author">(Alexander Galloway, 2006)</span>.
+                </div>
+                <div class="frame-sticky s45">
+                  A game is a closed, formal <span class="highlight">system</span> that engages players in
+                  structured <span class="highlight">conflict</span> and resolves its uncertainty in an unequal
+                  <span class="highlight">outcome</span>  <span class="author">(Tracy Fullerton, 2008)</span>.
+                </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>What is a game?</h3>
+          <div class="frame">
+            <div class="centered">
+              <img src="../static/slides/images/bulb_green&8b.png" />
+            </div>
+            <div class="game-topics">
+              <p>curiosity</p>
+              <p>system</p>
+              <p>outcome</p>
+              <p>conflict</p>
+              <p>activity</p>
+              <p>endogeneous</p>
+              <p>goal</p>
+              <p>surprise</p>
+              <p>rules</p>
+              <p>disequilibrium</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>What is a computer game?</h3>
+          <div class="frame importance-orange habitica">
+            <h4>Computer Program</h4>
+            <ul>
+              <li>
+                a set of instructions that can be executed by a computer
+              </li>
+            </ul>
+            <h4>Computer Application</h4>
+            <ul>
+              <li>computer program that helps a user to perform a task</li>
+            </ul>
+            <h4>Computer game</h4>
+            <ul>
+              <li>
+                a computer-controller game where players interact with objects
+                displayed on a screen for the sake of entertainment
+              </li>
+            </ul>
+
+            <div class="computer-games-label fragment fade-in">
+              <span class="highlight">Computer games are not applications!</span> <br />Yet the line between
+              them is blur.
+            </div>
+            <div class="img-with-desc">
+                <img src="../static/slides/images/01_habitica.png" />
+                <p>Habitica</p>
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Computer games vs applications</h3>
+          <div class="frame">
+            <div class="games-vs-apps columns-2 s100 centered">
+              <div class="img-with-desc">
+                <img src="../static/slides/images/joypad&4b.png" />
+                <p>Mechanics<br />Gameplay<br />Dynamics</p>
+              </div>
+              <div class="img-with-desc">
+                <img src="../static/slides/images/app&4b.png" />
+                <p>Use-case<br />UX<br />Feedback</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>General consensus</h3>
+          <div class="frame-quote">
+            <p class="importance-red">
+              Computer games are <span class="highlight">real-time</span> <span class="highlight">interactive</span> agent-based <span class="highlight">simulators</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>List of terms</h3>
+          <div class="frame terms importance-orange">
+            <h4><span class="highlight">Emergence</span></h4>
+            <ul>
+              <li>
+                refers to the fact that the behavior is the result of a
+                complex and dynamic system of rules
+              </li>
+            </ul>
+            <h4><span class="highlight">Progression</span></h4>
+            <ul>
+              <li>
+                refers to the structures in games where a designer outlined
+                the possible game states beforehand, usually through level
+                design.
+              </li>
+            </ul>
+            <h4>Gameplay</h4>
+            <ul>
+              <li>
+                an emergent property of the game as defined by its rules
+              </li>
+            </ul>
+            <h4>Mechanics</h4>
+            <ul>
+              <li>
+                set of rules governing the behavior of a single game element.
+              </li>
+            </ul>
+            <h4>System</h4>
+            <ul>
+              <li>
+                interacting group of game elements forming a unified whole
+              </li>
+            </ul>
+            <h4>Level</h4>
+            <ul>
+              <li>
+                structure in a game that dictates what challenges players
+                encounter
+              </li>
+            </ul>
+            <h4>Simulation</h4>
+            <ul>
+              <li>
+                a representation of a source system via a less complex system
+                that correlates with the user's understanding of the source system
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Topics</h3>
+          <div class="frame">
+            <div class="centered issues">
+              <img src="../static/slides/images/joypad&4b.png" />
+            </div>
+            <div class="centered s100">
+                <img src="../static/slides/images/core_issues.png" />
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Game basic elements</h3>
+          <div class="frame importance-orange">
+            <h4>Mechanics</h4>
+            <ul>
+              <li>
+                a set of rules governing the behavior of a single game element
+              </li>
+            </ul>
+            <h4>Story</h4>
+            <ul>
+              <li>a sequence of events that unfolds in the game</li>
+            </ul>
+            <h4>Aesthetics</h4>
+            <ul>
+              <li>how the game looks, sounds, tastes, feels,...</li>
+            </ul>
+            <h4>Technology</h4>
+            <ul>
+              <li>
+                any materials and interactions that make the game possible
+              </li>
+            </ul>
+            <img class="basic-elements" src="../static/slides/svg/game_elements.svg" >
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Mechanics</h3>
+            <div class="centered img-with-desc s100">
+              <img class="factorio-1" src="../static/slides/images/01_factorio.gif" >
+              <img class="factorio-2" src="../static/slides/images/01_factorio_2.gif" >
+              <p>Factorio</p>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Story</h3>
+            <div class="columns-3 centered story">
+              <div class="img-with-desc">
+                <img src="../static/slides/images/01_story_naughdog.jpg" >
+                <p>Naughty Dog games</p>
+              </div>
+              <div class="img-with-desc">
+                  <img src="../static/slides/images/01_story_bethesda.jpg" >
+                <p>Bethesda games</p>
+              </div>
+              <div class="img-with-desc">
+                  <img src="../static/slides/images/01_story_valve.jpg" >
+                <p>Valve games</p>
+              </div>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Aesthetics</h3>
+              <div class="centered img-with-desc s100">
+                  <img class="s85" src="../static/slides/images/01_inside.gif" >
+              <p>INSIDE</p>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Technology</h3>
+          <div class="centered img-with-desc s60">
+              <img class="s100" src="../static/slides/images/01_spore.jpg" >
+              <p>Spore</p>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: Space invaders</h3>
+          <div class="frame">
+            <p><strong>Mechanics</strong> - interesting and well-balanced</p>
+            <p><strong>Story</strong> - didn't need to have a story</p>
+            <p><strong>Aesthetics</strong> - three different alien designs</p>
+            <p><strong>Technology</strong> - first videogame of it's kind</p>
+
+            <div class="centered mech-invaders">
+              <img src="../static/slides/images/01_invaders.jpg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: Doom</h3>
+          <div class="frame">
+            <p><strong>Mechanics</strong> - many weapons, enemies, levels, locations,...</p>
+            <p>
+                <strong>Story</strong> - unnamed hero (Doomguy) fighting against invading demons
+            </p>
+            <p>
+                <strong>Aesthetics</strong> - advanced sounds and music (for that time period)
+            </p>
+            <p><strong>Technology</strong> - pseudo 3D FPS perspective</p>
+            <div class="centered mech-doom">
+                <img src="../static/slides/images/01_doom.gif" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: No man's sky</h3>
+          <div class="frame">
+            <p><strong>Mechanics</strong> - exploration, crafting, gathering, building</p>
+            <p>
+                <strong>Story</strong> - space-exploration game with heavy resource-gathering
+              elements
+            </p>
+            <p><strong>Aesthetics</strong> - visually stunning lush world</p>
+            <p><strong>Technology</strong> - (pseudo)random generated world</p>
+            <div class="centered mech-noman">
+                <img src="../static/slides/images/01_nomansky.gif" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: League of Legends</h3>
+          <div class="frame">
+            <p>
+                <strong>Mechanics</strong> - crowd, control, elo, gank, items, juking, kills,
+              kiting, last hit, pushing, recall, points, terminology, warding,
+              zoning
+            </p>
+            <p><strong>Story</strong> - a plethora of stories on LoL blog</p>
+            <p><strong>Aesthetics</strong> - cartoonish style</p>
+            <p>
+                <strong>Technology</strong> - MOBA (Multiplayer online battle arena), Riot
+              Servers
+            </p>
+            <div class="centered mech-lol">
+                <img src="../static/slides/images/01_gi-landing-top.jpg" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+          <div class="container">
+            <h3>Example: Tormentum Dark Sorrow</h3>
+            <div class="frame">
+              <p>
+                  <strong>Mechanics</strong> - point-and-click adventure (go, move, examine, talk)
+              </p>
+              <p><strong>Story</strong> - the main element of the game</p>
+              <p><strong>Aesthetics</strong> - biomechanic surrealism</p>
+              <p>
+                  <strong>Technology</strong> - not very ground-breaking
+              </p>
+              <div class="centered mech-lol">
+                  <img src="../static/slides/images/01_tormentum.jpg" >
+                </div>
+            </div>
+          </div>
+        </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Game mechanics</h3>
+          <div class="frame importance-orange">
+            <h4>Space</h4>
+            <ul>
+              <li>
+                various spaces that can exist in a game and how they are
+                related
+              </li>
+            </ul>
+            <h4>Objects, attributes</h4>
+            <ul>
+              <li>entities that can be seen or manipulated</li>
+            </ul>
+            <h4>Actions</h4>
+            <ul>
+              <li>an object's turn to act</li>
+            </ul>
+            <h4>Rules</h4>
+            <ul>
+              <li>
+                statements that describe constraints, consequences and goals
+              </li>
+            </ul>
+            <div class="img-unlocked">
+                <img src="../static/slides/images/01_unlocked.jpg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: Pong</h3>
+          <div class="frame">
+            <p><strong>Space</strong> - 2D board</p>
+            <p><strong>Objects</strong> - two players (paddles) and colliding ball, score</p>
+            <p>
+              <strong>Actions</strong> - move up/down (1 degree of freedom), release the ball
+            </p>
+            <p>
+              <strong>Rules</strong> - the ball has a constant linear velocity. Angle of
+              incidence is angle of reflection. Player earns one point when
+              the other player fails to return the ball. The winner is the one
+              who reaches eleven points before the opponent
+            </p>
+            <div class="centered mech-pong">
+                <img src="../static/slides/images/pong2.gif" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Example: Tronic</h3>
+          <div class="frame">
+            <div class="centered s100">
+              <img src="../static/slides/images/01_tronic.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+          <div class="container">
+              <h2 class="centered">Chapter 2: <br />What is a game engine?</h2>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>PRE-engine era</h3>
+          <div class="frame importance-orange">
+            <div class="grid32 centered s75">
+             <div><img src="../static/slides/images/01_engine_pinball_floppy.png"></div>
+             <div><img src="../static/slides/images/01_engine_tforce_floppy.png"></div>
+             <div><img src="../static/slides/images/01_engine_adventure_floppy.png"></div>
+             <div><img src="../static/slides/images/01_engine_gamemaker_floppy.png"></div>
+             <div><img src="../static/slides/images/01_engine_arcade_floppy.png"></div>
+             <div><img src="../static/slides/images/01_engine_rpgmaker_floppy.png"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>1984: Breakout for DOS</h3>
+          <div class="frame">
+            <div class="columns-2full">
+              <div class="breakout-code">
+                  <p><span style="color: #f6c9a0; language: cs;">move_paddle</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #bfbfbf; language: cs;">;read input from joystick</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp; joystick2</span><span style="color: #bfbfbf; language: cs;">;joy port 2</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #8 </span><span style="color: #bfbfbf; language: cs;">;right</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> move_paddle_right</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp; joystick2</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #4 </span><span style="color: #bfbfbf; language: cs;">;#left</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> move_paddle_left</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
+                  <p><span style="color: #f6c9a0; language: cs;">check_ball_paddle_collision</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;"> sprite_collision</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">cmp</span><span style="color: white; language: cs;"> #2</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> ball_paddle_collision</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
+                  <p><span style="color: #f6c9a0; language: cs;">ball_paddle_collision</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;"> sprite_collision</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">sta</span><span style="color: white; language: cs;"> sprite_collision </span><span style="color: #bfbfbf; language: cs;">;clear cbit</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">jsr</span><span style="color: white; language: cs;"> set_ball_direction_up</span></p>
+                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
+              </div>
+              <div>
+                <img class="s100" src="../static/slides/images/01_breakout.png" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>1989: Prince of Persia</h3>
+          <div class="frame">
+            <div class="columns-2full">
+              <div>
+                <p>Prince of Persia guard controller</p>
+
+                <div class="prince-code">
+                <p><strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">underctrl</span></p>
+                <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharSword</span></p>
+                <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span style="color: #8cd0d3; ">2</span> <span style="color: #d9d9d9; ">;in fighting mode?</span></p>
+                <p><span style="color: #82d4e5; ">beq</span> <span style="color: #f6c9a0; ">FightCtrl</span> <span style="color: #d9d9d9; ">;yes</span></p>
+                <p><span style="color: #dcdccc; ">&nbsp;</span></p>
+                <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharID</span></p>
+                <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span style="color: #d9d9d9; ">2 ;kid or </span><span style="color: #d9d9d9; ">shadowman</span><span style="color: #d9d9d9; ">?</span></p>
+                <p><span style="color: #82d4e5; ">bcc</span> <strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">cont</span></p>
+                <p><span style="color: #82d4e5; ">jmp</span> <span style="color: #f6c9a0; ">GuardCtrl</span> <span style="color: #d9d9d9; ">;no</span></p>
+                <p><span style="color: #dcdccc; ">&nbsp;</span></p>
+                <p><strong><span style="color: #d9d9d9; ">*</span></strong><span style="color: #d9d9d9; "> What is he doing now?</span></p>
+                <p><strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">cont</span> <span style="color: #82d4e5; ">ldx</span> <span style="color: #f6c9a0; ">CharPosn</span> <span style="color: #d9d9d9; ">;previous frame #</span></p>
+              </div>
+            </div>
+              <div>
+                  <img class="s100" src="../static/slides/images/01_prince.gif" >
+                  <p>
+                    Source code <a href="https://github.com/jmechner/Prince-of-Persia-Apple-II">here</a>
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>ID Tech</h3>
+          <div class="frame importance-orange">
+            <ul>
+              <li>Family of game engines developed by ID software</li>
+              <li>Id Tech 0 - the very first engine</li>
+              <li>Every next game had more advanced technology</li>
+              <li>
+                Still, memory constraints sabotaged attempts to create
+                data-heavy design
+              </li>
+            </ul>
+            <div class="idtech-games">
+              <img src="../static/slides/images/01_idtech_hovertank_floppy.png" >
+              <img src="../static/slides/images/01_idtech_catacomb_floppy.png" >
+              <img src="../static/slides/images/01_idtech_wolfenstein_floppy.png" >
+              <img src="../static/slides/images/01_idtech_shadowcast_floppy.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>1993: DOOM</h3>
+          <div class="frame">
+            <div class="columns-2full">
+              <div class="doom-code">
+                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #f3b57d; ">boolean</span> <span style="color: #f8f8f8; ">P_CheckMissileRange</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">mobj_t</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">){</span><span style="color: #f8f8f8; ">&nbsp;&nbsp;&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">P_CheckSight</span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">target</span><span style="color: #cda869; ">))</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span style="color: #8d868e; ">// can&rsquo;t see the target </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">flags </span><span style="color: #cda869; ">&amp;</span><span style="color: #f8f8f8; "> MF_JUSTHIT </span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// just hit -&gt; fight back! </span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">flags </span><span style="color: #cda869; ">&amp;=</span> <span style="color: #cda869; ">~</span><span style="color: #f8f8f8; ">MF_JUSTHIT</span><span style="color: #cda869; ">;</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">true</span><span style="color: #cda869; ">;</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">reactiontime</span><span style="color: #cda869; ">)</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span style="color: #8d868e; ">// do not attack yet</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">P_AproxDistance</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> target</span><span style="color: #cda869; ">)</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">-</span> <span style="color: #82d4e5; ">64</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; ">FRACUNIT</span><span style="color: #cda869; ">;</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// no melee attack, so fire more</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">info</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">meleestate</span><span style="color: #cda869; ">)</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">-=</span> <span style="color: #82d4e5; ">128</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; ">FRACUNIT</span><span style="color: #cda869; ">;</span><span style="color: #f8f8f8; ">&nbsp; </span></p>
+                  <p>&nbsp;&nbsp;</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// check for ARCH-VILE</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">type </span><span style="color: #cda869; ">==</span><span style="color: #f8f8f8; "> MT_VILE</span><span style="color: #cda869; ">){</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">&gt;</span> <span style="color: #82d4e5; ">14</span><span style="color: #cda869; ">*</span><span style="color: #82d4e5; ">64</span><span style="color: #cda869; ">)</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span><span style="color: #f8f8f8; ">&nbsp; </span><span style="color: #8d868e; ">// too far away</span></p>
+                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #cda869; ">}</span></p>
+                  <p>&nbsp;</span></p>
+              </div>
+              <div>
+                <img src="../static/slides/images/01_doom.jpg" >
+                <p>
+                  Source code: <a href="https://github.com/id-Software/DOOM/tree/master/linuxdoom-1.10">link</a>
+                </p>
+                <p>Doom3 in WebAssembly: <a href="https://www.infoq.com/news/2019/07/doom3-web-assembly-port/">link</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>WAD File</h3>
+          <div class="frame importance-orange">
+            <div class="columns-2full wad">
+              <div>
+                <h4>"Where's All the Data?"</h4>
+                <ul>
+                  <li>Binary format of package files for Doom</li>
+                  <ul>
+                    <li>Levels (walls, floors, monsters)</li>
+                    <li>Sound effects, music</li>
+                    <li>Color palettes, images</li>
+                  </ul>
+                  <li>Designed by <span class="highlight">John D. Carmack</span></li>
+                </ul>
+                <img class="carmack" src="../static/slides/images/01_carmack2.png">
+              </div>
+              <div>
+                <img class="s60" src="../static/slides/images/01_doomMap.png">
+                <img class="s75" src="../static/slides/images/01_WAD.png">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>1996: Quake</h3>
+          <div class="frame">
+            <div class="columns-2full">
+              <div class="quake-code">
+                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #cda869; ">void()</span> <span style="color: #f8f8f8; ">DeathSound</span> <span style="color: #cda869; ">=</span> <span style="color: #cda869; ">{</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; local </span><span style="color: #cda869; ">float</span> <span style="color: #f8f8f8; ">rs</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// water death sounds</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">waterlevel</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">DeathBubbles</span><span style="color: #cda869; ">(</span><span style="color: #82d4e5; ">5</span><span style="color: #cda869; ">);</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #ff9abb; ">"player/h2odeath.wav"</span><span style="color: #cda869; ">,</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">rint</span> <span style="color: #cda869; ">((</span><span style="color: #f8f8f8; ">random</span><span style="color: #cda869; ">()</span> <span style="color: #cda869; ">*</span> <span style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">+</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">);</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">)</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death1.wav"</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">2</span><span style="color: #cda869; ">)</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death2.wav"</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death3.wav"</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death4.wav"</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">5</span><span style="color: #cda869; ">)</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death5.wav"</span><span style="color: #cda869; ">;</span></p>
+                    <p>&nbsp;</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span> <span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span><span style="color: #cda869; ">,</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
+                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span style="color: #cda869; ">;</span></p>
+                    <p><span style="color: #cda869; ">};</span></p>
+                    <p>&nbsp;</p>
+              </div>
+              <div>
+                  <img class="s100" src="../static/slides/images/01_quake.jpg" >
+                <p>
+                  Source code: <a href="https://github.com/id-Software/Quake">link</a>
+                </p>
+                <p>
+                  Making of Quake: <a href="https://www.youtube.com/watch?v=w0DGaKsheDw">link</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Quake engine</h3>
+          <div class="frame importance-green">
+            <div class="columns-2full">
+              <div>
+                <ul>
+                  <li>~id Tech 1</li>
+                  <li>Released by id Software in 1996</li>
+                  <li>True 3D real-time rendering</li>
+                  <li>Binary space partitioning</li>
+                  <li>3D light sources, Gouraud shading</li>
+                  <li>Games released: <span class="highlight">Quake, Hexen 2, Silver Wings</span></li>
+                  <li>Source code released in 1999</li>
+                  <li><h4>Successors:</h4></li>
+                  <ul>
+                    <li>id Tech 2: 1997</li>
+                    <li>id Tech 3: 1999</li>
+                    <li>id Tech 4: 2004</li>
+                    <li>id Tech 5: 2011</li>
+                    <li>id Tech 6: 2016</li>
+                    <li>id Tech 7: 2018 (Doom Eternal)</li>
+                  </ul>
+                </ul>
+              </div>
+              <div>
+                <img src="../static/slides/images/01_idtech_5.jpg" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Unreal engine</h3>
+          <div class="frame importance-green">
+            <h4>Unreal Engine 1</h4>
+            <ul>
+              <li>Released in 1998 by Epic Games as FPS game engine</li>
+              <li>Unreal - the first game powered by this engine</li>
+              <li>
+                Concept of assets, HW & SW rendering, collision detection,...
+              </li>
+            </ul>
+            <h4>Unreal Engine 4</h4>
+            <ul>
+              <li>Robust multiplayer framework</li>
+              <li>Film-Quality postprocessing</li>
+              <li>VFX & Particle systems</li>
+              <li>Beta Raytracing</li>
+            </ul>
+            <div class="grid32 unreal-images">
+              <div></div>
+              <div></div>
+              <img src="../static/slides/images/01_unreal.jpg" >
+              <img src="../static/slides/images/01_unreal_engine.jpg" >
+              <img src="../static/slides/images/01_unreal_engine_2.jpg" >
+              <img src="../static/slides/images/01_unrealgfx.jpg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>CryEngine</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>Released in 2002 as a technology demo for NVidia</li>
+              <li>Far Cry - the first game powered by CryEngine</li>
+              <li>Pushes hardware to its absolute limits</li>
+            </ul>
+            <h4>CryEngine V - current release</h4>
+            <ul>
+              <li>Dynamic global illumination</li>
+              <li>Destructible environment</li>
+              <li>AI editing system</li>
+            </ul>
+            <div class="grid32 cryengine-images">
+                <div></div>
+                <div></div>
+                <img src="../static/slides/images/01_cryengine_farcry.jpg" >
+                <img src="../static/slides/images/01_kingdomCome.jpg" >
+                <img src="../static/slides/images/01_cryengine.jpg" >
+                <img src="../static/slides/images/01_cryengine_2.jpg" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Unity</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>All-purpose (not only) game engine</li>
+              <li>First announced for MacOS in 2005</li>
+              <li>over 27 platforms supported</li>
+              <li>Best choice for indie developers</li>
+            </ul>
+            <h4>Unity 2019.2 - current version</h4>
+            <ul>
+              <li>DirectX, OpenGL, Vulkan</li>
+              <li>2D and 3D games</li>
+            </ul>
+            <div class="unity-images">
+                <img src="../static/slides/images/01_unityGames.gif" >
+                <img src="../static/slides/images/01_unity_ori.gif" >
+                <img src="../static/slides/images/01_unity_cuphead.gif" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Evolution of games</h3>
+          <div class="frame">
+              <div class="games-evolution">
+                  <img class="games-evolution-image" src="../static/slides/images/01_games_evolution.png" >
+                  <img src="../static/slides/svg/game_evolution.svg" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Evolution of games</h3>
+          <div class="frame">
+            <div class="centered s100">
+              <img src="../static/slides/images/01_games_evolution_2.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Game engines today</h3>
+          <div class="frame">
+            <div class="engines">
+                <img src="../static/slides/svg/game_engines.svg" >
+              <img src="../static/slides/images/01_engines.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Important note</h3>
+          <div class="frame-quote">
+            <p> A game engine is just a tool, nothing more. Game development is more about dedication, enthusiasm and ability to work very hard.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        <div class="container">
+          <h3>Level 1 review</h3>
+          <div class="frame">
+            <h4>Terms:</h4>
+            <ul>
+              <li>Gameplay</li>
+              <li>Mechanics</li>
+              <li>System</li>
+              <li>Level</li>
+              <li>Emergence</li>
+              <li>Progression</li>
+              <li>Simulation</li>
+            </ul>
+          <p>
+            Computer games are real-time interactive agent-based simulators
+          </p>
+          <p>Game Basic Elements: Mechanics, Story, Aesthetics, Technology</p>
+          <p>Game Mechanics: Space, Objects and Attributes, Actions, Rules</p>
+        </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/mainbgr.jpg">
+          <div class="container">
+            <h3>Goodbye quote</h3>
+            <div class="centered s85">
+                <blockquote>
+                    So you walk eternally through the shadow realms, standing against evil where all others falter. 
+                    May your thirst for retribution never quench, may the blood on your sword never dry, and may we never need you again.
+                    <span class="author fragment fade-in">Doom 4</span>
+                </blockquote>
+            </div>
+          </div>
+        </section>
+    </div>
+  </div>
+
+  <!-- ===================================================== REVEALJS INITIALIZE ===================================================== -->
+  <script src="../libs/revealjs/revealjs.ts"></script>
+  <script src="../src/lectures/reveal-setup.ts"></script>
+  <footer>
+    <p>Adam Vesecký (FIT ČVUT)</p>
+    <p>MI-APH Architecture of Computer Games 2019</p>
+  </footer>
+</body>
+
+</html>
