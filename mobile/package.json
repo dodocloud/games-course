@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "android": "node deploy.js && cordova run android"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {
+    "cordova-android": "^8.1.0"
+  },
+  "devDependencies": {
+    "cordova-plugin-whitelist": "1",
+    "replace-in-file": "^4.1.3"
+  }
+}
