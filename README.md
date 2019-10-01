@@ -82,7 +82,7 @@ Will be added on the day the particular lecture takes place
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
 | 1 | 24.9. | Introduction to the world of games | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture00.html) [Link 2](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture01.html)  |
-| **2** | **1.10.** | **Architecture of game engines** | |
+| **2** | **1.10.** | **Architecture of game engines** |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture02.html) |
 | 3 | 8.10. | Component architecture I | |
 | 4 | 15.10. | Component architecture II | |
 | 5 | 22.10. | Game programming patterns | |
@@ -100,8 +100,8 @@ Will be added on the day the particular lecture takes place
 
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
-| 1O | 24.9. | Introduction to the environment | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab01.html) |
-| **2E** | **1.10.** | **Introduction to the environment** | |
+| 1O | 24.9. | Introduction to the environment | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab01.html) |
+| **2E** | **1.10.** | **Introduction to the environment** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab01.html) |
 | 3O | 8.10. | PixiJS basics | |
 | 4E | 15.10. | PixiJS basics | |
 | 5O | 22.10. | Component architecture  | |
