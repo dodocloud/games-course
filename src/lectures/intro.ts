@@ -52,7 +52,6 @@ class RenderSegment {
 }
 
 
-
 /**
  * Fancy Windows 3.0-like progress window
  */

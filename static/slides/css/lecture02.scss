@@ -1,0 +1,12 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+  .frame {
+    border-image-source: url("../images/common/frame_red.png"); 
+  }
+
+  .lecture-logo {
+    margin-bottom: 50px;
+  }
+}

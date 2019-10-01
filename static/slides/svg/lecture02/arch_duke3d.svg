@@ -1,0 +1,27 @@
+<svg version="1.1" viewBox="0 0 1190.9 897.15" xmlns="http://www.w3.org/2000/svg">
+ <rect x="728.94" y="21.768" width="440.21" height="588.43" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-dasharray="3.53586379, 10.60759139" stroke-width="3.5359"/>
+ <rect x="21.768" y="641.43" width="1147.4" height="233.96" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-dasharray="3.53586379, 10.60759139" stroke-width="3.5359"/>
+ <rect x="20.884" y="21.768" width="675.94" height="235.72" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="20.884" y="288.73" width="204.49" height="320.58" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="258.38" y="288.73" width="204.49" height="55.395" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="494.1" y="288.73" width="204.49" height="84.861" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="494.1" y="406.59" width="204.49" height="202.72" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="258.38" y="377.12" width="204.49" height="143.79" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <rect x="258.38" y="553.92" width="204.49" height="55.395" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.7679"/>
+ <text x="276.38022" y="326.13953" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="276.38022" y="326.13953" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">animLib.c</tspan></text>
+ <text x="305.84537" y="149.34634" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="305.84537" y="149.34634" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">game.c</tspan></text>
+ <text x="54.916645" y="457.41611" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="54.916645" y="457.41611" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">actors.c</tspan></text>
+ <text x="290.64102" y="457.41611" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="290.64102" y="457.41611" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">player.c</tspan></text>
+ <text x="278.85501" y="592.95746" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="278.85501" y="592.95746" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">control.c</tspan></text>
+ <text x="542.57159" y="519.2937" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="542.57159" y="519.2937" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">menu.c</tspan></text>
+ <text x="526.36572" y="345.44711" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="526.36572" y="345.44711" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">config.c</tspan></text>
+ <text x="859.79724" y="326.13953" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="859.79724" y="326.13953" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">engine.lib</tspan></text>
+ <text x="502.35123" y="763.82056" fill="#e9e56f" font-family="sans-serif" font-size="70.717px" letter-spacing="0px" stroke-width="5.8931px" word-spacing="0px" style="line-height:0%" xml:space="preserve"><tspan x="502.35123" y="763.82056" fill="#e9e56f" font-family="Inconsolata" font-size="36.832px" font-weight="500" stroke-width="5.8931px" style="line-height:1.25">Duke3D.grp</tspan></text>
+ <rect x="109.28" y="257.49" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="227.14" y="302.43" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="345.01" y="257.49" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="345.01" y="522.68" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="580.73" y="257.49" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="462.87" y="566.14" width="29.466" height="29.466" fill="#b62a2a"/>
+ <rect x="227.14" y="566.14" width="29.466" height="29.466" fill="#b62a2a"/>
+</svg>

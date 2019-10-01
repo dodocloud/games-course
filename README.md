@@ -38,7 +38,42 @@ Changelog is available [here](./CHANGELOG.md)
 
 Upon every commit, gitlab will synchronize the content with a live environment in [AWS S3 Bucket](http://dodoworks.s3-website.eu-central-1.amazonaws.com/)
 
-The slides will also be available in PDF (not ready yet).
+All slides were made by a modified version of [RevealJS](https://github.com/hakimel/reveal.js/). Its source code was rewritten into TypeScript and it's part of this repository as it may be constantly modified during the course.
+
+Keyboard shortcuts for the slides:
+
+| Key | Action | 
+| ------ | ------ | 
+| N, SPACE | Next slide | 
+| P | Previous slide |
+| ← , H | Navigate left |
+| → , L | Navigate right |
+| ↑ , K | Navigate up |
+| ↓ , J | Navigate down |
+| Home , ⌘/CTRL ← | First slide |
+| End , ⌘/CTRL → | Last slide |
+| F | Fullscreen |
+| ESC, O | Slide overview |
+| CTRL + Shift + F | Search |
+
+### Browser support
+
+- RevealJS used as a presentation framework supports all browsers since 2012 (Chrome 24+, Firefox 4+, IE10+, Edge, Safari, Opera)
+- custom styles were tested against Chrome 77 and Firefox 69 (Windows, Linux and Android platforms)
+- if you bump into anything that appears wrongly aligned, or worse, broken, feel free to send an e-mail to the lecturer
+
+### PDF Export
+
+- yes, it is supported 🙌
+- you should use `Google Chrome` since it has got a built-in PDF export and the slides were optimized for it
+- go to the dashboard (`index.html`) and click on `PRINT` label in the cell of particular presentation
+  - alternatively, navigate to a presentation you want to export either on your localhost or live environment and put `?print-pdf` as a query string (e.g. `localhost:1234/lecture00.html?print-pdf`)
+- in this mode, you will see all slides aligned vertically, stripped out of all visual effects and glowing backgrounds
+- press right mouse button, select `print`
+- select `Save as PDF` as the Destination, don't forget to check `Background graphics`
+- wait for the preview to be generated and click on `Save`
+
+- if you want to change the style of the slides (fonts, colors), more information can be found [here](./docs/environment.md)
 
 ## Lectures
 
@@ -46,8 +81,8 @@ Will be added on the day the particular lecture takes place
 
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
-| **1** | **24.9.** | **Introduction to the world of games** | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture00.html) [Link 2](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture01.html)  |
-| 2 | 1.10. | Architecture of game engines | |
+| 1 | 24.9. | Introduction to the world of games | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture00.html) [Link 2](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture01.html)  |
+| **2** | **1.10.** | **Architecture of game engines** | |
 | 3 | 8.10. | Component architecture I | |
 | 4 | 15.10. | Component architecture II | |
 | 5 | 22.10. | Game programming patterns | |
@@ -65,8 +100,8 @@ Will be added on the day the particular lecture takes place
 
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
-| **1O** | **24.9.** | **Introduction to the environment** | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab01.html) |
-| 2E | 1.10. | Introduction to the environment | |
+| 1O | 24.9. | Introduction to the environment | [Link 1](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab01.html) |
+| **2E** | **1.10.** | **Introduction to the environment** | |
 | 3O | 8.10. | PixiJS basics | |
 | 4E | 15.10. | PixiJS basics | |
 | 5O | 22.10. | Component architecture  | |

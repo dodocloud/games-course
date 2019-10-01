@@ -1,0 +1,84 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+ 
+ 
+  .game-topics > p {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: $highlight-color-sec;
+  }
+
+  .game-topics {
+    :nth-child(1) { /* curiosity */
+      left: calc(50% - 0px);
+      top: calc(50% - 300px);
+    }
+
+    :nth-child(2) { /* system */
+      left: calc(50% - 200px);
+      top: calc(50% - 250px);
+    }
+    
+    :nth-child(3) { /* outcome */
+      left: calc(50% + 200px);
+      top: calc(50% - 250px);
+    }
+    
+    :nth-child(4) { /* conflict */
+      left: calc(50% - 300px);
+      top: calc(50% - 150px);
+    }
+    
+    :nth-child(5) { /* activity */
+      left: calc(50% + 300px);
+      top: calc(50% - 150px);
+    }
+    
+    :nth-child(6) { /* endogeneous */
+      left: calc(50% - 400px);
+      top: calc(50% - 0px);
+    }
+    
+    :nth-child(7) { /* goal */
+      left: calc(50% + 400px);
+      top: calc(50% - 0px);
+    }
+    
+    :nth-child(8) { /* surprise */
+      left: calc(50% - 300px);
+      top: calc(50% + 150px);
+    }
+    
+    :nth-child(9) { /* rules */
+      left: calc(50% + 300px);
+      top: calc(50% + 150px);
+    }
+    
+    :nth-child(10) { /* disequlibrium */
+      left: calc(50% - 0px);
+      top: calc(50% + 300px);
+    }
+  }
+  
+  .breakout-code > p {
+    font-family: $font-retro;
+    line-height: 18px;
+  }
+  
+  .prince-code > p {
+    font-family: $font-retro;
+    line-height: 30px;
+  }
+
+  .code > * {
+    font-family: $font-monospace;
+    line-height: 12px;
+    font-size: 28px;
+  }
+
+  .frame {
+    border-image-source: url("../images/common/frame_blue.png"); 
+  }
+}

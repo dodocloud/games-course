@@ -17,7 +17,7 @@
 - recommended amount of time is 50 hours of work
 - the only mandatory part is the Component Architecture that will be part of the 3rd, 4th and 5th lecture
 - you can use any additional 3rd party library (pixi-spine, matterjs, pixi-after-effects,...) yet it must be clear which part of the game you implemented on your own
-- **maximum points: 50 (+5 bonus points)**
+- **maximum points: 50 (+6 bonus points)**
 - **points to pass: 25**
 - recommended topics/techniques you may choose from:
   - interesting AI
@@ -34,6 +34,7 @@
 
 - create your own repository under your username. The name should be MI-APH `gitlab.fit.cvut.cz/<username>/MI-APH`
 - fork this repo to your own project. It's recommended to postpone this step until 3rd week - this repo will contain materials for component architecture by then 
+- execute script `npm run clean_materials`, this will remove all materials, slides and other things not necessary for your semestral work
 - your repository must contain ONLY your game and a PDF file with a manual
 - the manual should contain a short **summary** of your solution, a **diagram** of the architecture of the game and a tutorial (if necessary),  it's size shouldn't exceed 2 pages!
 - the diagram of the architecture is **mandatory**

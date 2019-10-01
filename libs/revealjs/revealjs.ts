@@ -64,9 +64,9 @@ interface ChangedFragments {
  * Constructor for the playback component, which displays
  * play/pause/progress controls.
  *
- * @param {HTMLElement} container The component will append
+ * @param container The component will append
  * itself to this
- * @param {function} progressCheck A method which will be
+ * @param progressCheck A method which will be
  * called frequently to get the current progress on a range
  * of 0-1
  */
@@ -414,13 +414,13 @@ export interface RevealConfig {
 		focusBodyOnPageVisibilityChange?: boolean;
 
 		// Transition style
-		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom'; // none/fade/slide/convex/concave/zoom
+		transition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom';
 
 		// Transition speed
-		transitionSpeed?: 'default' | 'fast' | 'slow'; // default/fast/slow
+		transitionSpeed?: 'default' | 'fast' | 'slow';
 
 		// Transition style for full page slide backgrounds
-		backgroundTransition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom'; // none/fade/slide/convex/concave/zoom
+		backgroundTransition?: 'none' | 'fade' | 'slide' | 'convex' | 'concave' | 'zoom';
 
 		// Parallax background image
 		parallaxBackgroundImage?: string; // CSS syntax, e.g. "a.jpg"
@@ -429,7 +429,7 @@ export interface RevealConfig {
 		parallaxBackgroundSize?: string; // CSS syntax, e.g. "3000px 2000px"
 
 		// Parallax background repeat
-		parallaxBackgroundRepeat?: string; // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
+		parallaxBackgroundRepeat?: 'repeat' | 'repeat-x' | 'repeat-y' | 'no-repeat' | 'initial' | 'inherit';
 
 		// Parallax background position
 		parallaxBackgroundPosition?: string; // CSS syntax, e.g. "top left"
@@ -530,7 +530,7 @@ class Reveal {
 		backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
 		parallaxBackgroundImage: '', // CSS syntax, e.g. "a.jpg"
 		parallaxBackgroundSize: '', // CSS syntax, e.g. "3000px 2000px"
-		parallaxBackgroundRepeat: '', // repeat/repeat-x/repeat-y/no-repeat/initial/inherit
+		parallaxBackgroundRepeat: 'repeat',
 		parallaxBackgroundPosition: '', // CSS syntax, e.g. "top left"
 		parallaxBackgroundHorizontal: null,
 		parallaxBackgroundVertical: null,
@@ -869,8 +869,8 @@ class Reveal {
 	/**
 	 * Loads a JavaScript file from the given URL and executes it.
 	 *
-	 * @param {string} url Address of the .js file to load
-	 * @param {function} callback Method to invoke when the script
+	 * @param url Address of the .js file to load
+	 * @param callback Method to invoke when the script
 	 * has loaded and executed
 	 */
 	private loadScript(url: string, callback: Function): void {
@@ -1031,7 +1031,6 @@ class Reveal {
 	 * current slide content. Hide the div off-screen to make it
 	 * available only to Assistive Technologies.
 	 *
-	 * @return {HTMLElement}
 	 */
 	private createStatusDiv(): HTMLElement {
 
@@ -1070,7 +1069,7 @@ class Reveal {
 			let isDisplayHidden = window.getComputedStyle( node )['display'] === 'none';
 			if( isAriaHidden !== 'true' && !isDisplayHidden ) {
 
-				this.toArray<HTMLElement>( node.childNodes ).forEach( ( child ) => {
+				( node.childNodes ).forEach( ( child: HTMLElement ) => {
 					text += this.getStatusText( child );
 				} );
 			}
@@ -1080,12 +1079,12 @@ class Reveal {
 	}
 
 	/**
-	 * Configures the presentation for printing to a static
-	 * PDF.
+	 * Configures the presentation for printing to a static PDF
 	 */
 	private setupPDF(): void {
 
 		let slideSize = this.getComputedSlideSize( window.innerWidth, window.innerHeight );
+		slideSize.height /= (1+this.config.margin); // vertical margin is calculated twice
 
 		// Dimensions of the PDF pages
 		let pageWidth = Math.floor( slideSize.width * ( 1 + this.config.margin ) ),
@@ -1240,7 +1239,7 @@ class Reveal {
 
 				} else {
           // Show all fragments
-          this.toArray<HTMLElement>( page.querySelectorAll( '.fragment:not(.fade-out)' ) ).forEach( ( fragment ) => {
+          ( page.querySelectorAll( '.fragment:not(.fade-out)' ) ).forEach( ( fragment ) => {
 						fragment.classList.add( 'visible' );
 					} );
 				}
@@ -1276,12 +1275,6 @@ class Reveal {
 	 * If the element already exists the existing instance will
 	 * be returned.
 	 *
-	 * @param {HTMLElement} container
-	 * @param {string} tagname
-	 * @param {string} classname
-	 * @param {string} innerHTML
-	 *
-	 * @return {HTMLElement}
 	 */
 	private createSingletonNode( container: HTMLElement, tagname: string, classname: string, innerHTML: string): HTMLElement {
 
@@ -1355,10 +1348,9 @@ class Reveal {
 	/**
 	 * Creates a background for the given slide.
 	 *
-	 * @param {HTMLElement} slide
-	 * @param {HTMLElement} container The element that the background
-	 * should be appended to
-	 * @return {HTMLElement} New background div
+	 * @param slide
+	 * @param container The element that the background should be appended to
+	 * @return New background div
 	 */
 	private createBackground( slide: HTMLElement, container: HTMLElement ): HTMLElement {
 		// Main slide background element
@@ -1386,7 +1378,6 @@ class Reveal {
 	 * Renders all of the visual properties of a slide background
 	 * based on the various background attributes.
 	 *
-	 * @param {HTMLElement} slide
 	 */
 	private syncBackground( slide: HTMLElement ): void {
 
@@ -1521,7 +1512,6 @@ class Reveal {
 	 * Applies the configuration settings from the config
 	 * object. May be called multiple times.
 	 *
-	 * @param {object} options
 	 */
 	public configure( options?: RevealConfig ): void {
 
@@ -1633,7 +1623,7 @@ class Reveal {
 
 		// When fragments are turned off they should be visible
 		if( this.config.fragments === false ) {
-			this.toArray<HTMLElement>( this.dom.slides.querySelectorAll( '.fragment' ) ).forEach( ( element ) => {
+			( this.dom.slides.querySelectorAll( '.fragment' ) ).forEach( ( element ) => {
 				element.classList.add( 'visible' );
 				element.classList.remove( 'current-fragment' );
 			} );
@@ -1786,7 +1776,7 @@ class Reveal {
 			this.dom.progress.removeEventListener( 'click', this.onProgressClicked, false );
 		}
 
-		[ 'touchstart', 'click' ].forEach( ( eventName ) => {
+		[ 'touchstart', 'click' ].forEach( ( eventName: string ) => {
 			this.dom.controlsLeft.forEach( ( el ) => { el.removeEventListener( eventName, this.onNavigateLeftClicked, false ); } );
 			this.dom.controlsRight.forEach( ( el ) => { el.removeEventListener( eventName, this.onNavigateRightClicked, false ); } );
 			this.dom.controlsUp.forEach( ( el ) => { el.removeEventListener( eventName, this.onNavigateUpClicked, false ); } );
@@ -1822,7 +1812,7 @@ class Reveal {
 	/**
 	 * Checks if a specific plugin has been registered.
 	 *
-	 * @param {String} id Unique plugin identifier
+	 * @param id Unique plugin identifier
 	 */
 	public hasPlugin( id: string ): boolean {
 		return !!this.plugins[id];
@@ -1832,7 +1822,7 @@ class Reveal {
 	 * Returns the specific plugin instance, if a plugin
 	 * with the given ID has been registered.
 	 *
-	 * @param {String} id Unique plugin identifier
+	 * @param id Unique plugin identifier
 	 */
 	public getPlugin( id: string ): any {
 		return this.plugins[id];
@@ -1871,8 +1861,6 @@ class Reveal {
 	 * Extend object a with the properties of object b.
 	 * If there's a conflict, object b takes precedence.
 	 *
-	 * @param {object} a
-	 * @param {object} b
 	 */
 	private extend( a: object, b?: object ): object {
     if(b) {
@@ -1886,8 +1874,6 @@ class Reveal {
 	/**
 	 * Converts the target object to an array.
 	 *
-	 * @param {object} o
-	 * @return {object[]}
 	 */
 	private toArray<T>( o: Object): Array<T> {
 		return Array.prototype.slice.call( o );
@@ -1896,8 +1882,6 @@ class Reveal {
 	/**
 	 * Utility for deserializing a value.
 	 *
-	 * @param {*} value
-	 * @return {*}
 	 */
 	private deserialize( value: any ): any {
 		if( typeof value === 'string' ) {
@@ -1909,8 +1893,6 @@ class Reveal {
 	/**
 	 * Applies a CSS transform to the target element.
 	 *
-	 * @param {HTMLElement} element
-	 * @param {string} transform
 	 */
 	private transformElement( element: HTMLElement, transform: string ): void {
 		(element.style as any).WebkitTransform = transform;
@@ -1924,7 +1906,6 @@ class Reveal {
 	 * is transformed from two separate sources: layout and the overview
 	 * mode.
 	 *
-	 * @param {object} transforms
 	 */
 	private transformSlides( transforms: any ): void {
 		// Pick up new transforms from arguments
@@ -1942,7 +1923,6 @@ class Reveal {
 	/**
 	 * Injects the given CSS styles into the DOM.
 	 *
-	 * @param {string} value
 	 */
 	private injectStyleSheet( value: string ): void {
 
@@ -1961,11 +1941,11 @@ class Reveal {
 	 * Find the closest parent that matches the given
 	 * selector.
 	 *
-	 * @param {HTMLElement} target The child element
-	 * @param {String} selector The CSS selector to match
+	 * @param target The child element
+	 * @param selector The CSS selector to match
 	 * the parents against
 	 *
-	 * @return {HTMLElement} The matched parent or null
+	 * @return The matched parent or null
 	 * if no matching parent was found
 	 */
 	private closestParent( target: HTMLElement, selector: string ): HTMLElement {
@@ -2047,13 +2027,12 @@ class Reveal {
 		}
 
 		return null;
-
 	}
 
 	/**
 	 * Calculates brightness on a scale of 0-255.
 	 *
-	 * @param {string} color See colorToRgb for supported formats.
+	 * @param color See colorToRgb for supported formats.
 	 * @see {@link colorToRgb}
 	 */
 	private colorBrightness( color: string ): number {
@@ -2073,8 +2052,6 @@ class Reveal {
 	 *
 	 * remaining height = [ configured parent height ] - [ current parent height ]
 	 *
-	 * @param {HTMLElement} element
-	 * @param {number} [height]
 	 */
 	private getRemainingHeight( element: HTMLElement, height: number ): number {
 
@@ -2104,7 +2081,6 @@ class Reveal {
 		}
 
 		return height;
-
 	}
 
 	/**
@@ -2197,7 +2173,7 @@ class Reveal {
 	/**
 	 * Bind preview frame links.
 	 *
-	 * @param {string} [selector=a] - selector for anchors
+	 * @param [selector=a] - selector for anchors
 	 */
 	private enablePreviewLinks( selector?: string ): void {
 		document.querySelectorAll( selector ? selector : 'a' ).forEach( ( element ) => {
@@ -2221,7 +2197,7 @@ class Reveal {
 	/**
 	 * Opens a preview window for the target URL.
 	 *
-	 * @param {string} url - url for preview iframe src
+	 * @param url - url for preview iframe src
 	 */
 	private showPreview( url: string ): void {
 
@@ -2267,8 +2243,6 @@ class Reveal {
 
 	/**
 	 * Open or close help overlay window.
-	 *
-	 * @param {Boolean} [override] Flag which overrides the
 	 * toggle logic and forcibly sets the desired state. True means
 	 * help is open, false means it's closed.
 	 */
@@ -2407,10 +2381,10 @@ class Reveal {
 				}
 
 				// Select all slides, vertical and horizontal
-				let slides = this.toArray<HTMLElement>( this.dom.wrapper.querySelectorAll( Reveal.SLIDES_SELECTOR ) );
+				let slides = ( this.dom.wrapper.querySelectorAll( Reveal.SLIDES_SELECTOR ) );
 
 				for( let i = 0, len = slides.length; i < len; i++ ) {
-					let slide = slides[ i ];
+					let slide = slides[ i ] as HTMLElement;
 
 					// Don't bother updating invisible slides
 					if( slide.style.display === 'none' ) {
@@ -2452,8 +2426,6 @@ class Reveal {
 	 * Applies layout logic to the contents of all slides in
 	 * the presentation.
 	 *
-	 * @param {string|number} width
-	 * @param {string|number} height
 	 */
 	private layoutSlideContents( width: number, height: number ): void {
 
@@ -2484,9 +2456,6 @@ class Reveal {
 	 * Calculates the computed pixel size of our slides. These
 	 * values are based on the width and height configuration
 	 * options.
-	 *
-	 * @param {number} [presentationWidth=dom.wrapper.offsetWidth]
-	 * @param {number} [presentationHeight=dom.wrapper.offsetHeight]
 	 */
 	private getComputedSlideSize( presentationWidth?: number, presentationHeight?: number ): SlideSize {
 
@@ -2515,7 +2484,6 @@ class Reveal {
 		}
 
 		return size;
-
 	}
 
 	/**
@@ -2523,8 +2491,8 @@ class Reveal {
 	 * vertical slide can be selected when navigating to and
 	 * from the stack.
 	 *
-	 * @param {HTMLElement} stack The vertical stack element
-	 * @param {string|number} [v=0] Index to memorize
+	 * @param stack The vertical stack element
+	 * @param [v=0] Index to memorize
 	 */
 	private setPreviousVerticalIndex( stack: HTMLElement, v: number ): void {
 		if( typeof stack === 'object' && typeof stack.setAttribute === 'function' ) {
@@ -2537,7 +2505,7 @@ class Reveal {
 	 * #setPreviousVerticalIndex() or 0 if no previous index
 	 * exists.
 	 *
-	 * @param {HTMLElement} stack The vertical stack element
+	 * @param stack The vertical stack element
 	 */
 	private getPreviousVerticalIndex( stack: HTMLElement ): number {
 		if( typeof stack === 'object' && typeof stack.setAttribute === 'function' && stack.classList.contains( 'stack' ) ) {
@@ -2714,7 +2682,7 @@ class Reveal {
 	/**
 	 * Toggles the slide overview mode on and off.
 	 *
-	 * @param {Boolean} [override] Flag which overrides the
+	 * @param [override] Flag which overrides the
 	 * toggle logic and forcibly sets the desired state. True means
 	 * overview is open, false means it's closed.
 	 */
@@ -2729,8 +2697,7 @@ class Reveal {
 	/**
 	 * Checks if the overview is currently active.
 	 *
-	 * @return {Boolean} true if the overview is active,
-	 * false otherwise
+	 * @return true if the overview is active, false otherwise
 	 */
 	public isOverview(): boolean {
 		return this.overview;
@@ -2774,9 +2741,7 @@ class Reveal {
 	 * Checks if the current or specified slide is vertical
 	 * (nested within another slide).
 	 *
-	 * @param {HTMLElement} [slide=currentSlide] The slide to check
-	 * orientation of
-	 * @return {Boolean}
+	 * @param [slide=currentSlide] The slide to check orientation of
 	 */
 	private isVerticalSlide( slide?: Slide ): boolean {
 		// Prefer slide argument, otherwise use current slide
@@ -2829,8 +2794,7 @@ class Reveal {
 	}
 
 	/**
-	 * Enters the paused mode which fades everything on screen to
-	 * black.
+	 * Enters the paused mode which fades everything on screen to black.
 	 */
 	private pause(): void {
 		if( this.config.pause ) {
@@ -2873,7 +2837,6 @@ class Reveal {
 	/**
 	 * Checks if we are currently in the paused mode.
 	 *
-	 * @return {Boolean}
 	 */
 	public isPaused(): boolean {
 		return this.dom.wrapper.classList.contains( 'paused' );
@@ -2882,7 +2845,7 @@ class Reveal {
 	/**
 	 * Toggles the auto slide mode on and off.
 	 *
-	 * @param {Boolean} [override] Flag which sets the desired state.
+	 * @param [override] Flag which sets the desired state.
 	 * True means autoplay starts, false means it stops.
 	 */
 
@@ -2897,7 +2860,6 @@ class Reveal {
 	/**
 	 * Checks if the auto slide mode is currently on.
 	 *
-	 * @return {Boolean}
 	 */
 	public isAutoSliding(): boolean {
 		return !!( this.autoSlide && !this.autoSlidePaused );
@@ -2908,11 +2870,11 @@ class Reveal {
 	 * slide which matches the specified horizontal and vertical
 	 * indices.
 	 *
-	 * @param {number} [h=indexh] Horizontal index of the target slide
-	 * @param {number} [v=indexv] Vertical index of the target slide
-	 * @param {number} [f] Index of a fragment within the
+	 * @param [h=indexh] Horizontal index of the target slide
+	 * @param [v=indexv] Vertical index of the target slide
+	 * @param [f] Index of a fragment within the
 	 * target slide to activate
-	 * @param {number} [o] Origin for use in multimaster environments
+	 * @param [o] Origin for use in multimaster environments
 	 */
 	public slide( h: number, v?: number, f?: number, o?: number ): void {
 
@@ -3109,7 +3071,6 @@ class Reveal {
 	 * Similar to #sync() but more efficient when you only need to
 	 * refresh a specific slide.
 	 *
-	 * @param {HTMLElement} slide
 	 */
 	public syncSlide( slide: Slide ): void {
 
@@ -3129,8 +3090,8 @@ class Reveal {
 	 * valid indices. Call this if fragments are changed in the DOM
 	 * after reveal.js has already initialized.
 	 *
-	 * @param {HTMLElement} slide
-	 * @return {Array} a list of the HTML fragments that were synced
+	 * @param slide
+	 * @return a list of the HTML fragments that were synced
 	 */
 	public syncFragments( slide: HTMLElement ): HTMLElement[][] | HTMLElement[] {
 		// Default to the current slide
@@ -3180,7 +3141,7 @@ class Reveal {
 	 */
 	public shuffle(): void {
 
-		let slides = this.toArray<HTMLElement>( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) );
+		let slides = ( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) );
 
 		slides.forEach( ( slide ) => {
 			// Insert this slide next to another random slide. This may
@@ -3193,12 +3154,12 @@ class Reveal {
 	 * Updates one dimension of slides by showing the slide
 	 * with the specified index.
 	 *
-	 * @param {string} selector A CSS selector that will fetch
+	 * @param selector A CSS selector that will fetch
 	 * the group of slides we are working with
-	 * @param {number} index The index of the slide that should be
+	 * @param index The index of the slide that should be
 	 * shown
 	 *
-	 * @return {number} The index of the slide that is now shown,
+	 * @return The index of the slide that is now shown,
 	 * might differ from the passed in index if it was out of
 	 * bounds.
 	 */
@@ -3206,7 +3167,7 @@ class Reveal {
 
 		// Select all slides and convert the NodeList result to
 		// an array
-		let slides = this.toArray<HTMLElement>( this.dom.wrapper.querySelectorAll( selector ) ),
+		let slides = ( this.dom.wrapper.querySelectorAll( selector ) ),
 			slidesLength = slides.length;
 
 		let printMode = this.isPrintingPDF();
@@ -3226,7 +3187,7 @@ class Reveal {
 			index = Math.max( Math.min( index, slidesLength - 1 ), 0 );
 
 			for( let i = 0; i < slidesLength; i++ ) {
-				let element = slides[i];
+				let element = slides[i] as HTMLElement;
 				let reverse = this.config.rtl && !this.isVerticalSlide( element );
 
 				element.classList.remove( 'past' );
@@ -3301,7 +3262,7 @@ class Reveal {
 
 		// Select all slides and convert the NodeList result to
 		// an array
-		let horizontalSlides = this.toArray<Slide>( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) ),
+		let horizontalSlides = ( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) ),
 			horizontalSlidesLength = horizontalSlides.length,
 			distanceX,
 			distanceY;
@@ -3323,9 +3284,9 @@ class Reveal {
 			}
 
 			for( let x = 0; x < horizontalSlidesLength; x++ ) {
-				let horizontalSlide = horizontalSlides[x];
+				let horizontalSlide = horizontalSlides[x] as HTMLElement;
 
-				let verticalSlides = this.toArray<Slide>( horizontalSlide.querySelectorAll( 'section' ) ),
+				let verticalSlides = ( horizontalSlide.querySelectorAll( 'section' ) ),
 					verticalSlidesLength = verticalSlides.length;
 
 				// Determine how far away this slide is from the present
@@ -3359,7 +3320,6 @@ class Reveal {
 							this.unloadSlide( verticalSlide );
 						}
 					}
-
 				}
 			}
 
@@ -3406,8 +3366,7 @@ class Reveal {
 	}
 
 	/**
-	 * Checks if there are speaker notes for ANY slide in the
-	 * presentation.
+	 * Checks if there are speaker notes for ANY slide in the presentation.
 	 */
 	private hasNotes(): boolean {
 		return this.dom.slides.querySelectorAll( '[data-notes], aside.notes' ).length > 0;
@@ -3423,7 +3382,6 @@ class Reveal {
 			this.dom.progressbar.style.width = this.getProgress() * this.dom.wrapper.offsetWidth + 'px';
 		}
 	}
-
 
 	/**
 	 * Updates the slide number to match the current slide.
@@ -3467,7 +3425,6 @@ class Reveal {
 						if( this.isVerticalSlide() ) { value.push( '.', this.indexv + 1 ); }
 				}
 			}
-
 			this.dom.slideNumber.innerHTML = this.formatSlideNumber( value[0], value[1], value[2] );
 		}
 	}
@@ -3476,10 +3433,10 @@ class Reveal {
 	 * Applies HTML formatting to a slide number before it's
 	 * written to the DOM.
 	 *
-	 * @param {number} a Current slide
-	 * @param {string} delimiter Character to separate slide numbers
-	 * @param {(number|*)} b Total slides
-	 * @return {string} HTML string fragment
+	 * @param a Current slide
+	 * @param delimiter Character to separate slide numbers
+	 * @param b Total slides
+	 * @return HTML string fragment
 	 */
 	private formatSlideNumber( a: number, delimiter: string, b: number ): string {
 		let url = '#' + this.locationHash();
@@ -3566,7 +3523,7 @@ class Reveal {
 	 * Updates the background elements to reflect the current
 	 * slide.
 	 *
-	 * @param {boolean} includeAll If true, the backgrounds of
+	 * @param includeAll If true, the backgrounds of
 	 * all vertical slides (not just the present) will be updated.
 	 */
 	private updateBackground( includeAll: boolean = false ): void {
@@ -3596,7 +3553,7 @@ class Reveal {
 			}
 
 			if( includeAll || h === this.indexh ) {
-				this.toArray<HTMLElement>( backgroundh.querySelectorAll( '.slide-background' ) ).forEach( ( backgroundv, v ) => {
+				( backgroundh.querySelectorAll( '.slide-background' ) ).forEach( ( backgroundv, v ) => {
 
 					backgroundv.classList.remove( 'past' );
 					backgroundv.classList.remove( 'present' );
@@ -3721,7 +3678,6 @@ class Reveal {
 	 * Should the given element be preloaded?
 	 * Decides based on local element attributes and global config.
 	 *
-	 * @param {HTMLElement} element
 	 */
 	private shouldPreload( element: HTMLElement ): boolean {
 
@@ -3812,8 +3768,7 @@ class Reveal {
 					}
 
 					// Inline video playback works (at least in Mobile Safari) as
-					// long as the video is muted and the `playsinline` attribute is
-					// present
+					// long as the video is muted and the `playsinline` attribute is present
 					if( this.isMobileDevice ) {
 						video.muted = true;
 						video.autoplay = true;
@@ -3856,7 +3811,6 @@ class Reveal {
 	 * Unloads and hides the given slide. This is called when the
 	 * slide is moved outside of the configured view distance.
 	 *
-	 * @param {HTMLElement} slide
 	 */
 	public unloadSlide( slide: Slide ): void {
 
@@ -3884,7 +3838,6 @@ class Reveal {
 
 	/**
 	 * Determine what available routes there are for navigation.
-	 *
 	 */
 	public availableRoutes(): Routes {
 
@@ -3920,14 +3873,12 @@ class Reveal {
 		}
 
 		return routes;
-
 	}
 
 	/**
 	 * Returns an object describing the available fragment
 	 * directions.
 	 *
-	 * @return {{prev: boolean, next: boolean}}
 	 */
 	public availableFragments(): AvailFragments {
 
@@ -3972,7 +3923,6 @@ class Reveal {
 	 * Start playback of any embedded content inside of
 	 * the given element.
 	 *
-	 * @param {HTMLElement} element
 	 */
 	private startEmbeddedContent( element: HTMLElement ): void {
 
@@ -4056,7 +4006,6 @@ class Reveal {
 	 * Starts playing an embedded video/audio element after
 	 * it has finished loading.
 	 *
-	 * @param {object} event
 	 */
 	private startEmbeddedMedia = ( event: any ): void => {
 
@@ -4075,7 +4024,6 @@ class Reveal {
 	 * "Starts" the content of an embedded iframe using the
 	 * postMessage API.
 	 *
-	 * @param {object} event
 	 */
 	private startEmbeddedIframe = ( event: any ): void => {
 
@@ -4115,7 +4063,6 @@ class Reveal {
 	 * Stop playback of any embedded content inside of
 	 * the targeted slide.
 	 *
-	 * @param {HTMLElement} element
 	 */
 	private stopEmbeddedContent( element: HTMLElement, options?: object ): void {
 
@@ -4169,11 +4116,11 @@ class Reveal {
 	 * Returns the number of past slides. This can be used as a global
 	 * flattened index for slides.
 	 *
-	 * @return {number} Past slide count
+	 * @return Past slide count
 	 */
 	public getSlidePastCount(): number {
 
-		let horizontalSlides = this.toArray<HTMLElement>( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) );
+		let horizontalSlides = ( this.dom.wrapper.querySelectorAll( Reveal.HORIZONTAL_SLIDES_SELECTOR ) );
 
 		// The number of past slides
 		let pastCount = 0;
@@ -4182,7 +4129,7 @@ class Reveal {
 		mainLoop: for( let i = 0; i < horizontalSlides.length; i++ ) {
 
 			let horizontalSlide = horizontalSlides[i];
-			let verticalSlides = this.toArray<HTMLElement>( horizontalSlide.querySelectorAll( 'section' ) );
+			let verticalSlides = ( horizontalSlide.querySelectorAll( 'section' ) );
 
 			for( let j = 0; j < verticalSlides.length; j++ ) {
 
@@ -4210,7 +4157,6 @@ class Reveal {
 	 * Returns a value ranging from 0-1 that represents
 	 * how far into the presentation we have navigated.
 	 *
-	 * @return {number}
 	 */
 	public getProgress(): number {
 
@@ -4242,7 +4188,6 @@ class Reveal {
 	 * Checks if this presentation is running inside of the
 	 * speaker notes window.
 	 *
-	 * @return {boolean}
 	 */
 	public isSpeakerNotes(): boolean {
 		return !!window.location.search.match( /receiver/gi );
@@ -4290,8 +4235,7 @@ class Reveal {
 
 			// Read the index components of the hash
 			let h = ( parseInt( bits[0], 10 ) - hashIndexBase ) || 0,
-				v = ( parseInt( bits[1], 10 ) - hashIndexBase ) || 0,
-				f;
+				v = ( parseInt( bits[1], 10 ) - hashIndexBase ) || 0, f;
 
 			if( this.config.fragmentInURL ) {
 				f = parseInt( bits[2], 10 );
@@ -4310,7 +4254,7 @@ class Reveal {
 	 * Updates the page URL (hash) to reflect the current
 	 * state.
 	 *
-	 * @param {number} delay The time in ms to wait before
+	 * @param delay The time in ms to wait before
 	 * writing the hash
 	 */
 	private writeURL( delay?: number ): void {
@@ -4342,11 +4286,9 @@ class Reveal {
 	 * Retrieves the h/v location and fragment of the current,
 	 * or specified, slide.
 	 *
-	 * @param {HTMLElement} [slide] If specified, the returned
-	 * index will be for this slide rather than the currently
-	 * active one
+	 * @param [slide] If specified, the returned
+	 * index will be for this slide rather than the currently active one
 	 *
-	 * @return {{h: number, v: number, f: number}}
 	 */
 	public getIndices( slide?: HTMLElement ): Indices {
 
@@ -4388,7 +4330,6 @@ class Reveal {
 		}
 
 		return { h: h, v: v, f: f };
-
 	}
 
 	/**
@@ -4410,14 +4351,12 @@ class Reveal {
 				attributes[ attribute.name ] = attribute.value;
 			}
 			return attributes;
-
 		} );
 	}
 
 	/**
 	 * Retrieves the total number of slides in this presentation.
 	 *
-	 * @return {number}
 	 */
 	public getTotalSlides(): number {
 		return this.getSlides().length;
@@ -4426,7 +4365,6 @@ class Reveal {
 	/**
 	 * Returns the slide element matching the specified index.
 	 *
-	 * @return {HTMLElement}
 	 */
 	public getSlide( x: number, y: number ): Slide {
 
@@ -4447,10 +4385,9 @@ class Reveal {
 	 * defined, have a background element so as long as the
 	 * index is valid an element will be returned.
 	 *
-	 * @param {mixed} x Horizontal background index OR a slide
+	 * @param x Horizontal background index OR a slide
 	 * HTML element
-	 * @param {number} y Vertical background index
-	 * @return {(HTMLElement[]|*)}
+	 * @param y Vertical background index
 	 */
 	public getSlideBackground( x: number | Slide, y?: number ): HTMLElement {
 
@@ -4468,8 +4405,6 @@ class Reveal {
 	 * 1. As a data-notes attribute on the slide <section>
 	 * 2. As an <aside class="notes"> inside of the slide
 	 *
-	 * @param {HTMLElement} [slide=currentSlide]
-	 * @return {(string|null)}
 	 */
 	public getSlideNotes( slide?: HTMLElement ): string {
 
@@ -4488,14 +4423,11 @@ class Reveal {
 		}
 
 		return null;
-
 	}
 
 	/**
 	 * Retrieves the current state of the presentation as
-	 * an object. This state can then be restored at any
-	 * time.
-	 *
+	 * an object. This state can then be restored at any time
 	 */
 	public getState(): State {
 
@@ -4513,7 +4445,7 @@ class Reveal {
 	/**
 	 * Restores the presentation to the given state.
 	 *
-	 * @param {object} state As generated by getState()
+	 * @param state As generated by getState()
 	 * @see {@link getState} generates the parameter `state`
 	 */
 	public setState( state: State ): void {
@@ -4545,10 +4477,9 @@ class Reveal {
 	 * and sets that attribute to an integer value which is the position of
 	 * the fragment within the fragments list.
 	 *
-	 * @param {object[]|*} fragments
-	 * @param {boolean} grouped If true the returned array will contain
+	 * @param grouped If true the returned array will contain
 	 * nested arrays for all fragments with the same index
-	 * @return {object[]} sorted Sorted array of fragments
+	 * @return sorted Sorted array of fragments
 	 */
 	private sortFragments( fragments: NodeListOf<Element>, grouped?: boolean): HTMLElement[][] | HTMLElement[]  {
 
@@ -4599,11 +4530,10 @@ class Reveal {
 	 * Refreshes the fragments on the current slide so that they
 	 * have the appropriate classes (.visible + .current-fragment).
 	 *
-	 * @param {number} [index] The index of the current fragment
-	 * @param {array} [fragments] Array containing all fragments
+	 * @param [index] The index of the current fragment
+	 * @param [fragments] Array containing all fragments
 	 * in the current slide
 	 *
-	 * @return {{shown: array, hidden: array}}
 	 */
 	private updateFragments( index?: number, fragments?: Array<HTMLElement> ): ChangedFragments {
 
@@ -4660,12 +4590,12 @@ class Reveal {
 	/**
 	 * Navigate to the specified slide fragment.
 	 *
-	 * @param {?number} index The index of the fragment that
+	 * @param index The index of the fragment that
 	 * should be shown, -1 means all are invisible
-	 * @param {number} offset Integer offset to apply to the
+	 * @param offset Integer offset to apply to the
 	 * fragment index
 	 *
-	 * @return {boolean} true if a change was made in any
+	 * @return true if a change was made in any
 	 * fragments visibility as part of this call
 	 */
 	public navigateFragment( index?: number, offset?: number ): boolean {
@@ -4713,13 +4643,12 @@ class Reveal {
 		}
 
 		return false;
-
 	}
 
 	/**
 	 * Navigate to the next slide fragment.
 	 *
-	 * @return {boolean} true if there was a next fragment,
+	 * @return true if there was a next fragment,
 	 * false otherwise
 	 */
 	public nextFragment(): boolean {
@@ -4729,8 +4658,7 @@ class Reveal {
 	/**
 	 * Navigate to the previous slide fragment.
 	 *
-	 * @return {boolean} true if there was a previous fragment,
-	 * false otherwise
+	 * @return true if there was a previous fragment, false otherwise
 	 */
 	public prevFragment(): boolean {
 		return this.navigateFragment( null, -1 );
@@ -4776,7 +4704,7 @@ class Reveal {
 			// is divided up into fragments.
 			// playbackRate is accounted for in the duration.
 			if( this.currentSlide.querySelectorAll( '.fragment' ).length === 0 ) {
-				this.toArray<HTMLElement>( this.currentSlide.querySelectorAll( 'video, audio' ) ).forEach( ( el: HTMLMediaElement ) => {
+				( this.currentSlide.querySelectorAll( 'video, audio' ) ).forEach( ( el: HTMLMediaElement ) => {
 					if( el.hasAttribute( 'data-autoplay' ) ) {
 						if( this.autoSlide && (el.duration * 1000 / el.playbackRate ) > this.autoSlide ) {
 							this.autoSlide = ( el.duration * 1000 / el.playbackRate ) + 1000;
@@ -4982,7 +4910,6 @@ class Reveal {
 	 * Called by all event handlers that are based on user
 	 * input.
 	 *
-	 * @param {object} [event]
 	 */
 	private onUserInput = () => {
 		if( this.config.autoSlideStoppable ) {
@@ -4993,7 +4920,6 @@ class Reveal {
 	/**
 	 * Called whenever there is mouse input at the document level
 	 * to determine if the cursor is active or not.
-	 *
 	 */
 	private onDocumentCursorActive = (  ) => {
 		this.showCursor();
@@ -5004,7 +4930,6 @@ class Reveal {
 	/**
 	 * Handler for the document level 'keypress' event.
 	 *
-	 * @param {object} event
 	 */
 	private onDocumentKeyPress = ( event: KeyboardEvent ) => {
 		// Check if the pressed key is question mark
@@ -5016,7 +4941,6 @@ class Reveal {
 	/**
 	 * Handler for the document level 'keydown' event.
 	 *
-	 * @param {object} event
 	 */
 	private onDocumentKeyDown = ( event: KeyboardEvent ) => {
 
@@ -5210,7 +5134,6 @@ class Reveal {
 	 * Handler for the 'touchstart' event, enables support for
 	 * swipe and pinch gestures.
 	 *
-	 * @param {object} event
 	 */
 	private onTouchStart = ( event: TouchEvent ) => {
 		if( this.isSwipePrevented( event.target as HTMLElement ) ) { return true; }
@@ -5222,7 +5145,6 @@ class Reveal {
 	/**
 	 * Handler for the 'touchmove' event.
 	 *
-	 * @param {object} event
 	 */
 	private onTouchMove = ( event: TouchEvent ) => {
 		if( this.isSwipePrevented( event.target as HTMLElement ) ) { return true; }
@@ -5275,7 +5197,6 @@ class Reveal {
 	/**
 	 * Handler for the 'touchend' event.
 	 *
-	 * @param {object} event
 	 */
 	private onTouchEnd = ( event: TouchEvent ) => {
 		this.touch.captured = false;
@@ -5284,7 +5205,6 @@ class Reveal {
 	/**
 	 * Convert pointer down to touch start.
 	 *
-	 * @param {object} event
 	 */
 	private onPointerDown = ( event: PointerEvent ) => {
 		if( event.pointerType === (event as any).MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" ) {
@@ -5296,7 +5216,6 @@ class Reveal {
 	/**
 	 * Convert pointer move to touch move.
 	 *
-	 * @param {object} event
 	 */
 	private onPointerMove = ( event: PointerEvent ) => {
 		if( event.pointerType === (event as any).MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" )  {
@@ -5308,7 +5227,6 @@ class Reveal {
 	/**
 	 * Convert pointer up to touch end.
 	 *
-	 * @param {object} event
 	 */
 	private onPointerUp = ( event: PointerEvent ) => {
 		if( event.pointerType === (event as any).MSPOINTER_TYPE_TOUCH || event.pointerType === "touch" )  {
@@ -5321,7 +5239,6 @@ class Reveal {
 	 * Handles mouse wheel scrolling, throttled to avoid skipping
 	 * multiple slides.
 	 *
-	 * @param {object} event
 	 */
 	private onDocumentMouseScroll = ( event: MouseWheelEvent ) => {
 		if( Date.now() - this.lastMouseWheelStep > 600 ) {
@@ -5341,7 +5258,6 @@ class Reveal {
 	 *
 	 * ( clickX / presentationWidth ) * numberOfSlides
 	 *
-	 * @param {object} event
 	 */
 	private onProgressClicked = ( event: MouseEvent ) => {
 		this.onUserInput( );
@@ -5370,7 +5286,6 @@ class Reveal {
 	/**
 	 * Handler for the window level 'hashchange' event.
 	 *
-	 * @param {object} [event]
 	 */
 	private onWindowHashChange = ( event: Event ) => {
 		this.readURL();
@@ -5379,7 +5294,6 @@ class Reveal {
 	/**
 	 * Handler for the window level 'resize' event.
 	 *
-	 * @param {object} [event]
 	 */
 	private onWindowResize = ( event: Event ) => {
 		this.layout();
@@ -5388,7 +5302,6 @@ class Reveal {
 	/**
 	 * Handle for the window level 'visibilitychange' event.
 	 *
-	 * @param {object} [event]
 	 */
 	private onPageVisibilityChange = ( event: Event ) =>  {
 
@@ -5410,7 +5323,6 @@ class Reveal {
 	/**
 	 * Invoked when a slide is and we're in the overview.
 	 *
-	 * @param {object} event
 	 */
 	private onOverviewSlideClicked = ( event: Event ) => {
 
@@ -5443,10 +5355,8 @@ class Reveal {
 	 * Handles clicks on links that are set to preview in the
 	 * iframe overlay.
 	 *
-	 * @param {object} event
 	 */
 	private onPreviewLinkClicked = ( event: Event ) => {
-
 		if( event.currentTarget && (event.currentTarget as HTMLElement).hasAttribute( 'href' ) ) {
 			let url = (event.currentTarget as HTMLElement).getAttribute( 'href' );
 			if( url ) {
@@ -5459,7 +5369,6 @@ class Reveal {
 	/**
 	 * Handles click on the auto-sliding controls element.
 	 *
-	 * @param {object} [event]
 	 */
 	private onAutoSlidePlayerClick = ( event: Event ) => {
 
@@ -5508,8 +5417,7 @@ class Reveal {
     return false;
   }
 
-  // Returns true if we're on the last slide in the current
-  // vertical stack
+  // Returns true if we're on the last slide in the current vertical stack
   private isLastVerticalSlide(): boolean {
     if( this.currentSlide && this.isVerticalSlide( this.currentSlide ) ) {
       // Does this slide have a next sibling?
@@ -5566,6 +5474,7 @@ class Reveal {
 			this.getRevealElement().addEventListener( type, listener, useCapture );
 		}
 	}
+
 	public removeEventListener<K extends keyof HTMLElementEventMap>(type: string, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, useCapture: boolean ): void {
 		if( 'addEventListener' in window ) {
 			this.getRevealElement().removeEventListener( type, listener, useCapture );

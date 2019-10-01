@@ -1,0 +1,46 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+  
+  .organization > div, .assessment > div {
+    margin-top: 40px;
+  }
+    
+  .lectures, .labs {
+    font-size: 50px;
+  }
+  
+  .lectures li, .labs li {
+    list-style-type: none;
+    margin-left: -35px;
+  }
+  
+  .bulb-desc-green :first-child {
+    font-weight: bold;
+    color: #03ffb7;
+  }
+  
+  .bulb-desc-orange :first-child {
+    font-weight: bold;
+    color: #f6c9a0;
+  }
+  
+  .bulb-desc-red :first-child {
+    font-weight: bold;
+    color: #ff9abb;
+  }
+  
+  .bulb-desc-green :nth-child(2), .bulb-desc-orange :nth-child(2), .bulb-desc-red :nth-child(2) {
+    font-size: 32px;
+    padding: 0px 80px;
+  }
+
+  .frame {
+    border-image-source: url("../images/common/frame_blue.png"); 
+  }
+
+  .lectures.frame, .labs.frame {
+    border-image-source: url("../images/common/frame_blue_trans.png");
+  }
+}

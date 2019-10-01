@@ -52,7 +52,11 @@ project
 ## Watch mode
 - `ParcelBundler` will recompile everything as soon as you change something in your code
 - **you have to re-execute** `npm start` if you add a new asset (sound, image, html, css,...)
-- if `ParcelBundler` wrote some error in the console after you had saved your changes, just press `ctrl+S` again
+
+## Troubleshooting
+- if `ParcelBundler` wrote some error in the console after you had saved your changes, just press `ctrl+s` again. If it doesn't help, just press `ctr+c`, terminate it and re-run `npm start`
+- if you change any of your static files, especially images, you may need to re-run `npm start` since `ParcelBundler` will start throwing some errors while in the watch mode
+- if you can't build your project because of weird `TypeScript` errors that don't come from your own code, just go into `package.json` and remove `&& tsc --noEmit` from all scripts - it's a pre-compile step that only checks out the syntax
 
 ## Libraries
 
@@ -97,3 +101,14 @@ project
 
 - with every commit, this project is published to an [AWS S3 bucket](http://dodoworks.s3-website.eu-central-1.amazonaws.com/)
 
+## Custom styles
+
+- if you want to change the style of the slides, feel free to do so by editing particular Sass files, located in `static/slides/css`
+-  `colors.scss` - all colors used in the slides
+-  `dashboard.scss` - styles for dashboard page
+-  `fonts.scss` - all fonts used in the slides
+-  `intro.scss` - styles for intro page
+-  `lab01.scss, lab02.scss,....` - styles for particular labs
+-  `lecture00.scss, lecture01.scss,....` - styles for particular lectures
+-  `slides.scss` - styles for common slides (logos, signature,...)
+-  `theme.scss` - *main theme* for the slides

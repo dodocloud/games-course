@@ -1,0 +1,7 @@
+@import "./fonts.scss";
+
+.reveal {
+  .frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
+    border-image-source: url("../images/common/frame_blue.png"); 
+  }
+}

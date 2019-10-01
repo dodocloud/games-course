@@ -35,9 +35,6 @@ html {
 	display: none !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	text-shadow: 0 0 0 #000 !important;
-}
 
 .reveal pre code {
 	overflow: hidden !important;
@@ -51,8 +48,8 @@ ul, ol, div, p {
 	height: auto;
 	display: block;
 	overflow: visible;
-	margin: auto;
 }
+
 .reveal {
 	width: auto !important;
 	height: auto !important;
@@ -80,7 +77,6 @@ ul, ol, div, p {
 	position: relative;
 	overflow: hidden;
 	z-index: 1;
-
 	page-break-after: always;
 }
 
@@ -118,7 +114,6 @@ ul, ol, div, p {
 	line-height: 1em;
 }
 
-/* Slide backgrounds are placed inside of their slide when exporting to PDF */
 .reveal .slide-background {
 	display: block !important;
 	position: absolute;
@@ -127,6 +122,18 @@ ul, ol, div, p {
 	width: 100%;
 	height: 100%;
 	z-index: auto !important;
+	border: 1px solid #444;
+}
+
+.reveal .slide-background .slide-background-content {
+	background-image: none !important;
+	background-color: #0A0A0A !important;
+}
+
+
+/* Do not display footer */
+footer {
+	display: none !important;
 }
 
 /* Display slide speaker notes when 'showNotes' is enabled */
@@ -160,5 +167,24 @@ ul, ol, div, p {
 .reveal .slide-number-pdf {
 	display: block;
 	position: absolute;
-	font-size: 14px;
+	font-size: 32px;
+}
+
+h1, h2, h3, h4, blockquote {
+	text-shadow: none !important;
+	animation: none !important; 
+}
+
+.animated {
+	fill: white !important;
+	animation: none !important;
+}
+
+/* disable striped effect */
+.frame::after {
+	background-image: none;
+}
+
+.frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
+	border-image-source: url("../images/common/frame_blue_trans.png");
 }

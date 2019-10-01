@@ -1,3 +1,7 @@
+export const isMobileDevice = () => /(iphone|ipod|ipad|android)/gi.test(navigator.userAgent);
+
+export const isPdfPrint = () => window.location.search.match( /print-pdf/gi );
+
 /**
  * Resizes container to a fixed resolution
  */
@@ -11,11 +15,9 @@ export const resizeContainer = (container: HTMLElement, virtualWidth: number, vi
 
     // On some mobile devices '100vh' is taller than the visible
 		// viewport which leads to part of the presentation being
-
-    let isMobileDevice =  /(iphone|ipod|ipad|android)/gi.test(navigator.userAgent);
     let hideAddressBar = () => setTimeout( () => { window.scrollTo( 0, 1 ); }, 10 );
 
-    if(isMobileDevice) {
+    if(isMobileDevice()) {
       document.documentElement.style.setProperty( '--vh', ( window.innerHeight * 0.01 ) + 'px' );
       // Events that should trigger the address bar to hide
       window.addEventListener( 'load', hideAddressBar, false );

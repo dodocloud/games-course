@@ -9,12 +9,13 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  
+  <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
   <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
   <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
-  <link rel="stylesheet" href="../static/slides/css/theme.css" id="theme" />
-  <link rel="stylesheet" href="../static/slides/css/slides.css" />
-  <link rel="stylesheet" href="../static/slides/css/lecture01.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.scss" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.scss" />
+  <link rel="stylesheet" href="../static/slides/css/lecture01.scss" />
 
   <script type="text/javascript" src="../libs/revealjs/print.js"></script>
 
@@ -23,9 +24,8 @@
 <body>
   <!-- ===================================================== SLIDES ===================================================== -->
   <div class="reveal">
-    <div class="stripes"></div>
     <div class="slides">
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="lecture-logo">
           <svg version="1.1" class="animated inactive" id="lecture01Logo" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="750" height="400"
@@ -77,7 +77,7 @@
         <h1>Introduction to the world of games and game engines</h1>
         <div class="cvut-logo">
           <div>
-            <img alt="CVUT Logo" src="../static/slides/images/cvut_logo.png" />
+            <img alt="CVUT Logo" src="../static/slides/images/common/cvut_logo.png" />
           </div>
           <div>
             <div>FIT ČVUT, ZS 2019</div>
@@ -85,65 +85,67 @@
             <div>vesecky.adam@gmail.com</div>
           </div>
         </div>
-        <div class="frame-sticky cpr inline">
+        <div class="frame-sticky cpr">
           <div>Czech technical University in Prague</div>
           <div>Faculty of Information Technology</div>
           <div>Department of Software Engineering</div>
           <div>© Adam Vesecký, MI-APH, 2019</div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-            <h2 class="centered">Chapter 1: <br />What is a game?</h2>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <h2>What is a game?</h2>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>What is a game?</h3>
-          <div class="vertical-spread game-def">
-              <div class="frame-sticky s45">
-                  A <span class="highlight">game</span> is something you <span class="highlight">play</span>. Something that is <span class="highlight">fun</span> to play. A fun
-                  is a pleasure with <span class="highlight">surprises</span> <span class="author">(Jesse Schell)</span>.
-                </div>
-                <div class="frame-sticky s45">
-                  A game is an interactive structure of <span class="highlight">endogeneous</span> meaning that
-                  requires players to struggle toward a goal  <span class="author">(Greg Costikyan)</span>.
-                </div>
-                <div class="frame-sticky s45">
-                  Games are an exercise of control systems, in which there is a
-                  contest between powers, confined by <span class="highlight">rules</span> in order to produce a
-                  disequlibrial outcome  <span class="author">(Elliot Avendon)</span>.
-                </div>
+          <div class="rows-3">
+            <div class="frame-sticky w45">
+              A <strong>game</strong> is something you <strong>play</strong>. Something that is <strong>fun</strong> to
+              play. A fun
+              is a pleasure with <strong>surprises</strong> <span class="highlight-third">(Jesse Schell)</span>.
+            </div>
+            <div class="frame-sticky w45 l400">
+              A game is an interactive structure of <strong>endogeneous</strong> meaning that
+              requires players to struggle toward a goal <span class="highlight-third">(Greg Costikyan)</span>.
+            </div>
+            <div class="frame-sticky w45 l800">
+              Games are an exercise of control systems, in which there is a
+              contest between powers, confined by <strong>rules</strong> in order to produce a
+              disequlibrial outcome <span class="highlight-third">(Elliot Avendon)</span>.
+            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container game-def">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
           <h3>What is a game?</h3>
-          <div class="vertical-spread game-def">
-              <div class="frame-sticky s45">
-                  A game is a <span class="highlight">system</span> in which players engage in an artificial
-                  <span class="highlight">conflict</span>, defined by <span class="highlight">rules</span>, that results in a quantifiable <span class="highlight">outcome</span>
-                  <span class="author">(Salen & Zimmerman, 2004)</span>.
-                </div>
-                <div class="frame-sticky s45">
-                  A game is an <span class="highlight">activity</span> defined by rules in which players try to
-                  reach some sort of <span class="highlight">goal</span>  <span class="author">(Alexander Galloway, 2006)</span>.
-                </div>
-                <div class="frame-sticky s45">
-                  A game is a closed, formal <span class="highlight">system</span> that engages players in
-                  structured <span class="highlight">conflict</span> and resolves its uncertainty in an unequal
-                  <span class="highlight">outcome</span>  <span class="author">(Tracy Fullerton, 2008)</span>.
-                </div>
+          <div class="rows-3">
+            <div class="frame-sticky w45">
+              A game is a <strong>system</strong> in which players engage in an artificial
+              <strong>conflict</strong>, defined by <strong>rules</strong>, that results in a quantifiable
+              <strong>outcome</span>
+                <span class="highlight-third">(Salen & Zimmerman, 2004)</span>.
+            </div>
+            <div class="frame-sticky w45 l400">
+              A game is an <strong>activity</strong> defined by rules in which players try to
+              reach some sort of <strong>goal</strong> <span class="highlight-third">(Alexander Galloway, 2006)</span>.
+            </div>
+            <div class="frame-sticky w45 l800">
+              A game is a closed, formal <strong>system</strong> that engages players in
+              structured <strong>conflict</strong> and resolves its uncertainty in an unequal
+              <strong>outcome</strong> <span class="highlight-third">(Tracy Fullerton, 2008)</span>.
+            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>What is a game?</h3>
           <div class="frame">
-            <div class="centered">
-              <img src="../static/slides/images/bulb_green&8b.png" />
+            <div class="center-content">
+              <img src="../static/slides/images/common/bulb_green&8.png" />
             </div>
             <div class="game-topics">
               <p>curiosity</p>
@@ -160,11 +162,23 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>What is a computer game?</h3>
-          <div class="frame importance-orange habitica">
-            <h4>Computer Program</h4>
+          <div class="frame importance-orange">
+            <div class="bottom-content justify-right">
+              <figure class="w30">
+                <img src="../static/slides/images/lecture01/habitica.png" />
+                <p>Habitica</p>
+              </figure>
+            </div>
+            <div class="center-content justify-left t20">
+              <div class="fragment fade-in tcenter">
+                <strong>Computer games are not applications!</strong> <br />Yet the line between
+                them is blur.
+              </div>
+            </div>
+          <h4>Computer Program</h4>
             <ul>
               <li>
                 a set of instructions that can be executed by a computer
@@ -181,57 +195,49 @@
                 displayed on a screen for the sake of entertainment
               </li>
             </ul>
-
-            <div class="computer-games-label fragment fade-in">
-              <span class="highlight">Computer games are not applications!</span> <br />Yet the line between
-              them is blur.
-            </div>
-            <div class="img-with-desc">
-                <img src="../static/slides/images/01_habitica.png" />
-                <p>Habitica</p>
-              </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Computer games vs applications</h3>
           <div class="frame">
-            <div class="games-vs-apps columns-2 s100 centered">
-              <div class="img-with-desc">
-                <img src="../static/slides/images/joypad&4b.png" />
-                <p>Mechanics<br />Gameplay<br />Dynamics</p>
-              </div>
-              <div class="img-with-desc">
-                <img src="../static/slides/images/app&4b.png" />
-                <p>Use-case<br />UX<br />Feedback</p>
-              </div>
+            <div class="columns-2 w100 center-content">
+                <figure>
+                  <img class="h200" src="../static/slides/images/lecture01/joypad&4b.png" />
+                  <p>Mechanics<br />Gameplay<br />Dynamics</p>
+                </figure>
+                <figure>
+                  <img class="h200" src="../static/slides/images/lecture01/app&4b.png" />
+                  <p>Use-case<br />UX<br />Feedback</p>
+                </figure>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>General consensus</h3>
           <div class="frame-quote">
             <p class="importance-red">
-              Computer games are <span class="highlight">real-time</span> <span class="highlight">interactive</span> agent-based <span class="highlight">simulators</span>.
+              Computer games are <strong>real-time</strong> <strong>interactive</strong> agent-based
+              <strong>simulators</strong>.
             </p>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>List of terms</h3>
-          <div class="frame terms importance-orange">
-            <h4><span class="highlight">Emergence</span></h4>
+          <div class="frame line-s importance-orange">
+            <h4><strong>Emergence</strong></h4>
             <ul>
               <li>
                 refers to the fact that the behavior is the result of a
                 complex and dynamic system of rules
               </li>
             </ul>
-            <h4><span class="highlight">Progression</span></h4>
+            <h4><strong>Progression</strong></h4>
             <ul>
               <li>
                 refers to the structures in games where a designer outlined
@@ -274,23 +280,26 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Topics</h3>
           <div class="frame">
-            <div class="centered issues">
-              <img src="../static/slides/images/joypad&4b.png" />
+            <div class="center-content">
+              <img class="h200" src="../static/slides/images/lecture01/joypad&4b.png" />
             </div>
-            <div class="centered s100">
-                <img src="../static/slides/images/core_issues.png" />
-              </div>
+            <div class="w100 center-content">
+              <img class="w100" src="../static/slides/images/lecture01/core_issues.png" />
+            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Game basic elements</h3>
           <div class="frame importance-orange">
+            <div class="bottom-content justify-right">
+                <img class="w35 m20" src="../static/slides/svg/lecture01/game_elements.svg">
+            </div>
             <h4>Mechanics</h4>
             <ul>
               <li>
@@ -311,150 +320,159 @@
                 any materials and interactions that make the game possible
               </li>
             </ul>
-            <img class="basic-elements" src="../static/slides/svg/game_elements.svg" >
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Mechanics</h3>
-            <div class="centered img-with-desc s100">
-              <img class="factorio-1" src="../static/slides/images/01_factorio.gif" >
-              <img class="factorio-2" src="../static/slides/images/01_factorio_2.gif" >
+          <div class="center-content">
+            <figure class="w100">
+              <img class="h500" src="../static/slides/images/lecture01/factorio.gif">
+              <img class="h500" src="../static/slides/images/lecture01/factorio_2.gif">
               <p>Factorio</p>
-            </div>
+            </figure>
+          </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Story</h3>
-            <div class="columns-3 centered story">
-              <div class="img-with-desc">
-                <img src="../static/slides/images/01_story_naughdog.jpg" >
-                <p>Naughty Dog games</p>
-              </div>
-              <div class="img-with-desc">
-                  <img src="../static/slides/images/01_story_bethesda.jpg" >
-                <p>Bethesda games</p>
-              </div>
-              <div class="img-with-desc">
-                  <img src="../static/slides/images/01_story_valve.jpg" >
-                <p>Valve games</p>
-              </div>
-            </div>
+          <div class="columns-3 center-content">
+            <figure>
+              <img class="w600" src="../static/slides/images/lecture01/story_naughdog.jpg">
+              <p>Naughty Dog games</p>
+            </figure>
+            <figure>
+              <img class="w600" src="../static/slides/images/lecture01/story_bethesda.jpg">
+              <p>Bethesda games</p>
+            </figure>
+            <figure>
+              <img class="w600" src="../static/slides/images/lecture01/story_valve.jpg">
+              <p>Valve games</p>
+            </figure>
+          </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Aesthetics</h3>
-              <div class="centered img-with-desc s100">
-                  <img class="s85" src="../static/slides/images/01_inside.gif" >
+          <div class="center-content">
+            <figure class="w100">
+              <img class="w85" src="../static/slides/images/lecture01/inside.gif">
               <p>INSIDE</p>
-            </div>
+            </figure>
+          </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Technology</h3>
-          <div class="centered img-with-desc s60">
-              <img class="s100" src="../static/slides/images/01_spore.jpg" >
+          <div class="center-content">
+            <figure class="w60">
+              <img class="w100" src="../static/slides/images/lecture01/spore.jpg">
               <p>Spore</p>
-            </div>
+            </figure>
+          </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: Space invaders</h3>
           <div class="frame">
-            <p><strong>Mechanics</strong> - interesting and well-balanced</p>
-            <p><strong>Story</strong> - didn't need to have a story</p>
-            <p><strong>Aesthetics</strong> - three different alien designs</p>
-            <p><strong>Technology</strong> - first videogame of it's kind</p>
+              <div class="bottom-content">
+                <img class="w40" src="../static/slides/images/lecture01/invaders.jpg">
+              </div>
+            <p><b>Mechanics</b> - interesting and well-balanced</p>
+            <p><b>Story</b> - didn't need to have a story</p>
+            <p><b>Aesthetics</b> - three different alien designs</p>
+            <p><b>Technology</b> - first videogame of it's kind</p>
 
-            <div class="centered mech-invaders">
-              <img src="../static/slides/images/01_invaders.jpg" >
-            </div>
+          
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: Doom</h3>
           <div class="frame">
-            <p><strong>Mechanics</strong> - many weapons, enemies, levels, locations,...</p>
+            <div class="bottom-content">
+              <img class="w40" src="../static/slides/images/lecture01/doom.gif">
+            </div>
+            <p><b>Mechanics</b> - many weapons, enemies, levels, locations,...</p>
             <p>
-                <strong>Story</strong> - unnamed hero (Doomguy) fighting against invading demons
+              <b>Story</b> - unnamed hero (Doomguy) fighting against invading demons
             </p>
             <p>
-                <strong>Aesthetics</strong> - advanced sounds and music (for that time period)
+              <b>Aesthetics</b> - advanced sounds and music (for that time period)
             </p>
-            <p><strong>Technology</strong> - pseudo 3D FPS perspective</p>
-            <div class="centered mech-doom">
-                <img src="../static/slides/images/01_doom.gif" >
-              </div>
+            <p><b>Technology</b> - pseudo 3D FPS perspective</p>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: No man's sky</h3>
           <div class="frame">
-            <p><strong>Mechanics</strong> - exploration, crafting, gathering, building</p>
+            <div class="bottom-content">
+              <img class="w40" src="../static/slides/images/lecture01/nomansky.gif">
+            </div>
+            <p><b>Mechanics</b> - exploration, crafting, gathering, building</p>
             <p>
-                <strong>Story</strong> - space-exploration game with heavy resource-gathering
+              <b>Story</b> - space-exploration game with heavy resource-gathering
               elements
             </p>
-            <p><strong>Aesthetics</strong> - visually stunning lush world</p>
-            <p><strong>Technology</strong> - (pseudo)random generated world</p>
-            <div class="centered mech-noman">
-                <img src="../static/slides/images/01_nomansky.gif" >
-              </div>
+            <p><b>Aesthetics</b> - visually stunning lush world</p>
+            <p><b>Technology</b> - (pseudo)random generated world</p>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: League of Legends</h3>
           <div class="frame">
+            <div class="bottom-content">
+              <img class="w40" src="../static/slides/images/lecture01/lol.jpg">
+            </div>
             <p>
-                <strong>Mechanics</strong> - crowd, control, elo, gank, items, juking, kills,
+              <b>Mechanics</b> - crowd, control, elo, gank, items, juking, kills,
               kiting, last hit, pushing, recall, points, terminology, warding,
               zoning
             </p>
-            <p><strong>Story</strong> - a plethora of stories on LoL blog</p>
-            <p><strong>Aesthetics</strong> - cartoonish style</p>
+            <p><b>Story</b> - a plethora of stories on LoL blog</p>
+            <p><b>Aesthetics</b> - cartoonish style</p>
             <p>
-                <strong>Technology</strong> - MOBA (Multiplayer online battle arena), Riot
+              <b>Technology</b> - MOBA (Multiplayer online battle arena), Riot
               Servers
             </p>
-            <div class="centered mech-lol">
-                <img src="../static/slides/images/01_gi-landing-top.jpg" >
-              </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-            <h3>Example: Tormentum Dark Sorrow</h3>
-            <div class="frame">
-              <p>
-                  <strong>Mechanics</strong> - point-and-click adventure (go, move, examine, talk)
-              </p>
-              <p><strong>Story</strong> - the main element of the game</p>
-              <p><strong>Aesthetics</strong> - biomechanic surrealism</p>
-              <p>
-                  <strong>Technology</strong> - not very ground-breaking
-              </p>
-              <div class="centered mech-lol">
-                  <img src="../static/slides/images/01_tormentum.jpg" >
-                </div>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
+          <h3>Example: Tormentum Dark Sorrow</h3>
+          <div class="frame">
+            <div class="bottom-content">
+              <img class="h60" src="../static/slides/images/lecture01/tormentum.jpg">
             </div>
+            <p>
+              <b>Mechanics</b> - point-and-click adventure (go, move, examine, talk)
+            </p>
+            <p><b>Story</b> - the main element of the game</p>
+            <p><b>Aesthetics</b> - biomechanic surrealism</p>
+            <p>
+              <b>Technology</b> - not very ground-breaking
+            </p>
           </div>
-        </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Game mechanics</h3>
           <div class="frame importance-orange">
+            <div class="bottom-content justify-right fill">
+              <img class="h600" src="../static/slides/images/lecture01/unlocked.jpg">
+            </div>
             <h4>Space</h4>
             <ul>
               <li>
@@ -476,132 +494,172 @@
                 statements that describe constraints, consequences and goals
               </li>
             </ul>
-            <div class="img-unlocked">
-                <img src="../static/slides/images/01_unlocked.jpg" >
-            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: Pong</h3>
           <div class="frame">
-            <p><strong>Space</strong> - 2D board</p>
-            <p><strong>Objects</strong> - two players (paddles) and colliding ball, score</p>
+            <div class="bottom-content">
+              <img class="h50" src="../static/slides/images/lecture01/pong.gif">
+            </div>
+            <p><b>Space</b> - 2D board</p>
+            <p><b>Objects</b> - two players (paddles) and colliding ball, score</p>
             <p>
-              <strong>Actions</strong> - move up/down (1 degree of freedom), release the ball
+              <b>Actions</b> - move up/down (1 degree of freedom), release the ball
             </p>
             <p>
-              <strong>Rules</strong> - the ball has a constant linear velocity. Angle of
+              <b>Rules</b> - the ball has a constant linear velocity. Angle of
               incidence is angle of reflection. Player earns one point when
               the other player fails to return the ball. The winner is the one
               who reaches eleven points before the opponent
             </p>
-            <div class="centered mech-pong">
-                <img src="../static/slides/images/pong2.gif" >
-            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example: Tronic</h3>
           <div class="frame">
-            <div class="centered s100">
-              <img src="../static/slides/images/01_tronic.png" >
+            <div class="center-content fill">
+              <img class="w100" src="../static/slides/images/lecture01/tronic.png">
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-              <h2 class="centered">Chapter 2: <br />What is a game engine?</h2>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
+          <div class="center-content">
+            <h2>What is a game engine?</h2>
           </div>
+        </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>PRE-engine era</h3>
           <div class="frame importance-orange">
-            <div class="grid32 centered s75">
-             <div><img src="../static/slides/images/01_engine_pinball_floppy.png"></div>
-             <div><img src="../static/slides/images/01_engine_tforce_floppy.png"></div>
-             <div><img src="../static/slides/images/01_engine_adventure_floppy.png"></div>
-             <div><img src="../static/slides/images/01_engine_gamemaker_floppy.png"></div>
-             <div><img src="../static/slides/images/01_engine_arcade_floppy.png"></div>
-             <div><img src="../static/slides/images/01_engine_rpgmaker_floppy.png"></div>
+            <div class="grid32 center-content tcenter">
+              <div><img src="../static/slides/images/lecture01/engine_pinball_floppy.png"></div>
+              <div><img src="../static/slides/images/lecture01/engine_tforce_floppy.png"></div>
+              <div><img src="../static/slides/images/lecture01/engine_adventure_floppy.png"></div>
+              <div><img src="../static/slides/images/lecture01/engine_gamemaker_floppy.png"></div>
+              <div><img src="../static/slides/images/lecture01/engine_arcade_floppy.png"></div>
+              <div><img src="../static/slides/images/lecture01/engine_rpgmaker_floppy.png"></div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>1984: Breakout for DOS</h3>
           <div class="frame">
-            <div class="columns-2full">
+            <div class="columns-2">
               <div class="breakout-code">
-                  <p><span style="color: #f6c9a0; language: cs;">move_paddle</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #bfbfbf; language: cs;">;read input from joystick</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp; joystick2</span><span style="color: #bfbfbf; language: cs;">;joy port 2</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #8 </span><span style="color: #bfbfbf; language: cs;">;right</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> move_paddle_right</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp; joystick2</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #4 </span><span style="color: #bfbfbf; language: cs;">;#left</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> move_paddle_left</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
-                  <p><span style="color: #f6c9a0; language: cs;">check_ball_paddle_collision</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;"> sprite_collision</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">cmp</span><span style="color: white; language: cs;"> #2</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;"> ball_paddle_collision</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
-                  <p><span style="color: #f6c9a0; language: cs;">ball_paddle_collision</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;"> sprite_collision</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">sta</span><span style="color: white; language: cs;"> sprite_collision </span><span style="color: #bfbfbf; language: cs;">;clear cbit</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">jsr</span><span style="color: white; language: cs;"> set_ball_direction_up</span></p>
-                  <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #82d4e5; language: cs;">rts</span></p>
+                <p><span style="color: #f6c9a0; language: cs;">move_paddle</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #bfbfbf; language: cs;">;read input from joystick</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp;
+                    joystick2</span><span style="color: #bfbfbf; language: cs;">;joy port 2</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #8
+                  </span><span style="color: #bfbfbf; language: cs;">;right</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;">
+                    move_paddle_right</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">&nbsp;
+                    joystick2</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;">&nbsp; #4
+                  </span><span style="color: #bfbfbf; language: cs;">;#left</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;">
+                    move_paddle_left</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">rts</span></p>
+                <p><span style="color: #f6c9a0; language: cs;">check_ball_paddle_collision</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">
+                    sprite_collision</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span>
+                </p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">cmp</span><span style="color: white; language: cs;"> #2</span>
+                </p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">beq</span><span style="color: white; language: cs;">
+                    ball_paddle_collision</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">rts</span></p>
+                <p><span style="color: #f6c9a0; language: cs;">ball_paddle_collision</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">lda</span><span style="color: white; language: cs;">
+                    sprite_collision</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">and</span><span style="color: white; language: cs;"> #2</span>
+                </p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">sta</span><span style="color: white; language: cs;">
+                    sprite_collision </span><span style="color: #bfbfbf; language: cs;">;clear cbit</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">jsr</span><span style="color: white; language: cs;">
+                    set_ball_direction_up</span></p>
+                <p><span style="color: white; language: cs;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #82d4e5; language: cs;">rts</span></p>
               </div>
               <div>
-                <img class="s100" src="../static/slides/images/01_breakout.png" >
+                <img class="w100" src="../static/slides/images/lecture01/breakout.png">
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>1989: Prince of Persia</h3>
           <div class="frame">
-            <div class="columns-2full">
+            <div class="columns-2">
               <div>
                 <p>Prince of Persia guard controller</p>
 
                 <div class="prince-code">
-                <p><strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">underctrl</span></p>
-                <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharSword</span></p>
-                <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span style="color: #8cd0d3; ">2</span> <span style="color: #d9d9d9; ">;in fighting mode?</span></p>
-                <p><span style="color: #82d4e5; ">beq</span> <span style="color: #f6c9a0; ">FightCtrl</span> <span style="color: #d9d9d9; ">;yes</span></p>
-                <p><span style="color: #dcdccc; ">&nbsp;</span></p>
-                <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharID</span></p>
-                <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span style="color: #d9d9d9; ">2 ;kid or </span><span style="color: #d9d9d9; ">shadowman</span><span style="color: #d9d9d9; ">?</span></p>
-                <p><span style="color: #82d4e5; ">bcc</span> <strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">cont</span></p>
-                <p><span style="color: #82d4e5; ">jmp</span> <span style="color: #f6c9a0; ">GuardCtrl</span> <span style="color: #d9d9d9; ">;no</span></p>
-                <p><span style="color: #dcdccc; ">&nbsp;</span></p>
-                <p><strong><span style="color: #d9d9d9; ">*</span></strong><span style="color: #d9d9d9; "> What is he doing now?</span></p>
-                <p><strong><span style="color: #f6c9a0; ">:</span></strong><span style="color: #f6c9a0; ">cont</span> <span style="color: #82d4e5; ">ldx</span> <span style="color: #f6c9a0; ">CharPosn</span> <span style="color: #d9d9d9; ">;previous frame #</span></p>
-              </div>
-            </div>
-              <div>
-                  <img class="s100" src="../static/slides/images/01_prince.gif" >
-                  <p>
-                    Source code <a href="https://github.com/jmechner/Prince-of-Persia-Apple-II">here</a>
-                  </p>
+                  <p><b><span style="color: #f6c9a0; ">:</span></b><span style="color: #f6c9a0; ">underctrl</span></p>
+                  <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharSword</span></p>
+                  <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span
+                      style="color: #8cd0d3; ">2</span> <span style="color: #d9d9d9; ">;in fighting mode?</span></p>
+                  <p><span style="color: #82d4e5; ">beq</span> <span style="color: #f6c9a0; ">FightCtrl</span> <span
+                      style="color: #d9d9d9; ">;yes</span></p>
+                  <p><span style="color: #dcdccc; ">&nbsp;</span></p>
+                  <p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharID</span></p>
+                  <p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span
+                      style="color: #d9d9d9; ">2 ;kid or </span><span style="color: #d9d9d9; ">shadowman</span><span
+                      style="color: #d9d9d9; ">?</span></p>
+                  <p><span style="color: #82d4e5; ">bcc</span> <b><span style="color: #f6c9a0; ">:</span></b><span
+                      style="color: #f6c9a0; ">cont</span></p>
+                  <p><span style="color: #82d4e5; ">jmp</span> <span style="color: #f6c9a0; ">GuardCtrl</span> <span
+                      style="color: #d9d9d9; ">;no</span></p>
+                  <p><span style="color: #dcdccc; ">&nbsp;</span></p>
+                  <p><b><span style="color: #d9d9d9; ">*</span></b><span style="color: #d9d9d9; "> What is he doing
+                      now?</span></p>
+                  <p><b><span style="color: #f6c9a0; ">:</span></b><span style="color: #f6c9a0; ">cont</span> <span
+                      style="color: #82d4e5; ">ldx</span> <span style="color: #f6c9a0; ">CharPosn</span> <span
+                      style="color: #d9d9d9; ">;previous frame #</span></p>
                 </div>
+              </div>
+              <div>
+                <img class="w100" src="../static/slides/images/lecture01/prince.gif">
+                <p>
+                  Source code: <a href="https://github.com/jmechner/Prince-of-Persia-Apple-II">link</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>ID Tech</h3>
           <div class="frame importance-orange">
@@ -614,65 +672,117 @@
                 data-heavy design
               </li>
             </ul>
-            <div class="idtech-games">
-              <img src="../static/slides/images/01_idtech_hovertank_floppy.png" >
-              <img src="../static/slides/images/01_idtech_catacomb_floppy.png" >
-              <img src="../static/slides/images/01_idtech_wolfenstein_floppy.png" >
-              <img src="../static/slides/images/01_idtech_shadowcast_floppy.png" >
+            <div class="m30">
+              <img src="../static/slides/images/lecture01/idtech_hovertank_floppy.png">
+              <img src="../static/slides/images/lecture01/idtech_catacomb_floppy.png">
+              <img src="../static/slides/images/lecture01/idtech_wolfenstein_floppy.png">
+              <img src="../static/slides/images/lecture01/idtech_shadowcast_floppy.png">
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>1993: DOOM</h3>
           <div class="frame">
-            <div class="columns-2full">
-              <div class="doom-code">
-                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #f3b57d; ">boolean</span> <span style="color: #f8f8f8; ">P_CheckMissileRange</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">mobj_t</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">){</span><span style="color: #f8f8f8; ">&nbsp;&nbsp;&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">P_CheckSight</span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">target</span><span style="color: #cda869; ">))</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span style="color: #8d868e; ">// can&rsquo;t see the target </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">flags </span><span style="color: #cda869; ">&amp;</span><span style="color: #f8f8f8; "> MF_JUSTHIT </span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// just hit -&gt; fight back! </span></p>
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">flags </span><span style="color: #cda869; ">&amp;=</span> <span style="color: #cda869; ">~</span><span style="color: #f8f8f8; ">MF_JUSTHIT</span><span style="color: #cda869; ">;</span></p>
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">true</span><span style="color: #cda869; ">;</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">reactiontime</span><span style="color: #cda869; ">)</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span style="color: #8d868e; ">// do not attack yet</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">P_AproxDistance</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> target</span><span style="color: #cda869; ">)</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">-</span> <span style="color: #82d4e5; ">64</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; ">FRACUNIT</span><span style="color: #cda869; ">;</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// no melee attack, so fire more</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">info</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">meleestate</span><span style="color: #cda869; ">)</span></p>
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">-=</span> <span style="color: #82d4e5; ">128</span><span style="color: #cda869; ">*</span><span style="color: #f8f8f8; ">FRACUNIT</span><span style="color: #cda869; ">;</span><span style="color: #f8f8f8; ">&nbsp; </span></p>
-                  <p>&nbsp;&nbsp;</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// check for ARCH-VILE</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">type </span><span style="color: #cda869; ">==</span><span style="color: #f8f8f8; "> MT_VILE</span><span style="color: #cda869; ">){</span></p>
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">dist</span> <span style="color: #cda869; ">&gt;</span> <span style="color: #82d4e5; ">14</span><span style="color: #cda869; ">*</span><span style="color: #82d4e5; ">64</span><span style="color: #cda869; ">)</span></p>
-                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span><span style="color: #f8f8f8; ">&nbsp; </span><span style="color: #8d868e; ">// too far away</span></p>
-                  <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
-                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #cda869; ">}</span></p>
-                  <p>&nbsp;</span></p>
+            <div class="columns-2">
+              <div class="code">
+                <p
+                  style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;">
+                  <span style="color: #f3b57d; ">boolean</span> <span
+                    style="color: #f8f8f8; ">P_CheckMissileRange</span> <span style="color: #cda869; ">(</span><span
+                    style="color: #f8f8f8; ">mobj_t</span><span style="color: #cda869; ">*</span><span
+                    style="color: #f8f8f8; "> actor</span><span style="color: #cda869; ">){</span><span
+                    style="color: #f8f8f8; ">&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">P_CheckSight</span><span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span
+                    style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> actor</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">target</span><span
+                    style="color: #cda869; ">))</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span
+                    style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span
+                    style="color: #8d868e; ">// can&rsquo;t see the target </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; "> actor</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">flags </span><span
+                    style="color: #cda869; ">&amp;</span><span style="color: #f8f8f8; "> MF_JUSTHIT </span><span
+                    style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// just hit -&gt; fight back! </span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; actor</span><span style="color: #cda869; ">-&gt;</span><span
+                    style="color: #f8f8f8; ">flags </span><span style="color: #cda869; ">&amp;=</span> <span
+                    style="color: #cda869; ">~</span><span style="color: #f8f8f8; ">MF_JUSTHIT</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span
+                    style="color: #f6c9a0; ">true</span><span style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">reactiontime</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span> <span
+                    style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span> <span
+                    style="color: #8d868e; ">// do not attack yet</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">P_AproxDistance</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span
+                    style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> target</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">-</span> <span
+                    style="color: #82d4e5; ">64</span><span style="color: #cda869; ">*</span><span
+                    style="color: #f8f8f8; ">FRACUNIT</span><span style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// no melee attack, so fire more</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(!</span><span style="color: #f8f8f8; ">actor</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">info</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">meleestate</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">dist</span> <span
+                    style="color: #cda869; ">-=</span> <span style="color: #82d4e5; ">128</span><span
+                    style="color: #cda869; ">*</span><span style="color: #f8f8f8; ">FRACUNIT</span><span
+                    style="color: #cda869; ">;</span><span style="color: #f8f8f8; ">&nbsp; </span></p>
+                <p>&nbsp;&nbsp;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// check for ARCH-VILE</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">actor</span><span
+                    style="color: #cda869; ">-&gt;</span><span style="color: #f8f8f8; ">type </span><span
+                    style="color: #cda869; ">==</span><span style="color: #f8f8f8; "> MT_VILE</span><span
+                    style="color: #cda869; ">){</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">dist</span> <span
+                    style="color: #cda869; ">&gt;</span> <span style="color: #82d4e5; ">14</span><span
+                    style="color: #cda869; ">*</span><span style="color: #82d4e5; ">64</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span>
+                  <span style="color: #f6c9a0; ">false</span><span style="color: #cda869; ">;</span><span
+                    style="color: #f8f8f8; ">&nbsp; </span><span style="color: #8d868e; ">// too far away</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                <p
+                  style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;">
+                  <span style="color: #cda869; ">}</span></p>
+                <p>&nbsp;</span></p>
               </div>
               <div>
-                <img src="../static/slides/images/01_doom.jpg" >
+                <img src="../static/slides/images/lecture01/doom.jpg">
                 <p>
                   Source code: <a href="https://github.com/id-Software/DOOM/tree/master/linuxdoom-1.10">link</a>
                 </p>
-                <p>Doom3 in WebAssembly: <a href="https://www.infoq.com/news/2019/07/doom3-web-assembly-port/">link</a></p>
+                <p>Doom3 in WebAssembly: <a href="https://www.infoq.com/news/2019/07/doom3-web-assembly-port/">link</a>
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>WAD File</h3>
           <div class="frame importance-orange">
-            <div class="columns-2full wad">
+            <div class="columns-2">
               <div>
                 <h4>"Where's All the Data?"</h4>
                 <ul>
@@ -682,55 +792,113 @@
                     <li>Sound effects, music</li>
                     <li>Color palettes, images</li>
                   </ul>
-                  <li>Designed by <span class="highlight">John D. Carmack</span></li>
+                  <li>Designed by <strong>John D. Carmack</strong></li>
                 </ul>
-                <img class="carmack" src="../static/slides/images/01_carmack2.png">
+                <img class="h55 mt10"  src="../static/slides/images/lecture01/carmack.png">
               </div>
               <div>
-                <img class="s60" src="../static/slides/images/01_doomMap.png">
-                <img class="s75" src="../static/slides/images/01_WAD.png">
-
+                <img class="w60" src="../static/slides/images/lecture01/doomMap.png">
+                <img class="w75" src="../static/slides/images/lecture01/WAD.png">
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>1996: Quake</h3>
           <div class="frame">
-            <div class="columns-2full">
-              <div class="quake-code">
-                  <p style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;"><span style="color: #cda869; ">void()</span> <span style="color: #f8f8f8; ">DeathSound</span> <span style="color: #cda869; ">=</span> <span style="color: #cda869; ">{</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; local </span><span style="color: #cda869; ">float</span> <span style="color: #f8f8f8; ">rs</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// water death sounds</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">waterlevel</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">DeathBubbles</span><span style="color: #cda869; ">(</span><span style="color: #82d4e5; ">5</span><span style="color: #cda869; ">);</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #ff9abb; ">"player/h2odeath.wav"</span><span style="color: #cda869; ">,</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">rint</span> <span style="color: #cda869; ">((</span><span style="color: #f8f8f8; ">random</span><span style="color: #cda869; ">()</span> <span style="color: #cda869; ">*</span> <span style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">+</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">);</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">)</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death1.wav"</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">2</span><span style="color: #cda869; ">)</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death2.wav"</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death3.wav"</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death4.wav"</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">5</span><span style="color: #cda869; ">)</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death5.wav"</span><span style="color: #cda869; ">;</span></p>
-                    <p>&nbsp;</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span> <span style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span><span style="color: #cda869; ">,</span> <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
-                    <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span style="color: #cda869; ">;</span></p>
-                    <p><span style="color: #cda869; ">};</span></p>
-                    <p>&nbsp;</p>
+            <div class="columns-2">
+              <div class="code">
+                <p
+                  style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;">
+                  <span style="color: #cda869; ">void()</span> <span style="color: #f8f8f8; ">DeathSound</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #cda869; ">{</span></p>
+                <p>&nbsp;&nbsp;&nbsp; local </span><span style="color: #cda869; ">float</span> <span
+                    style="color: #f8f8f8; ">rs</span><span style="color: #cda869; ">;</span></p>
+                <p>&nbsp;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// water death sounds</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">waterlevel</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span
+                    style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #f8f8f8; ">DeathBubbles</span><span style="color: #cda869; ">(</span><span
+                    style="color: #82d4e5; ">5</span><span style="color: #cda869; ">);</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span
+                    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span
+                    style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+                    style="color: #ff9abb; ">"player/h2odeath.wav"</span><span style="color: #cda869; ">,</span> <span
+                    style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span
+                    style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #f8f8f8; ">rint</span> <span
+                    style="color: #cda869; ">((</span><span style="color: #f8f8f8; ">random</span><span
+                    style="color: #cda869; ">()</span> <span style="color: #cda869; ">*</span> <span
+                    style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span> <span
+                    style="color: #cda869; ">+</span> <span style="color: #82d4e5; ">1</span><span
+                    style="color: #cda869; ">);</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">1</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death1.wav"</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">2</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death2.wav"</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">3</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death3.wav"</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">4</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death4.wav"</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span
+                    style="color: #cda869; ">(</span><span style="color: #f8f8f8; ">rs</span> <span
+                    style="color: #cda869; ">==</span> <span style="color: #82d4e5; ">5</span><span
+                    style="color: #cda869; ">)</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+                    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span
+                    style="color: #cda869; ">=</span> <span style="color: #ff9abb; ">"player/death5.wav"</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p>&nbsp;</span></p>
+                <p>&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span
+                    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span
+                    style="color: #f8f8f8; "> CHAN_VOICE</span><span style="color: #cda869; ">,</span> <span
+                    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span
+                    style="color: #f8f8f8; ">noise</span><span style="color: #cda869; ">,</span> <span
+                    style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span
+                    style="color: #f8f8f8; "> ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
+                <p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span
+                    style="color: #cda869; ">;</span></p>
+                <p><span style="color: #cda869; ">};</span></p>
+                <p>&nbsp;</p>
               </div>
               <div>
-                  <img class="s100" src="../static/slides/images/01_quake.jpg" >
+                <img class="w100" src="../static/slides/images/lecture01/quake.jpg">
                 <p>
                   Source code: <a href="https://github.com/id-Software/Quake">link</a>
                 </p>
@@ -742,11 +910,11 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Quake engine</h3>
           <div class="frame importance-green">
-            <div class="columns-2full">
+            <div class="columns-2">
               <div>
                 <ul>
                   <li>~id Tech 1</li>
@@ -754,9 +922,11 @@
                   <li>True 3D real-time rendering</li>
                   <li>Binary space partitioning</li>
                   <li>3D light sources, Gouraud shading</li>
-                  <li>Games released: <span class="highlight">Quake, Hexen 2, Silver Wings</span></li>
+                  <li>Games released: <strong>Quake, Hexen 2, Silver Wings</strong></li>
                   <li>Source code released in 1999</li>
-                  <li><h4>Successors:</h4></li>
+                  <li class="mt40">
+                    <h4>Successors:</h4>
+                  </li>
                   <ul>
                     <li>id Tech 2: 1997</li>
                     <li>id Tech 3: 1999</li>
@@ -768,16 +938,26 @@
                 </ul>
               </div>
               <div>
-                <img src="../static/slides/images/01_idtech_5.jpg" >
+                <img src="../static/slides/images/lecture01/idtech_5.jpg">
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Unreal engine</h3>
           <div class="frame importance-green">
+            <div class="bottom-content">
+              <div class="grid32 h80">
+                <div></div>
+                <div></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/unreal.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/unreal_engine.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/unreal_engine_2.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/unrealgfx.jpg"></div>
+              </div>
+            </div>
             <h4>Unreal Engine 1</h4>
             <ul>
               <li>Released in 1998 by Epic Games as FPS game engine</li>
@@ -793,21 +973,23 @@
               <li>VFX & Particle systems</li>
               <li>Beta Raytracing</li>
             </ul>
-            <div class="grid32 unreal-images">
-              <div></div>
-              <div></div>
-              <img src="../static/slides/images/01_unreal.jpg" >
-              <img src="../static/slides/images/01_unreal_engine.jpg" >
-              <img src="../static/slides/images/01_unreal_engine_2.jpg" >
-              <img src="../static/slides/images/01_unrealgfx.jpg" >
-            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>CryEngine</h3>
           <div class="frame importance-green">
+            <div class="bottom-content">
+              <div class="grid32 h80">
+                <div></div>
+                <div></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/cryengine_farcry.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/kingdomCome.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/cryengine.jpg"></div>
+                <div><img class="w100" src="../static/slides/images/lecture01/cryengine_2.jpg"></div>
+              </div>
+            </div>
             <ul>
               <li>Released in 2002 as a technology demo for NVidia</li>
               <li>Far Cry - the first game powered by CryEngine</li>
@@ -819,21 +1001,24 @@
               <li>Destructible environment</li>
               <li>AI editing system</li>
             </ul>
-            <div class="grid32 cryengine-images">
-                <div></div>
-                <div></div>
-                <img src="../static/slides/images/01_cryengine_farcry.jpg" >
-                <img src="../static/slides/images/01_kingdomCome.jpg" >
-                <img src="../static/slides/images/01_cryengine.jpg" >
-                <img src="../static/slides/images/01_cryengine_2.jpg" >
-              </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Unity</h3>
           <div class="frame importance-green">
+            <div class="columns-3 center-content">
+              <div class="bottom-content">
+                <img class="w100" src="../static/slides/images/lecture01/unityGames.gif">
+              </div>
+              <div class="center-content">
+                <img class="w100" src="../static/slides/images/lecture01/unity_ori.gif">
+              </div>
+              <div class="top-content">
+                <img class="w100" src="../static/slides/images/lecture01/unity_cuphead.gif">
+              </div>
+            </div>
             <ul>
               <li>All-purpose (not only) game engine</li>
               <li>First announced for MacOS in 2005</li>
@@ -845,58 +1030,60 @@
               <li>DirectX, OpenGL, Vulkan</li>
               <li>2D and 3D games</li>
             </ul>
-            <div class="unity-images">
-                <img src="../static/slides/images/01_unityGames.gif" >
-                <img src="../static/slides/images/01_unity_ori.gif" >
-                <img src="../static/slides/images/01_unity_cuphead.gif" >
-              </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Evolution of games</h3>
           <div class="frame">
-              <div class="games-evolution">
-                  <img class="games-evolution-image" src="../static/slides/images/01_games_evolution.png" >
-                  <img src="../static/slides/svg/game_evolution.svg" >
+            <div>
+              <div class="center-content t5">
+                  <img class="w85" src="../static/slides/images/lecture01/games_evolution.png">
               </div>
-          </div>
-        </div>
-      </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <h3>Evolution of games</h3>
-          <div class="frame">
-            <div class="centered s100">
-              <img src="../static/slides/images/01_games_evolution_2.png" >
+              <div class="center-content">
+                  <img class="w100" src="../static/slides/svg/lecture01/game_evolution.svg">
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
+          <h3>Evolution of games</h3>
+          <div class="frame">
+            <div class="center-content">
+              <img class="w100" src="../static/slides/images/lecture01/games_evolution_2.png">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Game engines today</h3>
           <div class="frame">
-            <div class="engines">
-                <img src="../static/slides/svg/game_engines.svg" >
-              <img src="../static/slides/images/01_engines.png" >
+            <div class="center-content t5">
+              <img class="w95" src="../static/slides/svg/lecture01/game_engines.svg">
+            </div>
+            <div class="center-content l10 m30">
+              <img class="w70" src="../static/slides/images/lecture01/engines.png">
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Important note</h3>
           <div class="frame-quote">
-            <p> A game engine is just a tool, nothing more. Game development is more about dedication, enthusiasm and ability to work very hard.
+            <p> A game engine is just a tool, nothing more. Game development is more about dedication, enthusiasm and
+              ability to work very hard.
             </p>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
-          <h3>Level 1 review</h3>
+          <h3>Lecture 1 review</h3>
           <div class="frame">
             <h4>Terms:</h4>
             <ul>
@@ -908,26 +1095,27 @@
               <li>Progression</li>
               <li>Simulation</li>
             </ul>
-          <p>
-            Computer games are real-time interactive agent-based simulators
-          </p>
-          <p>Game Basic Elements: Mechanics, Story, Aesthetics, Technology</p>
-          <p>Game Mechanics: Space, Objects and Attributes, Actions, Rules</p>
-        </div>
+            <p>
+              Computer games are real-time interactive agent-based simulators
+            </p>
+            <p>Game Basic Elements: Mechanics, Story, Aesthetics, Technology</p>
+            <p>Game Mechanics: Space, Objects and Attributes, Actions, Rules</p>
+          </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-            <h3>Goodbye quote</h3>
-            <div class="centered s85">
-                <blockquote>
-                    So you walk eternally through the shadow realms, standing against evil where all others falter. 
-                    May your thirst for retribution never quench, may the blood on your sword never dry, and may we never need you again.
-                    <span class="author fragment fade-in">Doom 4</span>
-                </blockquote>
-            </div>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
+          <h3>Goodbye quote</h3>
+          <div class="center-content">
+            <blockquote class="w85">
+              So you walk eternally through the shadow realms, standing against evil where all others falter.
+              May your thirst for retribution never quench, may the blood on your sword never dry, and may we never need
+              you again.
+              <span class="author">Doom 4</span>
+            </blockquote>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
   </div>
 

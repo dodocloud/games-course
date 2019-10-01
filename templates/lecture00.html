@@ -10,11 +10,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
   <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
   <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
-  <link rel="stylesheet" href="../static/slides/css/theme.css" id="theme" />
-  <link rel="stylesheet" href="../static/slides/css/slides.css" />
-  <link rel="stylesheet" href="../static/slides/css/lecture00.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.scss" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.scss" />
+  <link rel="stylesheet" href="../static/slides/css/lecture00.scss" />
 
   <script type="text/javascript" src="../libs/revealjs/print.js"></script>
 
@@ -24,7 +25,7 @@
   <!-- ===================================================== SLIDES ===================================================== -->
   <div class="reveal">
     <div class="slides">
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="lecture-logo">
             <svg version="1.1" class="animated inactive" id="aphLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             width="734.2" height="211" version="1.1" viewBox="0 0 194.26 55.827" enable-background="new 0 0 194.26 55.827" xml:space="preserve">
@@ -42,7 +43,7 @@
         <h1>Organization of the course</h1>
         <div class="cvut-logo">
           <div>
-              <img alt="CVUT Logo" src="../static/slides/images/cvut_logo.png" />
+              <img alt="CVUT Logo" src="../static/slides/images/common/cvut_logo.png" />
           </div>
           <div>
               <div>FIT ČVUT, ZS 2019</div>
@@ -50,37 +51,39 @@
               <div>vesecky.adam@gmail.com</div>
           </div>
         </div>
-        <div class="frame-sticky cpr inline">
+        <div class="frame-sticky cpr">
           <div>Czech technical University in Prague</div>
           <div>Faculty of Information Technology</div>
           <div>Department of Software Engineering</div>
           <div>© Adam Vesecký, MI-APH, 2019</div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Motivational Quotes</h3>
-          <div class="centered s85">
-              <blockquote>
-                  Nobody in this industry knows what they are doing. We just have a gut assumption.
-                  <span class="author">Cliff Bleszinski</span>
-              </blockquote>
-              <blockquote>
-                  There’s a belief in the game industry that working in it is a privilege, and that you should be willing to do whatever it takes to stay there.
-                  <span class="author">Emily Grace Buck</span>
-              </blockquote>
-              <blockquote>
-                  Games are great to work on because they are as much about art as they are science.
-                  <span class="author">Mike McShaffry</span>
-              </blockquote>
+          <div class="center-content">
+            <div class="w85">
+                <blockquote>
+                    Nobody in this industry knows what they are doing. We just have a gut assumption.
+                    <span class="author">Cliff Bleszinski</span>
+                </blockquote>
+                <blockquote>
+                    There’s a belief in the game industry that working in it is a privilege, and that you should be willing to do whatever it takes to stay there.
+                    <span class="author">Emily Grace Buck</span>
+                </blockquote>
+                <blockquote>
+                    Games are great to work on because they are as much about art as they are science.
+                    <span class="author">Mike McShaffry</span>
+                </blockquote>
+            </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Purpose of this course</h3>
           <div class="frame-m">
-            <ul class="indent-m">
+            <ul class="line-m">
               <li> Understand the difference between games and applications</li>
               <li>Understand the architecture of game engines</li>
               <li>Understand the ECS pattern</li>
@@ -89,14 +92,14 @@
               <li>Understand the issues of multiplayer experience</li>
               <li>Understand why do we create games (or why we should)</li>
               <br>
-              <li class="highlight fragment fade-in">
-                Have a motivation to create a simple game that might be fun to play
+              <li class="fragment fade-in">
+                <strong>Have a motivation to create a simple game that might be fun to play</strong>
               </li>
             </ul>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
           <div class="container">
             <h3>Course history</h3>
             <div class="frame course-history">
@@ -106,8 +109,8 @@
                     <ul>
                       <li>Establishment of the subject</li>
                       <li>OpenFrameworks engine, C++, 4 homeworks</li>
-                      <li><span class="highlight">47</span> students, <span class="highlight">25</span> finished the course</li>
-                      <li class="highlight">Average score: 1.48</li>
+                      <li><strong>47</strong> students, <strong>25</strong> finished the course</li>
+                      <li><strong>Average score: 1.48</strong></li>
                     </ul>
                     <h4>2018</h4>
                     <ul>
@@ -115,8 +118,8 @@
                       <li>PixiJS library and TypeScript instead of C++</li>
                       <li>Semestral work instead of homeworks</li>
                       <li>All examples reimplemented into TypeScript</li>
-                      <li><span class="highlight">50</span> students, <span class="highlight">30</span> finished the course</li>
-                      <li class="highlight">Average score: 1.50</li>
+                      <li><strong>50</strong> students, <strong>30</strong> finished the course</li>
+                      <li><strong>Average score: 1.50</strong></li>
                     </ul>
                     <h4>2019</h4>
                     <ul>
@@ -124,20 +127,20 @@
                       <li>50 students</li>
                     </ul>
                 </div>
-                <div>
-                  <img src="../static/slides/images/01_aph_01.jpg" >
-                  <img src="../static/slides/images/01_aph_02.jpg" >
+                <div class="tright">
+                  <img class="w600" src="../static/slides/images/lecture00/aph_01.jpg" >
+                  <img class="w600" src="../static/slides/images/lecture00/aph_02.jpg" >
                 </div>
               </div>
             </div>
           </div>
         </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Organization</h3>
-          <div class="organization">
-              <img src="../static/slides/images/keen_2&2b.png" >
-              <div class="frame-s">
+          <div class="organization tcenter">
+              <img src="../static/slides/images/lecture00/keen2.png" >
+              <div class="frame-s tleft">
                 <h4>Slides and materials</h4>
                 <ul><li><a href="http://gitlab.fit.cvut.cz/svecadam/MI-APH">https://gitlab.fit.cvut.cz/svecadam/MI-APH</a></li></ul>
                 <h4>Public Page</h4>
@@ -150,11 +153,11 @@
           </div>
         </div>
       </section>
-      <section data-background-image="static/slides/images/monkey_island.gif">
+      <section data-background-image="static/slides/images/lecture00/monkey_island.gif">
         <div class="container">
           <h3>Lectures</h3>
-          <div class="frame">
-              <ul class="lectures">
+          <div class="frame lectures">
+              <ul>
                   <li>01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the World of Games</li>
                   <li>02: &nbsp;&nbsp;&nbsp;&nbsp;Architecture of game engines</li>
                   <li>03: &nbsp;&nbsp;&nbsp;&nbsp;Component Architecture I</li>
@@ -165,18 +168,18 @@
                   <li>08: &nbsp;&nbsp;&nbsp;&nbsp;Graphics</li>
                   <li>09: &nbsp;&nbsp;&nbsp;&nbsp;Game AI</li>
                   <li>10: &nbsp;&nbsp;&nbsp;&nbsp;Scripting languages</li>
-                  <li class="dayoff">11: &nbsp;&nbsp;&nbsp;&nbsp;Day off</li>
+                  <li>11: &nbsp;&nbsp;&nbsp;&nbsp;<strong>Day off</strong></li>
                   <li>12: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer</li>
                   <li>13: &nbsp;&nbsp;&nbsp;&nbsp;Indie Game development</li>
                 </ul>
           </div>
         </div>
       </section>
-      <section data-background-image="static/slides/images/monkey_island_2.gif">
+      <section data-background-image="static/slides/images/lecture00/monkey_island_2.gif">
         <div class="container">
           <h3>Labs</h3>
-          <div class="frame">
-              <ul class="labs">
+          <div class="frame labs">
+              <ul>
                   <li>01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the environment</li>
                   <li>02: &nbsp;&nbsp;&nbsp;&nbsp;PixiJS basics</li>
                   <li>03: &nbsp;&nbsp;&nbsp;&nbsp;Component architecture</li>
@@ -184,87 +187,67 @@
                   <li>05: &nbsp;&nbsp;&nbsp;&nbsp;Game AI</li>
                   <li>06: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer</li>
                   <br>
-                  <li class="dayoff">Day off on 3.12.</li>
+                  <li><strong>Day off on 3.12.</strong></li>
                 </ul>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Assessment</h3>
-          <div class="assessment">
-              <img src="../static/slides/images/keen&2b.png" >
-              <div class="frame-s">
+          <div class="assessment tcenter">
+              <img src="../static/slides/images/lecture00/keen.png" >
+              <div class="frame-s tleft">
                 <h4>Labs</h4>
                 <ul>
                     <li>Semestral work (a simple web game in PixiJS lib)</li>
-                    <li>Total: <span class="highlight">50 points</span> (+6 bonus points) -> <span class="highlight">56 max</span></li>
-                    <li>To pass: <span class="highlight">25</span></li>
-                    <li>Deadline: <span class="highlight">31.1.2020</span></li>
+                    <li>Total: <strong>50 points</strong> (+6 bonus points) -> <strong>56 max</strong></li>
+                    <li>To pass: <strong>25</strong></li>
+                    <li>Deadline: <strong>31.1.2020</strong></li>
 
                   </ul>
                 <h4>Exam</h4>
                 <ul>
                   <li>Simple tasks and single-choice questions</li>
-                  <li>Maximum points: <span class="highlight">50</span>, to pass: <span class="highlight">25</span></li>
+                  <li>Maximum points: <strong>50</strong>, to pass: <strong>25</strong></li>
                 </ul>
               </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Importance markers</h3>
-          <div class="columns-3 centered">
-            <div class="img-with-desc">
-              <img src="../static/slides/images/bulb_green&8b.png" />
+          <div class="columns-3 center-content">
+            <figure>
+              <img src="../static/slides/images/common/bulb_green&8.png" />
               <div class="bulb-desc-green">
                 <p>Green bulb</p>
                 <p>An information that craves for attention</p>
               </div>
-            </div>
-            <div class="img-with-desc">
-              <img src="../static/slides/images/bulb_orange&8b.png" />
+            </figure>
+            <figure>
+              <img src="../static/slides/images/common/bulb_orange&8.png" />
               <div class="bulb-desc-orange">
                 <p>Orange bulb</p>
                 <p>An important information, may appear in the test</p>
               </div>
-            </div>
-            <div class="img-with-desc">
-              <img src="../static/slides/images/bulb_red&8b.png" />
+            </figure>
+            <figure>
+              <img src="../static/slides/images/common/bulb_red&8.png" />
               <div class="bulb-desc-red">
                 <p>Red bulb</p>
                 <p>An information whose acknowledgment is imperative</p>
               </div>
-            </div>
+            </figure>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Example</h3>
-          <div class="frame-m">
-            <h4 class="importance-green">
-              CSAA (Coverage Sample Antialiasing)
-            </h4>
-            <ul>
-              <li>NVidia's optimization of MSAA</li>
-              <li>new sample type: a sample that represents coverage</li>
-            </ul>
-            <div class="space-vert-mini"></div>
-            <h4 class="importance-orange">Game Mechanics</h4>
-            <ul>
-              <li>
-                Set of rules governing the behavior of a single game element
-              </li>
-            </ul>
-            <div class="space-vert-mini"></div>
-            <h4 class="importance-red">Linear interpolation</h4>
-            <ul>
-              <li>
-                  <span style="display: inline-block; position: relative; width: 12.671em; height: 0px; font-size: 117%;"><span style="position: absolute; clip: rect(0.86em, 1012.5em, 3.084em, -1000em); top: -2.222em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mtable" id="MathJax-Span-3" style="padding-right: 0.167em; padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 12.335em; height: 0px;"><span style="position: absolute; clip: rect(2.634em, 1012.34em, 4.858em, -1000em); top: -3.996em; left: 0em;"><span style="display: inline-block; position: relative; width: 12.335em; height: 0px;"><span style="position: absolute; clip: rect(2.672em, 1012.34em, 4.896em, -1000em); top: -4.034em; right: 0em;"><span class="mtd" id="MathJax-Span-4"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="msubsup" id="MathJax-Span-8" style="padding-left: 0.278em;"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="texatom" id="MathJax-Span-9"><span class="mrow" id="MathJax-Span-10"><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.755em; left: 0.49em;"><span class="mn" id="MathJax-Span-12" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mo" id="MathJax-Span-14" style="font-family: MathJax_Main; padding-left: 0.222em;">(</span><span class="msubsup" id="MathJax-Span-15"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.49em;"><span class="mn" id="MathJax-Span-17" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-18" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-19" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.49em;"><span class="mn" id="MathJax-Span-21" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-22" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-23" style="font-family: MathJax_Main; padding-left: 0.222em;">∗</span><span class="mfrac" id="MathJax-Span-24" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 3.343em; height: 0px; margin-right: 0.12em; margin-left: 0.12em;"><span style="position: absolute; clip: rect(3.349em, 1002.8em, 4.21em, -1000em); top: -4.672em; left: 50%; margin-left: -1.397em;"><span class="mrow" id="MathJax-Span-25"><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-28" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; clip: rect(3.349em, 1003.22em, 4.21em, -1000em); top: -3.31em; left: 50%; margin-left: -1.612em;"><span class="mrow" id="MathJax-Span-31"><span class="msubsup" id="MathJax-Span-32"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-33" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-34" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-35" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-36" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-38" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; clip: rect(0.944em, 1003.34em, 1.132em, -1000em); top: -1.288em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 2.8px solid; width: 3.343em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.068em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.222em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.958em; border-left: 0px solid; width: 0px; height: 2.502em;"></span>              </li>
-            </ul>
-            <div class="linear-interpolation">
+          <div class="frame-m space-vert-m">
+            <div class="center-content justify-right t15">
                 <svg width="300" height="300" version="1.1" viewBox="0 0 50.295 49.517" xmlns="http://www.w3.org/2000/svg">
                   <g transform="translate(-221.44 -126.76)">
                    <path d="m232.53 133.42 0.27886 0.29309 0.29311-0.27808-0.27809-0.29388zm0.83503 0.88006 0.27809 0.2939 0.29388-0.27888-0.27809-0.29309zm0.83503 0.88087 0.27809 0.29309 0.29389-0.27809-0.27808-0.29388zm0.83505 0.88006 0.27808 0.29388 0.29388-0.27886-0.27809-0.29309zm0.83502 0.88086 0.27809 0.29309 0.29388-0.27808-0.27886-0.29388zm0.83505 0.88006 0.27808 0.29388 0.29388-0.27807-0.27887-0.29389zm0.83503 0.88086 0.27808 0.29309 0.29388-0.27808-0.27886-0.29309zm0.83504 0.88006 0.27809 0.29388 0.29387-0.27808-0.27887-0.29388zm0.83503 0.88085 0.27808 0.29311 0.2931-0.27809-0.27809-0.29309zm0.83504 0.88008 0.27809 0.29388 0.29309-0.27809-0.27809-0.29388zm0.83424 0.88085 0.27888 0.29389 0.29309-0.27887-0.27809-0.29309zm0.83505 0.88086 0.27886 0.29309 0.29309-0.27808-0.27807-0.29388zm0.83503 0.88006 0.27887 0.29389 0.29309-0.27888-0.27808-0.29309zm0.83504 0.88086 0.27886 0.29309 0.29309-0.27808-0.27807-0.29388zm0.83503 0.88006 0.27808 0.29388 0.29388-0.27886-0.27808-0.2931zm0.83503 0.88087 0.27808 0.29309 0.29388-0.27809-0.27808-0.29388zm0.83504 0.88006 0.27809 0.29388 0.29388-0.27807-0.27809-0.2939zm0.83503 0.88086 0.27809 0.29309 0.29388-0.27808-0.27888-0.29309zm0.83504 0.88006 0.27808 0.29388 0.29389-0.27808-0.27887-0.29388zm0.83503 0.88086 0.27809 0.2931 0.29388-0.27809-0.27888-0.29309zm0.83505 0.88006 0.27807 0.29388 0.29389-0.27808-0.27887-0.29388zm0.83503 0.88085 0.27808 0.29388 0.29309-0.27886-0.27808-0.29309zm0.83503 0.88087 0.27808 0.29309 0.29309-0.27809-0.27807-0.29388zm0.83425 0.88006 0.27887 0.29388 0.2931-0.27886-0.27809-0.29309zm0.83503 0.88086 0.27887 0.29309 0.29309-0.27808-0.27807-0.29388zm0.83504 0.88006 0.27888 0.29388 0.29309-0.27887-0.27809-0.29309zm0.83503 0.88086 0.27888 0.29309 0.29309-0.27808-0.27807-0.29388zm0.83505 0.88006 0.27808 0.29388 0.29388-0.27887-0.27808-0.29309zm0.83503 0.88085 0.27808 0.29311 0.29388-0.27809-0.27809-0.29309zm0.83504 0.88008 0.27807 0.29388 0.29389-0.27809-0.27808-0.29388zm0.83503 0.88085 0.27808 0.2931 0.29388-0.27808-0.27887-0.29309zm0.83504 0.88007 0.27807 0.29388 0.29388-0.27808-0.27886-0.29388zm0.83503 0.88085 0.27809 0.29389 0.29387-0.27887-0.27887-0.2931zm0.83504 0.88086 0.27807 0.29309 0.29388-0.27808-0.27886-0.29388zm0.83503 0.88006 0.27809 0.29388 0.29309-0.27886-0.27809-0.2931zm0.83503 0.88087 0.27809 0.29309 0.29309-0.27809-0.27809-0.29388zm0.83426 0.88006 0.27886 0.29388 0.2931-0.27886-0.27808-0.29311zm0.83503 0.88086 0.27887 0.29309 0.29309-0.27808-0.27808-0.29388zm0.83504 0.88006 0.27886 0.29388 0.2931-0.27887-0.27808-0.29309z" color="#000000" color-rendering="auto" fill="#e9e56f" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation:auto;mix-blend-mode:normal;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-transform:none;white-space:normal"/>
@@ -298,22 +281,40 @@
                   </g>
                  </svg>                 
             </div>
+            <h4 class="importance-green">
+              CSAA (Coverage Sample Antialiasing)
+            </h4>
+            <ul>
+              <li>NVidia's optimization of MSAA</li>
+              <li>new sample type: a sample that represents coverage</li>
+            </ul>
+            <h4 class="space-vert-m importance-orange">Game Mechanics</h4>
+            <ul>
+              <li>
+                Set of rules governing the behavior of a single game element
+              </li>
+            </ul>
+            <h4 class="space-vert-m importance-red">Linear interpolation</h4>
+            <ul>
+              <li>
+                  <span style="display: inline-block; position: relative; width: 12.671em; height: 0px; font-size: 117%;"><span style="position: absolute; clip: rect(0.86em, 1012.5em, 3.084em, -1000em); top: -2.222em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mtable" id="MathJax-Span-3" style="padding-right: 0.167em; padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 12.335em; height: 0px;"><span style="position: absolute; clip: rect(2.634em, 1012.34em, 4.858em, -1000em); top: -3.996em; left: 0em;"><span style="display: inline-block; position: relative; width: 12.335em; height: 0px;"><span style="position: absolute; clip: rect(2.672em, 1012.34em, 4.896em, -1000em); top: -4.034em; right: 0em;"><span class="mtd" id="MathJax-Span-4"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.278em;">=</span><span class="msubsup" id="MathJax-Span-8" style="padding-left: 0.278em;"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="texatom" id="MathJax-Span-9"><span class="mrow" id="MathJax-Span-10"><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.755em; left: 0.49em;"><span class="mn" id="MathJax-Span-12" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.222em;">+</span><span class="mo" id="MathJax-Span-14" style="font-family: MathJax_Main; padding-left: 0.222em;">(</span><span class="msubsup" id="MathJax-Span-15"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.49em;"><span class="mn" id="MathJax-Span-17" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-18" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-19" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 0.919em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.5em, 4.265em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-20" style="font-family: MathJax_Math; font-style: italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.006em;"></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.49em;"><span class="mn" id="MathJax-Span-21" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-22" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-23" style="font-family: MathJax_Main; padding-left: 0.222em;">∗</span><span class="mfrac" id="MathJax-Span-24" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 3.343em; height: 0px; margin-right: 0.12em; margin-left: 0.12em;"><span style="position: absolute; clip: rect(3.349em, 1002.8em, 4.21em, -1000em); top: -4.672em; left: 50%; margin-left: -1.397em;"><span class="mrow" id="MathJax-Span-25"><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math; font-style: italic;">x</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-28" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; clip: rect(3.349em, 1003.22em, 4.21em, -1000em); top: -3.31em; left: 50%; margin-left: -1.612em;"><span class="mrow" id="MathJax-Span-31"><span class="msubsup" id="MathJax-Span-32"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-33" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-34" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span><span class="mo" id="MathJax-Span-35" style="font-family: MathJax_Main; padding-left: 0.222em;">−</span><span class="msubsup" id="MathJax-Span-36" style="padding-left: 0.222em;"><span style="display: inline-block; position: relative; width: 1.001em; height: 0px;"><span style="position: absolute; clip: rect(3.49em, 1000.52em, 4.071em, -1000em); top: -3.996em; left: 0em;"><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math; font-style: italic;">x</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; top: -3.846em; left: 0.572em;"><span class="mn" id="MathJax-Span-38" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span><span style="position: absolute; clip: rect(0.944em, 1003.34em, 1.132em, -1000em); top: -1.288em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 2.8px solid; width: 3.343em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.068em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span><span style="display: inline-block; width: 0px; height: 3.996em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.222em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.958em; border-left: 0px solid; width: 0px; height: 2.502em;"></span>              </li>
+            </ul>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>Literature</h3>
-          <div class="centered s100">
-            <img src="../static/slides/images/00_literature.png">
+          <div class="center-content">
+            <img src="../static/slides/images/lecture00/literature.png">
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="container">
           <h3>GDS 2019</h3>
-          <div class="centered s85">
-            <a href="http://www.gdsession.com/"><img src="../static/slides/images/gdc2019.jpg"></a>
+          <div class="center-content">
+            <a class="tcenter" href="http://www.gdsession.com/"><img src="../static/slides/images/lecture00/gdc2019.jpg"></a>
           </div>
         </div>
       </section>

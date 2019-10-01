@@ -12,9 +12,11 @@
 
   <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
   <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
-  <link rel="stylesheet" href="../static/slides/css/theme.css" id="theme" />
-  <link rel="stylesheet" href="../static/slides/css/slides.css" />
-  <link rel="stylesheet" href="../static/slides/css/lab01.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.scss" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.scss" />
+  <link rel="stylesheet" href="../static/slides/css/lab01.scss" />
+  <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
+  
   <script type="text/javascript" src="../libs/revealjs/print.js"></script>
 </head>
 
@@ -22,9 +24,9 @@
   <!-- ===================================================== SLIDES ===================================================== -->
   <div class="reveal">
     <div class="slides">
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
         <div class="lecture-logo">
-          <svg version="1.1" class="animated inactive" id="aphLogo" xmlns="http://www.w3.org/2000/svg"
+          <svg version="1.1" class="animated inactive w600 h400" id="aphLogo" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="734.2" height="211" version="1.1"
             viewBox="0 0 198.44 105.83" enable-background="new 0 0 198.44 105.83" xml:space="preserve">
             <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
@@ -41,7 +43,7 @@
         <h1>Introduction to the environment</h1>
         <div class="cvut-logo">
           <div>
-            <img alt="CVUT Logo" src="../static/slides/images/cvut_logo.png" />
+            <img alt="CVUT Logo" src="../static/slides/images/common/cvut_logo.png" />
           </div>
           <div>
             <div>FIT ČVUT, ZS 2019</div>
@@ -49,21 +51,21 @@
             <div>vesecky.adam@gmail.com</div>
           </div>
         </div>
-        <div class="frame-sticky cpr inline">
+        <div class="frame-sticky cpr">
           <div>Czech technical University in Prague</div>
           <div>Faculty of Information Technology</div>
           <div>Department of Software Engineering</div>
           <div>© Adam Vesecký, MI-APH, 2019</div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <h2 class="centered">TypeScript</h2>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <h2>TypeScript</h2>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Basic types</h3>
             <div class="code">
               <p><span style="color:#F8F8F0;">any</span></p>
@@ -72,6 +74,7 @@
               <p><span style="color:#F8F8F0;">boolean</span></p>
               <p><span style="color:#F8F8F0;">number</span></p>
               <p><span style="color:#F8F8F0;">string</span></p>
+              <p><span style="color:#F8F8F0;">Symbol</span></p>
               <p><span style="color:#F8F8F0;">&nbsp;</span></p>
               <p><span style="color:#FFAB40;">null</span></p>
               <p><span style="color:#FFAB40;">undefined</span></p>
@@ -80,14 +83,15 @@
                   style="color:white;">/*&nbsp;or&nbsp;Array&lt;string&gt;&nbsp;*/</span></p>
               <p><span style="color:#F8F8F0;">[string, number] &nbsp;</span><span
                   style="color:white;">/*&nbsp;tuple&nbsp;*/</span></p>
-
+                  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                  <p><span style="color:#FF5252;">false, 0, "", null, undefined, NaN&nbsp;&nbsp;// always false</span></p>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Declarations</h3>
             <div class="code">
               <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;isDone</span><span
@@ -114,6 +118,7 @@
                   style="color:yellow;">"Street"</span><span style="color:#F8F8F0;">,&nbsp;</span><span
                   style="color:#FFAB40;">99</span><span style="color:#F8F8F0;">];&nbsp;</span><span
                   style="color:white;">//&nbsp;tuple</span></p>
+                  <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;repeatType</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'repeat-x'</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">|</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'repeat-y'</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">|</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'no-repeat'</span><span style="color:#F8F8F0;">;&nbsp;</span></p>
               <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;myCar</span><span
                   style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
                   style="color:#E040FB;">any</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -130,9 +135,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Functions</h3>
             <div class="code">
               <p><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -164,9 +169,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Enumerators</h3>
             <div class="code">
               <p><span style="color:#E040FB;">enum</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -194,9 +199,93 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
+            <h3>For loop</h3>
+            <div class="code">
+                <p><span style="color:white;">//&nbsp;For..of,&nbsp;can&nbsp;be&nbsp;used&nbsp;only&nbsp;for&nbsp;iterable&nbsp;objects</span></p>
+                <p><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">(</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;user&nbsp;</span><span style="color:#FF5252;">of</span><span style="color:#F8F8F0;">&nbsp;activeUsers) {</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#40C4FF;">console</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">log</span><span style="color:#F8F8F0;">(user);</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:white;">//&nbsp;for..in</span></p>
+                <p><span style="color:white;">//&nbsp;this&nbsp;can&nbsp;be&nbsp;applied&nbsp;to&nbsp;any&nbsp;object,&nbsp;just&nbsp;iterates&nbsp;over&nbsp;its&nbsp;attributes</span></p>
+                <p><span style="color:white;">//&nbsp;order&nbsp;is&nbsp;undefined,&nbsp;don't&nbsp;use&nbsp;it&nbsp;for&nbsp;iterable&nbsp;objects</span></p>
+                <p><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">(</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;key&nbsp;</span><span style="color:#FF5252;">in</span><span style="color:#F8F8F0;">&nbsp;activeUsers) {</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#40C4FF;">console</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">log</span><span style="color:#F8F8F0;">(activeUsers[key])</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
+            <h3>Crazy equality</h3>
+            <div class="code">
+                <p><span style="color:yellow;">""</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"0"</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">""</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"0"</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"false"</span><span style="color:#F8F8F0;">&nbsp;&nbsp;&nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"0"</span><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">undefined</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">null</span><span style="color:#F8F8F0;">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">null</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">undefined</span><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">{ }&nbsp;</span><span style="color:#FF5252;">===</span><span style="color:#F8F8F0;">&nbsp;{} &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FF5252;">new</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">String</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"foo"</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">===</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"foo"</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:white;">// false&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">10</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"10"</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">10</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"+10"</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#FFAB40;">10</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">"010"</span><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;</span><span style="color:white;">// true&nbsp;</span></p>
+                <p><span style="color:#B2FF59;">isNan</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">null</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">false</span><span style="color:white;">//&nbsp;true,&nbsp;null&nbsp;converts&nbsp;to&nbsp;0</span></p>
+                <p><span style="color:#FF5252;">new</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Number</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">10</span><span style="color:#F8F8F0;">)</span><span style="color:#FF5252;">===</span><span style="color:#FFAB40;">10</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:white;">// false, object and number&nbsp;</span></p>
+                
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
+            <h3>Maps</h3>
+            <div class="code">
+                <p><span style="color:white;">//&nbsp;Object&nbsp;Map</span></p>
+                <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;totalReplies&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;{};</span></p>
+                <p><span style="color:#F8F8F0;">totalReplies[user1]&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">5</span><span style="color:#F8F8F0;">;&nbsp;</span><span style="color:white;">//&nbsp;keys&nbsp;are&nbsp;converted&nbsp;to&nbsp;strings</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:white;">//&nbsp;The&nbsp;Map&nbsp;-&gt;&nbsp;can&nbsp;use&nbsp;strings&nbsp;and&nbsp;numbers&nbsp;as&nbsp;keys</span></p>
+                <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;totalReplies&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">new</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Map</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">totalReplies.</span><span style="color:#B2FF59;">set</span><span style="color:#F8F8F0;">(user1,&nbsp;</span><span style="color:#FFAB40;">5</span><span style="color:#F8F8F0;">);&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">totalReplies.</span><span style="color:#B2FF59;">set</span><span style="color:#F8F8F0;">(user2,&nbsp;</span><span style="color:#FFAB40;">42</span><span style="color:#F8F8F0;">);</span></p>
+                <p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;has&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;totalReplies.</span><span style="color:#B2FF59;">has</span><span style="color:#F8F8F0;">(user1);</span></p>
+                <p><span style="color:#F8F8F0;">totalReplies.</span><span style="color:#B2FF59;">delete</span><span style="color:#F8F8F0;">(user1);</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
+            <h3>Array operations</h3>
+            <div class="code">
+                <p><span style="color:white;">//concat, entries, fill, filter, find, flat, flatMap, forEach, join, includes,&nbsp;</span></p>
+                <p><span style="color:white;">//join,&nbsp;keys,&nbsp;map,&nbsp;push,&nbsp;pop,&nbsp;reduce,&nbsp;reverse,&nbsp;shift,&nbsp;slice,&nbsp;sort,&nbsp;splice,&nbsp;unshift,&nbsp;values</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">fill</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">7</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:white;">//&nbsp;[0,7,7]</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">2</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">3</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">find</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">x</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;x&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">3</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:white;">//&nbsp;3</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">2</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">3</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">findIndex</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">x</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;x&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">2</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:white;">//&nbsp;1</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">2</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">3</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">4</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">5</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">copyWithin</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">3</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:white;">//&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;1,&nbsp;2]</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:yellow;">"a"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"b"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"c"</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">entries</span><span style="color:#F8F8F0;">()&nbsp;</span><span style="color:white;">//&nbsp;iterator&nbsp;[0,&nbsp;"a"],&nbsp;[1,"b"],&nbsp;[2,"c"]</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:yellow;">"a"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"b"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"c"</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">keys</span><span style="color:#F8F8F0;">()&nbsp;</span><span style="color:white;">//&nbsp;iterator&nbsp;0,&nbsp;1,&nbsp;2</span></p>
+                <p><span style="color:#F8F8F0;">[</span><span style="color:yellow;">"a"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"b"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"c"</span><span style="color:#F8F8F0;">].</span><span style="color:#B2FF59;">values</span><span style="color:#F8F8F0;">()&nbsp;</span><span style="color:white;">//&nbsp;iterator&nbsp;"a",&nbsp;"b",&nbsp;"c"</span></p>
+                <p><span style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;merge&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;[</span><span style="color:#FF5252;">...</span><span style="color:#F8F8F0;">arr1,&nbsp;</span><span style="color:#FF5252;">...</span><span style="color:#F8F8F0;">arr2];&nbsp;</span><span style="color:white;">// merged arrays</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Other constructs</h3>
             <div class="code">
               <p><span style="color:white;">//&nbsp;type&nbsp;assertions</span></p>
@@ -240,9 +329,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Other constructs</h3>
             <div class="code">
               <p><span style="color:white;">//&nbsp;dynamic&nbsp;keys</span></p>
@@ -301,9 +390,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Other constructs</h3>
             <div class="code">
               <p><span style="color:white;">//&nbsp;arrow&nbsp;functions</span></p>
@@ -340,17 +429,21 @@
                   style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
                   style="color:#E040FB;">number</span><span style="color:#F8F8F0;">&nbsp;}&nbsp;</span><span
                   style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
-              <p><span style="color:#F8F8F0;">&nbsp; name:&nbsp;</span><span style="color:yellow;">'Max'</span><span
-                  style="color:#F8F8F0;">,</span></p>
-              <p><span style="color:#F8F8F0;">&nbsp; age:&nbsp;</span><span style="color:#FFAB40;">27</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; name:&nbsp;</span><span style="color:yellow;">'Max'</span></p>
               <p><span style="color:#F8F8F0;">};</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:white;">//&nbsp;rest&nbsp;operator</span></p>
+              <p><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">displayTags</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">targetElement</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">HTMLElement</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FF5252;">...</span><span style="color:#FFAB40;">tags</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">string</span><span style="color:#F8F8F0;">[]) {&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">(</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;i&nbsp;</span><span style="color:#FF5252;">in</span><span style="color:#F8F8F0;">&nbsp;tags) {&nbsp;</span><span style="color:#FF5252;">...</span><span style="color:#F8F8F0;">&nbsp;} &nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+                <p><span style="color:#B2FF59;">displayTags</span><span style="color:#F8F8F0;">(myElement,&nbsp;</span><span style="color:yellow;">"tag1"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"tag2"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:yellow;">"tag3"</span><span style="color:#F8F8F0;">);</span></p>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Classes</h3>
             <div class="code">
               <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -390,9 +483,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Inheritance</h3>
             <div class="code">
               <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -441,9 +534,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Getters and setters</h3>
             <div class="code">
               <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -480,9 +573,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Generics</h3>
             <div class="code">
               <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -511,9 +604,9 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>Exports and imports</h3>
             <div class="code">
               <p><span style="color:#FF5252;">export</span><span style="color:#F8F8F0;">&nbsp;</span><span
@@ -566,13 +659,14 @@
                   style="color:#F8F8F0;">&nbsp;calculateRectangle&nbsp;</span><span
                   style="color:#FF5252;">from</span><span style="color:#F8F8F0;">&nbsp;</span><span
                   style="color:yellow;">'./src/rectangle'</span></p>
+                  <p><span style="color:#FF5252;">import</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">as</span><span style="color:#F8F8F0;">&nbsp;flash&nbsp;</span><span style="color:#FF5252;">from</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'./flash-message'</span><span style="color:#F8F8F0;">;&nbsp;</span><span style="color:white;">// imports everything</span></p>
             </div>
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-            <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+          <div class="container center-content">
+            <div class="frame-m">
               <h3>Context binding</h3>
               <div class="code">
                   <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">ContextExample</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
@@ -596,14 +690,14 @@
             </div>
           </div>
         </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <h2 class="centered">Environment</h2>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <h2>Environment</h2>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-            <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+          <div class="container center-content">
+            <div class="frame-m">
               <h3>Gitlab</h3>
               <ul>
                 <li>Download repository from git: <a href="https://gitlab.fit.cvut.cz/svecadam/MI-APH">https://gitlab.fit.cvut.cz/svecadam/MI-APH</a></li>
@@ -614,9 +708,9 @@
             </div>
           </div>
         </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-        <div class="container">
-          <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container center-content">
+          <div class="frame-m">
             <h3>PixiJS</h3>
             <ul>
               <li><i>HTML5 Creation Engine</i></li>
@@ -625,7 +719,7 @@
               <li>Full scene graph, sprite sheets, filters, shaders,...</li>
               <li>Very similar to PhaserJS game engine (yet it's way faster)</li>
               <li>Performance test: <a href="https://themoonrat.github.io/webgl-benchmark">link</a></li>
-              <li class="highlight">Ideal for simple games and rapid prototyping</li>
+              <li><strong>Ideal for simple games and rapid prototyping</strong></li>
               <br>
               <li><a href="https://www.pixijs.com/">Main page</a></li>
               <li><a href="https://github.com/pixijs/pixi.js">Github</a></li>
@@ -635,17 +729,17 @@
           </div>
         </div>
       </section>
-      <section data-background-image="./static/slides/images/mainbgr.jpg">
-          <div class="container">
-            <div class="frame-m centered">
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+          <div class="container center-content">
+            <div class="frame-m">
               <h3>PixiJS Exercise</h3>
               <ul>
                 <li>Create following animation</li>
                 <li> Use <span class="code">PIXI.Graphics</span></li>
               </ul>
-              <div class="img-with-desc s100">
-                  <img src="../static/slides/images/lab01_exercise.gif">
-              </div>
+              <figure class="h80">
+                  <img src="../static/slides/images/lab01/exercise.gif">
+              </figure>
             </div>
           </div>
         </section>

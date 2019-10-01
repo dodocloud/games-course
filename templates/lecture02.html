@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>MI-APH - Lecture 02 - Game Engines</title>
+  <meta name="description" content="Lecture 2: Architecture of Game Engines" />
+  <meta name="author" content="Adam Vesecký" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
+  <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
+  <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.scss" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.scss" />
+  <link rel="stylesheet" href="../static/slides/css/lecture02.scss" />
+
+  <script type="text/javascript" src="../libs/revealjs/print.js"></script>
+
+</head>
+
+<body>
+  <!-- ===================================================== SLIDES ===================================================== -->
+  <div class="reveal">
+    <div class="slides">
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="lecture-logo">
+          <svg version="1.1" class="animated inactive" id="lecture02Logo" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="750" height="400"
+            viewBox="0 0 198.44 105.83" viewBox="0 0 194.26 55.827" enable-background="new 0 0 198.44 105.83"
+            xml:space="preserve">
+            <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
+            <path d="m153.82 53.017a51.337 51.337 0 0 1-51.337 51.337 51.337 51.337 0 0 1-51.337-51.337 51.337 51.337 0 0 1 51.337-51.337 51.337 51.337 0 0 1 51.337 51.337z" fill="none" stroke="#ebebeb" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.6132"/>
+            <path d="m152.31 53.017a49.823 49.823 0 0 1-49.823 49.823 49.823 49.823 0 0 1-49.823-49.823 49.823 49.823 0 0 1 49.823-49.823 49.823 49.823 0 0 1 49.823 49.823z" fill="none" stroke="#bdbdbd" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.6132"/>
+            <path d="m150.86 53.017a48.377 48.377 0 0 1-48.377 48.377 48.377 48.377 0 0 1-48.377-48.377 48.377 48.377 0 0 1 48.377-48.377 48.377 48.377 0 0 1 48.377 48.377z" fill="none" stroke="#979797" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.6132"/>
+            <path d="m91.867 44.295s-5.5088-6.9075-9.0032-9.5328c-4.3944-3.3015-7.8157-3.2897-14.666-7.5366-2.3275-1.443 5.3775-9.5736 5.3775-9.5736s2.2406 4.6849 8.8403 8.6773c6.5997 3.9924 10.388 16.988 10.388 16.988z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m94.486 41.842s-3.5333-8.0979-6.2292-11.538c-3.3901-4.3263-6.698-5.2004-12.216-11.076-1.8747-1.9962 7.6721-7.8556 7.6721-7.8556s0.95173 5.1052 6.2932 10.67c5.3415 5.5645 5.6376 19.098 5.6376 19.098z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m97.652 40.15s-1.317-8.7364-3.0306-12.757c-2.1549-5.0563-5.1238-6.7568-8.9327-13.86-1.2941-2.4134 9.4438-5.6022 9.4438-5.6022s-0.40203 5.1776 3.3172 11.935c3.7193 6.7573 0.50257 19.906 0.50257 19.906z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m101.15 39.335s0.98902-8.7796 0.37448-13.107c-0.7728-5.4418-3.2004-7.8527-5.0411-15.7-0.62541-2.6661 10.572-2.9671 10.572-2.9671s-1.7284 4.8971 0.11523 12.387c1.8436 7.4897-4.6667 19.358-4.6667 19.358z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m104.73 39.453s3.2277-8.2245 3.7541-12.563c0.66197-5.4563-1.0589-8.4135-0.80602-16.469 0.086-2.7371 10.98-0.12974 10.98-0.12974s-2.937 4.2829-3.0947 11.995c-0.15768 7.7117-9.5179 17.491-9.5179 17.491z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m108.17 40.495s5.2463-7.1089 6.8778-11.164c2.0516-5.0991 1.1547-8.4009 3.484-16.117 0.79143-2.6216 10.639 2.7164 10.639 2.7164s-3.9454 3.3768-6.0936 10.785c-2.1482 7.4081-13.72 14.431-13.72 14.431z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m111.22 42.39s6.9075-5.5088 9.5328-9.0032c3.3015-4.3944 3.2897-7.8157 7.5366-14.666 1.443-2.3275 9.5736 5.3775 9.5736 5.3775s-4.6849 2.2406-8.6773 8.8403c-3.9924 6.5997-16.988 10.388-16.988 10.388z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m113.67 45.01s8.0979-3.5333 11.538-6.2292c4.3263-3.3901 5.2004-6.698 11.076-12.216 1.9962-1.8747 7.8556 7.6721 7.8556 7.6721s-5.1052 0.95173-10.67 6.2932c-5.5645 5.3415-19.098 5.6376-19.098 5.6376z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m115.36 48.175s8.7364-1.317 12.757-3.0306c5.0563-2.1549 6.7568-5.1238 13.86-8.9327 2.4134-1.2942 5.6022 9.4438 5.6022 9.4438s-5.1776-0.40204-11.935 3.3172c-6.7573 3.7193-19.906 0.50258-19.906 0.50258z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m116.18 51.671s8.7796 0.98902 13.107 0.37449c5.4418-0.7728 7.8527-3.2004 15.7-5.0412 2.6661-0.62542 2.9671 10.572 2.9671 10.572s-4.8971-1.7284-12.387 0.11523c-7.4897 1.8436-19.358-4.6667-19.358-4.6667z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m116.06 55.258s8.2245 3.2277 12.563 3.7541c5.4563 0.66198 8.4135-1.0589 16.469-0.80602 2.7371 0.08597 0.12973 10.98 0.12973 10.98s-4.2829-2.937-11.995-3.0946c-7.7117-0.15768-17.491-9.5179-17.491-9.5179z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m115.02 58.692s7.1089 5.2463 11.164 6.8778c5.0991 2.0516 8.4008 1.1547 16.117 3.484 2.6216 0.79143-2.7164 10.639-2.7164 10.639s-3.3768-3.9454-10.785-6.0936c-7.4081-2.1482-14.431-13.72-14.431-13.72z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m113.12 61.74s5.5088 6.9075 9.0032 9.5328c4.3944 3.3015 7.8157 3.2897 14.666 7.5366 2.3275 1.443-5.3775 9.5736-5.3775 9.5736s-2.2406-4.6849-8.8403-8.6773c-6.5996-3.9924-10.388-16.988-10.388-16.988z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m110.5 64.193s3.5333 8.0979 6.2292 11.538c3.3901 4.3263 6.698 5.2004 12.216 11.076 1.8747 1.9962-7.6721 7.8556-7.6721 7.8556s-0.95172-5.1052-6.2932-10.67c-5.3415-5.5645-5.6376-19.098-5.6376-19.098z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m107.34 65.885s1.317 8.7365 3.0306 12.757c2.1549 5.0563 5.1238 6.7568 8.9327 13.86 1.2942 2.4134-9.4438 5.6022-9.4438 5.6022s0.40203-5.1776-3.3172-11.935c-3.7193-6.7573-0.50256-19.906-0.50256-19.906z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m103.84 66.7s-0.98902 8.7796-0.37449 13.107c0.77279 5.4417 3.2004 7.8527 5.0412 15.7 0.62539 2.6661-10.572 2.9671-10.572 2.9671s1.7284-4.8971-0.11523-12.387c-1.8436-7.4897 4.6667-19.358 4.6667-19.358z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m100.25 66.582s-3.2276 8.2245-3.7541 12.563c-0.66197 5.4563 1.0589 8.4135 0.80604 16.469-0.08597 2.7371-10.98 0.12973-10.98 0.12973s2.937-4.2829 3.0946-11.995c0.15769-7.7117 9.5179-17.491 9.5179-17.491z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m96.819 65.54s-5.2463 7.1089-6.8778 11.164c-2.0516 5.0991-1.1547 8.4008-3.484 16.117-0.79142 2.6216-10.639-2.7164-10.639-2.7164s3.9454-3.3768 6.0936-10.785c2.1482-7.4081 13.72-14.431 13.72-14.431z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m93.772 63.645s-6.9075 5.5088-9.5328 9.0032c-3.3015 4.3943-3.2897 7.8157-7.5366 14.666-1.443 2.3275-9.5736-5.3775-9.5736-5.3775s4.6849-2.2406 8.6773-8.8403c3.9924-6.5997 16.988-10.388 16.988-10.388z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m91.318 61.025s-8.0979 3.5333-11.538 6.2292c-4.3263 3.3901-5.2004 6.698-11.076 12.216-1.9962 1.8747-7.8556-7.6721-7.8556-7.6721s5.1052-0.95172 10.67-6.2932c5.5645-5.3415 19.098-5.6376 19.098-5.6376z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m89.626 57.86s-8.7364 1.317-12.757 3.0306c-5.0563 2.1549-6.7568 5.1238-13.86 8.9327-2.4134 1.2942-5.6022-9.4438-5.6022-9.4438s5.1776 0.40204 11.935-3.3172c6.7573-3.7193 19.906-0.50257 19.906-0.50257z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m88.812 54.365s-8.7796-0.98902-13.107-0.37448c-5.4418 0.7728-7.8527 3.2004-15.7 5.0411-2.6661 0.62543-2.9671-10.572-2.9671-10.572s4.8971 1.7284 12.387-0.11523c7.4897-1.8436 19.358 4.6667 19.358 4.6667z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m88.929 50.777s-8.2245-3.2277-12.563-3.7541c-5.4564-0.66196-8.4135 1.0589-16.469 0.80603-2.7371-0.08597-0.12974-10.98-0.12974-10.98s4.2829 2.937 11.995 3.0946c7.7117 0.15768 17.491 9.5179 17.491 9.5179z"  stroke="#fff" stroke-width=".48776"/>
+            <path d="m89.971 47.343s-7.1089-5.2463-11.164-6.8778c-5.0991-2.0516-8.4009-1.1547-16.117-3.484-2.6216-0.79143 2.7164-10.639 2.7164-10.639s3.3768 3.9454 10.785 6.0936c7.4081 2.1482 14.431 13.72 14.431 13.72z"  stroke="#fff" stroke-width=".48776"/>            
+          </svg>
+
+        </div>
+        <h1>Architecture of Game Engines</h1>
+        <div class="cvut-logo">
+          <div>
+            <img alt="CVUT Logo" src="../static/slides/images/common/cvut_logo.png" />
+          </div>
+          <div>
+            <div>FIT ČVUT, ZS 2019</div>
+            <div>Ing. Adam Vesecký</div>
+            <div>vesecky.adam@gmail.com</div>
+          </div>
+        </div>
+        <div class="frame-sticky cpr">
+          <div>Czech technical University in Prague</div>
+          <div>Faculty of Information Technology</div>
+          <div>Department of Software Engineering</div>
+          <div>© Adam Vesecký, MI-APH, 2019</div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Literature</h3>
+          <a href="https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459">Gregory, Json. 2018. Game Engine Architecture (3rd ed.)</a>
+          <div class="center-content">
+            <div class="w600">
+                <img src="../static/slides/images/lecture02/book_game_engine_arch.jpg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Game Engine Parts</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Application, Loop, System</h3>
+          <div class="frame space-vert-m importance-orange">
+            <div class="bottom-content justify-right">
+              <img class="w60 mb20" src="../static/slides/svg/lecture02/loop_simple.svg">
+            </div>
+            <h4>Game Application</h4>
+            <ol>
+              <li>Handle everything we need to set up the application</li>
+              <li>Register each handler</li>
+              <li>Initialize rendering window</li>
+              <li>Start the game loop</li>
+              <li>Quit the application</li>
+            </ol>
+            <h4>Game loop</h4>
+            <ul>
+              <li>Process inputs</li>
+              <li>Process game logic</li>
+              <li>Erase the screen and draw game objects</li>
+              <li>Repeat</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Duke Nukem 3D (1996)</h3>
+          <div class="frame">
+              <div class="w100 h90 tcenter">
+                  <img src="../static/slides/svg/lecture02/arch_duke3d.svg">
+                  <div class="tcenter">
+                    <a href="http://fabiensanglard.net/duke3d/index.php">Source code review</a>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Doom 3 (2004)</h3>
+          <div class="frame">
+            <div class="w100 h90 tcenter">
+                <img src="../static/slides/svg/lecture02/arch_doom3.svg">
+                <div class="tcenter">
+                  <a href="http://fabiensanglard.net/doom3/index.php">Source code review</a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Game Engine parts</h3>
+          <div class="frame importance-green line-m">
+            <ul>
+              <li>Typical game engine consists of core systems and a set of modules and 3rd party libraries attached to them</li>
+              <li><strong>Heavy engines</strong> such as Unity or Unreal have their main parts tightly coupled together</li>
+              <li><strong>Light engines</strong> such as Godot or PhaserJS prefer aggregation over integration</li>
+            </ul>
+            <div class="tcenter h65">
+              <img src="../static/slides/svg/lecture02/engine_parts.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Engine Architecture</h3>
+          <div class="frame importance-green">
+            <div class="h100 tcenter">
+              <img src="../static/slides/svg/lecture02/arch_engine.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Engine Architecture</h3>
+          <div class="frame importance-green line-s">
+            <h4>Hardware</h4>
+            <ul>
+              <li>PC, Xbox, PS4, Switch,...</li>
+            </ul>
+            <h4>Drivers</h4>
+            <ul>
+              <li>NVidia, Sound Blaster Audigy, Gamepad driver,...</li>
+            </ul>
+            <h4>OS</h4>
+            <ul>
+              <li>Windows, Linux, MacOS, Android, iOS,...</li>
+            </ul>
+            <h4>3rd Party SDKs</h4>
+            <ul>
+              <li>DirectX, OpenGL, Vulkan, Boost, Havok, STL</li>
+            </ul>
+            <h4>Core Systems</h4>
+            <ul>
+              <li>Threading lib, File System, Network layer, Movie player, Math library, Parsers, Memory Allocator</li>
+            </ul>
+            <h4>Modules</h4>
+            <ul>
+              <li>
+                Scripting system, Dynamic Object Model, Messaging system, World streaming, DSP, 3D Audio Model, Match-making management, Skeletal animation, Inverse Kinematics, LERP, Rigid Bodies,
+                Shaders, Debug Drawing, Spatial Subdivision, LOD system, Particle system, HDR Lighting 
+              </li>
+            </ul>
+            <h4>Game</h4>
+            <ul>
+              <li>HUD, Terrain renderer, Vehicle system, Puzzle system, Dialogue system, State machines, Camera, Decision Making</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>List of game genres</h3>
+          <div class="frame">
+            <div class="grid32 center-content tcenter">
+              <div><img src="../static/slides/images/lecture02/genre_fps.png"></div>
+              <div><img src="../static/slides/images/lecture02/genre_platformer.png"></div>
+              <div><img src="../static/slides/images/lecture02/genre_fighting.png"></div>
+              <div><img src="../static/slides/images/lecture02/genre_racing.png"></div>
+              <div><img src="../static/slides/images/lecture02/genre_mmorpg.png"></div>
+              <div><img src="../static/slides/images/lecture02/genre_rts.png"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Which engine do I need?</h3>
+          <div class="frame">
+            <ul>
+              <li><strong>Various games require various engines</strong></li>
+            </ul>
+            <div class="columns-4">
+              <div class="h300"><img src="../static/slides/images/lecture02/engine_horse.png"></div>
+              <div class="h250 tcenter"><img src="../static/slides/images/lecture02/engine_car.png"></div>
+              <div class="h300"><img src="../static/slides/images/lecture02/engine_jet.png"></div>
+              <div class="h300"><img src="../static/slides/images/lecture02/engine_rocket.png"></div>
+            </div>
+            <ul>
+              <li>
+                <strong>Still, their core components remain similar</strong>
+              </li>
+                <ul>
+                  <li>every game engine needs a <strong>game loop</strong></li>
+                  <li>almost every game has <strong>assets</strong></li>
+                  <li>every game needs a <strong>renderer</strong></li>
+                  <li>game objects are structured in a <strong>scene graph</strong></li>
+                  <li>we couldn't do much without a <strong>physics engine</strong></li>
+                  <li>complex audio processing requires an advanced <strong>audio engine</strong></li>
+                  <li>for 3D games we definitely need an <strong>editor</strong></li>
+                </ul>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Game Engine modules</h3>
+          <div class="frame importance-orange">
+            <h4>Main modules</h4>
+            <ul>
+              <li><strong>Game Loop</strong> - heartbeat of all games</li>
+              <li><strong>Scene Manager</strong> - manages objects and structures them in a scene graph</li>
+              <li><strong>Resource Manager</strong> - manages assets, controls a cache</li>
+              <li><strong>Input Manager</strong> - handles inputs (keyboard, mouse, touch, joystick, gamepad,...)</li>
+              <li><strong>Memory Manager</strong> - memory allocator and deallocator</li>
+              <li><strong>Rigidbody Engine</strong> - event-based collision detection</li>
+              <li><strong>Physics Engine</strong> - handles behavior of objects based on forces and impulses</li>
+              <li><strong>Rendering Engine</strong> - renders the game, takes care of the rendering pipeline</li>
+              <li><strong>Animation Engine</strong> - handles animations</li>
+              <li><strong>Scripting Engine</strong> - bridge between the engine and interpreted languages (JS, Lua, C#,...)</li>
+              <li><strong>Multimedia Engine</strong> - plays music, clips, sounds, video</li>
+              <li><strong>AI Engine</strong> - abstract engine for AI (path finding, states, behavioral trees, ...)</li>
+              <li><strong>Networking Engine</strong> - handles multipeer communication</li>
+            </ul>
+            <h4>Other modules</h4>
+            <ul>
+              <li>GUI framework, Level Editor, Camera, Event System, World Streaming, Security, LOD, Profiler,...</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Game Loop</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic Game Engine Initialization</h3>
+          <div class="frame importance-green">
+            <div class="h100 tcenter">
+              <img src="../static/slides/svg/lecture02/init_atomicge.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Game loop</h3>
+          <div class="frame importance-orange">
+            <ul>
+              <li>Simple, yet the most important part of the game engine</li>
+              <li>Each turn advances the state of the game</li>
+              <li>Sometimes it's coordinated with the platform's event loop</li>
+              <li>Optimal time step for rendering: <strong><b>60 FPS = 16.6 ms per frame</b></strong></li>
+              <li>Audio is usually separated as it requires more frequent updates (~200 FPS)</li>
+              <li>Certain systems don't need to be updated so frequently (AI)</li>
+            </ul>
+            <div class="mt200 tcenter">
+              <div class="w60 block fragment fade-in">
+                <strong>In general, a program spends 90% of its time in 10% of the code. The game loop will be firmly in those 10%</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Simple game loop</h3>
+          <div class="frame importance-orange">
+            <div class="h100 tcenter">
+              <img src="../static/slides/svg/lecture02/loop_simple2.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Multi-threaded game loop</h3>
+          <div class="frame importance-orange">
+              <div class="center-content h70 t10">
+                <img class="h100" src="../static/slides/svg/lecture02/loop_multithread.svg">
+              </div>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Cooperative game loop</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>Implemented via small, relatively independent jobs</li>
+              <li class="fragment fade-in">Used in <strong>Ultima VIII (1994)</strong> for the first time</li>
+            </ul>
+              <div class="center-content h80 t15">
+                <img class="h100" src="../static/slides/svg/lecture02/loop_cooperative.svg">
+              </div>
+            </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Update method</h3>
+          <div class="frame importance-red space-vert-m">
+            <h4>Fixed time step</h4>
+            <ul>
+              <li>each update advances game time by a certain amount of time</li>
+              <li class="upside">precise and stable</li>
+              <li class="downside">the game may slow down</li>
+            </ul>
+            <h4>Variable time step</h4>
+            <ul>
+              <li>each update advances game time based on how much real time passed since the last frame</li>
+              <li class="upside">natural</li>
+              <li class="downside">non-deterministic and unstable (physics)</li>
+            </ul>
+            <h4>Adaptive time step</h4>
+            <ul>
+              <li>switches between variable and fixed time step</li>
+              <li>based on thresholds or a more sophisticated approach</li>
+              <li>better dealing with breakpoints</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic Game Engine Update 1/3</h3>
+          <div class="frame importance-green code">
+              <p><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Application</span><span style="color:#F8F8F0;">::</span><span style="color:#B2FF59;">Run</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Setup</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">Initialize</span><span style="color:#F8F8F0;">(engineParameters_))&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">ErrorExit</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Start</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">&amp;&amp;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">while</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">IsExiting</span><span style="color:#F8F8F0;">())</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:yellow;">engine_-&gt;RunFrame();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Stop</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#FF5252;">#else</span></p>
+                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SDL_iPhoneSetAnimationCallback</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">GetWindow</span><span style="color:#F8F8F0;">(),&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FF5252;">&amp;</span><span style="color:#F8F8F0;">RunFrame,&nbsp;engine_);</span></p>
+                <p><span style="color:#FF5252;">#elif</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">emscripten_set_main_loop_arg</span><span style="color:#F8F8F0;">(RunFrame, engine_,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">);</span></p>
+                <p><span style="color:#FF5252;">#endif</span></p>
+                <p><span style="color:#FF5252;">#endif</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;exitCode_;</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic Game Engine Update 2/3</h3>
+          <div class="frame importance-green code">
+              <p><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Application</span><span style="color:#F8F8F0;">::</span><span style="color:#B2FF59;">Run</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Setup</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">Initialize</span><span style="color:#F8F8F0;">(engineParameters_))&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">ErrorExit</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Start</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">&amp;&amp;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">while</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">IsExiting</span><span style="color:#F8F8F0;">())</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:yellow;">engine_-&gt;RunFrame();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Stop</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#FF5252;">#else</span></p>
+                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SDL_iPhoneSetAnimationCallback</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">GetWindow</span><span style="color:#F8F8F0;">(),&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FF5252;">&amp;</span><span style="color:#F8F8F0;">RunFrame,&nbsp;engine_);</span></p>
+                <p><span style="color:#FF5252;">#elif</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">emscripten_set_main_loop_arg</span><span style="color:#F8F8F0;">(RunFrame, engine_,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">);</span></p>
+                <p><span style="color:#FF5252;">#endif</span></p>
+                <p><span style="color:#FF5252;">#endif</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;exitCode_;</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic Game Engine Update 3/3</h3>
+          <div class="frame importance-green code">
+              <p><span style="color:#E040FB;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Engine</span><span style="color:#F8F8F0;">::</span><span style="color:#B2FF59;">Update</span><span style="color:#F8F8F0;">() {&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; VariantMap</span><span style="color:#FF5252;">&amp;</span><span style="color:#F8F8F0;">&nbsp;eventData&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetEventDataMap</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; eventData[P_TIMESTEP]&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;timeStep_;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SendEvent</span><span style="color:#F8F8F0;">(E_UPDATE,&nbsp;eventData);</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;Logic&nbsp;post-update&nbsp;event</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SendEvent</span><span style="color:#F8F8F0;">(E_POSTUPDATE,&nbsp;eventData);</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;Rendering&nbsp;update&nbsp;event</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SendEvent</span><span style="color:#F8F8F0;">(E_RENDERUPDATE,&nbsp;eventData);</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;Post-render&nbsp;update&nbsp;event</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SendEvent</span><span style="color:#F8F8F0;">(E_POSTRENDERUPDATE,&nbsp;eventData);</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#E040FB;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Engine</span><span style="color:#F8F8F0;">::</span><span style="color:#B2FF59;">Render</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;If&nbsp;device&nbsp;is&nbsp;lost,&nbsp;BeginFrame&nbsp;will&nbsp;fail&nbsp;and&nbsp;we&nbsp;skip&nbsp;rendering</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; Graphics</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;graphics&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#FF5252;">&lt;</span><span style="color:#E040FB;">Graphics</span><span style="color:#FF5252;">&gt;</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">graphics-&gt;</span><span style="color:#B2FF59;">BeginFrame</span><span style="color:#F8F8F0;">())&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#FF5252;">&lt;</span><span style="color:#E040FB;">Renderer</span><span style="color:#FF5252;">&gt;</span><span style="color:#F8F8F0;">()-&gt;</span><span style="color:#B2FF59;">Render</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#FF5252;">&lt;</span><span style="color:#E040FB;">UI</span><span style="color:#FF5252;">&gt;</span><span style="color:#F8F8F0;">()-&gt;</span><span style="color:#B2FF59;">Render</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; graphics-&gt;</span><span style="color:#B2FF59;">EndFrame</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Unity Game Loop</h3>
+          <div class="frame importance-green">
+            <div class="tcenter">
+              <img src="../static/slides/svg/lecture02/loop_unity.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Update inconsistencies</h3>
+          <div class="frame importance-orange space-vert-m">
+            <h4>Game objects are consistent before and after every update</h4>
+            <ul>
+              <li>yet they may be inconsistent during the update</li>
+              <li>major source of confusion and bugs</li>
+              <li class="upside"><strong>PixiJS updates all dependent transformations instantly</strong></li>
+            </ul>
+            <h4>One-frame-off lag</h4>
+            <ul>
+              <li>the state of some objects lags one frame behind the states of the others</li>
+              <li>possible solutions: bucket update, <string>script execution order</string> (Unity)</li>
+            </ul>
+                <div class="tcenter"><img class="w25" src="../static/slides/svg/lecture02/inconsistencies.svg"></div>
+                <div class="tcenter"><p class="w40 block">Object 2 reads updated state of Object 1 but not updated state of Object 3</p></div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Scene graph</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Scene Graph</h3>
+          <div class="frame importance-orange space-vert-m">
+            <h4>Scene Graph</h4>
+            <ul>
+              <li>essential structure of every interactive application</li>
+              <li>a way of ordering the data into a hierarchy</li>
+              <li>N-Tree or a regular graph</li>
+              <li><strong>parent nodes affect child nodes (translation, rotation, scale,...)</strong></li>
+              <li>leaves usually represent atomic units (shapes, vertices, meshes)</li>
+              <li>implementation: arrays, oct-trees, quad-trees, bounding volume hierarchies,...</li>
+            </ul>
+            <h4>Scene Manager</h4>
+            <ul>
+              <li>manages objects in the scene</li>
+              <li>similar to HTML Document Object Model and Event Manager</li>
+              <li>responsibility: sending messages, searching for objects, applying transformation constraints,...</li>
+              <li>Unity Engine - game objects form a hierarchy</li>
+              <li>Unreal Engine - components form a hierarchy</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Scene Hierarchy</h3>
+          <div class="frame importance-green">
+            <div class="top-content">
+              <img class="h40 l70" src="../static/slides/images/lecture02/scenegraph_droid.png" >
+            </div>
+            <div class="tcenter">
+              <img src="../static/slides/svg/lecture02/scene_hierarchy.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Scene Hierarchy</h3>
+          <div class="frame importance-green">
+            <div class="center-content">
+              <img class="h50 t45" src="../static/slides/images/lecture02/scene_game.gif" >
+            </div>
+            <div class="top-content">
+              <img class="w100" src="../static/slides/svg/lecture02/scene_hierarchy_2.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Unity Scene Graph</h3>
+          <div class="frame">
+            <div class="center-content fill">
+              <img class="w100" src="../static/slides/images/lecture02/scenegraph_unity.jpg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Blender3D Scene Graph</h3>
+          <div class="frame">
+              <div class="center-content fill">
+                <img class="w100" src="../static/slides/images/lecture02/scenegraph_blender.jpg" >
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Files</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Resource manager</h3>
+          <div class="frame importance-orange">
+            <ul>
+              <li><strong>Provides access to all resources (assets)</strong></li>
+                <ul>
+                  <li>meshes, materials, shaders, animations, textures, clips, levels</li>
+                  <li>many assets are not used in their original format</li>
+                  <li>engines usually encode their resource metadata in XML files</li>
+                  <li><strong>Resource Cache</strong> - used for faster access</li>
+                </ul>
+              <li><strong>Manages lifetime of each resource</strong></li>
+                <ul>
+                  <li>most managers maintain some kind of registry</li>
+                </ul>
+              <li><strong>Ensures that only one copy of each resource exists in memory</strong></li>
+                <ul>
+                  <li>resource GUID - usually path of the file, guaranteed to be unique</li>
+                </ul>
+              <li><strong>Loads required resources and unloads those no longer needed</strong></li>
+                <ul>
+                  <li>loading is simpler than unloading</li>
+                </ul>
+              <li><strong>Handles streaming</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Assets</h3>
+          <div class="frame">
+            <div class="center-content">
+              <img class="h80" src="../static/slides/svg/lecture02/res_manager.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>File Formats: ZIP</h3>
+          <div class="frame">
+            <div class="columns-2">
+              <div>
+                <ul><li><strong>Many games use their own compression format derived from ZIP</strong></li></ul>
+                <h4>ZIP</h4>
+                <ul>
+                  <li>lossless archive format</li>
+                  <li>compressions: shrink, DEFLATE, bzip2, none</li>
+                  <li>directory structure</li>
+                </ul>
+                <h4>zlib</h4>
+                <ul>
+                  <li>open-source libary</li>
+                  <li>implements DEFLATE compression</li>
+                </ul>
+              </div>
+              <div>
+                <img class="w800" src="../static/slides/svg/lecture02/format_zip.svg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>File Formats: JPEG</h3>
+          <div class="frame">
+            <div class="columns-2">
+              <div>
+                <ul>
+                  <li>lossy compression for digital images</li>
+                  <li>not very good for pixel art or masking (compression noise)</li>
+                  <li><strong>Color transform</strong> - from RGB to YCbCr</li>
+                  <li><strong>Down-sampling</strong> - chroma reduction</li>
+                  <li><strong>DCT</strong> - discrete cosine transform, from color domain into frequency domain</li>
+                  <li><strong>Quantization</strong> - removal of high frequency components</li>
+                  <li class="mt300">JPEG compression procedure:</li>
+                </ul>
+              </div>
+              <div>
+                <img class="h100" src="../static/slides/svg/lecture02/format_jpeg.svg">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Other image formats</h3>
+          <div class="frame space-vert-m importance-green">
+              <h4>PNG</h4>
+              <ul>
+                <li>Portable Network Graphics</li>
+                <li>supports lossless data compression and alpha channel (filters and DEFLATE)</li>
+                <li>good results for simple images (not real pictures)</li>
+              </ul>
+              <h4>TGA</h4>
+              <ul>
+                <li>Truevision TGA</li>
+                <li>8-32 bits/pixel</li>
+                <li>raw data or lossless RLE compression</li>
+                <li>favorite format for textures</li>
+              </ul>
+              <h4>DXT</h4>
+              <ul>
+                <li>compressed texture optimized for sampling</li>
+                <li>used in realtime rendering</li>
+                <li>DXT1 for RGB, DXT5 for RGBA</li>
+              </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>File Formats: MP3</h3>
+          <div class="frame">
+            <ul>
+              <li>loosy format</li>
+              <li>reduces accuracy by psychoacoustic analysis</li>
+            </ul>
+            <div class="">
+              <img src="../static/slides/svg/lecture02/format_mp3.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Other music formats</h3>
+          <div class="frame space-vert-m importance-green">
+              <h4>AIFF</h4>
+              <ul>
+                <li>Audio Interchange File Format</li>
+                <li>uncompressed pulse-code modulation</li>
+                <li>may contain loops and samples</li>
+              </ul>
+              <h4>WAV</h4>
+              <ul>
+                <li>linear pulse-code modulation</li>
+                <li>supports also compressed data</li>
+                <li>used when time involved in compressing is a concern (short sounds)</li>
+              </ul>
+              <h4>OGG</h4>
+              <ul>
+                <li>more advanced and a bit smaller in size than MP3</li>
+                <li>open-source (in sharp contrast with MP3)</li>
+              </ul>
+              <h4>Trackers</h4>
+              <ul>
+                <li>.xml, .mod, .it, .s3m files</li>
+                <li>contain PCM samples, notes and effects</li>
+              </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>3D file formats</h3>
+          <div class="frame importance-green">
+          <ul>
+            <li>encode 3D geometry, material, scene and animations</li>
+            <li>geometry encoding - approximate mesh, precise mesh and constructive solid geometry CSG</li>
+            <li><strong>COLLADA</strong> - .DAE, sharing models across CAD software</li>
+            <li><strong>OBJ</strong> - neutral format for interoperability, doesn't support animations</li>
+            <li><strong>X3D</strong> - popular 3D format for WEB</li>
+          </ul>
+          <div class="tcenter">
+            <img class="w60 mt50" src="../static/slides/svg/lecture02/format_3d.svg" >
+          </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Audio</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_01.jpg">
+        <div class="container">
+          <h3>Note</h3>
+          <div class="center-content">
+            <blockquote class="w85">
+              It's difficult to persuade people to spend time and money on high-quality sound in games. At the same time, most users would better get a new 3D accelerator than a new sound card. 
+              <span class="author">Unknown author from ixbtlabs, 2003</span>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Audio Engine</h3>
+          <div class="frame importance-orange">
+            <h4>Audio pipeline</h4>
+            <ul>
+              <li>for each 3D sound, a dry digital PCM signal must be synthesized</li>
+              <li><strong>distance-based attenuation</strong> - provides a sense of distance</li>
+              <li><strong>reverb</strong> - provides accoustics</li>
+              <li><strong>dry signals</strong> - arrive via an unobstructed path</li>
+              <li><strong>wet signals</strong> - echo (early reflections) +  tail (late reverberations)</li>
+              <li>audio buffer must be fed periodically - dropping audio is worse than dropped frames</li>
+            </ul>
+            <div class="tcenter">
+              <img class="h500" src="../static/slides/svg/lecture02/audio_engine.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Audio assets</h3>
+          <div class="frame importance-orange">
+            <h4>Audio clips</h4>
+            <ul>
+              <li>digital sound asset (MP3, OGG, WAV)</li>
+              <li>module asset (MOD, S3M, IT, XM), not used anymore, yet it's fun to play around with them</li>
+              <li>MIDI - sequencer-related data, nowadays mainly for recording and preprocessing</li>
+            </ul>
+            <h4>Sound cues</h4>
+            <ul>
+              <li>collection of audio clips with metadata</li>
+            </ul>
+            <h4>Sound banks</h4>
+            <ul>
+              <li>package of sound clips and cues</li>
+            </ul>
+            <h4>Streaming sounds</h4>
+            <ul>
+              <li>small ring buffer for music and speech</li>
+            </ul>
+            <div class="tcenter">
+              <img class="h300" src="../static/slides/images/lecture02/wave.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>VRWorks</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>path-traced geometric audio from NVidia</li>
+              <li>based on <strong>Acoustic Raytracer technology</strong></li>
+              <li>uses <strong>GPU</strong> to compute acoustic environmental model</li>
+              <li>implemented in Unreal Engine</li>
+            </ul>
+            <div class="tcenter">
+              <img class="w50 mt100" src="../static/slides/svg/lecture02/vrworks.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>WebAudio API</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>high-level JavaScript API for audio processing</li>
+              <li>offers capabilities found in modern game audio engines</li>
+              <li>features: modular routing, spatialized audio, convolution engine, biquad filters,...</li>
+              <li>audio operations are performed with audio <strong>nodes</strong> that are linked together</li>
+              <li>nodes: BiquadFilterNode, ConvolverNode, DelayNode, GainNode, PeriodicWave,...</li>
+              <li>used in many engines that support HTML5 and WebGL</li>
+            </ul>
+            <div class="tcenter">
+              <img class="w50 mt100" src="../static/slides/svg/lecture02/audio_webaudio.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Input</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Input Manager</h3>
+          <div class="frame importance-orange">
+            <div class="columns-2">
+              <div>
+                <p class="mb40">Detects input events from devices</p>
+                <h4>Atomic events</h4>
+                <ul>
+                  <li>KEY_DOWN</li>
+                  <li>KEY_UP</li>
+                  <li>MOUSE_BUTTON_DOWN</li>
+                  <li>MOUSE_BUTTON_UP</li>
+                  <li>MOUSE_WHEEL</li>
+                  <li>MOUSE_MOTION</li>
+                </ul>
+                <h4>Compound events</h4>
+                <ul>
+                  <li>FLING</li>
+                  <li>PINCH_TO_ZOOM</li>
+                  <li>DOUBLE_TAP</li>
+                </ul>
+                <h4>Special events</h4>
+                <ul>
+                  <li>cheat codes</li>
+                  <li>fighting combos</li>
+                </ul>
+              </div>
+              <div class="tcenter">
+                <div>
+                  <img class="h200 mt200" src="../static/slides/images/lecture02/joypad&4b.png" >
+                </div>
+                <div>
+                  <img class="h200 mt40" src="../static/slides/images/lecture02/input_pinch.png" >
+                </div>
+                <div>
+                  <img class="h200 mt40" src="../static/slides/images/lecture02/input_cheat.png" >
+                </div>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Input Devices</h3>
+          <div class="frame importance-orange">
+            <div class="top-content justify-right">
+              <img class="w400 mr60" src="../static/slides/svg/lecture02/input_normalized.svg" >
+            </div>
+            <div class="bottom-content justify-right">
+                <img class="w400 mr80" src="../static/slides/images/lecture02/input_controller.png" >
+            </div>
+           <h4>Getting the state of the device</h4>
+           <ul>
+             <li>polling - compare against previous state</li>
+             <li>callbacks - handled by upper SW layer</li>
+             <li>via a protocol (wireless device)</li>
+           </ul>
+           <h4>Devices</h4>
+           <ul>
+             <li>keyboard, touch sensor</li>
+             <li>one-axis controller - single analog state</li>
+             <li>two-axis controller - mouse and joystick</li>
+             <li>three-axis controller - accelerometer</li>
+             <li>camera, VR lens, Azure Kinect</li>
+           </ul>
+           <h4>Dead zone</h4>
+           <ul>
+             <li>area of a control interface that has no input effect (analog joystick)</li>
+           </ul>
+           <h4>Normalization</h4>
+           <ul>
+             <li>axis are mapped to a Cartesian space, not a circular space</li>
+             <li>input must be mnormalized</li>
+           </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Unity Input Manager</h3>
+          <div class="frame">
+            <div class="tcenter">
+              <img class="h900" src="../static/slides/images/lecture02/input_unity.png" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Special events</h3>
+          <div class="frame space-vert-m">
+            <div class="top-content justify-right mr80">
+              <img class="w30" src="../static/slides/images/lecture02/input_samurai.gif" >
+            </div>
+            <div class="bottom-content justify-right mr80">
+                <img class="w30" src="../static/slides/images/lecture02/input_cheatcode.jpg" >
+            </div>
+            <h4>Sequence detection</h4>
+            <ul>
+              <li>cheats: IDDQD, IDKFA</li>
+              <li>chords: combo moves in fighting games</li>
+            </ul>
+            <h4>Controller input remapping</h4>
+            <ul>
+              <li>button ID -> action ID mapping</li>
+              <li>can be implemented as a table</li>
+            </ul>
+            <h4>Context-sensitive inputs</h4>
+            <ul>
+              <li>different modes = different handlers (walking, driving, flying)</li>
+              <li>implemented via a state machine, table or polymorphism</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Doom 2 cheat detection</h3>
+          <div class="frame code">
+              <p><span style="color:white;">//&nbsp;Returns&nbsp;1&nbsp;if&nbsp;the&nbsp;cheat&nbsp;was&nbsp;successful,&nbsp;0&nbsp;if&nbsp;failed.</span></p>
+              <p><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">cht_CheckCheat</span><span style="color:#F8F8F0;">(</span><span style="color:#E040FB;">cheatseq_t</span><span style="color:#FF5252;">*</span><span style="color:#FFAB40;">&nbsp;cht</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#E040FB;">char</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">key&nbsp;</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;i;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;rc&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(firsttime) {</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; firsttime&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">&nbsp;(i</span><span style="color:#FF5252;">=</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;i</span><span style="color:#FF5252;">&lt;</span><span style="color:#FFAB40;">256</span><span style="color:#F8F8F0;">;i</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">) cheat_xlate_table[i]&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SCRAMBLE</span><span style="color:#F8F8F0;">(i);</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;initialize&nbsp;if&nbsp;first&nbsp;time</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">)&nbsp;cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;cht-&gt;</span><span style="color:#40C4FF;">sequence</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">(cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;key;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">else</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(cheat_xlate_table[(</span><span style="color:#E040FB;">unsigned</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">char</span><span style="color:#F8F8F0;">)key]&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">)&nbsp;cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">else</span><span style="color:#F8F8F0;">&nbsp;cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;cht-&gt;</span><span style="color:#40C4FF;">sequence</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">)&nbsp;cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">else</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">==</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">0x</span><span style="color:#FFAB40;">ff</span><span style="color:#F8F8F0;">) {&nbsp;</span><span style="color:white;">//&nbsp;end&nbsp;of&nbsp;sequence&nbsp;character</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; cht-&gt;</span><span style="color:#40C4FF;">p</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;cht-&gt;</span><span style="color:#40C4FF;">sequence</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; rc&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;rc;</span></p>
+              <p><span style="color:#F8F8F0;">}</span></p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container center-content">
+          <h2>Memory</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Memory manager</h3>
+          <div class="frame importance-orange space-vert-m">
+            <div class="bottom-content justify-right">
+              <img class="h550" src="../static/slides/svg/lecture02/memory_fragmentation.svg">
+            </div>
+            <h4>Main issue</h4>
+            <ul>
+              <li>the default memory manager that comes with default C-runtime libraries is not suitable for <br> most game applications</li>
+              <li>game engines usually implement their own allocator</li>
+            </ul>
+            <h4>Custom allocators</h4>
+            <ul>
+              <li>stack-based</li>
+              <li>pool-based</li>
+              <li>heap-based</li>
+              <li>bucket allocators</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Stack-Based allocator</h3>
+          <div class="frame importance-green">
+            <ul>
+              <li>mostly used in games that have levels and in-game loops as single-frame allocators</li>
+              <li><strong>implementations:</strong> single-ended, double-ended</li>
+            </ul>
+            <ol>
+              <li>allocate a large contiguous block of memory</li>
+              <li>maintain a pointer to the top of the stack</li>
+              <li>everything above the pointer is considered as a free area</li>
+              <li>deallocate in an order opposite to that which blocks were allocated</li>
+            </ol>
+            <div class="tcenter">
+              <img class="h500 mt20" src="../static/slides/svg/lecture02/memory_stack.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Pool-Based allocator</h3>
+          <div class="frame importance-orange">
+            <ul>
+              <li>allocates lots of small blocks of memory, each of the same size</li>
+              <li class="upside">doesn't suffer from memory fragmentation</li>
+              <li class="downside">entities have to be of the same size</li>
+            </ul>
+            <div class="tcenter">
+              <img class="h350 mt200" src="../static/slides/svg/lecture02/memory_pool.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic GE Allocation</h3>
+          <div class="frame importance-green code">
+              <p><span style="color:#E040FB;">void</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">AllocatorReserve</span><span style="color:#F8F8F0;">(AllocatorBlock</span><span style="color:#FF5252;">*</span><span style="color:#FFAB40;">&nbsp;allocator</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">allocator-&gt;</span><span style="color:#40C4FF;">free_</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;Free&nbsp;nodes&nbsp;have&nbsp;been&nbsp;exhausted.&nbsp;Allocate&nbsp;a&nbsp;new&nbsp;larger&nbsp;block</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">unsigned</span><span style="color:#F8F8F0;">&nbsp;newCapacity&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(allocator-&gt;</span><span style="color:#40C4FF;">capacity_</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">+</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">&gt;&gt;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">AllocatorReserveBlock</span><span style="color:#F8F8F0;">(allocator,&nbsp;allocator-&gt;</span><span style="color:#40C4FF;">nodeSize_</span><span style="color:#F8F8F0;">,&nbsp;newCapacity);</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; allocator-&gt;</span><span style="color:#40C4FF;">capacity_</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">+=</span><span style="color:#F8F8F0;">&nbsp;newCapacity;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;We&nbsp;should&nbsp;have&nbsp;new&nbsp;free&nbsp;node(s)&nbsp;chained</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; AllocatorNode</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;freeNode&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;allocator-&gt;</span><span style="color:#40C4FF;">free_</span><span style="color:#F8F8F0;">;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">void</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;ptr&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">reinterpret_cast&lt;</span><span style="color:#E040FB;">unsigned</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">char</span><span style="color:#FF5252;">*&gt;</span><span style="color:#F8F8F0;">(freeNode))&nbsp;</span><span style="color:#FF5252;">+</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">sizeof</span><span style="color:#F8F8F0;">(AllocatorNode);</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; allocator-&gt;</span><span style="color:#40C4FF;">free_</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;freeNode-&gt;</span><span style="color:#40C4FF;">next_</span><span style="color:#F8F8F0;">;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; freeNode-&gt;</span><span style="color:#40C4FF;">next_</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+                <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;ptr;</span></p>
+                <p><span style="color:#F8F8F0;">}</span></p>
+                <p><span style="color:#FF5252;">============================</span></p>
+                <p><span style="color:white;">//&nbsp;create&nbsp;node&nbsp;from&nbsp;void*&nbsp;and&nbsp;call&nbsp;the&nbsp;constructor</span></p>
+                <p><span style="color:yellow;">Node*&nbsp;newNode&nbsp;=&nbsp;static_cast&lt;Node*&gt;(AllocatorReserve(allocator_));</span></p>
+                <p><span style="color:#FF5252;">new</span><span style="color:#F8F8F0;">(newNode)&nbsp;</span><span style="color:#B2FF59;">Node</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:white;">// ... do some stuff&nbsp;</span></p>
+                <p><span style="color:white;">//&nbsp;delete&nbsp;node</span></p>
+                <p><span style="color:#F8F8F0;">(newNode)</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">~Node</span><span style="color:#F8F8F0;">();</span></p>
+                <p><span style="color:#B2FF59;">AllocatorFree</span><span style="color:#F8F8F0;">(allocator_, newNode);</span></p>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Loading approaches</h3>
+          <div class="frame importance-orange">
+            <h4>Level loading</h4>
+            <ul>
+              <li>used in <strong>Tomb Raider, Doom,...</strong></li>
+              <li>requires a loading screen</li>
+              <li>only one game chunk is loaded at a time</li>
+            </ul>
+            <h4>Air locks</h4>
+            <ul>
+              <li>used in <strong>Half-Life 2, Portal, Inside, new Wolfenstein,...</strong></li>
+              <li>larger block contains the whole scene</li>
+              <li>smaller block represents an air lock (usually a small room/hall)</li>
+              <li>when the player enters the are from which can neither see the previous area nor return to it, next scene is loaded</li>
+            </ul>
+            <h4>World streams</h4>
+            <ul>
+              <li>used in open-world games: <strong>GTA, WoW, ARMA, Read Dead Redemption, Witcher,...</strong></li>
+              <li>the world is divided into regions</li>
+              <li>when the player enters region B and is far enough that chunk A can no longer be seen, the engine unloads chunk A and starts loading chunk C</li>
+              <li>LOD (level of detail) - chunks are loaded with variable granularity (only meshes)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Loading screen</h3>
+          <div class="frame">
+            <div class="columns-3 center-content">
+              <figure>
+                <img class="w600" src="../static/slides/images/lecture02/loading_tomb_raider.jpg">
+                <p>Tomb Raider (2015)</p>
+              </figure>
+              <figure>
+                <img class="w600" src="../static/slides/images/lecture02/loading_doom.jpg">
+                <p>Doom 4 (2016)</p>
+              </figure>
+              <figure>
+                <img class="w600" src="../static/slides/images/lecture02/loading_raptor.gif">
+                <p>Raptor (1994)</p>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Air lock</h3>
+          <div class="frame">
+            <div class="columns-2 center-content">
+                <figure>
+                  <img class="h600" src="../static/slides/images/lecture02/airlock_portal.jpg">
+                  <p>Portal (2007)</p>
+                </figure>
+                <figure>
+                  <img class="h600" src="../static/slides/images/lecture02/loading_duke.gif">
+                  <p>Duke Nukem (1991)</p>
+                </figure>
+              </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Open World (ARMA 3)</h3>
+          <div class="frame">
+            <div class="frame">
+              <div class="columns-2 center-content">
+                  <figure>
+                    <img class="h600" src="../static/slides/images/lecture02/openworld_arma.jpg">
+                    <p>Arma III (2012)</p>
+                  </figure>
+                  <figure>
+                    <img class="h600" src="../static/slides/images/lecture02/loading_commanche.gif">
+                    <p>Comanche (1992)</p>
+                  </figure>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Lecture 2 Review </h3>
+          <div class="frame line-m">
+            <ul>
+              <li><b>Components:</b> Scene Graph, Game Loop, Resource Manager, Input Manager</li>
+              <li><b>Game loop:</b> optimal time step for game model: 60 FPS = 16.6 ms per frame</li>
+                <ul>
+                  <li>Time steps: fixed, variable, adaptive</li>
+                  <li>One-frame-off-lag: state of some objects lags one frame behind</li>
+                </ul>
+              <li><b>Scene graph</b> - a way of ordering the data into a hierarchy</li>
+              <li><b>Input Events:</b> Atomic events, Compound events, Special events</li>
+              <ul>
+                <li>Dead zone: area of a control interface that has no input effect</li>
+                <li>Normalization: axis are mapped to a Cartesian space, the input must be normalized</li> 
+              </ul></<ul>
+              <li><b>Memory allocator:</b> stack-based, pool-based, heap-based</li>
+              <li><b>Loading practices:</b> Level loading, Air locks, World streams</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===================================================== REVEALJS INITIALIZE ===================================================== -->
+  <script src="../libs/revealjs/revealjs.ts"></script>
+  <script src="../src/lectures/reveal-setup.ts"></script>
+  <footer>
+    <p>Adam Vesecký (FIT ČVUT)</p>
+    <p>MI-APH Architecture of Computer Games 2019</p>
+  </footer>
+</body>
+
+</html>
