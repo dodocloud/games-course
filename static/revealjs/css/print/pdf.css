@@ -109,6 +109,11 @@ ul, ol, div, p {
 	box-shadow: none;
 }
 
+canvas {
+	background-image: url("../../../slides/images/common/canvas_not_supported.jpg") !important;
+	background-size: cover;
+}
+
 .reveal .roll {
 	overflow: visible;
 	line-height: 1em;
@@ -181,10 +186,10 @@ h1, h2, h3, h4, blockquote {
 }
 
 /* disable striped effect */
-.frame::after {
-	background-image: none;
+.reveal .frame::after {
+	background-image: none !important;
 }
 
 .frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
-	border-image-source: url("../images/common/frame_blue_trans.png");
+	border-image-source: url("../../../slides/images/common/frame_simple.png") !important;
 }

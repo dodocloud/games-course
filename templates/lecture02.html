@@ -3,12 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>MI-APH - Lecture 02 - Game Engines</title>
+  <title>MI-APH - Lecture 02</title>
   <meta name="description" content="Lecture 2: Architecture of Game Engines" />
   <meta name="author" content="Adam Vesecký" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="HandheldFriendly" content="true">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=0">
+  <meta name="screen-orientation" content="landscape">
   
   <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
   <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
@@ -120,6 +122,16 @@
               <li>Erase the screen and draw game objects</li>
               <li>Repeat</li>
             </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
+        <div class="container">
+          <h3>Example: Atomic Game Engine Initialization</h3>
+          <div class="frame importance-green">
+            <div class="h100 tcenter">
+              <img src="../static/slides/svg/lecture02/init_atomicge.svg">
+            </div>
           </div>
         </div>
       </section>
@@ -291,16 +303,6 @@
       </section>
       <section data-background-image="./static/slides/images/common/bgr_02.jpg">
         <div class="container">
-          <h3>Example: Atomic Game Engine Initialization</h3>
-          <div class="frame importance-green">
-            <div class="h100 tcenter">
-              <img src="../static/slides/svg/lecture02/init_atomicge.svg">
-            </div>
-          </div>
-        </div>
-      </section>
-      <section data-background-image="./static/slides/images/common/bgr_02.jpg">
-        <div class="container">
           <h3>Game loop</h3>
           <div class="frame importance-orange">
             <ul>
@@ -410,27 +412,27 @@
         <div class="container">
           <h3>Example: Atomic Game Engine Update 2/3</h3>
           <div class="frame importance-green code">
-              <p><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Application</span><span style="color:#F8F8F0;">::</span><span style="color:#B2FF59;">Run</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Setup</span><span style="color:#F8F8F0;">();</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">Initialize</span><span style="color:#F8F8F0;">(engineParameters_))&nbsp;{</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">ErrorExit</span><span style="color:#F8F8F0;">();</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Start</span><span style="color:#F8F8F0;">();</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp;</span></p>
-                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)&nbsp;</span><span style="color:#FF5252;">&amp;&amp;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">!defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">while</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FF5252;">!</span><span style="color:#F8F8F0;">engine_-&gt;</span><span style="color:#B2FF59;">IsExiting</span><span style="color:#F8F8F0;">())</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:yellow;">engine_-&gt;RunFrame();</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Stop</span><span style="color:#F8F8F0;">();</span></p>
-                <p><span style="color:#FF5252;">#else</span></p>
-                <p><span style="color:#FF5252;">#if</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">IOS</span><span style="color:#F8F8F0;">)</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">SDL_iPhoneSetAnimationCallback</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">GetWindow</span><span style="color:#F8F8F0;">(),&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FF5252;">&amp;</span><span style="color:#F8F8F0;">RunFrame,&nbsp;engine_);</span></p>
-                <p><span style="color:#FF5252;">#elif</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">defined</span><span style="color:#F8F8F0;">(</span><span style="color:#B2FF59;">__EMSCRIPTEN__</span><span style="color:#F8F8F0;">)</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">emscripten_set_main_loop_arg</span><span style="color:#F8F8F0;">(RunFrame, engine_,&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">);</span></p>
-                <p><span style="color:#FF5252;">#endif</span></p>
-                <p><span style="color:#FF5252;">#endif</span></p>
-                <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;exitCode_;</span></p>
-                <p><span style="color:#F8F8F0;">}</span></p>
+            <p><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;Engine::</span><span style="color:#B2FF59;">RunFrame</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; Time</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;time&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Time</span><span style="color:#F8F8F0;">&gt;();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; Input</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;input&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Input</span><span style="color:#F8F8F0;">&gt;();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; Audio</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;audio&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Audio</span><span style="color:#F8F8F0;">&gt;();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; time</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">BeginFrame</span><span style="color:#F8F8F0;">(timeStep_);</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">//&nbsp;...&nbsp;process&nbsp;input&nbsp;and&nbsp;audio</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Update</span><span style="color:#F8F8F0;">();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">+=</span><span style="color:#F8F8F0;">&nbsp;timeStep_;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">fpsFramesSinceUpdate_;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">&gt;</span><span style="color:#F8F8F0;">&nbsp;ENGINE_FPS_UPDATE_INTERVAL) {</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fps_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(int)(fpsFramesSinceUpdate_&nbsp;</span><span style="color:#FF5252;">/</span><span style="color:#F8F8F0;">&nbsp;fpsTimeSinceUpdate_);</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fpsFramesSinceUpdate_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Render</span><span style="color:#F8F8F0;">();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">ApplyFrameLimit</span><span style="color:#F8F8F0;">();</span></p>
+              <p><span style="color:#F8F8F0;">&nbsp; &nbsp; time</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">EndFrame</span><span style="color:#F8F8F0;">();</span></p>
+              <p><span style="color:#F8F8F0;">}</span></p>
           </div>
         </div>
       </section>
@@ -1157,17 +1159,15 @@
         <div class="container">
           <h3>Example: Open World (ARMA 3)</h3>
           <div class="frame">
-            <div class="frame">
-              <div class="columns-2 center-content">
-                  <figure>
-                    <img class="h600" src="../static/slides/images/lecture02/openworld_arma.jpg">
-                    <p>Arma III (2012)</p>
-                  </figure>
-                  <figure>
-                    <img class="h600" src="../static/slides/images/lecture02/loading_commanche.gif">
-                    <p>Comanche (1992)</p>
-                  </figure>
-                </div>
+            <div class="columns-2 center-content">
+                <figure>
+                  <img class="h600" src="../static/slides/images/lecture02/openworld_arma.jpg">
+                  <p>Arma III (2012)</p>
+                </figure>
+                <figure>
+                  <img class="h600" src="../static/slides/images/lecture02/loading_commanche.gif">
+                  <p>Comanche (1992)</p>
+                </figure>
             </div>
           </div>
         </div>

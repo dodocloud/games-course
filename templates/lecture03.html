@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>MI-APH - Lecture 03</title>
+  <meta name="description" content="Lecture 3: Component Architecture I" />
+  <meta name="author" content="Adam Vesecký" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="HandheldFriendly" content="true">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=0">
+  <meta name="screen-orientation" content="landscape">
+  
+  <link rel="shortcut icon" href="../static/slides/images/common/favicon.png">
+  <link rel="stylesheet" href="../static/revealjs/css/reset.css" />
+  <link rel="stylesheet" href="../static/revealjs/css/reveal.css" />
+  <link rel="stylesheet" href="../static/slides/css/theme.scss" id="theme" />
+  <link rel="stylesheet" href="../static/slides/css/slides.scss" />
+  <link rel="stylesheet" href="../static/slides/css/lecture03.scss" />
+
+  <script type="text/javascript" src="../libs/revealjs/print.js"></script>
+
+</head>
+
+<body>
+  <!-- ===================================================== SLIDES ===================================================== -->
+  <div class="reveal">
+    <div class="slides">
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="lecture-logo">
+          <svg version="1.1" class="animated inactive" id="lecture02Logo" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="750" height="400"
+            viewBox="0 0 198.44 105.83" viewBox="0 0 194.26 55.827" enable-background="new 0 0 198.44 105.83"
+            xml:space="preserve">
+            <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
+            <g fill="none" stroke="#fff">
+                <path d="m56.226 75.448v-20.681h44.317v20.681" stroke-linejoin="round" stroke-width="2.9544" style="paint-order:fill markers stroke"/>
+                <path d="m100.54 54.767h44.317v20.681" stroke-linejoin="round" stroke-width="2.9545px"/>
+                <path d="m100.54 54.767v-20.902" stroke-width="2.9545px"/>
+               </g>
+               <g stroke="#fff" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="1.5875">
+                <path d="m49.689 75.448h12.994v23.636h-12.994z"/>
+                <path d="m94.006 75.448h12.994v23.636h-12.994z"/>
+                <path d="m138.32 75.448h12.994v23.636h-12.994z"/>
+                <path d="m94.006 10.095h12.994v23.636h-12.994z"/>
+               </g>
+                          
+            </svg>
+
+        </div>
+        <h1>Component Architecture I</h1>
+        <div class="cvut-logo">
+          <div>
+            <img alt="CVUT Logo" src="../static/slides/images/common/cvut_logo.png" />
+          </div>
+          <div>
+            <div>FIT ČVUT, ZS 2019</div>
+            <div>Ing. Adam Vesecký</div>
+            <div>vesecky.adam@gmail.com</div>
+          </div>
+        </div>
+        <div class="frame-sticky cpr">
+          <div>Czech technical University in Prague</div>
+          <div>Faculty of Information Technology</div>
+          <div>Department of Software Engineering</div>
+          <div>© Adam Vesecký, MI-APH, 2019</div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container center-content">
+          <h2>Game Model</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <div class="frame-quote">
+            <span class="importance-red">
+              <strong>Game model</strong> is the smallest subset of the game,<br> determining its overall <strong>state</strong>.
+            </span>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <h3>Game model</h3>
+          <div class="frame line-m">
+            <ul>
+              <li>Each game consists of two main parts: <strong>assets</strong> and <strong>gameplay</strong></li>
+              <li><strong>Gameplay</strong> and all <strong>mechanics</strong> form a <strong>game model</strong></li>
+              <li>Game model can be divided into several parts (core model, view model,...)</li>
+              <li><strong>Game</strong> uses an <strong>engine</strong> to update its state and interpret it to the player</li>
+              <li>With each update, the current state of the model is drawn on screen</li>
+            </ul>
+            <div class="tcenter">
+              <img class="w90" src="../static/slides/svg/lecture03/model.svg" >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <h3>Various models for various purposes</h3>
+          <div class="frame importance-orange">
+            <h4>View model</h4>
+            <ul><li>the one represented on screen as a result of processing all other models</li></ul>
+            <h4>Networking model</h4>
+            <ul><li>everything that has to be in sync with other models on other devices</li></ul>
+            <h4>Core model</h4>
+            <ul>
+              <li>describes a state of a game at any point in time</li>
+              <li>tightly coupled with networking model (if there is one)</li>
+            </ul>
+            <h4>Physics model</h4>
+            <ul><li>all entities taking part in physical interaction</li></ul>
+            <h4>AI model</h4>
+            <ul>
+              <li>all data that are processed by AI (navigation maps, behavioral trees,...)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <h3>Example: Super Mario Bros.</h3>
+          <div class="frame importance-green">
+            <div class="top-content">
+              <img class="w50" src="../static/slides/images/lecture03/view_mario.jpg">
+            </div>
+            <div class="top-content t35 justify-left l55 ml15 mt30">
+              <img class=w30 src="../static/slides/images/lecture03/mario_spritesheet.png">
+            </div>
+            <div class="top-content t40 justify-left">
+              <img class="w80" src="../static/slides/svg/lecture03/model_mario.svg">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <div class="frame-quote importance-green">
+              Core model should be designed in a way for which it can be easily <br>detached from other parts, simulated and tested independently.<br>
+            <strong>Very difficult to achieve for complex games.</strong>
+          </div>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Chess</h3>
+            <div class="frame importance-green">
+              <div class="columns-2 center-content">
+                  <figure>
+                    <img class="h600" src="../static/slides/images/lecture03/chessmaster_2000.gif">
+                    <p>Chessmaster 2000 (1986)</p>
+                  </figure>
+                  <figure>
+                    <img class="h600" src="../static/slides/images/lecture03/chessmaster_11.gif">
+                    <p>Chessmaster 11 (2007)</p>
+                  </figure>
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Chess Architecture</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="w90" src="../static/slides/svg/lecture03/example_chess.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Chess Game models</h3>
+            <div class="frame importance-green">
+              <div class="center-content">
+                <table>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Chessmaster 2000</th>
+                        <th>Chessmaster 11</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>View model</td>
+                        <td>Simple sprites</td>
+                        <td>Animation states, themes, skins,...</td>
+                      </tr>
+                      <tr>
+                        <td>Networking model</td>
+                        <td>None</td>
+                        <td>Player's info, time, board pieces</td>
+                      </tr>
+                      <tr>
+                        <td>Core model</td>
+                        <td>Board pieces, time, AI algorithm</td>
+                        <td>Board pieces, AI algorithm</td>
+                      </tr>
+                      <tr>
+                        <td>Physics model</td>
+                        <td>None</td>
+                        <td>Collision checks for correct placement</td>
+                      </tr>
+                      <tr>
+                        <td>AI model</td>
+                        <td>David Kittinger's engine</td>
+                        <td>King engine</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Pacman</h3>
+            <div class="frame">
+              <div class="top-content justify-left l150 ml55 mt55">
+                <img class="w40" src="../static/slides/svg/lecture03/example_pacman_img.svg" >                
+              </div>
+              <div class="tcenter">
+                <img class="w75" src="../static/slides/images/lecture03/pacman.jpg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Pacman Architecture</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w70" src="../static/slides/svg/lecture03/example_pacman.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: strategy</h3>
+            <div class="frame">
+              <figure>
+                <img class="w90 mt50" src="../static/slides/images/lecture03/hom.jpg" >
+                <p>Heroes of Might and Magic I</p>
+              </figure>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Heroes of M&M 1 (REAL DIAGRAM)</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w100" src="../static/slides/svg/lecture03/example_hom.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Point-and-click adventure</h3>
+            <div class="frame">
+              <figure>
+                  <img class="w80 mt20" src="../static/slides/images/lecture03/longest_journey.jpg" > 
+                <p>The Longest Journey Saga (1999-2016)</p>
+              </figure>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Text adventure</h3>
+            <div class="frame">
+              <figure>
+                <img class="w55 mt20" src="../static/slides/images/lecture03/belegost.png" >  
+                <p>Belegost (1989)</p>
+              </figure>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Adventure architecture</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w90" src="../static/slides/svg/lecture03/example_adventure.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Adventure events</h3>
+            <div class="frame">
+              <div class="top-content justify-left  ml55 mt60">
+                <img class="w20" src="../static/slides/svg/lecture03/example_adventure_img.svg" >                
+              </div>
+              <div class="tcenter">
+                <img class="w65 ml60" src="../static/slides/images/lecture03/belegost.png" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Arcade</h3>
+            <div class="frame">
+              <figure>
+                <img class="w70 mt20" src="../static/slides/images/lecture03/geowars.gif" >  
+                <p>Geometry Wars (2004)</p>
+              </figure>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Arcade Architecture</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w80" src="../static/slides/svg/lecture03/example_geowars.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container center-content">
+          <h2>Object-oriented approach</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Platformer</h3>
+            <div class="frame">
+              <div class="bottom-content justify-left l10 ml60 b5">
+                <img class="w65" src="../static/slides/svg/lecture03/example_platformer_img.svg" >                
+              </div>
+              <div class="tcenter">
+                <img class="w70 mt25" src="../static/slides/images/lecture03/platformer.jpg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Platformer and objects</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w90" src="../static/slides/svg/lecture03/platformer_objects.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Platformer and scene graph</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="w70" src="../static/slides/svg/lecture03/platformer_scenegraph.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Issues</h3>
+            <div class="frame importance-green">
+              <ul>
+                <li>dragon may have an ability to use mana</li>
+                <ul>
+                  <li>opt. a) rework the object hierarchy</li>
+                  <li>opt. b) move mana to a base class</li>
+                </ul>
+                <li>mage may have an ability to transform himself into a dragon</li>
+                <ul>
+                  <li>opt. a) create a new object <strong>DragonMage</strong></li>
+                  <li>opt. b) add a reference to an object the mage ha transformed into</li>
+                </ul>
+                <li>orc may have an ability to walk on foot</li>
+                <ul><li>add more states</li></ul>
+                <li>mage may have an inventory of items affecting his abilities, items can be composed together,...</li>
+                <li>we might want to add a dozen of features during the development without the necessity of rearranging the class hierarchy</li>
+              </ul>
+              <div class="tcenter mt50 fragment fade-in"><strong><b>Not every set of relationships can be described in a directed acyclic graph</b></strong></div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Generalising</h3>
+            <div class="frame">
+                <div class="tcenter">
+                  <img class="w70" src="../static/slides/svg/lecture03/diag_generalising.svg" >
+                </div>  
+              <div class="tcenter"><strong>This may work for attributes but not for game logic</strong></div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>All-purpose object pattern</h3>
+            <div class="frame importance-orange">
+              <ul>
+                <li>Used in 90's</li>
+                <li>One class determines behavior of every game object</li>
+                <li>Lots of switches and if-checks</li>
+              </ul>
+              <div class="tcenter">
+                <img class="w50" src="../static/slides/svg/lecture03/diag_allinone.svg" >
+              </div>  
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>EXAMPLE: DOOM2</h3>
+            <div class="frame importance-green">
+              <div class="bottom-content justify-right b35">
+                  <img class="w30" src="../static/slides/images/lecture03/doom_a.png" >
+              </div>
+              <div class="bottom-content justify-right b15 r5">
+                  <img class="w30" src="../static/slides/images/lecture03/doom_b.png" >
+              </div>
+              <div class="bottom-content justify-left b40">
+                  <img class="w30" src="../static/slides/images/lecture03/doom_c.png" >
+              </div>
+              <div class="bottom-content justify-left l20 b10">
+                <img class="w65" src="../static/slides/svg/lecture03/example_doom.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Issues of object oriented approach</h3>
+            <div class="frame line-m">
+              <ul>
+                <li><strong>The most common way of expressing object hierarchy is via OP and inheritance</strong></li>
+                <li>This approach works well for games with a tiny model and a weak emergence</li>
+                <li>In case of more complex games we can end up with thousands of dependencies</li>
+                <li><strong>Inheritance is insufficient relation for relationship modelling</strong></li>
+                <li>We need to use composition. And that's where the <strong>component architecture</strong> takes place.</li>
+              </ul>
+              <div class="tcenter mt20">
+                <img class="w20" src="../static/slides/svg/lecture03/rubik_cube.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Object-oriented approach summary</h3>
+            <div class="frame-m importance-orange">
+              <div class="upside">
+                <ul>
+                  <li>simple</li>
+                  <li>fast prototyping from scratch</li>
+                  <li>low overhead</li>
+                  <li>easy to debug</li>
+                </ul>
+              </div>
+              <div class="downside">
+                <ul>
+                  <li>hard to maintain</li>
+                  <li>hard to scale</li>
+                  <li>not flexible</li>
+                  <li>game objects may have features they don't need</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container center-content">
+          <h2>Component-oriented approach</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Component</h3>
+            <div class="frame importance-red">
+              <ul>
+                <li>A unit of composition with specified interfaces and explicit context dependencies</li>
+                <li>components are basically <strong>plug-and-play objects</strong></li>
+                <li>prefers composition over inheritance</li>
+                <li>it is not about how to organize your models but how to tie them up</li>
+              </ul>
+              <div class="tcenter">
+                <img class="w60 mt80" src="../static/slides/svg/lecture03/component.svg">
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Component</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="w55" src="../static/slides/images/lecture03/factorio_robotrainstation.gif">
+                <p>Linked together, components get things done</p>
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Architectures</h3>
+            <div class="frame importance-orange">
+              <div class="bottom-content justify-right">
+                <img class="w30" src="../static/slides/images/lecture03/boxes.png" >
+              </div>
+              <h4>Monolithic</h4>
+              <ul>
+                <li>discussed in previous chapter</li>
+                <li>traditional OOP way</li>
+                <li>problems with deep and wide hierarchies</li>
+              </ul>
+              <h4>Object-centric</h4>
+              <ul>
+                <li>each game object is represented in runtime by a single class instance</li>
+                <li>early games: <strong>Thief: The Dark Project (1998), Dungeon Siege (2002)</strong></li>
+              </ul>
+              <h4>Property-centric</h4>
+              <ul>
+                <li>each game object is represented only by a unique id</li>
+                <li>cache-friendly (components are stored contiguously in memory)</li>
+                <li>identifiers: integer, string, hashed string,...</li>
+                <li>early games: <strong>Deus Ex 2 (2003)</strong></li>
+              </ul>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Architectures</h3>
+            <div class="frame-m">
+              <div class="code">
+                  <p><span style="color:white;">//&nbsp;Object-centric</span></p>
+                  <p><span style="color:#E040FB;">interface</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">GameObject</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; id</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; position</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Vec3</span><span style="color:#F8F8F0;">;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; rotation</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Quaternion</span><span style="color:#F8F8F0;">;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; health</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; attack</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">;</span></p>
+                  <p><span style="color:#F8F8F0;">}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                  <p><span style="color:white;">//&nbsp;Property-centric</span></p>
+                  <p><span style="color:#E040FB;">interface</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">GameObjects</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; ids</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">[];</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; positions</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Vec3</span><span style="color:#F8F8F0;">[];</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; rotations</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Quaternion</span><span style="color:#F8F8F0;">[];</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; healths</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">[];</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; attacks</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">[];</span></p>
+                  <p><span style="color:#F8F8F0;">}</span></p>
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>ECS/ECSA PATTERN</h3>
+            <div class="frame importance-red">
+              <ul>
+                <li><strong>ECS+A - Entity-component-system + attribute</strong></li>
+                <li>game object is just a container for data and logic</li>
+                <li>can be easily integrated into <strong>scene graph</strong></li>
+              </ul>
+              <div class="tcenter">
+                <img class="w40 mt50" src="../static/slides/svg/lecture03/diag_ecsa.svg">
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>ECS/ECSA PATTERN</h3>
+            <div class="frame-quote importance-red">
+              The overall <strong>behavior</strong> of a particular game object is <strong>fully determined</strong><br> by the <strong>aggregation</strong> of its <strong>components</strong> (and attributes).
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Terms</h3>
+            <div class="frame importance-orange line-s">
+              <h4>Entity (GameObject)</h4>
+              <ul><li>represents a single entity, usually a node in a scene graph</li></ul>
+              <h4>Attribute</h4>
+              <ul><li>member variable replacement, contains data</li></ul>
+              <h4>Component</h4>
+              <ul><li>instantiable entity that defines functional behavior</li></ul>
+              <h4>(Sub)system</h4>
+              <ul><li>global component, shared among various objects (Renderer, Audio)</li></ul>
+              <h4>Message</h4>
+              <ul><li>method call replacement, used to communicate among components</li></ul>
+              <h4>Event</h4>
+              <ul><li>type of a message; something that already happened (usually a broadcast)</li></ul>
+              <h4>Command</h4>
+              <ul><li>type of a message; something we want to happen (usually a multicast)</li></ul>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: ECSA</h3>
+            <div class="frame">
+              <div class="top-content justify-left l400 t15">
+                <img class="w65" src="../static/slides/images/lecture03/components_jazz.jpg" >
+              </div>
+              <div class="center-content">
+                <img class="w100" src="../static/slides/svg/lecture03/components_jazz.svg" >                
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: ECSA Architecture</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w75" src="../static/slides/svg/lecture03/arch_ecsa.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Atomic GE Base Class</h3>
+            <div class="frame importance-green code">
+                <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">ATOMIC_API</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Object</span><span style="color:#F8F8F0;">&nbsp;:&nbsp;</span><span style="color:#40C4FF;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">RefCounted</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+                  <p><span style="color:#F8F8F0;">public</span><span style="color:#FF5252;">:</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">Object</span><span style="color:#F8F8F0;">(</span><span style="color:#40C4FF;">Context</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#40C4FF;">context</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Return&nbsp;type&nbsp;info.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; virtual const TypeInfo</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetTypeInfo</span><span style="color:#F8F8F0;">()&nbsp;const&nbsp;=&nbsp;0;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Handle&nbsp;event.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; virtual&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">OnEvent</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Object</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">sender</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">eventType</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">VariantMap</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">eventData</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Subscribe&nbsp;to&nbsp;a&nbsp;specific&nbsp;sender's&nbsp;event.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SubscribeToEvent</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Object</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">sender</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">eventType</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">EventHandler</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">handler</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Unsubscribe&nbsp;from&nbsp;a&nbsp;specific&nbsp;sender's&nbsp;event.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">UnsubscribeFromEvent</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Object</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">sender</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">eventType</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Send&nbsp;event&nbsp;with&nbsp;parameters&nbsp;to&nbsp;all&nbsp;subscribers.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SendEvent</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">eventType</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">VariantMap</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">eventData</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Return&nbsp;execution&nbsp;context.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; Context</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetContext</span><span style="color:#F8F8F0;">() const {&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;context_; }</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Return&nbsp;global&nbsp;variable&nbsp;based&nbsp;on&nbsp;key</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; const Variant</span><span style="color:#FF5252;">&amp;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetGlobalVar</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">key</span><span style="color:#F8F8F0;">)&nbsp;const;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Set&nbsp;global&nbsp;variable&nbsp;with&nbsp;the&nbsp;respective&nbsp;key&nbsp;and&nbsp;value</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetGlobalVar</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">key</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Variant</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">value</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Return&nbsp;subsystem&nbsp;by&nbsp;type.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">Object</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">type</span><span style="color:#F8F8F0;">)&nbsp;const;</span></p>
+                  <p><span style="color:#FF5252;">...</span><span style="color:#F8F8F0;">&nbsp;};</span></p>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Atomic GE Base Object</h3>
+            <div class="frame importance-green code">
+                <p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">ATOMIC_API</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Node</span><span style="color:#F8F8F0;">&nbsp;:&nbsp;</span><span style="color:#40C4FF;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">Animatable</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; public</span><span style="color:#FF5252;">:</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:white;">///&nbsp;Register&nbsp;object&nbsp;factory.</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">static</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">RegisterObject</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Context</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">context</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; virtual bool&nbsp;</span><span style="color:#B2FF59;">Load</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Deserializer</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">source</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">setInstanceDefault</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; virtual bool&nbsp;</span><span style="color:#B2FF59;">Save</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Serializer</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">dest</span><span style="color:#F8F8F0;">)&nbsp;const;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetName</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">String</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">name</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetTransform</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Vector3</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">pos</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Quaternion</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">rot</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Vector3</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">scale</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; bool&nbsp;</span><span style="color:#B2FF59;">LookAt</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Vector3</span><span style="color:#F8F8F0;">&amp;&nbsp;</span><span style="color:#FFAB40;">target</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">Vector3</span><span style="color:#F8F8F0;">&amp;,&nbsp;</span><span style="color:#FFAB40;">TransformSpace</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">space</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;TS_WORLD);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetEnabled</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">enable</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:white;">/// Set enabled state on self and child nodes.&nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetDeepEnabled</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">enable</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">MarkDirty</span><span style="color:#F8F8F0;">();</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; Component</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">CreateComponent</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">StringHash</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">type</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">CreateMode</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">mode</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">unsigned</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">id</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; Node</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">Clone</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">CreateMode</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">mode</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;REPLICATED);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">AddListener</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Component</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">component</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">RemoveListener</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Component</span><span style="color:#F8F8F0;">*&nbsp;</span><span style="color:#FFAB40;">component</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp; }; &nbsp;</span></p>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Example: Unity Game Object</h3>
+            <div class="frame importance-green code">
+                <p><span style="color:#F8F8F0;">public sealed&nbsp;</span><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">GameObject</span><span style="color:#F8F8F0;">&nbsp;:&nbsp;</span><span style="color:#40C4FF;">Object</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">static</span><span style="color:#F8F8F0;">&nbsp;extern GameObject&nbsp;</span><span style="color:#B2FF59;">CreatePrimitive</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">PrimitiveType</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">type</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;unsafe T&nbsp;</span><span style="color:#B2FF59;">GetComponent</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">T</span><span style="color:#F8F8F0;">&gt;();</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;T[]&nbsp;</span><span style="color:#B2FF59;">GetComponents</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">T</span><span style="color:#F8F8F0;">&gt;();</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;extern Transform transform { get; }</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;extern&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SetActive</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">value</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;extern string tag { get; set; }</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">static</span><span style="color:#F8F8F0;">&nbsp;extern GameObject&nbsp;</span><span style="color:#B2FF59;">FindGameObjectWithTag</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">string</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">tag</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">SendMessage</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">string</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">methodName</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">object</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">value</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">BroadcastMessage</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">string</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">methodName</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">object</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">parameter</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Scene scene {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component rigidbody {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component rigidbody2D {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component camera {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component light {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component animation {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component renderer {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;Component audio {get;}</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">PlayAnimation</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">Object</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">animation</span><span style="color:#F8F8F0;">);</span></p>
+                  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">StopAnimation</span><span style="color:#F8F8F0;">();</span></p>
+                  <p><span style="color:#F8F8F0;">}</span></p>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Unity Architecture</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="w90" src="../static/slides/svg/lecture03/arch_unity.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Game Components</h3>
+            <div class="frame">
+              <div class="center-content">
+                  <img src="../static/slides/images/common/bulb_green&8.png" />
+                </div>
+                <div class="game-components">
+                  <p>RandomMovement</p>
+                  <p>Profiler</p>
+                  <p>CollisionChecker</p>
+                  <p>HitReaction</p>
+                  <p>Spawner</p>
+                  <p>GameManager</p>
+                  <p>ThreatReceiver</p>
+                  <p>BonusCalculator</p>
+                  <p>Healthbar</p>
+                  <p>TrapController</p>
+                  <p></p>
+                </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container center-content">
+          <h2>Examples</h2>
+        </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Pacman</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="h900" src="../static/slides/svg/lecture03/scene_pacman.svg" >
+              </div> 
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Pacman</h3>
+            <div class="frame importance-green">
+              <h4>SceneNode</h4>
+              <ul>
+                <li>parent of all game objects</li>
+                <li>renders all static objects</li>
+                <li>all components responsible for more than one object should be attached to some of their parents (e.g. <strong>EmptyObject</strong> in Unity as a group element)</li>
+              </ul>
+              <h4>Maze</h4>
+              <ul><li>model of the maze, contains location of dots, power-pellets etc.</li></ul>
+              <h4>GameManager</h4>
+              <ul>
+                <li>controls the game as a unified whole (rush mode, win/lose conditions)</li>
+                <li>may be responsible for collision handling (by killing pacman or a ghost)</li>
+              </ul>
+              <h4>BoxBehavior</h4>
+              <ul>
+                <li>logic of the center box</li>
+              </ul>
+              <h4>PacmanBehavior</h4>
+              <ul>
+                <li>controls movement of the pacman using the <strong>InputManager</strong></li>
+              </ul>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Where is the game model?</h3>
+            <div class="frame importance-green">
+              <ul>
+                <li><strong>We have several possibilities:</strong></li>
+              </ul>
+              <ol>
+                <li><strong>Make the whole scene graph the game model</strong>
+                  <ul>
+                    <li>better for complex games</li>
+                    <li>more performance-pleasant (no sync)</li>
+                    <li>the model is hardwired into the scene</li>
+                  </ul>
+                </li>
+                <li><strong>Store the game model as an attribute of the root element</strong>
+                  <ul>
+                    <li>better for simple games</li>
+                    <li>the model can be isolated and tested/simulated separately</li>
+                    <li>we need to sync the game model with the scene graph</li>
+                  </ul>
+                </li>
+                <li><strong>Store the game model as a separate subtree of the scene graph</strong>
+                  <ul>
+                    <li>combines 1) and 2)</li>
+                    <li>we can apply physics and AI to one subtree and render it in another one</li>
+                    <li>we need to sync two subtrees of the scene graph</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Platformer</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="h900" src="../static/slides/images/lecture03/platformer.jpg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Platformer</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="h900" src="../static/slides/svg/lecture03/scene_platform.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Paratrooper</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="h700 mt100" src="../static/slides/images/lecture03/paratrooper.gif">
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Paratrooper clone</h3>
+            <div class="frame importance-green">
+              <div class="tcenter">
+                <img class="h900" src="../static/slides/svg/lecture03/scene_paratrooper.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Driving game</h3>
+            <div class="frame">
+              <div class="columns-2">
+                <div class="tcenter">
+                  <img class="h800 mt20" src="../static/slides/images/lecture03/driver.png" >
+                </div>
+                <div class="tcenter">
+                  <img class="h900" src="../static/slides/images/lecture03/driver_2.png" >
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Driving game</h3>
+            <div class="frame">
+              <div class="tcenter">
+                <img class="h900" src="../static/slides/svg/lecture03/scene_driver.svg" >
+              </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+            <h3>Component-oriented approach summary</h3>
+            <div class="frame-m importance-orange">
+              <div class="upside">
+                  <ul>
+                    <li>scalable</li>
+                    <li>data-oriented</li>
+                    <li>components are easy to reuse</li>
+                    <li>easy to make new object types</li>
+                    <li>polymorphic operations for components</li>
+                  </ul>
+                </div>
+                <div class="downside">
+                  <ul>
+                    <li>dynamic typing - everything is assembled at runtime</li>
+                    <li>all dependencies have to be wired together</li>
+                    <li>code must be written in an utterly generic way</li>
+                    <li>refactoring may become very difficult</li>
+                    <li>harder to debug</li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+      </section>
+      <section data-background-image="./static/slides/images/common/bgr_03.jpg">
+        <div class="container">
+          <h3>Lecture 3 Review </h3>
+          <div class="frame">
+            <ul>
+              <li><b>Game Models:</b> view model, networking model, core model, physics & AI model</li>
+              <li><b>Architectures:</b> monolithic, object-centric, property-centric</li>
+              <li><b>ECSA Pattern:</b> the overall behavior of a particular game object is determined by the aggregation of its components (and attributes)</li>
+              <h4 class="mt50">Terms</h4>
+                <ul>
+                  <li>Entity (Game Object) - an aggregator of components and attributes</li>
+                  <li>Attribute - contains data</li>
+                  <li>Component - functional behavior</li>
+                  <li>System - global component</li>
+                  <li>Message - method call replacement</li>
+                  <li>Event - a message informing what happened</li>
+                  <li>Command - a message ordering what should happen</li>
+                </ul>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ===================================================== REVEALJS INITIALIZE ===================================================== -->
+  <script src="../libs/revealjs/revealjs.ts"></script>
+  <script src="../src/lectures/reveal-setup.ts"></script>
+  <footer>
+    <p>Adam Vesecký (FIT ČVUT)</p>
+    <p>MI-APH Architecture of Computer Games 2019</p>
+  </footer>
+</body>
+
+</html>

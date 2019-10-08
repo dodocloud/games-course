@@ -1,0 +1,115 @@
+<svg version="1.1" viewBox="0 0 526.29 314.25" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-29.659 -85.643)">
+  <g transform="translate(9.5261 -9.4221)">
+   <g transform="translate(-1.7345 -43.168)">
+    <g transform="translate(4.8868 -5.5703)">
+     <g transform="translate(6.7884 10.137)">
+      <g transform="matrix(.9994 0 0 1 438.46 263.91)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px" aria-label="type: int">
+       <g transform="matrix(1.0006 0 0 1 -430.53 -235.59)">
+        <g transform="translate(-19.365 -19.229)">
+         <g transform="translate(-13.796 -13.223)">
+          <path d="m363.43 143.13c0.949 0 1.652 0.744 1.652 1.654v87.968c0 0.951-0.703 1.653-1.652 1.653h-109.74c-0.909 0-1.652-0.703-1.652-1.653v-87.968c0-0.91 0.744-1.654 1.652-1.654z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m363.43 143.13c0.949 0 1.652 0.744 1.652 1.654v87.968c0 0.951-0.703 1.653-1.652 1.653v0h-109.74v0c-0.909 0-1.652-0.703-1.652-1.653v-87.968c0-0.91 0.744-1.654 1.652-1.654v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 285.08 159)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">GameUnit</text>
+          <line x1="252.04" x2="365.08" y1="164.3" y2="164.3" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <g fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">
+           <text transform="matrix(.9994 0 0 1 255.34 176.87)">-</text>
+           <text transform="matrix(.9994 0 0 1 279.14 176.87)">position: Vec2</text>
+           <text transform="matrix(.9994 0 0 1 255.34 188.76)">-</text>
+           <text transform="matrix(.9994 0 0 1 279.14 188.76)">shape: Mesh</text>
+           <text transform="matrix(.9994 0 0 1 255.34 200.67)">-</text>
+           <text transform="matrix(.9994 0 0 1 279.14 200.67)">state: int</text>
+           <text transform="matrix(.9994 0 0 1 255.34 212.58)">-</text>
+           <text transform="matrix(.9994 0 0 1 279.14 212.58)">type: int</text>
+          </g>
+          <line x1="252.04" x2="365.08" y1="217.21" y2="217.21" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 255.34 229.77)" fill="#d54a48" font-family="Inconsolata" font-size="11.906px">+</text>
+          <text transform="matrix(.9994 0 0 1 279.14 229.77)" fill="#d54a48" font-family="Inconsolata" font-size="11.906px">Update(): int</text>
+          <path d="m157.18 275.41c0.95 0 1.652 0.744 1.652 1.653v58.866c0 0.951-0.702 1.653-1.652 1.653h-115.02c-0.909 0-1.653-0.702-1.653-1.653v-58.866c0-0.909 0.744-1.653 1.653-1.653z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m157.18 275.41c0.95 0 1.652 0.744 1.652 1.653v58.866c0 0.951-0.702 1.653-1.652 1.653v0h-115.02v0c-0.909 0-1.653-0.702-1.653-1.653v-58.866c0-0.909 0.744-1.653 1.653-1.653v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 82.147 291.29)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">Player</text>
+          <line x1="40.503" x2="158.83" y1="296.58" y2="296.58" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <g fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">
+           <text transform="matrix(.9994 0 0 1 43.811 309.14)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 309.14)">bombs: int</text>
+           <text transform="matrix(.9994 0 0 1 43.811 321.05)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 321.05)">lives: int</text>
+           <text transform="matrix(.9994 0 0 1 43.811 332.96)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 332.96)">score: int</text>
+          </g>
+          <path d="m374 275.41c0.951 0 1.652 0.744 1.652 1.653v62.173c0 0.951-0.701 1.654-1.652 1.654h-133.53c-0.909 0-1.653-0.703-1.653-1.654v-62.173c0-0.909 0.744-1.653 1.653-1.653z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m374 275.41c0.951 0 1.652 0.744 1.652 1.653v62.173c0 0.951-0.701 1.654-1.652 1.654v0h-133.53v0c-0.909 0-1.653-0.703-1.653-1.654v-62.173c0-0.909 0.744-1.653 1.653-1.653v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 292.37 291.29)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">Enemy</text>
+          <line x1="238.82" x2="375.65" y1="296.58" y2="296.58" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 242.12 309.14)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">-</text>
+          <text transform="matrix(.9994 0 0 1 265.92 309.14)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">deathScore: int</text>
+          <line x1="238.82" x2="375.65" y1="313.78" y2="313.78" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 242.12 326.33)" fill="#d54a48" font-family="Inconsolata" font-size="11.906px">#</text>
+          <text transform="matrix(.9994 0 0 1 265.92 326.33)" fill="#d54a48" font-family="Inconsolata" font-size="11.906px">ChasePlayer(): int</text>
+          <path d="m163.79 143.13c0.95 0 1.653 0.744 1.653 1.654v70.771c0 0.951-0.703 1.653-1.653 1.653h-121.63c-0.909 0-1.653-0.703-1.653-1.653v-70.771c0-0.91 0.744-1.654 1.653-1.654z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m163.79 143.13c0.95 0 1.653 0.744 1.653 1.654v70.771c0 0.951-0.703 1.653-1.653 1.653v0h-121.63v0c-0.909 0-1.653-0.703-1.653-1.653v-70.771c0-0.91 0.744-1.654 1.653-1.654v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 91.397 159)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">Game</text>
+          <line x1="40.503" x2="165.44" y1="164.3" y2="164.3" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <g fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">
+           <text transform="matrix(.9994 0 0 1 43.811 176.87)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 176.87)">currentWave: int</text>
+           <text transform="matrix(.9994 0 0 1 43.811 188.76)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 188.76)">gridHeight: int</text>
+           <text transform="matrix(.9994 0 0 1 43.811 200.67)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 200.67)">gridWidth: int</text>
+           <text transform="matrix(.9994 0 0 1 43.811 212.58)">-</text>
+           <text transform="matrix(.9994 0 0 1 67.608 212.58)">state: int</text>
+          </g>
+          <path d="m554.47 143.13c0.949 0 1.652 0.744 1.652 1.654v48.945c0 0.951-0.703 1.653-1.652 1.653h-115.68c-0.91 0-1.652-0.703-1.652-1.653v-48.945c0-0.91 0.742-1.654 1.652-1.654z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m554.47 143.13c0.949 0 1.652 0.744 1.652 1.654v48.945c0 0.951-0.703 1.653-1.652 1.653v0h-115.68v0c-0.91 0-1.652-0.703-1.652-1.653v-48.945c0-0.91 0.742-1.654 1.652-1.654v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 472.82 159)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">Particle</text>
+          <line x1="437.13" x2="556.12" y1="164.3" y2="164.3" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 440.44 176.87)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">-</text>
+          <text transform="matrix(.9994 0 0 1 464.22 176.87)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">timeToLive: int</text>
+          <path d="m298.64 394.47c0.949 0 1.652 0.744 1.652 1.653v48.945c0 0.951-0.703 1.653-1.652 1.653h-84.614c-0.909 0-1.653-0.702-1.653-1.653v-48.945c0-0.909 0.744-1.653 1.653-1.653z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m298.64 394.47c0.949 0 1.652 0.744 1.652 1.653v48.945c0 0.951-0.703 1.653-1.652 1.653v0h-84.614v0c-0.909 0-1.653-0.702-1.653-1.653v-48.945c0-0.909 0.744-1.653 1.653-1.653v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 215.02 410.34)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">ConcreteEnemy1</text>
+          <path d="m404.41 394.47c0.951 0 1.652 0.744 1.652 1.653v48.945c0 0.951-0.701 1.653-1.652 1.653h-84.613c-0.91 0-1.654-0.702-1.654-1.653v-48.945c0-0.909 0.744-1.653 1.654-1.653z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m404.41 394.47c0.951 0 1.652 0.744 1.652 1.653v48.945c0 0.951-0.701 1.653-1.652 1.653v0h-84.613v0c-0.91 0-1.654-0.702-1.654-1.653v-48.945c0-0.909 0.744-1.653 1.654-1.653v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 320.78 410.34)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">ConcreteEnemy2</text>
+          <path d="m530.67 275.41c0.951 0 1.652 0.744 1.652 1.653v48.945c0 0.95-0.701 1.653-1.652 1.653h-91.885c-0.91 0-1.652-0.703-1.652-1.653v-48.945c0-0.909 0.742-1.653 1.652-1.653z" clip-rule="evenodd" fill="#3c3c18" fill-opacity=".38431" fill-rule="evenodd"/>
+          <path d="m530.67 275.41c0.951 0 1.652 0.744 1.652 1.653v48.945c0 0.95-0.701 1.653-1.652 1.653v0h-91.885v0c-0.91 0-1.652-0.703-1.652-1.653v-48.945c0-0.909 0.742-1.653 1.652-1.653v0z" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 458.28 291.29)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">Explosion</text>
+          <line x1="437.13" x2="532.32" y1="296.58" y2="296.58" fill="none" stroke="#e9e66f" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width=".6614"/>
+          <text transform="matrix(.9994 0 0 1 440.44 309.14)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">-</text>
+          <text transform="matrix(.9994 0 0 1 464.22 309.14)" fill="#8ab9e3" font-family="Inconsolata" font-size="11.906px">radius: int</text>
+          <line x1="443.08" x2="365.74" y1="275.41" y2="225.15" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="365.74 225.15 376.98 227.79 372.35 234.41" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="365.74 225.15 376.98 227.79 372.35 234.41" fill="#fff" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <line x1="349.21" x2="323.43" y1="394.47" y2="341.56" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="323.43 341.56 331.36 349.49 324.75 352.8" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="323.43 341.56 331.36 349.49 324.75 352.8" fill="#fff" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <line x1="268.56" x2="292.36" y1="394.47" y2="341.56" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="292.36 341.56 291.7 352.8 284.43 349.49" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="292.36 341.56 291.7 352.8 284.43 349.49" fill="#fff" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <line x1="437.13" x2="365.74" y1="174.88" y2="174.88" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="365.74 174.88 376.32 170.91 376.32 178.85" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <g stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228">
+           <polygon points="365.74 174.88 376.32 170.91 376.32 178.85" fill="#fff"/>
+           <line x1="99.998" x2="99.998" y1="217.87" y2="275.41" fill="none"/>
+           <line x1="314.84" x2="313.52" y1="275.41" y2="235.07" fill="none"/>
+          </g>
+          <polygon points="313.52 235.07 318.14 245.65 310.21 245.65" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="313.52 235.07 318.14 245.65 310.21 245.65" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <line x1="154.86" x2="252.04" y1="275.41" y2="220.52" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="252.04 220.52 244.77 229.12 240.8 222.5" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="252.04 220.52 244.77 229.12 240.8 222.5" fill="#fff" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <line x1="252.04" x2="166.1" y1="180.17" y2="180.17" fill="none" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <polygon points="166.1 180.17 172.71 183.48 179.32 180.17 172.71 176.86" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+          <polygon points="166.1 180.17 172.71 183.48 179.32 180.17 172.71 176.86" fill="#fff" stroke="#d54a48" stroke-linecap="round" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="1.3228"/>
+          <text transform="matrix(.9994 0 0 1 244.1 193.4)" fill="#e9e66f" font-family="Inconsolata" font-size="11.906px">*</text>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -45,7 +45,7 @@ body {
     border-radius: 10px;
     font-family: $font-technical;
     letter-spacing: 2px;
-    font-size: 45px;
+    font-size: 50px;
     color: $title-color;
     text-shadow: 0 0 1px $aberration-color-first, 0 0 1px $aberration-color-second, 2px 0 3px $aberration-color-third, -2px 0 3px $aberration-color-forth;
     
@@ -102,8 +102,13 @@ body {
 
   .code > * {
     font-family: $font-monospace;
-    line-height: 16px;
+    line-height: 38px;
     font-size: 32px;
+    margin: 0px;
+  }
+
+  .code > p:last-child {
+    margin-bottom: 20px;
   }
 
   /* Frames */
@@ -152,7 +157,7 @@ body {
   .frame-m {
       width: 75%;
       margin-top: 150px;
-      border-image-outset: 86px 57px 16px 96px;
+      border-image-outset: 86px 57px 36px 96px;
   }
 
   .frame {
@@ -269,19 +274,20 @@ body {
     display:block;
   }
 
-  h4.importance-green:before, p.importance-green:before, li.importance-green:before {
+  h4.importance-green:before, p.importance-green:before, li.importance-green:before, span.importance-green:before {
     background: url("../images/common/bulb_green&2.png") no-repeat;
   }
 
-  h4.importance-orange:before, p.importance-orange:before, li.importance-orange:before {
+  h4.importance-orange:before, p.importance-orange:before, li.importance-orange:before, span.importance-orange:before {
     background: url("../images/common/bulb_orange&2.png") no-repeat;
   }
 
-  h4.importance-red:before, p.importance-red:before, li.importance-red:before {
+  h4.importance-red:before, p.importance-red:before, li.importance-red:before, span.importance-red:before {
     background: url("../images/common/bulb_red&2.png") no-repeat;
   }
 
   p.importance-green:before, p.importance-orange:before, p.importance-red:before,
+  span.importance-green:before, span.importance-orange:before, span.importance-red:before,
   li.importance-green:before, li.importance-orange:before, li.importance-red:before,
   p.upside:before, p.downside:before,
   li.upside:before, li.downside:before {
@@ -291,6 +297,14 @@ body {
     height: 50px;
     left: 20px;
     margin: 0 20px 0 0;
+  }
+
+  p.importance-green:before, p.importance-orange:before, p.importance-red:before,
+  span.importance-green:before, span.importance-orange:before, span.importance-red:before {
+    left: 0px;
+    display:inline-block;
+    position: relative;
+    top: 12px;
   }
 
   h4.upside:before, h4.downside:before,
@@ -307,6 +321,31 @@ body {
 
   h4.downside:before, p.downside:before, li.downside:before {
     background: url("../images/common/ic_downside.png") no-repeat;
+  }
+
+  div.upside:before, div.downside:before {
+    content: "";
+    position: relative;
+    width: 120px;
+    height: 120px;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  div.upside:before {
+    background: url("../images/common/ic_upside_2.png") no-repeat;
+  }
+
+  div.downside:before {
+    background: url("../images/common/ic_downside_2.png") no-repeat;
+  }
+
+  div.upside {
+    color: $color-pros;
+  }
+
+  div.downside {
+    color: $color-cons;
   }
 
   /*
@@ -504,6 +543,35 @@ body {
     line-height: 1.2em;
     vertical-align: top; }
 
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+   
+    td, th {
+      border: 3px solid #e9e56faa;
+      background-color: #3b390d62;
+      margin: 0;
+      padding: 5px;
+      color: #e9e56f;
+    }
+
+    td {
+      background-color: #0d2c3b62;
+      border: 3px solid #6fc2e9aa;
+      color: #6fc2e9;
+    }
+
+    th {
+      border-bottom: none;
+    }
+
+    tr td:first-child {
+      background-color: #310d3b62;
+      border: 3px solid #ce6fe9aa;
+      color: #ce6fe9;
+    }
+  }
+
 
   /*********************************************
   * LINKS
@@ -542,6 +610,16 @@ body {
       position: absolute;
       top: percentage($i*5/100);
     }
+
+    .r#{$i*5} {
+      position: absolute;
+      right: percentage($i*5/100);
+    }
+
+    .b#{$i*5} {
+      position: absolute;
+      bottom: percentage($i*5/100);
+    }
   }
 
   /* Absolute sizing, 150x, 200, 250, 300,...1000 */
@@ -561,7 +639,26 @@ body {
     .t#{$i*50} {
       top: $i*50px;
     }
+
+    .r#{$i*50} {
+      right: $i*50px;
+    }
+
+    .b#{$i*50} {
+      bottom: $i*50px;
+    }
   }
+
+    /* Absolute sizing, 1100px, 1900px */
+    @for $i from 11 through 19 {
+      .w#{$i*100} {
+        width: $i*100px;
+      }
+  
+      .h#{$i*100} {
+        height: $i*100px;
+      }
+    }
 
   .w100, .w100 img, .h100, .h100 img {
     max-width: 100%; /* override for images */
@@ -592,7 +689,7 @@ body {
   } 
 
 /* Margins: 100, 150, 200,..., 1000px */
-@for $i from 1 through 20 {
+@for $i from 3 through 20 {
   .m#{$i*50} {
     margin: $i*50px;
   }
@@ -627,6 +724,17 @@ body {
     margin-top: 40px;
   }
 
+  .space-li-s > li:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  .space-li-m > li:not(:first-child) {
+    margin-top: 20px;
+  }
+
+  .space-li-l > li:not(:first-child) {
+    margin-top: 40px;
+  }
 
   /*********************************************
   * NAVIGATION CONTROLS

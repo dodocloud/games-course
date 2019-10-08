@@ -201,7 +201,6 @@ export class Playback {
 		}
 
 		this.context.restore();
-
 	}
 
 	public on<K extends keyof HTMLElementEventMap>( type: K, listener:  (this: HTMLElement, ev: HTMLElementEventMap[K]) => any ): void {
@@ -466,8 +465,7 @@ export interface RevealConfig {
 
 		// Script dependencies to load
 		dependencies?: any[];
-	}
-
+}
 
 class Reveal {
 
@@ -685,6 +683,7 @@ class Reveal {
 		this.checkCapabilities();
 
 		if( !this.features.transforms2d && !this.features.transforms3d ) {
+			// the browser must be from 2012 or even older...
 			document.body.setAttribute( 'class', 'no-transforms' );
 
 			// Since JS won't be running any further, we load all lazy
@@ -808,7 +807,6 @@ class Reveal {
 					if( --scriptsToLoad === 0 ) {
 						this.initPlugins();
 					}
-
 				} );
 			} );
 		} else {
@@ -1048,7 +1046,6 @@ class Reveal {
 			this.dom.wrapper.appendChild( statusDiv );
 		}
 		return statusDiv;
-
 	}
 
 	/**
@@ -1150,9 +1147,9 @@ class Reveal {
 				page.appendChild( slide );
 
 				// Position the slide inside of the page
-				slide.style.left = left + 'px';
-				slide.style.top = top + 'px';
-				slide.style.width = slideWidth + 'px';
+				slide.style.left = `${left}px`;
+				slide.style.top = `${top}px`;
+				slide.style.width = `${slideWidth}px`;
 
 				if( (slide as any).slideBackgroundElement ) {
 					page.insertBefore( (slide as any).slideBackgroundElement, slide );
@@ -1164,7 +1161,6 @@ class Reveal {
 					// Are there notes for this slide?
 					let notes = this.getSlideNotes( slide );
 					if( notes ) {
-
 						let notesSpacing = 8;
 						let notesLayout = typeof this.config.showNotes === 'string' ? this.config.showNotes : 'inline';
 						let notesElement = document.createElement( 'div' );
@@ -1189,7 +1185,7 @@ class Reveal {
 					let slideNumberH = parseInt( slide.getAttribute( 'data-index-h' ), 10 ) + 1,
 						slideNumberV = parseInt( slide.getAttribute( 'data-index-v' ), 10 ) + 1;
 
-            let numberElement = document.createElement( 'div' );
+          let numberElement = document.createElement( 'div' );
 					numberElement.classList.add( 'slide-number' );
 					numberElement.classList.add( 'slide-number-pdf' );
 					numberElement.innerHTML = this.formatSlideNumber( slideNumberH, '.', slideNumberV );
@@ -1198,7 +1194,6 @@ class Reveal {
 
 				// Copy page and show fragments one after another
 				if( this.config.pdfSeparateFragments ) {
-
 					// Each fragment 'group' is an array containing one or more
 					// fragments. Multiple fragments that appear at the same time
 					// are part of the same group.
@@ -1236,7 +1231,6 @@ class Reveal {
 							fragment.classList.remove( 'visible', 'current-fragment' );
 						} );
 					} );
-
 				} else {
           // Show all fragments
           ( page.querySelectorAll( '.fragment:not(.fade-out)' ) ).forEach( ( fragment ) => {
@@ -1248,7 +1242,6 @@ class Reveal {
 
 		// Notify subscribers that the PDF layout is good to go
 		this.dispatchEvent( 'pdf-ready' );
-
 	}
 
 	/**
@@ -1261,7 +1254,6 @@ class Reveal {
 	 * checking if the slides have been offset :(
 	 */
 	private setupScrollPrevention(): void {
-
 		setInterval( () => {
 			if( this.dom.wrapper.scrollTop !== 0 || this.dom.wrapper.scrollLeft !== 0 ) {
 				this.dom.wrapper.scrollTop = 0;
@@ -1277,9 +1269,8 @@ class Reveal {
 	 *
 	 */
 	private createSingletonNode( container: HTMLElement, tagname: string, classname: string, innerHTML: string): HTMLElement {
-
 		// Find all nodes matching the description
-		let nodes = container.querySelectorAll( '.' + classname );
+		let nodes = container.querySelectorAll(`.${classname}`);
 
 		// Check all matches to find one which is a direct child of
 		// the specified container
@@ -1326,7 +1317,6 @@ class Reveal {
 
 		// Add parallax background if specified
 		if( this.config.parallaxBackgroundImage ) {
-
 			this.dom.background.style.backgroundImage = `url("${this.config.parallaxBackgroundImage}")`;
 			this.dom.background.style.backgroundSize = this.config.parallaxBackgroundSize;
 			this.dom.background.style.backgroundRepeat = this.config.parallaxBackgroundRepeat;
@@ -1371,7 +1361,6 @@ class Reveal {
 		this.syncBackground( slide );
 
 		return element;
-
 	}
 
 	/**
@@ -1478,7 +1467,6 @@ class Reveal {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -1492,7 +1480,6 @@ class Reveal {
 	 * }), '*' );
 	 */
 	private setupPostMessage(): void {
-
 		if( this.config.postMessage ) {
 			window.addEventListener( 'message', ( event ) => {
 				let data = event.data;
@@ -1784,7 +1771,6 @@ class Reveal {
 			this.dom.controlsPrev.forEach( ( el ) => { el.removeEventListener( eventName, this.onNavigatePrevClicked, false ); } );
 			this.dom.controlsNext.forEach( ( el ) => { el.removeEventListener( eventName, this.onNavigateNextClicked, false ); } );
 		} );
-
 	}
 
 	/**
@@ -1965,7 +1951,6 @@ class Reveal {
 
 			// Keep searching
 			parent = parent.parentNode as HTMLElement;
-
 		}
 
 		return null;
@@ -2301,7 +2286,6 @@ class Reveal {
 			setTimeout( () => {
 				this.dom.overlay.classList.add( 'visible' );
 			}, 1 );
-
 		}
 	}
 
@@ -2587,14 +2571,12 @@ class Reveal {
 			this.transformElement( hslide, 'translate3d(' + ( h * this.overviewSlideWidth ) + 'px, 0, 0)' );
 
 			if( hslide.classList.contains( 'stack' ) ) {
-
 				hslide.querySelectorAll( 'section' ).forEach( ( vslide, v ) => {
 					vslide.setAttribute( 'data-index-h', `${h}` );
 					vslide.setAttribute( 'data-index-v', `${v}` );
 
 					this.transformElement( vslide, 'translate3d(0, ' + ( v * this.overviewSlideHeight ) + 'px, 0)' );
 				} );
-
 			}
 		} );
 
@@ -2606,7 +2588,6 @@ class Reveal {
 				this.transformElement( vbackground, 'translate3d(0, ' + ( v * this.overviewSlideHeight ) + 'px, 0)' );
 			} );
 		} );
-
 	}
 
 	/**
@@ -2636,9 +2617,7 @@ class Reveal {
 
 		// Only proceed if enabled in config
 		if( this.config.overview ) {
-
 			this.overview = false;
-
 			this.dom.wrapper.classList.remove( 'overview' );
 			this.dom.wrapper.classList.remove( 'overview-animated' );
 
@@ -2734,7 +2713,6 @@ class Reveal {
 		}
 
 		return url;
-
 	}
 
 	/**
@@ -3133,7 +3111,6 @@ class Reveal {
 
 			if( verticalSlides.length === 0 ) { this.sortFragments( horizontalSlide.querySelectorAll( '.fragment' ) ); }
 		} );
-
 	}
 
 	/**
@@ -3306,7 +3283,6 @@ class Reveal {
 				}
 
 				if( verticalSlidesLength ) {
-
 					let oy = this.getPreviousVerticalIndex( horizontalSlide );
 
 					for( let y = 0; y < verticalSlidesLength; y++ ) {
@@ -3376,7 +3352,6 @@ class Reveal {
 	 * Updates the progress bar to reflect the current slide.
 	 */
 	private updateProgress(): void {
-
 		// Update progress if enabled
 		if( this.config.progress && this.dom.progressbar ) {
 			this.dom.progressbar.style.width = this.getProgress() * this.dom.wrapper.offsetWidth + 'px';

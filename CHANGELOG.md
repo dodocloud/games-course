@@ -7,6 +7,18 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.3] - 2019-10-08
+### Added
+- Materials for lecture 3
+- Materials for lab 2
+- pixi-sound into libs
+- Links to resources in the dashboard
+
+### Changed
+- Fixed malfunctioning links in Lab01
+
+### Removed
+
 ## [3.2] - 2019-10-01
 ### Added
 - Materials for lecture 2

@@ -7,7 +7,19 @@ html {
   background-image: url("../images/dashboard/dashboard_logo.jpg");
   background-size: 80%;   
   background-repeat:  no-repeat;
-  background-position: center 20%;      
+  background-position: center 20%;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-family: $font-technical;
+  margin-bottom: 0.5rem;
+  margin-top: 4rem;
+  color: $highlight-color;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  font-size: 3.0rem;
+  text-align: center; 
 }
 
 h2 {
@@ -75,9 +87,11 @@ h2 {
         color: $light-color;
       }
       
-      &:hover + .link-tile .icon svg {
-        fill: $light-color;
-        background-color: $highlight-color-third;
+      &:hover + .link-tile .icon  {
+        svg, img {
+          fill: $light-color;
+          background-color: $highlight-color-third;
+        }
       }
       
       &:hover + .link-tile .link-tile-label {
@@ -91,9 +105,11 @@ h2 {
         color: $light-color;
       }
       
-      &:active + .link-tile .icon svg {
-        fill: $light-color;
-        background-color: darken($highlight-color-third, 20%);
+      &:active + .link-tile .icon  {
+        svg, img {
+          fill: $light-color;
+          background-color: darken($highlight-color-third, 20%);
+        }
       }
 
       &:active + .link-tile .link-tile-label {
@@ -102,7 +118,7 @@ h2 {
       }
     }
 
-    .icon svg {
+    .icon svg, .icon img {
       fill: rgba( $highlight-color-third, .6);
       width: 15rem;
       height: 8rem;
@@ -116,6 +132,23 @@ h2 {
       letter-spacing: 0.04rem;
       color:  $highlight-color-third;
       min-height: 2.5rem;
+    }
+
+    .inner-hint {
+      font-family: $font-technical;
+      color: #ABABAB;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-align: center;
+      padding-top: 2rem;
+      font-size: 1rem;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 3rem;
+      width: 8.5rem;
+      margin-right: 0rem;
     }
 
     .inner-container {
