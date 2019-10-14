@@ -1,0 +1,44 @@
+<p><span style="color:#E040FB;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">ContextExample</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">private</span><span
+    style="color:#F8F8F0;">&nbsp;x&nbsp;</span><span style="color:#FF5252;">=</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#E040FB;">constructor</span><span
+    style="color:#F8F8F0;">()&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">setTimeout</span><span
+    style="color:#F8F8F0;">(</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">arrowFunc</span><span style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:#FFAB40;">1000</span><span style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">setTimeout</span><span
+    style="color:#F8F8F0;">(</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">regularFunc</span><span style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:#FFAB40;">1000</span><span style="color:#F8F8F0;">);&nbsp;</span><span
+    style="color:#aaa;">//&nbsp;will&nbsp;not&nbsp;work</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">setTimeout</span><span
+    style="color:#F8F8F0;">(</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">regularFunc</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#B2FF59;">bind</span><span style="color:#F8F8F0;">(</span><span style="color:#40C4FF;">this</span><span
+    style="color:#F8F8F0;">),&nbsp;</span><span style="color:#FFAB40;">1000</span><span style="color:#F8F8F0;">);</span>
+</p>
+<p><span style="color:#F8F8F0;">&nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">private</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">arrowFunc</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span
+    style="color:#F8F8F0;">&nbsp;()&nbsp;</span><span style="color:#E040FB;">=&gt;</span><span
+    style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">x</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">5</span><span
+    style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">private</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">regularFunc</span><span
+    style="color:#F8F8F0;">()&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">x</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">5</span><span
+    style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>

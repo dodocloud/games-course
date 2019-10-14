@@ -1,0 +1,708 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_02.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+
++header('MI-APH - Lecture02', 'Lecture 2: Architecture of Game Engines', 'lecture02')
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lecture02/lecture02_logo.svg
+      +title('Architecture of Game Engines')
+    +mcontainer(bgr)    
+      h3 Literature
+      a(href='https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459') Gregory, Json. 2018. Game Engine Architecture (3rd ed.)
+      .center-content
+        .w600
+          img(src!='../static/slides/images/lecture02/book_game_engine_arch.jpg')
+    +mcontainer(bgr)(class='center-content')
+      h2 Game Engine Parts
+    +mframeOrange(bgr, 'Application, Loop, System')(class="space-vert-m")
+      .bottom-content.justify-right
+        img.w60.mb20(src!='../static/slides/svg/lecture02/loop_simple.svg')
+      h4 Game Application
+      ol
+        li Handle everything we need to set up the application
+        li Register each handler
+        li Initialize rendering window
+        li Start the game loop
+        li Quit the application
+      h4 Game loop
+      ul
+        li Process inputs
+        li Process game logic
+        li Erase the screen and draw game objects
+        li Repeat
+    +mframeGreen(bgr, 'Example: Atomic Game Engine Initialization')
+      .h100.tcenter
+        img(src!='../static/slides/svg/lecture02/init_atomicge.svg')
+    +mframe(bgr, 'Example: Duke Nukem 3D (1996)')
+      .w100.h90.tcenter
+        img(src!='../static/slides/svg/lecture02/arch_duke3d.svg')
+        .tcenter
+          a(href='http://fabiensanglard.net/duke3d/index.php') Source code review
+    +mframe(bgr, 'Example: Doom 3 (2004)')
+      .w100.h90.tcenter
+        img(src!='../static/slides/svg/lecture02/arch_doom3.svg')
+        .tcenter
+          a(href='http://fabiensanglard.net/doom3/index.php') Source code review
+    +mframeGreen(bgr, 'Game Engine Parts')(class='line-m')
+      ul
+        li
+          | Typical game engine consists of core systems and a set of modules and 3rd party libraries attached to them
+        li
+          strong Heavy engines
+          |  such as Unity or Unreal have their main parts tightly coupled together
+        li
+          strong Light engines
+          |  such as Godot or PhaserJS prefer aggregation over integration
+      .tcenter.h65
+        img(src!='../static/slides/svg/lecture02/engine_parts.svg')
+    +mframeGreen(bgr, 'Engine Architecture')
+      .h100.tcenter
+        img(src!='../static/slides/svg/lecture02/arch_engine.svg')
+    +mframeGreen(bgr, 'Engine Architecture')(class='line-s')
+      h4 Hardware
+      ul
+        li PC, Xbox, PS4, Switch,...
+      h4 Drivers
+      ul
+        li NVidia, Sound Blaster Audigy, Gamepad driver,...
+      h4 OS
+      ul
+        li Windows, Linux, MacOS, Android, iOS,...
+      h4 3rd Party SDKs
+      ul
+        li DirectX, OpenGL, Vulkan, Boost, Havok, STL
+      h4 Core Systems
+      ul
+        li
+          | Threading lib, File System, Network layer, Movie player, Math library, Parsers, Memory Allocator
+      h4 Modules
+      ul
+        li
+          | Scripting system, Dynamic Object Model, Messaging system, World streaming, DSP, 3D Audio Model, Match-making management, Skeletal animation, Inverse Kinematics, LERP, Rigid Bodies,
+          | Shaders, Debug Drawing, Spatial Subdivision, LOD system, Particle system, HDR Lighting
+      h4 Game
+      ul
+        li
+          | HUD, Terrain renderer, Vehicle system, Puzzle system, Dialogue system, State machines, Camera, Decision Making
+    +mframe(bgr, 'List of game genres')
+      .grid32.center-content.tcenter
+        div
+          img(src!='../static/slides/images/lecture02/genre_fps.png')
+        div
+          img(src!='../static/slides/images/lecture02/genre_platformer.png')
+        div
+          img(src!='../static/slides/images/lecture02/genre_fighting.png')
+        div
+          img(src!='../static/slides/images/lecture02/genre_racing.png')
+        div
+          img(src!='../static/slides/images/lecture02/genre_mmorpg.png')
+        div
+          img(src!='../static/slides/images/lecture02/genre_rts.png')
+    +mframe(bgr, 'Which Engine do I Need?')
+      ul
+        li
+          strong Various games require various engines
+      .columns-4
+        .h300
+          img(src!='../static/slides/images/lecture02/engine_horse.png')
+        .h250.tcenter
+          img(src!='../static/slides/images/lecture02/engine_car.png')
+        .h300
+          img(src!='../static/slides/images/lecture02/engine_jet.png')
+        .h300
+          img(src!='../static/slides/images/lecture02/engine_rocket.png')
+      ul
+        li
+          strong Still, their core components remain similar
+        ul
+          li
+            | every game engine needs a 
+            strong game loop
+          li
+            | almost every game has 
+            strong assets
+          li
+            | every game needs a 
+            strong renderer
+          li
+            | game objects are structured in a 
+            strong scene graph
+          li
+            | we couldn&apos;t do much without a 
+            strong physics engine
+          li
+            | complex audio processing requires an advanced 
+            strong audio engine
+          li
+            | for 3D games we definitely need an 
+            strong editor
+    +mframeOrange(bgr, 'Game Engine Modules')
+      h4 Main modules
+      ul
+        li
+          strong Game Loop
+          |  - heartbeat of all games
+        li
+          strong Scene Manager
+          |  - manages objects and structures them in a scene graph
+        li
+          strong Resource Manager
+          |  - manages assets, controls a cache
+        li
+          strong Input Manager
+          |  - handles inputs (keyboard, mouse, touch, joystick, gamepad,...)
+        li
+          strong Memory Manager
+          |  - memory allocator and deallocator
+        li
+          strong Rigidbody Engine
+          |  - event-based collision detection
+        li
+          strong Physics Engine
+          |  - handles behavior of objects based on forces and impulses
+        li
+          strong Rendering Engine
+          |  - renders the game, takes care of the rendering pipeline
+        li
+          strong Animation Engine
+          |  - handles animations
+        li
+          strong Scripting Engine
+          |  - bridge between the engine and interpreted languages (JS, Lua, C#,...)
+        li
+          strong Multimedia Engine
+          |  - plays music, clips, sounds, video
+        li
+          strong AI Engine
+          |  - abstract engine for AI (path finding, states, behavioral trees, ...)
+        li
+          strong Networking Engine
+          |  - handles multipeer communication
+      h4 Other modules
+      ul
+        li
+          | GUI framework, Level Editor, Camera, Event System, World Streaming, Security, LOD, Profiler,...
+    +mcontainer(bgr)(class='center-content')
+      h2 Game Loop
+    +mframeOrange(bgr, 'Game Loop')
+      ul
+        li Simple, yet the most important part of the game engine
+        li Each turn advances the state of the game
+        li Sometimes it&apos;s coordinated with the platform&apos;s event loop
+        li
+          | Optimal time step for rendering: 
+          strong
+            b 60 FPS = 16.6 ms per frame
+        li Audio is usually separated as it requires more frequent updates (~200 FPS)
+        li Certain systems don&apos;t need to be updated so frequently (AI)
+      .mt200.tcenter
+        .w60.block.fragment.fade-in
+          strong
+            | In general, a program spends 90% of its time in 10% of the code. The game loop will be firmly in those 10%
+    +mframeOrange(bgr, 'Simple Game Loop')
+      .h100.tcenter
+        img(src!='../static/slides/svg/lecture02/loop_simple2.svg')
+    +mframeOrange(bgr, 'Multi-threaded game loop')
+      .center-content.h70.t10
+        img.h100(src!='../static/slides/svg/lecture02/loop_multithread.svg')
+    +mframeGreen(bgr, 'Cooperative game loop')
+      ul
+        li Implemented via small, relatively independent jobs
+        li.fragment.fade-in
+          | Used in 
+          strong Ultima VIII (1994)
+          |  for the first time
+      .center-content.h80.t15
+        img.h100(src!='../static/slides/svg/lecture02/loop_cooperative.svg')
+    +mframeRed(bgr, 'Update method')(class='space-vert-m')
+      h4 Fixed time step
+      ul
+        li each update advances game time by a certain amount of time
+        li.upside precise and stable
+        li.downside the game may slow down
+      h4 Variable time step
+      ul
+        li
+          | each update advances game time based on how much real time passed since the last frame
+        li.upside natural
+        li.downside non-deterministic and unstable (physics)
+      h4 Adaptive time step
+      ul
+        li switches between variable and fixed time step
+        li based on thresholds or a more sophisticated approach
+        li better dealing with breakpoints
+    +mframeGreen(bgr, 'Example: Atomic Game Engine Update 1/3')(class='code')
+      include ../static/slides/snippets/lecture02/atomic_ge_update_1.html
+    +mframeGreen(bgr, 'Example: Atomic Game Engine Update 2/3')(class='code')
+      include ../static/slides/snippets/lecture02/atomic_ge_update_2.html
+    +mframeGreen(bgr, 'Example: Atomic Game Engine Update 3/3')(class='code')
+      include ../static/slides/snippets/lecture02/atomic_ge_update_3.html
+    +mframeGreen(bgr, 'Example: Unity Game Loop')
+      .tcenter
+        img(class='h900' src!='../static/slides/svg/lecture02/loop_unity.svg')
+    +mframeOrange(bgr, 'Update inconsistencies')(class='space-vert-m')
+      h4 Game objects are consistent before and after every update
+      ul
+        li yet they may be inconsistent during the update
+        li major source of confusion and bugs
+        li.upside
+          strong PixiJS updates all dependent transformations instantly
+      h4 One-frame-off lag
+      ul
+        li the state of some objects lags one frame behind the states of the others
+        li
+          | possible solutions: bucket update, 
+          string script execution order
+          |  (Unity)
+      .tcenter
+        img.w25(src!='../static/slides/svg/lecture02/inconsistencies.svg')
+      .tcenter
+        p.w40.block Object 2 reads updated state of Object 1 but not updated state of Object 3
+    +mcontainer(bgr)(class='center-content')
+       h2 Scene graph
+    +mframeOrange(bgr, 'Scene Graph')(class='space-vert-m')
+      h4 Scene Graph
+      ul
+        li essential structure of every interactive application
+        li a way of ordering the data into a hierarchy
+        li N-Tree or a regular graph
+        li
+          strong parent nodes affect child nodes (translation, rotation, scale,...)
+        li leaves usually represent atomic units (shapes, vertices, meshes)
+        li implementation: arrays, oct-trees, quad-trees, bounding volume hierarchies,...
+      h4 Scene Manager
+      ul
+        li manages objects in the scene
+        li similar to HTML Document Object Model and Event Manager
+        li
+          | responsibility: sending messages, searching for objects, applying transformation constraints,...
+        li Unity Engine - game objects form a hierarchy
+        li Unreal Engine - components form a hierarchy
+    +mframeGreen(bgr, 'Example: Scene Hierarchy')
+      .top-content
+        img.h40.l70(src!='../static/slides/images/lecture02/scenegraph_droid.png')
+      .tcenter
+        img(src!='../static/slides/svg/lecture02/scene_hierarchy.svg')
+    +mframeGreen(bgr, 'Example: Scene Hierarchy')
+      .center-content
+        img.h50.t45(src!='../static/slides/images/lecture02/scene_game.gif')
+      .top-content
+        img.w100(src!='../static/slides/svg/lecture02/scene_hierarchy_2.svg')
+    +mframe(bgr, 'Example: Unity Scene Graph')
+      .center-content.fill
+        img.w100(src!='../static/slides/images/lecture02/scenegraph_unity.jpg')
+    +mframe(bgr, 'Example: Blender3D Scene Graph')
+      .center-content.fill
+        img.w100(src!='../static/slides/images/lecture02/scenegraph_blender.jpg')
+    +mcontainer(bgr)(class='center-content')
+      h2 Files
+    +mframeOrange(bgr, 'Resource Manager')
+      ul
+        li
+          strong Provides access to all resources (assets)
+        ul
+          li meshes, materials, shaders, animations, textures, clips, levels
+          li many assets are not used in their original format
+          li engines usually encode their resource metadata in XML files
+          li
+            strong Resource Cache
+            |  - used for faster access
+        li
+          strong Manages lifetime of each resource
+        ul
+          li most managers maintain some kind of registry
+        li
+          strong Ensures that only one copy of each resource exists in memory
+        ul
+          li resource GUID - usually path of the file, guaranteed to be unique
+        li
+          strong Loads required resources and unloads those no longer needed
+        ul
+          li loading is simpler than unloading
+        li
+          strong Handles streaming
+    +mframe(bgr, 'Assets')
+      .center-content
+        img.h80(src!='../static/slides/svg/lecture02/res_manager.svg')
+    +mframe(bgr, 'File Formats: ZIP')
+      .columns-2
+        div
+          ul
+            li
+              strong Many games use their own compression format derived from ZIP
+          h4 ZIP
+          ul
+            li lossless archive format
+            li compressions: shrink, DEFLATE, bzip2, none
+            li directory structure
+          h4 zlib
+          ul
+            li open-source libary
+            li implements DEFLATE compression
+        div
+          img.w800(src!='../static/slides/svg/lecture02/format_zip.svg')
+    +mframe(bgr, 'File Formats: JPEG')
+      .columns-2
+        div
+          ul
+            li lossy compression for digital images
+            li not very good for pixel art or masking (compression noise)
+            li
+              strong Color transform
+              |  - from RGB to YCbCr
+            li
+              strong Down-sampling
+              |  - chroma reduction
+            li
+              strong DCT
+              |  - discrete cosine transform, from color domain into frequency domain
+            li
+              strong Quantization
+              |  - removal of high frequency components
+            li.mt300 JPEG compression procedure:
+        div
+          img.h100(src!='../static/slides/svg/lecture02/format_jpeg.svg')
+    +mframeGreen(bgr, 'Other image formats')(class='space-vert-m')
+      h4 PNG
+      ul
+        li Portable Network Graphics
+        li supports lossless data compression and alpha channel (filters and DEFLATE)
+        li good results for simple images (not real pictures)
+      h4 TGA
+      ul
+        li Truevision TGA
+        li 8-32 bits/pixel
+        li raw data or lossless RLE compression
+        li favorite format for textures
+      h4 DXT
+      ul
+        li compressed texture optimized for sampling
+        li used in realtime rendering
+        li DXT1 for RGB, DXT5 for RGBA
+    +mframe(bgr, 'File formats: MP3')
+      ul
+        li loosy format
+        li reduces accuracy by psychoacoustic analysis
+      div
+        img(src!='../static/slides/svg/lecture02/format_mp3.svg')
+    +mframeGreen(bgr, 'Other music formats')(class='space-vert-m')
+      h4 AIFF
+      ul
+        li Audio Interchange File Format
+        li uncompressed pulse-code modulation
+        li may contain loops and samples
+      h4 WAV
+      ul
+        li linear pulse-code modulation
+        li supports also compressed data
+        li used when time involved in compressing is a concern (short sounds)
+      h4 OGG
+      ul
+        li more advanced and a bit smaller in size than MP3
+        li open-source (in sharp contrast with MP3)
+      h4 Trackers
+      ul
+        li .xml, .mod, .it, .s3m files
+        li contain PCM samples, notes and effects
+    +mframeGreen(bgr, '3D file formats')
+      ul
+        li encode 3D geometry, material, scene and animations
+        li
+          | geometry encoding - approximate mesh, precise mesh and constructive solid geometry CSG
+        li
+          strong COLLADA
+          |  - .DAE, sharing models across CAD software
+        li
+          strong OBJ
+          |  - neutral format for interoperability, doesn&apos;t support animations
+        li
+          strong X3D
+          |  - popular 3D format for WEB
+      .tcenter
+        img.w60.mt50(src!='../static/slides/svg/lecture02/format_3d.svg')
+    +mcontainer(bgr)(class='center-content')
+      h2 Audio
+    +mcontainer(bgr)
+      h3 Note
+      .center-content
+        blockquote.w85
+          | It&apos;s difficult to persuade people to spend time and money on high-quality sound in games. At the same time, most users would better get a new 3D accelerator than a new sound card. 
+          span.author Unknown author from ixbtlabs, 2003
+    +mframeOrange(bgr, 'Audio Engine')
+      h4 Audio pipeline
+      ul
+        li for each 3D sound, a dry digital PCM signal must be synthesized
+        li
+          strong distance-based attenuation
+          |  - provides a sense of distance
+        li
+          strong reverb
+          |  - provides accoustics
+        li
+          strong dry signals
+          |  - arrive via an unobstructed path
+        li
+          strong wet signals
+          |  - echo (early reflections) +  tail (late reverberations)
+        li
+          | audio buffer must be fed periodically - dropping audio is worse than dropped frames
+      .tcenter
+        img.h500(src!='../static/slides/svg/lecture02/audio_engine.svg')
+    +mframeOrange(bgr, 'Audio Assets')
+      h4 Audio clips
+      ul
+        li digital sound asset (MP3, OGG, WAV)
+        li
+          | module asset (MOD, S3M, IT, XM), not used anymore, yet it&apos;s fun to play around with them
+        li MIDI - sequencer-related data, nowadays mainly for recording and preprocessing
+      h4 Sound cues
+      ul
+        li collection of audio clips with metadata
+      h4 Sound banks
+      ul
+        li package of sound clips and cues
+      h4 Streaming sounds
+      ul
+        li small ring buffer for music and speech
+      .tcenter
+        img.h300(src!='../static/slides/images/lecture02/wave.png')
+    +mframeGreen(bgr, 'VRWorks')
+      ul
+        li path-traced geometric audio from NVidia
+        li
+          | based on 
+          strong Acoustic Raytracer technology
+        li
+          | uses 
+          strong GPU
+          |  to compute acoustic environmental model
+        li implemented in Unreal Engine
+      .tcenter
+        img.w50.mt100(src!='../static/slides/svg/lecture02/vrworks.svg')
+    +mframeGreen(bgr, 'WebAudio API')
+      ul
+        li high-level JavaScript API for audio processing
+        li offers capabilities found in modern game audio engines
+        li
+          | features: modular routing, spatialized audio, convolution engine, biquad filters,...
+        li
+          | audio operations are performed with audio 
+          strong nodes
+          |  that are linked together
+        li nodes: BiquadFilterNode, ConvolverNode, DelayNode, GainNode, PeriodicWave,...
+        li used in many engines that support HTML5 and WebGL
+      .tcenter
+        img.w50.mt100(src!='../static/slides/svg/lecture02/audio_webaudio.svg')
+    +mcontainer(bgr)(class='center-content')
+      h2 Input
+    +mframeOrange(bgr, 'Input Manager')
+      .columns-2
+        div
+          p.mb40 Detects input events from devices
+          h4 Atomic events
+          ul
+            li KEY_DOWN
+            li KEY_UP
+            li MOUSE_BUTTON_DOWN
+            li MOUSE_BUTTON_UP
+            li MOUSE_WHEEL
+            li MOUSE_MOTION
+          h4 Compound events
+          ul
+            li FLING
+            li PINCH_TO_ZOOM
+            li DOUBLE_TAP
+          h4 Special events
+          ul
+            li cheat codes
+            li fighting combos
+        .tcenter
+          div
+            img.h200.mt200(src!='../static/slides/images/lecture02/joypad&4b.png')
+          div
+            img.h200.mt40(src!='../static/slides/images/lecture02/input_pinch.png')
+          div
+            img.h200.mt40(src!='../static/slides/images/lecture02/input_cheat.png')
+    +mframeOrange(bgr, 'Input Devices')
+      .top-content.justify-right
+        img.w400.mr60(src!='../static/slides/svg/lecture02/input_normalized.svg')
+      .bottom-content.justify-right
+        img.w400.mr80(src!='../static/slides/images/lecture02/input_controller.png')
+      h4 Getting the state of the device
+      ul
+        li polling - compare against previous state
+        li callbacks - handled by upper SW layer
+        li via a protocol (wireless device)
+      h4 Devices
+      ul
+        li keyboard, touch sensor
+        li one-axis controller - single analog state
+        li two-axis controller - mouse and joystick
+        li three-axis controller - accelerometer
+        li camera, VR lens, Azure Kinect
+      h4 Dead zone
+      ul
+        li area of a control interface that has no input effect (analog joystick)
+      h4 Normalization
+      ul
+        li axis are mapped to a Cartesian space, not a circular space
+        li input must be  normalized
+    +mframe(bgr, 'Example: Unity Input Manager')
+      .tcenter
+        img.h900(src!='../static/slides/images/lecture02/input_unity.png')
+    +mframe(bgr, 'Special Events')(class='space-vert-m')
+      .top-content.justify-right.mr80
+        img.w30(src!='../static/slides/images/lecture02/input_samurai.gif')
+      .bottom-content.justify-right.mr80
+        img.w30(src!='../static/slides/images/lecture02/input_cheatcode.jpg')
+      h4 Sequence detection
+      ul
+        li cheats: IDDQD, IDKFA
+        li chords: combo moves in fighting games
+      h4 Controller input remapping
+      ul
+        li button ID -&gt; action ID mapping
+        li can be implemented as a table
+      h4 Context-sensitive inputs
+      ul
+        li different modes = different handlers (walking, driving, flying)
+        li implemented via a state machine, table or polymorphism
+    +mframe(bgr, 'Example: Doom 2 cheat detection')(class='code')
+      include ../static/slides/snippets/lecture02/doom2_cheat_detection.html
+    +mcontainer(bgr)(class='center-content')
+      h2 Memory
+    +mframeOrange(bgr, 'Memory Manager')(class='space-vert-m')
+      .bottom-content.justify-right
+        img.h550(src!='../static/slides/svg/lecture02/memory_fragmentation.svg')
+      h4 Main issue
+      ul
+        li
+          | the default memory manager that comes with default C-runtime libraries is not suitable for 
+          br
+          |  most game applications
+        li game engines usually implement their own allocator
+      h4 Custom allocators
+      ul
+        li stack-based
+        li pool-based
+        li heap-based
+        li bucket allocators
+    +mframeGreen(bgr, 'Stack-Based allocator')
+      ul
+        li
+          | mostly used in games that have levels and in-game loops as single-frame allocators
+        li
+          strong implementations:
+          |  single-ended, double-ended
+      ol
+        li allocate a large contiguous block of memory
+        li maintain a pointer to the top of the stack
+        li everything above the pointer is considered as a free area
+        li deallocate in an order opposite to that which blocks were allocated
+      .tcenter
+        img.h500.mt20(src!='../static/slides/svg/lecture02/memory_stack.svg')
+    +mframeOrange(bgr, 'Pool-based allocator')
+      ul
+        li allocates lots of small blocks of memory, each of the same size
+        li.upside doesn&apos;t suffer from memory fragmentation
+        li.downside entities have to be of the same size
+      .tcenter
+        img.h350.mt200(src!='../static/slides/svg/lecture02/memory_pool.svg')
+    +mframeGreen(bgr, 'Example: Atomic GE Allocation')(class='code')
+      include ../static/slides/snippets/lecture02/atomic_ge_allocation.html
+    +mframeOrange(bgr, 'Loading approaches')
+      h4 Level loading
+      ul
+        li
+          | used in 
+          strong Tomb Raider, Doom,...
+        li requires a loading screen
+        li only one game chunk is loaded at a time
+      h4 Air locks
+      ul
+        li
+          | used in 
+          strong Half-Life 2, Portal, Inside, new Wolfenstein,...
+        li larger block contains the whole scene
+        li smaller block represents an air lock (usually a small room/hall)
+        li
+          | when the player enters the are from which can neither see the previous area nor return to it, next scene is loaded
+      h4 World streams
+      ul
+        li
+          | used in open-world games: 
+          strong GTA, WoW, ARMA, Read Dead Redemption, Witcher,...
+        li the world is divided into regions
+        li
+          | when the player enters region B and is far enough that chunk A can no longer be seen, the engine unloads chunk A and starts loading chunk C
+        li
+          | LOD (level of detail) - chunks are loaded with variable granularity (only meshes)
+    +mframe(bgr, 'Example: Loading Screen')
+      .columns-3.center-content
+        figure
+          img.w600(src!='../static/slides/images/lecture02/loading_tomb_raider.jpg')
+          p Tomb Raider (2015)
+        figure
+          img.w600(src!='../static/slides/images/lecture02/loading_doom.jpg')
+          p Doom 4 (2016)
+        figure
+          img.w600(src!='../static/slides/images/lecture02/loading_raptor.gif')
+          p Raptor (1994)
+    +mframe(bgr, 'Example: Air Lock')
+      .columns-2.center-content
+        figure
+          img.h600(src!='../static/slides/images/lecture02/airlock_portal.jpg')
+          p Portal (2007)
+        figure
+          img.h600(src!='../static/slides/images/lecture02/loading_duke.gif')
+          p Duke Nukem (1991)
+    +mframe(bgr, 'Example: Open World')
+      .columns-2.center-content
+        figure
+          img.h600(src!='../static/slides/images/lecture02/openworld_arma.jpg')
+          p Arma III (2012)
+        figure
+          img.h600(src!='../static/slides/images/lecture02/loading_commanche.gif')
+          p Comanche (1992)
+    +mframe(bgr, 'Lecture 2 Review')(class='line-m')
+      ul
+        li
+          b Components:
+          |  Scene Graph, Game Loop, Resource Manager, Input Manager
+        li
+          b Game loop:
+          |  optimal time step for game model: 60 FPS = 16.6 ms per frame
+        ul
+          li Time steps: fixed, variable, adaptive
+          li One-frame-off-lag: state of some objects lags one frame behind
+        li
+          b Scene graph
+          |  - a way of ordering the data into a hierarchy
+        li
+          b Input Events:
+          |  Atomic events, Compound events, Special events
+        ul
+          li Dead zone: area of a control interface that has no input effect
+          li
+            | Normalization: axis are mapped to a Cartesian space, the input must be normalized
+        li
+          b Memory allocator:
+          |  stack-based, pool-based, heap-based
+        li
+          b Loading practices:
+          |  Level loading, Air locks, World streams
+    +mcontainer(bgr)
+      h3 Goodbye quote
+      .center-content
+        blockquote.w40
+          | Technology is incredible
+          span.author Pokemon series
+
+
+include ./partial/footer.pug

@@ -1,0 +1,56 @@
+<p><span style="color:#aaa;">//&nbsp;arrow&nbsp;functions</span></p>
+<p><span style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">myMultiply</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;(</span><span style="color:#FFAB40;">val1</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:#FFAB40;">val2</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span
+    style="color:#F8F8F0;">)&nbsp;</span><span style="color:#E040FB;">=&gt;</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span style="color:#F8F8F0;">;</span>
+</p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">myFunction</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(</span><span
+    style="color:#FFAB40;">val1</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">val2</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">)&nbsp;</span><span
+    style="color:#E040FB;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span
+    style="color:#F8F8F0;">&nbsp;val1&nbsp;</span><span style="color:#FF5252;">+</span><span
+    style="color:#F8F8F0;">&nbsp;val2;</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;object&nbsp;types</span></p>
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;userData</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;{ name</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">string</span><span style="color:#F8F8F0;">,&nbsp;age</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">&nbsp;}&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; name:&nbsp;</span><span style="color:yellow;">'Max'</span></p>
+<p><span style="color:#F8F8F0;">};</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;rest&nbsp;operator</span></p>
+<p><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">displayTags</span><span style="color:#F8F8F0;">(</span><span
+    style="color:#FFAB40;">targetElement</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">HTMLElement</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FF5252;">...</span><span
+    style="color:#FFAB40;">tags</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">string</span><span style="color:#F8F8F0;">[])
+    {&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span
+    style="color:#F8F8F0;">(</span><span style="color:#E040FB;">let</span><span
+    style="color:#F8F8F0;">&nbsp;i&nbsp;</span><span style="color:#FF5252;">in</span><span
+    style="color:#F8F8F0;">&nbsp;tags) {&nbsp;</span><span style="color:#FF5252;">...</span><span
+    style="color:#F8F8F0;">&nbsp;} &nbsp;</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#B2FF59;">displayTags</span><span style="color:#F8F8F0;">(myElement,&nbsp;</span><span
+    style="color:yellow;">"tag1"</span><span style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:yellow;">"tag2"</span><span style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:yellow;">"tag3"</span><span style="color:#F8F8F0;">);</span></p>

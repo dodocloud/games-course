@@ -1,0 +1,32 @@
+mixin msection(bgr)
+  section(data-background-image!=bgr)
+    block
+
+mixin mcontainer(bgr)
+  +msection(bgr)
+    div(class!='container ' + (attributes.class ? attributes.class : ''))
+      block
+
+mixin mframe(bgr, title)
+  +mcontainer(bgr)
+    h3!=title
+    div(class!='frame ' + (attributes.class ? attributes.class : ''))
+      block
+
+mixin mframeGreen(bgr, title)
+  +mcontainer(bgr)
+    h3!=title
+    div(class!='frame importance-green ' + (attributes.class ? attributes.class : ''))
+      block
+
+mixin mframeOrange(bgr, title, classes)
+  +mcontainer(bgr)
+    h3!=title
+    div(class!='frame importance-orange ' + (attributes.class ? attributes.class : ''))
+      block
+
+mixin mframeRed(bgr, title)
+  +mcontainer(bgr)
+    h3!=title
+    div(class!='frame importance-red ' + (attributes.class ? attributes.class : ''))
+      block

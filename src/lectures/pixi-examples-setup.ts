@@ -8,7 +8,7 @@ export const initPixiWatcher = (...factories: factories[]) => {
   // transform the array of types into typename-type map
   let pixiExamples = {};
   factories.forEach(type => pixiExamples[type.name] = type.factory);
- 
+
   let pixiExamplesWatcher = (evt: any) => {
     if (evt.currentSlide) {
       let canvases = evt.currentSlide.getElementsByTagName("canvas");
@@ -29,8 +29,8 @@ export const initPixiWatcher = (...factories: factories[]) => {
         }
       }
     }
-  }
+  };
 
   Reveal.addEventListener('ready', pixiExamplesWatcher, false);
   Reveal.addEventListener('slidechanged', pixiExamplesWatcher, false);
-}
+};

@@ -1,0 +1,41 @@
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;ticker&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">ticker</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#aaa;">//&nbsp;prevents&nbsp;autostart</span></p>
+<p><span style="color:#F8F8F0;">ticker.</span><span style="color:#40C4FF;">autoStart</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">;</span>
+</p>
+<p><span style="color:#aaa;">//&nbsp;stops&nbsp;the&nbsp;ticker</span></p>
+<p><span style="color:#F8F8F0;">ticker.</span><span style="color:#B2FF59;">stop</span><span
+    style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#aaa;">//&nbsp;starts&nbsp;the&nbsp;ticker&nbsp;if&nbsp;autoStart&nbsp;is&nbsp;false</span></p>
+<p><span style="color:#F8F8F0;">ticker.</span><span style="color:#B2FF59;">start</span><span
+    style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;=============================</span></p>
+<p><span style="color:#aaa;">//&nbsp;alternative:&nbsp;manual&nbsp;update</span></p>
+<p><span style="color:#F8F8F0;">ticker.</span><span style="color:#40C4FF;">autoStart</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">false</span><span style="color:#F8F8F0;">;</span>
+</p>
+<p><span style="color:#F8F8F0;">ticker.</span><span style="color:#B2FF59;">stop</span><span
+    style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">myUpdateLoop</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">time</span><span
+    style="color:#F8F8F0;">)&nbsp;</span><span style="color:#E040FB;">=&gt;</span><span
+    style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; ticker.</span><span style="color:#B2FF59;">update</span><span
+    style="color:#F8F8F0;">(time);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">renderer</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">render</span><span style="color:#F8F8F0;">(</span><span
+    style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">stage</span><span style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">requestAnimationFrame</span><span
+    style="color:#F8F8F0;">(myUpdateLoop);</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#B2FF59;">myUpdateLoop</span><span style="color:#F8F8F0;">(performance.</span><span
+    style="color:#B2FF59;">now</span><span style="color:#F8F8F0;">());</span></p>

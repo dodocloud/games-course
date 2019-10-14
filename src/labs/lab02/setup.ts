@@ -6,6 +6,7 @@ import { ExampleConfig1, ExampleConfig2, ExampleConfig3 } from './example-config
 import { ExampleSound } from './example-sound';
 import { DisplaySprite, DisplayParticles, DisplayPrimitives, DisplayBitmapText, DisplayRegularText, DisplayButton, DisplayZIndex } from './example-display-entities';
 import { ExampleStarfield } from './example-starfield';
+import { ExamplePerfectHitTest } from './example-perfect-hittest';
 
 // will be referred via <canvas data-example>
 // TODO previous solution didn't work after minification
@@ -22,4 +23,5 @@ initPixiWatcher(
   { name:"DisplayButton", factory: (view: HTMLCanvasElement) => new DisplayButton(view)},
   { name:"DisplayZIndex", factory: (view: HTMLCanvasElement) => new DisplayZIndex(view)},
   { name:"ExampleSound", factory: (view: HTMLCanvasElement) => new ExampleSound(view)},
-  { name:"ExampleStarfield", factory: (view: HTMLCanvasElement) => new ExampleStarfield(view)});
+  { name:"ExampleStarfield", factory: (view: HTMLCanvasElement) => new ExampleStarfield(view)},
+  { name:"ExamplePerfectHitTest", factory: (view: HTMLCanvasElement) => new ExamplePerfectHitTest(view)}, );

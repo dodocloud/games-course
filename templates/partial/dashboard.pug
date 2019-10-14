@@ -1,0 +1,36 @@
+mixin contentlink(title, code)
+  .input-container
+    a.link-button(id=code href='./'+code+'.pug')
+    .link-tile
+      a.inner-container(href='./'+code+'.pug?print-pdf')
+        | PRINT
+      .icon
+        block
+      label.link-tile-label(for=code)!=title
+
+mixin lock 
+    .input-container
+      .link-tile.locked
+        .icon
+          include ../../static/slides/svg/common/lock.svg
+
+
+mixin resourcelink(title, lecture, href, type, id)
+    .input-container
+      a.link-button(id=id href=href)
+      .link-tile
+        .inner-hint=lecture
+        .icon
+          case type 
+            when 'book'
+              img(src!='../static/slides/svg/common/ic_book.svg')
+            when 'article'
+              img(src!='../static/slides/svg/common/ic_article.svg')
+            when 'movie'
+              img(src!='../static/slides/svg/common/ic_movie.svg')
+            when 'hint'
+              img(src!='../static/slides/svg/common/ic_hint.svg')
+            when 'library'
+              img(src!='../static/slides/svg/common/ic_library.svg')
+        label.link-tile-label(for=id)!=title
+

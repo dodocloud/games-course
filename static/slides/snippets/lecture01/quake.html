@@ -1,0 +1,71 @@
+<p
+  style=" line-height: 107%; margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in; text-align: left; direction: ltr; unicode-bidi: embed; word-break: normal; punctuation-wrap: hanging;">
+  <span style="color: #cda869; ">void()</span> <span style="color: #f8f8f8; ">DeathSound</span> <span
+    style="color: #cda869; ">=</span> <span style="color: #cda869; ">{</span></p>
+<p>&nbsp;&nbsp;&nbsp; local </span><span style="color: #cda869; ">float</span> <span
+    style="color: #f8f8f8; ">rs</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #8d868e; ">// water death sounds</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">.</span><span
+    style="color: #f8f8f8; ">waterlevel</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span> <span style="color: #cda869; ">{</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">DeathBubbles</span><span
+    style="color: #cda869; ">(</span><span style="color: #82d4e5; ">5</span><span style="color: #cda869; ">);</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; ">
+    CHAN_VOICE</span><span style="color: #cda869; ">,</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #ff9abb; ">"player/h2odeath.wav"</span><span
+    style="color: #cda869; ">,</span> <span style="color: #82d4e5; ">1</span><span
+    style="color: #cda869; ">,</span><span style="color: #f8f8f8; "> ATTN_NONE</span><span
+    style="color: #cda869; ">);</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span
+    style="color: #cda869; ">;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #cda869; ">}</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">=</span> <span
+    style="color: #f8f8f8; ">rint</span> <span style="color: #cda869; ">((</span><span
+    style="color: #f8f8f8; ">random</span><span style="color: #cda869; ">()</span> <span
+    style="color: #cda869; ">*</span> <span style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span>
+  <span style="color: #cda869; ">+</span> <span style="color: #82d4e5; ">1</span><span
+    style="color: #cda869; ">);</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">1</span><span style="color: #cda869; ">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span>
+  <span style="color: #ff9abb; ">"player/death1.wav"</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">2</span><span style="color: #cda869; ">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span>
+  <span style="color: #ff9abb; ">"player/death2.wav"</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">3</span><span style="color: #cda869; ">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span>
+  <span style="color: #ff9abb; ">"player/death3.wav"</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">4</span><span style="color: #cda869; ">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span>
+  <span style="color: #ff9abb; ">"player/death4.wav"</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">if</span> <span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">rs</span> <span style="color: #cda869; ">==</span> <span
+    style="color: #82d4e5; ">5</span><span style="color: #cda869; ">)</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span> <span style="color: #cda869; ">=</span>
+  <span style="color: #ff9abb; ">"player/death5.wav"</span><span style="color: #cda869; ">;</span></p>
+<p>&nbsp;</span></p>
+<p>&nbsp;&nbsp;&nbsp; sound </span><span style="color: #cda869; ">(</span><span
+    style="color: #f8f8f8; ">self</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; ">
+    CHAN_VOICE</span><span style="color: #cda869; ">,</span> <span style="color: #f8f8f8; ">self</span><span
+    style="color: #cda869; ">.</span><span style="color: #f8f8f8; ">noise</span><span style="color: #cda869; ">,</span>
+  <span style="color: #82d4e5; ">1</span><span style="color: #cda869; ">,</span><span style="color: #f8f8f8; ">
+    ATTN_NONE</span><span style="color: #cda869; ">);</span></p>
+<p>&nbsp;&nbsp;&nbsp; </span><span style="color: #f6c9a0; ">return</span><span style="color: #cda869; ">;</span></p>
+<p><span style="color: #cda869; ">};</span></p>
+<p>&nbsp;</p>

@@ -1,0 +1,37 @@
+<p><span style="color:#aaa;">//&nbsp;type&nbsp;assertions</span></p>
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;len</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(input&nbsp;</span><span
+    style="color:#FF5252;">as</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">string</span><span style="color:#F8F8F0;">).</span><span
+    style="color:#E040FB;">length</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;len</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(&lt;</span><span
+    style="color:#E040FB;">string</span><span style="color:#F8F8F0;">&gt;&nbsp;input).</span><span
+    style="color:#E040FB;">length</span><span style="color:#F8F8F0;">;</span></p>
+<p>
+  <span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;optional&nbsp;parameters</span></p>
+<p><span style="color:#E040FB;">interface</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">User</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; name</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">string</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span
+    style="color:#aaa;">//&nbsp;can&nbsp;be&nbsp;null&nbsp;but&nbsp;not&nbsp;undefined</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; age</span><span style="color:#FF5252;">?:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#aaa;">//&nbsp;can&nbsp;be&nbsp;null&nbsp;or&nbsp;undefined</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;readonly</span></p>
+<p><span style="color:#E040FB;">interface</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">User</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">readonly</span><span
+    style="color:#F8F8F0;">&nbsp;name</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">string</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>

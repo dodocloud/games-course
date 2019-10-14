@@ -1,0 +1,21 @@
+<p><b><span style="color: #f6c9a0; ">:</span></b><span style="color: #f6c9a0; ">underctrl</span></p>
+<p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharSword</span></p>
+<p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span
+    style="color: #8cd0d3; ">2</span> <span style="color: #d9d9d9; ">;in fighting mode?</span></p>
+<p><span style="color: #82d4e5; ">beq</span> <span style="color: #f6c9a0; ">FightCtrl</span> <span
+    style="color: #d9d9d9; ">;yes</span></p>
+<p><span style="color: #dcdccc; ">&nbsp;</span></p>
+<p><span style="color: #82d4e5; ">lda</span> <span style="color: #f6c9a0; ">CharID</span></p>
+<p><span style="color: #82d4e5; ">cmp</span><span style="color: #dcdccc; "> #</span><span
+    style="color: #d9d9d9; ">2 ;kid or </span><span style="color: #d9d9d9; ">shadowman</span><span
+    style="color: #d9d9d9; ">?</span></p>
+<p><span style="color: #82d4e5; ">bcc</span> <b><span style="color: #f6c9a0; ">:</span></b><span
+    style="color: #f6c9a0; ">cont</span></p>
+<p><span style="color: #82d4e5; ">jmp</span> <span style="color: #f6c9a0; ">GuardCtrl</span> <span
+    style="color: #d9d9d9; ">;no</span></p>
+<p><span style="color: #dcdccc; ">&nbsp;</span></p>
+<p><b><span style="color: #d9d9d9; ">*</span></b><span style="color: #d9d9d9; "> What is he doing
+    now?</span></p>
+<p><b><span style="color: #f6c9a0; ">:</span></b><span style="color: #f6c9a0; ">cont</span> <span
+    style="color: #82d4e5; ">ldx</span> <span style="color: #f6c9a0; ">CharPosn</span> <span
+    style="color: #d9d9d9; ">;previous frame #</span></p>

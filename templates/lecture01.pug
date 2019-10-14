@@ -1,0 +1,574 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_01.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+
++header('MI-APH - Lecture01', 'Lecture 1: Introduction to the world of games and game engines', 'lecture01')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lecture01/lecture01_logo.svg
+      +title('Introduction to the world of games and game engines')
+    +msection(bgr)
+      .container.center-content
+        h2 What is a game?
+    +mcontainer(bgr)
+      h3 What is a game?
+      .rows-3
+        .frame-sticky.w45
+          | A 
+          strong game
+          |  is something you 
+          strong play
+          | . Something that is 
+          strong fun
+          |  to
+          |               play. A fun
+          |               is a pleasure with 
+          strong surprises
+          span.highlight-third (Jesse Schell)
+          | .
+        .frame-sticky.w45.l400
+          | A game is an interactive structure of 
+          strong endogeneous
+          |  meaning that
+          |               requires players to struggle toward a goal 
+          span.highlight-third (Greg Costikyan)
+          | .
+        .frame-sticky.w45.l800
+          | Games are an exercise of control systems, in which there is a
+          | contest between powers, confined by 
+          strong rules
+          |  in order to produce a
+          |               disequlibrial outcome 
+          span.highlight-third (Elliot Avendon)
+          | .
+    +mcontainer(bgr)
+      h3 What is a game?
+      .rows-3
+        .frame-sticky.w45
+          | A game is a 
+          strong system
+          |  in which players engage in an artificial
+          strong conflict
+          | , defined by 
+          strong rules
+          | , that results in a quantifiable
+          strong
+            | outcome
+            span.highlight-third (Salen &amp; Zimmerman, 2004)
+            | .
+        .frame-sticky.w45.l400
+          | A game is an 
+          strong activity
+          |  defined by rules in which players try to
+          |               reach some sort of 
+          strong goal
+          span.highlight-third (Alexander Galloway, 2006)
+          | .
+        .frame-sticky.w45.l800
+          | A game is a closed, formal 
+          strong system
+          |  that engages players in
+          |               structured 
+          strong conflict
+          |  and resolves its uncertainty in an unequal
+          strong outcome
+          span.highlight-third (Tracy Fullerton, 2008)
+          | .
+    +mframe(bgr, 'What is a game?')
+      .center-content
+        img(src!='../static/slides/images/common/bulb_green&8.png')
+      .game-topics
+        p curiosity
+        p system
+        p outcome
+        p conflict
+        p activity
+        p endogeneous
+        p goal
+        p surprise
+        p rules
+        p disequilibrium
+    +mframeOrange(bgr, 'What is a computer game?')
+      .bottom-content.justify-right
+        figure.w30
+          img(src!='../static/slides/images/lecture01/habitica.png')
+          p Habitica
+      .center-content.justify-left.t20
+        .fragment.fade-in.tcenter
+          strong Computer games are not applications!
+          br
+          | Yet the line between
+          |                 them is blur.
+      h4 Computer Program
+      ul
+        li
+          | a set of instructions that can be executed by a computer
+      h4 Computer Application
+      ul
+        li computer program that helps a user to perform a task
+      h4 Computer game
+      ul
+        li
+          | a computer-controller game where players interact with objects
+          | displayed on a screen for the sake of entertainment
+    +mframe(bgr, 'Computer games vs applications')
+      .columns-2.w100.center-content
+        figure
+          img.h200(src!='../static/slides/images/lecture01/joypad&4b.png')
+          p
+            | Mechanics
+            br
+            | Gameplay
+            br
+            | Dynamics
+        figure
+          img.h200(src!='../static/slides/images/lecture01/app&4b.png')
+          p
+            | Use-case
+            br
+            | UX
+            br
+            | Feedback
+    +mcontainer(bgr)
+      h3 General consensus
+      .frame-quote
+        p.importance-red
+          | Computer games are 
+          strong real-time 
+          strong interactive
+          |  agent-based 
+          strong simulators
+          | .
+    +mframeOrange(bgr, 'List of terms')(class='line-s')
+      h4
+        strong Emergence
+      ul
+        li
+          | refers to the fact that the behavior is the result of a
+          | complex and dynamic system of rules
+      h4
+        strong Progression
+      ul
+        li
+          | refers to the structures in games where a designer outlined
+          | the possible game states beforehand, usually through level
+          | design.
+      h4 Gameplay
+      ul
+        li
+          | an emergent property of the game as defined by its rules
+      h4 Mechanics
+      ul
+        li
+          | set of rules governing the behavior of a single game element.
+      h4 System
+      ul
+        li
+          | interacting group of game elements forming a unified whole
+      h4 Level
+      ul
+        li
+          | structure in a game that dictates what challenges players
+          | encounter
+      h4 Simulation
+      ul
+        li
+          | a representation of a source system via a less complex system
+          | that correlates with the user&apos;s understanding of the source system
+    +mframe(bgr, 'Topics')
+      .center-content
+        img.h200(src!='../static/slides/images/lecture01/joypad&4b.png')
+      .w100.center-content
+        img.w100(src!='../static/slides/images/lecture01/core_issues.png')
+    +mframeOrange(bgr, 'Game basic elements')
+      .bottom-content.justify-right
+        img.w35.m20(src!='../static/slides/svg/lecture01/game_elements.svg')
+      h4 Mechanics
+      ul
+        li
+          | a set of rules governing the behavior of a single game element
+      h4 Story
+      ul
+        li a sequence of events that unfolds in the game
+      h4 Aesthetics
+      ul
+        li how the game looks, sounds, tastes, feels,...
+      h4 Technology
+      ul
+        li
+          | any materials and interactions that make the game possible
+    +mcontainer(bgr)
+      h3 Mechanics
+      .center-content
+        figure.w100
+          img.h500(src!='../static/slides/images/lecture01/factorio.gif')
+          img.h500(src!='../static/slides/images/lecture01/factorio_2.gif')
+          p Factorio
+    +mcontainer(bgr)
+      h3 Story
+      .columns-3.center-content
+        figure
+          img.w600(src!='../static/slides/images/lecture01/story_naughdog.jpg')
+          p Naughty Dog games
+        figure
+          img.w600(src!='../static/slides/images/lecture01/story_bethesda.jpg')
+          p Bethesda games
+        figure
+          img.w600(src!='../static/slides/images/lecture01/story_valve.jpg')
+          p Valve games
+    +mcontainer(bgr)
+      h3 Aesthetics
+      .center-content
+        figure.w100
+          img.w85(src!='../static/slides/images/lecture01/inside.gif')
+          p INSIDE
+    +mcontainer(bgr)
+      h3 Technology
+      .center-content
+        figure.w60
+          img.w100(src!='../static/slides/images/lecture01/spore.jpg')
+          p Spore
+    +mframe(bgr, 'Example: Space Invaders')
+      .bottom-content
+        img.w40(src!='../static/slides/images/lecture01/invaders.jpg')
+      p
+        b Mechanics
+        |  - interesting and well-balanced
+      p
+        b Story
+        |  - didn&apos;t need to have a story
+      p
+        b Aesthetics
+        |  - three different alien designs
+      p
+        b Technology
+        |  - first videogame of it&apos;s kind
+    +mframe(bgr, 'Example: Doom')
+      .bottom-content
+        img.w40(src!='../static/slides/images/lecture01/doom.gif')
+      p
+        b Mechanics
+        |  - many weapons, enemies, levels, locations,...
+      p
+        b Story
+        |  - unnamed hero (Doomguy) fighting against invading demons
+      p
+        b Aesthetics
+        |  - advanced sounds and music (for that time period)
+      p
+        b Technology
+        |  - pseudo 3D FPS perspective
+    +mframe(bgr, 'Example: No man\'s sky')
+      .bottom-content
+        img.w40(src!='../static/slides/images/lecture01/nomansky.gif')
+      p
+        b Mechanics
+        |  - exploration, crafting, gathering, building
+      p
+        b Story
+        |  - space-exploration game with heavy resource-gathering
+        |               elements
+      p
+        b Aesthetics
+        |  - visually stunning lush world
+      p
+        b Technology
+        |  - (pseudo)random generated world
+    +mframe(bgr, 'Example: League of Legends')
+      .bottom-content
+        img.w40(src!='../static/slides/images/lecture01/lol.jpg')
+      p
+        b Mechanics
+        |  - crowd, control, elo, gank, items, juking, kills,
+        |  kiting, last hit, pushing, recall, points, terminology, warding,
+        |  zoning
+      p
+        b Story
+        |  - a plethora of stories on LoL blog
+      p
+        b Aesthetics
+        |  - cartoonish style
+      p
+        b Technology
+        |  - MOBA (Multiplayer online battle arena), Riot
+        |  Servers
+    +mframe(bgr, 'Example: Tormentum Dark Sorrow')
+      .bottom-content
+        img.h60(src!='../static/slides/images/lecture01/tormentum.jpg')
+      p
+        b Mechanics
+        |  - point-and-click adventure (go, move, examine, talk)
+      p
+        b Story
+        |  - the main element of the game
+      p
+        b Aesthetics
+        |  - biomechanic surrealism
+      p
+        b Technology
+        |  - not very ground-breaking
+    +mframeOrange(bgr, 'Game Mechanics')
+      .bottom-content.justify-right.fill
+        img.h600(src!='../static/slides/images/lecture01/unlocked.jpg')
+      h4 Space
+      ul
+        li
+          | various spaces that can exist in a game and how they are
+          | related
+      h4 Objects, attributes
+      ul
+        li entities that can be seen or manipulated
+      h4 Actions
+      ul
+        li an object&apos;s turn to act
+      h4 Rules
+      ul
+        li
+          | statements that describe constraints, consequences and goals
+    +mframe(bgr, 'Example: Pong')
+      .bottom-content
+        img.h50(src!='../static/slides/images/lecture01/pong.gif')
+      p
+        b Space
+        |  - 2D board
+      p
+        b Objects
+        |  - two players (paddles) and colliding ball, score
+      p
+        b Actions
+        |  - move up/down (1 degree of freedom), release the ball
+      p
+        b Rules
+        |  - the ball has a constant linear velocity. Angle of
+        |               incidence is angle of reflection. Player earns one point when
+        |               the other player fails to return the ball. The winner is the one
+        |               who reaches eleven points before the opponent
+    +mframe(bgr, 'Example: Tronic')
+      .center-content.fill
+        img.w100(src!='../static/slides/images/lecture01/tronic.png')
+    +mcontainer(bgr)
+      .center-content
+        h2 What is a game engine?
+    +mframeOrange(bgr, 'PRE-engine era')
+      .grid32.center-content.tcenter
+        div
+          img(src!='../static/slides/images/lecture01/engine_pinball_floppy.png')
+        div
+          img(src!='../static/slides/images/lecture01/engine_tforce_floppy.png')
+        div
+          img(src!='../static/slides/images/lecture01/engine_adventure_floppy.png')
+        div
+          img(src!='../static/slides/images/lecture01/engine_gamemaker_floppy.png')
+        div
+          img(src!='../static/slides/images/lecture01/engine_arcade_floppy.png')
+        div
+          img(src!='../static/slides/images/lecture01/engine_rpgmaker_floppy.png')
+    +mframe(bgr, '1984: Breakout for DOS')
+          .columns-2
+            .breakout-code
+              include ../static/slides/snippets/lecture01/breakout.html
+            div
+              img.w100(src!='../static/slides/images/lecture01/breakout.png')
+    +mframe(bgr, '1989: Prince of Persia')
+      .columns-2
+        div
+          p Prince of Persia guard controller
+          .prince-code
+            include ../static/slides/snippets/lecture01/prince_of_persia.html
+        div
+          img.w100(src!='../static/slides/images/lecture01/prince.gif')
+          p
+            | Source code: 
+            a(href='https://github.com/jmechner/Prince-of-Persia-Apple-II') link
+    +mframeOrange(bgr, 'ID Tech')
+      ul
+        li Family of game engines developed by ID software
+        li Id Tech 0 - the very first engine
+        li Every next game had more advanced technology
+        li
+          | Still, memory constraints sabotaged attempts to create
+          | data-heavy design
+      .m30
+        img(src!='../static/slides/images/lecture01/idtech_hovertank_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_catacomb_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_wolfenstein_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_shadowcast_floppy.png')
+    +mframe(bgr, '1993: DOOM')
+      .columns-2
+        .code
+          include ../static/slides/snippets/lecture01/doom.html
+        div
+          img(src!='../static/slides/images/lecture01/doom.jpg')
+          p
+            | Source code: 
+            a(href='https://github.com/id-Software/DOOM/tree/master/linuxdoom-1.10') link
+          p
+            | Doom3 in WebAssembly: 
+            a(href='https://www.infoq.com/news/2019/07/doom3-web-assembly-port/') link
+    +mframeOrange(bgr, 'WAD File')
+      .columns-2
+        div
+          h4 &quot;Where&apos;s All the Data?&quot;
+          ul
+            li Binary format of package files for Doom
+            ul
+              li Levels (walls, floors, monsters)
+              li Sound effects, music
+              li Color palettes, images
+            li
+              | Designed by 
+              strong John D. Carmack
+          img.h55.mt10(src!='../static/slides/images/lecture01/carmack.png')
+        div
+          img.w60(src!='../static/slides/images/lecture01/doomMap.png')
+          img.w75(src!='../static/slides/images/lecture01/WAD.png')
+    +mframe(bgr, '1996: Quake')
+      .columns-2
+        .code
+          include ../static/slides/snippets/lecture01/quake.html
+        div
+          img.w100(src!='../static/slides/images/lecture01/quake.jpg')
+          p
+            | Source code: 
+            a(href='https://github.com/id-Software/Quake') link
+          p
+            | Making of Quake: 
+            a(href='https://www.youtube.com/watch?v=w0DGaKsheDw') link
+    +mframeOrange(bgr, 'Quake Engine')
+      .columns-2
+        div
+          ul
+            li ~id Tech 1
+            li Released by id Software in 1996
+            li True 3D real-time rendering
+            li Binary space partitioning
+            li 3D light sources, Gouraud shading
+            li
+              | Games released: 
+              strong Quake, Hexen 2, Silver Wings
+            li Source code released in 1999
+            li.mt40
+              h4 Successors:
+            ul
+              li id Tech 2: 1997
+              li id Tech 3: 1999
+              li id Tech 4: 2004
+              li id Tech 5: 2011
+              li id Tech 6: 2016
+              li id Tech 7: 2018 (Doom Eternal)
+        div
+          img(src!='../static/slides/images/lecture01/idtech_5.jpg')
+    +mframeGreen(bgr, 'Unreal Engine')
+      .bottom-content
+        .grid32.h80
+          div
+          div
+          div
+            img.w100(src!='../static/slides/images/lecture01/unreal.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/unreal_engine.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/unreal_engine_2.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/unrealgfx.jpg')
+      h4 Unreal Engine 1
+      ul
+        li Released in 1998 by Epic Games as FPS game engine
+        li Unreal - the first game powered by this engine
+        li
+          | Concept of assets, HW &amp; SW rendering, collision detection,...
+      h4 Unreal Engine 4
+      ul
+        li Robust multiplayer framework
+        li Film-Quality postprocessing
+        li VFX &amp; Particle systems
+        li Beta Raytracing
+    +mframeGreen(bgr, 'CryEngine')
+      .bottom-content
+        .grid32.h80
+          div
+          div
+          div
+            img.w100(src!='../static/slides/images/lecture01/cryengine_farcry.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/kingdomCome.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/cryengine.jpg')
+          div
+            img.w100(src!='../static/slides/images/lecture01/cryengine_2.jpg')
+      ul
+        li Released in 2002 as a technology demo for NVidia
+        li Far Cry - the first game powered by CryEngine
+        li Pushes hardware to its absolute limits
+      h4 CryEngine V - current release
+      ul
+        li Dynamic global illumination
+        li Destructible environment
+        li AI editing system
+    +mframeGreen(bgr, 'Unity')
+      .columns-3.center-content
+        .bottom-content
+          img.w100(src!='../static/slides/images/lecture01/unityGames.gif')
+        .center-content
+          img.w100(src!='../static/slides/images/lecture01/unity_ori.gif')
+        .top-content
+          img.w100(src!='../static/slides/images/lecture01/unity_cuphead.gif')
+      ul
+        li All-purpose (not only) game engine
+        li First announced for MacOS in 2005
+        li over 27 platforms supported
+        li Best choice for indie developers
+      h4 Unity 2019.2 - current version
+      ul
+        li DirectX, OpenGL, Vulkan
+        li 2D and 3D games
+    +mframe(bgr, 'Evolution of Games')
+      div
+        .center-content.t5
+          img.w85(src!='../static/slides/images/lecture01/games_evolution.png')
+        .center-content
+          img.w100(src!='../static/slides/svg/lecture01/game_evolution.svg')
+    +mframe(bgr, 'Evolution of Games')
+      .center-content
+        img.w100(src!='../static/slides/images/lecture01/games_evolution_2.png')
+    +mframe(bgr, 'Game Engines Today')
+      .center-content.t5
+        img.w95(src!='../static/slides/svg/lecture01/game_engines.svg')
+      .center-content.l10.m30
+        img.w70(src!='../static/slides/images/lecture01/engines.png')
+    +mcontainer(bgr)
+      h3 Important note
+      .frame-quote
+        p
+          | A game engine is just a tool, nothing more. Game development is more about dedication, enthusiasm and
+          | ability to work very hard.
+    +mframe(bgr, 'Lecture 1 Review')
+      h4 Terms:
+      ul
+        li Gameplay
+        li Mechanics
+        li System
+        li Level
+        li Emergence
+        li Progression
+        li Simulation
+      p
+        | Computer games are real-time interactive agent-based simulators
+      p Game Basic Elements: Mechanics, Story, Aesthetics, Technology
+      p Game Mechanics: Space, Objects and Attributes, Actions, Rules
+    +mcontainer(bgr)
+      h3 Goodbye quote
+      .center-content
+        blockquote.w85
+          | So you walk eternally through the shadow realms, standing against evil where all others falter.
+          | May your thirst for retribution never quench, may the blood on your sword never dry, and may we never need
+          | you again.
+          span.author Doom 4
+
+include ./partial/footer.pug

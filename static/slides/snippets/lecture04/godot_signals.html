@@ -1,0 +1,15 @@
+<p><span style="color:#F8F8F0;">#&nbsp;No&nbsp;arguments.</span></p>
+<p><span style="color:#F8F8F0;">signal&nbsp;your_signal_name</span></p>
+<p><span style="color:#F8F8F0;">#&nbsp;With&nbsp;arguments.</span></p>
+<p><span style="color:#F8F8F0;">signal&nbsp;</span><span style="color:#B2FF59;">your_signal_name_with_args</span><span style="color:#F8F8F0;">(a,&nbsp;b)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#FF5252;">func</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">_at_some_func</span><span style="color:#F8F8F0;">():</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; instance.</span><span style="color:#B2FF59;">connect</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"your_signal_name"</span><span style="color:#F8F8F0;">, self,&nbsp;</span><span style="color:yellow;">"_callback_no_args"</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; instance.</span><span style="color:#B2FF59;">connect</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"your_signal_name_with_args"</span><span style="color:#F8F8F0;">, self,&nbsp;</span><span style="color:yellow;">"_callback_args"</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span></p>
+<p><span style="color:#FF5252;">func</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">_at_some_func</span><span style="color:#F8F8F0;">():</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">emit_signal</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"your_signal_name"</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">emit_signal</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"your_signal_name_with_args"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">55</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">128</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; some_instance.</span><span style="color:#B2FF59;">emit_signal</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"some_signal"</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>       

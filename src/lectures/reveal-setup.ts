@@ -17,21 +17,9 @@ Reveal.initialize({
   margin: 0.05,
   transition: "slide", // none/fade/slide/convex/concave/zoom
   dependencies: [
-    {
-      src: "static/revealjs/plugin/markdown/marked.js",
-      condition: () => {
-        return !!document.querySelector("[data-markdown]");
-      }
-    },
-    {
-      src: "static/revealjs/plugin/markdown/markdown.js",
-      condition: () => {
-        return !!document.querySelector("[data-markdown]");
-      }
-    },
-    { src: "static/revealjs/plugin/search/search.js", async: true },
-    { src: "static/revealjs/plugin/zoom-js/zoom.js", async: true },
-    { src: "static/revealjs/plugin/notes/notes.js", async: true }
+    { src: "./static/revealjs/plugin/search/search.js", async: true },
+    { src: "./static/revealjs/plugin/zoom-js/zoom.js", async: true },
+    { src: "./static/revealjs/plugin/notes/notes.js", async: true }
   ]
 });
 
@@ -75,6 +63,16 @@ let animatedSvgWatcher = (evt: any) => {
     }
   }
 };
+
+
+// prepare print style if there is print-pdf in the query string
+if(window.location.search.match( /print-pdf/gi )) {
+  let link = document.createElement( 'link' );
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = './static/revealjs/css/print/pdf.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
 
 // do not animate SVGs for mobile devices
 Reveal.addEventListener( 'ready', animatedSvgWatcher, false);

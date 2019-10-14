@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="108" viewBox="0 0 325 54">
+  <defs>
+    <linearGradient id="a" x1="2.491%" y1="0%" y2="91.333%">
+      <stop stop-color="#F7FAFD" offset="0%" />
+      <stop stop-color="#F7F8FA" offset="100%" />
+    </linearGradient>
+    <linearGradient id="green" x1="9.348%" x2="93.296%" y1="5.486%" y2="107.677%">
+      <stop stop-color="#00AE3A" offset="0%" />
+      <stop stop-color="#00D5AC" offset="100%" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="325" height="54" fill="url(#a)" rx="2" />
+    <path stroke="#979797" d="M53.695 53.77V.45M1.39 27.34h322.75M1.39 9.437h322.75M1.39 45.242h322.75M107.987 54.22V0M162.317 54.22V0M216.648 54.22V0M270.978 54.22V0"
+      stroke-dasharray="1,1" />
+    <path fill="url(#green)" fill-rule="evenodd" d="M325.788 46.044v.184h-55.225V10.146h-52.99v36.082H162.17V10.146h-53.197v36.082H53.197V10.146H.212V8.803h54.33v36.082h53.086V8.803h55.887v36.082h52.713V8.803h55.68v36.082h52.72V8.803h55.887v36.082h52.713V8.803h55.68v36.082H541.787v1.343h-54.225V10.146h-52.99v36.082H379.17V10.146h-53.197v36.082l-.185-.184z"
+      class="waveanim" />
+  </g>
+</svg>

@@ -2,10 +2,11 @@
   "name": "mi-aph-materials",
   "author": "Adam Vesecky",
   "scripts": {
-    "start": "node scripts/deploy.js && tsc --noEmit && parcel templates/**/*.html --out-dir build",
+    "start": "node scripts/deploy.js && tsc --noEmit && parcel templates/*.html templates/*.pug --out-dir build",
     "clean": "node scripts/clean.js",
-    "deploy": "node scripts/deploy.js && tsc --noEmit && parcel build templates/**/*.html --out-dir build --no-cache --no-source-maps",
-    "lint": "tslint --project tslint.json"
+    "deploy": "node scripts/deploy.js && tsc --noEmit && parcel build templates/*.html templates/*.pug --out-dir build --no-cache --no-source-maps",
+    "lint": "tslint --project tslint.json",
+    "clean_materials": "node scripts/clean-materials.js"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
@@ -14,7 +15,6 @@
     "tslint": "^5.20.0",
     "@types/matter-js": "^0.10.2",
     "@types/vivus": "^0.4.0"
-
   },
   "dependencies": {
     "matter-js": "^0.14.2",

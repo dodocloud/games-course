@@ -1,0 +1,23 @@
+<p><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">interface</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">ICustomMessageTarget</span><span style="color:#F8F8F0;">&nbsp;:&nbsp;</span><span style="color:#E040FB;">IEventSystemHandler</span></p>
+<p><span style="color:#F8F8F0;">{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;functions&nbsp;that&nbsp;can&nbsp;be&nbsp;called&nbsp;via&nbsp;the&nbsp;messaging&nbsp;system</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">Message1</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">Message2</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">class</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">CustomMessageTarget</span><span style="color:#F8F8F0;">&nbsp;:&nbsp;</span><span style="color:#E040FB;">MonoBehaviour</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#E040FB;">ICustomMessageTarget</span></p>
+<p><span style="color:#F8F8F0;">{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">Message1</span><span style="color:#F8F8F0;">()</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; {</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;handle&nbsp;message</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">public</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">Message2</span><span style="color:#F8F8F0;">()</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; {</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;handle&nbsp;message</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">// sending message&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">ExecuteEvents.</span><span style="color:#B2FF59;">Execute</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#E040FB;">ICustomMessageTarget</span><span style="color:#F8F8F0;">&gt;(target,&nbsp;</span><span style="color:#FFAB40;">null</span><span style="color:#F8F8F0;">, (x,y)&nbsp;</span><span style="color:#FF5252;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;x.</span><span style="color:#B2FF59;">Message1</span><span style="color:#F8F8F0;">());</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>      

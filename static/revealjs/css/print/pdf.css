@@ -38,7 +38,6 @@ html {
 
 .reveal pre code {
 	overflow: hidden !important;
-	font-family: Courier, 'Courier New', monospace !important;
 }
 
 ul, ol, div, p {
@@ -110,7 +109,7 @@ ul, ol, div, p {
 }
 
 canvas {
-	background-image: url("../../../slides/images/common/canvas_not_supported.jpg") !important;
+	background-image: url("../../../slides/bgr/canvas_not_supported.jpg") !important;
 	background-size: cover;
 }
 
@@ -191,5 +190,5 @@ h1, h2, h3, h4, blockquote {
 }
 
 .frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
-	border-image-source: url("../../../slides/images/common/frame_simple.png") !important;
+	border-image-source: url("../../../slides/bgr/frame_simple.png") !important;
 }

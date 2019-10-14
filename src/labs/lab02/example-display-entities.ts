@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 
 abstract class BaseApp extends PIXI.Application {
 
-  constructor(view: HTMLCanvasElement, transparent = false) {
+  constructor(view: HTMLCanvasElement, transparent: boolean = false) {
     super({
       view,
       transparent,

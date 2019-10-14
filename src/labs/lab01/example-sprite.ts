@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 
 
 class PixiBoot extends PIXI.Application {
-  
+
   private creature: PIXI.Sprite;
 
   constructor() {

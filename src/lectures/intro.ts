@@ -197,7 +197,7 @@ class Intro {
 
     this.progressWindow.init();
     this.progressWindow.show();
-    this.spritesheet.src = "static/intro/intro.png";
+    this.spritesheet.src = "./static/intro/intro.png";
 
     this.spritesheet.onload = () => {
       this.progressWindow.animate(() => {
@@ -247,7 +247,9 @@ class Intro {
           let spriteWidth = randSprite.w / this.config.resolution.virtualWidth; // relative size
           let position = this.config.roadParam.roadWidth / 2 + spriteScale * spriteWidth / 2 + 5;
           let leftSide = Math.random() > 0.5;
-          if (leftSide) position *= -1;
+          if (leftSide) {
+            position *= -1;
+          }
 
           sprites.push({
             sprite: randSprite,
@@ -478,7 +480,7 @@ class Intro {
   }
 
 
-  private drawTrapezoid(y1, scale1, x1, y2, scale2, x2, offsetLeft, offsetRight, color) {
+  private drawTrapezoid(y1: number, scale1: number, x1: number, y2: number, scale2: number, x2: number, offsetLeft: number, offsetRight: number, color: string) {
     const virtualWidth = this.config.resolution.virtualWidth;
     this.context.fillStyle = color;
     this.context.beginPath();

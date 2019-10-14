@@ -1,0 +1,501 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_03.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+
++header('MI-APH - Lab02', 'Lab 2: PIXI Basics', 'lab02')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab02/lab02_logo.svg
+      +title('PIXI Basics')
+    +mcontainer(bgr)(class='center-content')
+      h2 Architecture
+    +mframe(bgr, 'PixiJS')
+      .top-content.justify-right
+        canvas.w800.h600(data-example!='ExampleSprite')
+      ul
+        li Created by Mat Groves in 2013
+        li v1.0 released in 2013
+        li v2.0 released in 2014
+        li v3.0 released in 2015, multitude of improvements
+        li v4.0 released in 2016, over 100 plugins
+        li v5.0 released in 2019, brand-new core
+        li 11 contributors as of 2019
+        li production build: 346 kB of size
+        li
+          strong since v5.0, many packages are deprecated. See the comments in 
+          span.code pixi.js.d.ts
+        br
+        li
+          a(href='https://www.pixijs.com/') Main page
+        li
+          a(href='https://github.com/pixijs/pixi.js') Github
+        li
+          a(href='https://pixijs.download/dev/docs/index.html') Documentation
+        li
+          a(href='https://pixijs.io/examples') Examples
+    +mframe(bgr, 'PixiJS plugins')
+      ul
+        li
+          a(href='https://github.com/pixijs/pixi-filters') pixi-filters
+          |  - collection of custom display filters
+        li
+          a(href='https://github.com/pixijs/pixi-compressed-textures') pixi-compressed-textures
+          |  - compressed textures for retina displays
+        li
+          a(href='https://github.com/pixijs/pixi-ui') pixi-ui
+          |  - simple user interface (still WIP)
+        li
+          a(href='https://github.com/pixijs/pixi-particles') pixi-particles
+          |  - advanced particle system with an editor
+        li
+          a(href='https://github.com/pixijs/pixi-sound') pixi-sound
+          |  - WebAudio API playback library
+        li
+          a(href='https://github.com/davidfig/pixi-viewport') pixi-viewport
+          |  - highly configurable camera viewport
+        li
+          a(href='https://github.com/theGolyo/PixiTweener') PixiTweener
+          |  - simple tweener for animations
+        li
+          a(href='https://github.com/kreezii/pixi5-dragonbones') pixi5-dragonbones
+          |  - plugin for dragonbone animations
+        li
+          a(href='https://github.com/eXponenta/pixi5-svg') pixi5-svg
+          |  - svg support
+        li
+          a(href='https://github.com/knocknote/pixi-after-effects') pixi-after-effects
+          |  - support for After-Effects animations
+        li
+          a(href='https://github.com/bfanger/pixi-inspector') pixi-inspector
+          |  - Chrome DevTools for inspecting scene
+        li
+          a(href='https://github.com/cixzhang/SpritesheetGenerator') SpritesheetGenerator
+          |  - spritesheet generator
+    +mframe(bgr, 'Namespaces')
+      ul
+        li only a subset, there are over 500 classes
+      .tcenter
+        img.w70(src!='../static/slides/svg/lab02/diag_pixi_packages.svg')
+    +mframe(bgr, 'Namesapces')(class='line-s')
+      h4 systems
+      ul
+        li individual components of the rendering pipeline
+      h4 resources
+      ul
+        li resources used by BaseTexture to handle different media types
+      h4 interaction
+      ul
+        li handling of input events (keyboard, mouse, touch)
+      h4 prepare
+      ul
+        li asynchronous preparation of the rendering pipeline
+      h4 extract
+      ul
+        li render-specific functions for exporting content
+      h4 settings
+      ul
+        li customizable globals (default resolution, framerate,...)
+      h4 utils
+      ul
+        li generalized utilities
+      h4 filters
+      ul
+        li WebGL-only display filters
+    +mframe(bgr, 'Classes')(class='line-s')
+      h4 Application
+      ul
+        li PIXIJs entry class, should be extended
+      h4 Runner
+      ul
+        li
+          | alternative to signals, good for dispatching messages to many objects every frame
+      h4 State
+      ul
+        li WebGL state
+      h4 Transform
+      ul
+        li transformation entity
+      h4 Ticker
+      ul
+        li update loop
+      h4 Loader
+      ul
+        li resource loader
+      h4 Shader
+      ul
+        li helper class for GPU shaders
+      h4 Spritesheet
+      ul
+        li utility class for maintaining reference to a collection of textures
+    +mframe(bgr, 'Display entities')
+      .tcenter
+        img.w85(src!='../static/slides/svg/lab02/diag_pixi_classes.svg')
+    +mcontainer(bgr)
+      h3 Display entities
+      .frame-m.line-s
+        h4 EventEmitter
+        ul
+          li high-performance event emitter, similar to the default NodeJS emitter
+        h4 DisplayObject
+        ul
+          li base class of all renderable objects
+        h4 Container
+        ul
+          li a collection of displayable objects
+        h4 Mesh
+        ul
+          li base mesh for rendering any WebGL visuals
+        h4 Sprite
+        ul
+          li
+            | base class of all 
+            strong textured
+            |  objects
+        h4 Graphics
+        ul
+          li class for drawing primitive shapes (lines, circles, rectangles)
+        h4 ParticleContainer
+        ul
+          li very fast version of the Container for drawing lots of sprites
+        h4 BitmapText
+        ul
+          li very fast bitmap text renderer (textures are preloaded)
+    +mcontainer(bgr)
+      h3 Display entities
+      .frame-m
+        h4 Renderer
+        ul
+          li class that draws the scene onto a WebGL canvas
+        h4 BaseTexture
+        ul
+          li wrapper for texture images
+        h4 BaseRenderTexture
+        ul
+          li special texture that allows any object to be rendered to it
+        h4 CubeTexture
+        ul
+          li image/canvas/video/svg texture
+        h4 Texture
+        ul
+          li BaseTexture with metadata
+        h4 RenderTexture
+        ul
+          li RenderTexture with metadata
+    +mframe(bgr, 'Display object')(class='space-vert-l')
+      h4 Members
+      ul
+        li
+          | alpha, angle, buttonMode, cursor, filters, hitArea, interactive, localTransform, 
+          strong name
+          | , 
+          strong parent
+          | , 
+          strong pivot
+          | , 
+          strong position
+          | , renderable, 
+          strong rotation
+          | , 
+          strong scale
+          | , skew, transform, visible, worldAlpha, worldTransform, worldVisible, x,y, 
+          strong zIndex
+      h4 Methods
+      ul
+        li
+          | destroy, 
+          strong getBounds
+          | , getGlobalPosition, getLocalBounds, render, setParent, setTransform, 
+          strong toGlobal
+          | , 
+          strong toLocal
+          | , 
+          strong updateTransform
+      h4 Events
+      ul
+        li
+          | added, click, mousedown, mousemove, mouseout, mouseover, mouseup, removed, tap, touchcancel, touchend, touchmove, touchstart
+    +mcontainer(bgr)(class='center-content')
+      h2 Setup
+    +mcontainer(bgr)
+      h3 Basic application
+      .frame-m.code
+        include ../static/slides/snippets/lab02/basic_application.html
+    +mcontainer(bgr)
+      h3 Basic application
+      .frame-m
+        ul
+          li
+            | it&apos;s better to create a new class and extend 
+            strong PIXI.Application
+          li
+            | the only mandatory attribute for the super class is the 
+            strong canvas
+            |  entity
+          li other attributes:
+          .code
+            include ../static/slides/snippets/lab02/other_attributes.html
+    +mframe(bgr, 'Examples')
+      .center-content.columns-3
+        div
+          canvas.w600.h400(data-example!='ExampleConfig1')
+          ul.code
+            li transparent = false 
+            li antialias = false
+            li resolution = 1
+        div
+          canvas.w600.h400(data-example!='ExampleConfig2')
+          ul.code
+            li transparent = false
+            li antialias = true
+            li resolution = 1
+        div
+          canvas.w600.h400(data-example!='ExampleConfig3')
+          ul.code
+            li transparent = true
+            li antialias = true
+            li resolution = 0.2
+    +mcontainer(bgr)
+      h3 Ticker
+      .frame-m
+        ul
+          li PixiJS game loop
+        .code
+          include ../static/slides/snippets/lab02/pixi_game_loop.html
+    +mframe(bgr, 'Loader')
+      ul
+        li
+          | responsible for asynchronous loading of assets (fonts, images, sounds, spritesheets)
+      .code
+        include ../static/slides/snippets/lab02/loader.html
+    +mcontainer(bgr)(class='center-content')
+      h2 Positioning
+    +mframe(bgr, 'Positioning')
+      ul
+        li position, rotation, scale, zIndex
+        li
+          strong rotation
+          |  - rotation in radians
+        li
+          strong pivot
+          |  - origin of the object in px (rotation is always around the origin)
+        li
+          strong anchor
+          |  - relative origin of the object (only for Sprites)
+        li
+          strong the scale of the parent affects the units of its children
+          |  (common behavior of all gfx libraries)
+        li
+          | pivot is not affected by the scale, it always takes into account the size of the object in px
+        li
+          strong stage
+          |  is the root element of the scene graph
+        li
+          strong getBounds()
+          |  - retrieves the bounds of the object, can be used to check where the object is
+        li
+          strong toGlobal()
+          |  - calculates the global position
+        li
+          strong toLocal()
+          |  - calculates the local position relative to another point
+    +mframe(bgr, 'Positioning')
+      ul
+        li positioning of a single element
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_square_zero_rotation.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li rotation is around the origin/pivot, which is by default in the top-left corner
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_square_rotation.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li pivot also affects the offset of the location of the object
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_square_pivot_zero_rotation.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li having the pivot in the center, we can rotate the object around its center
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_square_pivot_rotation.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li the scale of parent objects affects the units of their children
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_squares_a.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li same values, yet the squares are children of the root element
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_squares_b.svg')
+    +mframe(bgr, 'Positioning')
+      ul
+        li the green and the blue square are children of the red square
+      .tcenter
+        img.h900(src!='../static/slides/svg/lab02/pos_squares_c.svg')
+    +mframe(bgr, 'Resizing and aspect ratio')
+      .columns-2.tcenter
+        div
+          img(src!='../static/slides/images/lab02/cossacks3_800x600.jpg')
+        div
+          img(src!='../static/slides/images/lab02/cossacks3_1920x1080.jpg')
+      .columns-2.tcenter
+        p Cossacks 3, 800x600 (4:3)
+        p Cossacks 3, 1920x1080 (16:9)
+    +mframe(bgr, 'Resizing and aspect ratio')
+      .columns-2.tcenter
+        div
+          img(src!='../static/slides/images/lab02/world_of_tanks_1280x1024.jpg')
+        div
+          img(src!='../static/slides/images/lab02/world_of_tanks_1360x768.jpg')
+      .columns-2.tcenter
+        p World of Tanks, 1280x1024 (5:4)
+        p World of Tanks, 1360x768 (16:9)
+    +mframe(bgr, 'Resizing and aspect ratio')
+      .columns-2.tcenter
+        div
+          img(src!='../static/slides/images/lab02/ashes_of_the_singularity_1280x1024.jpg')
+        div
+          img(src!='../static/slides/images/lab02/ashes_of_the_singularity_1920x1080.jpg')
+      .columns-2.tcenter
+        p Ashes of the singularity, 1280x1024 (5:4)
+        p Ashes of the singularity, 1920x1080 (16:9)
+    +mframe(bgr, 'Resizing and aspect ratio')
+      .columns-2.tcenter
+        div
+          img.h600(src!='../static/slides/images/lab02/hollow_knight_1280x800.jpg')
+        div
+          img.h600(src!='../static/slides/images/lab02/hollow_knight_2560x1440.jpg')
+      .columns-2.tcenter
+        p Hollow knight, 1280x800 zoomed (16:10)
+        p Hollow knight, 2560x1440 zoomed (16:9)
+    +mframe(bgr, 'Resizing and aspect ratio')
+      .columns-2.tcenter
+        div
+          img.mt100(src!='../static/slides/images/lab02/stardew_valley_1440x900.jpg')
+        div
+          img.mt100(src!='../static/slides/images/lab02/stardew_valley_2560x1440.jpg')
+      .columns-2.tcenter
+        p Stardew valley, 1440x900 (16:10)
+        p Stardew valley, 2560x1440 (16:9)
+    +mframe(bgr, 'Resizing and aspect ratio')
+      ul
+        li
+          | 3D games are in certain advantage -&gt; the aspect ratio affects the camera, the resolution affects shader sampling
+        li
+          | 2D games tend to display all textures pixel-perfect -&gt; textures for various resolutions
+        li aspect-ratio is either harcoded or it only affects the position of HUD elements
+        li
+          | Web games are more complicated as both the resolution and the aspect-ratio can be arbitrary
+        li
+          strong Simple solution
+          | : fixed aspect-ratio and fixed resolution, variable scale
+          ul
+            li by using CSS and JavaScript, we can make the canvas fill the entire screen
+            li
+              a(href='./lab02_resize.html') Example
+      .tcenter.h450
+        img(src!='../static/slides/images/lab02/aspect_ratio.png')
+    +mcontainer(bgr)(class='center-content')
+      h2 Display entities
+    +mframe(bgr, 'Sprite')
+      strong All examples are in src/labs/lab02
+      .code.mt50
+        include ../static/slides/snippets/lab02/sprite.html
+      .tcenter
+        canvas.w1000.h700(data-example!='DisplaySprite')
+    +mframe(bgr, 'Primitives')
+      ul
+        li API is similar to the Canvas API (moveTo, lineTo,...)
+      .tcenter
+        canvas.w1200.h700(data-example!='DisplayPrimitives')
+    +mframe(bgr, 'Bitmap text')
+      .code
+        include ../static/slides/snippets/lab02/bitmap_text.html
+      ul
+        li
+          | requires a converter: 
+          a(href='http://www.angelcode.com/products/bmfont/') bmfont
+          |  or 
+          a(href='https://www.bmglyph.com/') bmglyph
+        li.upside very fast rendering, changing text has no performance implications
+        li.downside we need to preload the bitmap font assets -&gt; style is static
+      .tcenter
+        canvas.w900.h400.mt50(data-example!='DisplayBitmapText')
+    +mframe(bgr, 'Regular text')
+      .code
+        include ../static/slides/snippets/lab02/regular_text.html
+      ul
+        li
+          | requires the font to be loaded via 
+          strong @font-face
+          |  in CSS
+      .tcenter
+        canvas.w900.h400.mt70(data-example!='DisplayRegularText')
+    +mframe(bgr, 'Particles')
+      .code
+        include ../static/slides/snippets/lab02/particles.html
+      ul
+        li container that speeds up rendering of a high number of objects (100+)
+        li
+          | some attributes (masking, children, filters,...) will not work on sprites in this batch
+      .tcenter
+        canvas.w1200.h500.mt70(data-example!='DisplayParticles')
+    +mframe(bgr, 'Interactivity')
+      .code
+        include ../static/slides/snippets/lab02/interactivity.html
+      .tcenter
+        canvas.w1200.h600.mt20(data-example!='DisplayButton')
+    +mframe(bgr, 'Pixel-perfect hit-test')
+      ul
+        li more of a hacky way
+        li overrides 
+            span.code Sprite.containsPoint
+            |, generates a hitmap, 1 bits per pixel of baseTexture
+      .tcenter
+        canvas.w1200.h600.mt20(data-example!='ExamplePerfectHitTest')
+    +mframe(bgr, 'Z-Index')
+      ul
+        li
+          strong sortableChildren
+          |  must be set to true for the whole subtree
+        li affects the order of children inside the container
+      .tcenter
+        canvas.w1200.h600.mt20(data-example!='DisplayZIndex')
+    +mframe(bgr, 'Sound')
+      ul
+        li
+          | requires 
+          strong pixi-sound
+          |  library (no TypeScript types)
+        li uses WebAudio API
+      .tcenter
+        canvas.w1200.h600.mt20(data-example!='ExampleSound')
+    +mframe(bgr, 'Waveforms')
+      ul
+        li WebAudio API can be used separately for advanced features (synthetic sound)
+      .waveforms-container
+        .waveforms
+          .waveform.active(data-wave='sine')
+            include ../static/slides/svg/lab02/waveform_sine.svg
+          .waveform(data-wave='square')
+            include ../static/slides/svg/lab02/waveform_square.svg
+        .waveforms
+          .waveform(data-wave='triangle')
+            include ../static/slides/svg/lab02/waveform_triangle.svg
+          .waveform(data-wave='sawtooth')
+            include ../static/slides/svg/lab02/waveform_sawtooth.svg
+        a#play.button Play
+    +mframe(bgr, 'StarField')
+      .tcenter
+        canvas.w1700.h850(data-example!='ExampleStarfield')
+
+include ./partial/footer.pug
+script(src!='../src/labs/lab02/example-waves.ts')
+script(src!='../src/labs/lab02/setup.ts')

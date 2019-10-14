@@ -1,0 +1,153 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_01.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+
++header('MI-APH - Lab01', 'Lab 1: Introduction to the Environment', 'lab01')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab01/lab01_logo.svg
+      +title('Introduction to the environment')
+    +mcontainer(bgr)(class='center-content')
+      h2 TypeScript
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Basic types
+        .code
+          include ../static/slides/snippets/lab01/basic_types.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Declarations
+        .code
+          include ../static/slides/snippets/lab01/declarations.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Functions
+        .code
+          include ../static/slides/snippets/lab01/functions.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Enumerators
+        .code
+          include ../static/slides/snippets/lab01/enumerators.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 For loop
+        .code
+          include ../static/slides/snippets/lab01/for_loop.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Crazy equality
+        .code
+          include ../static/slides/snippets/lab01/crazy_equality.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Maps
+        .code
+          include ../static/slides/snippets/lab01/maps.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Array operations
+        .code
+          include ../static/slides/snippets/lab01/array_operations.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Other constructs
+        .code
+          include ../static/slides/snippets/lab01/other_constructs.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Other constructs
+        .code
+          include ../static/slides/snippets/lab01/other_constructs_2.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Other constructs
+        .code
+          include ../static/slides/snippets/lab01/other_constructs_3.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Classes
+        .code
+          include ../static/slides/snippets/lab01/classes.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Inheritance
+        .code
+          include ../static/slides/snippets/lab01/inheritance.html
+    +mcontainer(bgr)
+      .frame-m.mt300
+        h3 Getters and setters
+        .code
+          include ../static/slides/snippets/lab01/getters_setters.html
+    +mcontainer(bgr)
+      .frame-m.mt350
+        h3 Generics
+        .code
+          include ../static/slides/snippets/lab01/generics.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Exports and imports
+        .code
+          include ../static/slides/snippets/lab01/exports_imports.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 Context binding
+        .code
+          include ../static/slides/snippets/lab01/context_binding.html
+    +mcontainer(bgr)(class='center-content')
+      h2 Environment
+    +mcontainer(bgr)
+      .frame-m.mt350
+        h3 Gitlab
+        ul
+          li
+            | Download repository from git: 
+            a(href='https://gitlab.fit.cvut.cz/svecadam/MI-APH') https://gitlab.fit.cvut.cz/svecadam/MI-APH
+          li Follow instructions in the markdown
+          li Install the environment
+          li
+            | Try out the PixiJS example in 
+            a(href='./lab01_sprite.html') lab01_sprite.html
+    +mcontainer(bgr)
+      .frame-m.mt200
+        h3 PixiJS
+        ul
+          li
+            i HTML5 Creation Engine
+          li Lightweight 2D JavaScript library
+          li Supports both Canvas API and WebGL (since 5.x.x only WebGL)
+          li Full scene graph, sprite sheets, filters, shaders,...
+          li Very similar to PhaserJS game engine (yet it&apos;s way faster)
+          li
+            | Performance test: 
+            a(href='https://themoonrat.github.io/webgl-benchmark') link
+          li
+            strong Ideal for simple games and rapid prototyping
+          br
+          li
+            a(href='https://www.pixijs.com/') Main page
+          li
+            a(href='https://github.com/pixijs/pixi.js') Github
+          li
+            a(href='https://pixijs.download/dev/docs/index.html') Documentation
+          li
+            a(href='https://pixijs.io/examples') Examples
+    +mcontainer(bgr)
+      .frame-m.mt250
+        h3 PixiJS Exercise
+        ul
+          li Create following animation
+          li
+            | Use 
+            span.code PIXI.Graphics
+        figure.h450
+          img(src!='../static/slides/images/lab01/exercise.gif')
+
+
+include ./partial/footer.pug

@@ -1,0 +1,53 @@
+<p><span style="color:#FF5252;">export</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;myConst&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FFAB40;">12345</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;default&nbsp;exports</span></p>
+<p><span style="color:#FF5252;">export</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">default</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">calculateRectangle</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(</span><span
+    style="color:#FFAB40;">width</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">length</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">)&nbsp;</span><span
+    style="color:#E040FB;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span
+    style="color:#F8F8F0;">&nbsp;width&nbsp;</span><span style="color:#FF5252;">*</span><span
+    style="color:#F8F8F0;">&nbsp;length;</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;alternative</span></p>
+<p><span style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#B2FF59;">calculateRectangle2</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(</span><span
+    style="color:#FFAB40;">width</span><span style="color:#FF5252;">:</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:#E040FB;">number</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span style="color:#FFAB40;">length</span><span
+    style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#E040FB;">number</span><span style="color:#F8F8F0;">)&nbsp;</span><span
+    style="color:#E040FB;">=&gt;</span><span style="color:#F8F8F0;">&nbsp;{&nbsp;</span><span
+    style="color:#FF5252;">...</span><span style="color:#F8F8F0;">&nbsp;}</span></p>
+<p><span style="color:#FF5252;">export</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">default</span><span style="color:#F8F8F0;">&nbsp;calculateRectangle2;&nbsp;</span><span
+    style="color:#aaa;">//&nbsp;exported&nbsp;function</span></p>
+<p><span style="color:#FF5252;">export</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">default</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">new</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">MyClass</span><span style="color:#F8F8F0;">();&nbsp;</span><span
+    style="color:#aaa;">//&nbsp;exported&nbsp;instance</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;imports</span></p>
+<p><span style="color:#FF5252;">import</span><span style="color:#F8F8F0;">&nbsp;{ PI,
+    calculateCircumference }&nbsp;</span><span style="color:#FF5252;">from</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'./src/circle'</span></p>
+<p><span style="color:#FF5252;">import</span><span style="color:#F8F8F0;">&nbsp;calculateRectangle&nbsp;</span><span
+    style="color:#FF5252;">from</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:yellow;">'./src/rectangle'</span></p>
+<p><span style="color:#FF5252;">import</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FFAB40;">*</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">as</span><span
+    style="color:#F8F8F0;">&nbsp;flash&nbsp;</span><span style="color:#FF5252;">from</span><span
+    style="color:#F8F8F0;">&nbsp;</span><span style="color:yellow;">'./flash-message'</span><span
+    style="color:#F8F8F0;">;&nbsp;</span><span style="color:#aaa;">// imports everything</span></p>

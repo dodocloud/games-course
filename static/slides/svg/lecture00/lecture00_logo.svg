@@ -1,0 +1,12 @@
+<svg version="1.1" class="animated inactive" id="aphLogo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+width="734.2" height="211" version="1.1" viewBox="0 0 194.26 55.827" enable-background="new 0 0 194.26 55.827" xml:space="preserve">
+  <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+  </filter>
+  <g transform="translate(-146.24 -124.69)" >
+  <path stroke="#FFFFFF" stroke-width="1" stroke-miterlimit="10" d="m188.8 125.04-41.846 55.121h21.044l22.916-30.184 14.287 18.816h-14.365l-8.631 11.368h52.584l-41.85-55.121z"/>
+  <path stroke="#FFFFFF" stroke-width="1" stroke-miterlimit="10" d="m235.1 125.04-11.75 15.475h51.417l-2e-3 -15.475z"/>
+  <path stroke="#FFFFFF" stroke-width="1" stroke-miterlimit="10" d="m277.44 125.04v27.585l-54.343-3e-3v7.4193l15.275 20.118h3.4614v-12.827h35.394l15.836-15.998v-26.295z"/>
+  <path stroke="#FFFFFF" stroke-width="1" stroke-miterlimit="10" d="m324.8 125.04-9.1e-4 27.607h-29.457l-17.901 18.093v9.4215h15.586v-16.684h31.773v16.684h15.344v-55.121z"/>
+  </g>
+</svg>

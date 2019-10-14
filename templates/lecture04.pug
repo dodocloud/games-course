@@ -1,0 +1,483 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_04.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+
++header('MI-APH - Lecture04', 'Lecture 4: Component Architecture II', 'lecture04')
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lecture04/lecture04_logo.svg
+      +title('Component Architecture II')
+    +mcontainer(bgr)(class='center-content')
+      h2 Game architectures summary
+    +mframe(bgr, 'Object-oriented approach')
+      .tcenter
+        img.w90(src!='../static/slides/svg/lecture03/platformer_objects.svg')
+    +mcontainer(bgr)
+      h3 Object-oriented approach
+      .frame-m.importance-orange
+        .upside
+          ul
+            li simple
+            li fast prototyping from scratch
+            li low overhead
+            li easy to debug
+        .downside
+          ul
+            li hard to maintain
+            li hard to scale
+            li not flexible
+            li game objects may have features they don't need
+    +mframe(bgr, 'Component-oriented approach')
+      ul
+        li
+          | attributes are 
+          strong
+            b DATA
+          | , components are 
+          strong
+            b CODE
+          |  communicating via 
+          strong
+            b messages
+        li entity is just an empty shell
+      .tcenter
+        img.h750(src!='../static/slides/svg/lecture04/approach_component.svg')
+    +mcontainer(bgr)
+      h3 Component-oriented approach
+      .frame-m.importance-orange
+        .upside
+          ul
+            li scalable
+            li data-oriented
+            li components are easy to reuse
+            li easy to make new object types
+            li polymorphic operations for components
+        .downside
+          ul
+            li dynamic typing - everything is assembled at runtime
+            li all dependencies have to be wired together
+            li code must be written in an utterly generic way
+            li refactoring may become very difficult
+            li harder to debug
+    +mframe(bgr, 'Hybrid approach')
+      .center-content
+        img.h800(src!='../static/slides/svg/lecture04/approach_hybrid.svg')
+      ul
+        li tries to get the best of both world
+        li necessary for more complex games
+        li.downside higher coupling
+    +mcontainer(bgr)(class='center-content')
+      h2 Communication
+    +mframeOrange(bgr, 'Communication practices')
+      h4 By modifying the container object&apos;s state
+      ul
+        li e.g.: shared state machine
+        li indirect communication
+        li difficult to debug
+      h4 By direct calls
+      ul
+        li OP way
+        li fast, but increases coupling
+        li
+          | e.g.: group of components that are 
+          strong always
+          |  bound together
+      h4 By messaging systems
+      ul
+        li events and commands
+        li each component can declare interest in relevant messages
+        li
+          | slower than the direct call, but that cost is negligible in all but performance-critical code
+        li difficult to debug, messages can fall into an infinite loop
+        li can be implemented via polymorphism, arrow functions,...
+        li e.g.: game-over event
+    +mframeRed(bgr, 'Messaging system')
+      ul
+        li Components should be notified of any state change that are relevant to them
+        li
+          | Can be used for returning values (danger of 
+          strong.highlight-sec feedback deadlock
+          | )
+        li
+          strong Blind event forwarding
+          |  - an object can forward an event to another object
+        li
+          strong One handler
+          |  - 
+          strong.code.highlight-sec OnMessage()
+          |  method, implemented in each component
+        li Processing can be instant or delayed
+        li
+          strong Event Queue
+          |  - pattern for batch message processing, can post events with a delay
+      .tcenter
+        img.mt50.h350(src!='../static/slides/svg/lecture04/message.svg')
+    +mframeGreen(bgr, 'Example: Rotation component')
+      .top-content.justify-right
+        img.h600(src!='../static/slides/images/lecture04/rotation.gif')
+      .code
+        include ../static/slides/snippets/lecture04/rotation.html
+    +mframeOrange(bgr, 'Message types')
+      h4 Unicast
+      ul
+        li a component sends a message to another component
+        li in most cases this can be handled by a direct call
+        li example: kill an object
+      h4 Multicast
+      ul
+        li a) component sends a message to specific subscribers
+        li b) component sends a message to all objects that meet specific criteria
+        li example: notify all nearby units that an enemy has entered the area
+        li example: a unit was destroyed -&gt; notify everyone interested
+      h4 Broadcast
+      ul
+        li rarely used (observer pattern doesn't stick to it)
+        li usually for System-Entities communication
+        li example: level completed, game over, player died
+    +mframeGreen(bgr, 'Example: Messages')
+      .bottom-content.justify-right
+        figure
+          img.h700(src!='../static/slides/images/lecture04/downwell.gif')
+          p Downwell
+      h4 Engine messages
+      ul
+        li game object state changed
+        li game object added
+        li game object removed
+        li game paused
+        li animation ended
+        li collision occurred
+      h4 Game messages
+      ul
+        li gem collected
+        li enemy spawned
+        li player hit
+        li enemy died
+        li level completed
+    +mframe(bgr, 'Example: Atomic GE Event passing')(class='code')
+      include ../static/slides/snippets/lecture04/atomic_ge_event_passing.html
+    +mframe(bgr, 'Example: Godot engine signals')(class='code')
+      include ../static/slides/snippets/lecture04/godot_signals.html
+    +mframe(bgr, 'Example: Unity Messages')(class='code')
+      include ../static/slides/snippets/lecture04/unity_messages.html
+    +mframe(bgr, 'Example: Unreal Message Bus')
+      ul.line-m
+        li
+          | Facilitates communication between application parts via 
+          strong Message Passing
+        li Messages are classified into commands and events
+        li
+          | All messages are wrapped into 
+          strong IMessageContext
+          | , containing additional information
+      .tcenter
+        img.mt60.h400(src!='../static/slides/svg/lecture04/unreal_message.svg')
+    +mframeGreen(bgr, 'Messaging System Summary')(class="line-m")
+      .bottom-content
+        img.h400(src!='../static/slides/images/lecture04/messaging.gif')
+      ul
+        li Messages are not intended for regular processing
+        li If there is something that should run every frame, use polling or direct call
+        li
+          | Avoid expensive processing in 
+          strong.code.highlight-sec OnMessage
+          |  handler
+        li
+          strong Separate message from different layers
+          |  (e.g. collision events from game events)
+        li
+          | The issue is to decide 
+          strong who is responsible
+          |  for message handling - a unit, a group or a system?
+        li Difficult to revise the messaging architecture once it has been established
+    +mcontainer(bgr)(class='center-content')
+      h2 Component-oriented game engines
+    +mframe(bgr, 'Component-oriented game engines')
+      .bottom-content.justify-right
+        img.h500(src!='../static/slides/images/lecture04/engines.gif')
+      h4 Artemis framework
+      ul
+        li
+          a(href='https://github.com/junkdog/artemis-odb') https://github.com/junkdog/artemis-odb
+        li Java, ported to C#, ECS implementation in its essential nature
+      h4 Atomic Game Engine
+      ul
+        li
+          a(href='https://github.com/AtomicGameEngine/AtomicGameEngine') https://github.com/AtomicGameEngine/AtomicGameEngine
+        li.downside Forsaken, yet it is one of the best documented light-weight engines
+      h4 CraftyJS
+      ul
+        li
+          a(href='http://craftyjs.com/') http://craftyjs.com/
+        li compact JavaScript engine
+      h4 Unity
+      ul
+        li
+          a(href='https://unity3d.com/') https://unity3d.com/
+      h4 Unreal Engine
+      ul
+        li
+          a(href='https://www.unrealengine.com') https://www.unrealengine.com
+      h4 Godot Engine
+      ul
+        li
+          a(href='https://godotengine.org/') https://godotengine.org/
+    +mframe(bgr, 'CraftyJS')
+      ul
+        li
+          strong Open-Source JavaScript ECS library
+        li Game objects (entities) hold their state
+        li Components encapsulate behaviors
+        li Communication via event callbacks
+      .tcenter
+        img.h600(src!='../static/slides/images/lecture04/craftyjs_example.jpg')
+    +mframe(bgr, 'CraftyJS constructs')(class='code')
+      include ../static/slides/snippets/lecture04/crafty_constructs.html
+    +mframe(bgr, 'Example: Cron')
+      .bottom-content.justify-right
+        img.h500(src!='../static/slides/images/lecture04/cron.png')
+      .code
+        include ../static/slides/snippets/lecture04/cron.html
+    +mframe(bgr, 'Artemis-ODB')
+      ul
+        li
+          strong Java-based ECS framework
+        li Android, iOS, HTML5
+        li
+          strong Systems
+          |  encapsulate logic, 
+          strong components
+          |  encapsulate data
+        li Messaging via reflection or direct call
+      .tcenter
+        img.mt50.h450(src!='../static/slides/images/lecture04/little_fortune_planet.png')
+        div
+          a(href='https://github.com/DaanVanYperen/odb-little-fortune-planet')
+            small https://github.com/DaanVanYperen/odb-little-fortune-planet
+    +mframeGreen(bgr, 'Artemis-ODB elements')
+      ul
+        li
+          strong
+            b World
+          |  - container for entities, systems and components
+      .code
+        include ../static/slides/snippets/lecture04/artemis_world.html
+      ul
+        li
+          strong
+            b Entity
+          |  - container of related components
+        li
+          strong
+            b Component
+          |  - pure data class
+      .code
+        include ../static/slides/snippets/lecture04/artemis_component.html
+    +mframeGreen(bgr, 'Artemis-ODB elements')
+      ul
+        li
+          strong
+            b Aspect
+          |  - used for entity systems to tell them which components they should be interested to
+          ul
+            li
+              strong.highlight-sec.code Aspect.All(types)
+              |  - system processes entities which have all components of type Aspect
+            li
+              strong.highlight-sec.code Aspect.One(types)
+              |  - system processes entities which have at least one of the components of type Aspect
+            li
+              strong.highlight-sec.code Aspect.Exclude(types)
+              |  - system won&apos;t process entities which have at least one of the components of type Aspect
+      .code.mt50
+        include ../static/slides/snippets/lecture04/artemis_odb.html
+    +mframeGreen(bgr, 'Artemis-ODB elements')
+      .bottom-content.justify-right
+        img.h400(src!='../static/slides/images/lecture04/artemis_elements.png')
+      ul
+        li
+          strong
+            b System
+          |  - encapsulates game logic, operates on a group of entities
+      .code
+        include ../static/slides/snippets/lecture04/artemis_system.html
+      ul
+        li
+          strong
+            b Archetype
+          |  - reusable blueprint for new entities
+      .code
+        include ../static/slides/snippets/lecture04/artemis_archetype.html
+    +mframeGreen(bgr, 'Artemis-ODB elements')
+      ul
+        li
+          strong
+            b Transmuter
+          |  - transforms entity component compositions
+      .code
+        include ../static/slides/snippets/lecture04/artemis_transmuter.html
+      ul
+        li
+          strong
+            b Plugin
+          |  - provides extensions as a drop-in plugin
+      .code
+        include ../static/slides/snippets/lecture04/artemis_plugin.html
+    +mframe(bgr, 'Example: Feed the Space')
+      .bottom-content.justify-right
+        img.h400.mb250(src!='../static/slides/images/lecture04/feed_the_space.jpg')
+      .code
+        include ../static/slides/snippets/lecture04/feed_the_space.html
+      .mt150.tcenter
+        a(href='https://github.com/nanonull/Feed-the-space/') https://github.com/nanonull/Feed-the-space/
+    +mframeGreen(bgr, 'Unity')
+      ul
+        li Hybrid architecture with messaging system
+        li
+          strong MonoBehaviour
+          |  can encapsulate both data and logic
+        li
+          strong
+            b Scene
+          |  - contains environment and menu
+          ul
+            li
+              | container for 
+              strong.highlight-sec GameObject
+              |  entities
+            li
+              | positioning via 
+              strong.highlight-sec Transform
+              |  component
+        li
+          strong
+            b Prefab
+          |  - template that stores GameObject along with components and properties
+      .tcenter
+        img.h450.mt50(src!='../static/slides/images/lecture04/unity_prefab.gif')
+    +mframe(bgr, 'Example: Platformer 2D')
+      .tcenter
+        img.h800(src!='../static/slides/images/lecture04/platformer2D.jpg')
+      .tcenter
+        a(href='https://assetstore.unity.com/packages/essentials/tutorial-projects/2d-platformer-11228') LINK
+    +mframeGreen(bgr, 'Example: Platformer 2D Scene Graph')
+      .tcenter
+        img.h900(src!='../static/slides/svg/lecture04/platformer2D_scene.svg')
+    +mframe(bgr, 'Example: Platformer 2D Events')(class='code')
+      include ../static/slides/snippets/lecture04/platformer_events.html
+    +mframe(bgr, 'Example: Platformer 2D delayed invocation')(class='code')
+      include ../static/slides/snippets/lecture04/platformer_delay.html
+    +mframe(bgr, 'Godot Engine')(class='line-m')
+      ul
+        li
+          strong Open-source 2D/3D engine
+        li Visual editor, persistent live editing
+        li Platforms: iOS, Android, Windows, macOS, Linux, HTML5, Web Assembly
+        li
+          | Demo projects: 
+          a(href='https://github.com/godotengine/godot-demo-projects') https://github.com/godotengine/godot-demo-projects
+      .tcenter
+        img.h500.mt20(src!='../static/slides/images/lecture04/godot.png')
+    +mframe(bgr, 'Godot Editor')
+      .tcenter
+        img.h900(src!='../static/slides/images/lecture04/godot_editor.png')
+    +mframe(bgr, 'Example: GDScript')(class='code')
+        include ../static/slides/snippets/lecture04/gdscript.html
+    +mframe(bgr, 'Component-oriented frameworks')(class="space-vert-s line-s")
+      .bottom-content.justify-right
+        img.h500(src!='../static/slides/images/lecture04/engines.gif')
+      ul
+        li ~Libraries and frameworks built on top of existing engines
+      h4 Unity DOTS
+      ul
+        li
+          a(href="https://unity.com/dots") https://unity.com/dots
+        li multi-threaded <strong>Data-Oriented Technology Stack</strong>
+        li rests on the idea of ECS and Jobs
+      h4 EnTT
+      ul
+        li
+          a(href='https://github.com/skypjack/entt') https://github.com/skypjack/entt
+        li header-only C++ library, pure ECS
+        li used in Minecraft (at least they say so...)
+      h4 Entitas
+      ul
+        li
+          a(href='https://github.com/sschmid/Entitas-CSharp/') https://github.com/sschmid/Entitas-CSharp/
+        li Entity Component System Framework for C# and Unity
+        li ported to many other languages (Kotlin, Swift, C++, Java, Python,...)
+      h4 A-Frame
+      ul
+        li
+          a(href='https://aframe.io/') https://aframe.io/
+        li declarative component-oriented framework for virtual reality experience
+        li built on top of 
+          a(href="https://threejs.org/") Three.js
+    +mframe(bgr, 'ECSY framework')
+      .bottom-content.justify-right
+        img.w900.mb80(src="../static/slides/svg/lecture04/ecsy.svg")
+      ul
+        li
+          a(href="https://blog.mozvr.com/introducing-ecsy/") https://blog.mozvr.com/introducing-ecsy/
+        li Brand-new ECS system developped by Mozilla
+        li Implemented for 
+          a(href="https://www.babylonjs.com/") BabylonJS
+          |, 
+          a(href="https://threejs.org/") ThreeJS
+          |, also PixiJS, Phaser and HTML Canvas 
+        li Uses mutable/immutable entities and queries to collect them
+        li Work in progress, yet it looks very promising!
+      .code.mt40
+        include ../static/slides/snippets/lecture04/ecsy.html
+    +mcontainer(bgr)(class="center-content")
+      h2 Event-Passing components
+    +mframe(bgr, 'Event-passing components')
+      ul
+        li <strong>~visual programming</strong>
+        li thinks solely in terms of sending streams of data from one object to another
+        li
+          | every component has a set of input ports to which a data stream can be connected, and one or more output ports
+      .columns-2
+        figure
+          .h500
+            img(src!='../static/slides/images/lecture04/nodus.png')
+          p Nodus for Unity, deprecated
+        figure
+          .h500
+            img(src!='../static/slides/images/lecture04/unity_flowcanvas.gif')
+          p FlowCanvas for Unity
+    +mframe(bgr, 'Event-passing components')
+      figure
+        img.h650(src!='../static/slides/images/lecture04/unreal_blueprint.png')
+        p Unreal Blueprints
+    +mframe(bgr, 'Event-passing components')
+      figure
+        img.h650(src!='../static/slides/images/lecture04/puredata.png')
+        p Pure Data
+    +mframe(bgr, 'Event-passing components')
+      figure
+        img.h650(src!='../static/slides/images/lecture04/blender.png')
+        p Blender 3D
+    +mframe(bgr, 'Lecture 4 Review')
+      ul
+        li
+          b ECS(A) Pattern:
+          |  the overall behavior of a particular game object is determined by the aggregation of its components and attributes
+        li
+          b Communication approaches
+          | : modifying state, direct call, messaging systems
+        li
+          b Message types
+          | : unicast, multicast, broadcast
+      .mt250.tcenter
+        | Attributes are 
+        b DATA
+        | , components are 
+        b CODE
+// ===================================================== REVEALJS INITIALIZE =====================================================
+include ./partial/footer.pug

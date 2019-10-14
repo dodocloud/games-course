@@ -7,6 +7,22 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.4] - 2019-10-15
+### Added
+- Additional info in *.md documentation
+- Materials for lecture 4
+
+### Changed
+- All templates for lectures and labs rewritten into PUB format for better maintainability 
+- Typos in Lecture03
+- TypeScript lint config
+- Fixed wrong urls in Cordova fonts
+
+### Removed
+- Useless RevealJS presentation plugins
+- Duplicities in the building pipeline
+
+
 ## [3.3] - 2019-10-08
 ### Added
 - Materials for lecture 3

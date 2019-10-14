@@ -1,0 +1,25 @@
+<p><span style="color:#aaa;">//&nbsp;scene&nbsp;initialization</span></p>
+<p><span style="color:#F8F8F0;">Crafty.</span><span style="color:#B2FF59;">e</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'2D,&nbsp;Canvas,&nbsp;Color,&nbsp;Twoway,&nbsp;Gravity'</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; .</span><span style="color:#B2FF59;">attr</span><span style="color:#F8F8F0;">({x:&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">, y:&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">, w:&nbsp;</span><span style="color:#FFAB40;">50</span><span style="color:#F8F8F0;">, h:&nbsp;</span><span style="color:#FFAB40;">50</span><span style="color:#F8F8F0;">})</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; .</span><span style="color:#B2FF59;">color</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'#F00'</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; .</span><span style="color:#B2FF59;">twoway</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">200</span><span style="color:#F8F8F0;">)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; .</span><span style="color:#B2FF59;">gravity</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'Floor'</span><span style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;event&nbsp;binding</span></p>
+<p><span style="color:#F8F8F0;">square.</span><span style="color:#B2FF59;">bind</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"ChangeColor"</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">(</span><span style="color:#FFAB40;">eventData</span><span style="color:#F8F8F0;">){</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">color</span><span style="color:#F8F8F0;">(eventData.</span><span style="color:#40C4FF;">color</span><span style="color:#F8F8F0;">);&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">})</span></p>
+<p><span style="color:#aaa;">//&nbsp;event&nbsp;trigger</span></p>
+<p><span style="color:#F8F8F0;">square.</span><span style="color:#B2FF59;">trigger</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"ChangeColor"</span><span style="color:#F8F8F0;">,&nbsp;{color:</span><span style="color:yellow;">"blue"</span><span style="color:#F8F8F0;">});</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;custom&nbsp;component</span></p>
+<p><span style="color:#F8F8F0;">Crafty.</span><span style="color:#B2FF59;">c</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"Square"</span><span style="color:#F8F8F0;">,&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">init</span><span style="color:#F8F8F0;">:&nbsp;</span><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">addComponent</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">"2D,&nbsp;Canvas,&nbsp;Color"</span><span style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">w</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">30</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">h</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">30</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; },</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">remove</span><span style="color:#F8F8F0;">:&nbsp;</span><span style="color:#E040FB;">function</span><span style="color:#F8F8F0;">()&nbsp;{&nbsp;Crafty.</span><span style="color:#B2FF59;">log</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'Square&nbsp;was&nbsp;removed!'</span><span style="color:#F8F8F0;">);&nbsp;}</span></p>
+<p><span style="color:#F8F8F0;">})</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>

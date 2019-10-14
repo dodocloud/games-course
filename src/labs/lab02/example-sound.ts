@@ -22,7 +22,7 @@ export class ExampleSound extends PIXI.Application  {
   }
 
   init() {
-    this.sonic = PIXI.Sprite.from("./assets/lab02/sonic.png"); 
+    this.sonic = PIXI.Sprite.from("./assets/lab02/sonic.png");
     this.sonic.position.set(this.screen.width / 2, this.screen.height / 2);
     this.sonic.anchor.set(0.5);
 

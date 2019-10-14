@@ -1,0 +1,21 @@
+<p><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;Engine::</span><span style="color:#B2FF59;">RunFrame</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; Time</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;time&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Time</span><span style="color:#F8F8F0;">&gt;();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; Input</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;input&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Input</span><span style="color:#F8F8F0;">&gt;();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; Audio</span><span style="color:#FF5252;">*</span><span style="color:#F8F8F0;">&nbsp;audio&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">GetSubsystem</span><span style="color:#F8F8F0;">&lt;</span><span style="color:#40C4FF;">Audio</span><span style="color:#F8F8F0;">&gt;();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; time</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">BeginFrame</span><span style="color:#F8F8F0;">(timeStep_);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;...&nbsp;process&nbsp;input&nbsp;and&nbsp;audio</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Update</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">+=</span><span style="color:#F8F8F0;">&nbsp;timeStep_;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">++</span><span style="color:#F8F8F0;">fpsFramesSinceUpdate_;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">&gt;</span><span style="color:#F8F8F0;">&nbsp;ENGINE_FPS_UPDATE_INTERVAL) {</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fps_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;(int)(fpsFramesSinceUpdate_&nbsp;</span><span style="color:#FF5252;">/</span><span style="color:#F8F8F0;">&nbsp;fpsTimeSinceUpdate_);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fpsFramesSinceUpdate_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; &nbsp; fpsTimeSinceUpdate_&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">Render</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#B2FF59;">ApplyFrameLimit</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; time</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">EndFrame</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
