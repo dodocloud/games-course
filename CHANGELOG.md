@@ -7,6 +7,10 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.4.1] - 2019-10-16
+### Changed
+- Fixed wrong position in Lab02/24 and Lab02/25
+
 ## [3.4] - 2019-10-15
 ### Added
 - Additional info in *.md documentation
