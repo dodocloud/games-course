@@ -1,0 +1,31 @@
+<p><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;sprite&nbsp;</span><span
+    style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">new</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#40C4FF;">ECSA</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">Sprite</span><span style="color:#F8F8F0;">(</span><span
+    style="color:yellow;">'mySprite'</span><span style="color:#F8F8F0;">,&nbsp;PIXI.</span><span
+    style="color:#40C4FF;">Texture</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#B2FF59;">from</span><span style="color:#F8F8F0;">(</span><span
+    style="color:yellow;">'spritesheet'</span><span style="color:#F8F8F0;">));</span></p>
+<p><span style="color:#F8F8F0;">sprite.</span><span style="color:#40C4FF;">position</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">set</span><span style="color:#F8F8F0;">(</span><span
+    style="color:#40C4FF;">engine</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">app</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">screen</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">width</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">/</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">2</span><span
+    style="color:#F8F8F0;">,&nbsp;</span><span style="color:#40C4FF;">engine</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">app</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">screen</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">height</span><span style="color:#F8F8F0;">&nbsp;</span><span
+    style="color:#FF5252;">/</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">2</span><span
+    style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">sprite.</span><span style="color:#40C4FF;">anchor</span><span
+    style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">set</span><span style="color:#F8F8F0;">(</span><span
+    style="color:#FFAB40;">0.5</span><span style="color:#F8F8F0;">);</span></p>
+<p><span
+    style="color:#40C4FF;">engine</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">scene</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#40C4FF;">stage</span><span style="color:#F8F8F0;">.</span><span
+    style="color:#B2FF59;">asContainer</span><span style="color:#F8F8F0;">().</span><span
+    style="color:#B2FF59;">addChild</span><span style="color:#F8F8F0;">(sprite);</span></p>

@@ -3,48 +3,41 @@ doctype html
 include ./partial/header.pug
 include ./partial/title.pug
 include ./partial/containers.pug
+include ./partial/texts.pug
 
 +header('MI-APH - Lecture03', 'Lecture 3: Component Architecture I', 'lecture03')
 // ===================================================== SLIDES =====================================================
 .reveal
   .slides
+    // ============================================================
     +msection(bgr)
       .lecture-logo
         include ../static/slides/svg/lecture03/lecture03_logo.svg
       +title('Component Architecture I')
-    +mcontainer(bgr)(class='center-content')
-      h2 Game Model
-    +mcontainer(bgr)
-      .frame-quote
-        span.importance-red
-          strong Game model
-          |  is the smallest subset of the game,
-          br
-          |  determining its overall 
-          strong state
-          | .
+    // ============================================================
+    +chapter(bgr, 'Game Model')
+    // ============================================================
+    +mframe-statement(bgr, 'Game Model')
+      span.importance-red
+        strong Game model
+        |  is the smallest subset of the game,
+        br
+        |  determining its overall 
+        strong state.
+    // ============================================================
     +mframe(bgr, 'Game Model')(class='line-m')
       ul
         li
-          | Each game consists of two main parts: 
-          strong assets
-          |  and 
-          strong gameplay
+          +strtext('Each game consists of two main parts:', 'assets', 'and', 'gameplay')
         li
-          strong Gameplay
-          |  and all 
-          strong mechanics
-          |  form a 
-          strong game model
+          +strtext('', 'Gameplay', 'and all', 'mechanics', 'form a', 'game model')
         li Game model can be divided into several parts (core model, view model,...)
         li
-          strong Game
-          |  uses an 
-          strong engine
-          |  to update its state and interpret it to the player
+          +strtext('', 'Game', 'uses an', 'engine', 'to update its state and interpret it to the player')
         li With each update, the current state of the model is drawn on screen
       .tcenter
         img.w90(src!='../static/slides/svg/lecture03/model.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Various models for various purposes')
       h4 View model
       ul
@@ -62,6 +55,7 @@ include ./partial/containers.pug
       h4 AI model
       ul
         li all data that are processed by AI (navigation maps, behavioral trees,...)
+    // ============================================================
     +mframeGreen(bgr, 'Example: Super Mario Bros.')
       .top-content
         img.w50(src!='../static/slides/images/lecture03/view_mario.jpg')
@@ -69,13 +63,14 @@ include ./partial/containers.pug
         img.w30(src!='../static/slides/images/lecture03/mario_spritesheet.png')
       .top-content.t40.justify-left
         img.w80(src!='../static/slides/svg/lecture03/model_mario.svg')
-    +mcontainer(bgr)
-      .frame-quote.importance-green
-        | Core model should be designed in a way for which it can be easily 
-        br
-        | detached from other parts, simulated and tested independently.
-        br
-        strong Very difficult to achieve for complex games.
+    // ============================================================
+    +mframe-statement(bgr, 'Core Model')(class='importance-green')
+      | Core model should be designed in a way for which it can be easily 
+      br
+      | detached from other parts, simulated and tested independently.
+      br
+      strong Very difficult to achieve for complex games.
+    // ============================================================
     +mframeGreen(bgr, 'Example: Chess')
       .columns-2.center-content
         figure
@@ -84,9 +79,11 @@ include ./partial/containers.pug
         figure
           img.h600(src!='../static/slides/images/lecture03/chessmaster_11.gif')
           p Chessmaster 11 (2007)
+    // ============================================================
     +mframe(bgr, 'Example: Chess Architecture')
       .tcenter
         img.w90(src!='../static/slides/svg/lecture03/example_chess.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Chess Game Models')
       .center-content
         table
@@ -116,61 +113,76 @@ include ./partial/containers.pug
               td AI model
               td David Kittinger&apos;s engine
               td King engine
+    // ============================================================
     +mframe(bgr, 'Example: Pacman')
       .top-content.justify-left.l150.ml55.mt55
         img.w40(src!='../static/slides/svg/lecture03/example_pacman_img.svg')
       .tcenter
         img.w75(src!='../static/slides/images/lecture03/pacman.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Pacman Architecture')
       .tcenter
         img.w70(src!='../static/slides/svg/lecture03/example_pacman.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Strategy')
       figure
         img.w90.mt50(src!='../static/slides/images/lecture03/hom.jpg')
         p Heroes of Might and Magic I
+    // ============================================================
     +mframeGreen(bgr, 'Heroes of M&M 1 (Real Diagram)')
       .tcenter
         img.w100(src!='../static/slides/svg/lecture03/example_hom.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Point-and-click adventure')
       figure
         img.w80.mt20(src!='../static/slides/images/lecture03/longest_journey.jpg')
         p The Longest Journey Saga (1999-2016)
+    // ============================================================
     +mframe(bgr, 'Example: Point-and-click RPG Adventure')
       figure
         img.w90.mt20(src!='../static/slides/images/lecture03/dune.jpg')
         p Dune (1992)
+    // ============================================================
     +mframe(bgr, 'Example: Text Adventure')
       figure
         img.w55.mt20(src!='../static/slides/images/lecture03/belegost.png')
         p Belegost (1989)
+    // ============================================================
     +mframeGreen(bgr, 'Adventure Architecture')
       .tcenter
         img.w90(src!='../static/slides/svg/lecture03/example_adventure.svg')
+    // ============================================================
     +mframe(bgr, 'Adventure Events')
       .top-content.justify-left.ml55.mt60
         img.w20(src!='../static/slides/svg/lecture03/example_adventure_img.svg')
       .tcenter
         img.w65.ml60(src!='../static/slides/images/lecture03/belegost.png')
+    // ============================================================
     +mframe(bgr, 'Example: Arcade')
       figure
         img.w70.mt20(src!='../static/slides/images/lecture03/geowars.gif')
         p Geometry Wars (2004)
+    // ============================================================
     +mframeGreen(bgr, 'Arcade Architecture')
       .tcenter
         img.w80(src!='../static/slides/svg/lecture03/example_geowars.svg')
-    +mcontainer(bgr)(class='center-content')
-      h2 Object-oriented approach
+    // ============================================================
+    +chapter(bgr, 'Object-oriented approach')
+    // ============================================================
     +mframe(bgr, 'Example: Platformer')
       .bottom-content.justify-left.l10.ml60.b5
         img.w65(src!='../static/slides/svg/lecture03/example_platformer_img.svg')
       .tcenter
         img.w70.mt25(src!='../static/slides/images/lecture03/platformer.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Platformer and Objects')
       .tcenter
         img.w90(src!='../static/slides/svg/lecture03/platformer_objects.svg')
+    // ============================================================
     +mframe(bgr, 'Platformer and Scene Graph')
       .tcenter
         img.w70(src!='../static/slides/svg/lecture03/platformer_scenegraph.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Issues')
       ul
         li dragon may have an ability to use mana
@@ -180,24 +192,23 @@ include ./partial/containers.pug
         li mage may have an ability to transform himself into a dragon
         ul
           li
-            | opt. a) create a new object 
-            strong DragonMage
+            +strtext('opt. a) create a new object', 'DragonMage')
           li opt. b) add a reference to an object the mage ha transformed into
         li orc may have an ability to walk on foot
         ul
           li add more states
-        li
-          | mage may have an inventory of items affecting his abilities, items can be composed together,...
-        li
-          | we might want to add a dozen of features during the development without the necessity of rearranging the class hierarchy
+        li mage may have an inventory of items affecting his abilities, items can be composed together,...
+        li we might want to add a dozen of features during the development without the necessity of rearranging the class hierarchy
       .tcenter.mt50.fragment.fade-in
         strong
           b Not every set of relationships can be described in a directed acyclic graph
+    // ============================================================
     +mframe(bgr, 'Generalising')
       .tcenter
         img.w70(src!='../static/slides/svg/lecture03/diag_generalising.svg')
       .tcenter
         strong This may work for attributes but not for game logic
+    // ============================================================
     +mframeOrange(bgr, 'All-purpose object pattern')
       ul
         li Used in 90&apos;s
@@ -205,6 +216,7 @@ include ./partial/containers.pug
         li Lots of switches and if-checks
       .tcenter
         img.w50(src!='../static/slides/svg/lecture03/diag_allinone.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Doom2')
       .bottom-content.justify-right.b35
         img.w30(src!='../static/slides/images/lecture03/doom_a.png')
@@ -214,6 +226,7 @@ include ./partial/containers.pug
         img.w30(src!='../static/slides/images/lecture03/doom_c.png')
       .bottom-content.justify-left.l20.b10
         img.w65(src!='../static/slides/svg/lecture03/example_doom.svg')
+    // ============================================================
     +mframe(bgr, 'Issues of object-oriented approach')(class='line-m')
       ul
         li
@@ -223,43 +236,41 @@ include ./partial/containers.pug
         li
           strong Inheritance is insufficient relation for relationship modelling
         li
-          | We need to use composition. And that&apos;s where the 
-          strong component architecture
-          |  takes place.
+          +strtext('We need to use composition. And that\'s where the', 'component architecture', 'takes places.')
       .tcenter.mt20
         img.w20(src!='../static/slides/svg/lecture03/rubik_cube.svg')
-    +mcontainer(bgr)
-      h3 Object-oriented approach summary
-      .frame-m.importance-orange
-        .upside
-          ul
-            li simple
-            li fast prototyping from scratch
-            li low overhead
-            li easy to debug
-        .downside
-          ul
-            li hard to maintain
-            li hard to scale
-            li not flexible
-            li game objects may have features they don&apos;t need
-    +mcontainer(bgr)(class='center-content')
-      h2 Component-oriented approach
+    // ============================================================
+    +mframe-m(bgr, 'Object-oriented approach summary')(class='importance-orange')
+      .upside
+        ul
+          li simple
+          li fast prototyping from scratch
+          li low overhead
+          li easy to debug
+      .downside
+        ul
+          li hard to maintain
+          li hard to scale
+          li not flexible
+          li game objects may have features they don&apos;t need
+    // ============================================================
+    +chapter(bgr, 'Component-oriented approach')
+    // ============================================================
     +mframeRed(bgr, 'Component')
       ul
+        li A unit of composition with specified interfaces and explicit context dependencies
         li
-          | A unit of composition with specified interfaces and explicit context dependencies
-        li
-          | components are basically 
-          strong plug-and-play objects
+          +strtext('components are basically', 'plug-and-play objects')
         li prefers composition over inheritance
         li it is not about how to organize your models but how to tie them up
       .tcenter
         img.w60.mt80(src!='../static/slides/svg/lecture03/component.svg')
+    // ============================================================
     +mframe(bgr, 'Component')
       .tcenter
         img.w55(src!='../static/slides/images/lecture03/factorio_robotrainstation.gif')
         p Linked together, components get things done
+    // ============================================================
     +mframeOrange(bgr, 'Architectures')
       .bottom-content.justify-right
         img.w30(src!='../static/slides/images/lecture03/boxes.png')
@@ -272,45 +283,34 @@ include ./partial/containers.pug
       ul
         li each game object is represented in runtime by a single class instance
         li
-          | early games: 
-          strong Thief: The Dark Project (1998), Dungeon Siege (2002)
+          +strtext("Early games:", "Thief: The Dark Project (1998), Dungeon Siege (2002)")
       h4 Property-centric
       ul
         li each game object is represented only by a unique id
         li cache-friendly (components are stored contiguously in memory)
         li identifiers: integer, string, hashed string,...
         li
-          | early games: 
-          strong Deus Ex 2 (2003)
-    +mcontainer(bgr)
-      h3 Architectures
-      .frame-m
-        .code
-          include ../static/slides/snippets/lecture03/architectures.html
+          +strtext('early game:', 'Deus Ex 2 (2003)')
+    // ============================================================
+    +mframe-m(bgr, 'Architectures')(class='code')
+      include ../static/slides/snippets/lecture03/architectures.html
+    // ============================================================
     +mframeRed(bgr, 'ECS/ECSA pattern')
       ul
         li
           strong ECS+A - Entity-component-system + attribute
         li game object is just a container for data and logic
         li
-          | can be easily integrated into 
-          strong scene graph
+          +strtext('can be easily integrated into', 'scene graph')
       .tcenter
         img.w40.mt50(src!='../static/slides/svg/lecture03/diag_ecsa.svg')
-    +mcontainer(bgr)
-      h3 ECS/ECSA PATTERN
-      .frame-quote
-        p.importance-red
-          | The overall 
-          strong behavior
-          |  of a particular game object is 
-          strong fully determined
-          br
-          |  by the 
-          strong aggregation
-          |  of its 
-          strong components
-          |  (and attributes).
+    // ============================================================
+    +mframe-statement(bgr, 'ECS/ECSA PATTERN')
+      p.importance-red
+        +strtext('The overall', 'behavior', 'of a particular game object is', 'fully determined')
+        br
+        +strtext(' by the', 'aggregation', 'of its', 'components', '(and attributes).')
+    // ============================================================
     +mframeOrange(bgr, 'Terms')(class='line-s')
       h4 Entity (GameObject)
       ul
@@ -333,6 +333,7 @@ include ./partial/containers.pug
       h4 Command
       ul
         li type of a message; something we want to happen (usually a multicast or a unicast)
+    // ============================================================
     +mframeGreen(bgr, 'ECSA Pattern')(class='line-m')
       ul
         li For some implementations, <strong>components</strong> contain data and <strong>systems</strong> contain logic 
@@ -340,23 +341,30 @@ include ./partial/containers.pug
         li There is no clear definition. The important thing is that data and logic are treated separately
       .tcenter
         img.w55.mt30(src!='../static/slides/images/lecture03/transport_tycoon.gif')
+    // ============================================================
     +mframe(bgr, 'Example: ECSA')
       .top-content.justify-left.l400.t15
         img.w65(src!='../static/slides/images/lecture03/components_jazz.jpg')
       .center-content
         img.w100(src!='../static/slides/svg/lecture03/components_jazz.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: ECSA Architecture')
       .tcenter
         img.w75(src!='../static/slides/svg/lecture03/arch_ecsa.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Atomic GE Base Class')(class='code')
       include ../static/slides/snippets/lecture03/atomic_ge_base_class.html
+    // ============================================================
     +mframeGreen(bgr, 'Example: Atomic GE Base Object')(class='code')
       include ../static/slides/snippets/lecture03/atomic_ge_base_object.html
+    // ============================================================
     +mframeGreen(bgr, 'Example: Unity Game Object')(class='code')
       include ../static/slides/snippets/lecture03/unity_game_object.html
+    // ============================================================
     +mframeGreen(bgr, 'Unity Architecture')
       .tcenter
         img.w90(src!='../static/slides/svg/lecture03/arch_unity.svg')
+    // ============================================================
     +mframe(bgr, 'Game Components')
       .center-content
         img(src!='../static/slides/images/common/bulb_green&8.png')
@@ -372,20 +380,20 @@ include ./partial/containers.pug
         p Healthbar
         p TrapController
         p
-    +mcontainer(bgr)(class='center-content')
-      h2 Examples
+    // ============================================================
+    +chapter(bgr, 'Examples')
+    // ============================================================
     +mframeGreen(bgr, 'Pacman')
       .tcenter
         img.h900(src!='../static/slides/svg/lecture03/scene_pacman.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Pacman')
       h4 Stage
       ul
         li parent of all game objects
         li renders all static objects
         li
-          | all components responsible for more than one object should be attached to some of their parents (e.g. 
-          strong EmptyObject
-          |  in Unity as a group element)
+          +strtext('all components responsible for more than one object should be attached to some of their parents (e.g.', 'EmptyObject', 'in Unity as a group element).')
       h4 Maze
       ul
         li model of the maze, contains location of dots, power-pellets etc.
@@ -399,8 +407,8 @@ include ./partial/containers.pug
       h4 PacmanBehavior
       ul
         li
-          | controls movement of the pacman using the 
-          strong InputManager
+          +strtext('controls movement of the pacman using the', 'InputManager')
+    // ============================================================
     +mframeGreen(bgr, 'Where is the game model?')
       ul
         li The question is: is the scene graph a reflecting <strong>mirror</strong>, a <strong>stage</strong> or both?
@@ -425,55 +433,58 @@ include ./partial/containers.pug
             li we can apply physics and AI to one subtree and render it in another one
             li the engine must support this approach
             li we need to sync several subtrees of the scene graph
+    // ============================================================
     +mframe(bgr, 'Platformer')
       .tcenter
         img.h900(src!='../static/slides/images/lecture03/platformer.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Platformer')
       .tcenter
         img.h900(src!='../static/slides/svg/lecture03/scene_platform.svg')
+    // ============================================================
     +mframe(bgr, 'Paratrooper')
       .tcenter
         img.h700.mt100(src!='../static/slides/images/lecture03/paratrooper.gif')
+    // ============================================================
     +mframeGreen(bgr, 'Paratrooper')
         .tcenter
           img.h900(src!='../static/slides/svg/lecture03/scene_paratrooper.svg')
+    // ============================================================
     +mframe(bgr, 'Driving game')
       .columns-2
         .tcenter
           img.h800.mt20(src!='../static/slides/images/lecture03/driver.gif')
         .tcenter
           img.h900(src!='../static/slides/images/lecture03/driver_2.png')
+    // ============================================================
     +mframe(bgr, 'Driving game')
       .tcenter
         img.h900(src!='../static/slides/svg/lecture03/scene_driver.svg')
-    +mcontainer(bgr)
-      h3 Component-oriented approach summary
-      .frame-m.importance-orange
-        .upside
-          ul
-            li scalable
-            li data-oriented
-            li components are easy to reuse
-            li easy to make new object types
-            li polymorphic operations for components
-        .downside
-          ul
-            li dynamic typing - everything is assembled at runtime
-            li all dependencies have to be wired together
-            li code must be written in an utterly generic way
-            li refactoring may become very difficult
-            li harder to debug
+    // ============================================================
+    +mframe-m(bgr, 'Component-oriented approach summary')(class='importance-orange')
+      .upside
+        ul
+          li scalable
+          li data-oriented
+          li components are easy to reuse
+          li easy to make new object types
+          li polymorphic operations for components
+      .downside
+        ul
+          li dynamic typing - everything is assembled at runtime
+          li all dependencies have to be wired together
+          li code must be written in an utterly generic way
+          li refactoring may become very difficult
+          li harder to debug
+    // ============================================================
     +mframe(bgr, 'Lecture 3 Review')
       ul
         li
-          b Game Models:
-          |  view model, networking model, core model, physics, AI model
+          +btext('', 'Game Models:', 'view model, networking model, core model, physics, AI model')
         li
-          b Architectures:
-          |  monolithic, object-centric, property-centric
+          +btext('', 'Architectures:', 'monolithic, object-centric, property-centric')
         li
-          b ECSA Pattern:
-          |  the overall behavior of a particular game object is determined by the aggregation of its components (and attributes)
+          +btext('', 'ECSA Pattern:', 'the overall behavior of a particular game object is determined by the aggregation of its components (and attributes)')
         h4 &nbsp;
         b.mt50 Terms
         ul
@@ -484,5 +495,10 @@ include ./partial/containers.pug
           li Message - method call replacement
           li Event - a message informing what happened
           li Command - a message ordering what should happen
-// ===================================================== REVEALJS INITIALIZE =====================================================
+    // ============================================================
+    +gbquote(bgr, 'It ain\'t no secret I didn\'t get these scars falling over in church', 'Red Dead Redemption')(class="w50")
+
+
 include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
 
 class PixiBoot extends PIXI.Application {
@@ -7,14 +7,14 @@ class PixiBoot extends PIXI.Application {
 
   constructor() {
     super({
-      view: <HTMLCanvasElement>document.getElementById("gameCanvas"),
+      view: <HTMLCanvasElement>document.getElementById('gameCanvas'),
       backgroundColor: 0x000000,
       width: 800,
       height: 450
     });
 
     // load a sprite
-    this.creature = PIXI.Sprite.from("./assets/lecture01/crash.png");
+    this.creature = PIXI.Sprite.from('./assets/lecture01/crash.png');
     // set anchor to the center
     this.creature.anchor.set(0.5);
     // set position to the center of the screen

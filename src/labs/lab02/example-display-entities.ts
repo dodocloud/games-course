@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
 abstract class BaseApp extends PIXI.Application {
 
@@ -24,19 +24,19 @@ abstract class BaseApp extends PIXI.Application {
 
 export class DisplaySprite extends BaseApp {
   sonic: PIXI.Sprite;
+  tint = 0;
+
   constructor(view: HTMLCanvasElement) {
     super(view, true);
   }
 
   init() {
-    let texture = PIXI.Texture.from("./assets/lab02/sonic.png");
+    let texture = PIXI.Texture.from('./assets/lab02/sonic.png');
     this.sonic = new PIXI.Sprite(texture); // or PIXI.Sprite.from(<url>)
     this.sonic.position.set(this.screen.width / 2, this.screen.height / 2);
     this.sonic.anchor.set(0.5);
     this.stage.addChild(this.sonic);
   }
-
-  tint = 0;
 
   update(deltaTime: number) {
     this.tint = (this.tint + 5) % 0xFF;
@@ -98,6 +98,7 @@ export class DisplayPrimitives extends BaseApp {
 
 export class DisplayBitmapText extends BaseApp {
   private text: PIXI.BitmapText;
+  private counter = 0;
 
   constructor(view: HTMLCanvasElement) {
     super(view);
@@ -106,7 +107,7 @@ export class DisplayBitmapText extends BaseApp {
   init() {
     this.loader.add('myFont', './assets/lab02/dosfont.fnt').load(() => {
       // Once font has been loaded, call a function that uses it
-      this.text = new PIXI.BitmapText("Pixel bitmap font", { font: { name: "PxPlus IBM VGA8", size: 80 }, align: "center" });
+      this.text = new PIXI.BitmapText('Pixel bitmap font', { font: { name: 'PxPlus IBM VGA8', size: 80 }, align: 'center' });
       this.text.position.x = this.screen.width / 2;
       this.text.position.y =  this.screen.height / 2;
       this.text.anchor = 0.5;
@@ -114,7 +115,6 @@ export class DisplayBitmapText extends BaseApp {
     });
   }
 
-  counter = 0;
   update(deltaTime: number) {
     if(this.text && this.counter++ %5 === 0) {
       if(this.text.tint === 0x555555) {
@@ -129,6 +129,7 @@ export class DisplayBitmapText extends BaseApp {
 export class DisplayRegularText extends BaseApp {
 
   private text: PIXI.Text;
+  private directionLeft = false;
 
   constructor(view: HTMLCanvasElement) {
     super(view);
@@ -143,13 +144,12 @@ export class DisplayRegularText extends BaseApp {
       strokeThickness: 5,
     });
 
-    this.text = new PIXI.Text("Regular font taken from @font-face", style);
+    this.text = new PIXI.Text('Regular font taken from @font-face', style);
     this.text.position.set(this.screen.width / 2, this.screen.height / 2);
     this.text.anchor.set(0.5);
     this.stage.addChild(this.text);
   }
 
-  directionLeft = false;
   update(deltaTime: number) {
     if(this.directionLeft) {
       this.text.position.x -= deltaTime;
@@ -167,7 +167,7 @@ export class DisplayRegularText extends BaseApp {
 export class DisplayParticles extends BaseApp {
   container: PIXI.ParticleContainer;
 
-  static particlesNum = 250;
+  private static particlesNum = 250;
 
   constructor(view: HTMLCanvasElement) {
     super(view);
@@ -179,7 +179,7 @@ export class DisplayParticles extends BaseApp {
       rotation: true, // allows to change rotation during update
     });
 
-    let texture = PIXI.Texture.from("./assets/lab02/ghost.png");
+    let texture = PIXI.Texture.from('./assets/lab02/ghost.png');
 
     for(let i=0; i< DisplayParticles.particlesNum; i++) {
       let particle = new PIXI.Sprite(texture);
@@ -203,13 +203,15 @@ export class DisplayParticles extends BaseApp {
 }
 
 export class DisplayButton extends BaseApp {
-  sonic: PIXI.Sprite;
+  private sonic: PIXI.Sprite;
+  private animRunning = false;
+
   constructor(view: HTMLCanvasElement) {
     super(view, true);
   }
 
   init() {
-    let texture = PIXI.Texture.from("./assets/lab02/sonic.png");
+    let texture = PIXI.Texture.from('./assets/lab02/sonic.png');
     this.sonic = new PIXI.Sprite(texture); // or PIXI.Sprite.from(<url>)
     this.sonic.position.set(this.screen.width / 2, this.screen.height / 2);
     this.sonic.anchor.set(0.5);
@@ -226,8 +228,6 @@ export class DisplayButton extends BaseApp {
     this.stage.addChild(this.sonic);
   }
 
-  animRunning = false;
-
   update(deltaTime: number) {
     if(this.animRunning) {
       this.sonic.rotation += deltaTime * 0.01;
@@ -238,6 +238,7 @@ export class DisplayButton extends BaseApp {
 export class DisplayZIndex extends BaseApp {
   sonic: PIXI.Sprite;
   sonic2: PIXI.Sprite;
+  counter = 0;
 
   constructor(view: HTMLCanvasElement) {
     super(view, true);
@@ -263,7 +264,6 @@ export class DisplayZIndex extends BaseApp {
     this.stage.addChild(this.sonic2);
   }
 
-  counter = 0;
   update(deltaTime: number) {
     // swap indices every 60 frames
     if(this.counter++ % 60 === 0) {

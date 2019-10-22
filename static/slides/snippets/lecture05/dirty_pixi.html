@@ -1,0 +1,22 @@
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#B2FF59;">addChild</span><span style="color:#F8F8F0;">(child)&nbsp;{</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;if&nbsp;the&nbsp;child&nbsp;has&nbsp;a&nbsp;parent&nbsp;then&nbsp;lets&nbsp;remove&nbsp;it&nbsp;as&nbsp;PixiJS&nbsp;objects&nbsp;can&nbsp;only&nbsp;exist&nbsp;in&nbsp;one&nbsp;place</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(child.</span><span style="color:#40C4FF;">parent</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; child.</span><span style="color:#40C4FF;">parent</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">removeChild</span><span style="color:#F8F8F0;">(child);</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; child.</span><span style="color:#40C4FF;">parent</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">;</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FFC000;">this.sortDirty&nbsp;=&nbsp;true;</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">...</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">emit</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'childAdded'</span><span style="color:#F8F8F0;">, child,&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">children</span><span style="color:#F8F8F0;">.</span><span style="color:#E040FB;">length</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">-</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">1</span><span style="color:#F8F8F0;">);</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp; child.</span><span style="color:#B2FF59;">emit</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'added'</span><span style="color:#F8F8F0;">,&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">);</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp;</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;child;</span></p>
+  <p><span style="color:#F8F8F0;">}</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span></p>
+  <p><span style="color:#B2FF59;">updateTransform</span><span style="color:#F8F8F0;">()&nbsp;{</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">&nbsp;(</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">sortableChildren</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">&amp;&amp;</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFC000;">this.sortDirty</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#B2FF59;">sortChildren</span><span style="color:#F8F8F0;">();</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp; }</span></p>
+  <p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">...</span></p>
+  <p><span style="color:#F8F8F0;">}</span></p>
+  

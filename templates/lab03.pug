@@ -1,0 +1,508 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_05.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lab03', 'Lab 3: Component Architecture', 'lab03')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab03/lab03_logo.svg
+      +title('Component Architecture')
+    // ============================================================
+    +chapter(bgr, 'ECSA and PIXI')
+    // ============================================================
+    +mframe(bgr, 'ECSA')
+      ul
+        li Entity - a single game entity in a scene graph
+        li Attribute - a dynamic attribute of an entity
+        li Component - a functional object attached to an entity
+        li System - a global component
+        li Message - a communication object
+      .tcenter
+        img.w40(src!='../static/slides/svg/lecture03/diag_ecsa.svg')
+    // ============================================================
+    +mframe(bgr, 'PIXI architecture')
+      .tcenter
+        img.w85(src!='../static/slides/svg/lab02/diag_pixi_classes.svg')
+    // ============================================================
+    +mframe(bgr, 'ECSA library')
+      ul
+        li a minimalist library implementing ECSA pattern with the most important amenities
+        li located in 
+          span.code.highlight-sec libs/pixi-component
+        li a few component-oriented games will be gradually put into  
+          span.code.highlight-sec src/games
+        li.mt40
+          span.highlight features:
+          ul
+            li builder
+            li scene manager
+            li bindings for PIXI objects
+            li messaging pattern
+            li reactive components
+            li states, flags and tags for objects
+            li global keyboard/pointer event handlers
+            li simple debugging window
+    // ============================================================
+    +mframe(bgr, 'Architecture')
+      .top-content.fill
+        img.w100(src!='../static/slides/svg/lab03/ecsa_architecture.svg')
+    // ============================================================
+    +mframe(bgr, 'Architecture')(class='line-s')
+      h4 PIXI.Application
+      ul
+        li PIXI application wrapper, initialized by 
+          span.code.highlight-sec Game Loop
+      h4 PIXI.Ticker
+      ul
+        li ticker used internally to update PIXI state from an explicit game loop
+      h4 GameLoop
+      ul
+        li game loop and initializer, the main 
+          span.highlight-sec entry point
+      h4 Scene
+      ul
+        li 
+          +strtext2('scene manager, provides ', 'queries over game objects', ' and manages global components')
+      h4 GameObject
+      ul
+        li a game object, contains methods for managing its state and components
+        li.highlight-sec it's a PIXI object (container, sprite,...) extended by new functions and attributes
+      h4 GameObjectProxy
+      ul
+        li proxy object that extends PIXI objects by new functions
+        li.highlight-sec used only internally
+      h4 Component
+      ul
+        li functional behavior of a game object
+        li global components (systems) are attached to the  
+          span.highlight-sec stage
+    // ============================================================
+    +mframe(bgr, 'PIXI object bindings')
+      .top-content.fill
+        img.w100(src!='../static/slides/svg/lab03/ecsa_objects.svg')
+    // ============================================================
+    +mframe(bgr,' PIXI object bindings')(class='line-m')
+      ul
+        li
+          +strtext2('instead of creating ', 'PIXI.Container, PIXI.Sprite,...', ', we can create ', 'ECSA.Container, ECSA.Sprite,... ')
+        li those objects contain the same features as their PIXI counterparts (after typecasting) + features from the component library
+        li they can be treated in the same way as regular PIXI objects
+        li
+          +strtext2('they use ', 'GameObjectProxy', ' as a provider of the new features')
+        li any functional behavior can be implemented in components, having them manipulate with game objects they are attached to
+    // ============================================================
+    +chapter(bgr, 'Step-by-step tutorial')
+    // ============================================================
+    +mframe(bgr, 'Simple setup')
+      ol
+        li import the ECSA library
+        li get the canvas
+        li call the 
+          span.code.highlight-third init 
+          |function
+        li perform all additional steps (resource loading, game model initialization,...)
+        li access the 
+          span.code.highlight-third engine.scene 
+          | object
+      ul
+        li init parameters: width, height, resolution, scene config (optional), and an indicator whether the canvas should be resized to fill the whole screen
+        div.code.mt10
+          include ../static/slides/snippets/lab03/setup.html
+    // ============================================================
+    +mframe(bgr, 'New object')
+      ul
+        li
+          span.code.highlight-third new ECSA.Sprite() 
+          | instead of 
+          span.code.highlight-sec new PIXI.Sprite()
+          ul
+            li don't use 
+              span.code.highlight-third ECSA.Sprite.from() 
+              | since it is pointing to 
+              span.code.highlight-sec PIXI.Sprite.from() 
+              | which creates PIXI objects, not objects from ECSA
+        li 
+          span.code.highlight-third engine.app 
+          | is a link to 
+          span.code.highlight-third PIXI.Application
+        li
+          span.code.highlight-third stage.asContainer().addChild() 
+          | instead of 
+          span.code.highlight-sec stage.addChild()
+          ul
+            li the stage needs to be cast to a PIXI object in order to make its attributes accessible via TypeScript intellisense
+            li in JavaScript, we would use  
+              span.code.highlight-third stage.addChild() 
+              | directly
+      div.code.mt40
+        include ../static/slides/snippets/lab03/new_object.html
+    // ============================================================
+    +mframe(bgr, 'Components')
+      ul
+        li every functional behavior will be implemented in components
+        li every component is attached to a particular game object
+        li global components are attached to the 
+          span.code.highlight-third stage
+      div.columns-2
+        div.ml20.w700
+          img.h700(src='../static/slides/svg/lab03/ecsa_component.svg')
+        div.w1200
+          ul
+            li
+              +strtext3('', 'id', ' - sequential identifier')
+            li
+              +strtext3('', 'name', ' - component name')
+            li
+              +strtext3('', 'owner', ' - pointer to the attached game object')
+            li
+              +strtext3('', 'frequency', ' - update frequency, by default it\'s each frame')
+            li
+              +strtext3('', 'removeWhenFinished', ' - removes itself, true by default')
+            li
+              +strtext3('', 'onInit()', ' - called once when attached to an object')
+            li
+              +strtext3('', 'onMessage()', ' - called when a subscribed message arrives')
+            li
+              +strtext3('', 'onUpdate()', ' - all dynamic behavior should be put in here')
+            li
+              +strtext3('', 'onRemove()', ' - called before a removal from its object')
+            li
+              +strtext3('', 'onFinish()', ' - called when ', 'finish() ', 'is invoked')
+            li
+              +strtext3('', 'subscribe()', ' - subscribes for a message of a given type')
+            li
+              +strtext3('', 'unsubscribe()', ' - unsubscribes itself')
+            li
+              +strtext3('', 'sendMessage()', ' - emits a message')
+            li
+              +strtext3('', 'finish()', ' - finishes the execution')
+    // ============================================================
+    +mframe(bgr, 'Component lifecycle')
+      ul
+        li components are not added to objects instantly but at the end of the loop
+        li components can be reused (removed from and added to another object)
+        li a component can only have one game object attached at the same time
+        li components can receive messages regardless of whether they are running or not
+        li components can't receive messages they had sent by themselves
+        li if a game object is to be removed, all of its components are finalized and removed as well 
+      div.tcenter
+        img.h600(src='../static/slides/svg/lab03/component_lifecycle.svg')
+    // ============================================================
+    +mframe(bgr, 'Simple component')
+      ol
+        li create a component class
+        li implement some of those methods: 
+          span.code.highlight-third onInit, onMessage, onRemove, onUpdate, onFinish
+        li attach the component to a game object, using either 
+          span.code.highlight-third scene.addGlobalComponent(cmp) 
+          | or 
+          span.code.highlight-third myGameObject.addComponent(cmp)
+        div.code.mt50
+          include ../static/slides/snippets/lab03/component_simple.html
+    // ============================================================
+    +mframe(bgr, 'Component for a group of objects')
+      ul
+        li the component can download all objects in its 
+          span.code.highlight-third onInit 
+          | function, assuming that no more objects will be added to the scene later on
+        div.code.mt40
+          include ../static/slides/snippets/lab03/component_group.html
+    // ============================================================
+    +mframe(bgr, 'Game Object')
+      ul
+        li 
+          span.code.highlight-third GameObject 
+          | is an 
+          span.code.highlight interface, 
+          | providing PIXI objects with additional functions
+      div.columns-2
+        div.ml20.h850
+          img.h850(src='../static/slides/svg/lab03/ecsa_game_object.svg')
+        div.w1200
+          ul
+            li
+              +strtext3('', 'id', ' - sequential identifier')
+            li
+              +strtext3('', 'name', ' - object name')
+            li
+              +strtext3('', 'stateId', ' - numeric state')
+            li
+              +strtext3('', 'pixiObj', ' - link to itself, cast to ', 'PIXI.Container')
+            li
+              +strtext3('', 'parentGameObject', ' - link to the parent object')
+            li
+              +strtext3('', 'scene', ' - link to the scene')
+            li
+              +strtext3('', 'as<container>()', ' - casts itself to a PIXI object')
+            li
+              +strtext3('', 'addComponent()', ' - inserts a new component')
+            li
+              +strtext3('', 'assignAttribute()', ' - inserts a new attribute')
+            li
+              +strtext3('', 'getAttribute()', ' - gets an attribute by its name')
+            li
+              +strtext3('', 'addTag()', ' - inserts a new tag')
+            li
+              +strtext3('', 'removeTag()', ' - removes a tag')
+            li
+              +strtext3('', 'hasFlag()', ' - returns true if given flag is set')
+            li
+              +strtext3('', 'setFlag()', ' - sets a bit-flag')
+            li
+              +strtext3('', 'remove()', ' - removes itself from the scene')
+    // ============================================================
+    +mframe-m(bgr, 'Attributes, tags, flags, states')(class='attributes')
+      div.code
+        include ../static/slides/snippets/lab03/object_functions.html
+    // ============================================================
+    +mframe(bgr, 'Scene')
+      ul
+        li 
+          span.code.highlight-third Scene 
+          | serves as a message bus and a slightly optimized query manager
+      div.columns-2(class='scene')
+        div.ml20.h800
+          img.h800(src='../static/slides/svg/lab03/ecsa_scene.svg')
+        div.w1100.smaller
+          ul
+            li
+              +strtext3('', 'app', ' - pointer to ', 'PIXI.Application')
+            li
+              +strtext3('', 'name', ' - name of the scene')
+            li
+              +strtext3('', 'stage', ' - PIXI stage cast to ', 'GameObject', ' interface')
+            li
+              +strtext3('', 'invokeWithDelay()', ' - setTimeout() alternative, functions are invoked after update()')
+            li
+              +strtext3('', 'addGlobalComponent()', ' - adds a component to the stage')
+            li
+              +strtext3('', 'assignGlobalAttribute()', ' - adds an attribute to the stage')
+            li
+              +strtext3('', 'getGlobalAttribute()', ' - gets an attribute from the stage')
+            li
+              +strtext3('', 'getObjectById()', ' - gets a game object by id')
+            li
+              +strtext3('', 'findObjectsByQuery()', ' - looks for game objects by query')
+            li
+              +strtext3('', 'findObjectsByName()', ' - looks for game objects by name')
+            li
+              +strtext3('', 'findObjectsByTag()', ' - looks for game objects by tag')
+            li
+              +strtext3('', 'findObjectsByFlag()', ' - looks for game objects by flag')
+            li
+              +strtext3('', 'findObjectsByState()', ' - looks for game objects by state')
+            li
+              +strtext3('', 'sendMessage()', ' - sends a message to components')
+            li
+              +strtext3('', 'clearScene()', ' - clears up the whole scene')
+    // ============================================================
+    +mframe(bgr, 'Scene config')
+      ul
+        li to make all queries fast, all components and objects are stored in hash-maps, sets and arrays
+        li in order not to allocate too much memory for unused features, those need to be enabled 
+      div.columns-2.mt20
+        div.code.ml40
+          include ../static/slides/snippets/lab03/scene_config.html
+        div.w1100
+          ul
+            li
+              +strtext3('', 'debugEnabled', ' - displays debugging window')
+            li
+              +strtext3('', 'flagsSearchEnabled', ' - searching by flags')
+            li
+              +strtext3('', 'statesSearchEnabled', ' - searching by states')
+            li
+              +strtext3('', 'namesSearchEnabled', ' - searching by names')
+            li
+              +strtext3('', 'tagsSearchEnabled', ' - searching by tags')
+            li
+              +strtext3('', 'notifyAttributeChanges', ' - sends a message whenever an attribute has changed')
+            li
+              +strtext3('', 'notifyFlagChanges', ' - sends a message whenever a flag has changed')
+            li
+              +strtext3('', 'notifyStateChanges', ' - sends a message whenever a state has changed')
+            li
+              +strtext3('', 'notifyTagChanges', ' - sends a message whenever a tag has changed')
+    // ============================================================
+    +mframe-m(bgr, 'Scene queries')
+      div.code.ml40
+        include ../static/slides/snippets/lab03/scene_queries.html
+    // ============================================================
+    +mframe(bgr, 'Message')
+      ul
+        li 
+          span.code.highlight-third Message 
+          | is used to communicate among components
+        li every component contains 
+          span.code.highlight-third sendMessage(action: string, data: any) 
+          | method
+        li we can also use 
+          span.code.highlight-third scene.sendMessage(msg: Message) 
+          | when sending from outside a component
+        li in order to receive messages of a given type, the component first needs to register itself via  
+          span.code.highlight-third subscribe(action)
+        li if any component sets 
+          span.code.highlight-third expired = true, 
+          | the message will not be passed any further
+      div.columns-2
+        div.ml20.h400
+          img.h400(src='../static/slides/svg/lab03/ecsa_message.svg')
+        div.w1300
+          ul
+            li
+              +strtext3('', 'action', ' - message type id')
+            li
+              +strtext3('', 'component', ' - component that has sent the message')
+            li
+              +strtext3('', 'gameObject', ' - contextual object')
+            li
+              +strtext3('', 'expired', ' - if true, won\'t be processed further')
+            li
+              +strtext3('', 'data', ' - any data payload')
+    // ============================================================
+    +mframe-m(bgr, 'Message sending')
+      ul
+        li message passing is very simple, yet it's a bit tricky to determine which components should be responsible for sending/handling of what messages
+        div.code.mt60
+          include ../static/slides/snippets/lab03/message_send.html
+    // ============================================================
+    +mframe(bgr, 'Default messages')
+      ul
+        li
+          +strtext('', 'important note: ', 'if we add a game object to the scene ', 'AFTER', ' we have added/changed attributes, components etc., the only message we will receive is ', 'OBJECT_ADDED')
+        li.mt20 we can subscribe for following messages that are sent by the 
+          span.code.highlight-third Scene:
+          ul
+            li
+              +strtext('', 'ANY', ' - gets all mesages (good for debugging)')
+            li
+              +strtext('', 'OBJECT_ADDED', ' - object has been added to the scene')
+            li
+              +strtext('', 'OBJECT_REMOVED', ' - object has been removed from the scene')
+            li
+              +strtext('', 'COMPONENT_ADDED', ' - component has been added to an object')
+            li
+              +strtext('', 'COMPONENT_REMOVED', ' - component has been removed')
+            li
+              +strtext('', 'ATTRIBUTE_ADDED', ' - attribute has been added, ', 'notifyAttributeChanges ', 'must be enabled')
+            li
+              +strtext('', 'ATTRIBUTE_CHANGED', ' - attribute has changed, ', 'notifyAttributeChanges ', 'must be enabled')
+            li
+              +strtext('', 'ATTRIBUTE_REMOVED', ' - attr. has been removed, ', 'notifyAttributeChanges ', 'must be enabled')
+            li
+              +strtext('', 'STATE_CHANGED', ' - state has changed, ', 'notifyStateChanges ', 'must be enabled')
+            li
+              +strtext('', 'FLAG_CHANGED', ' - flag has changed, ', 'notifyFlagChanges ', 'must be enabled')
+            li
+              +strtext('', 'TAG_ADDED', ' - tag has been added, ', 'notifyTagChanges ', 'must be enabled')
+            li
+              +strtext('', 'TAG_REMOVED', ' - tag has been removed, ', 'notifyTagChanges ', 'must be enabled')
+            li
+              +strtext('', 'SCENE_CLEAR', ' - scene cleared up')
+    // ============================================================
+    +chapter(bgr, 'Utilities')
+    // ============================================================
+    +mframe(bgr, 'Vector')
+      ul
+        li helper for 2D vector calculations
+        li.highlight-sec Vectors are mutable here!
+      div.mt40.tcenter
+        img.h700(src='../static/slides/svg/lab03/ecsa_vector.svg')
+    // ============================================================
+    +mframe(bgr, 'Builder')
+      ul
+        li a versatile builder for game objects
+      div.columns-2
+        div.ml20.w800
+          img.w800(src='../static/slides/svg/lab03/ecsa_builder.svg')
+        div.w1100
+          ul
+            li
+              +strtext3('', 'anchor', ' - sets an anchor')
+            li
+              +strtext3('', 'virtualAnchor', ' - sets an anchor only for calculating positions')
+            li
+              +strtext3('', 'relativePos', ' - relative position on the screen within <0,1> range')
+            li
+              +strtext3('', 'withAttribute', ' - inserts an attribute')
+            li
+              +strtext3('', 'withComponent', ' - inserts a component by passing an object or a function')
+            li
+              +strtext3('', 'withParent', ' - assigns a parent object')
+            li
+              +strtext3('', 'asContainer', ' - creates ', 'ECSA.Container')
+            li
+              +strtext3('', 'asSprite', ' - creates ', 'ECSA.Sprite')
+            li
+              +strtext3('', 'asText', ' - creates ', 'ECSA.Text')
+            li
+              +strtext3('', 'build', ' - builds a new game object')
+            li
+              +strtext3('', 'buildInto', ' - passes parameters to an existing object')
+    // ============================================================
+    +mframe(bgr, 'Builder example')
+      ul
+        li notice that in case of building multiple objects, we need to pass components via an arrow function -> this will create a new component during each building process
+        li
+          span.code.highlight-third build 
+          | function accepts one parameter - whether it should clean up its data when it's done
+      div.columns-2.mt30
+        div
+          span A simple builder
+          div.code.mt20
+            include ../static/slides/snippets/lab03/builder_example.html
+        div
+          span 4 objects by using one builder
+          div.code.mt20
+           include ../static/slides/snippets/lab03/builder_example_2.html
+    // ============================================================
+    +mframe(bgr, 'Key-Input-Component')
+      ul
+        li a simple keyboard handler that only stores currently pressed keys
+        li it doesn't send any messages, has to be manually polled 
+        div.code.mt40
+            include ../static/slides/snippets/lab03/component_input.html
+    // ============================================================
+    +mframe(bgr, 'Generic component')
+      ul
+        li a generic component that can be used for simple behavior implemented in a functional manner 
+        div.code.mt40
+          include ../static/slides/snippets/lab03/component_generic.html
+      div.tcenter.mt40
+        img.h400(src='../static/slides/svg/lab03/ecsa_generic_component.svg')
+    // ============================================================
+    +mframe(bgr, 'Chain component')
+      ul
+        li a very powerful component that works as a chain of commands
+        li similar to the Event Loop, it updates its internal queue during its own 
+          span.code.highlight-third onUpdate 
+          | method
+      div.tcenter.mt40
+        img.h700(src='../static/slides/svg/lab03/ecsa_chain_component.svg')
+    // ============================================================
+    +mframe(bgr, 'Chain component example')
+      div.code.mt40
+        include ../static/slides/snippets/lab03/component_chaining.html
+    // ============================================================
+    +mframe(bgr, 'Exercise')
+      ul
+        li go to 
+          a(href='./lab03_squares.html') lab03_squares.html
+        li open 
+          span.code.highlight-third src/labs/lab03/squares.ts 
+          | in your editor 
+        li using components and the messaging system, implement the animation below
+      div.tcenter.mt40
+        img.h600(src='../static/slides/images/lab03/exercise.gif')
+
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

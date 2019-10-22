@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
 class HitTestSprite extends PIXI.Sprite {
 
@@ -118,7 +118,7 @@ export class ExamplePerfectHitTest extends PIXI.Application {
       view,
     });
 
-    this.creature = new HitTestSprite(PIXI.Texture.from("./assets/lab02/sonic.png"));
+    this.creature = new HitTestSprite(PIXI.Texture.from('./assets/lab02/sonic.png'));
     this.creature.anchor.set(0.5);
     this.creature.x = this.screen.width / 2;
     this.creature.y = this.screen.height / 2;

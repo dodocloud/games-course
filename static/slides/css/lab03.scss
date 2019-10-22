@@ -1,0 +1,23 @@
+@import "./fonts.scss";
+
+.reveal {
+
+  .frame-statement,
+  .frame-s,
+  .frame-m,
+  .frame {
+    border-image-source: url("../images/common/frame_orange.png");
+  }
+
+  .attributes {
+    .code p {
+      line-height: 40px;
+    }
+  }
+
+  .scene {
+    .smaller {
+      font-size: 34px;
+    }
+  }
+}

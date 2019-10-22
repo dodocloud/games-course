@@ -1,0 +1,20 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+  .frame {
+    border-image-source: url("../images/common/frame_orange.png"); 
+  }
+
+  .separation .code * {
+    line-height: 32px !important;
+  }
+
+  .builder .code * {
+    line-height: 34px;
+  }
+
+  .entities {
+    line-height: 50px;
+  }
+}

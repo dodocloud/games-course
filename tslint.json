@@ -15,17 +15,28 @@
 		"curly": true,
 		"eofline": false,
 		"forin": true,
-		"indent": [true, 4],
+		"indent": [true, "spaces", 2],
 		"interface-name": false,
 		"jsdoc-format": true,
 		"only-arrow-functions": true,
 		"label-position": true,
 		"label-undefined": true,
 		"max-line-length": [false, 140],
-		"member-ordering": [false,
-			 "public-before-private",
-			 "static-before-instance",
-			 "variables-before-functions"
+		"member-ordering": [
+			true,
+			{
+				"order": [
+					"public-static-field",
+					"public-instance-field",
+					"private-static-field",
+					"private-instance-field",
+					"public-constructor",
+					"private-constructor",
+					"public-instance-method",
+					"protected-instance-method",
+					"private-instance-method"
+				]
+			}
 		],
 		"no-any": false,
 		"no-arg": true,
@@ -61,7 +72,7 @@
 			"check-open-brace",
 			"check-whitespace"
 		],
-		"quotemark": [false, "double"],
+		"quotemark": [true, "single"],
 		"radix": false,
 		"semicolon": true,
 		"triple-equals": [true, "allow-null-check"],

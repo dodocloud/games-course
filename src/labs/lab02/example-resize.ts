@@ -1,5 +1,5 @@
-import * as PIXI from "pixi.js";
-import { resizeContainer } from '../../utils';
+import * as PIXI from 'pixi.js';
+import { resizeContainer } from '../../utils/functions';
 
 class ExampleResize extends PIXI.Application {
 
@@ -14,11 +14,11 @@ class ExampleResize extends PIXI.Application {
 
     // use an asynchronous loader
     this.loader
-    .add("./assets/lab02/warrior.json")
+    .add('./assets/lab02/warrior.json')
     .load(() => { // wait for the spritesheet to be loaded
-      let sheet = this.loader.resources["./assets/lab02/warrior.json"].spritesheet;
+      let sheet = this.loader.resources['./assets/lab02/warrior.json'].spritesheet;
       // select an animation
-      let animation = new PIXI.AnimatedSprite(sheet.animations["warrior"]);
+      let animation = new PIXI.AnimatedSprite(sheet.animations['warrior']);
       animation.animationSpeed = 0.167;
       animation.loop = true;
       animation.play();
@@ -40,4 +40,4 @@ class ExampleResize extends PIXI.Application {
 }
 
 // auto-init
-new ExampleResize(document.getElementById("gameCanvas") as HTMLCanvasElement);
+new ExampleResize(document.getElementById('gameCanvas') as HTMLCanvasElement);

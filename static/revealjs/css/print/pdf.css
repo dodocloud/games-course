@@ -189,6 +189,6 @@ h1, h2, h3, h4, blockquote {
 	background-image: none !important;
 }
 
-.frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
+.frame-sticky, .frame-statement, .frame-s, .frame-m, .frame {
 	border-image-source: url("../../../slides/bgr/frame_simple.png") !important;
 }

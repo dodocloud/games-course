@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
 class BaseConfig extends PIXI.Application {
 
@@ -10,7 +10,7 @@ class BaseConfig extends PIXI.Application {
       ...options, // take the rest from the options
     });
 
-    let creature = PIXI.Sprite.from("./assets/lecture01/crash.png");
+    let creature = PIXI.Sprite.from('./assets/lecture01/crash.png');
     creature.anchor.set(0.5);
     creature.position.set(this.screen.width / 2, this.screen.height / 2);
     this.stage.addChild(creature);

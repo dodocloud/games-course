@@ -1,10 +1,5 @@
-import * as PIXI from "pixi.js";
-
-// workaround for pixi-sound library
-window.PIXI = PIXI;
-import * as PIXISound from '../../../libs/pixi-sound/pixi-sound';
-(<any>PIXI).sound = PIXISound.PIXI.sound;
-
+import * as PIXI from 'pixi.js';
+import PIXISound from 'pixi-sound';
 
 export class ExampleSound extends PIXI.Application  {
   sonic: PIXI.Sprite;
@@ -22,7 +17,7 @@ export class ExampleSound extends PIXI.Application  {
   }
 
   init() {
-    this.sonic = PIXI.Sprite.from("./assets/lab02/sonic.png");
+    this.sonic = PIXI.Sprite.from('./assets/lab02/sonic.png');
     this.sonic.position.set(this.screen.width / 2, this.screen.height / 2);
     this.sonic.anchor.set(0.5);
 
@@ -31,10 +26,10 @@ export class ExampleSound extends PIXI.Application  {
     // will display hand icon
     this.sonic.buttonMode = true;
 
-    (<any>PIXI).sound.add("sound", "./assets/lab02/sound.mp3");
+    PIXISound.add('sound', './assets/lab02/sound.mp3');
 
     this.sonic.on('pointerdown', () => {
-      (<any>PIXI).sound.play('sound');
+      PIXISound.play('sound');
     });
 
     this.stage.addChild(this.sonic);

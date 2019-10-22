@@ -3,78 +3,75 @@ doctype html
 include ./partial/header.pug
 include ./partial/title.pug
 include ./partial/containers.pug
+include ./partial/texts.pug
 
 +header('MI-APH Organization', 'Lecture 0: Organization of the course', 'lecture00')
 // ===================================================== SLIDES =====================================================
 .reveal
   .slides
+    // ============================================================
     +msection(bgr)
       .lecture-logo
         include ../static/slides/svg/lecture00/lecture00_logo.svg
       +title('Organization of the course')
+    // ============================================================
     +mcontainer(bgr)
       h3 Motivational Quotes
       .center-content
         .w85
-          blockquote
-            | Nobody in this industry knows what they are doing. We just have a gut assumption.
-            span.author Cliff Bleszinski
-          blockquote
-            | There's a belief in the game industry that working in it is a privilege, and that you should be willing to do whatever it takes to stay there.
-            span.author Emily Grace Buck
-          blockquote
-            | Games are great to work on because they are as much about art as they are science.
-            span.author Mike McShaffry
-    +mcontainer(bgr)
-      h3 Purpose of this course
-      .frame-m
-        ul.line-m
-          li Understand the difference between games and applications
-          li Understand the architecture of game engines
-          li Understand the ECS pattern
-          li Understand the basics of math and physics used in games
-          li Understand the basics of AI used in games
-          li Understand the issues of multiplayer experience
-          li Understand why do we create games (or why we should)
-          br
-          li.fragment.fade-in
-            strong Have a motivation to create a simple game that might be fun to play
-    +mcontainer(bgr)
-      h3 Course history
-      .frame.course-history
-        .columns-2
-          div
-            h4 2017
-            ul
-              li Establishment of the subject
-              li OpenFrameworks engine, C++, 4 homeworks
-              li
-                strong 47
-                |  students, 
-                strong 25
-                |  finished the course
-              li
-                strong Average score: 1.48
-            h4 2018
-            ul
-              li All slides rewritten into 16:9 ratio
-              li PixiJS library and TypeScript instead of C++
-              li Semestral work instead of homeworks
-              li All examples reimplemented into TypeScript
-              li
-                strong 50
-                |  students, 
-                strong 30
-                |  finished the course
-              li
-                strong Average score: 1.50
-            h4 2019
-            ul
-              li &#x1F631;&#x1F631;&#x1F631; Slides rewritten into HTML
-              li 50 students
-          .tright
-            img.w600(src!='../static/slides/images/lecture00/aph_01.jpg')
-            img.w600(src!='../static/slides/images/lecture00/aph_02.jpg')
+          +quote('Nobody in this industry knows what they are doing. We just have a gut assumption.', 'Cliff Bleszinski')
+          +quote('There\'s a belief in the game industry that working in it is a privilege, and that you' + 
+          'should be willing to do whatever it takes to stay there.', 'Emily Grace Buck')
+          +quote('Games are great to work on because they are as much about art as they are science.', 'Mike McShaffry')
+    // ============================================================
+    +mframe-m(bgr, 'Purpose of this course')
+      ul.line-m
+        li Understand the difference between games and applications
+        li Understand the architecture of game engines
+        li Understand the ECS pattern
+        li Understand the basics of math and physics used in games
+        li Understand the basics of AI used in games
+        li Understand the issues of multiplayer experience
+        li Understand why do we create games (or why we should)
+        br
+        li.fragment.fade-in
+          strong Have a motivation to create a simple game that might be fun to play
+    // ============================================================
+    +mframe(bgr, 'Course history')(class='course-history')
+      .columns-2
+        div
+          h4 2017
+          ul
+            li Establishment of the subject
+            li OpenFrameworks engine, C++, 4 homeworks
+            li
+              strong 47
+              |  students, 
+              strong 25
+              |  finished the course
+            li
+              strong Average score: 1.48
+          h4 2018
+          ul
+            li All slides rewritten into 16:9 ratio
+            li PixiJS library and TypeScript instead of C++
+            li Semestral work instead of homeworks
+            li All examples reimplemented into TypeScript
+            li
+              strong 50
+              |  students, 
+              strong 30
+              |  finished the course
+            li
+              strong Average score: 1.50
+          h4 2019
+          ul
+            li &#x1F631;&#x1F631;&#x1F631; Slides rewritten into HTML
+            li 50 students
+        .tright
+          img.w600(src!='../static/slides/images/lecture00/aph_01.jpg')
+          img.w600(src!='../static/slides/images/lecture00/aph_02.jpg')
+    // ============================================================
     +mcontainer(bgr)
       h3 Organization
       .organization.tcenter
@@ -94,38 +91,37 @@ include ./partial/containers.pug
           h4 Labs
           ul
             li Tuesday, 18:00, T9:301
-    +mcontainer('./static/slides/bgr/monkey_island.gif')
-      h3 Lectures
-      .frame.lectures
-        ul
-          li 01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the World of Games
-          li 02: &nbsp;&nbsp;&nbsp;&nbsp;Architecture of game engines
-          li 03: &nbsp;&nbsp;&nbsp;&nbsp;Component Architecture I
-          li 04: &nbsp;&nbsp;&nbsp;&nbsp;Component Architecture II
-          li 05: &nbsp;&nbsp;&nbsp;&nbsp;Game programming patterns
-          li 06: &nbsp;&nbsp;&nbsp;&nbsp;Math and dynamics
-          li 07: &nbsp;&nbsp;&nbsp;&nbsp;Physics
-          li 08: &nbsp;&nbsp;&nbsp;&nbsp;Graphics
-          li 09: &nbsp;&nbsp;&nbsp;&nbsp;Game AI
-          li 10: &nbsp;&nbsp;&nbsp;&nbsp;Scripting languages
-          li
-            | 11: &nbsp;&nbsp;&nbsp;&nbsp;
-            strong Day off
-          li 12: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer
-          li 13: &nbsp;&nbsp;&nbsp;&nbsp;Indie Game development
-    +mcontainer('./static/slides/bgr/monkey_island_2.gif')
-        h3 Labs
-        .frame.labs
-          ul
-            li 01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the environment
-            li 02: &nbsp;&nbsp;&nbsp;&nbsp;PixiJS basics
-            li 03: &nbsp;&nbsp;&nbsp;&nbsp;Component architecture
-            li 04: &nbsp;&nbsp;&nbsp;&nbsp;Animation, physics
-            li 05: &nbsp;&nbsp;&nbsp;&nbsp;Game AI
-            li 06: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer
-            br
-            li
-              strong Day off on 3.12.
+    // ============================================================
+    +mframe('./static/slides/bgr/monkey_island.gif', 'Lectures')(class='lectures')
+      ul
+        li 01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the World of Games
+        li 02: &nbsp;&nbsp;&nbsp;&nbsp;Architecture of game engines
+        li 03: &nbsp;&nbsp;&nbsp;&nbsp;Component Architecture I
+        li 04: &nbsp;&nbsp;&nbsp;&nbsp;Component Architecture II
+        li 05: &nbsp;&nbsp;&nbsp;&nbsp;Game programming patterns
+        li 06: &nbsp;&nbsp;&nbsp;&nbsp;Math and dynamics
+        li 07: &nbsp;&nbsp;&nbsp;&nbsp;Physics
+        li 08: &nbsp;&nbsp;&nbsp;&nbsp;Graphics
+        li 09: &nbsp;&nbsp;&nbsp;&nbsp;Game AI
+        li 10: &nbsp;&nbsp;&nbsp;&nbsp;Scripting languages
+        li
+          | 11: &nbsp;&nbsp;&nbsp;&nbsp;
+          strong Day off
+        li 12: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer
+        li 13: &nbsp;&nbsp;&nbsp;&nbsp;Indie Game development
+    // ============================================================
+    +mframe('./static/slides/bgr/monkey_island_2.gif', 'Labs')(class='labs')
+      ul
+        li 01: &nbsp;&nbsp;&nbsp;&nbsp;Introduction to the environment
+        li 02: &nbsp;&nbsp;&nbsp;&nbsp;PixiJS basics
+        li 03: &nbsp;&nbsp;&nbsp;&nbsp;Component architecture
+        li 04: &nbsp;&nbsp;&nbsp;&nbsp;Animation, physics
+        li 05: &nbsp;&nbsp;&nbsp;&nbsp;Game AI
+        li 06: &nbsp;&nbsp;&nbsp;&nbsp;Multiplayer
+        br
+        li
+          strong Day off on 3.12.
+    // ============================================================
     +mcontainer(bgr)
       h3 Assessment
       .assessment.tcenter
@@ -153,6 +149,7 @@ include ./partial/containers.pug
               strong 50
               | , to pass: 
               strong 25
+    // ============================================================
     +mcontainer(bgr)
       h3 Importance markers
       .columns-3.center-content
@@ -171,28 +168,29 @@ include ./partial/containers.pug
           .bulb-desc-red
             p Red bulb
             p An information whose acknowledgment is imperative
-    +mcontainer(bgr)
-      h3 Example
-      .frame-m.space-vert-m
-        .center-content.justify-right.t15
-          include ../static/slides/svg/lecture00/linear_interpolation.svg
-        h4.importance-green
-          | CSAA (Coverage Sample Antialiasing)
-        ul
-          li NVidia's optimization of MSAA
-          li new sample type: a sample that represents coverage
-        h4.space-vert-m.importance-orange Game Mechanics
-        ul
-          li
-            | Set of rules governing the behavior of a single game element
-        h4.space-vert-m.importance-red Linear interpolation
-        ul
-          li
-            include ../static/slides/snippets/lecture00/linear_interpolation.html
+    // ============================================================
+    +mframe-m(bgr, 'Example')(class='space-vert-m')
+      .center-content.justify-right.t15
+        include ../static/slides/svg/lecture00/linear_interpolation.svg
+      h4.importance-green
+        | CSAA (Coverage Sample Antialiasing)
+      ul
+        li NVidia's optimization of MSAA
+        li new sample type: a sample that represents coverage
+      h4.space-vert-m.importance-orange Game Mechanics
+      ul
+        li
+          | Set of rules governing the behavior of a single game element
+      h4.space-vert-m.importance-red Linear interpolation
+      ul
+        li
+          include ../static/slides/snippets/lecture00/linear_interpolation.html
+    // ============================================================
     +mcontainer(bgr)
       h3 Literature
       .center-content
         img(src!='../static/slides/images/lecture00/literature.png')
+    // ============================================================
     +mcontainer(bgr)
       h3 GDS 2019
       .center-content
@@ -201,3 +199,5 @@ include ./partial/containers.pug
 
 
 include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

@@ -12,3 +12,7 @@ mixin title(title)
     div Faculty of Information Technology
     div Department of Software Engineering
     div &copy; Adam Vesecký, MI-APH, 2019
+
+mixin chapter(bgr, chapter)
+  +mcontainer(bgr)(class="center-content")
+    h2!=chapter

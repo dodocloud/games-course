@@ -1,4 +1,4 @@
-import { resizeContainer, shuffle } from '../utils';
+import { resizeContainer, shuffle } from '../utils/functions';
 
 
 /**
@@ -64,12 +64,12 @@ class ProgressWindow {
   currProgress = 0;
 
   init() {
-    this.container = document.getElementById("progress") as HTMLElement;
-    this.progressBar = document.getElementById("progress-bar") as HTMLElement;
-    this.rest = document.getElementById("rest") as HTMLElement;
-    this.percentage = document.getElementById("percentage") as HTMLElement;
+    this.container = document.getElementById('progress') as HTMLElement;
+    this.progressBar = document.getElementById('progress-bar') as HTMLElement;
+    this.rest = document.getElementById('rest') as HTMLElement;
+    this.percentage = document.getElementById('percentage') as HTMLElement;
     resizeContainer(this.container, 640, 480);
-    window.addEventListener("resize", () => resizeContainer(this.container, 640, 480));
+    window.addEventListener('resize', () => resizeContainer(this.container, 640, 480));
   }
 
   public animate(callback: Function) {
@@ -77,7 +77,7 @@ class ProgressWindow {
     let progressNum = Math.floor(this.currProgress / 2);
     this.progressBar.innerText = this.generateStr('█', progressNum);
     this.rest.innerHTML = this.generateStr('&nbsp;', 50 - progressNum);
-    this.percentage.innerHTML = this.pad(Math.floor(this.currProgress), 2) + "%" + (Math.floor(this.currProgress) !== 100 ? "&nbsp;" : "");
+    this.percentage.innerHTML = this.pad(Math.floor(this.currProgress), 2) + '%' + (Math.floor(this.currProgress) !== 100 ? '&nbsp;' : '');
 
     if (this.currProgress >= 100) {
       callback();
@@ -86,22 +86,22 @@ class ProgressWindow {
     requestAnimationFrame(() => this.animate(callback));
   }
 
-  private pad(num: number, size: number): string {
-    let s = num + "";
-    while (s.length < size) { s = "0" + s; }
-    return s;
-  }
-
   public show() {
-    this.container.classList.remove("hide");
+    this.container.classList.remove('hide');
   }
 
   public hide() {
-    this.container.classList.add("hide");
+    this.container.classList.add('hide');
+  }
+
+  private pad(num: number, size: number): string {
+    let s = num + '';
+    while (s.length < size) { s = '0' + s; }
+    return s;
   }
 
   private generateStr(char: string, num: number): string {
-    let output = "";
+    let output = '';
     for (let i = 0; i < num; i++) {
       output += char;
     }
@@ -114,6 +114,16 @@ class Intro {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private spritesheet: HTMLImageElement = new Image();
+
+  private backgroundAlpha = 0.5;
+  private mountainsAlpha = 0.5;
+  private logoAlpha = 0.5;
+  private spritesAlpha = 0.5;
+  private linesAlpha = 0.5;
+  private gradientAlpha = 0.5;
+  private logoScale = 10;
+  private glowAnim = 0; // moutain glow animation counter
+  private initCounter = 0;
 
   private sprites = {
     background: new Sprite(0, 510, 1024, 516),
@@ -135,7 +145,7 @@ class Intro {
   };
 
   // game configuration
-  config = {
+  private config = {
     billboardFrequency: 0.1, // likelyhood of one billboard appearing in one segment
     initAnimDuration: 500, // duration of initial animation (in number of cycles! not ms)
     glowAnimDuration: 200,
@@ -160,14 +170,14 @@ class Intro {
       virtualHeight: 180 * 4
     },
     colors: {
-      bgr: "#000",
-      lines: "#36e2f8",
+      bgr: '#000',
+      lines: '#36e2f8',
       gradient: [
-        {x: 0, clr: "#00000000"},
-        {x: 0.47, clr: "#0c141f20"},
-        {x: 0.52, clr: "#d100b1"},
-        {x: 0.53, clr: "#18CAE6"},
-        {x: 0.9, clr: "#0C141F"},
+        {x: 0, clr: '#00000000'},
+        {x: 0.47, clr: '#0c141f20'},
+        {x: 0.52, clr: '#d100b1'},
+        {x: 0.53, clr: '#18CAE6'},
+        {x: 0.9, clr: '#0C141F'},
       ]
     }
   };
@@ -186,18 +196,18 @@ class Intro {
 
   init() {
     // configure canvas
-    this.intro = document.getElementById("intro") as HTMLElement;
-    this.canvas = document.getElementById("game-canvas") as HTMLCanvasElement;
+    this.intro = document.getElementById('intro') as HTMLElement;
+    this.canvas = document.getElementById('game-canvas') as HTMLCanvasElement;
     this.context = this.canvas.getContext('2d');
     // set fix size and set scale
     this.canvas.height = this.config.resolution.virtualHeight;
     this.canvas.width = this.config.resolution.virtualWidth;
     resizeContainer(this.intro, this.config.resolution.virtualWidth, this.config.resolution.virtualHeight);
-    window.addEventListener("resize", () => resizeContainer(this.intro, this.config.resolution.virtualWidth, this.config.resolution.virtualHeight));
+    window.addEventListener('resize', () => resizeContainer(this.intro, this.config.resolution.virtualWidth, this.config.resolution.virtualHeight));
 
     this.progressWindow.init();
     this.progressWindow.show();
-    this.spritesheet.src = "./static/intro/intro.png";
+    this.spritesheet.src = './static/intro/intro.png';
 
     this.spritesheet.onload = () => {
       this.progressWindow.animate(() => {
@@ -210,11 +220,11 @@ class Intro {
   }
 
   public show() {
-    this.intro.classList.remove("hide");
+    this.intro.classList.remove('hide');
   }
 
   public hide() {
-    this.intro.classList.add("hide");
+    this.intro.classList.add('hide');
   }
 
   private resetGame() {
@@ -269,15 +279,6 @@ class Intro {
     requestAnimationFrame(() => this.gameLoop());
   }
 
-  backgroundAlpha = 0.5;
-  mountainsAlpha = 0.5;
-  logoAlpha = 0.5;
-  spritesAlpha = 0.5;
-  linesAlpha = 0.5;
-  gradientAlpha = 0.5;
-  logoScale = 10;
-
-  private initCounter = 0;
 
   // Initial animation via opacity
   private initAnimation() {
@@ -439,7 +440,6 @@ class Intro {
     }
   }
 
-  glowAnim = 0; // moutain glow animation counter
 
   private drawBackground() {
     let duration = this.config.glowAnimDuration;

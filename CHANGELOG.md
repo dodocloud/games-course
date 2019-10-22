@@ -7,6 +7,20 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.5] - 2019-10-21
+### Added
+- Additional info concerning semestral works in docs/requirements.md + skeleton file
+- Materials for lecture 5 and lab 3
+- ECSA library for component architecture
+- Paratrooper game to play with
+- new dependencies in package.json -> it is required to re-run `npm install` !!
+
+### Changed
+- lint config
+
+### Removed
+- pixi-sound from libs folder, used NPM package instead
+
 ## [3.4.1] - 2019-10-16
 ### Changed
 - Fixed wrong position in Lab02/24 and Lab02/25

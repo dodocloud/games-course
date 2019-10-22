@@ -1,0 +1,22 @@
+<p><span style="color:#aaa;">//&nbsp;iterating&nbsp;inside&nbsp;out&nbsp;-&gt;&nbsp;FAST</span></p>
+<p><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">&nbsp;(i&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;to size)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">&nbsp;(j&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;to size)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">do</span><span style="color:#F8F8F0;">&nbsp;something&nbsp;</span><span style="color:#FF5252;">with</span><span style="color:#F8F8F0;">&nbsp;array[j][i]</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span></p>
+<p><span style="color:#aaa;">//&nbsp;iterating&nbsp;outside&nbsp;in&nbsp;-&gt;&nbsp;SLOW</span></p>
+<p><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">&nbsp;(i&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;to size)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">&nbsp;(j&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FFAB40;">0</span><span style="color:#F8F8F0;">&nbsp;to size)</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">do</span><span style="color:#F8F8F0;">&nbsp;something&nbsp;</span><span style="color:#FF5252;">with</span><span style="color:#F8F8F0;">&nbsp;array[i][j]</span></p>
+<br>
+<p><span style="color:#aaa;">//&nbsp;assume&nbsp;only&nbsp;50%&nbsp;active/visible&nbsp;objects</span></p>
+<p><span style="color:#B2FF59;">gameLoop</span><span style="color:#F8F8F0;">(delta,&nbsp;absolute)&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;&nbsp;</span><span style="color:#FF5252;">for</span><span style="color:#F8F8F0;">(</span><span style="color:#E040FB;">var</span><span style="color:#F8F8F0;">&nbsp;entity&nbsp;</span><span style="color:#FF5252;">in</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#40C4FF;">this</span><span style="color:#F8F8F0;">.</span><span style="color:#40C4FF;">entities</span><span style="color:#F8F8F0;">)&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#aaa;">//&nbsp;50%&nbsp;mispredictions</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">(entity.ACTIVE) {&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; entity.</span><span style="color:#B2FF59;">update</span><span style="color:#F8F8F0;">(delta,&nbsp;absolute);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">if</span><span style="color:#F8F8F0;">(entity.VISIBLE)&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; entity.</span><span style="color:#B2FF59;">draw</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; }</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>

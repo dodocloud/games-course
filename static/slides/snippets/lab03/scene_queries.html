@@ -1,0 +1,9 @@
+<p><span style="color:#E040FB;">&nbsp; &nbsp;&nbsp;let</span><span style="color:#F8F8F0;">&nbsp;droids&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;scene.</span><span style="color:#B2FF59;">findObjectsByTag</span><span style="color:#F8F8F0;">(</span><span style="color:yellow;">'droid'</span><span style="color:#F8F8F0;">);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;charged&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;scene.</span><span style="color:#B2FF59;">findObjectsByFlag</span><span style="color:#F8F8F0;">(FLAG_CHARGED);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;idle&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;scene.</span><span style="color:#B2FF59;">findObjectsByState</span><span style="color:#F8F8F0;">(STATE_IDLE);</span></p>
+<br>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">let</span><span style="color:#F8F8F0;">&nbsp;chargedIdleDroids&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;scene.</span><span style="color:#B2FF59;">findObjectsByQuery</span><span style="color:#F8F8F0;">({</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; ownerTag:&nbsp;</span><span style="color:yellow;">'droid'</span><span style="color:#F8F8F0;">,</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; ownerFlag: FLAG_CHARGED,</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; ownerState: STATE_IDLE</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; });</span></p>

@@ -122,13 +122,13 @@ body {
   /*********************************************
   * Frames
   *********************************************/
-  .frame-sticky, .frame-quote, .frame-s, .frame-m, .frame {
+  .frame-sticky, .frame-statement, .frame-s, .frame-m, .frame {
     border-image-repeat: repeat;
     border-image-slice: 117 214 129 264 fill;
     border-image-width: 117px 214px 129px 264px;
   }
 
-  .frame-sticky, .frame-quote, .frame-s, .frame-m {
+  .frame-sticky, .frame-statement, .frame-s, .frame-m {
     border-image-source: url("../images/common/frame_blue_trans.png");
   }
   
@@ -137,7 +137,7 @@ body {
     position: relative;
   }
 
-  .frame-quote, .frame-s, .frame-m {
+  .frame-statement, .frame-s, .frame-m {
     margin-left: auto;
     margin-right: auto;
   }
@@ -148,7 +148,7 @@ body {
     border-image-outset: 60px 42px 16px 74px;
   }
 
-  .frame-quote {
+  .frame-statement {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -322,9 +322,16 @@ body {
   h4.upside:before, h4.downside:before,
   p.upside:before, p.downside:before,
   li.upside:before, li.downside:before {
-    width: 60px;
+    position: relative;
+    display: inline-block;
+    width: 70px;
     height: 60px;
-    margin-left: -15px;
+    margin-left: -64px;
+    top: 16px;
+  }
+
+  li.upside:before, li.downside:before {
+    margin-left: -90px;
   }
 
   h4.upside:before, p.upside:before, li.upside:before {

@@ -30,8 +30,8 @@ h2 Lectures
       include ../static/slides/svg/lecture03/lecture03_logo_small.svg
     +contentlink('Component Architecture II', 'lecture04')
       include ../static/slides/svg/lecture04/lecture04_logo_small.svg
-
-    +lock
+    +contentlink('Game Programming Patterns', 'lecture05')
+      include ../static/slides/svg/lecture05/lecture05_logo_small.svg
     +lock
     +lock
     +lock
@@ -47,8 +47,8 @@ h2 Labs
       include ../static/slides/svg/lab01/lab01_logo_small.svg
     +contentlink('PIXI Basics', 'lab02')
       include ../static/slides/svg/lab02/lab02_logo_small.svg
-  
-    +lock
+    +contentlink('Component architecture', 'lab03')
+      include ../static/slides/svg/lab03/lab03_logo_small.svg
     +lock
     +lock
     +lock
@@ -61,7 +61,7 @@ include ./partial/links.pug
   .link-tile-group
     - var counter = 0
     - for (var x = 0; x < linkGroups.length; x++)
-      - var groupName = linkGroups[x].title
+      - var groupName = linkGroups[x].name
       - for (var y = 0; y < linkGroups[x].links.length; y++)
         - var item = linkGroups[x].links[y]
         +resourcelink(item.title, groupName, item.href, item.type, 'link_' + counter++)

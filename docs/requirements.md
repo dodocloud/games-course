@@ -15,8 +15,11 @@
 
 - in order to receive maximum points, you must prove that **some effortful work went into your solution and you made up something senseful** 
 - recommended amount of time is 50 hours of work
-- the only mandatory part is the Component Architecture that will be part of the 3rd, 4th and 5th lecture
-- you can use any additional 3rd party library (pixi-spine, matterjs, pixi-after-effects,...) yet it must be clear which part of the game you implemented on your own
+- the only mandatory part is the Component Architecture
+  - implement your game using ECS, ECSA or ECSY pattern
+  - you can either use ECSA library supplied with this project, ECSY library recently announced by MozillaReality [LINK](https://github.com/MozillaReality/ecsy), your own solution or any 3rd party component-oriented library
+  - requirements: functional behavior of the game is divided into components that communicate primarily via messaging pattern
+- you can use any additional 3rd party library (pixi-spine, matterjs, pixi-after-effects,...) for animation/physics/rendering/math support yet it must be clear which part of the game did you implement on your own
 - **maximum points: 50 (+6 bonus points)**
 - **points to pass: 25**
 - recommended topics/techniques you may choose from:
@@ -33,14 +36,15 @@
 ### Instructions for submitting
 
 - create your own repository under your username. The name should be MI-APH `gitlab.fit.cvut.cz/<username>/MI-APH`
-- fork this repo to your own project. It's recommended to postpone this step until 3rd week - this repo will contain materials for component architecture by then 
-- execute script `npm run clean_materials`, this will remove all materials, slides and other things not necessary for your semestral work
+- fork this repo to your own project
+- execute script `npm run clean_materials`, this will remove all materials, slides and other things not needed for your semestral work
+  - this script will also create `templates/index.html` and `src/my-game.ts` you can start with 
 - your repository must contain ONLY your game and a PDF file with a manual
-- the manual should contain a short **summary** of your solution, a **diagram** of the architecture of the game and a tutorial (if necessary),  it's size shouldn't exceed 2 pages!
+- the manual should contain a short **summary** of your solution, a **diagram** of the architecture of the game and a tutorial (if necessary), it's size shouldn't exceed 2 pages!
 - the diagram of the architecture is **mandatory**
-- the game must be accessed by executing only those three steps: `npm install`, `npm run` and navigate to `localhost:1234/index.html`
+- the game must be accessed by executing only those three steps: `npm install`, `npm run` and navigating to `localhost:1234/index.html`
 - when you're done, assign access permissions to the lecturer (loginname svecadam) and write him an e-mail, informing that you have finished your work
-- the deadline is set at **31.1.2020**. Please, be advised, that this deadline is crucial.
+- the deadline is set at **31.1.2020**. Please, be advised, that this deadline is crucial
 - therefore, **you can take an exam even before you finish your semestral work**
 
 ## Exam requirements
