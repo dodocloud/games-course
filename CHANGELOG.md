@@ -7,6 +7,12 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.6.1] - 2019-10-29
+
+### Changed
+- Fixed SceneConfig === null in game-loop.ts
+
+
 ## [3.6] - 2019-10-29
 ### Added
 - Materials for Lecture 6

@@ -20,6 +20,8 @@ export default class GameLoop {
     this.width = width;
     this.height = height;
 
+	sceneConfig = sceneConfig || {};
+
     // enable debug if the query string contains ?debug
     sceneConfig.debugEnabled = sceneConfig.debugEnabled || /[?&]debug/.test(location.search);
 
