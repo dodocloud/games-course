@@ -186,15 +186,25 @@ include ./partial/texts.pug
               +strtext3('', 'finish()', ' - finishes the execution')
     // ============================================================
     +mframe(bgr, 'Component lifecycle')
+      div.bottom-content.fill
+        img.h500(src='../static/slides/svg/lab03/component_lifecycle.svg')
       ul
-        li components are not added to objects instantly but at the end of the loop
-        li components can be reused (removed from and added to another object)
-        li a component can only have one game object attached at the same time
+        li components are 
+          span.highlight not added to objects instantly 
+          | but at the beginning of the loop
+        li components 
+          span.highlight can be reused 
+          | (removed from and added to another object)
+        li a component 
+          span.highlight can only have one 
+          | game object attached at the same time
         li components can receive messages regardless of whether they are running or not
         li components can't receive messages they had sent by themselves
+        li 
+          span.code.highlight Component.finish() 
+          | stops the component from execution and removes it from the game object (unless 
+          span.code removeWhenFinished == false)
         li if a game object is to be removed, all of its components are finalized and removed as well 
-      div.tcenter
-        img.h600(src='../static/slides/svg/lab03/component_lifecycle.svg')
     // ============================================================
     +mframe(bgr, 'Simple component')
       ol
@@ -473,7 +483,8 @@ include ./partial/texts.pug
     // ============================================================
     +mframe(bgr, 'Generic component')
       ul
-        li a generic component that can be used for simple behavior implemented in a functional manner 
+        li a generic component that can be used for simple behavior implemented in a functional manner
+        li message subscription and unsubscription is handled automagically
         div.code.mt40
           include ../static/slides/snippets/lab03/component_generic.html
       div.tcenter.mt40

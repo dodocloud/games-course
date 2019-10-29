@@ -370,6 +370,16 @@ body {
   /*********************************************
   * Flexbox and alignment
   *********************************************/
+  .columns-5 {
+    display: flex;
+    width: 100%;
+
+    > * {
+      flex-direction: column;
+      width: 20%;
+    }
+  }
+
   .columns-4 {
     display: flex;
     width: 100%;
@@ -456,6 +466,18 @@ body {
       height: 33.33%;  
     }
   }
+
+    /* 4x2 grid */
+    .grid42 {
+      display: flex;                      
+      flex-wrap: wrap;                    
+      justify-content: space-around;
+  
+      > * {
+        flex: 0 0 24%;                     
+        height: 50%;  
+      }
+    }
 
   /* Absolute alignment */
   .center-content, .top-content, .bottom-content {

@@ -65,4 +65,9 @@ export class LookupMap<K, T extends Lookable> {
     }
     return [];
   }
+
+  public clear() {
+    this.items.clear();
+    this.itemKeys.clear();
+  }
 }

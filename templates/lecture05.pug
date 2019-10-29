@@ -34,7 +34,7 @@ include ./partial/texts.pug
       ul
         li Web environment: Web storage (small data), IndexedDB (large data)
         li 
-          +strtext('Desktop/mobile:', 'SQLite, CastleDB, CouchDB,...')
+          +strtext('Desktop/mobile:', 'SQLite, CastleDB,...')
         li Games that don't have a multiplayer facility rarely need more than a simple database for config and save data
       h4 Save data
       ul
@@ -443,6 +443,7 @@ include ./partial/texts.pug
           span.highlight replay 
           | - allows to reproduce any state of the game at any time
     // ============================================================
+    +gbquote(bgr, 'I\'m blind, not deaf', 'Illidan Stormrage, Warcraft', true)(class="w50")
 
 include ./partial/footer.pug
 script(src!='../libs/revealjs/revealjs.ts')

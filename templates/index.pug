@@ -32,7 +32,8 @@ h2 Lectures
       include ../static/slides/svg/lecture04/lecture04_logo_small.svg
     +contentlink('Game Programming Patterns', 'lecture05')
       include ../static/slides/svg/lecture05/lecture05_logo_small.svg
-    +lock
+    +contentlink('Math and Dynamics', 'lecture06')
+      include ../static/slides/svg/lecture06/lecture06_logo_small.svg
     +lock
     +lock
     +lock
@@ -53,6 +54,12 @@ h2 Labs
     +lock
     +lock
 
+h2 Games
+.container
+  .link-tile-group
+    +gamelink('Paratrooper', 'game_paratrooper')
+      img(src='../static/slides/images/dashboard/game_paratrooper.png')
+
 h2 Links
 
 include ./partial/links.pug
@@ -65,3 +72,4 @@ include ./partial/links.pug
       - for (var y = 0; y < linkGroups[x].links.length; y++)
         - var item = linkGroups[x].links[y]
         +resourcelink(item.title, groupName, item.href, item.type, 'link_' + counter++)
+

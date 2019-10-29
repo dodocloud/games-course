@@ -31,7 +31,7 @@ abstract class BaseTest {
 
   protected loop(scene: Scene, ticker: Ticker) {
     this.isRunning = true;
-    this.loopFunc(0, 0, scene, ticker);
+    this.loopFunc(TIME_STEP, 0, scene, ticker);
   }
 
   protected loopFunc(delta: number, absolute: number, scene: Scene, ticker: Ticker) {
@@ -194,7 +194,7 @@ class ComponentUpdateTest extends BaseTest {
     gfx.scale.x = 0;
     gfx.addComponent(new GenericComponent('').doOnUpdate((cmp, delta, absolute) => gfx.scale.x++).setFrequency(1)); // 1 per second
     scene.invokeWithDelay(3500, () => {
-      let success = Math.floor(gfx.scale.x) === 4;
+      let success = Math.floor(gfx.scale.x) === 3;
       onFinish('Component update once per second', success ? 'OK' : 'FAILURE, VAL: ' + gfx.scale.x, success);
     });
     this.loop(scene, ticker);
@@ -267,7 +267,7 @@ class ChainComponentTest3 extends BaseTest {
     );
 
     scene.invokeWithDelay(2000, () => {
-      scene.sendMessage(new Message('TOKEN', null, null));
+      scene.sendMessage(new Message('TOKEN'));
       scene.invokeWithDelay(1000, () => {
         if(!finished) {
           onFinish('Chain component repeat test 3', 'TIMEOUT', false);
@@ -477,8 +477,8 @@ class FrequencyTest extends BaseTest {
     gfx.addComponent(new GenericComponent('')
     .setFrequency(0.5) // 1x in 2 seconds
     .doOnUpdate((cmp, delta, absolute) => gfx.scale.x /= 2));
-    scene.invokeWithDelay(2500, () => { // should run twice
-      if(Math.abs(gfx.scale.x - 0.25) <= 0.01) {
+    scene.invokeWithDelay(2500, () => { // should run 1x
+      if(Math.abs(gfx.scale.x - 0.5) <= 0.01) {
         onFinish('FrequencyTest', 'OK', true);
       } else {
         onFinish('FrequencyTest', 'FAILURE, expected 0.5, given ' + gfx.scale.x, false);
@@ -499,11 +499,35 @@ class FrequencyTest2 extends BaseTest {
     gfx.addComponent(new GenericComponent('')
     .setFrequency(2) // 2x per second
     .doOnUpdate((cmp, delta, absolute) => gfx.scale.x /= 2));
-    scene.invokeWithDelay(1800, () => { // should run 4x: 0 500 1000 1500
-      if(Math.abs(gfx.scale.x - 0.0625) <= 0.01) {
+    scene.invokeWithDelay(1800, () => { // should run 3x: 500 1000 1500
+      if(Math.abs(gfx.scale.x - 0.125) <= 0.01) {
         onFinish('FrequencyTest2', 'OK', true);
       } else {
-        onFinish('FrequencyTest2', 'FAILURE, expected 0.0625, given ' + gfx.scale.x, false);
+        onFinish('FrequencyTest2', 'FAILURE, expected 0.125, given ' + gfx.scale.x, false);
+      }
+    });
+    this.loop(scene, ticker);
+  }
+}
+// ============================================================================================================
+class FrequencyTest3 extends BaseTest {
+  executeTest(scene: Scene, ticker: Ticker, onFinish: (test: string, result: string, success: boolean) => void) {
+    let gfx = new Graphics('');
+    gfx.beginFill(0xEFCD56);
+    gfx.drawRect(0, 0, 200, 200);
+    gfx.position.set(WIDTH/2, HEIGHT/2);
+    gfx.endFill();
+    scene.stage.pixiObj.addChild(gfx);
+    gfx.addComponent(new GenericComponent('')
+    .setFrequency(2) // 2x per second
+    .doOnUpdate((cmp, delta, absolute) => {
+        gfx.scale.x *= (delta/1000);
+    })); // delta should be 500
+    scene.invokeWithDelay(2200, () => { // should run 4x: 500 1000 1500, 2000
+      if(Math.abs(gfx.scale.x - 0.0625) <= 0.01) {
+        onFinish('FrequencyTest3', 'OK', true);
+      } else {
+        onFinish('FrequencyTest3', 'FAILURE, expected 0.0625, given ' + gfx.scale.x, false);
       }
     });
     this.loop(scene, ticker);
@@ -657,16 +681,49 @@ class RecycleTest extends BaseTest {
 
     gfx.addComponent(recyclableComponent);
 
-    scene.invokeWithDelay(1200, () => { // should run 2x
+    scene.invokeWithDelay(1200, () => {
       gfx.removeComponent(gfx.findComponentByName('recyclable'));
       gfx2.addComponent(recyclableComponent);
 
       scene.invokeWithDelay(1200, () => {
-        let success = initToken === 2 && removeToken === 1 && finishToken === 1 && updateToken === 4;
+        let success = initToken === 2 && removeToken === 1 && finishToken === 1 && updateToken === 3;
         if(success) {
           onFinish('RecycleTest', 'OK', true);
         } else {
           onFinish('RecycleTest', 'FAILURE, wrong token value: ' + initToken + ':' + removeToken + ':' + finishToken + ':' + updateToken, false);
+        }
+      });
+    });
+    this.loop(scene, ticker);
+  }
+}
+// ============================================================================================================
+class FinishedComponentMessageTest extends BaseTest {
+  executeTest(scene: Scene, ticker: Ticker, onFinish: (test: string, result: string, success: boolean) => void) {
+
+    let token = 0;
+
+    // component that will be reused by another object when removed from the first one
+    let recyclableComponent = new GenericComponent('recyclable')
+    .doOnMessage('TOKEN_MSG', () => token++);
+
+    // add object
+    let container = new Container('');
+    scene.stage.pixiObj.addChild(container);
+    container.addComponent(recyclableComponent);
+
+    scene.invokeWithDelay(100, () => { // wait 100s and send the first message
+      scene.sendMessage(new Message('TOKEN_MSG'));
+      recyclableComponent.removeWhenFinished = false;
+      recyclableComponent.finish(); // finish the component but not remove from the game
+
+      scene.invokeWithDelay(200, () => {
+        scene.sendMessage(new Message('TOKEN_MSG')); // send another message -> should be captured and token should be increased
+        let success = token === 2;
+        if(success) {
+          onFinish('Finished component test', 'OK', true);
+        } else {
+          onFinish('Finished component test', 'FAILURE, wrong token value: ' + token, false);
         }
       });
     });
@@ -702,9 +759,11 @@ class ComponentTests {
     new GenericComponentConditionalTest(),
     new FrequencyTest(),
     new FrequencyTest2(),
+    new FrequencyTest3(),
     new MessageNotifyTest(),
     new MessageNotifyTest2(),
-    new RecycleTest()
+    new RecycleTest(),
+    new FinishedComponentMessageTest()
   ];
 
 

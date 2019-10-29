@@ -54,7 +54,7 @@ export default class Scene {
   // collection of actions that should be invoked with a delay
   private pendingInvocations: Invocation[];
   // message action keys and all subscribers that listens to all these actions
-  private subscribers: LookupMap<string, Component>;
+  private subscribers: LookupMap<string, Component> ;
   // game objects mapped by their flags
   private gameObjectFlags: LookupMap<number, GameObject>;
   // game objects mapped by their state
@@ -76,6 +76,8 @@ export default class Scene {
 
   constructor(name: string, app: PIXI.Application, config?: SceneConfig) {
     this.name = name;
+    this.subscribers = new LookupMap();
+    this.gameObjects = new Map();
 
     this.initConfig(config);
     this.app = app;
@@ -269,17 +271,16 @@ export default class Scene {
    * Removes all objects from scene
    */
   clearScene(newConfig?: SceneConfig) {
-    if (this.gameObjects != null) {
-      this.sendMessage(new Message(Messages.SCENE_CLEAR, null, null, this.name));
-      // call the finalization function of all components
-      for (let [, gameObj] of this.gameObjects) {
-        for (let [, component] of gameObj._proxy.rawComponents) {
-          if(component.isRunning) {
-            component._isFinished = true;
-            component.onFinish();
-          }
-          component.onRemove();
+    this.sendMessage(new Message(Messages.SCENE_CLEAR, null, null, this.name));
+    // call the finalization function of all components
+    for (let [, gameObj] of this.gameObjects) {
+      for (let [, component] of gameObj._proxy.rawComponents) {
+        if(component.isRunning) {
+          component._isFinished = true;
+          component.onFinish();
         }
+        component.onRemove();
+        component.owner = null;
       }
     }
 
@@ -288,22 +289,38 @@ export default class Scene {
     }
 
     // reinitialize everything
-    this.subscribers = new LookupMap();
+    this.subscribers.clear();
     if(this.config.namesSearchEnabled) {
-      this.gameObjectNames = new LookupMap();
+      if(this.gameObjectNames) {
+        this.gameObjectNames.clear();
+      } else {
+        this.gameObjectNames = new LookupMap();
+      }
     }
     if(this.config.statesSearchEnabled) {
-      this.gameObjectStates = new LookupMap();
+      if(this.gameObjectStates) {
+        this.gameObjectStates.clear();
+      } else {
+        this.gameObjectStates = new LookupMap();
+      }
     }
     if(this.config.tagsSearchEnabled) {
-      this.gameObjectTags = new LookupMap();
+      if(this.gameObjectTags) {
+        this.gameObjectTags.clear();
+      } else {
+        this.gameObjectTags = new LookupMap();
+      }
     }
     if(this.config.flagsSearchEnabled) {
-      this.gameObjectFlags = new LookupMap();
+      if(this.gameObjectFlags) {
+        this.gameObjectFlags.clear();
+      } else {
+        this.gameObjectFlags = new LookupMap();
+      }
     }
 
     this.sceneCleared = true;
-    this.gameObjects = new Map();
+    this.gameObjects.clear();
     this.pendingInvocations = [];
     this._currentDelta = this._currentAbsolute = 0;
 

@@ -1,0 +1,42 @@
+<svg width="35.302mm" height="35.847mm" version="1.1" viewBox="0 0 35.302 35.847" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-367.82 -385.54)">
+  <g fill="#e9e56f" aria-label="overlap">
+   <g fill="#e9e56f" aria-label="Double Precision 64b">
+    <g transform="rotate(-16.619)" fill="#e9e56f" aria-label="steering force">
+     <g>
+      <path d="m238.7 496.25 16.334-16.015" fill="none" stroke="#ff7adf" stroke-width=".28222"/>
+      <path transform="matrix(.18205 -.16648 .097342 .10645 189.43 462.1)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d223b" fill-opacity=".38431" stroke="#6fa6e9" stroke-width=".7013"/>
+      <path d="m267.07 504.72-4.8837-22.348" fill="none" stroke="#ff7adf" stroke-width=".28222"/>
+      <path transform="matrix(-.061015 -.23903 -.13976 .035676 327.01 503.16)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d3b0d" fill-opacity=".38431" stroke="#70e96f" stroke-width=".7013"/>
+     </g>
+     <path d="m239.64 495.36 27.212 8.1223" fill="none" stroke="#d54747" stroke-width=".28222px"/>
+     <circle transform="rotate(16.619)" cx="371.25" cy="406.1" r=".45204" fill="#feff7d"/>
+     <circle transform="rotate(16.619)" cx="399.65" cy="406.1" r=".45204" fill="#feff7d"/>
+     <g>
+      <path transform="matrix(.18205 -.16648 .097342 .10645 198.61 453.05)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d223b" fill-opacity=".38431" stroke="#6fa6e9" stroke-width=".7013" style="paint-order:normal"/>
+      <path transform="matrix(-.061015 -.23903 -.13976 .035676 324.26 490.52)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d3b0d" fill-opacity=".38431" stroke="#70e96f" stroke-width=".7013"/>
+      <path d="m248.82 486.32 15.313 4.5707" fill="none" stroke="#d54747" stroke-width=".28222px"/>
+     </g>
+     <g fill="#feff7d">
+      <circle transform="rotate(16.619)" cx="377.46" cy="394.81" r=".45204"/>
+      <circle transform="rotate(16.619)" cx="393.4" cy="394.78" r=".45204"/>
+      <circle transform="rotate(16.619)" cx="385.36" cy="394.81" r=".45204"/>
+      <circle transform="rotate(16.619)" cx="385.36" cy="406.1" r=".45204"/>
+     </g>
+     <path transform="matrix(.17091 -.17789 -.10402 -.099936 270.32 558.4)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width=".7013"/>
+     <path d="m238.36 507.53 17.351-18.295" fill="none" stroke="#7dffaf" stroke-width=".28222px"/>
+     <circle transform="rotate(74.793)" cx="552.26" cy="-96.993" r=".45204" fill="#ff7d7d"/>
+     <g transform="matrix(.32559 .2962 .2962 -.32559 10.433 421.88)">
+      <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+     </g>
+     <g transform="matrix(-.43467 .069273 -.069273 -.43467 498.8 567.65)">
+      <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+     </g>
+     <g transform="matrix(.3452 .27309 .27309 -.3452 7.4357 448.07)">
+      <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -14,6 +14,7 @@ import { CopterMovement } from './copter-movement';
 import { DeathAnimation } from './death-animation';
 import { CollisionResolver } from './collision-resolver';
 import Dynamics from '../../utils/dynamics';
+import { deathChecker } from './death-checker';
 
 export default class ParatrooperFactory {
 
@@ -28,22 +29,8 @@ export default class ParatrooperFactory {
     let scene = rootObject.scene;
     let builder = new ECSA.Builder(scene);
 
-    // ============================================================================================================
-    // special component that will wait for a death of a unit, executes a DeathAnimation
-    // and removes it from the scene
-    let deathChecker = new ECSA.GenericComponent('DeathChecker') // anonymous generic component
-      .doOnMessage(Messages.UNIT_KILLED, (cmp, msg) => {    // wait for message MSG_UNIT_KILLED
-        let contextObj = msg.data as ECSA.GameObject; // take the killed object from message payload
-        contextObj.addComponent(new ECSA.ChainComponent() // add chaining component that will execute two closures
-          .addComponentAndWait(new DeathAnimation()) // firstly, add directly DeathAnimation to the object and wait until it finishes
-          .execute((cmp) => contextObj.remove())); // secondly, remove the object from the scene
-      });
-    // ============================================================================================================
-
-
     // add root components
     builder
-      .withComponent(new ECSA.KeyInputComponent())
       .withComponent(new GameManager())
       .withComponent(soundComponent())
       .withComponent(new CopterSpawner())
@@ -52,6 +39,16 @@ export default class ParatrooperFactory {
       .withComponent(deathChecker)
       .buildInto(rootObject);
 
+    if(PIXI.utils.isMobile.any) {
+      // use virtual gamepad
+      rootObject.addComponent(new ECSA.VirtualGamepadComponent({
+        KEY_LEFT: ECSA.Keys.KEY_LEFT,
+        KEY_RIGHT: ECSA.Keys.KEY_RIGHT,
+        KEY_X: ECSA.Keys.KEY_UP
+      }));
+    } else {
+      rootObject.addComponent(new ECSA.KeyInputComponent());
+    }
 
     // create ground
     let ground = new ECSA.Graphics(Names.GROUND);
@@ -212,6 +209,5 @@ export default class ParatrooperFactory {
           }
         }))
       .build();
-
   }
 }

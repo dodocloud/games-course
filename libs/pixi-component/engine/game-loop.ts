@@ -20,6 +20,9 @@ export default class GameLoop {
     this.width = width;
     this.height = height;
 
+    // enable debug if the query string contains ?debug
+    sceneConfig.debugEnabled = sceneConfig.debugEnabled || /[?&]debug/.test(location.search);
+
     this.app = new PIXI.Application({
       width: width / resolution,
       height: height / resolution,

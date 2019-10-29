@@ -27,6 +27,7 @@ export default class Component {
   constructor() {
     this._id = Component.idCounter++;
     this.frequency = 0; // 0 is for each frame
+    this._lastUpdate = 0;
   }
 
   public get id() {

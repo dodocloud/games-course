@@ -7,6 +7,17 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.6] - 2019-10-29
+### Added
+- Materials for Lecture 6
+- Virtual gamepad into ECSA lib
+- Games section in the dashboard
+
+### Changed
+- Decreased size of several gif resources
+- Fixed typos in several diagrams 
+
+
 ## [3.5] - 2019-10-21
 ### Added
 - Additional info concerning semestral works in docs/requirements.md + skeleton file

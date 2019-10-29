@@ -1,0 +1,16 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+  .frame, .frame-statement {
+    border-image-source: url("../images/common/frame_purple.png"); 
+  }
+
+  .doomtable p {
+    line-height: 34px;
+  }
+
+  .nohighlight {
+    color: white !important;
+  }
+}

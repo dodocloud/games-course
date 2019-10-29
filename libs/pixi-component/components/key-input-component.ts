@@ -43,7 +43,7 @@ export enum Keys {
  */
 export class KeyInputComponent extends Component {
 
-  private keys = new Set<number>();
+  protected keys = new Set<number>();
 
   constructor() {
     super();

@@ -12,6 +12,7 @@ import DebugComponent from './components/debug-component';
 import DynamicsComponent from '../../src/utils/dynamics-component';
 import { GenericComponent } from './components/generic-component';
 import { KeyInputComponent, Keys } from './components/key-input-component';
+import { VirtualGamepadComponent, GamepadButtons, GamepadKeyMapper } from './components/virtual-gamepad-component';
 import { PointerInputComponent, PointerMessages } from './components/pointer-input-component';
 import Vector from './utils/vector';
 import { QueryCondition, queryConditionCheck} from './utils/query-condition';
@@ -31,6 +32,7 @@ export {
   DynamicsComponent,
   GenericComponent,
   KeyInputComponent, Keys,
+  VirtualGamepadComponent, GamepadButtons, GamepadKeyMapper,
   PointerInputComponent, PointerMessages,
   Vector,
   QueryCondition, queryConditionCheck,

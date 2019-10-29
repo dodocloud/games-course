@@ -1,0 +1,31 @@
+<svg width="54.605mm" height="18.041mm" version="1.1" viewBox="0 0 54.605 18.041" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-357.27 -386.02)">
+  <g fill="#e9e56f" aria-label="overlap">
+   <g fill="#e9e56f" aria-label="Double Precision 64b">
+    <g transform="rotate(-16.619)" fill="#e9e56f" aria-label="steering force">
+     <path transform="matrix(.23697 .068556 -.040086 .13856 241.58 423.64)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d263b" fill-opacity=".38431" stroke="#6fb1e9" stroke-width=".7013"/>
+     <g fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.0576">
+      <path transform="matrix(.12086 .11024 -.06446 .070671 259.02 443.26)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.15714 .045461 -.026582 .091885 234.18 438.79)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.16264 .017563 -.010269 .0951 225.89 442.7)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.16297 -.01425 .0083322 .095289 222.66 451.69)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.16196 -.022988 .013441 .094704 217.65 449.1)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.11094 .12022 -.070294 .064871 255.76 442.06)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+     </g>
+     <path d="m242.99 484.7 27.058 8.0762" fill="none" stroke="#d54747" stroke-width=".28222"/>
+     <path transform="matrix(.23697 .068556 -.040086 .13856 279.44 434.94)" d="m73.143 404.25-20.354 11.751v-23.503z" fill="#0d263b" fill-opacity=".38431" stroke="#6fb1e9" stroke-width=".7013"/>
+     <g fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width="1.0576">
+      <path transform="matrix(.15714 .045461 -.026582 .091885 275.09 450.86)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.15714 .045461 -.026582 .091885 274.28 453.56)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.15714 .045461 -.026582 .091885 273.48 456.27)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.15714 .045461 -.026582 .091885 280.52 452.26)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+      <path transform="matrix(.15714 .045461 -.026582 .091885 278.66 458.48)" d="m73.143 404.25-20.354 11.751v-23.503z"/>
+     </g>
+     <g transform="matrix(-.18688 .69532 .69532 .18688 171.6 93.308)">
+      <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

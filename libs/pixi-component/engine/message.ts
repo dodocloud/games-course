@@ -31,7 +31,7 @@ export default class Message {
    */
   private _gameObject: GameObject = null;
 
-  constructor(action: string, component: Component, gameObject: GameObject, data: any = null) {
+  constructor(action: string, component?: Component, gameObject?: GameObject, data: any = null) {
     this._action = action;
     this._component = component;
     this._gameObject = gameObject;

@@ -278,11 +278,11 @@ export default class GameObjectProxy {
     for (let [, cmp] of this.components) {
       if(cmp.isRunning) {
         if(cmp.frequency === 0) { // update each frame
+          cmp.onUpdate(delta, absolute);
           cmp._lastUpdate = absolute;
-          cmp.onUpdate(delta, absolute);
-        } else if(cmp._lastUpdate === undefined || (absolute - cmp._lastUpdate) >= 1000/cmp.frequency) {
+        } else if((absolute - cmp._lastUpdate) >= 1000/cmp.frequency) {
+          cmp.onUpdate(absolute - cmp._lastUpdate, absolute);
           cmp._lastUpdate = absolute; // update at given intervals
-          cmp.onUpdate(delta, absolute);
         }
       }
     }
