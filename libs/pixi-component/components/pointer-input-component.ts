@@ -119,19 +119,17 @@ export class PointerInputComponent extends Component {
 
       // 10px tolerance should be enough
       if (Math.abs(this.lastTouch.pageX - posX) < 10 &&
-        Math.abs(this.lastTouch.pageY - posY) < 10) {
+        Math.abs(this.lastTouch.pageY - posY) < 10 && (isTouch || this.handleClick)) {
         // at last send the message to all subscribers about this event
-        if (isTouch || this.handleClick) {
-          this.sendMessage(PointerMessages.POINTER_TAP, {
-            mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
-            isTouch: isTouch
-          });
-        } else {
-          this.sendMessage(PointerMessages.POINTER_RELEASE, {
-            mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
-            isTouch: isTouch
-          });
-        }
+        this.sendMessage(PointerMessages.POINTER_TAP, {
+          mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
+          isTouch: isTouch
+        });
+      } else {
+        this.sendMessage(PointerMessages.POINTER_RELEASE, {
+          mousePos: this.getMousePos(this.scene.app.view, evt, isTouch),
+          isTouch: isTouch
+        });
       }
     }
   }
@@ -139,11 +137,12 @@ export class PointerInputComponent extends Component {
   // Get the mouse position
   protected getMousePos(canvas: HTMLCanvasElement, evt: TouchEvent | MouseEvent, isTouch: boolean) {
     let rect = canvas.getBoundingClientRect();
+    let res = this.scene.app.renderer.resolution;
     let clientX = isTouch ? (evt as TouchEvent).changedTouches[0].clientX : (evt as MouseEvent).clientX;
     let clientY = isTouch ? (evt as TouchEvent).changedTouches[0].clientY : (evt as MouseEvent).clientY;
     return {
-      posX: Math.round((clientX - rect.left) / (rect.right - rect.left) * canvas.width),
-      posY: Math.round((clientY - rect.top) / (rect.bottom - rect.top) * canvas.height)
+      posX: Math.round((clientX - rect.left) / (rect.right - rect.left) * this.scene.app.view.width / res),
+      posY: Math.round((clientY - rect.top) / (rect.bottom - rect.top) * this.scene.app.view.height / res)
     };
   }
 }

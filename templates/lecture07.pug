@@ -1,0 +1,652 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_07.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lecture07', 'Lecture 7: Physics', 'lecture07')
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo.mb80
+        include ../static/slides/svg/lecture07/lecture07_logo.svg
+      +title('Physics')
+    // ============================================================
+    +mcontainer(bgr)    
+      h3 Literature
+      a(href='https://www.amazon.com/Game-Physics-Engine-Development-Commercial-Grade/dp/0123819768') Millington, Ian. 2010. Game Physics Engine Development
+      .center-content
+        .w600
+          img(src!='../static/slides/images/lecture07/book_physics_dev.jpg')
+    // ============================================================
+    +chapter(bgr, 'Physics engine features')
+    +mframeOrange(bgr, 'Physics engine')
+      .bottom-content.fill.justify-right
+        img.h800(src='../static/slides/images/lecture07/physics_01.png')
+      div
+        ul
+          li.highlight System that simulates physical phenomena
+          li computes motion of objects in virtual scene
+          li simulation must be 
+            span.highlight-sec real-time 
+            | (accuracy is not that important)
+          li you have to understand your game before you decide how to add a physical simulation to it
+      div
+        ul
+          li.upside can improve immersion
+          li.upside can support new gameplay events
+      div
+        ul
+          li.downside can broke the game story
+          li.downside takes significant computing resources
+          li.downside is based on heavy magic tricks that are difficult to comprehend
+    +mframe(bgr, 'Physics engines')(class='line-s')
+      .bottom-content.fill.justify-right
+        img.h600(src='../static/slides/images/lecture07/physics_03.png')
+      h4 N-Collide
+      ul
+        li 2D and 3D collision detection library written in Rust
+      h4 Box2D
+      ul
+        li open-source C++ 2D physics engine
+        li supports CCD (continuous collision detection)
+      h4 Bullet
+      ul
+        li open-source 3D physics engine
+        li used in game and film industry
+        li supports CCD
+      h4 PhysX
+      ul
+        li it can run using Nvidia's GPU
+        li PhysX destruction, PhysX Clothing, PhysX particles
+      h4 p2.js
+      ul
+        li modular JavaScript engine, supports CCD
+      h4 Havok
+      ul
+        li gold commercial standard
+    +mframeGreen(bgr, 'Physics engine steps')
+      .center-content
+        img.h900(src='../static/slides/svg/lecture07/steps.svg')
+    +mframeGreen(bgr, 'Physics vs animation')
+      ul 
+        li.highlight physics 
+          include ../build_pre/equations/lecture07/animation.svg
+          |&nbsp;animation!!
+        li animations must at least partially bypass physics in order to run seamlessly
+        li cut-scenes and state-transition animations are detached from physics
+      .tcenter
+        img.h350(src='../static/slides/images/lecture07/animation.gif')
+      h4.mt20 General purpose simulators
+      ul
+        li offer the dream of environment where everything is physically simulated
+        li.highlight-third Pinball series (1980+), Incredible Machines (1993), Little Big Planet (2008), Angry Birds (2009) 
+        li for instance, in GTA V, the player can interact with less than 0.1% objects! 
+    
+    +mframe(bgr, 'Physics engine features')
+      .bottom-content.fill.justify-right
+        img.h600(src='../static/slides/images/lecture07/softbody.gif')
+      ul
+        li collision detection (CCD or sub-stepping)
+        li contact callbacks
+        li joints
+        li concave and convex hulls
+        li compound bodies
+        li sleeping objects
+        li raycasting, shapecasting
+        li deformable structures
+        li destructible structures
+        li trigger volumes
+        li complex machines
+        li drivable vehicles
+        li rag doll characters
+        li water surface, hair, cloth
+        li particles
+    +mframe(bgr, 'Example: Half-life 2')
+      ul
+        li Havok Engine
+        li destructible environment
+        li simulating gravity, friction, mass, momentum, inertia,...
+        li liquid physics with displacement, viscosity, adhesion
+      div.tcenter
+        img.h600(src='../static/slides/images/lecture07/half-life.jpg')
+    +mframe(bgr, 'Example: Inside')
+      ul
+        li published in 2016, proprietary physics and game engine
+        li 
+          span.highlight Huddle Potato
+          ul
+            li custom physics model developed by Thomas Krog
+            li its core was simulated by 26-body-simulation procedures
+            li it was driven by a network of impulses based on the direction of the player
+            li often reconfiguration was needed in order to fit into tight spaces
+      div.columns-2.tcenter
+        div
+          img.h500(src='../static/slides/images/lecture07/inside.gif')
+        div
+          img.h500(src='../static/slides/images/lecture07/inside2.gif')
+    +mframeOrange(bgr, 'Object types')
+      h4 Body
+      ul
+        li fundamental object in the physics scene
+      h4 Rigid Body
+      ul
+        li idealized, infinitely hard, non-deformable solid object
+        li
+          +strtext2('', 'physics-driven bodies', '- driven entirely by the simulation')
+        li
+          +strtext2('', 'game-driven bodies', '- moved in a non-physical way (animations)')
+        li
+          +strtext2('', 'fixed bodies', '- collision-only bodies')
+      h4 Soft Body
+      ul
+        li can be deformed
+      h4 Shape
+      ul
+        li region of space described by a boundary, with a definite inside and outside (curved line, polygon, curved surface, polyhedron)
+      h4 Fixture
+      ul
+        li used to describe size, shape and material properties
+    +mframeOrange(bgr, 'Object types')(class='space-vert-m')
+      h4 Constraint
+      ul
+        li connects bodies together in order to simulate interaction (ropes, wheels, vehicles, chains)
+      h4 Sensor/Phantom
+      ul
+        li entity that provides a feedback when certain objects overlap
+        li participates on collision detection but doesn't affect the scene
+      h4 Rag doll
+      ul
+        li displays human-like figures with a realistic motion
+      h4 Destructible object
+      ul
+        li breakable object, can be implemented by using rigid body dynamics, dividing the model into a number of breakable pieces
+
+    +mframeGreen(bgr, 'Constraints')
+      ul
+        li
+          +strtext('', 'Revolute', '- a hinge or pin, where the bodies rotate')
+          ul
+            li wheels, chains, rotating doors, catapults, levers
+        li
+          +strtext('', 'Distance', '- a point on each body will be kept at a fixed distance apart')
+        li
+          +strtext('', 'Rope', '- restricts the maximum distance between two points')
+        li
+          +strtext('', 'Prismatic', '- body\'s motion is restricted to a single degree of freedom')
+          ul
+            li elevators, sliding doors, pistons
+        li
+          +strtext('', 'Weld', '- holds the bodies at the same orientation')
+        li 
+          +strtext('', 'Cone-Twist', '- adds a cone and twist axis limits (6 degrees of freedom)')
+        li
+          +strtext('', 'Gear', '- controls two other joints so that the movement of one affects the other')
+        li
+          +strtext('', 'Motor', '- joint with torque or angular impulses')
+      div.tcenter
+        img.h350(src='../static/slides/svg/lecture07/constraints.svg')
+    +mframeOrange(bgr, 'Constraints')
+      div.columns-4.center-content
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_rope.svg')
+          p rope
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_revolute.svg')
+          p revolute
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_prismatic.svg')
+          p.mr80 prismatic
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_conetwist.svg')
+          p.mr90 cone-twist
+    +mframeGreen(bgr, 'Constraints')
+      div.top-content
+        img.h700.mt70.ml350(src='../static/slides/images/lecture07/joints.jpg')
+      div.top-content.fill.justify-left
+        img.h700(src='../static/slides/svg/lecture07/joints.svg')
+    +chapter(bgr, 'Collision detection')
+    +mframeGreen(bgr, 'Collision Detection')
+      .bottom-content.justify-right.fill
+        figure.mr20
+          img.h250(src='../static/slides/svg/lecture07/collision_problems.svg')
+          p common issues of simple platformers
+      h4 Steps
+      ul
+        li positions for the next frame are determined
+        li a spatial data structure finds collision candidates
+        li collision candidates are filtered out into a set of real collision pairs
+        li collisions are resolved by the 
+          span.highlight-sec collision resolver 
+          | (by applying impulses or penalty forces)
+        li constraints are satisfied by the 
+          span.highlight-sec constraint resolver
+      h4.mt10 Collidable entities
+      ul
+        li we need to provide a collision representation for each object
+        li simple shapes are preferred (a car might be modelled as a rectangle)
+        li more-complex shapes should be used only when the simple ones provide inadequate information to achieve the desired behavior
+        li.mt40 if collidable entities don't overlap, no more testing is required
+        li if they do overlap, more refined testing is required
+    +mframe(bgr, 'Example: Unity interaction matrix')
+      table.tcenter.colliders.center-content
+        tr
+          th
+          th Static Collider
+          th Rigidbody Collider
+          th Kinematic Rigidbody Collider
+          th Static Trigger Collider
+          th Rigidbody Trigger Collider
+          th Kinematic Rigidbody Trigger Collider
+        tr
+          td Static Collider
+          td
+          td.collision collision
+          td
+          td
+          td.trigger trigger
+          td.trigger trigger
+        tr
+          td Rigidbody Collider
+          td.collision collision
+          td.collision collision
+          td.collision collision
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+        tr
+          td Kinematic Rigidbody Collider
+          td
+          td.collision collision
+          td
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+        tr
+          td Static Trigger Collider
+          td
+          td.trigger trigger
+          td.trigger trigger
+          td
+          td.trigger trigger
+          td.trigger trigger
+        tr
+          td Rigidbody Trigger Collider
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+        tr
+          td Kinematic Rigidbody Trigger Collider
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+          td.trigger trigger
+    +mframeOrange(bgr, 'Primitives')
+      h4 Sphere
+      ul
+        li center point and radius (4 numbers)
+      h4 Capsule
+      ul
+        li 2D: rectangle and two circles
+        li 3D: cylinder and two hemispherical end-caps
+        li representation: two points and radius
+      div.tcenter
+        img.h200(src='../static/slides/svg/lecture07/primitives_capsule.svg')
+      h4 AABB
+      ul
+        li axis-aligned bounding box
+        li rectangular volume (cuboid) whose faces are parallel to the axes of the coordinate system
+        li.upside very efficient test for penetration
+        li.downside AABB must be recalculated whenever the object rotates
+    +mframeOrange(bgr, 'Primitives')(class='space-vert-l')
+      div.top-content.justify-right
+        img.h300.mr100(src='../static/slides/svg/lecture07/primitives_obb.svg')
+      div.top-content.justify-right
+        img.h250.mr100.mt300(src='../static/slides/svg/lecture07/primitives_kdop.svg')
+      div.top-content.justify-right
+        img.h250.mr100.mt600(src='../static/slides/svg/lecture07/primitives_convexvol.svg')
+      h4 OBB
+      ul
+        li oriented bounding box
+        li defined by a position, half-extents and orientation
+        li commonly used
+      h4 k-DOP
+      ul
+        li discrete oriented polytope
+        li more-general case of AABB and OBB
+        li approximates the shape of an object
+      h4 Convex volume
+      ul
+        li more general shape
+        li must be convex
+        li expensive for intersection test
+    +mframeOrange(bgr, 'Primitives')(class='space-vert-l')
+      div.top-content.justify-right
+        img.h250.mr100(src='../static/slides/svg/lecture07/primitives_polysoup.svg')
+      div.top-content.justify-right
+        img.h200.mr50.mt200(src='../static/slides/svg/lecture07/primitives_compound.svg')
+      div.top-content.justify-right
+        img.h200.mr200.mt400(src='../static/slides/svg/lecture07/primitives_convexhull.svg')
+      div.top-content.justify-right
+        img.h250.mr150.mt600(src='../static/slides/svg/lecture07/primitives_complex.svg')  
+      h4 Poly Soup
+      ul
+        li used to model complex static geometry (terrain)
+        li very expensive kind of collision test
+      h4 Compound shapes
+      ul
+        li more-efficient alternative to a poly-soup
+        li the system first tests bounding volumes of compound shapes
+      h4 Convex hull
+      ul
+        li smallest convex volume containing the object
+      h4 Complex shape/volume
+      ul
+        li not necessarily convex
+        li simplified mesh/sprite
+        li needs preprocessing (BSP)
+    +mframeOrange(bgr, 'Comparison')
+      div.top-content.mt150
+        img.w1600(src='../static/slides/svg/lecture07/primitives_comparison.svg')
+      div.top-content.mt150
+        img.w1500.mt80.ml15(src='../static/slides/images/lecture07/primitives_comparison.png')
+    +mframe(bgr, 'Example: Box2D')
+      .bottom-content.fill
+        img.w100(src='../static/slides/images/lecture07/box2D.png')
+      .top-content.fill.justify-left.t20
+        img.h550(src='../static/slides/svg/lecture07/box2D.svg')
+    +mframeGreen(bgr, 'Looking for collision candidates')
+      h4 Naive solution
+      ul
+        li each pair
+        li 
+          include ../build_pre/equations/lecture07/collision_detection_01.svg
+          |&nbsp;-> 10 objects result in 100 checks, 100 in 10 000 etc.
+      h4 Quad-tree
+      ul
+        li efficiency usually 
+          include ../build_pre/equations/lecture07/collision_detection_02.svg
+          |, since the index takes about 
+          include ../build_pre/equations/lecture07/collision_detection_03.svg
+          |&nbsp; comparisons to traverse
+        li good for point-like small objects
+        li worst-case: 
+          include ../build_pre/equations/lecture07/collision_detection_04.svg
+      h4 Sweep and Prune
+      ul
+        li sorts the starts (lower bound) and ends (upper bound) of bounding volumes of each solid along a number of axes
+      h4 BSP
+      ul
+        li binary space partitioning, good for complex static geometries (facilities, buildings)
+      h4 Grid, Oct-tree, R-Tree, R+tree, R*-tree, X-tree, M-tree,...
+    +mframeGreen(bgr, 'Resolving collision candidates')
+      h4 Sphere-sphere
+      ul
+        li
+          include ../build_pre/equations/lecture07/intersection_test_01.svg
+          |&nbsp;where 
+          include ../build_pre/equations/lecture07/intersection_test_02.svg
+          |&nbsp;is a central point 
+      h4 Sphere-ray
+      ul
+        li we just test the distance between a single sphere center and a ray
+      h4 AABB-AABB
+      ul
+        li test the borders
+      h4 AABB-Ray
+      ul
+        li intervals 
+          include ../build_pre/equations/lecture07/intersection_test_03.svg
+          |&nbsp;and 
+          include ../build_pre/equations/lecture07/intersection_test_04.svg
+          |&nbsp;mustn't overlap
+      div.tcenter
+        img.h400(src='../static/slides/svg/lecture07/intersection_aabb.svg')
+    +mframeGreen(bgr, 'Resolving collision candidates')
+      h4 Capsules
+      ul
+        li
+          +strtext2('', 'capsule-capsule', '- calculate the distance between two line segments')
+        li
+          +strtext2('', 'capsule-ray', '- find the distance between a ray and a line segment')
+      h4 OBB-OBB
+      ul
+        li axis-separating theorem by Gottschalk
+      h4 Triangles
+      ul
+        li
+          +strtext2('', 'triangle-triangle', '- compute the plane equation and test each point if it lies on the same side')
+        li
+          +strtext2('', 'triangle-ray', '- Möller\'s affine combination')
+      div.tcenter
+        img.h400(src='../static/slides/svg/lecture07/intersection_triangles.svg')
+    +mframeOrange(bgr, 'SAT')
+      div.top-content.justify-right
+        img.h750.mt150(src='../static/slides/svg/lecture07/sat.svg')
+      h4 SAT (separating axis theorem)
+      ul
+        li based on collection of intersection tests
+        li if an axis can be found along which the projection of two 
+          span.highlight-sec convex 
+          |shapes do not overlap, then the two shapes do not intersect
+        li for 2D: AABB 2 axes, OBB 4 axes
+        li for 3D: AABB 3 axes, OBB 15 axes
+      h4 Other methods
+      ul
+        li GJK, Line Sweep, Sphere test,...
+    +mframeOrange(bgr, 'Example: SAT')
+      div.center-content
+        img.h850.mt20(src='../static/slides/svg/lecture07/example_sat.svg')
+      ul
+        li AABB in 2D: only 2 axes to check
+    +mframeOrange(bgr, 'Tunneling problem')
+      div.tcenter.top-content
+        img.h350.mt200(src='../static/slides/svg/lecture07/moving_bodies_simple.svg')
+      h4 Stepped world
+      ul
+        li time steps vary based on occurring situation
+        li collision time is calculated by doing binary search in time, moving object back and forth by 1/2 steps (5 iterations is usually enough)
+      h4.mt250 Continuous Collision Detection (CCD)
+      ul
+        li uses 
+          span.highlight-sec Swept Shapes
+        li a new shape is formed by the motion of the original one
+        li rotating shapes may result in shapes that aren't convex
+      div.tcenter
+        img.h150(src='../static/slides/svg/lecture07/moving_bodies_swept.svg')
+    +mframeOrange(bgr, 'Collision queries')(class='space-vert-l')
+      div.highlight Queries:
+      ul.highlight-third
+        li Find the first target the bullet hits
+        li Can a camera move without interpenetrating the wall?
+        li Find all objects within a given radius
+      h4 Ray casting
+      ul
+        li 
+          span.highlight-sec any game is going to need a good raycaster
+        li the cast line segment is tested against the collidable objects in the collision world; if it intersects any of them, the contact point is returned
+        li weapon systems, player mechanics, 
+          span.highlight-sec AI systems, 
+          |vehicle systems, line-of-sight
+        li used in 80's and 90's also for pseudo-3D rendering, nowadays it's being replaced by 
+          span.highlight-sec raytracing
+      h4 Shape casting
+      ul
+        li how far a shape would be able to travel along a directed line segment before it hits something
+        li
+          +strtext('', 'sphere casts', '- e.g. to determine whether the camera is in a collision')
+        li
+          +strtext('', 'capsule casts', '- e.g. character movement on uneven terrain')
+    +mframeGreen(bgr, 'Collision response')
+      div.top-content.fill.justify-right 
+        img.h450(src='../static/slides/images/lecture07/animation_2.gif')
+      div.highlight-sec How to respond to a collision?
+      h4.mt20 Explosion
+      ul
+        li adding energy to a system of rigid bodies
+      h4 Fracturing
+      ul
+        li breaking objects apart
+      h4 Restitution
+      ul
+        li amount of bounce an object has when it hits something
+      h4 Impulsive response
+      ul
+        li when two bodies collide, the bodies compress slightly and then rebound, changing their velocities, losing energy
+      h4 Friction
+      ul
+        li force that arises between two bodies that are in continuous contact, resisting their movement relative to one another
+        li removes energy from a system of rigid bodies
+        li static, dynamic, rolling
+    +mframeGreen(bgr, 'Collision resolver')
+      div.bottom-content.fill
+        img.h300(src='../static/slides/images/lecture07/physics_02.png')
+      h4 Collision resolving
+      ul
+        li.highlight-sec LCP - Linear Complementarity Problem
+        li very complex numeric algorithms
+        li resolvers: PGS, Dantzig solver, Lemke method, Jacobi method
+      h4 Coming to rest
+      ul
+        li all objects lose energy, leading to eventual rest
+        li not simple (floating-point error, inaccuracies, numerical instability)
+          ul
+            li
+              span.highlight-sec sleep criteria
+              ul
+                li momentum or energy are below a threshold
+            li 
+              span.highlight-sec simulation islands
+              ul
+                li grouping objects that either are interacting or have a potential to interact
+    +mframeGreen(bgr, 'Sleeping objects')
+      div.center-content
+        img.h900.ml300(src='../static/slides/svg/lecture07/sleeping_objects.svg')
+    +mframe(bgr, 'Fracturing')
+      .bottom-content.fill
+        img.w100(src='../static/slides/images/lecture07/fracturing.png')
+      ul
+        li breaking an object into smaller fragments
+        li in many cases destruction is not dynamic (can be made using animations)
+        li techniques: manual fracturing, boolean operations, Voronoi Shattering
+    +chapter(bgr, 'Particle systems')
+    +mframeOrange(bgr, 'Particle systems')
+      .top-content.justify-right.mt200
+        img.h500(src='../static/slides/images/lecture07/particles.gif')
+      ul
+        li.highlight-sec a collection of point masses that obeys certain physical laws
+        li can model complex fuzzy shapes and dynamics
+        li heavily used Flyweight pattern (array of positions, velocities, group lists)
+        li particles are not only moving points! Even a tree may become a particle!
+      h4 Applications
+      ul 
+        li fluids
+        li visual effects
+        li flocks
+        li rendered trails (plants)
+        li soft bodies (flag, cloth)
+      h4 Basic model
+      ol
+        li generate new particles
+        li assign individual attributes
+        li extinguish dead particles
+        li move and transform particles according to their dynamic attributes
+        li render meshes
+    +mframe(bgr, 'Attributes')
+      .bottom-content.fill
+        img.w100(src='../static/slides/images/lecture07/particles_fire.gif')
+      ul
+        li position
+        li velocity
+        li orientation
+        li acceleration
+        li mass
+        li size
+        li color
+        li lifetime
+        li material
+        li temperature
+    +mframe(bgr, 'Particle systems in games')
+      .center-content.fill
+        img.h100(src='../static/slides/images/lecture07/particles_in_games.jpg')
+    +mframe(bgr, 'Example: Fairlight')
+      ul
+        li a demoscene group that pushed the idea about particle systems to absolute hardware limits
+      div.columns-2.center-content
+        figure
+          img.h550(src='../static/slides/images/lecture07/fairlight_agenda.jpg')
+          p Agenda Circling Forth (2010)
+        figure
+          img.h550(src='../static/slides/images/lecture07/fairlight_instant.jpg')
+          p Instant God (2016)
+    +mframeGreen(bgr, 'Liquidfun')
+      .bottom-content.justify-right.fill
+        img.h400(src='../static/slides/images/lecture07/liquidfun.jpg')
+      ul
+        li 2D rigid body and fluid simulation library, Box2D extension
+        li Android, iOS, Windows, OS X
+        li.mt40
+          +strtext('', 'phase 1:', 'collision detection')
+          ul
+            li find pairs of particles closer than the particle diameter
+        li
+          +strtext('', 'phase 2:', 'apply pressure')
+          ul
+            li sum up the weight of contacts for each particle
+            li calculate the pressure and apply repulsive forces
+        li
+          +strtext('', 'phase 3:', 'apply other forces')
+          ul
+            li viscous force, spring force, elastic force,...
+        li
+          +strtext('', 'phase 4:', 'update positions')
+        li
+          +strtext('', 'phase 5:', 'handle interaction with Box2D')
+    +mframeGreen(bgr, 'Example: Noita')
+      .bottom-content.fill
+        div.tcenter
+          img.h500(src='../static/slides/images/lecture07/noita_02.gif')
+          img.h500(src='../static/slides/images/lecture07/noita_01.gif')
+      ul
+        li WIP game that uses a falling sand-style simulation
+        li each pixel is considered a particle having their own attributes
+        li flood-algorithm for ignition effects
+        li each screen is divided into 64x64 chunks processed in 4 stages from the bottom up
+    +mframe(bgr, 'Lecture 7 Review')
+      ul
+        li
+          +btext('', 'Physics engine steps:', 'apply forces, update positions, detect and resolve collisions and constraints')
+        li
+          +btext('', 'Object types:', 'Body, Rigid Body, Soft Body, Shape, Fixture, Constraint, Sensor, Rag doll, Destructible object')
+        li
+          +btext('', 'Constraints:', 'revolute, distance, rope, prismatic, weld, cone-twist, gear, motor')
+        li
+          +btext('', 'Primitives:', 'sphere, capsule, AABB, OBB, k-DOP, Convex volume, Poly Soup, Compound shapes, Convex hull, Complex volume')
+        li.mt40
+          +btext('', 'SAT (separating axis theorem')
+          ul
+            li if an axis can be found along which the projection of two convex shapes do not overlap, then the two shapes do not intersect
+        li.mt40
+          +btext('' ,'Tunneling problem', '- handled by stepped world or CCD')
+        li
+          +btext('', 'Collision queries:', 'ray casting, shape casting')
+        li
+          +btext('', 'Particle systems', '- a collection of point masses that obeys certain physical laws')
+
+
+
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

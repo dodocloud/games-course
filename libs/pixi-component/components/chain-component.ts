@@ -1,6 +1,6 @@
 import Message from '../engine/message';
 import Component from '../engine/component';
-import { GameObject } from '../engine/game-object';
+import { Container } from '../engine/game-object';
 import { QueryCondition, queryConditionCheck } from '../utils/query-condition';
 
 const CMD_BEGIN_REPEAT = 1;
@@ -25,6 +25,7 @@ const CMD_REMOVE_COMPONENT = 19;
 const CMD_REMOVE_GAME_OBJECTS_BY_QUERY = 20;
 const CMD_REMOVE_GAME_OBJECT = 21;
 const CMD_SET_INTERNAL_STATE = 22;
+const CMD_ADD_COMPONENTS_AND_WAIT = 23;
 
 // a function that doesn't return anything
 interface Action<T> {
@@ -285,7 +286,7 @@ export default class ChainComponent extends Component {
    * @param component component or function that returns a component
    * @param gameObj game object or function that returns a game object
    */
-  addComponent(component: Component | Func<void, Component>, gameObj: GameObject | Func<void, GameObject> = null): ChainComponent {
+  addComponent(component: Component | Func<void, Component>, gameObj: Container | Func<void, Container> = null): ChainComponent {
     this.enqueue(CMD_ADD_COMPONENT, component, gameObj);
     return this;
   }
@@ -296,10 +297,22 @@ export default class ChainComponent extends Component {
    * @param component component or function that returns a component
    * @param gameObj game object or function that returns a game object
    */
-  addComponentAndWait(component: Component | Func<void, Component>, gameObj: GameObject | Func<void, GameObject> = null, removeWhenFinished: boolean = false): ChainComponent {
-    this.enqueue(CMD_ADD_COMPONENT_AND_WAIT, component, gameObj, removeWhenFinished);
+  addComponentAndWait(component: Component | Func<void, Component>, gameObj: Container | Func<void, Container> = null): ChainComponent {
+    this.enqueue(CMD_ADD_COMPONENT_AND_WAIT, component, gameObj);
     return this;
   }
+
+  /**
+   * Adds a set of new components to a given game object (or to an owner if not specified)
+   * and waits until all of them are finished
+   * @param components list of components
+   * @param gameObj game object or function that returns a game object
+   */
+  addComponentsAndWait(components: Component[], gameObj: Container | Func<void, Container> = null): ChainComponent {
+    this.enqueue(CMD_ADD_COMPONENTS_AND_WAIT, components, gameObj);
+    return this;
+  }
+
 
   /**
    * Waits given amount of seconds
@@ -359,7 +372,7 @@ export default class ChainComponent extends Component {
    * @param cmp name of the component or the component itself
    * @param gameObj
    */
-  removeComponent(cmp: string, gameObj: GameObject = null): ChainComponent {
+  removeComponent(cmp: string, gameObj: Container = null): ChainComponent {
     this.enqueue(CMD_REMOVE_COMPONENT, cmp, gameObj);
     return this;
   }
@@ -376,7 +389,7 @@ export default class ChainComponent extends Component {
    * Removes given game object
    * @param obj
    */
-  removeGameObject(obj: GameObject): ChainComponent {
+  removeGameObject(obj: Container): ChainComponent {
     this.enqueue(CMD_REMOVE_GAME_OBJECT, obj);
     return this;
   }
@@ -560,17 +573,27 @@ export default class ChainComponent extends Component {
         }
         // wait for finish
         if (!this.current.getParam1().isRunning) {
-          if (this.current.getParam3() === true) {
-            let gameObj = this.current.param2A != null ? this.current.param2A : this.owner;
-            // remove when finished
-            gameObj.removeComponentByClass(this.current.getParam1());
-          }
-
           this.tmpParam = null;
           this.current.resetCache();
           this.gotoNextImmediately(delta, absolute);
         }
         break;
+        case CMD_ADD_COMPONENTS_AND_WAIT:
+          if (!this.current.cached) {
+            // add only once
+            this.current.cacheParams();
+            let gameObj = this.current.param2A != null ? this.current.param2A : this.owner;
+            for(let component of this.current.param1A) {
+              gameObj.addComponent(component);
+            }
+          }
+          // wait for finish
+          if (!(this.current.getParam1()).find(cmp => cmp.isRunning)) {
+            this.tmpParam = null;
+            this.current.resetCache();
+            this.gotoNextImmediately(delta, absolute);
+          }
+          break;
       case CMD_WAIT_FOR_FINISH:
         // wait until isFinished is true
         if (!this.current.cached) {

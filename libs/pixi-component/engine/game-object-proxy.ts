@@ -1,6 +1,6 @@
 import Component from './component';
 import Scene from './scene';
-import { GameObject } from './game-object';
+import { GameObject, Container } from './game-object';
 import Flags from './flags';
 
 
@@ -16,7 +16,7 @@ export default class GameObjectProxy {
   // state of this object
   protected _stateId = 0;
   // game object this proxy is attached to
-  protected _pixiObj: PIXI.Container = null;
+  protected _pixiObj: Container = null;
   // link to scene
   protected _scene: Scene = null;
   // collection of tags
@@ -30,18 +30,14 @@ export default class GameObjectProxy {
   // list of components that will be added at the end of update loop
   protected componentsToAdd = new Array<Component>();
 
-  constructor(name: string, pixiObj: GameObject) {
+  constructor(name: string, pixiObj: Container) {
     this._id = GameObjectProxy.idCounter++;
-    this._pixiObj = <PIXI.Container><any>pixiObj;
+    this._pixiObj = pixiObj;
     this._pixiObj.name = name;
   }
 
   public get id() {
     return this._id;
-  }
-
-  public get cmpObj() {
-    return <GameObject><any>this._pixiObj;
   }
 
   public get pixiObj() {
@@ -281,7 +277,8 @@ export default class GameObjectProxy {
           cmp.onUpdate(delta, absolute);
           cmp._lastUpdate = absolute;
         } else if((absolute - cmp._lastUpdate) >= 1000/cmp.frequency) {
-          cmp.onUpdate(absolute - cmp._lastUpdate, absolute);
+          let delta = cmp._lastUpdate === 0 ? 1000 / cmp.frequency : (absolute - cmp._lastUpdate);
+          cmp.onUpdate(delta, absolute);
           cmp._lastUpdate = absolute; // update at given intervals
         }
       }
@@ -310,7 +307,7 @@ export default class GameObjectProxy {
     if(component.owner !== null) {
       throw new Error(`The component ${component.name}:${component.id} seems to already have a game object assigned!`);
     }
-    component.owner = this.cmpObj;
+    component.owner = this.pixiObj;
     this.components.set(component.id, component);
     this.scene._onComponentAdded(component, this);
     component._isFinished = false;

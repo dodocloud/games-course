@@ -14,7 +14,7 @@ class PixiBoot extends PIXI.Application {
     });
 
     // load a sprite
-    this.creature = PIXI.Sprite.from('./assets/lecture01/crash.png');
+    this.creature = PIXI.Sprite.from('./assets/lab01/crash.png');
     // set anchor to the center
     this.creature.anchor.set(0.5);
     // set position to the center of the screen

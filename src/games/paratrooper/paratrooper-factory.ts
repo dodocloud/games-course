@@ -11,7 +11,6 @@ import { GameManager } from './game-manager';
 import { CannonInputController } from './cannon-controller';
 import { ParatrooperComponent } from './paratrooper-component';
 import { CopterMovement } from './copter-movement';
-import { DeathAnimation } from './death-animation';
 import { CollisionResolver } from './collision-resolver';
 import Dynamics from '../../utils/dynamics';
 import { deathChecker } from './death-checker';
@@ -24,7 +23,7 @@ export default class ParatrooperFactory {
   // calculated in Paratrooper.ts
   static screenWidth = 1;
 
-  initializeGame(rootObject: ECSA.GameObject, model: ParatrooperModel) {
+  initializeGame(rootObject: ECSA.Container, model: ParatrooperModel) {
 
     let scene = rootObject.scene;
     let builder = new ECSA.Builder(scene);

@@ -1,6 +1,6 @@
 import Message from './message';
 import Scene from './scene';
-import { GameObject } from './game-object';
+import { Container } from './game-object';
 
 /**
  * Component that defines a functional behavior of an entity which is attached to
@@ -8,7 +8,7 @@ import { GameObject } from './game-object';
 export default class Component {
 
   // owner object of this component
-  owner: GameObject = null;
+  owner: Container = null;
   // link to scene
   scene: Scene = null;
   // update frequency each second (0 is for each frame)
@@ -108,10 +108,12 @@ export default class Component {
    * Detaches component from scene
    */
   finish() {
-    this.onFinish();
-    this._isFinished = true;
-    if(this.removeWhenFinished) {
-      this.owner.removeComponent(this);
+    if(this.isRunning) {
+      this.onFinish();
+      this._isFinished = true;
+      if(this.removeWhenFinished) {
+        this.owner.removeComponent(this);
+      }
     }
   }
 }

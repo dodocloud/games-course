@@ -1,7 +1,7 @@
 import Reveal from '../../libs/revealjs/revealjs';
 
 // a small workaround that will allow to pass a type as a parameter
-type factories = { name: string, factory: (view: HTMLElement) => PIXI.Application; };
+type factories = { name: string, factory: (view: HTMLElement) => any; };
 
 export const initPixiWatcher = (...factories: factories[]) => {
   let runningExamples = {};
@@ -24,7 +24,11 @@ export const initPixiWatcher = (...factories: factories[]) => {
       for (let i = 0; i < canvases.length; i++) {
         let type = (canvases[i] as HTMLElement).dataset['example'];
         if (type) {
-          (runningExamples[type] as PIXI.Application).destroy(false);
+          if(runningExamples[type]['destroy']) {
+            runningExamples[type].destroy(false);
+          } else if(runningExamples[type]['engine']) {
+            runningExamples[type]['engine'].destroy(false);
+          }
           delete runningExamples[type];
         }
       }

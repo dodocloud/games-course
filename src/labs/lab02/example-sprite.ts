@@ -11,7 +11,7 @@ export class ExampleSprite extends PIXI.Application {
       view,
     });
 
-    this.creature = PIXI.Sprite.from('./assets/lecture01/crash.png');
+    this.creature = PIXI.Sprite.from('./assets/lab01/crash.png');
     this.creature.anchor.set(0.5);
     this.creature.x = this.screen.width / 2;
     this.creature.y = this.screen.height / 2;

@@ -1,5 +1,4 @@
 import * as ECSA from '../../../libs/pixi-component';
-import { Messages } from './constants';
 import { ParatrooperBaseCmp } from './paratrooper-base-component';
 import { checkTime } from '../../utils/functions';
 

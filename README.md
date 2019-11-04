@@ -86,8 +86,8 @@ Will be added on the day the particular lecture takes place
 | 3 | 8.10. | Component architecture I |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture03.html) |
 | 4 | 15.10. | Component architecture II | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture04.html) |
 | 5 | 22.10. | Game programming patterns | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture05.html) |
-| **6** | **29.10.** | **Math and dynamics** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture06.html) |
-| 7 | 5.11. | Physics | |
+| 6 | 29.10. | Math and dynamics | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture06.html) |
+| **7** | **5.11.** | **Physics** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture07.html) |
 | 8 | 12.11. | Graphics | |
 | 9 | 19.11. | Game AI | |
 | 10 | 26.11. | Scripting languages | |
@@ -105,8 +105,8 @@ Will be added on the day the particular lecture takes place
 | 3O | 8.10. | PixiJS basics | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab02.html) |
 | 4E | 15.10. | PixiJS basics |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab02.html) |
 | 5O | 22.10. | Component architecture  |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab03.html) |
-| **6E** | **29.10.** | **Component architecture** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab03.html) |
-| 7O | 5.11. | Animation, physics  | |
+| 6E | 29.10. | Component architecture | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab03.html) |
+| **7O** | **5.11.** | **Animation, physics**  | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab04.html) |
 | 8E | 12.11. | Animation, physics | |
 | 9O | 19.11. | Game AI | |
 | 10E | 26.11. | Game AI | |

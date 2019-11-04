@@ -66,5 +66,45 @@ module.exports = {
         });
       }
     }
+  },
+
+  searchFiles: function(startPath, filter, output) {
+    if (!fs.existsSync(startPath)){
+        return;
+    }
+  
+    var files=fs.readdirSync(startPath);
+    for(var i=0;i<files.length;i++){
+        var filename=path.join(startPath,files[i]);
+        var stat = fs.lstatSync(filename);
+        if (stat.isDirectory()){
+          module.exports.searchFiles(filename,filter, output); //recurse
+        }
+        else if (filename.indexOf(filter)>=0) {
+            output.push(filename);
+        };
+    };
+  },
+
+  fileToStr: function(path) {
+    var file = fs.readFileSync(path, "utf8");
+    return file;
+  },
+
+  strToFile: function(path, content) {
+    module.exports.createDirAlongThePath(path);
+    if(fs.existsSync(path)) {
+      fs.unlinkSync(path);
+    }
+    fs.writeFileSync(path, content);
+  },
+
+  createDirAlongThePath: function(filePath) {
+    var dirname = path.dirname(filePath);
+    if (fs.existsSync(dirname)) {
+      return true;
+    }
+    module.exports.createDirAlongThePath(dirname);
+    fs.mkdirSync(dirname);
   }
 }

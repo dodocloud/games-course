@@ -1,5 +1,5 @@
 import Component from './component';
-import { GameObject } from './game-object';
+import { Container } from './game-object';
 
 /**
  * Message that stores type of action, a relevant component, a relevant game object and custom data if needed
@@ -29,9 +29,9 @@ export default class Message {
   /**
    * GameObject attached to this message
    */
-  private _gameObject: GameObject = null;
+  private _gameObject: Container = null;
 
-  constructor(action: string, component?: Component, gameObject?: GameObject, data: any = null) {
+  constructor(action: string, component?: Component, gameObject?: Container, data: any = null) {
     this._action = action;
     this._component = component;
     this._gameObject = gameObject;

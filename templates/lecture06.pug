@@ -40,7 +40,7 @@ include ./partial/texts.pug
       ul
         li Linear Congruential Random Number Generator
         li
-          include ../static/slides/svg/lecture06/equations/random_lcng.svg
+          include ../build_pre/equations/lecture06/random_generator_methods_01.svg
         li starts with a seed value and performs some arithmetic operations which is 
           span.highlight-sec both 
           | returned and used to reseed the generator
@@ -52,13 +52,13 @@ include ./partial/texts.pug
       h4 Lagged Fibonacci methods
       ul
         li 
-          include ../static/slides/svg/lecture06/equations/random_fib.svg
+          include ../build_pre/equations/lecture06/random_generator_methods_02.svg
         li we are looking further back into the sequence of values
       h4 Carry methods
       ul
         li takes part of the result from the previous stage and carries it forward to the least <br>significant bits in the next stage
         li
-          include ../static/slides/svg/lecture06/equations/random_carry.svg
+          include ../build_pre/equations/lecture06/random_generator_methods_03.svg
     // ============================================================
     +mframeGreen(bgr, 'Random number generators')(class='space-vert-m')
       div.bottom-content.justify-right
@@ -225,7 +225,7 @@ include ./partial/texts.pug
               span.highlight-sec Lattice-based
               ul
                 li 
-                  +strtext3('', 'Perlin Noise,','', 'Simplex Noise',', Wavelet noise, Value noise') 
+                  +strtext3('', 'Perlin Noise,','', 'Simplex Noise,','Wavelet noise, Value noise') 
             li 
               span.highlight-sec Point-based
               ul
@@ -240,7 +240,7 @@ include ./partial/texts.pug
         li both are gradient noises - we set a pseudo-random gradient at regularly spaced points in space and interpolate between them
         li the noise is constructed from octaves (contribution to the signal at a particular scale)
         li the signal is interpolated via a quartic function: 
-          include ../static/slides/svg/lecture06/equations/perlin_interpolation.svg
+          include ../build_pre/equations/lecture06/perlin_noise.svg
       div.code.mt20
         include ../static/slides/snippets/lecture06/perlin.html
     // ============================================================
@@ -518,19 +518,19 @@ include ./partial/texts.pug
             td Manhattan 
       ul
         li diameter of the known universe: 
-          include ../static/slides/svg/lecture06/equations/world_01.svg
+          include ../build_pre/equations/lecture06/world_size_01.svg
         li the smallest theoretical structure: 
-          include ../static/slides/svg/lecture06/equations/world_02.svg
+          include ../build_pre/equations/lecture06/world_size_02.svg
         li 256b integer gives us 
-          include ../static/slides/svg/lecture06/equations/world_03.svg 
+          include ../build_pre/equations/lecture06/world_size_03.svg
           | values
         li IEEE 754 format stores 24b of resolution in the mantissa: range of 
-          include ../static/slides/svg/lecture06/equations/world_04.svg
+          include ../build_pre/equations/lecture06/world_size_04.svg
           ul
             li single precision, 32bit: 
-              include ../static/slides/svg/lecture06/equations/world_05.svg
+              include ../build_pre/equations/lecture06/world_size_05.svg
             li double precision, 64bit: 
-              include ../static/slides/svg/lecture06/equations/world_06.svg
+              include ../build_pre/equations/lecture06/world_size_06.svg
         li.highlight most games set their basic units as meter, making millimeter the smallest unit 
         li range areas for 32bit numbers:
     // ============================================================
@@ -542,7 +542,10 @@ include ./partial/texts.pug
     // ============================================================
     +mframeGreen(bgr, 'IEEE 754 precision')
       ul
-        li a quarter of all 32bit numbers are in the range of [0,1], half of them in [-1, 1]
+        li a quarter of all 32bit numbers are in the range of 
+          include ../build_pre/equations/lecture06/ieee_754_01.svg
+          |, half of them in 
+          include ../build_pre/equations/lecture06/ieee_754_02.svg
         li from 8 388 608 to 16 777 216, the precision for 32b is 1
       div.tcenter
         img.h750(src='../static/slides/svg/lecture06/float.svg')
@@ -595,12 +598,12 @@ include ./partial/texts.pug
           ul
             li scalar representing the length of the vector
             li
-              include ../static/slides/svg/lecture06/equations/magnitude.svg
+              include ../build_pre/equations/lecture06/vectors_01.svg
         li 
           span.highlight Normalization
           ul
             li a unit vector is a vector with a magnitude of one: 
-              include ../static/slides/svg/lecture06/equations/normalization.svg
+              include ../build_pre/equations/lecture06/vectors_02.svg
         li
           span.highlight Normal vector
           ul
@@ -609,15 +612,15 @@ include ./partial/texts.pug
           span.highlight Dot product
           ul
             li
-              include ../static/slides/svg/lecture06/equations/dot_product_a.svg
+              include ../build_pre/equations/lecture06/vectors_03.svg
             li
-              include ../static/slides/svg/lecture06/equations/dot_product_b.svg
+              include ../build_pre/equations/lecture06/vectors_04.svg
         li
           span.highlight Cross product
           ul
             li yields another vector that is perpendicular to two vectors
             li 
-              include ../static/slides/svg/lecture06/equations/cross_product.svg
+              include ../build_pre/equations/lecture06/vectors_05.svg
     // ============================================================
     +mframe(bgr, 'Example: Direction')
       div.top-content.fill.justify-right
@@ -628,32 +631,41 @@ include ./partial/texts.pug
         div
           ol
             li We know 
-              include ../static/slides/svg/lecture06/equations/rot_ex_01.svg
+              include ../build_pre/equations/lecture06/direction_01.svg
             li Calculate 
-              include ../static/slides/svg/lecture06/equations/rot_ex_04.svg 
+              include ../build_pre/equations/lecture06/direction_02.svg
               | <br>- it's already normalized
             li Calculate 
-              include ../static/slides/svg/lecture06/equations/rot_ex_02.svg
+              include ../build_pre/equations/lecture06/direction_03.svg
             li Normalize lookAt': 
-              include ../static/slides/svg/lecture06/equations/rot_ex_03.svg
+              include ../build_pre/equations/lecture06/direction_04.svg
             li.highlight 
-              include ../static/slides/svg/lecture06/equations/rot_ex_05.svg
+              include ../build_pre/equations/lecture06/direction_05.svg
+        div.tcenter
+    // ============================================================
+    +mframe(bgr, 'Example: Direction')
+      div.top-content.fill.justify-right
+        img.mt80.h750(src='../static/slides/svg/lecture06/example_rotation.svg')
+      ul
+        li We want to rotate the bottom ship toward the other one.
+      div.columns-2
+        div
           ol
             li.highlight-sec let 
-              include ../static/slides/svg/lecture06/equations/rot_exp_01.svg
+              include ../build_pre/equations/lecture06/direction_06.svg
             li 
-              include ../static/slides/svg/lecture06/equations/rot_exp_02.svg
+              include ../build_pre/equations/lecture06/direction_07.svg
             li 
-              include ../static/slides/svg/lecture06/equations/rot_exp_03.svg
+              include ../build_pre/equations/lecture06/direction_08.svg
             li 
-              include ../static/slides/svg/lecture06/equations/rot_exp_04.svg
+              include ../build_pre/equations/lecture06/direction_09.svg
             li.highlight 
-              include ../static/slides/svg/lecture06/equations/rot_exp_05.svg
+              include ../build_pre/equations/lecture06/direction_10.svg
           ul 
             li.highlight-third 
-              include ../static/slides/svg/lecture06/equations/rot_exp_06.svg
+              include ../build_pre/equations/lecture06/direction_11.svg
             li.highlight-third or just simply: 
-              include ../static/slides/svg/lecture06/equations/rot_exp_07.svg
+              include ../build_pre/equations/lecture06/direction_12.svg
         div.tcenter
     // ============================================================
     +mframe(bgr, 'Lines')
@@ -661,38 +673,38 @@ include ./partial/texts.pug
         img.h500(src='../static/slides/svg/lecture06/line_point_dist.svg')
       ul
         li we have two points: 
-          include ../static/slides/svg/lecture06/equations/lines_02.svg 
+          include ../build_pre/equations/lecture06/lines_01.svg
           | &nbsp;and will take one step in 
-          include ../static/slides/svg/lecture06/equations/lines_03.svg 
+          include ../build_pre/equations/lecture06/lines_02.svg
           | &nbsp;direction for the second one: 
-          include ../static/slides/svg/lecture06/equations/lines_04.svg
+          include ../build_pre/equations/lecture06/lines_03.svg
         li subtracting both, we get a vector 
-          include ../static/slides/svg/lecture06/equations/lines_05.svg
+          include ../build_pre/equations/lecture06/lines_04.svg
           | &nbsp;with the same orientation
         li all scalar multiplies of this vector from 
-          include ../static/slides/svg/lecture06/equations/lines_02.svg
+          include ../build_pre/equations/lecture06/lines_05.svg
           | &nbsp;will generate points along the line 
         li.highlight-sec
-          include ../static/slides/svg/lecture06/equations/lines_06.svg
+          include ../build_pre/equations/lecture06/lines_06.svg
         li 
           span.highlight Example: closest point to a line 
           ul
             li given 
-              include ../static/slides/svg/lecture06/equations/lines_ex_pqv.svg
+              include ../build_pre/equations/lecture06/lines_07.svg
               |, we need to find 
-              include ../static/slides/svg/lecture06/equations/lines_ex_qd.svg 
+              include ../build_pre/equations/lecture06/lines_08.svg
               |&nbsp;closest to 
-              include ../static/slides/svg/lecture06/equations/lines_ex_q.svg
+              include ../build_pre/equations/lecture06/lines_09.svg
             li we compute the difference vector 
-              include ../static/slides/svg/lecture06/equations/lines_ex_w.svg 
+              include ../build_pre/equations/lecture06/lines_10.svg
               |, then we project this onto 
-              include ../static/slides/svg/lecture06/equations/lines_ex_v.svg
+              include ../build_pre/equations/lecture06/lines_11.svg
               |&nbsp;to get 
-              include ../static/slides/svg/lecture06/equations/lines_ex_vd.svg
+              include ../build_pre/equations/lecture06/lines_12.svg
             li  
-              include ../static/slides/svg/lecture06/equations/lines_ex_proj.svg
+              include ../build_pre/equations/lecture06/lines_13.svg
             li
-              include ../static/slides/svg/lecture06/equations/lines_ex_result.svg
+              include ../build_pre/equations/lecture06/lines_14.svg
     // ============================================================
     +mframeGreen(bgr, 'Terms')
       ul
@@ -727,38 +739,36 @@ include ./partial/texts.pug
       ul
         li we ignore all rotational effects
         li position can be described by a position vector 
-          include ../static/slides/svg/lecture06/equations/position_vector.svg
+          include ../build_pre/equations/lecture06/dynamics_01.svg
         li
           span.highlight velocity: 
-          include ../static/slides/svg/lecture06/equations/velocity.svg
+          include ../build_pre/equations/lecture06/dynamics_02.svg
         li
           span.highlight acceleration: 
-          include ../static/slides/svg/lecture06/equations/acceleration.svg
+          include ../build_pre/equations/lecture06/dynamics_03.svg
         li
           span.highlight net force: 
-          include ../static/slides/svg/lecture06/equations/net_force.svg
+          include ../build_pre/equations/lecture06/dynamics_04.svg
         li
           span.highlight Newton's second law: 
-          include ../static/slides/svg/lecture06/equations/second_law.svg
+          include ../build_pre/equations/lecture06/dynamics_05.svg
         li
           span.highlight linear momentum: 
-          include ../static/slides/svg/lecture06/equations/momentum.svg
+          include ../build_pre/equations/lecture06/dynamics_06.svg
       h4.mt40 Angular dynamics
       ul
-        li in 2D, all rotations occur about the z-axis
         li
           span.highlight angular velocity: 
-          include ../static/slides/svg/lecture06/equations/angular_velocity.svg
+          include ../build_pre/equations/lecture06/dynamics_07.svg
         li
           span.highlight angular acceleration: 
-          include ../static/slides/svg/lecture06/equations/angular_acceleration.svg
+          include ../build_pre/equations/lecture06/dynamics_08.svg
         li
           span.highlight torque: 
-          include ../static/slides/svg/lecture06/equations/torque.svg
+          include ../build_pre/equations/lecture06/dynamics_09.svg
           span , torque caused by a force applied to a location
           ul
             li if we apply an off-center force to an object, we expect it to spin
-            li directly dependent on the location where the force is applied
     // ============================================================
     +mframeGreen(bgr, 'Newton\'s laws')
       h4 Lex I
@@ -782,19 +792,19 @@ include ./partial/texts.pug
           h4 Projectile motion
           ul
             li
-              include ../static/slides/svg/lecture06/equations/motion_projectile_1.svg
+              include ../build_pre/equations/lecture06/motion_01.svg
             li
-              include ../static/slides/svg/lecture06/equations/motion_projectile_2.svg
+              include ../build_pre/equations/lecture06/motion_02.svg
             li
-              include ../static/slides/svg/lecture06/equations/motion_projectile_3.svg
+              include ../build_pre/equations/lecture06/motion_03.svg
           h4.mt250 Slope motion (no friction)
           ul
             li
-              include ../static/slides/svg/lecture06/equations/motion_slope_1.svg
+              include ../build_pre/equations/lecture06/motion_04.svg
             li
-              include ../static/slides/svg/lecture06/equations/motion_slope_2.svg
+              include ../build_pre/equations/lecture06/motion_05.svg
             li
-              include ../static/slides/svg/lecture06/equations/motion_slope_3.svg
+              include ../build_pre/equations/lecture06/motion_06.svg
         div
           div
             img.h400(src='../static/slides/svg/lecture06/movement.svg')
@@ -809,43 +819,46 @@ include ./partial/texts.pug
       h4 Mass-Spring Motion
       ul
         li
-          include ../static/slides/svg/lecture06/equations/spring_1.svg
+          include ../build_pre/equations/lecture06/spring_01.svg
         li Hook's Law: 
-          include ../static/slides/svg/lecture06/equations/spring_hook.svg
+          include ../build_pre/equations/lecture06/spring_02.svg
           ul
-            li <i>k</i> is the spring constant <i>[N/m]</i>
+            li 
+              include ../build_pre/equations/lecture06/spring_03.svg
+              |&nbsp;is the spring constant 
+              include ../build_pre/equations/lecture06/spring_04.svg
         li
-          include ../static/slides/svg/lecture06/equations/spring_2.svg
+          include ../build_pre/equations/lecture06/spring_05.svg
     // ============================================================
     +mframe(bgr, 'Equations of motion')
       div.top-content.justify-right
         img.h400(src='../static/slides/images/lecture06/besiege.gif')
       ul
         li finding 
-          include ../static/slides/svg/lecture06/equations/motioneq_01.svg
+          include ../build_pre/equations/lecture06/equations_of_motion_01.svg
           |, given knowledge of 
-          include ../static/slides/svg/lecture06/equations/motioneq_02.svg
+          include ../build_pre/equations/lecture06/equations_of_motion_02.svg
         li
           span.highlight-sec vertical motion under the influence of gravity
           ul
             li
-              include ../static/slides/svg/lecture06/equations/motioneq_acc_01.svg
+              include ../build_pre/equations/lecture06/equations_of_motion_03.svg
             li
-              include ../static/slides/svg/lecture06/equations/motioneq_acc_02.svg
+              include ../build_pre/equations/lecture06/equations_of_motion_04.svg
             li
-              include ../static/slides/svg/lecture06/equations/motioneq_acc_03.svg
+              include ../build_pre/equations/lecture06/equations_of_motion_05.svg
       ul
         li.highlight moving with variable acceleration
         ul
           li drag force: 
-            include ../static/slides/svg/lecture06/equations/motioneq_drag_01.svg
+            include ../build_pre/equations/lecture06/equations_of_motion_06.svg
           li a simple approximation to air friction (the faster we go, the greater the friction force)
           li how to handle this: derive a function for velocity  
             ul
               li
-                include ../static/slides/svg/lecture06/equations/motioneq_drag_02.svg
+                include ../build_pre/equations/lecture06/equations_of_motion_07.svg
               li 
-                include ../static/slides/svg/lecture06/equations/motioneq_drag_03.svg
+                include ../build_pre/equations/lecture06/equations_of_motion_08.svg
           li too difficult - with every change of any force, we would need to modify the simulation code
           li.highlight-sec analytical solutions are almost never possible in game physics
     // ============================================================
@@ -857,19 +870,19 @@ include ./partial/texts.pug
               span.highlight Conditions:
               ul
                 li we know an initial value of the function: 
-                  include ../static/slides/svg/lecture06/equations/numerical_01.svg    
+                  include ../build_pre/equations/lecture06/numerical_integration_01.svg
                 li we know the derivatives  
-                  include ../static/slides/svg/lecture06/equations/numerical_02.svg    
+                  include ../build_pre/equations/lecture06/numerical_integration_02.svg
                 li we know the time interval 
-                  include ../static/slides/svg/lecture06/equations/numerical_03.svg    
+                  include ../build_pre/equations/lecture06/numerical_integration_03.svg
             li given 
-              include ../static/slides/svg/lecture06/equations/motioneq_03.svg
+              include ../build_pre/equations/lecture06/numerical_integration_04.svg
               |, the problem is to find 
-              include ../static/slides/svg/lecture06/equations/motioneq_04.svg
+              include ../build_pre/equations/lecture06/numerical_integration_05.svg
             li we will start at 
-              include ../static/slides/svg/lecture06/equations/numerical_04.svg    
+              include ../build_pre/equations/lecture06/numerical_integration_06.svg
               |&nbsp;and take steps in time along the tangent, until we generate an approximation for 
-              include ../static/slides/svg/lecture06/equations/numerical_05.svg
+              include ../build_pre/equations/lecture06/numerical_integration_07.svg
             li.mt50.highlight integration methods provide use with the possibility of approximation with different precision and complexity
         div
           img.h700.mt60(src='../static/slides/svg/lecture06/derivation.svg')
@@ -904,19 +917,19 @@ include ./partial/texts.pug
         div
           ul
             li 
-              include ../static/slides/svg/lecture06/equations/motioneq_euler_03.svg
-            h4.mt60 Implicit method
+              include ../build_pre/equations/lecture06/euler_01.svg
+            h4.mt60 Explicit method
             ul
               li
-                include ../static/slides/svg/lecture06/equations/motioneq_euler_implicit.svg
+                include ../build_pre/equations/lecture06/euler_02.svg
             h4 Improved method
             ul
               li
-                include ../static/slides/svg/lecture06/equations/motioneq_euler_semi.svg
-            h4 Explicit method
+                include ../build_pre/equations/lecture06/euler_03.svg
+            h4 Implicit method
             ul
               li
-                include ../static/slides/svg/lecture06/equations/motioneq_euler_explicit.svg
+                include ../build_pre/equations/lecture06/euler_04.svg
             li.mt40.upside cheap and easy to implement
             li.downside high error and poor stability, depending directly on the time step
         div
@@ -932,24 +945,23 @@ include ./partial/texts.pug
       h4 Regular Verlet
       ul
         li 
-          include ../static/slides/svg/lecture06/equations/motioneq_verlet_regular.svg
+          include ../build_pre/equations/lecture06/verlet_01.svg
         li derived by adding two Taylor series expansions
       h4 Verlet leap-frog
       ul
         li 
-          include ../static/slides/svg/lecture06/equations/motioneq_verlet_lf_vel.svg
+          include ../build_pre/equations/lecture06/verlet_02.svg
         li 
-          include ../static/slides/svg/lecture06/equations/motioneq_verlet_lf_pos.svg
+          include ../build_pre/equations/lecture06/verlet_03.svg
         li method that tracks velocity, but at half a time step off from the position calculation
       h4 Velocity Verlet
       ul
         li 
-          include ../static/slides/svg/lecture06/equations/motioneq_verlet_v_pos.svg
+          include ../build_pre/equations/lecture06/verlet_04.svg
         li 
-          include ../static/slides/svg/lecture06/equations/motioneq_verlet_v_vel.svg
+          include ../build_pre/equations/lecture06/verlet_05.svg
         li most accurate, acceleration needs to be computed twice
         li advantages over Euler when dealing with multiple bodies
-        li not for rigid-body problems - forces can be dependent only on position
     // ============================================================
     +mframe(bgr, 'Dynamics in games')
       div.top-content.fill
@@ -976,7 +988,6 @@ include ./partial/texts.pug
           +btext('', 'Vector operations', '- magnitude, normalization, normal vector, dot product')
         li
           +btext('', 'Integration methods:', 'euler integration, verlet integration')
-
 
 include ./partial/footer.pug
 script(src!='../libs/revealjs/revealjs.ts')

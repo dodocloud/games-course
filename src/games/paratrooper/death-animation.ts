@@ -1,6 +1,5 @@
 import { Messages } from './constants';
 import { ParatrooperBaseCmp } from './paratrooper-base-component';
-import { checkTime } from '../../utils/functions';
 
 /**
  * Simple flicker animation that only changes the visibility of the object

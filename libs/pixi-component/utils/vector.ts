@@ -5,15 +5,23 @@
  */
 export default class Vector {
   /** The x-coordinate of the vector */
-  x: number;
+  private _x: number;
 
   /** The y-coordinate of the vector */
-  y: number;
+  private  _y: number;
 
   /** Construct a new vector with the specified x and y coordinates */
   constructor(x: number, y?: number) {
-    this.x = x;
-    this.y = y == null ? this.x : y;
+    this._x = x;
+    this._y = y == null ? this._x : y;
+  }
+
+  get x() {
+    return this._x;
+  }
+
+  get y() {
+    return this._y;
   }
 
   /**
@@ -53,6 +61,13 @@ export default class Vector {
    */
   distance(other: Vector): number {
     return new Vector(this.x - other.x, this.y - other.y).magnitude();
+  }
+
+  /**
+   * Return squared Euklidean distance between two vectors(points)
+   */
+  squareDistance(other: Vector): number {
+    return new Vector(this.x - other.x, this.y - other.y).magnitudeSquared();
   }
 
   /**

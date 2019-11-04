@@ -1,6 +1,5 @@
-import { Names, Messages } from './constants';
+import { Names } from './constants';
 import { ParatrooperBaseCmp } from './paratrooper-base-component';
-import { checkTime } from '../../utils/functions';
 
 /**
  * Simple logic for copters

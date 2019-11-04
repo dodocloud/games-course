@@ -15,12 +15,23 @@ export default class GameLoop {
   ticker: PIXI.Ticker = null;
   width: number;
   height: number;
+  _running: boolean;
+
+  options: {
+    transparent?: boolean;
+    backgroundColor?: number;
+    antialias?: boolean;
+  };
+
+  constructor(options?: { transparent?: boolean; backgroundColor?: number; antialias?: boolean; }) {
+    this.options = options;
+  }
 
   init(canvas: HTMLCanvasElement, width: number, height: number, resolution: number = 1, sceneConfig?: SceneConfig, resizeToScreen: boolean = true) {
     this.width = width;
     this.height = height;
 
-	sceneConfig = sceneConfig || {};
+    sceneConfig = sceneConfig || {};
 
     // enable debug if the query string contains ?debug
     sceneConfig.debugEnabled = sceneConfig.debugEnabled || /[?&]debug/.test(location.search);
@@ -28,9 +39,11 @@ export default class GameLoop {
     this.app = new PIXI.Application({
       width: width / resolution,
       height: height / resolution,
-      antialias: true,
       view: canvas,
-      resolution: resolution // resolution/device pixel ratio
+      resolution: resolution, // resolution/device pixel ratio
+      transparent: (this.options && this.options.transparent !== undefined) ? this.options.transparent : false,
+      antialias:  (this.options && this.options.antialias !== undefined) ? this.options.antialias : true,
+      backgroundColor: (this.options && this.options.backgroundColor !== undefined) ? this.options.backgroundColor : 0x000000,
     });
 
     this.scene = new Scene('default', this.app, sceneConfig);
@@ -42,8 +55,17 @@ export default class GameLoop {
     // stop the shared ticket and update it manually
     this.ticker.autoStart = false;
     this.ticker.stop();
-
+    this._running = true;
     this.loop(performance.now());
+  }
+
+  get running() {
+    return this._running;
+  }
+
+  destroy() {
+    this.app.destroy(false);
+    this._running = false;
   }
 
   private loop(time: number) {
@@ -54,8 +76,10 @@ export default class GameLoop {
     this.scene._update(dt, this.gameTime);
 
     // update PIXI
-    this.ticker.update(this.gameTime);
-    requestAnimationFrame((time) => this.loop(time));
+    if(this._running) {
+      this.ticker.update(this.gameTime);
+      requestAnimationFrame((time) => this.loop(time));
+    }
   }
 
   private initResizeHandler() {

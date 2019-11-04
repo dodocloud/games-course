@@ -7,6 +7,15 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.7] - 2019-11-05
+### Added
+- Materials for Lecture 7 and Lab04
+- Dragonbones library
+- pixi-math support library
+
+### Changed
+
+
 ## [3.6.1] - 2019-10-29
 
 ### Changed

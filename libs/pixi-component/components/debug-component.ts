@@ -1,6 +1,6 @@
 import Component from '../engine/component';
 import { Messages } from '../engine/constants';
-import { GameObject } from '../engine/game-object';
+import { Container } from '../engine/game-object';
 import Message from '../engine/message';
 
 /**
@@ -58,7 +58,7 @@ export default class DebugComponent extends Component {
   onUpdate(delta: number, absolute: number) {
   }
 
-  protected addGameObject(obj: GameObject) {
+  protected addGameObject(obj: Container) {
     let id = this.getObjectId(obj);
     let item = document.getElementById(id);
     if(item) {
@@ -71,11 +71,11 @@ export default class DebugComponent extends Component {
       item = document.createElement('li');
       list.appendChild(item);
       item.id = this.getObjectId(obj);
-      let parent = document.getElementById(this.getObjectId(<GameObject><any>obj.pixiObj.parent));
+      let parent = document.getElementById(this.getObjectId(<Container><any>obj.pixiObj.parent));
       if(parent == null) {
         // parent hasn't been created yet -> create it accordingly
         this.addGameObject(obj.parentGameObject);
-        parent = document.getElementById(this.getObjectId(<GameObject><any>obj.pixiObj.parent));
+        parent = document.getElementById(this.getObjectId(<Container><any>obj.pixiObj.parent));
       }
       parent.appendChild(list);
     } else {
@@ -101,11 +101,11 @@ export default class DebugComponent extends Component {
     }
   }
 
-  protected removeGameObject(obj: GameObject) {
+  protected removeGameObject(obj: Container) {
     document.getElementById(this.getObjectId(obj)).remove();
   }
 
-  protected addComponent(cmp: Component, obj: GameObject) {
+  protected addComponent(cmp: Component, obj: Container) {
     if(document.getElementById(this.getObjectId(obj)) === null) {
       this.addGameObject(obj);
     }
@@ -119,19 +119,19 @@ export default class DebugComponent extends Component {
     compNode.innerText = cmp.name;
   }
 
-  protected removeComponent(cmp: Component, obj: GameObject) {
+  protected removeComponent(cmp: Component, obj: Container) {
     document.getElementById(this.getComponentId(cmp)).remove();
   }
 
-  protected getObjectId(obj: GameObject) {
+  protected getObjectId(obj: Container) {
     return `node_` + obj.id;
   }
 
-  protected getObjectInfoSectionId(obj: GameObject) {
+  protected getObjectInfoSectionId(obj: Container) {
     return 'node_' + obj.id + '_info';
   }
 
-  protected getComponentSectionId(obj: GameObject) {
+  protected getComponentSectionId(obj: Container) {
     return 'node_' + obj.id + '_components';
   }
 

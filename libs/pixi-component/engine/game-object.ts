@@ -44,20 +44,24 @@ export interface GameObject {
   asTilingSprite(): TilingSprite;
 
   /*
-    * Casts itself to Text (works only if the object is an actual text!)
-    */
+   * Casts itself to Text (works only if the object is an actual text!)
+   */
   asText(): Text;
 
   /*
-    * Casts itself to BitmapText (works only if the object is an actual bitmap text!)
-    */
+   * Casts itself to BitmapText (works only if the object is an actual bitmap text!)
+   */
   asBitmapText(): BitmapText;
 
   /*
-    * Casts itself to Graphics (works only if the object is an actual graphics!)
-    */
+   * Casts itself to Graphics (works only if the object is an actual graphics!)
+   */
   asGraphics(): Graphics;
 
+  /*
+   * Casts itself to Mesh  (works only if the object is an actual Mesh!)
+   */
+   asMesh(): Mesh;
 
   /**
    * Adds a new component
@@ -142,8 +146,8 @@ export class Container extends PIXI.Container implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -172,6 +176,10 @@ export class Container extends PIXI.Container implements GameObject {
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -312,8 +320,8 @@ export class ParticleContainer extends PIXI.ParticleContainer implements GameObj
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -342,6 +350,10 @@ export class ParticleContainer extends PIXI.ParticleContainer implements GameObj
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -482,8 +494,8 @@ export class Graphics extends PIXI.Graphics implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -512,6 +524,10 @@ export class Graphics extends PIXI.Graphics implements GameObject {
 
   asGraphics(): Graphics {
     return this;
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -649,8 +665,8 @@ export class Sprite extends PIXI.Sprite implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -679,6 +695,10 @@ export class Sprite extends PIXI.Sprite implements GameObject {
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -819,8 +839,8 @@ export class TilingSprite extends PIXI.TilingSprite implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -849,6 +869,10 @@ export class TilingSprite extends PIXI.TilingSprite implements GameObject {
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -989,8 +1013,8 @@ export class Text extends PIXI.Text implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -1019,6 +1043,10 @@ export class Text extends PIXI.Text implements GameObject {
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
   }
 
   // overrides pixijs function
@@ -1159,8 +1187,8 @@ export class BitmapText extends PIXI.BitmapText implements GameObject {
     return this._proxy.scene;
   }
 
-  get parentGameObject(): GameObject {
-    return <GameObject><any>this.parent;
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
   }
 
   asContainer(): Container {
@@ -1189,6 +1217,184 @@ export class BitmapText extends PIXI.BitmapText implements GameObject {
 
   asGraphics(): Graphics {
     throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    throw new Error('Can\'t cast this object to mesh');
+  }
+
+  // overrides pixijs function
+  addChild<T extends PIXI.DisplayObject[]>(
+    ...children: T
+  ): T[0] {
+    let newChild = super.addChild(...children);
+    for (let child of children) {
+      let cmpObj = <GameObject><any>child;
+      if (cmpObj && cmpObj._proxy) {
+        this._proxy.onChildAdded(cmpObj._proxy);
+      }
+    }
+
+    return newChild;
+  }
+
+  // overrides pixijs function
+  addChildAt<T extends PIXI.DisplayObject>(child: T, index: number): T {
+    let newChild = super.addChildAt(child, index);
+    let cmpObj = <GameObject><any>newChild;
+    if (cmpObj && cmpObj._proxy) {
+      this._proxy.onChildAdded(cmpObj._proxy);
+    }
+    return newChild;
+  }
+
+  // overrides pixijs function
+  removeChild<T extends PIXI.DisplayObject[]>(
+    ...children: T
+  ): T[0] {
+    let removed = super.removeChild(...children);
+    for (let child of children) {
+      let cmpObj = <GameObject><any>child;
+      if (cmpObj && cmpObj._proxy) {
+        this._proxy.onChildRemoved(cmpObj._proxy);
+      }
+    }
+
+    return removed;
+  }
+
+  // overrides pixijs function
+  removeChildAt(index: number): PIXI.DisplayObject {
+    let removed = super.removeChildAt(index);
+    let cmpObj = <GameObject><any>removed;
+    if (cmpObj && cmpObj._proxy) {
+      this._proxy.onChildRemoved(cmpObj._proxy);
+    }
+    return removed;
+  }
+
+  // overrides pixijs function
+  removeChildren(beginIndex?: number, endIndex?: number): PIXI.DisplayObject[] {
+    let removed = super.removeChildren(beginIndex, endIndex);
+    for (let removedObj of removed) {
+      let cmpObj = <GameObject><any>removedObj;
+      if (cmpObj && cmpObj._proxy) {
+        this._proxy.onChildRemoved(cmpObj._proxy);
+      }
+    }
+    return removed;
+  }
+
+  addComponent(component: Component, runInstantly: boolean = false) {
+    this._proxy.addComponent(component, runInstantly);
+  }
+  findComponentByName<T extends Component>(name: string): T {
+    return this._proxy.findComponentByName<T>(name);
+  }
+  removeComponent(component: Component) {
+    this._proxy.removeComponent(component);
+  }
+  assignAttribute(key: string, val: any) {
+    this._proxy.assignAttribute(key, val);
+  }
+  getAttribute<T>(key: string): T {
+    return this._proxy.getAttribute<T>(key);
+  }
+  removeAttribute(key: string): boolean {
+    return this._proxy.removeAttribute(key);
+  }
+  addTag(tag: string) {
+    this._proxy.addTag(tag);
+  }
+  removeTag(tag: string) {
+    this._proxy.removeTag(tag);
+  }
+  hasTag(tag: string): boolean {
+    return this._proxy.hasTag(tag);
+  }
+  get tags() {
+    return this._proxy.tags;
+  }
+  setFlag(flag: number) {
+    this._proxy.setFlag(flag);
+  }
+  resetFlag(flag: number) {
+    this._proxy.resetFlag(flag);
+  }
+  hasFlag(flag: number): boolean {
+    return this._proxy.hasFlag(flag);
+  }
+  invertFlag(flag: number) {
+    this._proxy.invertFlag(flag);
+  }
+  get stateId(): number {
+    return this._proxy.stateId;
+  }
+  set stateId(state: number) {
+    this._proxy.stateId = state;
+  }
+  remove() {
+    this.parent.removeChild(this);
+  }
+}
+
+/**
+ * Wrapper for PIXI.Mesh
+ */
+export class Mesh extends PIXI.Mesh implements GameObject {
+  _proxy: GameObjectProxy;
+
+  constructor(name: string = '', geometry: PIXI.Geometry, shader: PIXI.Shader | PIXI.MeshMaterial, state?: PIXI.State, drawMode?: number) {
+    super(geometry, shader, state, drawMode);
+    this._proxy = new GameObjectProxy(name, this);
+  }
+
+  get id(): number {
+    return this._proxy.id;
+  }
+
+  get pixiObj(): PIXI.Container {
+    return this;
+  }
+
+  get scene(): Scene {
+    return this._proxy.scene;
+  }
+
+  get parentGameObject(): Container {
+    return <Container><any>this.parent;
+  }
+
+  asContainer(): Container {
+    return this;
+  }
+
+  asParticleContainer(): ParticleContainer {
+    throw new Error('Can\'t cast this object to particle container!');
+  }
+
+  asSprite(): Sprite {
+    throw new Error('Can\'t cast this object to sprite!');
+  }
+
+  asTilingSprite(): TilingSprite {
+    throw new Error('Can\'t cast this object to tiling sprite!');
+  }
+
+  asText(): Text {
+    throw new Error('Can\'t cast this object to text!');
+  }
+
+  asBitmapText(): BitmapText {
+    throw new Error('Can\'t cast this object to bitmap text!');
+  }
+
+  asGraphics(): Graphics {
+    throw new Error('Can\'t cast this object to graphics');
+  }
+
+  asMesh(): Mesh {
+    return this;
   }
 
   // overrides pixijs function

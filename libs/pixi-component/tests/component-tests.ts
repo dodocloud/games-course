@@ -278,6 +278,38 @@ class ChainComponentTest3 extends BaseTest {
   }
 }
 // ============================================================================================================
+class ChainComponentTest4 extends BaseTest {
+  executeTest(scene: Scene, ticker: Ticker, onFinish: (test: string, result: string, success: boolean) => void) {
+
+    let finished = false;
+    let token = 0;
+
+    let cmpGenerator = () => new GenericComponent('generic').doOnMessage('STOP', (cmp, msg) =>  {
+      token++;
+      cmp.finish();
+    });
+
+    scene.addGlobalComponent(new ChainComponent()
+      .addComponentsAndWait([cmpGenerator(), cmpGenerator(), cmpGenerator()]) // add 3 components and wait when all of them finish
+      .execute((cmp) => {
+        finished = true;
+        let success = token === 3;
+        onFinish('Chain component wait for 3 components', success ? 'OK' : 'FAILURE, expected 3, got ' + token, success);
+      })
+    );
+
+    scene.invokeWithDelay(500, () => {
+      scene.sendMessage(new Message('STOP'));
+      scene.invokeWithDelay(500, () => {
+        if(!finished) {
+          onFinish('Chain component wait for 3 components', 'TIMEOUT', false);
+        }
+      });
+    });
+    this.loop(scene, ticker);
+  }
+}
+// ============================================================================================================
 class ChainComponentConditionalTest extends BaseTest {
   executeTest(scene: Scene, ticker: Ticker, onFinish: (test: string, result: string, success: boolean) => void) {
     let finished = false;
@@ -315,7 +347,7 @@ class BuilderTest extends BaseTest {
       finishedComponents++;
       if(finishedComponents === 100) {
         // we have all
-        onFinish('Builder test', 'OK', true);
+        scene.invokeWithDelay(0, () => onFinish('Builder test', 'OK', true));
       }
     }));
 
@@ -751,6 +783,7 @@ class ComponentTests {
     new ChainComponentTest(),
     new ChainComponentTest2(),
     new ChainComponentTest3(),
+    new ChainComponentTest4(),
     new ChainComponentConditionalTest(),
     new BuilderTest(),
     new BuilderTest2(),

@@ -9,8 +9,9 @@
     "clean_materials": "node scripts/clean-materials.js"
   },
   "devDependencies": {
-    "@types/matter-js": "^0.10.2",
+    "@types/matter-js": "^0.10.4",
     "@types/vivus": "^0.4.0",
+    "mathjax-node": "^2.1.1",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-json-url-loader": "^0.1.2",
     "pug": "^2.0.4",

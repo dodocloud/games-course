@@ -1,0 +1,550 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_07.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lab04', 'Lab 4: Animation and Physics', 'lab04')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab04/lab04_logo.svg
+      +title('Animation and physics')
+    // ============================================================
+    +chapter(bgr, 'Math and Dynamics')
+    +mframe(bgr, 'JS Math functions')(class='line-s')
+      ul
+        li 
+          span.code.highlight Math.pow(x,y) 
+          | - returns the value of x to the power of y 
+        li 
+          span.code.highlight Math.sqrt(x) 
+          | - returns the square root of x
+        li 
+          span.code.highlight Math.ceil(x) 
+          | - returns the value of x rounded up to its nearest integer
+        li 
+          span.code.highlight Math.floor(x) 
+          | - returns the value of x rounded down to its nearest integer 
+        li 
+          span.code.highlight Math.trunc(x) 
+          | - returns the integer portion of a number 
+        li 
+          span.code.highlight ~a 
+          | - inverts the bits of its operand
+        li 
+          span.code.highlight a << b 
+          | -  shifts a in b bits to the left
+        li 
+          span.code.highlight a >> b 
+          | - shifts a in b bits to the right
+        li 
+          span.code.highlight a >>> b 
+          | - shifts a in b bits to the right, shifting in 0s from the left 
+        li 
+          span.code.highlight Math.atan(x) 
+          | - returns the arctangent (in radians) of a number
+        li 
+          span.code.highlight Math.atan2(y, x) 
+          | - returns the angle in the plane (in radians) between the positive x-axis and the ray from (0, 0) to the point (x, y) 
+        li
+          span.code.highlight Math.random()
+          | - generates a random number in range (0, 1)
+        li
+          span.code.highlight min + Math.floor((max - min + 1) * Math.random())
+          |- generates a random integer in range [min, max] exclusively
+        li
+          span.code.highlight Math.random() > (1 - probability) 
+          |- checks for an occurrence of an event at given probability
+        li.mt40 for each bitwise operations, the operators are converted into 32-bit integers       
+              
+    +mframe(bgr, 'Math functions')
+      ul
+        li if we work with positive numbers, ~~v is a common choice to get the integer part
+        li floor, ceil and round are conceptually different from trunc
+      div.functions.mt80
+        table
+          tr
+            th
+            th trunc
+            th floor
+            th ceil
+            th round
+            th ~~v
+            th v | 0
+            th v << 0
+            th v >> 0
+            th v >>> 0
+          tr
+            td 3.8
+            td 3
+            td 3
+            td 4
+            td 4 
+            td 3
+            td 3
+            td 3
+            td 3
+            td 3
+          tr
+            td 3.2
+            td 3
+            td 3
+            td 4
+            td 3
+            td 3
+            td 3
+            td 3
+            td 3
+            td 3
+          tr
+            td -3.2
+            td -3
+            td -4
+            td -3
+            td -3
+            td -3
+            td -3
+            td -3
+            td -3
+            td 4294967293
+          tr
+            td -3.8
+            td -3
+            td -4
+            td -3
+            td -4
+            td -3
+            td -3
+            td -3
+            td -3
+            td 4294967293
+    +mframe(bgr, 'Math support library')
+      ul
+        li located in 
+          span.code.highlight libs/pixi-math
+        li contains random generator, steering behavior basic algorithms, quad-tree and matterJS-to-pixi binding components
+        li 
+          span.code.highlight new Random().normal(min, max, scale) 
+          | generates a random number from normal distribution
+      .columns-2.mt40
+        figure
+          canvas.w800.h500(data-example!='ExampleUniform')
+          p Uniform distribution
+        figure
+          canvas.w800.h500(data-example!='ExampleGauss')
+          p Somehow normal distribution
+    +mframe(bgr, 'Example: Random spread')
+      ul
+        li.code.highlight src/labs/lab04/example-distribution-spread.ts
+        li uses Box-Muller Transform and Skew-normal transform to generate normal distribution from the uniform distribution
+      .columns-2
+        figure
+          canvas.w800.h600(data-example!='ExampleUniformSpread')
+          p Uniform distribution
+        figure
+          canvas.w800.h600(data-example!='ExampleGaussSpread')
+          p Somehow normal distribution
+    +mframe(bgr, 'Euler integration')
+      div.top-content.justify-left.fill
+        img.h400.ml10.mt150(src='../static/slides/svg/lecture06/diff.svg')
+      div.columns-2
+        div
+          ul
+            li 
+              include ../build_pre/equations/lecture06/euler_01.svg
+            h4.mt60 Explicit method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_02.svg
+              li adds energy to the system
+            h4 Improved method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_03.svg
+            h4 Implicit method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_04.svg
+              li decreases energy from the system
+        div
+          div
+            img.h400.mt250(src='../static/slides/svg/lecture06/ballistic_curve_2.svg')
+    +mframe(bgr, 'Euler integration')
+      ul
+        li.code.highlight src/labs/lab04/example-dynamics-balistic.ts
+        li.red explicit
+        li.green improved
+        li.cyan implicit
+      .columns-3.tcenter.mt40
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicBallistic60')
+          p 60 FPS
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicBallistic20')
+          p 20 FPS
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicBallistic5')
+          p 5 FPS
+    +mframe(bgr, 'Euler integration')
+      ul
+        li.code.highlight src/labs/lab04/example-dynamics-circle.ts
+        li.red explicit
+        li.green improved
+        li.cyan implicit
+      .columns-3.tcenter.mt40
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicCircle60')
+          p 60 FPS
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicCircle20')
+          p 20 FPS
+        figure
+          canvas.w550.h400(data-example!='ExampleDynamicCircle5')
+          p 5 FPS
+    +mframe(bgr, 'Relaxation')
+      ul
+        li.code.highlight src/labs/lab04/example-verlet.ts
+        li simple relaxation technique 
+        li gravity tries to move all particles downward
+        li 
+          span.code PinConstraint 
+          | holds the topmost particle steady 
+        li 
+          span.code DistanceConstraint  
+          | tries to keep a constant distance between two particles
+      div.columns-2
+        img.h500.mt50(src='../static/slides/svg/lab04/relaxation.svg')
+        canvas.w600.h600(data-example!='ExampleVerlet')
+    +chapter(bgr, 'Sprite animations')
+    +mframe(bgr, 'Pixi animations')
+      ul
+        li detailed  
+          a(href='https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-and-animations-with-pixijs') tutorial
+        li needs a spritesheet and metadata (e.g. from 
+          a(href='http://opengameart.org') OpenGameArt
+          |)
+        li metadata contains all sprites, offsets, orders and other information needed to compose animations
+        li sprites can be exported to pixi format via 
+          a(href='https://www.codeandweb.com/texturepacker') TexturePacker
+      div.columns-3.tcenter
+        div.tleft.code.w800.sprite-data
+          include ../static/slides/snippets/lab04/sprite_data.html
+        div
+          img.h300(src='../static/slides/images/lab04/warrior.png')
+        div
+          canvas.w650.h400(data-example!='ExampleSpritePixi')
+    +mframe(bgr, 'Pixi animations')
+      ul
+        li 
+          span.highlight Attributes
+        ul
+          li 
+            span.code.highlight-sec onFrameChange 
+            | - function to call when an AnimatedSprite changes which texture is being rendered
+          li
+            span.code.highlight-sec play(): void; 
+            | - plays the animated sprite
+          li 
+            span.code.highlight-sec gotoAndPlay(frameNumber: number): void;
+            | - goes to a specific frame and begins playing the AnimatedSprite.
+          li 
+            span.code.highlight-sec gotoAndStop(frameNumber: number): void; 
+            | - stops the AnimatedSprite and goes to a specific frame.
+      div.code
+        include ../static/slides/snippets/lab04/sprite_animation_load.html
+    +mframe(bgr, 'Import')
+      .bottom-content
+        img.h300.mb150.mr80(src='../static/slides/images/lab04/warrior_2.png')
+      .bottom-content
+        img.h650(src='../static/slides/svg/lab04/sprite_axes.svg')
+      ul
+        li if metadata is available, we can use 
+          a(href='https://www.codeandweb.com/texturepacker') TexturePacker 
+          | to export it into PIXI format
+        li if metadata isn't available, we need to specify it manually
+          ul
+            li we can use 
+              a(href='https://renderhjs.net/shoebox/') Shoebox 
+              | to extract sprites from spritesheets
+            li pivots need to be specified manually
+    +mframe(bgr, 'Json structure')
+      div.columns-2
+        div.code.jsonstruct
+          include ../static/slides/snippets/lab04/sprite_data_format.html
+        div
+          ul
+            li 
+              span.code.highlight frames 
+              | - all frames inside the spritesheet
+            li 
+              span.code.highlight animations 
+              | - frame sequences grouped into named animations
+            li 
+              span.code.highlight meta 
+              |- link to the spritesheet file, color format and its size
+    +mframe(bgr, 'Manual handling')
+      ul
+        li.code.highlight src/labs/lab04/example-sprite-custom.ts
+        li for simple animations, we can define a custom format 
+        li we only need to modify 
+          span.code.highlight frame 
+          | variable in 
+          span.code BaseTexture
+      .columns-2
+        div.code.sprite-custom
+          include ../static/slides/snippets/lab04/sprite_animation_custom.html 
+        div
+          .tcenter
+            img.h200(src='../static/slides/images/lab04/mario.png')
+          .tcenter.mt50
+            canvas.w600(data-example!='ExampleSpriteCustom')
+    +chapter(bgr, 'Skeletal 2D animations')
+    +mframe(bgr, 'Skeletal animations')
+      ul
+        li characters are represented as a hierarchical set of interconnected bones
+        li instead of animating the character, we animate the bones
+        li for 2D animations, the texture is 
+          span.highlight warped 
+          | along the modified skeleton
+        li two major applications for 2D animations:
+          ul
+            li
+              a(href='http://esotericsoftware.com/') Spine 
+              |- paid
+            li
+              a(href='http://dragonbones.com/en/index.html') Dragonbones 
+              |- free
+      div.tcenter
+        img.h500(src='../static/slides/images/lab04/dragonbones.png')
+    +mframe(bgr, 'Dragonbones')
+      ul
+        li load some of the built-in examples
+      div.tcenter
+        img.h800(src='../static/slides/images/lab04/dbones_01.jpg')
+    +mframe(bgr, 'Dragonbones')
+      ul
+        li all animations can be easily modified in the timeline
+      div.tcenter
+        img.h800(src='../static/slides/images/lab04/dbones_02.jpg')
+    +mframe(bgr, 'Dragonbones')
+      ul
+        li export as DragonBones JSON format 5.5
+        li the export will create two JSON structures and one spritesheet
+      div.tcenter
+        img.h700(src='../static/slides/images/lab04/dbones_03.jpg')
+    +mframe(bgr, 'Dragonbones')
+      .bottom-content.fill
+        canvas.w1200.h600(data-example!='ExampleDragonBones')    
+      ul
+        li.code.highlight src/labs/lab04/example-dragonbones.ts
+        li Dragonbones-Pixi library is in 
+          span.code.highlight libs/dragonbones
+        li parsing the data takes a lot of time, it should be handled asynchronously
+      div.code
+        include ../static/slides/snippets/lab04/dragonbones_init.html
+    +chapter(bgr, 'Steering behaviors')
+    +mframe(bgr, 'Steering behaviors')
+      ul
+        li set of algorithms and principles that help autonomous agents move in a realistic manner <br>by using simple forces
+      div.tcenter
+        img.mt60.h600(src='../static/slides/svg/lecture06/steering_desc.svg')
+    +mframe(bgr, 'Seek')
+      ul
+        li.code.highlight src/labs/lab04/example-steering-seek.ts
+        li the agent goes toward a target
+      .tcenter
+        canvas.mt100.w1200.h600(data-example!='ExampleSteeringSeek')
+    +mframe(bgr, 'Pursuit')
+      ul
+        li.code.highlight src/labs/lab04/example-steering-pursuit.ts
+      .tcenter
+        canvas.mt150.w1200.h600(data-example!='ExampleSteeringPursuit')
+    +mframe(bgr, 'Pursuit + Evade')
+      ul
+        li.code.highlight src/labs/lab04/example-steering-evade.ts
+      .tcenter
+        canvas.mt150.w1200.h600(data-example!='ExampleSteeringEvade')
+    +mframe(bgr, 'Wander')
+      ul
+        li.code.highlight src/labs/lab04/example-steering-wander.ts
+        li 3 attributes: radius, distance and jittering
+      .tcenter
+        canvas.mt100.w1200.h600(data-example!='ExampleSteeringWander')
+    +mframe(bgr, 'Multiple behaviors')
+      ul
+        li.code.highlight src/labs/lab04/example-steering-multiple.ts
+        li the algorithms can pile up, calculating a weight-sum for each force 
+      .tcenter
+        canvas.mt100.w1200.h600(data-example!='ExampleSteeringMultiple')
+    +chapter(bgr, 'QuadTree')
+    +mframe(bgr, 'QuadTree')
+      ul
+        li.code.highlight src/labs/lab04/example-quadtree.ts
+        li each inner node has 4 children
+        li overlapping objects are put into all children they touch
+        li only objects in the same leaf can be in collision
+      .tcenter
+        canvas.mt50.w800.h600(data-example!='ExampleQuadTreeSmall')
+    +mframe(bgr, 'QuadTree')
+      .columns-3.tcenter.center-content
+        figure
+          canvas.w550.h550(data-example!='ExampleQuadTreeMedium')
+          p 20 objects, 5 for each cell
+        figure
+          canvas.w550.h550(data-example!='ExampleQuadTreeLarge')
+          p 50 objects, 10 for each cell
+        figure
+          canvas.w550.h550(data-example!='ExampleQuadTreeUltraLarge')
+          p 100 objects, 2 for each cell
+    +chapter(bgr, 'MatterJS')
+    +mframe(bgr, 'MatterJS')
+      .bottom-content.justify-right
+        img.h800(src='../static/slides/images/lecture07/physics_01.png')
+      ul
+        li 
+          a(href='https://brm.io/matter-js/') https://brm.io/matter-js/
+        li 2D physics engine
+        li rigid bodies
+        li compound bodies 
+        li composite bodies 
+        li concave and convex hulls 
+        li restitution
+        li momentum
+        li friction
+        li events 
+        li constraints 
+        li gravity 
+        li sleeping and static bodies
+    +mframe(bgr, 'Architecture')
+      .columns-2
+        div.w60
+          img.h900(src='../static/slides/svg/lab04/matter_body.svg')
+        div.w40
+          ul
+            li 
+              span.highlight.code Body 
+              |- contains methods for creating and manipulating body models
+            li
+              span.highlight.code IBodyDefinition 
+              |- a physical object, contains all necessary attributes
+            li.highlight-sec all manipulations are handled by static methods in 
+              span.code Body 
+              |class
+    +mframe(bgr, 'Architecture')
+      div
+        ul
+          li 
+            span.highlight.code ICompositeDefinition 
+            |- contains composition of bodies
+          li
+            span.highlight.code Composite 
+            |- contains methods to manipulate with composite objects, consisting of many bodies
+      div.tcenter.mt40
+        img.h600(src='../static/slides/svg/lab04/matter_composite.svg')
+    +mframe(bgr, 'Architecture')
+      .columns-2
+        div.w40
+          img.h900(src='../static/slides/svg/lab04/matter_entities.svg')
+        div.w60
+          ul
+            li 
+              span.highlight.code IPair 
+              |- contains attributes for a colliding pair of two bodies
+            li
+              span.highlight.code IConstraintDefinition 
+              |- contains attributes for a constraint that connects bodies together in order to simulate interaction
+            li 
+              span.highlight Events: 
+              ul
+                li sleepStart, sleepEnd, beforeAdd, afterAdd, beforeRemove, afterRemove, afterUpdate, beforeRender, afterRender, beforeUpdate, collisionActive, collisionEnd, collisionStart, beforeTick, tick, afterTick, beforeRender, afterRender, mousedown, mousemove, mouseup 
+    +mframe(bgr, 'Architecture')
+      .columns-2
+        div.w40
+          img.h900(src='../static/slides/svg/lab04/matter_entities_2.svg')
+        div.w60
+          ul
+            li 
+              span.highlight.code Bodies 
+              |- static methods for creating of new simple bodies 
+            li
+              span.highlight.code Composites 
+              |- static methods for creating of complex objects
+              ul
+                li 
+                  span.highlight-sec.code car 
+                  |- creates a composite with simple car setup of bodies and constraints
+                li 
+                  span.highlight-sec.code chain 
+                  |- chains all bodies in the given composite together using constraints
+                li 
+                  span.highlight-sec.code mesh 
+                  |- connects bodies in the composite with constraints in a grid pattern
+                li 
+                  span.highlight-sec.code softBody 
+                  |- creates a simple soft body like object
+            li
+              span.highlight.code Bounds 
+              | static methods for defining outer bounds of the scene
+    +mframe-m(bgr, 'Simple setup')
+      div.code
+        include ../static/slides/snippets/lab04/matter_setup.html
+    +mframe(bgr, 'Matter and PIXI')
+      ul
+        li MatterJS contains its own renderer
+        li in order to render objects in PIXI, we need to create a copy of every MatterJS body and synchronize it
+        li PIXI renders 
+          span.code PIXI.Graphics 
+          | objects and ECSA library synchronizes their state with MatterJS
+        li the update can be handled by 
+          span.code MatterJS.Runner 
+          | or manually by invoking 
+          span.code Matter.Runner.tick
+      div.tcenter
+        img.h600(src='../static/slides/svg/lab04/matter_pixi.svg')
+    +mframe(bgr, 'Example: Air friction')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-airfriction.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterAirFriction')
+    +mframe(bgr, 'Example: Bridge')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-bridge.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterBridge')
+    +mframe(bgr, 'Example: Car')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-car.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterCar')
+    +mframe(bgr, 'Example: Chains')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-chains.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterChains')
+    +mframe(bgr, 'Example: Friction')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-friction.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterFriction')
+    +mframe(bgr, 'Example: Mixed Shapes')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-mixed.shapes.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterMixedShapes')
+    +mframe(bgr, 'Example: Newton\'s cradle')
+      ul
+        li.code.highlight src/labs/lab04/example-matter-newton-cradle.ts
+      div.tcenter
+        canvas.mt100.w800.h600.scale(data-example!='ExampleMatterNewtonCradle')
+
+
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')
+script(src!='../src/labs/lab04/setup.ts')

@@ -4,7 +4,7 @@ import { Messages, Attributes, AttributeChangeMessage, StateChangeMessage, FlagC
 import Flags from './engine/flags';
 import GameObjectProxy from './engine/game-object-proxy';
 import Message from './engine/message';
-import { GameObject, Container, ParticleContainer, Sprite, TilingSprite, Text, BitmapText, Graphics } from './engine/game-object';
+import { GameObject, Container, ParticleContainer, Sprite, TilingSprite, Text, BitmapText, Graphics, Mesh } from './engine/game-object';
 import Builder from './engine/builder';
 import Scene from './engine/scene';
 import ChainComponent from './components/chain-component';

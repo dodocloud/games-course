@@ -1,4 +1,4 @@
-import { GameObject } from '../engine/game-object';
+import { Container } from '../engine/game-object';
 /**
  * Condition for generic object queries
  * If given value is null or undefined, it will not be taken into account
@@ -14,7 +14,7 @@ export class QueryCondition {
 /**
  * Checks wheter a given game object meets given condition
  */
-export const queryConditionCheck = (gameObject: GameObject, condition: QueryCondition): boolean => {
+export const queryConditionCheck = (gameObject: Container, condition: QueryCondition): boolean => {
   if (gameObject) {
     if (condition.ownerId !== undefined && gameObject.id !== condition.ownerId) {
       return false;

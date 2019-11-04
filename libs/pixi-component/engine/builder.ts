@@ -1,5 +1,5 @@
 import Scene from './scene';
-import { GameObject, Text, Sprite, Graphics, BitmapText, Container, ParticleContainer, TilingSprite } from './game-object';
+import { Text, Sprite, Graphics, BitmapText, Container, ParticleContainer, TilingSprite, GameObject, Mesh } from './game-object';
 import Component from './component';
 import * as PIXI from 'pixi.js';
 import { Vector } from '..';
@@ -16,7 +16,8 @@ enum ObjectType {
   Sprite,
   TilingSprite,
   Text,
-  BitmapText
+  BitmapText,
+  Mesh
 }
 
 class ObjectParameters {
@@ -28,7 +29,9 @@ class ObjectParameters {
   fontStyle?: PIXI.TextStyle; // text
   fontName?: string; // bitmaptext
   fontSize?: number; // bitmaptext
-  fontColor?: number;// bitmaptext
+  fontColor?: number; // bitmaptext
+  geometry?: PIXI.Geometry; // mesh
+  shader?: PIXI.Shader | PIXI.MeshMaterial; // mesh
 }
 
 
@@ -57,8 +60,8 @@ export default class Builder {
   private flags: number[];
   private tags: Set<string>;
   private state?: number;
-  private parent?: GameObject;
-  private existingObject?: GameObject;
+  private parent?: Container;
+  private existingObject?: Container;
   private parameters?: ObjectParameters;
   private type: ObjectType = ObjectType.Container; // type of object being built
 
@@ -211,7 +214,7 @@ export default class Builder {
     return this;
   }
 
-  withParent(parent: GameObject): Builder {
+  withParent(parent: Container): Builder {
     this.parent = parent;
     return this;
   }
@@ -277,14 +280,22 @@ export default class Builder {
     return this;
   }
 
-  buildInto(existingObject: GameObject, clearData: boolean = true) {
+  asMesh(name: string = '', geometry: PIXI.Geometry, shader: PIXI.Shader | PIXI.MeshMaterial): Builder {
+    this.type = ObjectType.Mesh;
+    this.parameters = {
+      name, geometry, shader
+    };
+    return this;
+  }
+
+  buildInto(existingObject: Container, clearData: boolean = true) {
     this.existingObject = existingObject;
     let output = this.build(clearData);
     this.existingObject = null;
     return output;
   }
 
-  build<T extends GameObject>(clearData: boolean = true): T {
+  build<T extends Container>(clearData: boolean = true): T {
     let object: GameObject;
 
     if(this.existingObject !== null) {
@@ -312,6 +323,9 @@ export default class Builder {
           break;
         case ObjectType.BitmapText:
             object = new BitmapText(this.parameters.name, this.parameters.text, this.parameters.fontName, this.parameters.fontSize, this.parameters.fontColor);
+          break;
+        case ObjectType.Mesh:
+            object = new Mesh(this.parameters.name, this.parameters.geometry, this.parameters.shader);
           break;
       }
     }
@@ -347,15 +361,6 @@ export default class Builder {
       this.tags.forEach(tag => object.addTag(tag));
     }
 
-    if (this.parent !== null) {
-      this.parent.pixiObj.addChild(object.pixiObj);
-    }
-
-    // now, when this object is already assigned to its parent, we can build children
-    for(let child of this.children) {
-      let newChild = child.withParent(object).build(clearData);
-      object.pixiObj.addChild(newChild.pixiObj);
-    }
 
     let pixiObj = object.pixiObj;
 
@@ -446,6 +451,16 @@ export default class Builder {
     if(this.virtAnchorY !== null) {
       let anchor = this.virtAnchorY - (this.anchorY === null ? 0 : this.anchorY);
       pixiObj.position.y -= anchor * pixiObj.height;
+    }
+
+    if (this.parent !== null) {
+      this.parent.pixiObj.addChild(object.pixiObj);
+    }
+
+    // now, when this object is already assigned to its parent, we can build children
+    for(let child of this.children) {
+      let newChild = child.withParent(<Container><any>object).build(clearData);
+      object.pixiObj.addChild(newChild.pixiObj);
     }
 
     if(clearData) {

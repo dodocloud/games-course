@@ -1,0 +1,21 @@
+<svg width="58.443mm" height="11.954mm" version="1.1" viewBox="0 0 58.443 11.954" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(164.55 -48.003)">
+  <g fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-linecap="round">
+   <g stroke-width=".16933">
+    <rect transform="rotate(-24)" x="-171.64" y="-16.32" width="9.2127" height="2.3422"/>
+    <rect transform="rotate(-42)" x="-156.6" y="-65.223" width="9.2127" height="2.3422"/>
+    <rect transform="rotate(-51)" x="-143.35" y="-86.547" width="9.2127" height="2.3422"/>
+    <rect transform="rotate(-60)" x="-127.22" y="-105.34" width="9.2127" height="2.3422"/>
+    <rect transform="rotate(-75)" x="-95.46" y="-131.21" width="9.2127" height="2.3422"/>
+   </g>
+   <rect transform="rotate(-87)" x="-66.338" y="-145.37" width="9.2127" height="2.3422" stroke-width=".16933"/>
+   <rect transform="rotate(264)" x="-43.156" y="-151.96" width="9.2127" height="2.3422" stroke-width=".16933"/>
+   <rect transform="rotate(249)" x="-3.5668" y="-154.84" width="9.2127" height="2.3422" stroke-width=".16933"/>
+   <path d="m-121.15 50.874-8.4165 3.7471 0.95307 2.1398 19.206 1.7766 2.1867-0.83896-3.3012-8.6012z" stroke-width=".16933"/>
+  </g>
+  <path d="m-140.93 53.228h9.105" fill="none" stroke="#e96f6f" stroke-width=".31044"/>
+  <g transform="matrix(-.0016274 -.57484 .57484 -.0016274 -289.19 341.23)">
+   <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+  </g>
+ </g>
+</svg>

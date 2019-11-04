@@ -1032,8 +1032,8 @@ class Reveal {
   }
 
   /**
-   * Applies JavaScript-controlled layout rules to the
-   * presentation.
+   * Applies JavaScript-controlled layout rules to the presentation
+   * Handles proportions of the current slide in order to fit 
    */
   public layout(): void {
     if (this.dom.wrapper && !this.isPrintingPDF()) {
@@ -1230,6 +1230,7 @@ class Reveal {
     // Update the visibility of slides now that the indices have changed
     this.updateSlidesVisibility();
 
+    // re-render the layout
     this.layout();
 
     // Update the overview if it's currently active
@@ -1317,7 +1318,7 @@ class Reveal {
 
     // Announce the current slide contents, for screen readers
     this.dom.statusDiv.textContent = this.getStatusText(this.currentSlide);
-
+    // update all elements, arrows, background etc.
     this.updateControls();
     this.updateProgress();
     this.updateBackground();
@@ -1335,6 +1336,7 @@ class Reveal {
    * Syncs the presentation with the current DOM. Useful
    * when new slides or control elements are added or when
    * the configuration has changed.
+   * Used only once after the configuration has been completed
    */
   public sync(): void {
 

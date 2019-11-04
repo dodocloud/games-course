@@ -1,6 +1,6 @@
 import { ParatrooperModel } from './paratrooper-model';
 import { Attributes } from './constants';
-import { DynamicsComponent } from '../../../libs/pixi-component';
+import { DynamicsComponent, Vector } from '../../../libs/pixi-component';
 
 /**
  * Simple movement behavior that inverts velocity once the copter reaches boundaries of the scene
@@ -26,7 +26,7 @@ export class CopterMovement extends DynamicsComponent {
 
     if ((velocity.x > 0 && globalPos.x > this.owner.scene.app.screen.width)
       || (velocity.x < 0 && globalPos.x < -this.owner.pixiObj.width)) {
-      velocity.x = -velocity.x;
+      velocity = new Vector(-velocity.x, velocity.y);
     }
   }
 }
