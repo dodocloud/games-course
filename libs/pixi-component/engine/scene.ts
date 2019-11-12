@@ -270,6 +270,13 @@ export default class Scene {
   }
 
   /**
+   * Removes all objects from scene at the end of current update loop
+   */
+  clearSceneAsync(newConfig?: SceneConfig) {
+    this.invokeWithDelay(0, () => this.clearScene(newConfig));
+  }
+
+  /**
    * Removes all objects from scene
    */
   clearScene(newConfig?: SceneConfig) {

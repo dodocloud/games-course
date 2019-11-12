@@ -23,6 +23,7 @@ include ./partial/texts.pug
           img(src!='../static/slides/images/lecture07/book_physics_dev.jpg')
     // ============================================================
     +chapter(bgr, 'Physics engine features')
+    // ============================================================
     +mframeOrange(bgr, 'Physics engine')
       .bottom-content.fill.justify-right
         img.h800(src='../static/slides/images/lecture07/physics_01.png')
@@ -43,6 +44,7 @@ include ./partial/texts.pug
           li.downside can broke the game story
           li.downside takes significant computing resources
           li.downside is based on heavy magic tricks that are difficult to comprehend
+    // ============================================================
     +mframe(bgr, 'Physics engines')(class='line-s')
       .bottom-content.fill.justify-right
         img.h600(src='../static/slides/images/lecture07/physics_03.png')
@@ -68,9 +70,11 @@ include ./partial/texts.pug
       h4 Havok
       ul
         li gold commercial standard
+    // ============================================================
     +mframeGreen(bgr, 'Physics engine steps')
       .center-content
         img.h900(src='../static/slides/svg/lecture07/steps.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Physics vs animation')
       ul 
         li.highlight physics 
@@ -85,7 +89,7 @@ include ./partial/texts.pug
         li offer the dream of environment where everything is physically simulated
         li.highlight-third Pinball series (1980+), Incredible Machines (1993), Little Big Planet (2008), Angry Birds (2009) 
         li for instance, in GTA V, the player can interact with less than 0.1% objects! 
-    
+    // ============================================================
     +mframe(bgr, 'Physics engine features')
       .bottom-content.fill.justify-right
         img.h600(src='../static/slides/images/lecture07/softbody.gif')
@@ -105,6 +109,7 @@ include ./partial/texts.pug
         li rag doll characters
         li water surface, hair, cloth
         li particles
+    // ============================================================
     +mframe(bgr, 'Example: Half-life 2')
       ul
         li Havok Engine
@@ -113,6 +118,7 @@ include ./partial/texts.pug
         li liquid physics with displacement, viscosity, adhesion
       div.tcenter
         img.h600(src='../static/slides/images/lecture07/half-life.jpg')
+    // ============================================================
     +mframe(bgr, 'Example: Inside')
       ul
         li published in 2016, proprietary physics and game engine
@@ -128,6 +134,7 @@ include ./partial/texts.pug
           img.h500(src='../static/slides/images/lecture07/inside.gif')
         div
           img.h500(src='../static/slides/images/lecture07/inside2.gif')
+    // ============================================================
     +mframeOrange(bgr, 'Object types')
       h4 Body
       ul
@@ -150,6 +157,7 @@ include ./partial/texts.pug
       h4 Fixture
       ul
         li used to describe size, shape and material properties
+    // ============================================================
     +mframeOrange(bgr, 'Object types')(class='space-vert-m')
       h4 Constraint
       ul
@@ -164,7 +172,7 @@ include ./partial/texts.pug
       h4 Destructible object
       ul
         li breakable object, can be implemented by using rigid body dynamics, dividing the model into a number of breakable pieces
-
+    // ============================================================
     +mframeGreen(bgr, 'Constraints')
       ul
         li
@@ -189,6 +197,7 @@ include ./partial/texts.pug
           +strtext('', 'Motor', '- joint with torque or angular impulses')
       div.tcenter
         img.h350(src='../static/slides/svg/lecture07/constraints.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Constraints')
       div.columns-4.center-content
         figure
@@ -207,12 +216,15 @@ include ./partial/texts.pug
           div
             img.h600(src='../static/slides/svg/lecture07/cst_conetwist.svg')
           p.mr90 cone-twist
+    // ============================================================
     +mframeGreen(bgr, 'Constraints')
       div.top-content
         img.h700.mt70.ml350(src='../static/slides/images/lecture07/joints.jpg')
       div.top-content.fill.justify-left
         img.h700(src='../static/slides/svg/lecture07/joints.svg')
+    // ============================================================
     +chapter(bgr, 'Collision detection')
+    // ============================================================
     +mframeGreen(bgr, 'Collision Detection')
       .bottom-content.justify-right.fill
         figure.mr20
@@ -235,6 +247,7 @@ include ./partial/texts.pug
         li more-complex shapes should be used only when the simple ones provide inadequate information to achieve the desired behavior
         li.mt40 if collidable entities don't overlap, no more testing is required
         li if they do overlap, more refined testing is required
+    // ============================================================
     +mframe(bgr, 'Example: Unity interaction matrix')
       table.tcenter.colliders.center-content
         tr
@@ -293,6 +306,7 @@ include ./partial/texts.pug
           td.trigger trigger
           td.trigger trigger
           td.trigger trigger
+    // ============================================================
     +mframeOrange(bgr, 'Primitives')
       h4 Sphere
       ul
@@ -310,6 +324,7 @@ include ./partial/texts.pug
         li rectangular volume (cuboid) whose faces are parallel to the axes of the coordinate system
         li.upside very efficient test for penetration
         li.downside AABB must be recalculated whenever the object rotates
+    // ============================================================
     +mframeOrange(bgr, 'Primitives')(class='space-vert-l')
       div.top-content.justify-right
         img.h300.mr100(src='../static/slides/svg/lecture07/primitives_obb.svg')
@@ -332,6 +347,7 @@ include ./partial/texts.pug
         li more general shape
         li must be convex
         li expensive for intersection test
+    // ============================================================
     +mframeOrange(bgr, 'Primitives')(class='space-vert-l')
       div.top-content.justify-right
         img.h250.mr100(src='../static/slides/svg/lecture07/primitives_polysoup.svg')
@@ -357,16 +373,19 @@ include ./partial/texts.pug
         li not necessarily convex
         li simplified mesh/sprite
         li needs preprocessing (BSP)
+    // ============================================================
     +mframeOrange(bgr, 'Comparison')
       div.top-content.mt150
         img.w1600(src='../static/slides/svg/lecture07/primitives_comparison.svg')
       div.top-content.mt150
         img.w1500.mt80.ml15(src='../static/slides/images/lecture07/primitives_comparison.png')
+    // ============================================================
     +mframe(bgr, 'Example: Box2D')
       .bottom-content.fill
         img.w100(src='../static/slides/images/lecture07/box2D.png')
       .top-content.fill.justify-left.t20
         img.h550(src='../static/slides/svg/lecture07/box2D.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Looking for collision candidates')
       h4 Naive solution
       ul
@@ -391,6 +410,7 @@ include ./partial/texts.pug
       ul
         li binary space partitioning, good for complex static geometries (facilities, buildings)
       h4 Grid, Oct-tree, R-Tree, R+tree, R*-tree, X-tree, M-tree,...
+    // ============================================================
     +mframeGreen(bgr, 'Resolving collision candidates')
       h4 Sphere-sphere
       ul
@@ -414,6 +434,7 @@ include ./partial/texts.pug
           |&nbsp;mustn't overlap
       div.tcenter
         img.h400(src='../static/slides/svg/lecture07/intersection_aabb.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Resolving collision candidates')
       h4 Capsules
       ul
@@ -432,6 +453,7 @@ include ./partial/texts.pug
           +strtext2('', 'triangle-ray', '- Möller\'s affine combination')
       div.tcenter
         img.h400(src='../static/slides/svg/lecture07/intersection_triangles.svg')
+    // ============================================================
     +mframeOrange(bgr, 'SAT')
       div.top-content.justify-right
         img.h750.mt150(src='../static/slides/svg/lecture07/sat.svg')
@@ -446,11 +468,13 @@ include ./partial/texts.pug
       h4 Other methods
       ul
         li GJK, Line Sweep, Sphere test,...
+    // ============================================================
     +mframeOrange(bgr, 'Example: SAT')
       div.center-content
         img.h850.mt20(src='../static/slides/svg/lecture07/example_sat.svg')
       ul
         li AABB in 2D: only 2 axes to check
+    // ============================================================
     +mframeOrange(bgr, 'Tunneling problem')
       div.tcenter.top-content
         img.h350.mt200(src='../static/slides/svg/lecture07/moving_bodies_simple.svg')
@@ -466,6 +490,7 @@ include ./partial/texts.pug
         li rotating shapes may result in shapes that aren't convex
       div.tcenter
         img.h150(src='../static/slides/svg/lecture07/moving_bodies_swept.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Collision queries')(class='space-vert-l')
       div.highlight Queries:
       ul.highlight-third
@@ -489,6 +514,7 @@ include ./partial/texts.pug
           +strtext('', 'sphere casts', '- e.g. to determine whether the camera is in a collision')
         li
           +strtext('', 'capsule casts', '- e.g. character movement on uneven terrain')
+    // ============================================================
     +mframeGreen(bgr, 'Collision response')
       div.top-content.fill.justify-right 
         img.h450(src='../static/slides/images/lecture07/animation_2.gif')
@@ -510,6 +536,7 @@ include ./partial/texts.pug
         li force that arises between two bodies that are in continuous contact, resisting their movement relative to one another
         li removes energy from a system of rigid bodies
         li static, dynamic, rolling
+    // ============================================================
     +mframeGreen(bgr, 'Collision resolver')
       div.bottom-content.fill
         img.h300(src='../static/slides/images/lecture07/physics_02.png')
@@ -531,9 +558,11 @@ include ./partial/texts.pug
               span.highlight-sec simulation islands
               ul
                 li grouping objects that either are interacting or have a potential to interact
+    // ============================================================
     +mframeGreen(bgr, 'Sleeping objects')
       div.center-content
         img.h900.ml300(src='../static/slides/svg/lecture07/sleeping_objects.svg')
+    // ============================================================
     +mframe(bgr, 'Fracturing')
       .bottom-content.fill
         img.w100(src='../static/slides/images/lecture07/fracturing.png')
@@ -541,7 +570,9 @@ include ./partial/texts.pug
         li breaking an object into smaller fragments
         li in many cases destruction is not dynamic (can be made using animations)
         li techniques: manual fracturing, boolean operations, Voronoi Shattering
+    // ============================================================
     +chapter(bgr, 'Particle systems')
+    // ============================================================
     +mframeOrange(bgr, 'Particle systems')
       .top-content.justify-right.mt200
         img.h500(src='../static/slides/images/lecture07/particles.gif')
@@ -564,6 +595,7 @@ include ./partial/texts.pug
         li extinguish dead particles
         li move and transform particles according to their dynamic attributes
         li render meshes
+    // ============================================================
     +mframe(bgr, 'Attributes')
       .bottom-content.fill
         img.w100(src='../static/slides/images/lecture07/particles_fire.gif')
@@ -578,9 +610,11 @@ include ./partial/texts.pug
         li lifetime
         li material
         li temperature
+    // ============================================================
     +mframe(bgr, 'Particle systems in games')
       .center-content.fill
         img.h100(src='../static/slides/images/lecture07/particles_in_games.jpg')
+    // ============================================================
     +mframe(bgr, 'Example: Fairlight')
       ul
         li a demoscene group that pushed the idea about particle systems to absolute hardware limits
@@ -591,6 +625,7 @@ include ./partial/texts.pug
         figure
           img.h550(src='../static/slides/images/lecture07/fairlight_instant.jpg')
           p Instant God (2016)
+    // ============================================================
     +mframeGreen(bgr, 'Liquidfun')
       .bottom-content.justify-right.fill
         img.h400(src='../static/slides/images/lecture07/liquidfun.jpg')
@@ -614,6 +649,7 @@ include ./partial/texts.pug
           +strtext('', 'phase 4:', 'update positions')
         li
           +strtext('', 'phase 5:', 'handle interaction with Box2D')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Noita')
       .bottom-content.fill
         div.tcenter
@@ -624,6 +660,7 @@ include ./partial/texts.pug
         li each pixel is considered a particle having their own attributes
         li flood-algorithm for ignition effects
         li each screen is divided into 64x64 chunks processed in 4 stages from the bottom up
+    // ============================================================
     +mframe(bgr, 'Lecture 7 Review')
       ul
         li
@@ -644,6 +681,7 @@ include ./partial/texts.pug
           +btext('', 'Collision queries:', 'ray casting, shape casting')
         li
           +btext('', 'Particle systems', '- a collection of point masses that obeys certain physical laws')
+    // ============================================================
 
 
 

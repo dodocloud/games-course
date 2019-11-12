@@ -32,7 +32,7 @@ export class ExampleDragonBones {
       }
     }
 
-    this.engine.app.loader.once('complete', (loader: PIXI.loaders.Loader) => {
+    this.engine.app.loader.once('complete', (loader: PIXI.Loader) => {
       const factory = PixiFactory.factory;
       factory.parseDragonBonesData(this.engine.app.loader.resources[resourcesToLoad[0]].data);
       factory.parseTextureAtlasData(this.engine.app.loader.resources[resourcesToLoad[1]].data,

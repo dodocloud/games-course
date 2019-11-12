@@ -645,9 +645,7 @@ include ./partial/texts.pug
     // ============================================================
     +mframe(bgr, 'Example: Direction')
       div.top-content.fill.justify-right
-        img.mt80.h750(src='../static/slides/svg/lecture06/example_rotation.svg')
-      ul
-        li We want to rotate the bottom ship toward the other one.
+        img.mt80.h650(src='../static/slides/svg/lecture06/example_rotation.svg')
       div.columns-2
         div
           ol
@@ -988,6 +986,8 @@ include ./partial/texts.pug
           +btext('', 'Vector operations', '- magnitude, normalization, normal vector, dot product')
         li
           +btext('', 'Integration methods:', 'euler integration, verlet integration')
+    // ============================================================
+    +gbquote(bgr, 'Kirov Reporting', 'C&C, Red Alert 2', true)(class="w50")
 
 include ./partial/footer.pug
 script(src!='../libs/revealjs/revealjs.ts')

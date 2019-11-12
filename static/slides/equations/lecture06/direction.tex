@@ -1,12 +1,12 @@
 P, Q, rot
-\mathrm{lookAt} = (\sin{(rot)}, \cos{(rot)})
+\mathrm{lookAt} = (\cos{(\frac{\pi}{2}-rot)}, \sin{(\frac{\pi}{2}-rot)})
 \mathrm{lookAt'} = (Q-P)
 \mathrm{lookAt'_n} = \frac{\mathrm{lookAt'}}{|\mathrm{lookAt'}|}
 rot' = \mathrm{arccos}(\mathrm{lookAt'}\cdot\mathrm{lookAt'_n})
 P := (1,1), Q:=(2,5), rot:=70°
-\mathrm{lookAt} = (\sin{(70), \cos{(70)}}) \doteq (0.93, 0.34)
+\mathrm{lookAt} = (\cos{(90-70), \sin{(90-70)}}) \doteq (0.93, 0.34)
 \mathrm{lookAt'} = (1,4)
 \mathrm{lookAt'_n} = (1,4)/\sqrt{17} \doteq (0.24, 0.97)
-rot' = \mathrm{arccos}((0.93\cdot 0.34) + (0.24\cdot 0.97)) \doteq 56°
+rot' = \mathrm{arccos}((0.93\cdot 0.24) + (0.34\cdot 0.97)) \doteq 56°
 rot' = \mathrm{atan2}(0.97, 0.24) - \mathrm{atan2}(0.34, 0.93) \doteq 56°
 rot' = 70 - \mathrm{atan2}(1, 4) \doteq 56°

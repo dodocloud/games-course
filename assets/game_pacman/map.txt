@@ -1,0 +1,32 @@
+// paths for each block in UP-DOWN-LEFT-RIGHT binary format
+// example: 0 = 0b0000 -> the path is blocked from all sides
+// example: 3 = 0b0011 -> we can go to the left and to the right
+// example: 4 = 0b0100 -> we can only go down
+// example: E = 0b1111 -> we can go up, down, left, right
+:paths
+5 3 3 7 3 3 3 6 0 4 0 0 5 3 6 0 5 3 6
+C 0 0 C 0 0 0 C 0 9 3 7 A 0 9 3 E 0 C
+C 0 5 B 3 6 0 C 0 0 0 C 0 0 0 0 C 0 C
+C 0 C 0 0 C 0 D 3 3 3 F 3 2 0 5 A 0 C
+C 0 C 0 5 B 3 E 0 4 0 C 0 4 0 C 0 0 C
+9 3 F 3 E 0 0 C 0 4 0 C 0 C 0 C 0 5 A
+0 0 C 0 D 3 3 D 3 3 3 E 0 C 0 9 3 A 0
+0 0 C 0 C 0 0 C 0 0 0 D 3 E 0 0 0 0 0
+5 3 B 7 B 6 0 D 3 7 3 E 0 9 3 7 3 3 6
+C 0 0 C 0 C 0 C 0 C 0 C 0 0 0 C 0 0 C
+9 3 3 B 3 B 3 A 0 9 3 B 3 3 3 B 3 3 A
+
+// special functions (see States.h for more info)
+// example: 4 is for power-pellet, 1 for tunnel
+:functions
+4 7 7 7 7 7 7 7 0 7 0 0 7 7 7 0 7 7 4 
+7 0 0 7 0 0 0 7 0 7 7 7 7 0 7 7 7 0 7 
+7 0 7 7 7 7 0 7 0 0 0 2 0 0 0 0 7 0 7 
+7 0 7 0 0 7 0 7 7 7 7 7 7 7 0 7 7 0 7 
+7 0 7 0 7 7 7 7 0 6 0 7 0 1 0 7 0 0 7 
+7 7 7 7 7 0 0 7 0 3 0 7 0 7 0 7 0 7 7 
+0 0 7 0 7 7 1 7 7 7 7 7 0 7 0 7 7 7 0 
+0 0 7 0 7 0 0 7 0 0 0 7 7 7 0 0 0 0 0 
+7 7 7 7 7 7 0 7 7 7 7 7 0 7 7 7 7 7 7 
+7 0 0 7 0 7 0 7 0 5 0 7 0 0 0 7 0 0 7 
+4 7 7 7 7 7 7 7 0 7 7 7 7 7 7 7 7 7 4 

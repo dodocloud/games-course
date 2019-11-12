@@ -1,0 +1,50 @@
+<svg width="16.146mm" height="38.142mm" version="1.1" viewBox="0 0 16.146 38.142" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-261.88 -208.16)">
+  <g fill="#e9e56f" aria-label="overlap">
+   <g aria-label="Double Precision 64b">
+    <rect x="262.92" y="209.16" width="14.108" height="36.142" fill="#0d173b" fill-opacity=".38431"/>
+    <g fill="none">
+     <path d="m264.89 212.89 10.093-3.0866" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.89 209.2h14.055" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m264.87 217.37s5.4633 0.61846 10.082-3.0186" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.89 213.72h14.067" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m274.99 218.98s-5.4506-0.58027-10.069 3.0568" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.89 218.16h14.055" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m264.89 226.6c1.7954 0 7.2508 0.54108 10.1-3.131" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.89 222.68h14.055" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m264.88 231.17c1.7954 0 5.5321-0.35012 10.087-3.1183" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.89 227.19h14.055" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m275.03 232.43c-1.7954 0-5.5575 0.31191-10.113 3.0801" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m276.96 245.3v-36.099" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m274.98 237c-0.89237 0-2.762 0.0888-5.032 1.4748-2.27 1.386-4.165 1.5894-5.0574 1.5894" stroke="#d54747" stroke-width=".15278"/>
+     <path d="m262.93 245.3v-36.099" stroke="#6f89e9" stroke-width=".084667"/>
+     <path d="m264.86 244.37c2.8577 0 10.1 0.55863 10.1-3.1819" stroke="#d54747" stroke-width=".15278"/>
+     <g stroke="#6f89e9" stroke-width=".084667">
+      <path d="m262.89 231.71h14.055"/>
+      <path d="m262.89 236.23h14.055"/>
+      <path d="m262.89 240.74h14.055"/>
+      <path d="m262.89 245.26h14.055"/>
+     </g>
+    </g>
+    <g fill="#e9e56f">
+     <circle cx="264.72" cy="212.93" r=".22402"/>
+     <circle cx="275.04" cy="209.76" r=".22402"/>
+     <circle cx="275.01" cy="214.32" r=".22402"/>
+     <circle cx="264.95" cy="217.39" r=".22402"/>
+     <circle cx="264.83" cy="222.11" r=".22402"/>
+     <circle cx="275.08" cy="218.98" r=".22402"/>
+     <circle cx="264.77" cy="226.59" r=".22402"/>
+     <circle cx="275.05" cy="223.42" r=".22402"/>
+     <circle cx="264.75" cy="231.18" r=".22402"/>
+     <circle cx="275.02" cy="228.04" r=".22402"/>
+     <circle cx="264.8" cy="235.57" r=".22402"/>
+     <circle cx="275.14" cy="232.42" r=".22402"/>
+     <circle cx="275.12" cy="236.99" r=".22402"/>
+     <circle cx="264.77" cy="240.06" r=".22402"/>
+     <circle cx="264.77" cy="244.38" r=".22402"/>
+     <circle cx="274.93" cy="241.15" r=".22402"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

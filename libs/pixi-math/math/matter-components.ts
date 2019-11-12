@@ -26,6 +26,9 @@ export class MatterBody extends ECSA.Graphics {
 
   constructor(tag: string = '', body: Matter.Body, world: Matter.World, options?: MatterBodyOptions) {
     super(tag);
+    if(!body.parts) {
+      throw new Error('Body.parts is undefined');
+    }
     this.body = body;
     this.world = world;
     this.options = {
@@ -66,7 +69,6 @@ export class MatterBody extends ECSA.Graphics {
     // handle compound parts
     for (let k = this.body.parts.length > 1 ? 1 : 0; k < this.body.parts.length; k++) {
       part = this.body.parts[k];
-      console.log(part);
       if (!this.options.showWireframes) {
         this.beginFill(fillStyle, 1);
         this.lineStyle(this.options.lineWidth, strokeStyle, 1);

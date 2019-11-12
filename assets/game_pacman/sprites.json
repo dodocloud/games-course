@@ -1,0 +1,144 @@
+{
+  "pacman_win" : {
+    "x" : 0,
+    "y" : 64,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 15
+  },
+  "pacman_death" : {
+    "x" : 0,
+    "y" : 96,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 15
+  },
+  "pacman_walk_left" : {
+    "x" : 256,
+    "y" : 0,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "pacman_walk_right" : {
+    "x" : 0,
+    "y" : 0,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "pacman_walk_up" : {
+    "x" : 256,
+    "y" : 32,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "pacman_walk_down" : {
+    "x" : 0,
+    "y" : 32,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_walk_left" : {
+    "x" : 0,
+    "y" : 192,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_walk_right" : {
+    "x" : 256,
+    "y" : 192,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_walk_up" : {
+    "x" : 256,
+    "y" : 160,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_walk_down" : {
+    "x" : 0,
+    "y" : 160,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_rush_walk_left" : {
+    "x" : 0,
+    "y" : 256,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_rush_walk_right" : {
+    "x" : 256,
+    "y" : 256,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_rush_walk_up" : {
+    "x" : 256,
+    "y" : 224,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "spider_rush_walk_down" : {
+    "x" : 0,
+    "y" : 224,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  },
+  "dots" : {
+    "x" : 288,
+    "y" : 448,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 4
+  },
+  "pellets" : {
+    "x" : 0,
+    "y" : 128,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 16
+  },
+  "river" : {
+    "x" : 0,
+    "y" : 288,
+    "w" : 64,
+    "h" : 224,
+    "frames" : 4
+  },
+  "fountain" : {
+    "x" : 320,
+    "y" : 288,
+    "w" : 96,
+    "h" : 32,
+    "frames" : 4,
+    "frames_per_row" : 2
+  }, 
+  "gate" : {
+    "x" : 256,
+    "y" : 352,
+    "w" : 64,
+    "h" : 32,
+    "frames" : 8,
+    "frames_per_row" : 4
+  },
+  "spider_gate" :  {
+    "x" : 256,
+    "y" : 480,
+    "w" : 32,
+    "h" : 32,
+    "frames" : 8
+  }
+}

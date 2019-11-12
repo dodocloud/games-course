@@ -220,7 +220,7 @@ class ChainComponentTest extends BaseTest {
       .waitForMessage('TOKEN')
       .endRepeat()
       .execute((cmp) => {
-        onFinish('Chain component repeat test', tokens === 2 ? 'OK' : 'FAILURE', tokens === 2);
+        scene.invokeWithDelay(0, () => onFinish('Chain component repeat test', tokens === 2 ? 'OK' : 'FAILURE', tokens === 2));
       })
     );
 
@@ -247,7 +247,7 @@ class ChainComponentTest2 extends BaseTest {
       .execute(() => whileTokens++)
       .endWhile()
       .execute((cmp) => {
-        onFinish('Chain component repeat test 2', tokens === 2 ? 'OK' : 'FAILURE', tokens === 2);
+        scene.invokeWithDelay(0, () => onFinish('Chain component repeat test 2', tokens === 2 ? 'OK' : 'FAILURE', tokens === 2));
       })
     );
 
@@ -262,7 +262,7 @@ class ChainComponentTest3 extends BaseTest {
       .waitForMessage('TOKEN')
       .execute((cmp) => {
         finished = true;
-        onFinish('Chain component repeat test 3', 'OK', true);
+        scene.invokeWithDelay(0, () => onFinish('Chain component repeat test 3', 'OK', true));
       })
     );
 
@@ -294,7 +294,7 @@ class ChainComponentTest4 extends BaseTest {
       .execute((cmp) => {
         finished = true;
         let success = token === 3;
-        onFinish('Chain component wait for 3 components', success ? 'OK' : 'FAILURE, expected 3, got ' + token, success);
+        scene.invokeWithDelay(0, () => onFinish('Chain component wait for 3 components', success ? 'OK' : 'FAILURE, expected 3, got ' + token, success));
       })
     );
 
@@ -319,7 +319,7 @@ class ChainComponentConditionalTest extends BaseTest {
       .waitForMessageConditional('TOKEN', { ownerState: 22, ownerFlag: 12 })
       .execute((cmp) => {
         finished = true;
-        onFinish('Chain component conditional test', 'OK', true);
+        scene.invokeWithDelay(0, () => onFinish('Chain component conditional test', 'OK', true));
       })
     );
 
@@ -328,7 +328,7 @@ class ChainComponentConditionalTest extends BaseTest {
 
       scene.invokeWithDelay(1000, () => {
         if(!finished) {
-          onFinish('Chain component conditional test', 'TIMEOUT', false);
+          scene.invokeWithDelay(0, () => onFinish('Chain component conditional test', 'TIMEOUT', false));
         }
       });
     });

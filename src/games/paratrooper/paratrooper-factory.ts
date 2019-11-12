@@ -101,7 +101,7 @@ export default class ParatrooperFactory {
 
     // cannon
     builder
-      .relativePos(0.5, 0.75)
+      .relativePos(0.0, -0.4)
       .anchor(0.5, 1)
       .withComponent(new CannonInputController())
       .withParent(turret)
