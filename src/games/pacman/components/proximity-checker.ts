@@ -24,7 +24,7 @@ export default class ProximityChecker extends BaseComponent {
     // check proximity with pacman
     let pacmanPos = this.model.pacman.pos;
     let spiders = this.model.spiders;
-    for(let spider of spiders) {
+    for(let [,spider] of spiders) {
       let spiderPos = spider.pos;
       let distance = pacmanPos.subtract(spiderPos);
       if(Math.abs(distance.x) <= 1 && Math.abs(distance.y) <= 1) {

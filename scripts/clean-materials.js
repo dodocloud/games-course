@@ -1,13 +1,15 @@
 var utils = require("./utils");
 
 utils.deleteFolderRecursive(".cache");
-utils.deleteFolderRecursive("assets/lecture01");
+utils.deleteFolderRecursive("assets/lab01");
 utils.deleteFolderRecursive("assets/lab02");
+utils.deleteFolderRecursive("assets/lab04");
+utils.deleteFolderRecursive("assets/lab05");
 utils.deleteFolderRecursive("assets/game_arkanoid");
-utils.deleteFolderRecursive("assets/game_driver");
 utils.deleteFolderRecursive("assets/game_pacman");
 utils.deleteFolderRecursive("assets/game_paratrooper");
 utils.deleteFolderRecursive("build", true);
+utils.deleteFolderRecursive("build_pre", true);
 utils.deleteFolderRecursive("libs/revealjs");
 utils.deleteFolderRecursive("src/labs");
 utils.deleteFolderRecursive("src/lectures");

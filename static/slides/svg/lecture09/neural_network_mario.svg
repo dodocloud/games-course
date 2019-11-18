@@ -1,0 +1,30 @@
+<svg width="49.53mm" height="21.786mm" version="1.1" viewBox="0 0 49.53 21.786" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(53.434 -41.163)">
+  <g fill="#e9e56f" aria-label="IF action">
+   <rect transform="scale(1,-1)" x="-52.293" y="-61.808" width="18.344" height="18.062" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width=".28222"/>
+   <g fill="#3ade00">
+    <rect x="-52.152" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-50.74" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-50.74" y="60.231" width="1.4111" height="1.4111"/>
+    <rect x="-46.507" y="60.231" width="1.4111" height="1.4111"/>
+    <rect x="-46.507" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-45.096" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-43.685" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-42.274" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-40.863" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-39.452" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-38.04" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-36.629" y="59.127" width="1.4111" height="1.4111"/>
+    <rect x="-36.629" y="60.255" width="1.4111" height="1.4111"/>
+    <rect x="-42.274" y="53.482" width="1.4111" height="1.4111"/>
+    <rect x="-40.863" y="53.482" width="1.4111" height="1.4111"/>
+    <rect x="-35.218" y="49.249" width="1.4111" height="1.4111"/>
+    <rect x="-36.629" y="49.249" width="1.4111" height="1.4111"/>
+   </g>
+   <path d="m-42.838 48.967c1.4111 0 36.124-5.9267 36.124-5.9267" fill="none" stroke="#d54747" stroke-width=".45156"/>
+   <g transform="matrix(-.18841 -.75774 .75774 -.18841 -121.01 473.89)">
+    <path d="m501.47 274.25-1.2053 3.2778-1.2053-3.2778c0.71162 0.52365 1.6852 0.52064 2.4106 0z" fill="#fff" fill-rule="evenodd" stroke="#d54747" stroke-linejoin="round" stroke-width=".1875"/>
+   </g>
+  </g>
+ </g>
+</svg>

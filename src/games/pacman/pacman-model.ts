@@ -6,7 +6,7 @@ import { SpecFunctions, GameState, UnitState } from './constants';
 
 export default class PacmanModel {
 
-  private _spiders: GameUnit[];
+  private _spiders: Map<number, GameUnit>;
   private pacdots: Set<number>;
   private pellets: Set<number>;
   private _map: GameMap;
@@ -18,9 +18,20 @@ export default class PacmanModel {
   private _westernTunnelPos: Vector;
   private _gameSpeed: number;
   private _state: GameState;
+  private _keyPosition: Vector;
+  private _keyTaken: boolean;
+  private _livesNum: number;
 
   public get allPacdotsEaten() {
     return this.pacdots.size === 0;
+  }
+
+  public get keyTaken(): boolean {
+    return this._keyTaken;
+  }
+
+  public get keyPos() {
+    return this._keyPosition;
   }
 
   public get state() {
@@ -71,13 +82,20 @@ export default class PacmanModel {
     return this._gameSpeed;
   }
 
+  public get livesNum() {
+    return this._livesNum;
+  }
+
   public initLevel(gameSpeed: number) {
     if (!this._map) {
       throw new Error('Map is not loaded!');
     }
     this._gameSpeed = gameSpeed;
     this._state = GameState.DEFAULT;
+    this._keyTaken = false;
+    this._keyPosition = new Vector(-1, -1);
     this._map.init();
+    this._livesNum = 4;
 
     this._pacman = new GameUnit(this.map.getTileByFunction(SpecFunctions.PACMAN_SPAWNER).pos.clone(), this.map);
 
@@ -97,24 +115,41 @@ export default class PacmanModel {
     this._easternTunnelPos = tunnels[0].pos.x > tunnels[1].pos.x ? tunnels[0].pos : tunnels[1].pos;
     this._westernTunnelPos = tunnels[0].pos.x > tunnels[1].pos.x ? tunnels[1].pos : tunnels[0].pos;
 
-    this._spiders = [];
+    this._spiders = new Map();
     this._spiderGatePos = this.map.getTileByFunction(SpecFunctions.SPIDER_GATE).pos;
     this._spiderSpawnPos = this.map.getTileByFunction(SpecFunctions.SPIDER_SPAWNER).pos;
   }
 
   public spawnSpider(): GameUnit {
     let spider = new GameUnit(this.spiderSpawnPos.clone(), this.map);
-    this._spiders.push(spider);
+    this._spiders.set(spider.id, spider);
     return spider;
   }
 
   public killSpider(spider: GameUnit) {
     spider.state = UnitState.DEAD;
-    this._spiders.splice(this._spiders.findIndex(gm => gm.id === spider.id));
+    this._spiders.delete(spider.id);
   }
 
   public killPacman() {
     this.pacman.state = UnitState.DEAD;
+    this._livesNum--;
+  }
+
+  public spawnKey(): Vector {
+    if(!this.keyTaken) {
+      let allPacdots = this.map.getTilesByFunction(SpecFunctions.PACDOT);
+      let remainingPacdots = this.pacdots;
+      let dotsEaten = allPacdots.length - remainingPacdots.size;
+      if(dotsEaten > 10) {
+        // more than 10 pacdots eaten -> spawn key
+        let randomIndex = Math.floor(Math.random() * allPacdots.length);
+        let randomPos = allPacdots[randomIndex];
+        this._keyPosition = randomPos.pos;
+        return this._keyPosition;
+      }
+    }
+    return null;
   }
 
   public loadMap(mapData: string | GameMap) {
@@ -129,7 +164,7 @@ export default class PacmanModel {
 
   public isSomethingEatable(pos: Vector): boolean {
     let index = this.mapToIndex(pos);
-    return this.pacdots.has(index) || this.pellets.has(index);
+    return this.pacdots.has(index) || this.pellets.has(index) || this.mapToIndex(this._keyPosition) === index;
   }
 
   public eatPacDot(pos: Vector): boolean {
@@ -152,6 +187,12 @@ export default class PacmanModel {
     }
     return false;
   }
+
+  public fetchKey() {
+    this._keyTaken = true;
+    this._keyPosition = new Vector(-1, -1);
+  }
+
 
   public mapToIndex(pos: Vector) {
     return (pos.y * this.map.gridWidth + pos.x);

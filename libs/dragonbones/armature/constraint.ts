@@ -68,7 +68,7 @@ export class IKConstraint extends Constraint {
    */
   public _weight: number;
 
-  private _scaleEnabled: boolean; // TODO
+  public _scaleEnabled: boolean;
 
   public init(constraintData: ConstraintData, armature: Armature): void {
     if (this._constraintData !== null) {

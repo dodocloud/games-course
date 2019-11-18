@@ -108,7 +108,7 @@ export default class Component {
    * Detaches component from scene
    */
   finish() {
-    if(this.isRunning) {
+    if(this.isRunning && this.owner) {
       this.onFinish();
       this._isFinished = true;
       if(this.removeWhenFinished) {

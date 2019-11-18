@@ -19,7 +19,7 @@ export default class SpiderController extends BaseComponent {
   onMessage(msg: ECSA.Message) {
     // this should be game controller's responsibility. However, this is way simpler
     // spiders will disappear upon game state change
-    if(msg.action === Messages.VICTORY || msg.action === Messages.DEFEAT || msg.action === Messages.PACMAN_KILLED) {
+    if (msg.action === Messages.VICTORY || msg.action === Messages.DEFEAT || msg.action === Messages.PACMAN_KILLED) {
       this.model.killSpider(this.unit);
       this.owner.remove();
     }
@@ -30,9 +30,13 @@ export default class SpiderController extends BaseComponent {
   }
 
   private walk() {
-    if(!this.hasDirection) {
+    if (!this.hasDirection) {
       let newDirection: Direction = null;
-      if (this.unit.canMakeStep()) {
+
+      let pathToPacman = this.model.map.search(this.unit.pos, this.model.pacman.pos);
+      if (pathToPacman) {
+        newDirection = pathToPacman[0];
+      } else if (this.unit.canMakeStep()) {
         // proceed
         newDirection = this.unit.dir;
       } else {
@@ -40,11 +44,12 @@ export default class SpiderController extends BaseComponent {
         newDirection = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
       }
 
+
       if (newDirection != null) {
         this.hasDirection = true;
         this.unit.state = UnitState.WALKING;
         this.owner.addComponent(new ECSA.ChainComponent()
-          .addComponentAndWait(() => { return new SpiderWalkAnim(this.unit.pos, newDirection, 1000); })
+          .addComponentAndWait(() => { return new SpiderWalkAnim(this.unit.pos, newDirection, 500); })
           .execute(() => {
             this.unit.state = UnitState.STANDING;
             this.hasDirection = false;

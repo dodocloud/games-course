@@ -1,6 +1,7 @@
 import { SpecFunctions, GateState, STATE_DEFAULT } from './constants';
 import { Direction } from './direction';
 import { Vector } from '../../../libs/pixi-component';
+import Queue from '../../../libs/pixi-math/structs/queue';
 
 /**
  * Map cell
@@ -109,5 +110,73 @@ export class GameMap {
       let currentTile = this.getTile(pos.x, pos.y);
       let downTile = this.getTile(pos.x, pos.y + 1);
       return currentTile.canGoDown() && (downTile.specialFunction !== SpecFunctions.GATE || downTile.state === GateState.OPEN);
+  }
+
+  getNeighbors(pos: Vector): Vector[] {
+    let output = [];
+    if(this.canGoLeft(pos)) {
+      output.push(new Vector(pos.x - 1, pos.y));
+    }
+    if(this.canGoRight(pos)) {
+      output.push(new Vector(pos.x + 1, pos.y));
+    }
+    if(this.canGoUp(pos)) {
+      output.push(new Vector(pos.x, pos.y - 1));
+    }
+    if(this.canGoDown(pos)) {
+      output.push(new Vector(pos.x, pos.y + 1));
+    }
+    return output;
+  }
+
+  search(start: Vector, goal: Vector): Direction[] {
+    let indexer = (vec: Vector) => vec.y*this.gridWidth + vec.x;
+    let frontier = new Queue<Vector>();
+    frontier.add(start);
+    let cameFrom = new Map<number, Vector>();
+    cameFrom.set(indexer(start), start);
+    let directionMapper = (vec1: Vector, vec2: Vector): Direction => {
+      if(vec1.x < vec2.x) {
+        return Direction.RIGHT;
+      }
+      if(vec1.x > vec2.x) {
+        return Direction.LEFT;
+      }
+      if(vec1.y < vec2.y) {
+        return Direction.DOWN;
+      }
+      if(vec1.y > vec2.y) {
+        return Direction.UP;
+      }
+    };
+
+    while (!frontier.isEmpty()) {
+      let current = frontier.peek();
+      frontier.dequeue();
+      if (current.equals(goal)) {
+        // the goal was achieved
+        let current = goal;
+        let previous = current;
+        let output: Direction[] = [];
+        while (!current.equals(start)) {
+          previous = current;
+          current = cameFrom.get(indexer(current));
+          output.push(directionMapper(current, previous));
+        }
+        output = output.reverse();
+        return output;
+      }
+
+      // get neighbors of the current grid block
+      let neighbors = this.getNeighbors(current);
+
+      for (let next of neighbors) {
+        if (!cameFrom.has(indexer(next))) {
+          frontier.enqueue(next);
+          cameFrom.set(indexer(next), current);
+        }
+      }
+    }
+    return null;
   }
 }

@@ -7,6 +7,17 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.9] - 2019-11-18
+### Added
+- Materials for Lecture 9 and Lab 5
+- Path-follow steering behavior
+- Path-finding algorithms
+- Perlin noise
+
+### Changed
+- Refactored pacman
+
+
 ## [3.8] - 2019-11-12
 ### Added
 - Materials for Lecture 8

@@ -9,6 +9,8 @@ import SpriteAnimator from './sprite-animator';
 
 export class PacmanController extends BaseComponent {
 
+  private currentWalkAnim: PacmanWalkAnim;
+
   get unit() {
     return this.owner.getAttribute(Attributes.GAME_UNIT) as GameUnit;
   }
@@ -20,9 +22,17 @@ export class PacmanController extends BaseComponent {
 
   onMessage(msg: ECSA.Message) {
     if(msg.action === Messages.PACMAN_KILLED) {
+      if(this.currentWalkAnim) {
+        this.currentWalkAnim.finish();
+        this.currentWalkAnim = null;
+      }
       this.owner.addComponent(new SpriteAnimator(this.spriteSheetData.pacman_death,
         this.spriteSheetData.pacman_death.frames * (200 / this.model.gameSpeed), false));
     } else if (msg.action === Messages.VICTORY) {
+      if(this.currentWalkAnim) {
+        this.currentWalkAnim.finish();
+        this.currentWalkAnim = null;
+      }
       this.owner.addComponent(new SpriteAnimator(this.spriteSheetData.pacman_win,
         this.spriteSheetData.pacman_win.frames * (500 / this.model.gameSpeed), false));
     } else if(msg.action === Messages.PACMAN_REVIVED) {
@@ -34,7 +44,7 @@ export class PacmanController extends BaseComponent {
 
   protected followDirection(direction: Direction): boolean {
 
-    if(this.unit.state !== UnitState.STANDING) {
+    if(this.unit.state !== UnitState.STANDING || (this.model.state !== GameState.DEFAULT && this.model.state !== GameState.RUSH_MODE)) {
       return false;
     }
 
@@ -72,8 +82,13 @@ export class PacmanController extends BaseComponent {
     this.unit.state = UnitState.WALKING;
     this.unit.dir = direction;
     // execute walk anim
+    if(this.currentWalkAnim) {
+      this.currentWalkAnim.finish();
+      this.currentWalkAnim = null;
+    }
     this.owner.addComponent(new ECSA.ChainComponent()
-      .addComponentAndWait(() => { return new PacmanWalkAnim(this.unit.pos, direction, this.model.isSomethingEatable(newPos), 150);})
+      .execute(() => this.currentWalkAnim = new PacmanWalkAnim(this.unit.pos, direction, this.model.isSomethingEatable(newPos), 150))
+      .addComponentAndWait(() => this.currentWalkAnim)
       .execute(() => {
         if(this.unit.state === UnitState.WALKING) {
           this.confirmPositionChange(direction);
@@ -113,6 +128,11 @@ export class PacmanController extends BaseComponent {
             this.sendMessage(Messages.PACDOT_EATEN, this.unit.pos);
           }
         }
+
+        if(this.model.keyPos.x === this.unit.pos.x && this.model.keyPos.y === this.unit.pos.y) {
+          this.model.fetchKey();
+          this.sendMessage(Messages.KEY_FETCHED);
+        }
   }
 }
 
@@ -126,17 +146,11 @@ export class PacmanKeyController extends PacmanController {
     if(state === UnitState.STANDING) {
       if (cmpKey.isKeyPressed(ECSA.Keys.KEY_LEFT)) {
         this.followDirection(Direction.LEFT);
-      }
-
-      if (cmpKey.isKeyPressed(ECSA.Keys.KEY_RIGHT)) {
+      } else if (cmpKey.isKeyPressed(ECSA.Keys.KEY_RIGHT)) {
         this.followDirection(Direction.RIGHT);
-      }
-
-      if (cmpKey.isKeyPressed(ECSA.Keys.KEY_UP)) {
+      } else if (cmpKey.isKeyPressed(ECSA.Keys.KEY_UP)) {
         this.followDirection(Direction.UP);
-      }
-
-      if (cmpKey.isKeyPressed(ECSA.Keys.KEY_DOWN)) {
+      } else if (cmpKey.isKeyPressed(ECSA.Keys.KEY_DOWN)) {
         this.followDirection(Direction.DOWN);
       }
     }

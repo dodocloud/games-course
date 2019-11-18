@@ -8,7 +8,8 @@ export enum Messages {
   DEFEAT = 'defeat',
   PACMAN_KILLED = 'pacman_killed',
   SPIDER_KILLED = 'spider_killed',
-  PACMAN_REVIVED = 'pacman_revived'
+  PACMAN_REVIVED = 'pacman_revived',
+  KEY_FETCHED = 'key_fetched'
 }
 
 export enum Attributes {
@@ -73,7 +74,7 @@ export enum SpecFunctions {
   PELLET = 4,
   PACMAN_SPAWNER = 5,
   SPIDER_SPAWNER = 6,
-  PACDOT = 7
+  PACDOT = 7,
 }
 
 export const STATE_DEFAULT = 0;
@@ -94,5 +95,6 @@ export enum UnitState {
 export enum GameState {
   DEFAULT = 0,
   RUSH_MODE = 1,
-  GAME_OVER = 2,
+  LIFE_LOST = 2,
+  GAME_OVER = 3
 }

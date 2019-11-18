@@ -9,9 +9,11 @@ import SpiderSpawner from './components/spider-spawner';
 import SpiderController from './components/spider-controller';
 import { soundComponent } from './components/sound-component';
 import SpriteData from './sprite-data';
-import { getPacdotIdentifier, getPelletIdentifier, mapToWorld, getSpiderIdentifier } from './utils';
+import { getPacdotIdentifier, getPelletIdentifier, mapToWorld, getSpiderIdentifier, getLifeIconIdentifier } from './utils';
 import GameController from './components/game-controller';
 import ProximityChecker from './components/proximity-checker';
+import KeyController from './components/key-controller';
+import { PacmanLivesComponent } from './components/pacman-lives-component';
 
 export default class PacmanFactory {
 
@@ -33,10 +35,21 @@ export default class PacmanFactory {
     scene.assignGlobalAttribute(Attributes.MODEL, model);
     scene.assignGlobalAttribute(Attributes.SPRITESHEET_DATA, this.spritesData);
 
-    scene.addGlobalComponent(new ECSA.KeyInputComponent());
+    if(PIXI.utils.isMobile.any) {
+      // use virtual gamepad
+      scene.addGlobalComponent(new ECSA.VirtualGamepadComponent({
+        KEY_LEFT: ECSA.Keys.KEY_LEFT,
+        KEY_RIGHT: ECSA.Keys.KEY_RIGHT,
+        KEY_UP: ECSA.Keys.KEY_UP,
+        KEY_DOWN: ECSA.Keys.KEY_DOWN
+      }));
+    } else {
+      scene.addGlobalComponent(new ECSA.KeyInputComponent());
+    }
     scene.addGlobalComponent(new ItemCollector());
     scene.addGlobalComponent(new GameController());
     scene.addGlobalComponent(new ProximityChecker());
+    scene.addGlobalComponent(new PacmanLivesComponent());
     scene.addGlobalComponent(soundComponent());
 
     let builder = new ECSA.Builder(scene);
@@ -72,16 +85,26 @@ export default class PacmanFactory {
 
     builder
       .globalPos(defaultPositions.spiderSpawner)
-      .withComponent(new SpiderSpawner(10))
+      .withComponent(new SpiderSpawner(15))
       .withAttribute(Attributes.SPRITE_DATA, this.spritesData.spider_gate)
       .asSprite(this.createTexture(this.spritesData.spider_gate), Names.SPIDER_GATE)
       .withParent(layerbgr)
       .build();
 
+    // lives
+    for(let i = 0; i < model.livesNum; i++) {
+      builder
+      .globalPos(550 - 40 * i, 0)
+      .asSprite(this.createTexture(this.spritesData.pacman_win), getLifeIconIdentifier(i))
+      .withParent(layerbgr)
+      .build();
+    }
+
     builder
     .asSprite(PIXI.Texture.from(Assets.BACKGROUND), Names.BACKGROUND)
     .withParent(layerbgr)
     .build();
+
 
     // add dynamic elements
     model.map.getTilesByFunction(SpecFunctions.PACDOT).forEach(pacdot => {
@@ -101,6 +124,12 @@ export default class PacmanFactory {
       .build();
     });
 
+    builder
+      .globalPos(-1, -1)
+      .asSprite(this.createTexture(this.spritesData.key))
+      .withParent(layerItems)
+      .withComponent(new KeyController())
+      .build();
     // add pacman
     this.spawnPacman(scene, model);
   }

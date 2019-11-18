@@ -79,6 +79,10 @@ body {
     line-height: 40px;
   }
 
+  .line-sm {
+    line-height: 50px;
+  }
+
   .line-m {
     line-height: 80px;
   }
@@ -606,12 +610,12 @@ body {
     th {
       border-bottom: none;
     }
+  }
 
-    tr td:first-child {
-      background-color: #310d3b62;
-      border: 3px solid #ce6fe9aa;
-      color: #ce6fe9;
-    }
+  table:not(.flat) tr td:first-child {
+    background-color: #310d3b62;
+    border: 3px solid #ce6fe9aa;
+    color: #ce6fe9;
   }
 
 

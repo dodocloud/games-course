@@ -1,5 +1,4 @@
 import  * as ECSA from '../../../../libs/pixi-component';
-import PacmanFactory from '../pacman-factory';
 import { Attributes, GameState } from '../constants';
 import BaseComponent from './base-component';
 import SpriteAnimator from './sprite-animator';
@@ -33,7 +32,7 @@ export default class SpiderSpawner extends BaseComponent {
       this.lastSpawn = absolute;
     }
 
-    if(checkTime(this.lastSpawn, absolute, this.spawnFrequency/60)) {
+    if(this.model.spiders.size <= 10 && checkTime(this.lastSpawn, absolute, this.spawnFrequency/60)) {
       if(!this.isSpawning && (this.model.state === GameState.DEFAULT || this.model.state === GameState.RUSH_MODE)) {
         this.isSpawning = true;
         this.lastSpawn = absolute;

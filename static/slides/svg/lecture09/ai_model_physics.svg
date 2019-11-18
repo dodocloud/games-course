@@ -1,0 +1,52 @@
+<svg width="43.455mm" height="30.742mm" version="1.1" viewBox="0 0 43.455 30.742" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(46.173 -40.899)">
+  <g aria-label="IF action">
+   <rect transform="scale(1,-1)" x="-45.032" y="-70.5" width="41.173" height="28.46" fill="#3b390d" fill-opacity=".38431" stroke="#e9e56f" stroke-width=".28222"/>
+   <g fill="#1d1d1d" stroke-width=".26458">
+    <rect x="-45.032" y="50.379" width="7.0877" height="16.4" stroke="#6fbde9"/>
+    <g stroke="#e9ba6f">
+     <rect transform="scale(1,-1)" x="-43.991" y="-50.244" width="3.1681" height="3.1469"/>
+     <rect transform="scale(1,-1)" x="-35.491" y="-51.341" width="3.0016" height="2.9769"/>
+     <rect transform="scale(1,-1)" x="-32.411" y="-51.341" width="3.0016" height="2.9769"/>
+     <rect transform="scale(1,-1)" x="-29.331" y="-51.341" width="3.0016" height="2.9769"/>
+     <rect transform="scale(1,-1)" x="-26.021" y="-50.48" width="3.0016" height="2.9769"/>
+    </g>
+    <rect transform="scale(1,-1)" x="-27.074" y="-56.806" width="3.0016" height="5.4715" stroke="#96e96f"/>
+    <rect transform="scale(1,-1)" x="-45.032" y="-70.499" width="38.802" height="3.5858" stroke="#6fbde9"/>
+    <rect transform="scale(-1)" x="3.8542" y="-70.499" width="2.3602" height="10.101" stroke="#6fbde9"/>
+    <rect transform="scale(1,-1)" x="-20.877" y="-61.634" width="3.0016" height="3.0746" stroke="#e9ba6f"/>
+    <rect transform="scale(1,-1)" x="-19.049" y="-66.731" width="3.0016" height="3.0746" stroke="#a36fe9"/>
+    <rect transform="scale(1,-1)" x="-10.447" y="-66.731" width="3.0016" height="3.0746" stroke="#a36fe9"/>
+    <rect x="-39.716" y="58.699" width="16.797" height="8.0798" stroke="#6fbde9"/>
+   </g>
+   <g fill="none" stroke="#e9ba6f">
+    <g transform="matrix(.27091 0 0 .27007 -80.519 -204.62)" stroke-width=".97816">
+     <path d="m134.9 943.69 11.358-11.513"/>
+     <path d="m146.26 943.69-11.358-11.513"/>
+    </g>
+    <g stroke-width="1.0381">
+     <g transform="matrix(.25526 0 0 .25448 -69.916 -188.82)">
+      <path d="m134.9 943.69 11.358-11.513"/>
+      <path d="m146.26 943.69-11.358-11.513"/>
+     </g>
+     <g transform="matrix(.25526 0 0 .25448 -66.843 -188.82)">
+      <path d="m134.9 943.69 11.358-11.513"/>
+      <path d="m146.26 943.69-11.358-11.513"/>
+     </g>
+     <g transform="matrix(.25526 0 0 .25448 -63.669 -188.82)">
+      <path d="m134.9 943.69 11.358-11.513"/>
+      <path d="m146.26 943.69-11.358-11.513"/>
+     </g>
+     <g transform="matrix(.25526 0 0 .25448 -60.418 -189.63)">
+      <path d="m134.9 943.69 11.358-11.513"/>
+      <path d="m146.26 943.69-11.358-11.513"/>
+     </g>
+     <g transform="matrix(.25526 0 0 .25448 -55.27 -178.56)">
+      <path d="m134.9 943.69 11.358-11.513"/>
+      <path d="m146.26 943.69-11.358-11.513"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

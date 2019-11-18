@@ -23,6 +23,8 @@ export default class GameLoop {
     antialias?: boolean;
   };
 
+  private resizeToScreen: boolean;
+
   constructor(options?: { transparent?: boolean; backgroundColor?: number; antialias?: boolean; }) {
     this.options = options;
   }
@@ -30,6 +32,7 @@ export default class GameLoop {
   init(canvas: HTMLCanvasElement, width: number, height: number, resolution: number = 1, sceneConfig?: SceneConfig, resizeToScreen: boolean = true) {
     this.width = width;
     this.height = height;
+    this.resizeToScreen = resizeToScreen && (!sceneConfig || !sceneConfig.debugEnabled);
 
     sceneConfig = sceneConfig || {};
 
@@ -47,7 +50,7 @@ export default class GameLoop {
     });
 
     this.scene = new Scene('default', this.app, sceneConfig);
-    if(resizeToScreen && (!sceneConfig || !sceneConfig.debugEnabled)) {
+    if(this.resizeToScreen) {
       this.initResizeHandler();
     }
 
@@ -66,11 +69,14 @@ export default class GameLoop {
   destroy() {
     this.app.destroy(false);
     this._running = false;
+    if(this.resizeToScreen) {
+      window.removeEventListener('resize',this.resizeHandler);
+    }
   }
 
   private loop(time: number) {
     // update our component library
-    let dt = (time - this.lastTime);
+    let dt = Math.min(time - this.lastTime, 300); // 300ms threshold
     this.lastTime = time;
     this.gameTime += dt;
     this.scene._update(dt, this.gameTime);
@@ -86,6 +92,8 @@ export default class GameLoop {
     let virtualWidth = this.width;
     let virtualHeight = this.height;
     resizeContainer(this.app.view, virtualWidth, virtualHeight);
-    window.addEventListener('resize', (evt) => resizeContainer(this.app.view, virtualWidth, virtualHeight));
+    window.addEventListener('resize',this.resizeHandler);
   }
+
+  private resizeHandler = (evt) => resizeContainer(this.app.view, this.width, this.height);
 }

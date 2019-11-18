@@ -1,0 +1,264 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_09.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lab05', 'Lab 5: Game AI', 'lab05')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab05/lab05_logo.svg
+      +title('Game AI and pathfinding')
+    // ============================================================
+    +chapter(bgr, 'Raycasting')
+    +mframe(bgr, 'Raycasting')
+      ul
+        li.highlight we simply cast a ray, obtain an object it hits and process the result according to our needs
+        li use-cases: rendering, physics, AI
+        li used as a variation of raster effects to bypass hardware limits in early-gaming era
+          ul
+            li racing games, combat games and first FPS
+      .columns-3
+        figure
+          img.h400(src='../static/slides/images/lab05/streetfighter2.gif')
+          p 1992: StreetFighter 2       
+        figure
+          img.h400(src='../static/slides/images/lab05/outrunners.gif')
+          p 1992: Outrunners
+        figure
+          img.h400(src='../static/slides/images/lab05/wolfenstein.gif')
+          p 1992: Wolfenstein 3D
+    +mframe(bgr, 'Basic idea')
+      ul
+        li send out a ray that starts at the player location
+        li move this ray foward with the direction of the player
+        li if the ray hits an object, process it 
+      .columns-3
+        figure
+          img.h600(src='../static/slides/svg/lab05/raycaster.svg')
+          p Principle       
+        figure
+          img.h600(src='../static/slides/svg/lab05/raycaster2.svg')
+          p Precise sampling
+        figure
+          img.h600(src='../static/slides/svg/lab05/raycaster3.svg')
+          p Fixed sampling
+    +mframe(bgr, 'Calculation')
+      .bottom-content.justify-right
+        img.h700.mr200(src='../static/slides/svg/lab05/fov.svg')
+      ul
+        li knowing the direction, we need to calculate all rays that cover our field of view
+        li to rotate a vector, we can use a rotation matrix
+          ul.mt40
+            li
+              include ../build_pre/equations/lab05/rotation_01.svg
+            li
+              include ../build_pre/equations/lab05/rotation_02.svg
+            li
+              include ../build_pre/equations/lab05/rotation_03.svg
+    +mframe(bgr, 'Example: Dark hall')
+      ul
+        li.highlight.code src/labs/lab05/example-raycaster.ts
+        li use WSAD to move around
+      .tcenter
+        canvas.w1000.h700(data-example!='ExampleRayCasting')
+    +mframe(bgr, 'Example: Dark hall rendering process')
+      .tcenter
+        canvas.w1200.h800(data-example!='ExampleRayCasting2')
+    +mframe(bgr, 'Visibility cone')
+      ul
+        li Raycaster use-case for game AI
+        li determines whether the bot/NPC can see the player or not
+        li sometimes it's only a visual feature while the bots cast direct rays to the player
+      .columns-2
+        figure
+          img.h600(src='../static/slides/images/lab05/cone2.gif')
+          p Commandos (1998)
+        figure
+          img.h600(src='../static/slides/images/lab05/cone.gif')
+          p SneakR (2015)
+    +mframe(bgr, 'Example: Visibility cone')
+      ul
+        li.highlight.code src/labs/lab05/example-viscone.ts
+        li
+          a(href='./lab05_viscone.html') FullScreen link
+      .tcenter
+        canvas.mt80.w800.h600(data-example!='ExampleVisibilityCone')
+    +chapter(bgr, 'Pathfinding')
+    +mframe(bgr, 'Pathfinding algorithms')
+      ul
+        li breadth-first search ignores costs
+        li Dijkstra ignores position of the target
+        li A* takes into account both of them
+      .tcenter.mt20
+        img.h600(src='../static/slides/svg/lecture09/pathfinding_comparison.svg')
+    +mframe(bgr, 'Example: Breadth-first search')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding1')
+    +mframe(bgr, 'Example: Dijkstra search')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding2')
+    +mframe(bgr, 'AStar algorithm')
+      .code
+        include ../static/slides/snippets/lab05/astar.html
+    +mframe(bgr, 'Heuristics and distance measurement')
+      .bottom-content.justify-right
+        img.h600(src='../static/slides/images/lab05/pathfinding.gif')
+      h4 Distance measurement
+      ul
+        li Manhattan distance: 
+          include ../build_pre/equations/lab05/heuristics_01.svg
+        li Euclidean distance: 
+          include ../build_pre/equations/lab05/heuristics_02.svg
+      h4 Heuristics
+      ul
+        li weighted sum of the cost and distance
+        li penalty for turning
+        li distance from nearest route
+        li distance from nearest teleport 
+    +mframe(bgr, 'Example: AStar tile grid, manhattan dist.')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding3')
+    +mframe(bgr, 'Example: AStar tile grid, euclidean dist.')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding4')
+    +mframe(bgr, 'Example: AStar octile grid, manhattan dist.')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding5')
+    +mframe(bgr, 'Example: AStar octile grid, euclidean dist.')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding6')
+    +mframe(bgr, 'Example: AStar Optimistic heuristic')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding7')
+    +mframe(bgr, 'Example: AStar Pessimistic heuristic')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding8')
+    +mframe(bgr, 'Example: AStar Very optimistic heuristic')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding9')
+    +mframe(bgr, 'Example: AStar Very pessimistic heuristic')
+      .tcenter
+        canvas.mt20.w1600.h800(data-example!='ExamplePathFinding10')
+    +mframe(bgr, 'Perlin noise for terrain generation')
+      .tcenter
+        canvas.mt20.w166.h800(data-example!='ExamplePerlinNoise')
+    +mframe(bgr, 'Force field')
+      ul
+        li the map is preprocessed, no additional pathfinding required
+        li the object is attracted to the closest path, the path leads to the target
+        li good for games with a single point of attraction (tower defense paths)
+      .tcenter
+        img.h700(src='../static/slides/svg/lab05/force_field.svg')
+    +mframe(bgr, 'HPA*')
+      ul
+        li the level is divided into areas/clusters
+        li we use A* pathfinding only inside particular cluster
+      .tcenter
+        img.h800(src='../static/slides/svg/lab05/hpa.svg')
+    +chapter(bgr, 'State machines')
+    +mframe(bgr, 'Task: cargo bots')
+      ul
+        li
+          a(href='./lab05_bots.html') LINK
+      .top-content
+        img.ml150.h800(src='../static/slides/images/lab05/bots_desc.jpg')
+      .top-content.justify-left
+        img.h500.mt30.ml100(src='../static/slides/svg/lab05/ai_desc.svg')
+    +mframe(bgr, 'Task: cargo bots')
+      ul
+        li.code.highlight src/labs/lab05/bots
+        li there are sources of petrol and iron
+        li the bots need to bring them to the warehouse
+        li if the warehouse contains enough cargo (30 iron, 10 petrol), the factory will build a new bot
+        li every source has got their own capacity - if the capacity is exhausted, the icon will fade out
+      .tcenter.mt20
+        figure
+          img.h500(src='../static/slides/svg/lab05/bots.svg')
+          p State machine
+    +mframe(bgr, 'Task: cargo bots')
+      ul
+        li the whole model is stored in 
+          span.code model.ts
+        li 
+          span.code GameModel  
+          | contains the map and global attributes
+        li
+          span.code BotModel 
+          | is a model for each bot
+        li
+          span.code CargoSourceModel 
+          | is a model for iron ores and petrol rigs
+        li
+          span.code WarehouseModel 
+          | and 
+          span.code FactoryModel 
+          | are models for the warehouse and the factory
+      ul
+        li components are responsible for movement logic and visual appearance
+        li shared attributes are stored in the model
+        li complex tasks, such as moving cargo from the source to a bot, is handled by the model (
+          span.code loadCargo, unLoadCargo 
+          | etc.)
+    +mframe(bgr, 'Task: cargo bots')
+      h4 Task 1
+      ul
+        li finish the implemetation of the FSM in order to make the bots perform their tasks
+        li make only changes in 
+          span.highlight.code bots/bot-ai-component.ts
+        li methods:
+          ul
+            li.code processIdleState
+            li.code processGoingToLoadState
+            li.code processGoingToUnloadState
+            li.code processLoadingState
+            li.code processUnloadingState
+        li parameters:
+          ul
+            li.code isEntering - true if the FSM has just entered the state
+            li.code delta, absolute - time from the update loop
+        li every method needs to return either a new state or the current one:
+          ul
+            li.code IDLE, GOING_TO_UNLOAD, GOING_TO_LOAD, LOADING, UNLOADING
+        li BotAIComponent contains methods you can use:
+          ul
+            li.code goLoad, goUnload, arrivedToTarget, isBotLoaded, moveToTarget
+    +mframe(bgr, 'Task: cargo bots')
+      h4 Task 2
+      ul
+        li loading and unloading should take some time - use 
+          span.code loadingDelay 
+          | variable and leave particular states after this delay
+      h4 Task 3
+      ul
+        li modify 
+          span.code goLoad 
+          | method in order to make the bot prefer cargo of lower amount (if there is no iron, it doesn't make sense to fetch petrol)
+        li you can use 
+          span.code this.gameModel.goingToLoadPetrol 
+          |and 
+          span.code this.gameModel.goingToLoadOre 
+          | to check how many bots are currently on their way for appropriate cargo
+      h4 Task 4
+      ul
+        li modify the behavior in such a way that only one bot can load/unload from/to the same source
+        li you will need to modify 
+          span.code model.ts : WarehouseModel, FactoryModel and CargoSourceModel 
+          | in order to store an information that an object is occupied
+      h4 Task 5
+      ul
+        li Task 4 may need to introduce new states (PENDING, WAITING,...)
+        li try to create a diagram of a behavior tree that could better deal with the logic
+        li use slides from 
+          a(href='./lecture09.pug#/33') Lecture 09
+
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')
+script(src!='../src/labs/lab05/setup.ts')

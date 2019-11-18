@@ -1,4 +1,5 @@
 import Vector from '../../pixi-component/utils/vector';
+import { Path, PathContext } from '../pathfinding/path';
 
 export class SteeringMath {
 
@@ -57,5 +58,24 @@ export class SteeringMath {
     let force = wanderTarget.add(direction.multiply(wanderDistance));
 
     return [force, wTarget];
+  }
+
+  follow(position: Vector, currentVelocity: Vector, path: Path, context: PathContext, pointTolerance: number,
+    finalPointTolerance: number, maxVelocity: number, slowingRadius: number): Vector {
+
+    let radiusTolerance = context.currentPointIndex === (path.segments.length - 1) ? finalPointTolerance : pointTolerance;
+
+    path.calcTargetPoint(radiusTolerance, position, context);
+
+    if (position.distance(context.targetLocation) <= finalPointTolerance) {
+      return null; // nowhere to go to
+    }
+
+    if (context.currentPointIndex === (path.segments.length - 1)) {
+      // final point -> use arrive
+      return this.seek(context.targetLocation, position, currentVelocity, maxVelocity, slowingRadius);
+    } else {
+      return this.seek(context.targetLocation, position, currentVelocity, maxVelocity, 0);
+    }
   }
 }

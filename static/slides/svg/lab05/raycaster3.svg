@@ -1,0 +1,53 @@
+<svg width="15.314mm" height="15.314mm" version="1.1" viewBox="0 0 15.314 15.314" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-60.005 -127.06)">
+  <g fill="#ffb237" fill-opacity=".54206">
+   <rect x="71.63" y="133.39" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="132.07" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="68.985" y="132.07" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="67.662" y="130.75" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="66.339" y="130.75" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="65.016" y="129.43" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="63.693" y="129.43" width="1.3229" height="1.3229" style="paint-order:normal"/>
+  </g>
+  <g fill="none" stroke="#6f89e9" stroke-width=".052917">
+   <path d="m61.047 129.43h13.229"/>
+   <path d="m61.047 130.75h13.229"/>
+   <path d="m61.047 132.07h13.229"/>
+   <path d="m61.047 133.39h13.229"/>
+   <path d="m61.047 134.72h13.229"/>
+   <path d="m61.047 136.04h13.229"/>
+   <path d="m61.047 137.36h13.229"/>
+   <path d="m61.047 138.69h13.229"/>
+   <path d="m61.047 140.01h13.229"/>
+   <path d="m72.953 128.1v13.229"/>
+   <path d="m71.63 128.1v13.229"/>
+   <path d="m70.307 128.1v13.229"/>
+   <path d="m68.985 128.1v13.229"/>
+   <path d="m67.662 128.1v13.229"/>
+   <path d="m66.339 128.1v13.229"/>
+   <path d="m65.016 128.1v13.229"/>
+   <path d="m63.693 128.1v13.229"/>
+   <path d="m62.37 128.1v13.229"/>
+  </g>
+  <rect x="61.047" y="128.1" width="13.229" height="13.229" fill="#0d173b" fill-opacity=".38431" stroke="#6f89e9" stroke-linecap="round" stroke-linejoin="bevel" stroke-width=".084667" style="paint-order:normal"/>
+  <g fill="#475ccd">
+   <rect x="70.307" y="133.39" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="134.72" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="136.04" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="137.36" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="138.69" width="1.3229" height="1.3229" style="paint-order:normal"/>
+   <rect x="70.307" y="140.01" width="1.3229" height="1.3229" style="paint-order:normal"/>
+  </g>
+  <path d="m62.37 129.43 11.906 5.0271" fill="none" stroke="#ffa91f" stroke-width=".10583"/>
+  <circle cx="62.37" cy="129.43" r=".52917" fill="#ffea37" style="paint-order:normal"/>
+  <g fill="#ffb237">
+   <circle cx="65.33" cy="130.69" r=".13519" style="paint-order:normal"/>
+   <circle cx="68.364" cy="131.97" r=".13519" style="paint-order:normal"/>
+   <circle cx="71.392" cy="133.25" r=".13519" style="paint-order:normal"/>
+   <circle cx="63.941" cy="130.09" r=".13519" style="paint-order:normal"/>
+   <circle cx="66.661" cy="131.25" r=".13519" style="paint-order:normal"/>
+   <circle cx="69.803" cy="132.56" r=".13519" style="paint-order:normal"/>
+   <circle cx="72.906" cy="133.88" r=".13519" style="paint-order:normal"/>
+  </g>
+ </g>
+</svg>

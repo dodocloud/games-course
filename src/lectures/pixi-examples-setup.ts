@@ -26,7 +26,8 @@ export const initPixiWatcher = (...factories: factories[]) => {
         if (type) {
           if(runningExamples[type]['destroy']) {
             runningExamples[type].destroy(false);
-          } else if(runningExamples[type]['engine']) {
+          }
+          if(runningExamples[type]['engine']) {
             runningExamples[type]['engine'].destroy(false);
           }
           delete runningExamples[type];

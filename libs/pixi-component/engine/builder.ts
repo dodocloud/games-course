@@ -374,7 +374,7 @@ export default class Builder {
 
     if (this.relPosX !== null) {
       let point = new PIXI.Point();
-      point.x = this.relPosX * this.scene.app.screen.width;
+      point.x = this.relPosX * this.scene.app.screen.width / this.scene.stage.scale.x;
       pixiObj.position.x = pixiObj.toLocal(point).x;
       if (this.scaleX !== null) {
         pixiObj.position.x *= this.scaleX;
@@ -383,7 +383,7 @@ export default class Builder {
 
     if (this.relPosY !== null) {
       let point = new PIXI.Point();
-      point.y = this.relPosY * this.scene.app.screen.height;
+      point.y = this.relPosY * this.scene.app.screen.height / this.scene.stage.scale.y;
       pixiObj.position.y = pixiObj.toLocal(point).y;
       if (this.scaleY !== null) {
         pixiObj.position.y *= this.scaleY;

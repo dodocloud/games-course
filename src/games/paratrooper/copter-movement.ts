@@ -1,6 +1,7 @@
 import { ParatrooperModel } from './paratrooper-model';
 import { Attributes } from './constants';
-import { DynamicsComponent, Vector } from '../../../libs/pixi-component';
+import { Vector } from '../../../libs/pixi-component';
+import DynamicsComponent from '../../utils/dynamics-component';
 
 /**
  * Simple movement behavior that inverts velocity once the copter reaches boundaries of the scene

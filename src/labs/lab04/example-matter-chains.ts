@@ -40,7 +40,7 @@ export class ExampleMatterChains extends MatterBase {
     });
 
     Matter.Composites.chain(ropeC, 0.3, 0, -0.3, 0, { stiffness: 1, length: 0 });
-    Matter.Composite.add(ropeC, Matter.Constraint.create({ 
+    Matter.Composite.add(ropeC, Matter.Constraint.create({
         bodyB: ropeC.bodies[0],
         pointB: { x: -20, y: 0 },
         pointA: { x: ropeC.bodies[0].position.x, y: ropeC.bodies[0].position.y },

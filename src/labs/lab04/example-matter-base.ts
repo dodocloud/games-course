@@ -2,7 +2,6 @@ import * as ECSA from '../../../libs/pixi-component';
 import * as Matter from 'matter-js';
 import * as PMath from '../../../libs/pixi-math';
 import { GenericComponent } from '../../../libs/pixi-component/components/generic-component';
-import { EventObject } from '../../../libs/dragonbones/event/event-object';
 
 export abstract class MatterBase {
   engine: ECSA.GameLoop;

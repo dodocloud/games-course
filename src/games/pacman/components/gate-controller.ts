@@ -15,12 +15,12 @@ export default class GateController extends BaseComponent {
 
   onUpdate(delta: number, absolute: number) {
 
-    if(this.isAtGate() && (this.gateState === GateState.CLOSED || this.gateState === GateState.CLOSING)) {
+    if(this.isAtGate() && this.model.keyTaken && (this.gateState === GateState.CLOSED || this.gateState === GateState.CLOSING)) {
       // open the gate
       if(this.gateState === GateState.CLOSED) {
         // fully open
         this.pendingAnimation = new SpriteAnimator(this.spriteSheetData.gate,
-          this.spriteSheetData.gate.frames * (500 / this.model.gameSpeed), false, false);
+          this.spriteSheetData.gate.frames * (200 / this.model.gameSpeed), false, false);
 
         this.owner.addComponent(new ECSA.ChainComponent()
         .addComponentAndWait(() => this.pendingAnimation)
@@ -42,7 +42,12 @@ export default class GateController extends BaseComponent {
         this.pendingAnimation = new SpriteAnimator(this.spriteSheetData.gate,
           this.spriteSheetData.gate.frames * (500 / this.model.gameSpeed), false, true);
 
+        this.gateState = GateState.CLOSING;
         this.owner.addComponent(new ECSA.ChainComponent()
+        .waitTime(2000)
+        .execute(() => {
+          this.model.map.getTile(this.model.gatePos.x, this.model.gatePos.y).state = GateState.CLOSED;
+        })
         .addComponentAndWait(() => this.pendingAnimation)
         .execute(() => this.confirmGateStateChange()), true);
       } else {
@@ -50,11 +55,10 @@ export default class GateController extends BaseComponent {
         if(this.pendingAnimation && this.pendingAnimation.isRunning) {
           this.pendingAnimation.invert();
         }
+        // if it is closing, we will consider it as closed instantly
+        this.model.map.getTile(this.model.gatePos.x, this.model.gatePos.y).state = GateState.CLOSED;
+        this.gateState = GateState.CLOSING;
       }
-
-      // if it is closing, we will consider it as closed instantly
-      this.model.map.getTile(this.model.gatePos.x, this.model.gatePos.y).state = GateState.CLOSED;
-      this.gateState = GateState.CLOSING;
     }
   }
 

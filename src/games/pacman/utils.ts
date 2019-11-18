@@ -19,3 +19,7 @@ export const getPelletIdentifier = (position: Vector): string => {
 export const getSpiderIdentifier = (id: number): string => {
   return `spider_${id}`;
 };
+
+export const getLifeIconIdentifier = (num: number): string => {
+  return `life_${num}`;
+};

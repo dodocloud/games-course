@@ -9,7 +9,6 @@ import Builder from './engine/builder';
 import Scene from './engine/scene';
 import ChainComponent from './components/chain-component';
 import DebugComponent from './components/debug-component';
-import DynamicsComponent from '../../src/utils/dynamics-component';
 import { GenericComponent } from './components/generic-component';
 import { KeyInputComponent, Keys } from './components/key-input-component';
 import { VirtualGamepadComponent, GamepadButtons, GamepadKeyMapper } from './components/virtual-gamepad-component';
@@ -24,12 +23,11 @@ export {
   Flags,
   Message,
   GameObjectProxy,
-  GameObject, Container, ParticleContainer, Sprite, TilingSprite, Text, BitmapText, Graphics,
+  GameObject, Container, ParticleContainer, Sprite, TilingSprite, Text, BitmapText, Graphics, Mesh,
   Builder,
   Scene,
   ChainComponent,
   DebugComponent,
-  DynamicsComponent,
   GenericComponent,
   KeyInputComponent, Keys,
   VirtualGamepadComponent, GamepadButtons, GamepadKeyMapper,

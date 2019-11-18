@@ -17,6 +17,7 @@ export default class GameController extends BaseComponent {
     if(msg.action === Messages.PACDOT_EATEN) {
        if(this.model.allPacdotsEaten) {
         // gameover
+        this.model.state = GameState.GAME_OVER;
         this.sendMessage(Messages.VICTORY);
         this.scene.invokeWithDelay(3000, () => {
           this.model.initLevel(this.model.gameSpeed);
@@ -34,13 +35,22 @@ export default class GameController extends BaseComponent {
       } else {
         // kill pacman and revive him after 3 seconds
         this.model.killPacman();
-        this.model.state = GameState.GAME_OVER;
-        this.sendMessage(Messages.PACMAN_KILLED);
-        this.scene.invokeWithDelay(3000, () => {
-          this.model.state = GameState.DEFAULT;
-          this.model.pacman.state = UnitState.STANDING;
-          this.sendMessage(Messages.PACMAN_REVIVED);
-        });
+        if(this.model.livesNum === 0) {
+          this.model.state = GameState.GAME_OVER;
+          this.sendMessage(Messages.PACMAN_KILLED);
+          this.scene.invokeWithDelay(3000, () => {
+            this.model.initLevel(this.model.gameSpeed);
+            this.factory.initializeLevel(this.scene, this.model);
+          });
+        } else {
+          this.model.state = GameState.LIFE_LOST;
+          this.sendMessage(Messages.PACMAN_KILLED);
+          this.scene.invokeWithDelay(3000, () => {
+            this.model.state = GameState.DEFAULT;
+            this.model.pacman.state = UnitState.STANDING;
+            this.sendMessage(Messages.PACMAN_REVIVED);
+          });
+        }
       }
     }
   }

@@ -1033,7 +1033,7 @@ class Reveal {
 
   /**
    * Applies JavaScript-controlled layout rules to the presentation
-   * Handles proportions of the current slide in order to fit 
+   * Handles proportions of the current slide in order to fit
    */
   public layout(): void {
     if (this.dom.wrapper && !this.isPrintingPDF()) {
