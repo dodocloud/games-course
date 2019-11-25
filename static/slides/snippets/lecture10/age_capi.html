@@ -1,0 +1,17 @@
+<p><span style="color:#ACACAC;">//&nbsp;C++&nbsp;&lt;-&gt;&nbsp;C#&nbsp;binding&nbsp;is&nbsp;much&nbsp;simpler</span></p>
+<p><span style="color:#F8F8F0;">ATOMIC_EXPORT_API&nbsp;</span><span style="color:#FF5252;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">csb_Atomic_FileSystem_SetCurrentDir_4667</span><span style="color:#F8F8F0;">(FileSystem* self,&nbsp;</span><span style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;char* pathName)</span></p>
+<p><span style="color:#F8F8F0;">{&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;self</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">SetCurrentDir</span><span style="color:#F8F8F0;">(pathName&nbsp;</span><span style="color:#FF5252;">?</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">String</span><span style="color:#F8F8F0;">(pathName)&nbsp;</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;String::EMPTY);</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">ATOMIC_EXPORT_API&nbsp;</span><span style="color:#FF5252;">bool</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">csb_Atomic_FileSystem_CreateDir_4668</span><span style="color:#F8F8F0;">(FileSystem* self,&nbsp;</span><span style="color:#E040FB;">const</span><span style="color:#F8F8F0;">&nbsp;char* pathName)</span></p>
+<p><span style="color:#F8F8F0;">{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;</span><span style="color:#FF5252;">return</span><span style="color:#F8F8F0;">&nbsp;self</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">CreateDir</span><span style="color:#F8F8F0;">(pathName&nbsp;</span><span style="color:#FF5252;">?</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">String</span><span style="color:#F8F8F0;">(pathName)&nbsp;</span><span style="color:#FF5252;">:</span><span style="color:#F8F8F0;">&nbsp;String::EMPTY);</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp;</span></p>
+<p><span style="color:#F8F8F0;">ATOMIC_EXPORT_API&nbsp;</span><span style="color:#FF5252;">void</span><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#B2FF59;">csb_Atomic_FileSystem_SetExecuteConsoleCommands_4669</span><span style="color:#F8F8F0;">(FileSystem* self,&nbsp;</span><span style="color:#FF5252;">bool</span><span style="color:#F8F8F0;">&nbsp;enable)</span></p>
+<p><span style="color:#F8F8F0;">{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;self</span><span style="color:#FF5252;">-&gt;</span><span style="color:#B2FF59;">SetExecuteConsoleCommands</span><span style="color:#F8F8F0;">(enable);</span></p>
+<p><span style="color:#F8F8F0;">}</span></p>

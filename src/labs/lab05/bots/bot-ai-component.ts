@@ -97,6 +97,17 @@ export class BotAIComponent extends ECSA.Component {
     this.moveToTarget(new ECSA.Vector(warehouse.x, warehouse.y));
   }
 
+  protected unloadCurrentCargo() {
+    this.gameModel.unloadCargo(this.botModel);
+    this.currentTarget = null;
+  }
+
+  protected loadCurrentCargo() {
+    if(this.currentTarget) {
+      this.gameModel.loadCargo(this.currentTarget, this.botModel);
+    }
+  }
+
   protected get arrivedToTarget() {
     return this.moveComponent.pathFinished;
   }

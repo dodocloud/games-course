@@ -17,6 +17,7 @@ include ./partial/texts.pug
       +title('Animation and physics')
     // ============================================================
     +chapter(bgr, 'Math and Dynamics')
+    // ============================================================
     +mframe(bgr, 'JS Math functions')(class='line-s')
       ul
         li 
@@ -62,7 +63,7 @@ include ./partial/texts.pug
           span.code.highlight Math.random() > (1 - probability) 
           |- checks for an occurrence of an event at given probability
         li.mt40 for each bitwise operations, the operators are converted into 32-bit integers       
-              
+    // ============================================================          
     +mframe(bgr, 'Math functions')
       ul
         li if we work with positive numbers, ~~v is a common choice to get the integer part
@@ -124,6 +125,7 @@ include ./partial/texts.pug
             td -3
             td -3
             td 4294967293
+    // ============================================================
     +mframe(bgr, 'Math support library')
       ul
         li located in 
@@ -139,6 +141,7 @@ include ./partial/texts.pug
         figure
           canvas.w800.h500(data-example!='ExampleGauss')
           p Somehow normal distribution
+    // ============================================================
     +mframe(bgr, 'Example: Random spread')
       ul
         li.code.highlight src/labs/lab04/example-distribution-spread.ts
@@ -150,6 +153,7 @@ include ./partial/texts.pug
         figure
           canvas.w800.h600(data-example!='ExampleGaussSpread')
           p Somehow normal distribution
+    // ============================================================
     +mframe(bgr, 'Euler integration')
       div.top-content.justify-left.fill
         img.h400.ml10.mt150(src='../static/slides/svg/lecture06/diff.svg')
@@ -175,6 +179,7 @@ include ./partial/texts.pug
         div
           div
             img.h400.mt250(src='../static/slides/svg/lecture06/ballistic_curve_2.svg')
+    // ============================================================
     +mframe(bgr, 'Euler integration')
       ul
         li.code.highlight src/labs/lab04/example-dynamics-balistic.ts
@@ -191,6 +196,7 @@ include ./partial/texts.pug
         figure
           canvas.w550.h400(data-example!='ExampleDynamicBallistic5')
           p 5 FPS
+    // ============================================================
     +mframe(bgr, 'Euler integration')
       ul
         li.code.highlight src/labs/lab04/example-dynamics-circle.ts
@@ -207,6 +213,7 @@ include ./partial/texts.pug
         figure
           canvas.w550.h400(data-example!='ExampleDynamicCircle5')
           p 5 FPS
+    // ============================================================
     +mframe(bgr, 'Relaxation')
       ul
         li.code.highlight src/labs/lab04/example-verlet.ts
@@ -221,7 +228,9 @@ include ./partial/texts.pug
       div.columns-2
         img.h500.mt50(src='../static/slides/svg/lab04/relaxation.svg')
         canvas.w600.h600(data-example!='ExampleVerlet')
+    // ============================================================
     +chapter(bgr, 'Sprite animations')
+    // ============================================================
     +mframe(bgr, 'Pixi animations')
       ul
         li detailed  
@@ -239,6 +248,7 @@ include ./partial/texts.pug
           img.h300(src='../static/slides/images/lab04/warrior.png')
         div
           canvas.w650.h400(data-example!='ExampleSpritePixi')
+    // ============================================================
     +mframe(bgr, 'Pixi animations')
       ul
         li 
@@ -258,6 +268,7 @@ include ./partial/texts.pug
             | - stops the AnimatedSprite and goes to a specific frame.
       div.code
         include ../static/slides/snippets/lab04/sprite_animation_load.html
+    // ============================================================
     +mframe(bgr, 'Import')
       .bottom-content
         img.h300.mb150.mr80(src='../static/slides/images/lab04/warrior_2.png')
@@ -273,6 +284,7 @@ include ./partial/texts.pug
               a(href='https://renderhjs.net/shoebox/') Shoebox 
               | to extract sprites from spritesheets
             li pivots need to be specified manually
+    // ============================================================
     +mframe(bgr, 'Json structure')
       div.columns-2
         div.code.jsonstruct
@@ -288,6 +300,7 @@ include ./partial/texts.pug
             li 
               span.code.highlight meta 
               |- link to the spritesheet file, color format and its size
+    // ============================================================
     +mframe(bgr, 'Manual handling')
       ul
         li.code.highlight src/labs/lab04/example-sprite-custom.ts
@@ -304,6 +317,7 @@ include ./partial/texts.pug
             img.h200(src='../static/slides/images/lab04/mario.png')
           .tcenter.mt50
             canvas.w600(data-example!='ExampleSpriteCustom')
+    // ============================================================
     +mframe(bgr, 'Example: Pacman')
       ul
         li
@@ -313,7 +327,9 @@ include ./partial/texts.pug
         li 512x512 spritesheet
       .tcenter
         img.h700(src='../static/slides/images/lab04/pacman.png')
+    // ============================================================
     +chapter(bgr, 'Skeletal 2D animations')
+    // ============================================================
     +mframe(bgr, 'Skeletal animations')
       ul
         li characters are represented as a hierarchical set of interconnected bones
@@ -331,22 +347,26 @@ include ./partial/texts.pug
               |- free
       div.tcenter
         img.h500(src='../static/slides/images/lab04/dragonbones.png')
+    // ============================================================
     +mframe(bgr, 'Dragonbones')
       ul
         li load some of the built-in examples
       div.tcenter
         img.h800(src='../static/slides/images/lab04/dbones_01.jpg')
+    // ============================================================
     +mframe(bgr, 'Dragonbones')
       ul
         li all animations can be easily modified in the timeline
       div.tcenter
         img.h800(src='../static/slides/images/lab04/dbones_02.jpg')
+    // ============================================================
     +mframe(bgr, 'Dragonbones')
       ul
         li export as DragonBones JSON format 5.5
         li the export will create two JSON structures and one spritesheet
       div.tcenter
         img.h700(src='../static/slides/images/lab04/dbones_03.jpg')
+    // ============================================================
     +mframe(bgr, 'Dragonbones')
       .bottom-content.fill
         canvas.w1200.h600(data-example!='ExampleDragonBones')    
@@ -357,41 +377,50 @@ include ./partial/texts.pug
         li parsing the data takes a lot of time, it should be handled asynchronously
       div.code
         include ../static/slides/snippets/lab04/dragonbones_init.html
+    // ============================================================
     +chapter(bgr, 'Steering behaviors')
+    // ============================================================
     +mframe(bgr, 'Steering behaviors')
       ul
         li set of algorithms and principles that help autonomous agents move in a realistic manner <br>by using simple forces
       div.tcenter
         img.mt60.h600(src='../static/slides/svg/lecture06/steering_desc.svg')
+    // ============================================================
     +mframe(bgr, 'Seek')
       ul
         li.code.highlight src/labs/lab04/example-steering-seek.ts
         li the agent goes toward a target
       .tcenter
         canvas.mt100.w1200.h600(data-example!='ExampleSteeringSeek')
+    // ============================================================
     +mframe(bgr, 'Pursuit')
       ul
         li.code.highlight src/labs/lab04/example-steering-pursuit.ts
       .tcenter
         canvas.mt150.w1200.h600(data-example!='ExampleSteeringPursuit')
+    // ============================================================
     +mframe(bgr, 'Pursuit + Evade')
       ul
         li.code.highlight src/labs/lab04/example-steering-evade.ts
       .tcenter
         canvas.mt150.w1200.h600(data-example!='ExampleSteeringEvade')
+    // ============================================================
     +mframe(bgr, 'Wander')
       ul
         li.code.highlight src/labs/lab04/example-steering-wander.ts
         li 3 attributes: radius, distance and jittering
       .tcenter
         canvas.mt100.w1200.h600(data-example!='ExampleSteeringWander')
+    // ============================================================
     +mframe(bgr, 'Multiple behaviors')
       ul
         li.code.highlight src/labs/lab04/example-steering-multiple.ts
         li the algorithms can pile up, calculating a weight-sum for each force 
       .tcenter
         canvas.mt100.w1200.h600(data-example!='ExampleSteeringMultiple')
+    // ============================================================
     +chapter(bgr, 'QuadTree')
+    // ============================================================
     +mframe(bgr, 'QuadTree')
       ul
         li.code.highlight src/labs/lab04/example-quadtree.ts
@@ -400,6 +429,7 @@ include ./partial/texts.pug
         li only objects in the same leaf can be in collision
       .tcenter
         canvas.mt50.w800.h600(data-example!='ExampleQuadTreeSmall')
+    // ============================================================
     +mframe(bgr, 'QuadTree')
       .columns-3.tcenter.center-content
         figure
@@ -411,7 +441,9 @@ include ./partial/texts.pug
         figure
           canvas.w550.h550(data-example!='ExampleQuadTreeUltraLarge')
           p 100 objects, 2 for each cell
+    // ============================================================
     +chapter(bgr, 'MatterJS')
+    // ============================================================
     +mframe(bgr, 'MatterJS')
       .bottom-content.justify-right
         img.h800(src='../static/slides/images/lecture07/physics_01.png')
@@ -430,6 +462,7 @@ include ./partial/texts.pug
         li constraints 
         li gravity 
         li sleeping and static bodies
+    // ============================================================
     +mframe(bgr, 'Architecture')
       .columns-2
         div.w60
@@ -445,6 +478,7 @@ include ./partial/texts.pug
             li.highlight-sec all manipulations are handled by static methods in 
               span.code Body 
               |class
+    // ============================================================
     +mframe(bgr, 'Architecture')
       div
         ul
@@ -456,6 +490,7 @@ include ./partial/texts.pug
             |- contains methods to manipulate with composite objects, consisting of many bodies
       div.tcenter.mt40
         img.h600(src='../static/slides/svg/lab04/matter_composite.svg')
+    // ============================================================
     +mframe(bgr, 'Architecture')
       .columns-2
         div.w40
@@ -472,6 +507,7 @@ include ./partial/texts.pug
               span.highlight Events: 
               ul
                 li sleepStart, sleepEnd, beforeAdd, afterAdd, beforeRemove, afterRemove, afterUpdate, beforeRender, afterRender, beforeUpdate, collisionActive, collisionEnd, collisionStart, beforeTick, tick, afterTick, beforeRender, afterRender, mousedown, mousemove, mouseup 
+    // ============================================================
     +mframe(bgr, 'Architecture')
       .columns-2
         div.w40
@@ -500,9 +536,11 @@ include ./partial/texts.pug
             li
               span.highlight.code Bounds 
               | static methods for defining outer bounds of the scene
+    // ============================================================
     +mframe-m(bgr, 'Simple setup')
       div.code
         include ../static/slides/snippets/lab04/matter_setup.html
+    // ============================================================
     +mframe(bgr, 'Matter and PIXI')
       ul
         li MatterJS contains its own renderer
@@ -516,36 +554,43 @@ include ./partial/texts.pug
           span.code Matter.Runner.tick
       div.tcenter
         img.h600(src='../static/slides/svg/lab04/matter_pixi.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Air friction')
       ul
         li.code.highlight src/labs/lab04/example-matter-airfriction.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterAirFriction')
+    // ============================================================
     +mframe(bgr, 'Example: Bridge')
       ul
         li.code.highlight src/labs/lab04/example-matter-bridge.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterBridge')
+    // ============================================================
     +mframe(bgr, 'Example: Car')
       ul
         li.code.highlight src/labs/lab04/example-matter-car.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterCar')
+    // ============================================================
     +mframe(bgr, 'Example: Chains')
       ul
         li.code.highlight src/labs/lab04/example-matter-chains.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterChains')
+    // ============================================================
     +mframe(bgr, 'Example: Friction')
       ul
         li.code.highlight src/labs/lab04/example-matter-friction.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterFriction')
+    // ============================================================
     +mframe(bgr, 'Example: Mixed Shapes')
       ul
         li.code.highlight src/labs/lab04/example-matter-mixed.shapes.ts
       div.tcenter
         canvas.mt100.w800.h600.scale(data-example!='ExampleMatterMixedShapes')
+    // ============================================================
     +mframe(bgr, 'Example: Newton\'s cradle')
       ul
         li.code.highlight src/labs/lab04/example-matter-newton-cradle.ts

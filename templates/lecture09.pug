@@ -25,7 +25,9 @@ include ./partial/texts.pug
       .center-content
         .w1000
           img(src!='../static/slides/images/lecture09/book_ai.jpg')
+    // ============================================================
     +chapter(bgr, 'Game AI overview')
+    // ============================================================
     +mframeGreen(bgr, 'Artificial intelligence in games')
       ul
         li a broad set of principles that generate behaviors, providing an 
@@ -41,12 +43,15 @@ include ./partial/texts.pug
           img.h500(src='../static/slides/images/lecture09/ai_in_games_2.jpg')
         div
           img.h500(src='../static/slides/images/lecture09/ai_in_games_3.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'AI techniques')
       .tcenter
         img.h900(src='../static/slides/svg/lecture09/ai_techniques_list.svg')
+    // ============================================================
     +mframe-statement(bgr, 'AI techniques')
        .tcenter
           img.h300(src='../static/slides/svg/lecture09/ai_techniques.svg')
+    // ============================================================
     +mframe(bgr, 'AI in game history')(class='space-vert-m')
       h4 Doom 1 (1993)
       ul
@@ -66,7 +71,9 @@ include ./partial/texts.pug
       h4 DOTA 2 (2013)
       ul
         li OpenAI bot (since 2017) has beaten some of the greatest players
+    // ============================================================
     +chapter(bgr, 'Navigation')
+    // ============================================================
     +mframeGreen(bgr, 'Navigation')
       ul
         li navigation is essential for AI to accomplish tasks
@@ -77,6 +84,7 @@ include ./partial/texts.pug
             li choreographed formations
       .tcenter
         img.h500(src='../static/slides/images/lecture09/navigation.gif')
+    // ============================================================
     +mframeGreen(bgr, 'Navigation graph')
       ul
         li.highlight-sec abstraction of all locations in a game environment the agents may visit
@@ -92,6 +100,7 @@ include ./partial/texts.pug
           |- connection between those points
       .tcenter
         img.h550(src='../static/slides/svg/lecture09/navigation_graph.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Navigation graph')
       h4 Waypoint-based
       ul
@@ -107,9 +116,11 @@ include ./partial/texts.pug
           img.h250(src='../static/slides/svg/lecture09/navigation_graph_meshbased_1.svg')
         .tcenter
           img.h350(src='../static/slides/svg/lecture09/navigation_graph_meshbased_2.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Unity mesh editor')
       .tcenter
         img.h900(src='../static/slides/images/lecture09/unity_nav_mesh.jpg')
+    // ============================================================
     +mframe(bgr, 'Example: Counter-strike')
       .columns-2
         .tcenter
@@ -121,6 +132,7 @@ include ./partial/texts.pug
           img.h450(src='../static/slides/images/lecture09/cstrike_03.jpg')
         .tcenter
           img.h450(src='../static/slides/images/lecture09/cstrike_04.jpg')
+    // ============================================================
     +mframeOrange(bgr, 'Navigation graph')
       h4 Grid-based
       ul
@@ -135,6 +147,7 @@ include ./partial/texts.pug
         img.h300(src='../static/slides/svg/lecture09/navigation_graph_gridbased_types.svg')
       .tcenter
         img.h300(src='../static/slides/svg/lecture09/navigation_graph_gridbased_traversability.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Connection geometry')
       .tcenter
         img.h400(src='../static/slides/svg/lecture09/navigation_graph_gridbased_types.svg')
@@ -148,6 +161,7 @@ include ./partial/texts.pug
         figure
           img.h400(src='../static/slides/images/lecture09/cgeometry_heroes3.jpg')
           p Heroes of M&M
+    // ============================================================
     +mframe(bgr, 'Combined geometry')
       ul
         li units can move in any direction, static objects are located on a grid
@@ -155,6 +169,7 @@ include ./partial/texts.pug
         figure
           img.h750(src='../static/slides/images/lecture09/connection_geometry_sc.jpg')
           p Starcraft II
+    // ============================================================
     +mframeGreen(bgr, 'Pathfinding')
       .bottom-content.justify-right.fill
         img.h600(src='../static/slides/images/lecture09/pathfinding.gif')
@@ -183,6 +198,7 @@ include ./partial/texts.pug
         li move to A
         li move along the path to B
         li move from B to target location
+    // ============================================================
     +mframeOrange(bgr, 'Pathfinding algorithms')(class='line-sm')
       h4 Uniformed graph searches
       ul
@@ -212,6 +228,7 @@ include ./partial/texts.pug
             li extension of Dijkstra, first described in 1968
             li main difference: augmentation of the CSF value with a 
               span.highlight-sec heuristic value
+    // ============================================================
     +mframeOrange(bgr, 'A*')
       ul
         li improved Dijkstra by an estimate of the cost to the target from each node
@@ -235,6 +252,7 @@ include ./partial/texts.pug
             li limit the search space
       .tcenter
         img.h400(src='../static/slides/svg/lecture09/astar.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Pathfinding algorithms: comparison')
       ul
         li breadth-first search ignores costs
@@ -242,6 +260,7 @@ include ./partial/texts.pug
         li A* takes into account both of them
       .tcenter.mt20
         img.h600(src='../static/slides/svg/lecture09/pathfinding_comparison.svg')
+    // ============================================================
     +mframeGreen(bgr, 'HPA*: Hierarchical pathfinding A*')
       ul
         li uses a fixed-size clustering abstraction (problem subdivision)
@@ -256,6 +275,7 @@ include ./partial/texts.pug
           +strtext('', '3 stages:','build an abstract graph, search the abstract graph for an abstract path, refine the abstract path into a low-level path')
       .tcenter
         img.h400(src='../static/slides/svg/lecture09/pathfinding_hpa.svg')
+    // ============================================================
     +mframe(bgr, 'Example: OpenTTD')
       .top-content.justify-left.fill
         img.h100(src='../static/slides/images/lecture09/openttd.jpg')
@@ -273,6 +293,7 @@ include ./partial/texts.pug
                 li upgrades, road extending
                 li pathfinding, partial resuability of existing roads
                 li vehicle utilization, failures, traffic
+    // ============================================================
     +mframeGreen(bgr, 'OpentTD AI')
       h4 PathZilla AI
       ul
@@ -294,6 +315,7 @@ include ./partial/texts.pug
         li very fast network development and company value grow
         li custom A* implementation designed for speed
         li can upgrade vehicles
+    // ============================================================
     +mframe(bgr, 'Example: Pathzilla road analysis')
       .columns-4
         figure
@@ -321,7 +343,9 @@ include ./partial/texts.pug
         figure
           img.h300(src='../static/slides/images/lecture09/pathzilla_08.jpg')
           p Final road network
+    // ============================================================
     +chapter(bgr, 'Basic AI techniques')
+    // ============================================================
     +mframeOrange(bgr, 'Scripting')
       .bottom-content.justify-right.fill
         img.h550(src='../static/slides/images/lecture09/scripting.gif')
@@ -334,6 +358,7 @@ include ./partial/texts.pug
         li.downside good scripting behavior must cover a large amount of situations
       div.code
         include ../static/slides/snippets/lecture09/doom_chase.html
+    // ============================================================
     +mframeOrange(bgr, 'Finite state machine')
       ul
         li the oldest and most commonly used formalism to model game AIs
@@ -360,11 +385,13 @@ include ./partial/texts.pug
               include ../build_pre/equations/lecture09/fsm_06.svg
         li.mt40 can be implemented via polymorphism or a state transition table
         li.downside unmanageable for large complex systems, leading to transition explosion
+    // ============================================================
     +mframeGreen(bgr, 'Example: Pacman FSM')
       .bottom-content.justify-right
         img.h150(src='../static/slides/images/lecture09/fsm_pacman.png')
       .tcenter
         img.h750(src='../static/slides/svg/lecture09/fsm_pacman.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Pacman transition table')
       .center-content
         table.flat
@@ -400,11 +427,13 @@ include ./partial/texts.pug
             td Return to Base
             td Wander the maze
             td Reach Central base
+    // ============================================================
     +mframe(bgr, 'Example: Warcraft Doomguard')
       .bottom-content.justify-right
         img.h450(src='../static/slides/images/lecture09/fsm_doomguard.png')
       .tcenter
         img.h850(src='../static/slides/svg/lecture09/fsm_guardian.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Warcraft Doomguard')
       .bottom-content.justify-right
         img.h450(src='../static/slides/images/lecture09/fsm_doomguard.png')
@@ -412,6 +441,7 @@ include ./partial/texts.pug
         li let's add an ability to fall asleep
       .tcenter
         img.h800(src='../static/slides/svg/lecture09/fsm_guardian_2.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Hierarchical state machine')
       .bottom-content.justify-right
         img.h450(src='../static/slides/images/lecture09/fsm_doomguard.png')
@@ -426,6 +456,7 @@ include ./partial/texts.pug
             li pop and move to the next state when finished
       .tcenter
         img.h500(src='../static/slides/svg/lecture09/hfsm_guardian.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Behavior tree')
       ul
         li.highlight tree of hierarchical nodes that control decision making process
@@ -440,6 +471,7 @@ include ./partial/texts.pug
             li.highlight.code SUCCESS, FAILURE, RUNNING, (SUSPENDED)
       .tcenter
         img.h400(src='../static/slides/images/lecture09/btree.jpg')
+    // ============================================================
     +mframeOrange(bgr, 'Behavior tree')
       .tcenter
         img.h400(src='../static/slides/svg/lecture09/btree.svg')
@@ -479,6 +511,7 @@ include ./partial/texts.pug
           td If true
           td If false
           td Never
+    // ============================================================
     +mframeGreen(bgr, 'Behavior tree node types')(class='space-vert-l')
       h4 Selector
       ul
@@ -495,6 +528,7 @@ include ./partial/texts.pug
         li returns success if the specified condition is met and its subtree has been executed successfully
         li Example: 
           span.highlight-sec Repeater, Inventer, Succeeder, Failer, UntilFail, UntilSucceed
+    // ============================================================
     +mframeGreen(bgr, 'Behavior tree node types')
       h4 Parallel node
       ul
@@ -517,12 +551,15 @@ include ./partial/texts.pug
         li a construct that stores whatever information is written to it
         li any node inside or outside the tree has an access to the blackboard
         li.highlight-sec similar to GameModel attribute of component architecture's root node
+    // ============================================================
     +mframe(bgr, 'Example: Unreal Engine BT Editor')
       .tcenter
         img.h850(src='../static/slides/images/lecture09/bt_unreal.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Warcraft Doomguard')
       .tcenter
         img.h800(src='../static/slides/svg/lecture09/btree_doomguard.svg')
+    // ============================================================
     +mframeGreen(bgr, 'BT improvements')
       ul
         li let's define a conditional selector in order to simplify the diagram
@@ -530,12 +567,15 @@ include ./partial/texts.pug
         img.h200(src='../static/slides/svg/lecture09/btree_improvement.svg')
       .tcenter
         img.h600(src='../static/slides/svg/lecture09/btree_doomguard_improved.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Door opening')
       .top-content.justify-left.fill
         img.h500(src='../static/slides/images/lecture09/door_open.gif')
       .top-content.fill
         img.h700.mt200(src='../static/slides/svg/lecture09/btree_door_opening.svg')
+    // ============================================================
     +chapter(bgr, 'Advanced AI techniques')
+    // ============================================================
     +mframeOrange(bgr, 'Terms')
       h4 Bot
       ul
@@ -565,6 +605,7 @@ include ./partial/texts.pug
         li an agent must learn the best possible output by using trial and error
         li for each action chosen the agent obtains a 
           span.highlight-sec feedback
+    // ============================================================
     +mframeGreen(bgr, 'Challenges for Game AI')
       .top-content.justify-right.mt20
         img.h350(src='../static/slides/images/lecture09/ai_challenges.png')
@@ -583,6 +624,7 @@ include ./partial/texts.pug
         li.highlight winning well and losing well
         li cheating - acceptable as long as it doesn't get detected by the player
       .tcenter.highlight-third.mt40 We want it to be fun to play against, not beat us easily
+    // ============================================================
     +mframe(bgr, 'Named AI techniques in games')(class='line-m')
       ul
         li
@@ -603,6 +645,7 @@ include ./partial/texts.pug
           +strtext('', 'City Conquest (2011)', '- genetic algorithm used to tune dominant strategies')
         li
           +strtext('', 'Tomb Raider (2013)', '- advanced GOAP')
+    // ============================================================
     +mframeGreen(bgr, 'AI Model')
       ul
         li.highlight AI model is just another representation of the game world
@@ -618,6 +661,7 @@ include ./partial/texts.pug
         figure
           img.h400(src='../static/slides/svg/lecture09/ai_model_ai.svg')
           p AI Model
+    // ============================================================
     +mframeGreen(bgr, 'Predicting opponents')(class='line-sm')
       .bottom-content.justify-right.fill
         img.h450(src='../static/slides/images/lecture09/predicting_opponents.jpg')
@@ -648,6 +692,7 @@ include ./partial/texts.pug
             li Threat map
             li Influence map
             li Bayesian networks
+    // ============================================================
     +mframeOrange(bgr, 'Occupancy map')
       ul
         li a grid over the game environment
@@ -656,6 +701,7 @@ include ./partial/texts.pug
         li when the opponent is not visible, the probabilities from the previous occupancy cells are propagated along the edges to neighboring cells
       .tcenter
         img.h600(src='../static/slides/images/lecture09/occupancy_map.gif')
+    // ============================================================
     +mframeOrange(bgr, 'Threat map')
       ul
         li used in RTS
@@ -668,6 +714,7 @@ include ./partial/texts.pug
           | combat units bypass enemy defensive structure in order to attack their infrastructure
       .tcenter 
         img.h600(src='../static/slides/svg/lecture09/threat_map.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Influence map')
       ul
         li more generalized than threat maps
@@ -681,6 +728,7 @@ include ./partial/texts.pug
           |number of units killed during last strike
       .tcenter
         img.h550(src='../static/slides/svg/lecture09/influence_map.svg') 
+    // ============================================================
     +mframeGreen(bgr, 'Reinforcement learning')
       .bottom-content.justify-right
         img.h400.mb40.mr40(src='../static/slides/images/lecture09/reinforcement_learning.gif')
@@ -706,6 +754,7 @@ include ./partial/texts.pug
         li Decision trees
         li Bayesian networks
         li Neural networks
+    // ============================================================
     +mframeGreen(bgr, 'Artificial neural network')
       .bottom-content.justify-left
         img.h300(src='../static/slides/images/lecture09/neural_net_dragon.png')
@@ -723,6 +772,7 @@ include ./partial/texts.pug
           |- measure of divergence between the observed and the desired output
       .tcenter
         img.h700(src='../static/slides/svg/lecture09/artificial_neural_network.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Neural network applications')
       .top-content.justify-right.mt100
         img.h400(src='../static/slides/images/lecture09/neural_network_mario.jpg')
@@ -740,6 +790,7 @@ include ./partial/texts.pug
         li Inputs: 210x160 RGB at 60Hz, terminal signal and game score
       .tcenter
         img.h200(src='../static/slides/images/lecture09/neural_network_atari.png')
+    // ============================================================
     +mframeOrange(bgr, 'Goal-oriented action planning')
       ul
         li centers on the idea of goals as desirable world states
@@ -750,6 +801,7 @@ include ./partial/texts.pug
           |select a relevant goal and attempt to fulfill that goal
       .tcenter
         img.h600(src='../static/slides/svg/lecture09/goap.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: F.E.A.R.')
       ul
         li Advanced AI behavior: blind fire, dive through windows, take cover,...
@@ -758,6 +810,7 @@ include ./partial/texts.pug
           | to determine when to switch and what parameters to set
       .tcenter
         img.h700(src='../static/slides/images/lecture09/fear.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: F.E.A.R.')
       .top-content.justify-left
         img.h150.mt200.ml600(src='../static/slides/images/lecture09/fear_soldier.png')
@@ -806,7 +859,9 @@ include ./partial/texts.pug
           td ReloadCovered
           td AttackLungeUncloaked
           td
+    // ============================================================
     +chapter(bgr, 'AI in Real-time strategies')
+    // ============================================================
     +mframeGreen(bgr, 'Real-time strategy')
       .bottom-content.justify-right
         img.h600.mb60.mr20(src='../static/slides/images/lecture09/rts.png')
@@ -826,6 +881,7 @@ include ./partial/texts.pug
         li fog of war
         li many strategies
         li game modes: campaign, skirmish, multiplayer
+    // ============================================================
     +mframe(bgr, 'RTS games')
       .columns-3
         .tcenter
@@ -841,6 +897,7 @@ include ./partial/texts.pug
           img.h450(src='../static/slides/images/lecture09/rts_starcraft.png')
         .tcenter
           img.h450.mr80(src='../static/slides/images/lecture09/rts_ashes.png')
+    // ============================================================
     +mframeOrange(bgr, 'RTS features')(class='line-s')
       h4 Resource control
       ul
@@ -866,9 +923,11 @@ include ./partial/texts.pug
       ul
         li making decisions knowing what we saw from the opponent
         li we can prioritize economy over technology or military production
+    // ============================================================
     +mframe(bgr, 'Example: Starcraft 2 tech-tree')
       .tcenter
         img.h900(src='../static/slides/images/lecture09/techtree_sc2.png')
+    // ============================================================
     +mframe(bgr, 'RTS strategies')(class='line-sm')
       h4 Strategies
       ul
@@ -894,6 +953,7 @@ include ./partial/texts.pug
       h4 Scouting
       ul
         li sending units to places the player suspects there might be enemies and possible discovering their location and progress
+    // ============================================================
     +mframeGreen(bgr, 'RTS AI layers')
       .top-content.mt150
         img.h700(src='../static/slides/svg/lecture09/rts_ai_layers.svg')
@@ -904,6 +964,7 @@ include ./partial/texts.pug
             li micromanagement
             li tactics (army positions)
             li strategy (tech tree)
+    // ============================================================
     +mframeGreen(bgr, 'AI in real-time strategies')
       .bottom-content.justify-left
         img.h300.mb200.ml80(src='../static/slides/svg/lecture09/ai_in_rts_bot.svg')
@@ -917,6 +978,7 @@ include ./partial/texts.pug
           |manager-based AI, layer-based AI, CBR, rule-based AI, reinforcement learning
       .tcenter
         img.h500.mt80(src='../static/slides/images/lecture09/ai_in_rts_map.png')
+    // ============================================================
     +mframeGreen(bgr, 'Manager-based AI')(class='line-s')
       h4 Unit micromanagement AI
       ul
@@ -942,6 +1004,7 @@ include ./partial/texts.pug
       h4 Reconnaissance AI
       ul
         li finding out what is happening on the map
+    // ============================================================
     +mframeGreen(bgr, 'Layer-based AI')
       ul
         li AI is built from multiple layers
@@ -965,16 +1028,19 @@ include ./partial/texts.pug
           +strtext('', 'Actuator', '- executes actions by modifying the game state')  
       .tcenter
         img.h200(src='../static/slides/svg/lecture09/layer_based_ai.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Layer-based AI')
       .bottom-content.justify-right.fill
         img.h500(src='../static/slides/images/lecture09/layer_based_ai.png')
       .top-content
         img.h900.mr150(src='../static/slides/svg/lecture09/layer_based_ai_example.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Layer-based AI')
       .top-content.justify-right.fill
         img.h550(src='../static/slides/images/lecture09/layer_based_ai_cossacks.jpg')
       .top-content.justify-left
         img.h900(src='../static/slides/svg/lecture09/layer_based_ai_cossacks.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Case-based reasoning')
       h4 Main idea
       ul
@@ -993,6 +1059,7 @@ include ./partial/texts.pug
           +strtext('', 'Revise', '- adapt the preliminary solution to fit the current situation')
         li
           +strtext('', 'Retain', '- save the case into the knowledge base')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Defcon')
       ul
         li multiplayer real-time strategy game
@@ -1001,6 +1068,7 @@ include ./partial/texts.pug
         li AI: decision tree learning and case-based reasoning
       .tcenter
         img.h600(src='../static/slides/images/lecture09/case_based_defcon.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Defcon: Case structure')
       ul
         li starting positions of units and buildings
@@ -1011,6 +1079,7 @@ include ./partial/texts.pug
         li final scores of the two players
       .tcenter
         img.h550(src='../static/slides/svg/lecture09/case_based_reasoning.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Megaglest')
       ul
         li open-source 3D RTS
@@ -1021,6 +1090,7 @@ include ./partial/texts.pug
           img.h600(src='../static/slides/images/lecture09/case_based_megaglest.jpg')
           p
             a(href='https://github.com/MegaGlest/megaglest-source') LINK
+    // ============================================================
     +mframe(bgr, 'Megaglest rules')
       table.line-s.ml150
         tr
@@ -1098,6 +1168,7 @@ include ./partial/texts.pug
           td Blocked units
           td Move surrounding units
           td 3 000
+    // ============================================================
     +mframe(bgr, 'Lecture 9 summary')
       ul
         li
@@ -1123,6 +1194,7 @@ include ./partial/texts.pug
           +btext('', 'RTS AI Layers:', 'micromanagement, tactics, strategy')
         li
           +btext('', 'Case-based reasoning:', 'finding solutions based on similar past solutions')
+    // ============================================================
 
 include ./partial/footer.pug
 script(src!='../libs/revealjs/revealjs.ts')

@@ -17,6 +17,7 @@ include ./partial/texts.pug
       +title('Game AI and pathfinding')
     // ============================================================
     +chapter(bgr, 'Raycasting')
+    // ============================================================
     +mframe(bgr, 'Raycasting')
       ul
         li.highlight we simply cast a ray, obtain an object it hits and process the result according to our needs
@@ -34,6 +35,7 @@ include ./partial/texts.pug
         figure
           img.h400(src='../static/slides/images/lab05/wolfenstein.gif')
           p 1992: Wolfenstein 3D
+    // ============================================================
     +mframe(bgr, 'Basic idea')
       ul
         li send out a ray that starts at the player location
@@ -49,6 +51,7 @@ include ./partial/texts.pug
         figure
           img.h600(src='../static/slides/svg/lab05/raycaster3.svg')
           p Fixed sampling
+    // ============================================================
     +mframe(bgr, 'Calculation')
       .bottom-content.justify-right
         img.h700.mr200(src='../static/slides/svg/lab05/fov.svg')
@@ -62,15 +65,18 @@ include ./partial/texts.pug
               include ../build_pre/equations/lab05/rotation_02.svg
             li
               include ../build_pre/equations/lab05/rotation_03.svg
+    // ============================================================
     +mframe(bgr, 'Example: Dark hall')
       ul
         li.highlight.code src/labs/lab05/example-raycaster.ts
         li use WSAD to move around
       .tcenter
         canvas.w1000.h700(data-example!='ExampleRayCasting')
+    // ============================================================
     +mframe(bgr, 'Example: Dark hall rendering process')
       .tcenter
         canvas.w1200.h800(data-example!='ExampleRayCasting2')
+    // ============================================================
     +mframe(bgr, 'Visibility cone')
       ul
         li Raycaster use-case for game AI
@@ -83,6 +89,7 @@ include ./partial/texts.pug
         figure
           img.h600(src='../static/slides/images/lab05/cone.gif')
           p SneakR (2015)
+    // ============================================================
     +mframe(bgr, 'Example: Visibility cone')
       ul
         li.highlight.code src/labs/lab05/example-viscone.ts
@@ -90,7 +97,9 @@ include ./partial/texts.pug
           a(href='./lab05_viscone.html') FullScreen link
       .tcenter
         canvas.mt80.w800.h600(data-example!='ExampleVisibilityCone')
+    // ============================================================
     +chapter(bgr, 'Pathfinding')
+    // ============================================================
     +mframe(bgr, 'Pathfinding algorithms')
       ul
         li breadth-first search ignores costs
@@ -98,15 +107,19 @@ include ./partial/texts.pug
         li A* takes into account both of them
       .tcenter.mt20
         img.h600(src='../static/slides/svg/lecture09/pathfinding_comparison.svg')
+    // ============================================================
     +mframe(bgr, 'Example: Breadth-first search')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding1')
+    // ============================================================
     +mframe(bgr, 'Example: Dijkstra search')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding2')
+    // ============================================================
     +mframe(bgr, 'AStar algorithm')
       .code
         include ../static/slides/snippets/lab05/astar.html
+    // ============================================================
     +mframe(bgr, 'Heuristics and distance measurement')
       .bottom-content.justify-right
         img.h600(src='../static/slides/images/lab05/pathfinding.gif')
@@ -122,33 +135,43 @@ include ./partial/texts.pug
         li penalty for turning
         li distance from nearest route
         li distance from nearest teleport 
+    // ============================================================
     +mframe(bgr, 'Example: AStar tile grid, manhattan dist.')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding3')
+    // ============================================================
     +mframe(bgr, 'Example: AStar tile grid, euclidean dist.')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding4')
+    // ============================================================
     +mframe(bgr, 'Example: AStar octile grid, manhattan dist.')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding5')
+    // ============================================================
     +mframe(bgr, 'Example: AStar octile grid, euclidean dist.')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding6')
+    // ============================================================
     +mframe(bgr, 'Example: AStar Optimistic heuristic')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding7')
+    // ============================================================
     +mframe(bgr, 'Example: AStar Pessimistic heuristic')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding8')
+    // ============================================================
     +mframe(bgr, 'Example: AStar Very optimistic heuristic')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding9')
+    // ============================================================
     +mframe(bgr, 'Example: AStar Very pessimistic heuristic')
       .tcenter
         canvas.mt20.w1600.h800(data-example!='ExamplePathFinding10')
+    // ============================================================
     +mframe(bgr, 'Perlin noise for terrain generation')
       .tcenter
         canvas.mt20.w166.h800(data-example!='ExamplePerlinNoise')
+    // ============================================================
     +mframe(bgr, 'Force field')
       ul
         li the map is preprocessed, no additional pathfinding required
@@ -156,13 +179,16 @@ include ./partial/texts.pug
         li good for games with a single point of attraction (tower defense paths)
       .tcenter
         img.h700(src='../static/slides/svg/lab05/force_field.svg')
+    // ============================================================
     +mframe(bgr, 'HPA*')
       ul
         li the level is divided into areas/clusters
         li we use A* pathfinding only inside particular cluster
       .tcenter
         img.h800(src='../static/slides/svg/lab05/hpa.svg')
+    // ============================================================
     +chapter(bgr, 'State machines')
+    // ============================================================
     +mframe(bgr, 'Task: cargo bots')
       ul
         li
@@ -171,6 +197,7 @@ include ./partial/texts.pug
         img.ml150.h800(src='../static/slides/images/lab05/bots_desc.jpg')
       .top-content.justify-left
         img.h500.mt30.ml100(src='../static/slides/svg/lab05/ai_desc.svg')
+    // ============================================================
     +mframe(bgr, 'Task: cargo bots')
       ul
         li.code.highlight src/labs/lab05/bots
@@ -182,6 +209,7 @@ include ./partial/texts.pug
         figure
           img.h500(src='../static/slides/svg/lab05/bots.svg')
           p State machine
+    // ============================================================
     +mframe(bgr, 'Task: cargo bots')
       ul
         li the whole model is stored in 
@@ -206,6 +234,7 @@ include ./partial/texts.pug
         li complex tasks, such as moving cargo from the source to a bot, is handled by the model (
           span.code loadCargo, unLoadCargo 
           | etc.)
+    // ============================================================
     +mframe(bgr, 'Task: cargo bots')
       h4 Task 1
       ul
@@ -229,6 +258,7 @@ include ./partial/texts.pug
         li BotAIComponent contains methods you can use:
           ul
             li.code goLoad, goUnload, arrivedToTarget, isBotLoaded, moveToTarget
+    // ============================================================
     +mframe(bgr, 'Task: cargo bots')
       h4 Task 2
       ul

@@ -16,6 +16,7 @@ include ./partial/texts.pug
       +title('Graphics')
     // ============================================================
     +chapter(bgr, 'Positioning')
+    // ============================================================
     +mframeGreen(bgr, 'Homogeneous Coordinates')
       ul
         li
@@ -49,9 +50,11 @@ include ./partial/texts.pug
           ul
             li 
               include ../build_pre/equations/lecture08/coordinates_08.svg
+    // ============================================================
     +mframeOrange(bgr, 'Rotation in 3D space')
       div.tcenter
         img.h900(src='../static/slides/svg/lecture08/pitch_yaw_roll.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Rotational representations')
       div.bottom-content.justify-right.fill
         img.h350(src='../static/slides/images/lecture08/mass_effect_glitch.gif')
@@ -69,6 +72,7 @@ include ./partial/texts.pug
         li.upside intiutive and compact
         li.downside rotations cannot be easily interpolated
         li.downside rotations cannot be applied to vectors directly
+    // ============================================================
     +mframeOrange(bgr, 'Rotational representations')(class='space-vert-m')
       h4 Quaternions
       ul
@@ -88,6 +92,7 @@ include ./partial/texts.pug
         li.downside can perform only one full rotation between keyframes
       .tcenter.w100.highlight-sec.mt30 
         span Usually, Euler angles are used for fast rotation around one axis<br> and quaternions for complex yet slow rotations around all axes
+    // ============================================================
     +mframeGreen(bgr, 'Rotation in affine space')
       .bottom-content.justify-right
         img.h600(src='../static/slides/svg/lecture08/rotation_around_origin.svg')
@@ -104,6 +109,7 @@ include ./partial/texts.pug
       h4.mt80 OpenGL example:
       .code.mt40
         include ../static/slides/snippets/lecture08/opengl_rotation.html
+    // ============================================================
     +mframeOrange(bgr, 'Space')
       h4 Model space
       ul
@@ -124,12 +130,15 @@ include ./partial/texts.pug
       h4 View/screen space
       ul
         li a region of the screen used to display a portion of the final image
+    // ============================================================
     +mframeOrange(bgr, 'World-model-view')
       div.tcenter
         img.h900(src='../static/slides/svg/lecture08/model_world_view.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Clip space')
       div.tcenter
         img.h900(src='../static/slides/svg/lecture08/clip_space.svg')
+    // ============================================================
     +mframeOrange(bgr, 'View volume')
       ul
         li
@@ -147,6 +156,7 @@ include ./partial/texts.pug
         figure
           img.h500(src='../static/slides/svg/lecture08/projection_ortho.svg')
           p Orthographic projection
+    // ============================================================
     +mframeGreen(bgr, 'Lookat vector')
       .bottom-content
         img.h700.ml80.mb40(src='../static/slides/images/lecture08/doomdoor.png')
@@ -157,7 +167,9 @@ include ./partial/texts.pug
         li if the dot product between 
           span.code.highlight lookAt 
           |vector and the normal vector of a polygon is lower than zero, the polygon is facing the camera
+    // ============================================================
     +chapter(bgr, 'Animations')
+    // ============================================================
     +mframeOrange(bgr, 'Animations')
       h4 Stop-motion animation
       ul
@@ -181,6 +193,7 @@ include ./partial/texts.pug
         figure
           img.h300(src='../static/slides/images/lecture08/anim_vertex.gif')
           p Vertex
+    // ============================================================
     +mframeOrange(bgr, 'Interpolation')
       div.bottom-content.justify-right
         img.h600(src='../static/slides/svg/lecture08/transform_cube.svg')
@@ -204,6 +217,7 @@ include ./partial/texts.pug
               li Cubic interpolation 
               li Bézier interpolation 
               li Hermite interpolation
+    // ============================================================
     +mframeGreen(bgr, 'Bezier curve')
       ul
         li parametric curve defined by a set of control points
@@ -211,6 +225,7 @@ include ./partial/texts.pug
           +strtext('most common -', 'cubic curve,','4 points, 2 points provide directional information')
       div.tcenter
         img.h800(src='../static/slides/svg/lecture08/bezier_curve.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Linear interpolation')
       div.top-content.justify-right
         img.h400(src='../static/slides/svg/lecture08/linear_interpolation_1d.svg')
@@ -233,9 +248,11 @@ include ./partial/texts.pug
       ul
         li on a regular 3D grid
         li for 3D values (mipmaps)
+    // ============================================================
     +mframe(bgr, 'Example: 1D interpolation')
       div.tcenter
         img.h900(src='../static/slides/svg/lecture08/keyframes.svg')
+    // ============================================================
     +mframe(bgr, 'Example: 2D interpolation')
       div.tcenter
         img.h150(src='../static/slides/images/lecture08/scale_original.png')
@@ -252,7 +269,9 @@ include ./partial/texts.pug
         figure
           img.h500(src='../static/slides/images/lecture08/scale_cubic.png')
           p Cubic
+    // ============================================================
     +chapter(bgr, 'Rendering pipeline')
+    // ============================================================
     +mframe(bgr, 'Graphics api')
       .top-content.justify-right
         img.w300(src='../static/slides/images/lecture08/logo_directx.png')
@@ -278,6 +297,7 @@ include ./partial/texts.pug
         li referred as the next generation of OpenGL
         li lower overhead, more direct control over the GPU than OpenGL
         li unified management of compute kernels and shaders
+    // ============================================================
     +mframeGreen(bgr, 'Triangle meshes')
       ul
         li the simplest type of polygons, always planar
@@ -291,6 +311,7 @@ include ./partial/texts.pug
             li mesh instancing - shared data
       .tcenter
         img.h500(src='../static/slides/svg/lecture08/triangle_meshes.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Terms')
       .center-content.justify-right
         figure.mt150.mr50
@@ -320,9 +341,11 @@ include ./partial/texts.pug
       ul
         li process of removing triangles that aren't facing the camera
         li frustum culling, portals, anti-portals,...
+    // ============================================================
     +mframe(bgr, 'GPU architecture')
       div.tcenter
         img.h900(src='../static/slides/svg/lecture08/gpu_pipeline.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Rendering pipeline')
       ul
         li
@@ -339,6 +362,7 @@ include ./partial/texts.pug
         li ROP performs depth-testing, blending etc.
       .tcenter
         img.h450(src='../static/slides/svg/lecture08/rendering_pipeline.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Rendering pipeline')
       h4 Vertex shader phase
       ul
@@ -364,6 +388,7 @@ include ./partial/texts.pug
           +strtext2('', 'Culling', '- discards triangles facing away from the viewer')
         li
           +strtext2('', 'Rasterization', '- generates a sequence of fragments (window-space)')
+    // ============================================================
     +mframeGreen(bgr, 'Rendering pipeline')
       h4 Fragment shader phase
       ul
@@ -384,6 +409,7 @@ include ./partial/texts.pug
             li combines colors from fragment shader with colors in the color buffers
         li writes data to framebuffer
         li swaps buffers
+    // ============================================================
     +mframeOrange(bgr, 'Shaders')
       ul
         li programs that run on the video card in order to perform a variety of specialized functions (lighting, effects, post-processing, even physics or AI)
@@ -403,6 +429,7 @@ include ./partial/texts.pug
       ul
         li shader that run outside of the rendering pipeline
         li used for massively parallel GPGPU computing
+    // ============================================================
     +mframe(bgr, 'Shader usecases')
       .top-content.justify-right
         figure
@@ -435,11 +462,13 @@ include ./partial/texts.pug
         li bump mapping
         li particle systems
         li visual effects
+    // ============================================================
     +mframe(bgr, 'Example: Geometry shader')
       .top-content.justify-right
         img.h500(src='../static/slides/svg/lecture08/geom_shader.svg')
       div.code
         include ../static/slides/snippets/lecture08/geometry_shader.html
+    // ============================================================
     +mframeGreen(bgr, 'Raytracing')
       ul
         li conventional rendering converts each triangle into pixels on a 2D screen
@@ -456,7 +485,9 @@ include ./partial/texts.pug
         figure
           img.h450(src='../static/slides/svg/lecture08/raytracing_ray.svg')
           p Ray Tracing
+    // ============================================================
     +chapter(bgr, 'Effects and Textures') 
+    // ============================================================
     +mframe(bgr, 'Rendering features')
       .columns-2
         figure.ml80
@@ -472,6 +503,7 @@ include ./partial/texts.pug
         figure.mr80
           img.h350(src='../static/slides/images/lecture08/effects_depthoffield.jpg')
           p Depth of field
+    // ============================================================
     +mframe(bgr, 'Rendering features')
       .columns-2
         figure.ml80
@@ -487,6 +519,7 @@ include ./partial/texts.pug
         figure.mr80
           img.h350(src='../static/slides/images/lecture08/effects_ao.jpg')
           p Ambient Occlusion
+    // ============================================================
     +mframeGreen(bgr, 'Texture')
       .top-content.justify-right
         figure
@@ -514,9 +547,11 @@ include ./partial/texts.pug
         li normal map
         li specular map
         li ...
+    // ============================================================
     +mframe(bgr, 'Example: UV mapping')
       div.tcenter
         img.h800(src='../static/slides/images/lecture08/uvmapping.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Texture mapping')
       .top-content.justify-right
         img.h200.mt40.mr100(src='../static/slides/images/lecture08/mapping_bump.png')
@@ -536,6 +571,7 @@ include ./partial/texts.pug
       ul
         li heightmap is used to adjust vertices
         li provides realistic edges but requires a dense mesh
+    // ============================================================
     +mframe(bgr, 'Example: Texture mapping')
       .grid32.w80.ml200
         figure
@@ -553,6 +589,7 @@ include ./partial/texts.pug
         figure
           img.h350(src='../static/slides/images/lecture08/texture_all.jpg')
           p Color + disp + normal
+    // ============================================================
     +mframeGreen(bgr, 'Texture filtering')
       ul
         li there is not a clean one-to-one mapping between texels and pixels
@@ -560,7 +597,7 @@ include ./partial/texts.pug
       h4 Mipmapping
       ul
         li for each texture, we create a sequence of lower-resolution bitmaps
-        li objects closer to the camera will use low-res textures
+        li objects further from the camera will use low-res textures
       h4 Nearest neighbor
       ul
         li the closest texel to the pixel center is selected
@@ -573,6 +610,7 @@ include ./partial/texts.pug
       h4 Anisotropic filtering
       ul
         li samples texels within a region corresponding to the view angle
+    // ============================================================
     +mframe(bgr, 'Texture filtering')
       .columns-2
         figure.ml80
@@ -588,6 +626,7 @@ include ./partial/texts.pug
         figure.mr80
           img.h350(src='../static/slides/images/lecture08/filtering_trili.jpg')
           p Trilinear
+    // ============================================================
     +mframeGreen(bgr, 'Antialiasing')
       .bottom-content.justify-right
         img.h600(src='../static/slides/svg/lecture08/antialiasing.svg')
@@ -607,14 +646,16 @@ include ./partial/texts.pug
         li the pixel shader only needs to be evaluated once per pixel
       h4 MFAA (Multi-frame sampled Antialiasing)
       ul
-        li sample locaitons using MSAA across multiple frames
+        li sample locations using MSAA across multiple frames
       h4 CSAA (Coverage sample Antialiasing)
       ul
         li NVidia's optimization of MSAA
         li new sample type: a sample that represents coverage
+    // ============================================================
     +mframe(bgr, 'Example: Antialiasing')
       .tcenter
         img.mt80.h700(src='../static/slides/images/lecture08/antialiasing.jpg')
+    // ============================================================
     +mframe(bgr, 'Lecture 8 Review')
       ul
         li
@@ -635,6 +676,8 @@ include ./partial/texts.pug
           +btext('', 'Shader:', 'a program that runs on GPU')
           ul
             li vertex shader, geometry shader, tessellation shader, fragment shader, compute shader
+    // ============================================================
+    +gbquote(bgr, 'Not even death can save you from me!', 'Diablo 2', false)(class="w60")
    
 
 include ./partial/footer.pug

@@ -75,6 +75,10 @@ export class GridMap {
     // gets cost from point A to point B
     // let's assume the cost is the same for all blocks that surround given block (described by 'from')
     return this.elevations.has(this.indexMapper(from)) ? this.elevations.get(this.indexMapper(from)) : this.defaultElevation;
+    // uncomment those lines to get elevation relative to the direction
+    //let elevationFrom = this.elevations.has(this.indexMapper(from)) ? this.elevations.get(this.indexMapper(from)) : this.defaultElevation;
+    //let elevationTo = this.elevations.has(this.indexMapper(to)) ? this.elevations.get(this.indexMapper(to)) : this.defaultElevation;
+    //return elevationTo - elevationFrom;
   }
 
   /**
