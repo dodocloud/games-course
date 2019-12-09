@@ -7,6 +7,12 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.11] - 2019-12-10
+### Added
+- Materials for Lecture 11 and Lab06
+- Simple networking emulation library
+
+
 ## [3.10] - 2019-11-25
 ### Added
 - Materials for Lecture 10

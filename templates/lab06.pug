@@ -1,0 +1,299 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_11.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lab06', 'Lab 6: Shaders and Multiplayer', 'lab06')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo
+        include ../static/slides/svg/lab06/lab06_logo.svg
+      +title('Shaders and Multiplayer')
+    // ============================================================
+    +chapter(bgr, 'Shaders and filters')
+    +mframe(bgr, 'Shaders and filters')
+      ul
+        li
+          span.code.highlight PIXI.Shader 
+          ul
+            li helper class for shaders
+            li stored in separate files, 
+              span.highlight-third.code *.vert 
+              | for vertex shaders and 
+              span.highlight-third.code *.frag 
+              | for fragment shaders 
+            li
+              span.highlight-third Shader languages support for VS Code 
+              | - plugin, provides intellisense for shader files 
+        li 
+          span.code.highlight PIXI.Filter  
+          ul
+            li a special type of WebGL shader that is applied to a screen
+            li built-in filters: AlphaFilter, BlurFilter, NoiseFilter, ColorMatrixFilter,...
+            li in PixiJS v3, a filter was always applied to a whole screen 
+            li in PixiJS v4, a filter can be applied only to a part of a screen 
+            li in PixiJS v5, both approaches are possible
+            li
+              a(href='https://pixijs.download/dev/docs/PIXI.Filter.html') documentation link
+            li 
+              a(href='http://pixijs.io/pixi-filters/tools/demo/') pixi-filters 
+              | - library with additional filters 
+              
+    +mframe(bgr, 'Basic vertex shader')
+      .code
+        include ../static/slides/snippets/lab06/vertex_shader.html
+    +mframe-m(bgr, 'Basic fragment shader')
+      .code
+        include ../static/slides/snippets/lab06/fragment_shader.html
+    +mframe-m(bgr, 'Shader setup')
+      ol
+        li load assets, including vertex and fragment shader 
+        li define 
+          span.highlight-third.code PIXI.Geometry 
+          |with two triangles and texture coordinates on which the shaders will be executed 
+        li define uniform variables (float, integer, vec2, vec3, mat3, mat4,...) 
+        li create shader via 
+          span.highlight-third.code PIXI.Shader.from(vertex, fragment, uniforms)
+        li create 
+          span.highlight-third.code PIXI.Mesh 
+          |with defined geometry and shaders
+        li modify uniform variables in the game loop as you like
+    +mframe(bgr, 'Basic Example')
+      ul
+        li.code.highlight src/labs/lab06/example-shader-basic.ts
+      div.tcenter
+        canvas.w1200.h800.scale(data-example!='ExampleShaderBasic')
+    +mframe(bgr, 'Noise example')
+      ul
+        li.code.highlight src/labs/lab06/example-shader-noise.ts
+        li two input attributes - current time for animation and the resolution of the screen
+      div.tcenter
+        canvas.w1200.h700.scale(data-example!='ExampleShaderNoise')
+    +mframe-m(bgr, 'Noise example')
+      ul
+        li fragment shader that calculates output color for each coordinate
+        .code.mt40
+          include ../static/slides/snippets/lab06/noise_fragment_shader.html
+    +mframe(bgr, 'Wave example')
+      ul
+        li.code.highlight src/labs/lab06/example-shader-wave.ts
+      div.tcenter
+        canvas.w1200.h800.scale(data-example!='ExampleShaderWave')
+    +mframe(bgr, 'Mandelbrot set example')
+      ul
+        li.code.highlight src/labs/lab06/example-shader-mandelbrot.ts
+        li palette texture used as a look-up table
+      div.tcenter
+        canvas.w1000.h700.scale(data-example!='ExampleShaderMandelbrot')
+    +chapter(bgr, 'Easing functions')
+    +mframe(bgr, 'Easing functions')
+      div.center-content.justify-right
+        img.h650.mr500.mt200(src='../static/slides/svg/lab06/easing_functions.svg')
+      ul
+        li
+          include ../build_pre/equations/lab06/easing_01.svg
+          |: current time 
+          include ../build_pre/equations/lab06/easing_02.svg
+        li
+          include ../build_pre/equations/lab06/easing_03.svg
+          |: start value 
+        li
+          include ../build_pre/equations/lab06/easing_04.svg
+          |: change in value 
+        li
+          include ../build_pre/equations/lab06/easing_05.svg
+          |: duration 
+      div.line-m
+        ul
+          li.highlight Linear tween: 
+            include ../build_pre/equations/lab06/easing_06.svg
+          li Quadratic ease-in: 
+            include ../build_pre/equations/lab06/easing_07.svg
+          li Quadratic ease-out: 
+            include ../build_pre/equations/lab06/easing_08.svg
+          li Cubic ease-in: 
+            include ../build_pre/equations/lab06/easing_09.svg
+          li Sine ease-in: 
+            include ../build_pre/equations/lab06/easing_10.svg
+          li Sine ease-out: 
+            include ../build_pre/equations/lab06/easing_11.svg
+          li Sine ease in/out: 
+            include ../build_pre/equations/lab06/easing_12.svg
+          li Exponential ease-in: 
+            include ../build_pre/equations/lab06/easing_13.svg
+    +mframe(bgr, 'Tweening example')
+      ul
+        li.code.highlight src/labs/lab06/example-tween.ts
+        .columns-3.tcenter.mt40
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenLinear')
+            p Linear
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenEaseInOut')
+            p Ease in-out
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenSineIn')
+            p Sine-in
+    +mframe(bgr, 'Tweening example')
+      ul
+        li.code.highlight src/labs/lab06/example-tween2.ts
+        .columns-3.tcenter.mt40
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenLinear2')
+            p Linear
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenQuadraticIn2')
+            p Quadratic
+          figure.m10
+            canvas.w550.h600.scale(data-example!='ExampleTweenExpo2')
+            p Exponential
+    +chapter(bgr, 'Multiplayer')
+    +mframe(bgr, 'Multiplayer')
+      ul
+        li skins, virtual items, chat server, virtual shops and custom assets are usually HTTP-based
+        li streaming of the virtual world is managed by UDP protocol
+        li continuous values (those that change very often) don't need to be confirmed
+        li commands and events that have an impact on the game model need to be confirmed
+        li multiplayer libraries provide a hybrid architecture based on UDP that simulates TCP for the sake of reliability - not every message is considered reliable
+        li.mt40
+          span.highlight issues to deal with 
+          ul
+            li compressed game state - entropy encoding
+            li lower frequency of updates - interpolation
+            li security - server is the main runner
+            li latency - extrapolation, prediction, rewind
+            li unreliable connection - queue of to-be-confirmed messages
+    +mframe(bgr, 'Network emulator')
+      ul
+        li.code libs/network-emulator
+        li a simple multiplayer library that emulates UDP
+        li supports message confirmation, streaming, interpolation
+      .tcenter
+        img.h600(src='../static/slides/svg/lab06/network_emulator.svg')
+    +mframe(bgr, 'Messaging')
+      ul
+        li everything needs to be serialized into a byte stream
+        li it doesn't matter how do we store our variables on target platform. What matters is their range (a variable that has 4 possible values can be stored in 2bits instead of a whole byte)
+        li Javascript's 
+          span.code.highlight-third number 
+          | is 64bit long
+        li floats are serialized by a simple "multiply-divide hack"
+      .tcenter
+        img.h600(src='../static/slides/svg/lab06/network_messaging.svg')
+    +mframe-m(bgr, 'Example: Custom message serialization')
+      .code
+        include ../static/slides/snippets/lab06/message_serialization.html
+    +mframe(bgr, 'Synchronization Example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-basic.ts
+        li open the console to see the logs
+        li press Q/W to change streaming frequency
+        li press R to reset the rotation
+        li press S to pause the streaming
+      .columns-2.tcenter
+        figure
+          canvas.w800.h500.scale(data-example!='ExampleNetworkBasicClient')
+          p Client
+        figure
+          canvas.w800.h500.scale(data-example!='ExampleNetworkBasicServer')
+          p Server
+    +mframe(bgr, 'Synchronization example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-steering.ts
+        li notice the "teleport" issue when server changes values instantly
+      .columns-2.tcenter
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkSteeringClient')
+          p Client
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkSteeringServer')
+          p Server
+    +mframe(bgr, 'Packet loss')
+      ul
+        li for linear movement, packet loss is not a problem
+        li the client extrapolates the value if there are no future samples
+      .tcenter.mt40
+        img.h600(src='../static/slides/svg/lab06/confirmation_c.svg')
+    +mframe(bgr, 'Packet loss')
+      ul
+        li packet loss for more complex movement results in a weird speed-up due to a wrong prediction
+      .tcenter.mt40
+        img.h600(src='../static/slides/svg/lab06/confirmation_d.svg')
+    +mframe(bgr, 'Synchronization Example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-anim.ts
+      .columns-3
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimClient')
+          p Client (lag = 0)
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimClientLagged')
+          p Client (lag = 500 ms)
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimServer')
+          p Server
+    +mframe(bgr, 'Synchronization Example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-anim.ts
+      .columns-3
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimPacketLossClient')
+          p Client 25% packet loss
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimPacketLossLaggedClient')
+          p Client 500ms lag + 75% packet loss
+        figure
+          canvas.w550.h600.scale(data-example!='ExampleNetworkAnimPacketLossServer')
+          p Server
+    +mframe(bgr, 'Synchronization of new objects')
+      ul
+        li the client creates a new object
+        li the server confirms it
+        li both the client and the server edit an existing object
+        li the server doesn't accept a change from the client
+      .tcenter
+        img.h600(src='../static/slides/svg/lab06/confirmation_a.svg')
+    +mframe(bgr, 'Synchronization of new objects')
+      ul
+        li the server creates a new object, the packet gets lost
+        li the server updates an existing object, the packet arrives
+        li the client can't edit an object that doesn't exist -> the message lingers in the queue
+        li the server re-sends old messages that haven't been confirmed yet
+        li when the first message arrives, the client applies all other messages in the queue
+      .tcenter
+        img.h600(src='../static/slides/svg/lab06/confirmation_b.svg')
+    +mframe(bgr, 'Object creation example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-commands.ts
+        li only the server can create/remove objects
+        li messages are confirmed by the client but the model is not consistent - why?
+      .columns-2.tcenter
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkCommandsClient')
+          p Client
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkCommandsServer')
+          p Server
+    +mframe(bgr, 'Interactive example')
+      ul
+        li.code.highlight src/labs/lab06/example-network-interactive.ts
+        li both the client and the server can create new objects
+        li click on the screen to add new objects
+      .columns-2.tcenter
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkInteractiveClient')
+          p Client
+        figure
+          canvas.w800.h600.scale(data-example!='ExampleNetworkInteractiveServer')
+          p Server
+
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')
+script(src!='../src/labs/lab06/setup.ts')

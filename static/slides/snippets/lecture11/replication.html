@@ -1,0 +1,12 @@
+<p><span style="color:#F8F8F0;">&nbsp;</span><span style="color:#FF5252;">switch</span><span style="color:#F8F8F0;">(actionType)&nbsp;{</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">case</span><span style="color:#F8F8F0;">&nbsp;OBJECT_CREATED:</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;objectType&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;reader-&gt;</span><span style="color:#B2FF59;">ReadDWord</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">auto</span><span style="color:#F8F8F0;">&nbsp;factory&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;creatorManager-&gt;</span><span style="color:#B2FF59;">FindObjectFactory</span><span style="color:#F8F8F0;">(objectType);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">auto</span><span style="color:#F8F8F0;">&nbsp;newInstance&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;factory-&gt;</span><span style="color:#B2FF59;">CreateInstance</span><span style="color:#F8F8F0;">(reader);&nbsp;</span><span style="color:white;">//&nbsp;parse&nbsp;parameters</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; objects.</span><span style="color:#B2FF59;">push_back</span><span style="color:#F8F8F0;">(newInstance);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">break</span><span style="color:#F8F8F0;">;</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp;&nbsp;</span><span style="color:#FF5252;">case</span><span style="color:#F8F8F0;">&nbsp;OBJECT_DELETED:</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp;&nbsp;</span><span style="color:#E040FB;">int</span><span style="color:#F8F8F0;">&nbsp;objectId&nbsp;</span><span style="color:#FF5252;">=</span><span style="color:#F8F8F0;">&nbsp;reader-&gt;</span><span style="color:#B2FF59;">ReadDWord</span><span style="color:#F8F8F0;">();</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; &nbsp; sceneManager-&gt;</span><span style="color:#B2FF59;">removeObjectById</span><span style="color:#F8F8F0;">(objectId);</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; &nbsp; ...</span></p>
+<p><span style="color:#F8F8F0;">&nbsp; }</span></p>

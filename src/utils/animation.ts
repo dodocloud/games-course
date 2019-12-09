@@ -1,11 +1,46 @@
 import * as ECSA from '../../libs/pixi-component';
 
-class Interpolation {
+export class Interpolation {
   static linear: any = (current: number, start: number, length: number) => Math.min(1, Math.max(0, (current - start) / length));
 
   static easeinout: any = (current: number, start: number, length: number) => {
     let pos = Interpolation.linear(current, start, length);
     let posInt = pos < 0.5 ? 2 * pos * pos : -1 + (4 - 2 * pos) * pos;
+    return Math.min(1, Math.max(0, posInt));
+  }
+
+  static quadraticEaseIn: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    let posInt = pos * pos;
+    return Math.min(1, Math.max(0, posInt));
+  }
+
+  static quadraticEaseOut: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    let posInt = 1 - (1 - pos) * (1 - pos);
+    return Math.min(1, Math.max(0, posInt));
+  }
+
+  static quadraticEaseInOut: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    return pos < 0.5 ? (Interpolation.quadraticEaseIn(pos * 2, 0, 1) * 0.5) : (1 - Interpolation.quadraticEaseIn(2 - pos * 2, 0, 1) * 0.5);
+  }
+
+  static sineIn: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    let posInt = Math.sin(pos * Math.PI / 2);
+    return Math.min(1, Math.max(0, posInt));
+  }
+
+  static sineOut: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    let posInt = Math.sin((1 - pos) * Math.PI / 2);
+    return Math.min(1, Math.max(0, posInt));
+  }
+
+  static expoIn: any = (current: number, start: number, length: number) => {
+    let pos = Interpolation.linear(current, start, length);
+    let posInt = Math.pow(2, 10 * (pos - 1));
     return Math.min(1, Math.max(0, posInt));
   }
 }
@@ -17,7 +52,7 @@ export class BaseAnimation extends ECSA.Component {
   protected loops = 0;
   protected currentLoop = 0;
   protected startTime = 0;
-  protected interpolation: any = null;
+  public interpolation: any = null;
 
   // loops = 0 for infinite!
   constructor(duration: number, goBack: boolean = false, loops: number = 1) {

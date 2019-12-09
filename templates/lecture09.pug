@@ -685,7 +685,7 @@ include ./partial/texts.pug
           ul
             li Occupancy map
             li SOAR cognitive architecture (used in Quake II)
-            li Vision Code (used in Bioshock)
+            li Vision Cone (used in Bioshock)
         li
           span.highlight-sec approaches for RTS:
           ul
@@ -866,7 +866,7 @@ include ./partial/texts.pug
       .bottom-content.justify-right
         img.h600.mb60.mr20(src='../static/slides/images/lecture09/rts.png')
       ul
-        li Real-time strategy is a Bayesian, zero-sum game (Rubinstein, 1994)
+        li.highlight-third Real-time strategy is a Bayesian, zero-sum game (Rubinstein, 1994)
         li A game where the player is in control of certain, usually military, assets, with which the player can manipulate in order to achieve victory
       h4 Main elements
       ul
@@ -1195,6 +1195,7 @@ include ./partial/texts.pug
         li
           +btext('', 'Case-based reasoning:', 'finding solutions based on similar past solutions')
     // ============================================================
+    +gbquote(bgr, 'Taking fire, need assistance!', 'Counter-Strike')(class="w60")
 
 include ./partial/footer.pug
 script(src!='../libs/revealjs/revealjs.ts')

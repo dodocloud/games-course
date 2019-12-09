@@ -48,22 +48,75 @@ export class BotAIComponent extends ECSA.Component {
   }
 
   processIdleState(isEntering: boolean, delta: number, absolute: number) {
-    return BotStates.IDLE;
+    // check botModel.isLoaded to assign a goal
+    if (this.botModel.isLoaded) {
+      return BotStates.GOING_TO_UNLOAD;
+    } else {
+      return BotStates.GOING_TO_LOAD;
+    }
   }
 
   processGoingToLoadState(isEntering: boolean, delta: number, absolute: number) {
-    return BotStates.GOING_TO_LOAD;
+    // check moveComponent.pathFinished - if true, the bot has finished the movement
+    if (this.botModel.isLoaded) {
+      return BotStates.GOING_TO_UNLOAD;
+    }
+
+    if (isEntering) {
+      this.goLoad();
+      return BotStates.GOING_TO_LOAD;
+    }
+
+    if (this.arrivedToTarget) {
+      return BotStates.LOADING;
+    } else {
+      return BotStates.GOING_TO_LOAD;
+    }
   }
 
   processGoingToUnloadState(isEntering: boolean, delta: number, absolute: number) {
-    return BotStates.GOING_TO_UNLOAD;
+    // check moveComponent.pathFinished - if true, the bot has finished the movement
+    if (!this.botModel.isLoaded) {
+      return BotStates.GOING_TO_LOAD;
+    }
+
+    if (isEntering) {
+      this.goUnload();
+      return BotStates.GOING_TO_UNLOAD;
+    }
+
+    if (this.arrivedToTarget) {
+      return BotStates.UNLOADING;
+    } else {
+      return BotStates.GOING_TO_UNLOAD;
+    }
   }
 
   processLoadingState(isEntering: boolean, delta: number, absolute: number) {
+    if (this.currentLoadingTime > this.loadingDelay) {
+      this.currentLoadingTime = 0;
+      if(this.currentTarget) {
+        this.gameModel.loadCargo(this.currentTarget, this.botModel);
+      }
+
+      return BotStates.IDLE;
+    }
+
+    this.currentLoadingTime += delta;
     return BotStates.LOADING;
   }
 
   processUnloadingState(isEntering: boolean, delta: number, absolute: number) {
+    // use botModel.currentLoadingTime and this.botModel.loadingDelay
+    // increment ironOre ore petrol of gameModel.warehouseModel
+    if (this.currentLoadingTime > this.loadingDelay) {
+      this.currentLoadingTime = 0;
+      this.gameModel.unloadCargo(this.botModel);
+      this.currentTarget = null;
+      return BotStates.IDLE;
+    }
+
+    this.currentLoadingTime += delta;
     return BotStates.UNLOADING;
   }
 
@@ -77,7 +130,13 @@ export class BotAIComponent extends ECSA.Component {
     let ores = this.gameModel.getCargoSourcesByType(CargoTypes.ORE);
     let petrols = this.gameModel.getCargoSourcesByType(CargoTypes.PETROL);
 
-    if (Math.random() > 0.5) {
+    let petrol = this.gameModel.warehouseModel.petrol; // current amount of petrol
+    let ore = this.gameModel.warehouseModel.ironOre; // current amount of iron
+
+    let expectedPetrol = petrol + this.gameModel.goingToLoadPetrol * this.botModel.capacity;
+    let expectedOre = ore + this.gameModel.goingToLoadOre * this.botModel.capacity;
+
+    if (expectedPetrol > expectedOre) {
       this.currentTarget = ores[Math.floor(Math.random() * ores.length)];
     } else {
       this.currentTarget = petrols[Math.floor(Math.random() * petrols.length)];
@@ -95,17 +154,6 @@ export class BotAIComponent extends ECSA.Component {
   protected goUnload() {
     let warehouse = this.gameModel.warehouseModel.position;
     this.moveToTarget(new ECSA.Vector(warehouse.x, warehouse.y));
-  }
-
-  protected unloadCurrentCargo() {
-    this.gameModel.unloadCargo(this.botModel);
-    this.currentTarget = null;
-  }
-
-  protected loadCurrentCargo() {
-    if(this.currentTarget) {
-      this.gameModel.loadCargo(this.currentTarget, this.botModel);
-    }
   }
 
   protected get arrivedToTarget() {

@@ -90,9 +90,9 @@ Will be added on the day the particular lecture takes place
 | 7 | 5.11. | Physics | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture07.html) |
 | 8 | 12.11. | Graphics | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture08.html) |
 | 9 | 19.11. | Game AI | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture09.html) |
-| **10** | **26.11.** | **Scripting languages** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture10.html) |
+| 10 | 26.11. | Scripting languages | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture10.html) |
 | 11 | 3.12. | **DAY OFF** | |
-| 12 | 10.12. | Multiplayer | |
+| **12** | **10.12.** | **Multiplayer** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture11.html) |
 | 13 | 17.12. | Indie Game Development | |
 
 
@@ -109,9 +109,9 @@ Will be added on the day the particular lecture takes place
 | 7O | 5.11. | Animation, physics  | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab04.html) |
 | 8E | 12.11. | Animation, physics | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab04.html) |
 | 9O | 19.11. | Game AI |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab05.html) |
-| **10E** | **26.11.** | **Game AI** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab05.html) |
+| 10E | 26.11. | Game AI | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab05.html) |
 | 11O | 3.12. | **DAY OFF**  | |
-| 12E | 10.12. | Multiplayer | |
+| **12E** | **10.12.** | **Multiplayer** |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab06.html) |
 | 13O | 17.12. | Multiplayer | |
 
 ## Old materials
