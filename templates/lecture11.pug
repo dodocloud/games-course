@@ -22,11 +22,14 @@ include ./partial/texts.pug
           a(href='https://www.amazon.com/Multiplayer-Game-Programming-Architecting-Networked/dp/0134034309') Glazer, Joshua. 2015. Multiplayer Game Programming
       .center-content
           img(src!='../static/slides/images/lecture11/book_networking.jpg')
+    // ============================================================
     +chapter(bgr, 'Networking architecture')
+    // ============================================================
     +mframe-statement(bgr, 'Multiplayer')
       ul
         li.highlight offers a capability for multiple players to act within the same game world at the same time
         li.mt30.highlight-sec a very complex feature that has a significant impact on the game architecture, touching almost every fundamental structure 
+    // ============================================================
     +mframeOrange(bgr, 'Multiplayer categories')
       .top-content.justify-right.r5
         img.w500(src='../static/slides/images/lecture11/types_single.jpg')
@@ -41,6 +44,7 @@ include ./partial/texts.pug
         li.mt200 split-screen multiplayer
         li.mt200 networked multiplayer
         li.mt200 MMOG
+    // ============================================================
     +mframeGreen(bgr, 'Multiplayer history')
       .top-content.justify-right.r30
         img.w500(src='../static/slides/images/lecture11/history_spacewar.jpg')
@@ -70,8 +74,9 @@ include ./partial/texts.pug
         li Unreal (1998)
       h4 MMO
       ul
-        li Ultime Online (1997)
+        li Ultima Online (1997)
         li World of Warcraft (2004)
+    // ============================================================
     +mframeOrange(bgr, 'Issues')
       ul
         li the main objective: how to synchronize several universes
@@ -89,6 +94,7 @@ include ./partial/texts.pug
           +strtext('', 'Most common approach:', 'transfer a minimal subset of a game state that is required to reconstruct the complete information')
         li.mt40
           +strtext('', 'Topologies:', 'peer-to-peer, client-server')
+    // ============================================================
     +mframeOrange(bgr, 'Peer-to-peer architecture')
       ul
         li each device exchanges data with each other in a fully connected graph
@@ -104,6 +110,7 @@ include ./partial/texts.pug
         li methods: single master, partial authority, full replication
       .tcenter.mt60
         img.h500(src='../static/slides/svg/lecture11/arch_p2p.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Peer-to-peer architecture')
       h4 Single master
       ul
@@ -125,6 +132,7 @@ include ./partial/texts.pug
         li hard to synchronize to avoid alternate realities
         li difficult to get the same results (floating point calculations)
         li runs well for a few players over LAN but terribly over the internet
+    // ============================================================
     +mframeGreen(bgr, 'Peer-to-peer games')
       h4 Doom (1993)
       ul
@@ -142,6 +150,7 @@ include ./partial/texts.pug
         li AoE synchronizes the commands each player issued, rather than units
         li all commands during 200ms are saved into a buffer
         li when the 200ms are over, all the commands for that player's turn are transmitted over the network to all other players 
+    // ============================================================
     +mframeOrange(bgr, 'Client-server architecture')
       ul
         li
@@ -160,6 +169,7 @@ include ./partial/texts.pug
           +strtext('', 'Listen server', '- server is an active participant in the game itself')
       .tcenter.mt60
         img.h500(src='../static/slides/svg/lecture11/arch_client_server.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Quake')
       ul
         li the first game that used 
@@ -180,6 +190,7 @@ include ./partial/texts.pug
         figure
           img.h300(src='../static/slides/svg/lecture11/quake.svg')
           p NetChannel header
+    // ============================================================
     +mframe(bgr, 'Example: Starsiege tribes')
       ul
         li sci-fi FPS, released in 1998
@@ -198,6 +209,7 @@ include ./partial/texts.pug
           img.h400(src='../static/slides/images/lecture11/starsiege.jpg')
         div
           img.h400(src='../static/slides/images/lecture11/starsiege2.jpg')
+    // ============================================================
     +mframe(bgr, 'Example: Starsiege networking model')
       ul
         li
@@ -218,7 +230,9 @@ include ./partial/texts.pug
           +strtext('', 'Platform Packet Module', '- socket API wrapper, implements reliability layer')
       .tcenter
         img.h400(src='../static/slides/svg/lecture11/starsiege.svg')
+    // ============================================================
     +chapter(bgr, 'Transport')
+    // ============================================================
     +mframeGreen(bgr, 'Transport layer')
       .bottom-content.justify-right.fill
         img.h550(src='../static/slides/images/lecture11/duke.png')
@@ -258,6 +272,7 @@ include ./partial/texts.pug
           li
             span.highlight Private ports: 
             | 49152-65535
+    // ============================================================
     +mframeGreen(bgr, 'Transport layer')
       .top-content.justify-right.r10
         img.w1000(src='../static/slides/svg/lecture11/transport_tcp.svg')
@@ -266,6 +281,7 @@ include ./partial/texts.pug
       ul
         li.mt100 TCP Header
         li.mt500 UDP Header
+    // ============================================================
     +mframeGreen(bgr, 'TCP vs UDP')
       .bottom-content.justify-right.fill
         img.h500(src='../static/slides/images/lecture11/multiplayer.gif')
@@ -284,6 +300,7 @@ include ./partial/texts.pug
         li.downside no guarantee of reliability or ordering
         li.downside no flow control
         li.downside may be dropped before TCP packets
+    // ============================================================
     +mframeGreen(bgr, 'TCP vs UDP')
       ul
         li games have different requirements than applications
@@ -294,6 +311,7 @@ include ./partial/texts.pug
           li.highlight.mt40 UDP represents a basic streaming approach onto which developers can create any sort of a custom protocol that is most suitable for particular game
       .mt100
         +quote('Using TCP is the worst possible mistake you can make when developing a multiplayer game.', 'Glenn Fielder, 2008')(class="w85, code")
+    // ============================================================
     +mframeGreen(bgr, 'Multiplayer engine architecture')
       .tcenter
         img.h500(src='../static/slides/svg/lecture11/multiplayer_architecture.svg')
@@ -305,6 +323,7 @@ include ./partial/texts.pug
             li each player has only partially consistent view of the game world
             li in some cases, the server may disagree with the client's state
             li.highlight-sec there is a delay between taking an action an observing its result
+    // ============================================================
     +mframeGreen(bgr, 'Transfer control')
       h4 Connection
       ul
@@ -319,7 +338,7 @@ include ./partial/texts.pug
         li when the client receives the welcome packet, saves its player ID and starts sending and receiving replication information to the server
       h4 Reliability
       ul
-        li we have to identify packets using sequence numbers and send those numbers back to the server
+        li we have to identify packets by using sequence numbers and send them back to the server
         li example: ACK field in the message headers
         li issue: if the server sends 30 PPS and the client only sends 10 PPS, we need at least 3 ACKs included in each packet
       h4 Flow control
@@ -327,6 +346,7 @@ include ./partial/texts.pug
         li clients use basic 
           span.highlight-sec congestion avoidance algorithms
         li servers can change streaming frequency based on the situation
+    // ============================================================
     +mframeGreen(bgr, 'Example: Message header')
       ul
         li
@@ -341,6 +361,7 @@ include ./partial/texts.pug
           +strtext('', 'ActionID', '- id of particular action')
       .tcenter
         img.h600(src='../static/slides/svg/lecture11/message_header.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Message types')(class='line-s')
       h4 Stream
       ul
@@ -365,6 +386,7 @@ include ./partial/texts.pug
       h4 Beacon
       ul
         li if the game lingers still (pause, no dynamic objects,...), the client should regularly send beacon messages, informing the server that the connection is still valid
+    // ============================================================
     +mframe(bgr, 'Example: Goat attacks')
       ul
         li
@@ -372,6 +394,7 @@ include ./partial/texts.pug
         li a multiplayer 2D platformer pixel-art shooter
       .tcenter
         img.h700(src='../static/slides/images/lecture11/goatattack.jpg')
+    // ============================================================
     +mframe(bgr, 'Example: Goat attacks')
       .bottom-content.justify-right.fill
         img.h400.mb50(src='../static/slides/svg/lecture11/goat_attacks.svg')
@@ -391,6 +414,7 @@ include ./partial/texts.pug
         li GPSChatMessage
         li GPSBomb
         li GPSPlayerChanged
+    // ============================================================
     +mframe(bgr, 'Serialization')
       ul
         li a large game world can have hundreds of moving objects
@@ -413,6 +437,7 @@ include ./partial/texts.pug
             li required bandwidth: 
               include ../build_pre/equations/lecture11/serialization.svg 
               |&nbsp;Mbps
+    // ============================================================
     +mframe(bgr, 'Serialization - binary footprint')
       .bottom-content.justify-right
         img.h200(src='../static/slides/images/lecture05/mage.png')
@@ -422,6 +447,7 @@ include ./partial/texts.pug
         figure
           img.h300(src='../static/slides/svg/lecture11/serialization_naive.svg')
           p Health = 10, Mana = 14; Little Endian
+    // ============================================================
     +mframe(bgr, 'Serialization - streams')
       .bottom-content.justify-right
         img.h200(src='../static/slides/images/lecture05/mage.png')
@@ -429,6 +455,7 @@ include ./partial/texts.pug
         li streams allow us to customize what attributes to serialize and how
       .code
         include ../static/slides/snippets/lecture11/serialization_stream.html
+    // ============================================================
     +mframeGreen(bgr, 'Compression')
       h4 Compression of bits
       ul
@@ -443,6 +470,7 @@ include ./partial/texts.pug
         li example: we can assume that the rotation is 99% of its time equal to zero, hence we can use only one bit to indicate this
       .tcenter
         img.h250(src='../static/slides/svg/lecture11/entropy_encoding.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Compression')
       h4 Compression of attributes
       ul
@@ -457,6 +485,7 @@ include ./partial/texts.pug
       h4 Compression of the payload
       ul
         li Huffman encoding, run-length encoding, LZ4,...
+    // ============================================================
     +mframeOrange(bgr, 'Replication')
       ul
         li.highlight the act of transmitting a state of an object from one device to another
@@ -464,6 +493,7 @@ include ./partial/texts.pug
         li the network message usually consists of a type of an object and all parameters required to construct this object on all machines
       .code.mt100
         include ../static/slides/snippets/lecture11/replication.html
+    // ============================================================
     +mframeOrange(bgr, 'Latency')
       .center-content.justify-right
         img.h500(src='../static/slides/svg/lecture11/latency.svg')
@@ -486,17 +516,21 @@ include ./partial/texts.pug
         li transmission delay (time spent writing the bits to a medium)
         li queuing delay (router can only process a limited number of packets at a time)
         li propagation delay (information can't travel faster than the speed of light)
+    // ============================================================
     +mframeGreen(bgr, 'Example: Latency')
       ul
         li both clients have the same latency
       .tcenter
-        img.h850(src='../static/slides/svg/lecture11/latency_same.svg')
+        img.h800(src='../static/slides/svg/lecture11/latency_same.svg')
+    // ============================================================
     +mframeGreen(bgr, 'Example: Latency')
       ul
         li client B has a higher latency
       .tcenter
-        img.h850(src='../static/slides/svg/lecture11/latency_higher.svg')
+        img.h800(src='../static/slides/svg/lecture11/latency_higher.svg')
+    // ============================================================
     +chapter(bgr, 'Synchronization')
+    // ============================================================
     +mframeGreen(bgr, 'Interpolation')
       .top-content.mt90
         img.w1400(src='../static/slides/svg/lecture11/interpolation_no.svg')
@@ -510,6 +544,7 @@ include ./partial/texts.pug
             +strtext('', 'Interpolation:', 'whenever the client receives a new state, it smoothly interpolates to that state')
           li
             +strtext('', 'Problem:', 'the object might change its interpolated value instantly (teleport)')
+    // ============================================================
     +mframeGreen(bgr, 'Interpolation')
       .top-content.fill
         img.w1100(src='../static/slides/svg/lecture11/interpolation_reserve.svg')
@@ -521,6 +556,7 @@ include ./partial/texts.pug
         img.w950(src='../static/slides/images/lecture11/interpolation3.png')
       h4 Interpolation reserve
       h4.mt500 Extrapolation
+    // ============================================================
     +mframeGreen(bgr, 'Deterministic prediction')
       .bottom-content
         img.w1200.mb30(src='../static/slides/svg/lecture11/deterministic_prediction.svg')
@@ -538,6 +574,7 @@ include ./partial/texts.pug
             ul
               li the client predicts the future value by running the same simulation code
               li to perform extrapolation by 1/2 RTT, the client must approximate the RTT
+    // ============================================================
     +mframeGreen(bgr, 'Nondeterministic prediction')
       ul
         li nondeterministic values are hard to predict (steering behaviors, other players' movement,...)
@@ -558,10 +595,12 @@ include ./partial/texts.pug
               +strtext2('', 'Interpolation', '- smoothly interpolate to the correct value')
             li
               +strtext2('', 'Second-order state adjustment', '- adjust acceleration instead of velocity')
+    // ============================================================
     +mframeGreen(bgr, 'Server-side rewind')
       ul
         li special case - long-range, instant-hit weapon
         li occurs due to the inaccuracies of dead reckoning and time dilation
+        li.highlight-sec server may change a state that has already been confirmed
         li.mt40
           span.highlight Valve's Source Engine solution:
           ul
@@ -575,6 +614,14 @@ include ./partial/texts.pug
           figure.mr200
             img.h400(src='../static/slides/images/lecture11/cs_correct.jpg')
             p Correct
+    // ============================================================
+    +mframeGreen(bgr, 'Example: Server-side rewind')
+      ul
+        li Client B has 3x higher latency than Client A
+        li Client B performed a change before Client A did
+      .tcenter
+        img.h800(src='../static/slides/svg/lecture11/rewind.svg')
+    // ============================================================
     +mframeOrange(bgr, 'Latency handling summary')
       h4 Interpolation/extrapolation
       ul
@@ -584,12 +631,14 @@ include ./partial/texts.pug
         li runs simulated code, masks latency and keeps the client's state in sync
       h4 Dead reckoning
       ul
+        li non-deterministic prediction
         li client uses the last known state of an object to extrapolate future state
       h4 Server-side rewind
       ul
-        li the server buffers object positions for several frames to match the client's view when processing instant-hit events
+        li the server buffers object positions for several frames to match the client's view when processing instant events
       .tcenter.highlight-third.mt100
         p It is better to be wrong on time than right but late
+    // ============================================================
     +mframe(bgr, 'Example: Source engine')
       .bottom-content
         img.h400(src='../static/slides/svg/lecture11/source_engine.svg') 
@@ -601,10 +650,11 @@ include ./partial/texts.pug
         li server simulates the world at 30-60 FPS and sends 20 snapshots per second by default, using an interpolation reserve of 100ms
         li client samples inputs at 30-60 FPS and buffers snapshots for 100 ms
         li server uses time dilation and rewind
+    // ============================================================
     +mframe(bgr, 'MMOG')
       ul
         li Massively Multiplayer Online Game
-        li Ultima Online, World of Warcraft, Second Life, Guild Wars,...
+        li Ultima Online, World of Warcraft, Guild Wars, Skyforge, Elder Scrolls Online
         li
           span.highlight interaction is not really massive
           ul
@@ -614,9 +664,10 @@ include ./partial/texts.pug
         figure
           img.h500(src='../static/slides/images/lecture11/wow.jpg')
           p Swifty Invasion
+    // ============================================================
     +mframeGreen(bgr, 'Object Relevancy')
       ul
-        li an object is considered relevant for a client when that client should be informed about its updates
+        li an object is considered relevant for a client when it should be informed about its updates
         li in a MMOG, it may not be important to know about players several miles away
         li similar sort of problems as visibility culling (or spheres of influence)
         li.mt40
@@ -634,6 +685,7 @@ include ./partial/texts.pug
           ul
             li one shared game supports several separate instances at once
             li example: dungeons in WoW, Dota/LoL tournaments
+    // ============================================================
     +mframe(bgr, 'Example: Ultima online')
       ul
         li network is based on 
@@ -658,6 +710,7 @@ include ./partial/texts.pug
           img.h350(src='../static/slides/images/lecture11/ultima2.jpg')
         div
           img.h350(src='../static/slides/images/lecture11/ultima3.jpg')
+    // ============================================================
     +mframeGreen(bgr, 'Security')
       h4 Classic threats
       ul
@@ -685,6 +738,7 @@ include ./partial/texts.pug
             li maintains a list of banned users, scans for known cheat programs
         li
           +strtext2('' ,'Warden', '- used by Blizzard')
+    // ============================================================
     +mframe(bgr, 'Libraries')
       h4 Torque Network Library (opentnl)
       ul
@@ -708,6 +762,7 @@ include ./partial/texts.pug
         li created as a bachelor thesis at FEL CTU
         li
           a(href='https://github.com/smrkous/nsl') https://github.com/smrkous/nsl
+    // ============================================================
     +mframe(bgr, 'Example: Unity multiplayer')
       .bottom-content.justify-right
         img.h700(src='../static/slides/images/lecture11/unity_network_transform.png') 
@@ -721,6 +776,7 @@ include ./partial/texts.pug
         li NetworkTransform - synchronizes movement
         li NetworkAnimator - synchronizes animations
         li NetworkBehaviour - script for commands and RPC
+    // ============================================================
     +mframe(bgr, 'Lecture 11 summary')
       ul
         li
@@ -741,6 +797,7 @@ include ./partial/texts.pug
         li
           +btext('', 'Security issues:', 'scouting, map hacking, bot cheat')
     // ============================================================
+    +gbquote(bgr, 'A famous explorer once said, that the extraordinary is in what we do, not who we are.', 'Lara Croft, Tomb Raider 2013', true)(class="w80")
 
 
 

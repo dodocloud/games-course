@@ -1,0 +1,21 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.reveal {
+  .frame {
+    border-image-source: url("../images/common/frame_bluegreen.png"); 
+  }
+
+  .pop {
+    background-color: #000000A0;
+  }
+
+  .article {
+    position: absolute;
+    pointer-events: auto !important;
+  }
+
+  .crossed {
+    text-decoration: line-through;
+  }
+}

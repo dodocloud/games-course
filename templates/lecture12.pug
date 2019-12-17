@@ -1,0 +1,301 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_12.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Lecture12', 'Lecture 12: Indie Game Development', 'lecture12')
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo.mb80
+        include ../static/slides/svg/lecture12/lecture12_logo.svg
+      +title('Indie Game Development')
+    // ============================================================
+    +mcontainer(bgr)    
+      h3 Literature
+      ul
+        li
+          a(href='https://www.amazon.com/Level-Guide-Great-Video-Design/dp/1118877160') Rogers, Scott. 2015. Level Up! The Guide to Great Video Game Design 
+      .center-content
+          img(src!='../static/slides/images/lecture12/book_levelup.jpg')
+    // ============================================================
+    +mframe-statement(bgr, 'Game Development')
+      p.highlight At the very beginning, there was an idea. And a naive dreamer said: <br>"Shall we transform the idea to a computer game." <br>And it was so. And it was 
+        span.crossed good
+        span.highlight-sec &nbsp;a nightmare.
+    // ============================================================
+    +chapter(bgr, 'Design')
+    // ============================================================
+    +mcontainer(bgr)
+      h3 Game Design
+      .rows-3.mt100
+        .frame-sticky.w65.h300
+          p Game Design is the act of deciding what a game should be. That's it. On the surface, it sounds too simple. The voyage of discovery is not in seeking new landscapes but in having new eyes.
+          p.highlight-third.tright Jesse Schell
+        .frame-sticky.w45.h250.l800
+          p Most gamers don't know what they want until it is shown to them.
+          p.highlight-third.tright Scott Rogers
+    // ============================================================
+    +mframe(bgr, 'Game development professions')
+      h4 Programmer 
+      ul
+        li designs and implements the SW 
+        li runtime programmers (work on the engine)
+        li tool programmers (offline tools)
+        li GFX developers, AI specialists, gameplay coders,...
+      h4 Artist 
+      ul
+        li concept artist - sketches, paintings 
+        li 3D modelers, texture artists, lightning artists, animators, composers,...
+      h4 Designer 
+      ul
+        li gameplay designers 
+        li level designers (static geometry, supplies, puzzle elements, window aspects)
+      h4 Other Staff 
+      ul
+        li Testing department
+        li Marketing department 
+        li publisher, creative manager, art director, technical director,...
+    // ============================================================
+    +mcontainer(bgr)
+      h3 Game Design Document
+      .rows-3
+        .frame-sticky.w60.h200
+          +strtext('A design document is a', 'bible', 'from which the producer preaches the goal, through which the designers reflect their ideas.')
+          p.highlight-third.tright Gamasutra (1999)
+        .frame-sticky.w55.h200.l400
+          p A design document should be just long enough to accurately describe what is going on in the game. 
+          p.highlight-third.tright Scott Rogers (2010)
+        .frame-sticky.w45.h200.l800
+          +strtext('A design document is', 'the blueprint', 'from which a game is to be built.')
+          p.highlight-third.tright Game Developer Blog (2016)
+    // ============================================================
+    +mframe(bgr, 'Game Design Document')
+      ul
+        li there are no official formats nor rules how to write the GDD 
+        li in recent years, wiki is used more frequently than printed GDD 
+        li.mt40
+          span.highlight game design is a highly iterative process
+          ul
+            li it is nearly impossible to predict the behavior of a game before implementation
+            li common agile processes: Scrum and SAFe
+        li.mt40
+          span.highlight GDD content:
+          ul
+            li working title 
+            li.highlight-sec gameplay and intended mechanics 
+            li target audience 
+            li story, campaigns, modes (DM, CTF, TDM,...)
+            li characters
+            li ESRB/PEGI ratings 
+            li unique selling points 
+            li competitive products 
+    // ============================================================
+    +mframe(bgr, 'Design structures')
+      .top-content.justify-right
+        img.w500(src='../static/slides/images/lecture12/script_gta.jpg')
+      .top-content.justify-right
+        img.mt100.mr350.w500(src='../static/slides/images/lecture12/level_rayman.jpg')
+      .top-content.justify-right
+        img.mt400.w500(src='../static/slides/images/lecture12/tables.jpg')
+      .top-content.justify-right
+        img.mt450.mr350.w500(src='../static/slides/images/lecture12/window_prince.jpg')
+      .top-content.justify-right
+        img.mt650.w500(src='../static/slides/images/lecture12/map_guild_wars2.jpg')
+      ul.highlight
+        li Story and script 
+        li.mt150 Level structure
+        li.mt150 Tables (skills, abilities, upgrades,...)
+        li.mt150 Window elements, surprise elements, puzzles,... 
+        li.mt150 Game map
+    // ============================================================
+    +mframe(bgr, 'Story')
+      .columns-2
+        figure
+          img.h400(src='../static/slides/images/lecture12/story_doom.jpg')
+          p Doom
+        figure
+          img.h400(src='../static/slides/images/lecture12/story_fear.jpg')
+          p F.E.A.R.
+      ul.mt40
+        li a story is a background aspect of a gameplay and gameplay is a medium used to tell a story
+        li.mt40.highlight good gameplay can overshadow a terrible story
+        li.highlight good story can't really overshadow a terrible gameplay 
+    // ============================================================
+    +mframe(bgr, 'Hero')
+      .top-content.justify-left
+        img.h300.mt150(src='../static/slides/images/lecture12/hero_arthas.gif')
+      .top-content.justify-left
+        img.h300.mt200.ml800(src='../static/slides/images/lecture12/hero_crash.png')
+      .top-content.justify-left
+        img.h300.mt550.ml200(src='../static/slides/images/lecture12/hero_doomguy.gif')
+      .bottom-content.fill.justify-left
+        img.h300.ml600(src='../static/slides/images/lecture12/hero_freeman.png')
+      .top-content
+        img.h300.mt350.mr450(src='../static/slides/images/lecture12/hero_jazz.png')
+      .bottom-content
+        img.h300.ml300(src='../static/slides/images/lecture12/hero_keen.gif')
+      .bottom-content
+        img.h300.ml900(src='../static/slides/images/lecture12/hero_mario.png')
+      .top-content.justify-right
+        img.h300.mt100.ml700(src='../static/slides/images/lecture12/hero_rayman.gif')
+      .top-content.justify-right
+        img.h300.mt250.mr300(src='../static/slides/images/lecture12/hero_skyrim.png')
+      .top-content.justify-right
+        img.h300.mt600(src='../static/slides/images/lecture12/hero_sonic.gif')
+      ul
+        li very important and often unjustly neglected element of games 
+        li
+          +strtext('', 'Main attributes:', 'name, appearance, facial proportions, movement, humanity')
+        li
+          +strtext('', 'Archetypes:', 'humorous character, heroic character, villain character')
+    // ============================================================
+    +mcontainer(bgr)
+      h3 Example: Prince of Persia 2
+      .center-content
+        img.w100(src='../static/slides/images/lecture12/pop.jpg')
+      .mt60.ml40
+        a.pop(href='http://www.jordanmechner.com/downloads/pop2bible.pdf') http://www.jordanmechner.com/downloads/pop2bible.pdf
+    // ============================================================
+    +chapter(bgr, 'Indie Games')
+    // ============================================================
+    +mcontainer(bgr)
+      h3 Indie games
+      .rows-3
+        .frame-sticky.w55.h200
+          p.highlight Indie game is a video game that is often created without a financial support of a publisher. 
+        .frame-sticky.w55.h200.l400
+          p.highlight-sec Indie games are developed by individuals, small teams or small independent companies, having little to no budget available.
+        .frame-sticky.w55.h200.l800
+          p.highlight-third Indie games are games that are smaller in size, less taxing on hardware and focusing mostly on art design.
+    // ============================================================
+    +mframe(bgr, 'Categories of games')
+      .columns-3.center-content
+        div
+          img.h500(src='../static/slides/images/lecture12/games_casual.png') 
+        div
+          img.h500(src='../static/slides/images/lecture12/games_indie.png') 
+        div
+          img.h500(src='../static/slides/images/lecture12/games_aaa.png')
+    // ============================================================
+    +mframe(bgr, 'Game costs')
+      .tcenter
+        img.h900(src='../static/slides/svg/lecture12/cost_of_games.svg')
+    // ============================================================
+    +mframe(bgr, 'Milestones')
+      .tcenter
+        img.h800(src='../static/slides/svg/lecture12/indie_milestones.svg')
+    // ============================================================
+    +mframe(bgr, 'Indie Games Evolution')
+      .top-content
+        img.h650.mt150(src='../static/slides/images/lecture12/indie_games.png')
+      .top-content
+        img.h800(src='../static/slides/svg/lecture12/indie_games.svg')
+    // ============================================================
+    +mframe(bgr, 'AAA vs Indie')
+      .columns-3.center-content
+        figure
+          img.h350(src='../static/slides/images/lecture12/aaa_cutedge.jpg')
+          p Cutting-edge graphics
+        figure
+          img.h350(src='../static/slides/images/lecture12/aaa_studios.jpg')
+          p Large studios
+        figure
+          img.h350(src='../static/slides/images/lecture12/aaa_campaign.jpg')
+          p Massive campaigns
+    // ============================================================
+    +mframe(bgr, 'AAA vs Indie')
+      h4 Indie game developer
+      ul
+        li must span a huge number of various subject areas 
+        li the less resources you have, the more creative you need to be
+        li animation, textures, cinematography, music, sound effects, creative writing, visual arts,...
+      h4.mt40 AAA game developer 
+      ul
+        li is usually specialized in one or a few areas 
+        li skeletal animation, sprite animation, particle systems, physics, scripting, dialogue trees, backend (matchmaking, updates, in-game transactions)
+        li making AAA is about delegating tasks to huge teams 
+        li.highlight-sec there isn't a lot of space for own expression
+        li 
+          span.highlight-third many AAA devs eventually go indie 
+          ul
+            li Jade Raymond - left Ubisoft in 2014
+            li Cliff Bleszinski - left Epic Games in 2012, started his own studio 
+            li Brian Reynolds - SM Civilization designer, started his own studio
+    // ============================================================
+    +chapter(bgr, 'Game Industry today')
+    // ============================================================
+    +mframe(bgr, 'Global revenues')
+      .tcenter
+        img.h800.mr200(src='../static/slides/svg/lecture12/revenues.svg')
+    // ============================================================
+    +mframe(bgr, 'Games released on Steam')
+      .tcenter
+        img.h900(src='../static/slides/svg/lecture12/steam.svg')
+    // ============================================================
+    +mframe(bgr, 'Game developer in 2010')
+      .tcenter
+        img.h900(src='../static/slides/images/lecture12/dev_in_2010.png')
+    // ============================================================
+    +mframe(bgr, 'Game Developer in 2019')
+      .top-content.justify-left
+        img.h850(src='../static/slides/images/lecture12/dev_today_01.jpg')
+      .top-content.justify-right
+        img.w900(src='../static/slides/images/lecture12/dev_today_02.jpg')
+      .bottom-content.justify-right
+        img.w900.mb60(src='../static/slides/images/lecture12/dev_today_03.jpg')
+      .center-content
+        img.h400(src='../static/slides/images/lecture12/fb_01.jpg')
+      .top-content.justify-left.mt200.ml80
+        img.h350(src='../static/slides/images/lecture12/fb_02.jpg')
+    // ============================================================
+    +mframe(bgr, 'Game industry crisis')
+      ul
+        li we have 2.3 billions gamers across the globe 
+        li game industry earn more money than ever before 
+        li.highlight it is easier than ever to develop a game 
+        li.highlight-sec it is harder than ever to develop a successful game 
+        li.mt20
+          span.highlight-third Issues:
+          ul
+            li low median ownership (number of players per each game)
+            li disruptive technology (game developers just glue components together)
+            li low barrier of entry (everyone can create a game, reading a tutorial)
+            li lack of differentiation (do we need next 100 pixel-art platformers?) 
+      .tcenter
+        img.h350(src='../static/slides/svg/lecture12/indie_crisis.svg')
+    // ============================================================
+    +mframe(bgr, 'Marketing')
+      ul
+        li marketing may cover up to 50% of all expenses
+        li there is nothing like a self-selling game
+      .tcenter.mt40
+        img.h600(src='../static/slides/svg/lecture12/indie_marketing.svg')
+    // ============================================================
+    +mframe(bgr, 'Is it worth it?')
+      .article
+        a.t150.l150(href='http://gingearstudio.com/why-i-quit-my-dream-job-at-ubisoft')
+          img.w500(src='../static/slides/images/lecture12/article_ubisoft.jpg')
+      .article
+        a.t300.l150(href='https://www.gamasutra.com/blogs/AdrielWallick/20140226/211761/Make_Many_Games_Learn_Many_Things.php')
+          img.w500(src='../static/slides/images/lecture12/article_games.jpg')
+      .article
+        a.t400.l150(href='https://www.reddit.com/r/gamedev/comments/dwfwtp/three_years_ago_my_wife_and_i_quit_our_jobs_to/')
+          img.w500(src='../static/slides/images/lecture12/article_ninefaced.png')
+      .article
+        a.t600.l150(href='https://enterprisecraftsmanship.com/posts/how-i-tried-to-get-into-game-development-and-failed/')
+          img.w500(src='../static/slides/images/lecture12/article_khorikov.jpg')
+      ul
+        li to make a game, it can take several years of a very hard work and suffering  
+        li it is a world with many heroes, a few stars and very few superstars
+      .tcenter
+        img.h600.ml250(src='../static/slides/images/lecture12/kingdom_come.jpg')
+        p.highlight-third Leaving a footprint of your work in the mind of players and the passionate involvement from the development itself is the most valuable reward every game developer should aspire to. 
+            
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

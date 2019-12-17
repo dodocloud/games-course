@@ -51,6 +51,21 @@ include ./partial/texts.pug
     +mframe-m(bgr, 'Basic fragment shader')
       .code
         include ../static/slides/snippets/lab06/fragment_shader.html
+    +mframe-m(bgr, 'Variables')
+      ul
+        li  
+          span.code.highlight uniform 
+          | - per-primitive parameters (constant during an entire draw-call)
+        li
+          span.code.highlight attribute 
+          | - per-vertex parameters (positions, normals, colors, UVs,...)
+        li
+          span.code.highlight varying 
+          | - per-fragment (per-pixel) parameters - are interpolated  
+        li 
+          a(href='https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf') Complete GLSL specification
+      .tcenter
+        img.h600(src='../static/slides/svg/lab06/gles_attributes.svg')
     +mframe-m(bgr, 'Shader setup')
       ol
         li load assets, including vertex and fragment shader 
@@ -171,7 +186,7 @@ include ./partial/texts.pug
             li unreliable connection - queue of to-be-confirmed messages
     +mframe(bgr, 'Network emulator')
       ul
-        li.code libs/network-emulator
+        li.code.highlight libs/network-emulator
         li a simple multiplayer library that emulates UDP
         li supports message confirmation, streaming, interpolation
       .tcenter

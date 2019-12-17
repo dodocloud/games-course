@@ -7,6 +7,11 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.12] - 2019-12-17
+### Added
+- Materials for Lecture 12
+
+
 ## [3.11] - 2019-12-10
 ### Added
 - Materials for Lecture 11 and Lab06
