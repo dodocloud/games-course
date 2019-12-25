@@ -281,7 +281,7 @@ export class NetworkClient extends ECSA.Component {
 
   /** Update for communicating state */
   protected handleConnectedState(time: number) {
-    // process until there are no received messages 
+    // process until there are no received messages
     while (true) {
       let message = this.network.receiveUDPMessage(this.applicationId, time);
 

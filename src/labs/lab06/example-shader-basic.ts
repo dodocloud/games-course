@@ -29,7 +29,7 @@ export class ExampleShaderBasic {
     let vertexShader = loader.resources['noise_vert'].data;
     let fragmentShader = loader.resources['noise_frag'].data;
 
-    let mesh = new ECSA.Builder(this.engine.scene)
+    new ECSA.Builder(this.engine.scene)
       .asMesh('quad', geometry, PIXI.Shader.from(vertexShader, fragmentShader, uniforms))
       .scale(0.5, 1)
       .withParent(this.engine.scene.stage)

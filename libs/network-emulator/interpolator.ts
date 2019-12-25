@@ -8,7 +8,7 @@ export class Interpolator {
   public updateDelayThreshold = 10000;
   // number of frames that will be extrapolated
   public extrapolatedSamples = 2;
-  
+
   // number of received messages
   private messagesReceived = 0;
   // initialization time

@@ -1,0 +1,1840 @@
+doctype html
+- var bgr = './static/slides/bgr/bgr_01.jpg'
+include ./partial/header.pug
+include ./partial/title.pug
+include ./partial/containers.pug
+include ./partial/texts.pug
+
++header('MI-APH - Summary', 'Summary for the exam', 'summary')
+// ===================================================== SLIDES =====================================================
+.reveal
+  .slides
+    // ============================================================
+    +msection(bgr)
+      .lecture-logo.mb80
+        include ../static/slides/svg/summary/summary_logo.svg
+      +title('MI-APH Summary')
+    // ============================================================
+    +chapter(bgr, 'Lecture 01: Introduction to the world of games and game engines')
+    +mframe(bgr, 'What is a computer game?')
+      .bottom-content.justify-right
+        figure.w30
+          img(src!='../static/slides/images/lecture01/habitica.png')
+          p Habitica
+      .center-content.justify-left.t20
+        .tcenter
+          strong Computer games are not applications!
+          br
+          | Yet the line between them is blur.
+      h4 Computer Program
+      ul
+        li a set of instructions that can be executed by a computer
+      h4 Computer Application
+      ul
+        li computer program that helps a user to perform a task
+      h4 Computer game
+      ul
+        li a computer-controller game where players interact with objects displayed on a screen for the sake of entertainment
+    +mframe-statement(bgr, 'General consensus')
+      p
+        +strtext('Computer games are', 'real-time interactive', 'agent-based', 'simulators.')
+    +mframe(bgr, 'List of terms')(class='line-s')
+      h4 Emergence
+      ul
+        li refers to the fact that the behavior is the result of a complex and dynamic system of rules
+      h4 Progression
+      ul
+        li
+          | refers to the structures in games where a designer outlined
+          | the possible game states beforehand, usually through level design.
+      h4 Gameplay
+      ul
+        li an emergent property of the game as defined by its rules
+      h4 Mechanics
+      ul
+        li set of rules governing the behavior of a single game element.
+      h4 System
+      ul
+        li interacting group of game elements forming a unified whole
+      h4 Level
+      ul
+        li structure in a game that dictates what challenges players encounter
+      h4 Simulation
+      ul
+        li
+          | a representation of a source system via a less complex system
+          | that correlates with the user's understanding of the source system
+    +mframe(bgr, 'Game basic elements')
+      .bottom-content.justify-right
+        img.w35.m20(src!='../static/slides/svg/lecture01/game_elements.svg')
+      h4 Mechanics
+      ul
+        li a set of rules governing the behavior of a single game element
+      h4 Story
+      ul
+        li a sequence of events that unfolds in the game
+      h4 Aesthetics
+      ul
+        li how the game looks, sounds, tastes, feels,...
+      h4 Technology
+      ul
+        li any materials and interactions that make the game possible
+    +mframe-m(bgr, 'Game Mechanics')
+      h4 Space
+      ul
+        li various spaces that can exist in a game and how they are related
+      h4 Objects, attributes
+      ul
+        li entities that can be seen or manipulated
+      h4 Actions
+      ul
+        li an object's turn to act
+      h4 Rules
+      ul
+        li statements that describe constraints, consequences and goals
+    +mframe(bgr, 'ID Tech')
+      ul
+        li Family of game engines developed by ID software
+        li Id Tech 0 - the very first engine
+        li Every next game had more advanced technology
+        li Still, memory constraints sabotaged attempts to create data-heavy design
+      .m30
+        img(src!='../static/slides/images/lecture01/idtech_hovertank_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_catacomb_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_wolfenstein_floppy.png')
+        img(src!='../static/slides/images/lecture01/idtech_shadowcast_floppy.png')
+    +mframe(bgr, 'WAD File')
+      .columns-2
+        div
+          h4 &quot;Where&apos;s All the Data?&quot;
+          ul
+            li Binary format of package files for Doom
+            ul
+              li Levels (walls, floors, monsters)
+              li Sound effects, music
+              li Color palettes, images
+            li
+              +strtext('Designed by', 'John D. Carmack')
+          img.h55.mt10(src!='../static/slides/images/lecture01/carmack.png')
+        div
+          img.w60(src!='../static/slides/images/lecture01/doomMap.png')
+          img.w75(src!='../static/slides/images/lecture01/WAD.png')
+    +mframe(bgr, 'Quake Engine')
+      .columns-2
+        div
+          ul
+            li ~id Tech 1
+            li Released by id Software in 1996
+            li True 3D real-time rendering
+            li Binary space partitioning
+            li 3D light sources, Gouraud shading
+            li
+              +strtext('Games released:', 'Quake, Hexen 2, Silver Wings')
+            li Source code released in 1999
+            li.mt40
+              h4 Successors:
+            ul
+              li id Tech 2: 1997
+              li id Tech 3: 1999
+              li id Tech 4: 2004
+              li id Tech 5: 2011
+              li id Tech 6: 2016
+              li id Tech 7: 2018 (Doom Eternal)
+        div
+          img(src!='../static/slides/images/lecture01/idtech_5.jpg')
+    +chapter(bgr, 'Lecture 02: Architecture of Game Engines')
+    +mframe(bgr, 'Application, Loop, System')(class="space-vert-m")
+      .bottom-content.justify-right
+        img.w60.mb20(src!='../static/slides/svg/lecture02/loop_simple.svg')
+      h4 Game Application
+      ol
+        li Handle everything we need to set up the application
+        li Register each handler
+        li Initialize rendering window
+        li Start the game loop
+        li Quit the application
+      h4 Game loop
+      ul
+        li Process inputs
+        li Process game logic
+        li Erase the screen and draw game objects
+        li Repeat
+    +mframe(bgr, 'Game Engine Modules')
+      h4 Main modules
+      ul
+        li
+          +strtext('', 'Game Loop', '- heartbeat of all games')
+        li
+          +strtext('', 'Scene Manager', '- manages objects and structures them in a scene graph')
+        li
+          +strtext('', 'Resource Manager', '- manages assets, controls a cache')
+        li
+          +strtext('', 'Input Manager', '- handles inputs (keyboard, mouse, touch, joystick, gamepad,...)')
+        li
+          +strtext('', 'Memory Manager', '- memory allocator and deallocator')
+        li
+          +strtext('', 'Rigidbody Engine', '- event-based collision detection')
+        li
+          +strtext('', 'Physics Engine', '- handles behavior of objects based on forces and impulses')
+        li
+          +strtext('', 'Rendering Engine', '- renders the game, takes care of the rendering pipeline')
+        li
+          +strtext('', 'Animation Engine', '- handles animations')
+        li
+          +strtext('', 'Scripting Engine', '- bridge between the engine and interpreted languages (JS, Lua, C#,...)')
+        li
+          +strtext('', 'Multimedia Engine', '- plays music, clips, sounds, video')
+        li
+          +strtext('', 'AI Engine', '- abstract engine for AI (path finding, states, behavioral trees, ...)')
+        li
+          +strtext('', 'Networking Engine', '- handles multipeer communication')
+      h4 Other modules
+      ul
+        li GUI framework, Level Editor, Camera, Event System, World Streaming, Security, LOD, Profiler,...
+    +mframe(bgr, 'Game Loop')
+      ul
+        li Simple, yet the most important part of the game engine
+        li Each turn advances the state of the game
+        li Sometimes it&apos;s coordinated with the platform&apos;s event loop
+        li 
+          +sbtext('Optimal time step for rendering:', '60FPS = 16.6 ms per frame')
+        li Audio is usually separated as it requires more frequent updates (~200 FPS)
+        li Certain systems don&apos;t need to be updated so frequently (AI)
+      .mt200.tcenter
+        .w60.block
+          strong In general, a program spends 90% of its time in 10% of the code. The game loop will be firmly in those 10%
+    +mframe(bgr, 'Simple Game Loop')
+      .h100.tcenter
+        img(src!='../static/slides/svg/lecture02/loop_simple2.svg')
+    // ============================================================
+    +mframe(bgr, 'Multi-threaded game loop')
+      .center-content.h70.t10
+        img.h100(src!='../static/slides/svg/lecture02/loop_multithread.svg')
+    +mframe(bgr, 'Update method')(class='space-vert-m')
+      h4 Fixed time step
+      ul
+        li each update advances game time by a certain amount of time
+        li.upside precise and stable
+        li.downside the game may slow down
+      h4 Variable time step
+      ul
+        li each update advances game time based on how much real time passed since the last frame
+        li.upside natural
+        li.downside non-deterministic and unstable (physics)
+      h4 Adaptive time step
+      ul
+        li switches between variable and fixed time step
+        li based on thresholds or a more sophisticated approach
+        li better dealing with breakpoints
+    +mframe(bgr, 'Update inconsistencies')(class='space-vert-m')
+      h4 Game objects are consistent before and after every update
+      ul
+        li yet they may be inconsistent during the update
+        li major source of confusion and bugs
+        li.upside
+          strong PixiJS updates all dependent transformations instantly
+      h4 One-frame-off lag
+      ul
+        li the state of some objects lags one frame behind the states of the others
+        li
+          +strtext('possible solutions: bucket update,','script execution order', '(Unity)')
+      .tcenter
+        img.w25(src!='../static/slides/svg/lecture02/inconsistencies.svg')
+      .tcenter
+        p.w40.block Object 2 reads updated state of Object 1 but not updated state of Object 3
+    +mframe(bgr, 'Scene Graph')(class='space-vert-m')
+      h4 Scene Graph
+      ul
+        li essential structure of every interactive application
+        li a way of ordering the data into a hierarchy
+        li N-Tree or a regular graph
+        li
+          strong parent nodes affect child nodes (translation, rotation, scale,...)
+        li leaves usually represent atomic units (shapes, vertices, meshes)
+        li implementation: arrays, oct-trees, quad-trees, bounding volume hierarchies,...
+      h4 Scene Manager
+      ul
+        li manages objects in the scene
+        li similar to HTML Document Object Model and Event Manager
+        li responsibility: sending messages, searching for objects, applying transformation constraints,...
+        li Unity Engine - game objects form a hierarchy
+        li Unreal Engine - components form a hierarchy
+    +mframe(bgr, 'Resource Manager')
+      ul
+        li
+          strong Provides access to all resources (assets)
+        ul
+          li meshes, materials, shaders, animations, textures, clips, levels
+          li many assets are not used in their original format
+          li engines usually encode their resource metadata in XML files
+          li
+            +strtext('', 'Resource Cache', '- used for faster access')
+        li
+          strong Manages lifetime of each resource
+        ul
+          li most managers maintain some kind of registry
+        li
+          strong Ensures that only one copy of each resource exists in memory
+        ul
+          li resource GUID - usually path of the file, guaranteed to be unique
+        li
+          strong Loads required resources and unloads those no longer needed
+        ul
+          li loading is simpler than unloading
+        li
+          strong Handles streaming
+    +mframe(bgr, 'Audio Engine')
+      h4 Audio pipeline
+      ul
+        li for each 3D sound, a dry digital PCM signal must be synthesized
+        li
+          +strtext('', 'distance-based attenuation', '- provides a sense of distance')
+        li
+          +strtext('', 'reverb', '- provides accoustics')
+        li
+          +strtext('', 'dry signals', '- arrive via an unobstructed path')
+        li
+          +strtext('', 'wet signals', '- echo (early reflections) + tail (late reverberations)')
+        li audio buffer must be fed periodically - dropping audio is worse than dropped frames
+      .tcenter
+        img.h500(src!='../static/slides/svg/lecture02/audio_engine.svg')
+    +mframe(bgr, 'Audio Assets')
+      h4 Audio clips
+      ul
+        li digital sound asset (MP3, OGG, WAV)
+        li module asset (MOD, S3M, IT, XM), not used anymore, yet it&apos;s fun to play around with them
+        li MIDI - sequencer-related data, nowadays mainly for recording and preprocessing
+      h4 Sound cues
+      ul
+        li collection of audio clips with metadata
+      h4 Sound banks
+      ul
+        li package of sound clips and cues
+      h4 Streaming sounds
+      ul
+        li small ring buffer for music and speech
+      .tcenter
+        img.h300(src!='../static/slides/images/lecture02/wave.png')
+    +mframe(bgr, 'Input Manager')
+      .columns-2
+        div
+          p.mb40 Detects input events from devices
+          h4 Atomic events
+          ul
+            li KEY_DOWN
+            li KEY_UP
+            li MOUSE_BUTTON_DOWN
+            li MOUSE_BUTTON_UP
+            li MOUSE_WHEEL
+            li MOUSE_MOTION
+          h4 Compound events
+          ul
+            li FLING
+            li PINCH_TO_ZOOM
+            li DOUBLE_TAP
+          h4 Special events
+          ul
+            li cheat codes
+            li fighting combos
+        .tcenter
+          div
+            img.h200.mt200(src!='../static/slides/images/lecture02/joypad&4b.png')
+          div
+            img.h200.mt40(src!='../static/slides/images/lecture02/input_pinch.png')
+          div
+            img.h200.mt40(src!='../static/slides/images/lecture02/input_cheat.png')
+    // ============================================================
+    +mframe(bgr, 'Input Devices')
+      .top-content.justify-right
+        img.w400.mr60(src!='../static/slides/svg/lecture02/input_normalized.svg')
+      h4 Getting the state of the device
+      ul
+        li polling - compare against previous state
+        li callbacks - handled by upper SW layer
+        li via a protocol (wireless device)
+      h4 Devices
+      ul
+        li keyboard, touch sensor
+        li one-axis controller - single analog state
+        li two-axis controller - mouse and joystick
+        li three-axis controller - accelerometer
+        li camera, VR lens, Azure Kinect
+      h4 Dead zone
+      ul
+        li area of a control interface that has no input effect (analog joystick)
+      h4 Normalization
+      ul
+        li axis are mapped to a Cartesian space, not a circular space
+        li input must be  normalized
+    +mframe(bgr, 'Memory Manager')(class='space-vert-m')
+      .bottom-content.justify-right
+        img.h550(src!='../static/slides/svg/lecture02/memory_fragmentation.svg')
+      h4 Main issue
+      ul
+        li
+          | the default memory manager that comes with default C-runtime libraries is not suitable for 
+          br
+          |  most game applications
+        li game engines usually implement their own allocator
+      h4 Custom allocators
+      ul
+        li stack-based
+        li pool-based
+        li heap-based
+        li bucket allocators
+    +mframe(bgr, 'Pool-based allocator')
+      ul
+        li allocates lots of small blocks of memory, each of the same size
+        li.upside doesn&apos;t suffer from memory fragmentation
+        li.downside entities have to be of the same size
+      .tcenter
+        img.h350.mt200(src!='../static/slides/svg/lecture02/memory_pool.svg')
+    +mframe(bgr, 'Loading approaches')
+      h4 Level loading
+      ul
+        li
+          +strtext('used in', 'Tomb Raider, Doom,...')
+        li requires a loading screen
+        li only one game chunk is loaded at a time
+      h4 Air locks
+      ul
+        li
+          +strtext('used in', 'Half-Life 2, Portal, Inside, new Wolfenstein,...')
+        li larger block contains the whole scene
+        li smaller block represents an air lock (usually a small room/hall)
+        li when the player enters the are from which can neither see the previous area nor return to it, next scene is loaded
+      h4 World streams
+      ul
+        li
+          +strtext('used in open-world games:', 'GTA, WoW, ARMA, Read Dead Redemption, Witcher,...')
+        li the world is divided into regions
+        li when the player enters region B and is far enough that chunk A can no longer be seen, the engine unloads chunk A and starts loading chunk C
+        li LOD (level of detail) - chunks are loaded with variable granularity (only meshes)
+    +chapter(bgr, 'Lecture 03: Component Architecture I')
+    +mframe(bgr, 'Various models for various purposes')
+      h4 View model
+      ul
+        li the one represented on screen as a result of processing all other models
+      h4 Networking model
+      ul
+        li everything that has to be in sync with other models on other devices
+      h4 Core model
+      ul
+        li describes a state of a game at any point in time
+        li tightly coupled with networking model (if there is one)
+      h4 Physics model
+      ul
+        li all entities taking part in physical interaction
+      h4 AI model
+      ul
+        li all data that are processed by AI (navigation maps, behavioral trees,...)
+    +mframe(bgr, 'All-purpose object pattern')
+      ul
+        li Used in 90&apos;s
+        li One class determines behavior of every game object
+        li Lots of switches and if-checks
+      .tcenter
+        img.w50(src!='../static/slides/svg/lecture03/diag_allinone.svg')
+    +mframe(bgr, 'Component')
+      ul
+        li A unit of composition with specified interfaces and explicit context dependencies
+        li
+          +strtext('components are basically', 'plug-and-play objects')
+        li prefers composition over inheritance
+        li it is not about how to organize your models but how to tie them up
+      .tcenter
+        img.w60.mt80(src!='../static/slides/svg/lecture03/component.svg')
+    +mframe(bgr, 'Architectures')
+      .bottom-content.justify-right
+        img.w30(src!='../static/slides/images/lecture03/boxes.png')
+      h4 Monolithic
+      ul
+        li discussed in previous chapter
+        li traditional OOP way
+        li problems with deep and wide hierarchies
+      h4 Object-centric
+      ul
+        li each game object is represented in runtime by a single class instance
+        li
+          +strtext("Early games:", "Thief: The Dark Project (1998), Dungeon Siege (2002)")
+      h4 Property-centric
+      ul
+        li each game object is represented only by a unique id
+        li cache-friendly (components are stored contiguously in memory)
+        li identifiers: integer, string, hashed string,...
+        li
+          +strtext('early game:', 'Deus Ex 2 (2003)')
+    +mframe(bgr, 'ECS/ECSA pattern')
+      ul
+        li
+          strong ECS+A - Entity-component-system + attribute
+        li game object is just a container for data and logic
+        li
+          +strtext('can be easily integrated into', 'scene graph')
+      .tcenter
+        img.w40.mt50(src!='../static/slides/svg/lecture03/diag_ecsa.svg')
+    // ============================================================
+    +mframe-statement(bgr, 'ECS/ECSA PATTERN')
+      p
+        +strtext('The overall', 'behavior', 'of a particular game object is', 'fully determined')
+        br
+        +strtext(' by the', 'aggregation', 'of its', 'components', '(and attributes).')
+    // ============================================================
+    +mframe(bgr, 'Terms')(class='line-s')
+      h4 Entity (GameObject)
+      ul
+        li represents a single entity, usually a node in a scene graph
+      h4 Attribute
+      ul
+        li member variable replacement, contains data
+      h4 Component
+      ul
+        li instantiable entity that defines functional behavior
+      h4 (Sub)system
+      ul
+        li superior component responsible for a system (Renderer, GameManager, AudioSystem)
+      h4 Message
+      ul
+        li method call replacement, used to communicate among components
+      h4 Event
+      ul
+        li type of a message; something that already happened (usually a broadcast)
+      h4 Command
+      ul
+        li type of a message; something we want to happen (usually a multicast or a unicast)
+    +chapter(bgr, 'Lecture 04: Component Architecture II')
+    +mframe-m(bgr, 'Component-oriented approach')
+      .upside
+        ul
+          li scalable
+          li data-oriented
+          li components are easy to reuse
+          li easy to make new object types
+          li polymorphic operations for components
+      .downside
+        ul
+          li dynamic typing - everything is assembled at runtime
+          li all dependencies have to be wired together
+          li code must be written in an utterly generic way
+          li refactoring may become very difficult
+          li harder to debug
+    +mframe(bgr, 'Communication practices')
+      h4 By modifying the container object&apos;s state
+      ul
+        li e.g.: shared state machine
+        li indirect communication
+        li difficult to debug
+      h4 By direct calls
+      ul
+        li OP way
+        li fast, but increases coupling
+        li
+          +strtext('e.g.: group of components that are', 'always', 'bound together')
+      h4 By messaging systems
+      ul
+        li events and commands
+        li each component can declare interest in relevant messages
+        li slower than the direct call, but that cost is negligible in all but performance-critical code
+        li difficult to debug, messages can fall into an infinite loop
+        li can be implemented via polymorphism, arrow functions,...
+        li e.g.: game-over event
+    // ============================================================
+    +mframe(bgr, 'Messaging system')
+      ul
+        li Components should be notified of any state change that are relevant to them
+        li
+          +strtext2('Can be used for returning values (danger of', 'feedback deadlock', ')')
+        li
+          +strtext('', 'Blind event forwarding', '- an object can forward an event to another object')
+        li
+          strong One handler
+          |  - 
+          strong.code.highlight-sec OnMessage()
+          |  method, implemented in each component
+        li Processing can be instant or delayed
+        li
+          +strtext('', 'Event Queue', '- pattern for batch message processing, can post events with a delay')
+      .tcenter
+        img.mt50.h350(src!='../static/slides/svg/lecture04/message.svg')
+    +mframe(bgr, 'Message types')
+      h4 Unicast
+      ul
+        li a component sends a message to another component
+        li in most cases this can be handled by a direct call
+        li example: kill an object
+      h4 Multicast
+      ul
+        li a) component sends a message to specific subscribers
+        li b) component sends a message to all objects that meet specific criteria
+        li example: notify all nearby units that an enemy has entered the area
+        li example: a unit was destroyed -&gt; notify everyone interested
+      h4 Broadcast
+      ul
+        li rarely used (observer pattern doesn't stick to it)
+        li usually for System-Entities communication
+        li example: level completed, game over, player died
+    +chapter(bgr, 'Lecture 05: Game Programming Patterns')
+    +mframe(bgr, 'Two-stage initialization')
+      ul
+        li Avoids passing everything through the constructor
+        li <strong>Constructor</strong> creates an object, <strong>init</strong> method initializes it
+        li.upside Objects can be initialized several times
+        li.upside Objects can be allocated in-advance in a pool
+      div.code.mt20
+        include ../static/slides/snippets/lecture05/two_stage.html
+    +mframe(bgr, 'State')
+      ul
+        li several meanings (state of the whole game, internal state of entities,...) 
+        li in this context, it is just a member of a set, determining what actions an object may execute
+        div.code.mt80
+          include ../static/slides/snippets/lecture05/state.html
+    // ============================================================
+    +mframe(bgr, 'Flags')
+      .bottom-content.justify-left
+        img.w70.mb100.ml50(src='../static/slides/svg/lecture05/flag.svg')
+      .bottom-content.justify-right
+        img.w10.mb100.mr50(src='../static/slides/images/lecture05/mage.png')
+      ul
+        li <strong>bit array</strong> that stores binary properties of game objects
+        li may be used for queries (e.g. find all <strong>DEAD</strong> objects)
+        li similar to a state machine but behaves differently
+        li if we maintain all flags within one single structure, we can search very fast
+    +mframe(bgr, 'Dirty Flag')
+      ul
+        li marks changed objects
+        li can be applied to various attributes (animation, physics, transformation)
+        li you have to make sure to set the flag every time the state changes
+        li you have to keep the previous derived data in memory
+      h4 Cleaning
+      ul
+        li When the result is needed
+        ul
+          li.upside Avoids doing recalculation if the result is never used
+          li.downside Game can freeze for expensive calculations
+        li At well-defined checkpoints
+        ul
+          li.upside less impact on user experience
+          li.downside you never know, when it happens
+        li On the background
+        ul
+          li.upside You can do more redundant work
+          li.downside race-condition may occur
+    +mframe(bgr, 'Builder')(class="builder")
+      ul
+        li slightly different from the builder defined by <strong>GoF</strong>
+        li stores attributes needed to build a game object, can be used to build several objects
+        li <strong>Aspect</strong> in Artemis framework, <strong>Prefab</strong> in Unity
+        div.code.mt20
+          include ../static/slides/snippets/lecture05/builder.html
+    // ============================================================
+    +mframe(bgr, 'Factory')
+      ul
+        li <strong>Builder</strong> assembles an object, <strong>factory</strong> manages the assembling
+        li Factory creates an object according to the parameters but with respect to the context
+        div.code.mt50
+          include ../static/slides/snippets/lecture05/factory.html
+    +mframe(bgr, 'Flyweight')
+      ul
+        li an object holds shared data to support large number of fine-grained objects
+        li example: instanced rendering, geometry hashing, <strong>particle systems</strong>
+      .tcenter
+        img.w75(src='../static/slides/svg/lecture05/flyweight.svg')
+    // ============================================================
+    +mframe(bgr, 'Replay')
+      .bottom-content.justify-left.fill
+        img.w10(src='../static/slides/images/lecture05/braid_c.png')
+      .bottom-content
+        img.h20.mb80(src='../static/slides/images/lecture05/braid_b.png')
+      .bottom-content.justify-right.fill
+        img.w30(src='../static/slides/images/lecture05/braid_a.png')
+      ul
+        li allows to reproduce any state of a game at any time 
+        li much more complex than the save mechanism
+        li all game entities must have a reproducible behavior (similar to multiplayer facility)
+        li two main impediments: random functions and nondeterministic operations
+      ul
+        li
+          strong Solution a)
+        ul
+          li store the state of all objects in the game - either on frame basis or at a fixed frequency
+          li reproduce them by modifying all objects at each frame
+        li 
+          strong Solution b)
+        ul
+          li if the game is completely message-driven, we can store all game messages
+          li during the replay, forbid all components to send messages on their own
+          li send queued messages one by one and let them be processed
+    +chapter(bgr, 'Lecture 06: Math and Dynamics')
+    +mframe(bgr, 'Random functions distribution')
+      h4 Uniform distribution
+      ul
+        li most common distribution of random generators
+        li  
+          span.highlight-sec applications: 
+          | noise, shuffling, one-of-many selection
+      h4 Gaussian (normal) distribution
+      ul
+        li more common in games - every characteristic has some kind of average, with individuals varying with a normal distribution
+        li can be calculated from a uniform generator via transformation (Box-muller algorithm)
+        li 
+          span.highlight-sec applications: 
+          | height of trees, aiming for projectiles, average speed, physical reaction time, reload rate, refresh healing rate, critical hit 
+      div.columns-2
+        figure.ml80
+          img.h300(src='../static/slides/svg/lecture06/distribution_normal.svg')
+          p Uniform distribution
+        figure.mr80
+          img.h300(src='../static/slides/svg/lecture06/distribution_gaussian.svg')
+          p Gaussian distribution
+    // ============================================================
+    +mframe(bgr, 'Terms')
+      h4 Seed
+      ul
+        li a hash that initializes random generators
+        li a good source of entropy is user input or current time
+      h4 Loot
+      ul
+        li items obtained over the gameplay 
+          span.highlight-sec (money, spells, equipment, weapons,...)  
+      h4 Spinning
+      ul
+        li calling the random function on a time-frame basis without using the result
+        li advances the game to a difficult-to-predict place
+      h4 Rarity slotting
+      ul
+        li a method of standardization to determine rates 
+          span.highlight-sec (common, rare, epic, legendary)
+        li makes game events occur proportionally
+        li can be defined as a rarity table, calculated via weighted sum
+      h4 Random encounter
+      ul
+        li popular mechanics of RPG games (Final Fantasy, WoW, Pokémon, Golden Sun)
+        li the game suddenly shifts to battle mode, forcing the player to fight
+        li after winning the battle, the player receives a reward 
+          span.highlight-sec (skill upgrade, items, money)
+    +mframe(bgr, 'Perlin Noise')
+      ul
+        li
+          +strtext('', 'Perlin Noise', '- developed by Ken Perlin in 1983')
+        li
+          +strtext('', 'Simplex Noise', '- Perlin\'s improved noise, fewer artifacts and lower computational overhead') 
+        li both are gradient noises - we set a pseudo-random gradient at regularly spaced points in space and interpolate between them
+        li the noise is constructed from octaves (contribution to the signal at a particular scale)
+        li the signal is interpolated via a quartic function: 
+          include ../build_pre/equations/lecture06/perlin_noise.svg
+      div.code.mt20
+        include ../static/slides/snippets/lecture06/perlin.html
+    +mframe(bgr, 'Spatial Partitioning')
+      div.bottom-content.justify-right
+        figure.mb50.mr50
+          img.h400(src='../static/slides/svg/lecture06/oct_tree.svg')
+          p Oct-tree
+      h4 Bounding volume
+      ul
+        li groups objects or their parts together based on their positions and sizes
+        li if the object moves, so will the hierarchy
+        li used for physics, shape analysis, precise collision detection
+      h4 Spatial data structure
+      ul
+        li a structure that stores objects by their position 
+        li is locked to the world
+        li used for range queries, neighborhood searching, rough collision detection 
+        li.highlight-sec the more objects we have, the more benefits we get
+        li.mt80
+          span.highlight Implementations
+          ul
+            li BSP - binary-space partitioning
+            li Quad-tree - for 2D and semi-3D space
+            li Oct-tree - for 3D space
+            li Grid - a square grid
+    +mframe(bgr, 'Quad-tree')
+      ul
+        li hierarchical partition
+        li each inner node has 4 children
+        li it is common to have the children of same size -> we won't need to save the position vector
+        li.highlight overlapping objects are put it into all children they touch
+        li only objects in the same leaf can be in collision
+        li useful for 
+          span.highlight outdoor 
+          | scenes, where objects are placed on a landscape
+        li good for a small amount of objects of various sizes
+      div.tcenter
+        img.h500(src='../static/slides/svg/lecture06/quad_tree_intro.svg')
+    // ============================================================
+    +mframe(bgr, 'Quad-tree for geometric hashing')
+      div.top-content.fill
+        img.h900(src='../static/slides/svg/lecture06/quad_tree_example.svg')
+    // ============================================================
+    +mframe(bgr, 'Quad-tree for bounding volumes')
+      div.tcenter.mt40
+        img.h900(src='../static/slides/svg/lecture06/quad_tree.svg')
+    +mframe(bgr, 'Steering behaviors')
+      ul
+        li set of algorithms and principles that help autonomous agents move in a realistic manner <br>by using simple forces
+        li 
+          +strtext('designed by', 'Craig Reynolds ', 'in the early 90\'s')
+        li.mt40 
+          +strtext('', 'Agent', '- a system situated within an environment, having an ability to', 'sense', 'that environment')
+        li.mt40
+          span.highlight three layers of motion behavior:
+          ul
+            li action selection - choosing goals, strategy
+            li.highlight steering - trajectory calculation
+            li locomotion - way of moving, animation, articulation
+      div.tcenter
+        img.h350(src='../static/slides/svg/lecture06/steering_desc.svg')
+    // ============================================================
+    +mframe(bgr, 'Seek')
+      ul
+        li the simplest steering behavior
+        li a force that directs an agent toward a target position
+      div.tcenter
+        img.h750(src='../static/slides/svg/lecture06/steering_seek.svg')
+    // ============================================================
+    +mframe(bgr, 'Flee and arrive')
+      h4 Flee
+      ul
+        li opposite of seek
+        li creates a force that steers the agent away
+      h4 Arrive
+      ul
+        li seek is not good at stopping
+        li arrive decelerates the agent onto the target position
+        li additional parameter: 
+          span.highlight slowing radius
+      div.mt10.tcenter
+        img.h500(src='../static/slides/svg/lecture06/steering_seek_2.svg')
+    // ============================================================
+    +mframe(bgr, 'Pursuit and Evade')
+      h4 Pursuit
+      ul
+        li agent intercepts a moving target 
+        li predicts where the target is going to be in the future 
+        li calls for a good prediction function
+      h4 Evade
+      ul
+        li opposite of pursuite 
+        li the evader flees from the estimated future position
+      div.tcenter.mt40
+        img.h400(src='../static/slides/svg/lecture06/steering_evasion_pursuit.svg')
+    // ============================================================
+    +mframe(bgr, 'Wander')
+      ul
+        li produces a force that will give an impression of a 
+          span.highlight random walking 
+        li small random displacement is applied to the velocity vector every frame 
+        li a circle is projected in front of the vehicle 
+        li the vehicle is steered toward a target that moves along the perimeter 
+        li smoothness of movement depends on three parameters: 
+          ul
+            li circle radius, distance from the vehicle and jittering (randomness)
+        li the greater the radius and the distance, the stronger the force 
+      div.mt20.tcenter
+        img.h450(src='../static/slides/svg/lecture06/steering_wander.svg')
+    // ============================================================
+    +mframe(bgr, 'Path follow')
+      ul
+        li moves a vehicle along a set of waypoints 
+        li 
+          +strtext('the last waypoint can be reached using', 'arrive,', 'the others via', 'seek') 
+        li
+          +strtext('smooth movement can be achieved using a', 'tolerance radius', 'or Bézier curve approximation')
+        li very sensitive to configuration (max force, max velocity, radius,...)
+      div.tcenter.mt20
+        img.h650(src='../static/slides/svg/lecture06/steering_follow.svg')
+    // ============================================================
+    +mframe(bgr, 'Obstacle avoidance and offset pursuit')
+      h4 Obstacle avoidance
+      ul
+        li steers a vehicle to avoid obstacles (usually approximated by a circle)
+        li vehicle has a detection box - rectangular area 
+        li 
+          +strtext('two forces are calculated:', 'lateral force', 'and', 'braking force')
+      div.tcenter
+        img.ml200.h300(src='../static/slides/svg/lecture06/steering_avoidance.svg')
+      h4 Offset pursuit 
+      ul
+        li keeps a vehicle positioned at a specified offset from a leader vehicle 
+        li useful for battle formations
+      div.tcenter
+        img.h200(src='../static/slides/svg/lecture06/steering_lead.svg')
+    // ============================================================
+    +mframe(bgr, 'Flocking')
+      ul
+        li emergent behavior, more agents/vehicles are taken into consideration
+        li combination of three aspects:
+          ul
+            li
+              +strtext('', 'separation', '- steers a vehicle away from its neighborhood')
+            li
+              +strtext('', 'alignment', '- keeps the vehicle\'s direction aligned with its neighbors')
+            li
+              +strtext('', 'cohesion', '- moves a vehicle toward the center of mass of its neighbors')
+      div.tcenter.mt20
+        img.h600(src='../static/slides/svg/lecture06/steering_flock.svg')
+    +mframe(bgr, 'Points and Vectors')
+      div.top-content.justify-right
+        div.mt100
+          div
+            figure
+              img.h300(src='../static/slides/svg/lecture06/vector_addition.svg')
+              p Vector addition and subtraction
+          div
+            figure
+              img.h300(src='../static/slides/svg/lecture06/vector_magnitude.svg')
+              p Magnitude of a vector
+      ul
+        li
+          +strtext('', 'Vector', '- a quantity that has both a magnitude and a direction')
+        li vector can be used to represent a point, provided that we fix the tail of the vector <br> to the origin of the coordinate system
+        li.mt50
+          span.highlight addition and subtraction
+          ul
+            li vector + vector = vector
+            li vector - vector = vector
+            li point + vector = point
+            li point - point = vector
+            li point + point = 
+              span.highlight undefined
+    // ============================================================
+    +mframe(bgr, 'Points and Vectors')
+      div.bottom-content.justify-right
+        img.mb80.h400(src='../static/slides/svg/lecture06/vector_dotproduct.svg')
+      ul
+        li 
+          span.highlight Magnitude
+          ul
+            li scalar representing the length of the vector
+            li
+              include ../build_pre/equations/lecture06/vectors_01.svg
+        li 
+          span.highlight Normalization
+          ul
+            li a unit vector is a vector with a magnitude of one: 
+              include ../build_pre/equations/lecture06/vectors_02.svg
+        li
+          span.highlight Normal vector
+          ul
+            li vector is normal to a surface if it is perpendicular to it
+        li
+          span.highlight Dot product
+          ul
+            li
+              include ../build_pre/equations/lecture06/vectors_03.svg
+            li
+              include ../build_pre/equations/lecture06/vectors_04.svg
+        li
+          span.highlight Cross product
+          ul
+            li yields another vector that is perpendicular to two vectors
+            li 
+              include ../build_pre/equations/lecture06/vectors_05.svg
+    +mframe(bgr, 'Integration methods')
+      div.bottom-content.justify-right.fill
+        img.h600(src='../static/slides/svg/lecture06/integration_methods.svg')
+      h4.highlight-sec Implicit methods
+      ul
+        li make use of quantities from the next time step
+        li decrease energy from the system
+      h4.highlight-third Semi-implicit methods
+      ul
+        li combination of explicit and implicit methods 
+        li very stable
+      h4.highlight Explicit methods
+      ul
+        li make use of known quantities at each time step
+      h4.nohighlight.mt50 Runge-Kutta family
+      ul
+        li Euler methods, midpoint methods, RK4,...
+      h4.nohighlight Verlet family
+      ul 
+        li Regular Verlet
+        li Leapfrog Verlet
+        li Velocity Verlet
+    // ============================================================
+    +mframe(bgr, 'Euler integration')
+      div.top-content.justify-left.fill
+        img.h400.ml10.mt100(src='../static/slides/svg/lecture06/diff.svg')
+      div.columns-2
+        div
+          ul
+            li 
+              include ../build_pre/equations/lecture06/euler_01.svg
+            h4.mt60 Explicit method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_02.svg
+            h4 Improved method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_03.svg
+            h4 Implicit method
+            ul
+              li
+                include ../build_pre/equations/lecture06/euler_04.svg
+            li.mt40.upside cheap and easy to implement
+            li.downside high error and poor stability, depending directly on the time step
+        div
+          div
+            img.h400(src='../static/slides/svg/lecture06/ballistic_curve.svg')
+          div
+            img.h400(src='../static/slides/svg/lecture06/ballistic_curve_2.svg')
+    +chapter(bgr, 'Lecture 07: Physics')
+    +mframe(bgr, 'Physics engine')
+      .bottom-content.fill.justify-right
+        img.h800(src='../static/slides/images/lecture07/physics_01.png')
+      div
+        ul
+          li.highlight System that simulates physical phenomena
+          li computes motion of objects in virtual scene
+          li simulation must be 
+            span.highlight-sec real-time 
+            | (accuracy is not that important)
+          li you have to understand your game before you decide how to add a physical simulation to it
+      div
+        ul
+          li.upside can improve immersion
+          li.upside can support new gameplay events
+      div
+        ul
+          li.downside can broke the game story
+          li.downside takes significant computing resources
+          li.downside is based on heavy magic tricks that are difficult to comprehend
+    +mframe(bgr, 'Object types')
+      h4 Body
+      ul
+        li fundamental object in the physics scene
+      h4 Rigid Body
+      ul
+        li idealized, infinitely hard, non-deformable solid object
+        li
+          +strtext2('', 'physics-driven bodies', '- driven entirely by the simulation')
+        li
+          +strtext2('', 'game-driven bodies', '- moved in a non-physical way (animations)')
+        li
+          +strtext2('', 'fixed bodies', '- collision-only bodies')
+      h4 Soft Body
+      ul
+        li can be deformed
+      h4 Shape
+      ul
+        li region of space described by a boundary, with a definite inside and outside (curved line, polygon, curved surface, polyhedron)
+      h4 Fixture
+      ul
+        li used to describe size, shape and material properties
+    // ============================================================
+    +mframe(bgr, 'Object types')(class='space-vert-m')
+      h4 Constraint
+      ul
+        li connects bodies together in order to simulate interaction (ropes, wheels, vehicles, chains)
+      h4 Sensor/Phantom
+      ul
+        li entity that provides a feedback when certain objects overlap
+        li participates on collision detection but doesn't affect the scene
+      h4 Rag doll
+      ul
+        li displays human-like figures with a realistic motion
+      h4 Destructible object
+      ul
+        li breakable object, can be implemented by using rigid body dynamics, dividing the model into a number of breakable pieces
+    +mframe(bgr, 'Constraints')
+      div.columns-4.center-content
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_rope.svg')
+          p rope
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_revolute.svg')
+          p revolute
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_prismatic.svg')
+          p.mr80 prismatic
+        figure
+          div
+            img.h600(src='../static/slides/svg/lecture07/cst_conetwist.svg')
+          p.mr90 cone-twist
+    +mframe(bgr, 'Primitives')
+      h4 Sphere
+      ul
+        li center point and radius (4 numbers)
+      h4 Capsule
+      ul
+        li 2D: rectangle and two circles
+        li 3D: cylinder and two hemispherical end-caps
+        li representation: two points and radius
+      div.tcenter
+        img.h200(src='../static/slides/svg/lecture07/primitives_capsule.svg')
+      h4 AABB
+      ul
+        li axis-aligned bounding box
+        li rectangular volume (cuboid) whose faces are parallel to the axes of the coordinate system
+        li.upside very efficient test for penetration
+        li.downside AABB must be recalculated whenever the object rotates
+    // ============================================================
+    +mframe(bgr, 'Primitives')(class='space-vert-l')
+      div.top-content.justify-right
+        img.h300.mr100(src='../static/slides/svg/lecture07/primitives_obb.svg')
+      div.top-content.justify-right
+        img.h250.mr100.mt300(src='../static/slides/svg/lecture07/primitives_kdop.svg')
+      div.top-content.justify-right
+        img.h250.mr100.mt600(src='../static/slides/svg/lecture07/primitives_convexvol.svg')
+      h4 OBB
+      ul
+        li oriented bounding box
+        li defined by a position, half-extents and orientation
+        li commonly used
+      h4 k-DOP
+      ul
+        li discrete oriented polytope
+        li more-general case of AABB and OBB
+        li approximates the shape of an object
+      h4 Convex volume
+      ul
+        li more general shape
+        li must be convex
+        li expensive for intersection test
+    // ============================================================
+    +mframe(bgr, 'Primitives')(class='space-vert-l')
+      div.top-content.justify-right
+        img.h250.mr100(src='../static/slides/svg/lecture07/primitives_polysoup.svg')
+      div.top-content.justify-right
+        img.h200.mr50.mt200(src='../static/slides/svg/lecture07/primitives_compound.svg')
+      div.top-content.justify-right
+        img.h200.mr200.mt400(src='../static/slides/svg/lecture07/primitives_convexhull.svg')
+      div.top-content.justify-right
+        img.h250.mr150.mt600(src='../static/slides/svg/lecture07/primitives_complex.svg')  
+      h4 Poly Soup
+      ul
+        li used to model complex static geometry (terrain)
+        li very expensive kind of collision test
+      h4 Compound shapes
+      ul
+        li more-efficient alternative to a poly-soup
+        li the system first tests bounding volumes of compound shapes
+      h4 Convex hull
+      ul
+        li smallest convex volume containing the object
+      h4 Complex shape/volume
+      ul
+        li not necessarily convex
+        li simplified mesh/sprite
+        li needs preprocessing (BSP)
+    // ============================================================
+    +mframe(bgr, 'Comparison')
+      div.top-content.mt150
+        img.w1600(src='../static/slides/svg/lecture07/primitives_comparison.svg')
+      div.top-content.mt150
+        img.w1500.mt80.ml15(src='../static/slides/images/lecture07/primitives_comparison.png')
+    +mframe(bgr, 'SAT')
+      div.top-content.justify-right
+        img.h750.mt150(src='../static/slides/svg/lecture07/sat.svg')
+      h4 SAT (separating axis theorem)
+      ul
+        li based on collection of intersection tests
+        li if an axis can be found along which the projection of two 
+          span.highlight-sec convex 
+          |shapes do not overlap, then the two shapes do not intersect
+        li for 2D: AABB 2 axes, OBB 4 axes
+        li for 3D: AABB 3 axes, OBB 15 axes
+      h4 Other methods
+      ul
+        li GJK, Line Sweep, Sphere test,...
+    // ============================================================
+    +mframe(bgr, 'Example: SAT')
+      div.center-content
+        img.h850.mt20(src='../static/slides/svg/lecture07/example_sat.svg')
+      ul
+        li AABB in 2D: only 2 axes to check
+    // ============================================================
+    +mframe(bgr, 'Tunneling problem')
+      div.tcenter.top-content
+        img.h350.mt200(src='../static/slides/svg/lecture07/moving_bodies_simple.svg')
+      h4 Stepped world
+      ul
+        li time steps vary based on occurring situation
+        li collision time is calculated by doing binary search in time, moving object back and forth by 1/2 steps (5 iterations is usually enough)
+      h4.mt250 Continuous Collision Detection (CCD)
+      ul
+        li uses 
+          span.highlight-sec Swept Shapes
+        li a new shape is formed by the motion of the original one
+        li rotating shapes may result in shapes that aren't convex
+      div.tcenter
+        img.h150(src='../static/slides/svg/lecture07/moving_bodies_swept.svg')
+    // ============================================================
+    +mframe(bgr, 'Collision queries')(class='space-vert-l')
+      div.highlight Queries:
+      ul.highlight-third
+        li Find the first target the bullet hits
+        li Can a camera move without interpenetrating the wall?
+        li Find all objects within a given radius
+      h4 Ray casting
+      ul
+        li 
+          span.highlight-sec any game is going to need a good raycaster
+        li the cast line segment is tested against the collidable objects in the collision world; if it intersects any of them, the contact point is returned
+        li weapon systems, player mechanics, 
+          span.highlight-sec AI systems, 
+          |vehicle systems, line-of-sight
+        li used in 80's and 90's also for pseudo-3D rendering, nowadays it's being replaced by 
+          span.highlight-sec raytracing
+      h4 Shape casting
+      ul
+        li how far a shape would be able to travel along a directed line segment before it hits something
+        li
+          +strtext('', 'sphere casts', '- e.g. to determine whether the camera is in a collision')
+        li
+          +strtext('', 'capsule casts', '- e.g. character movement on uneven terrain')
+    +mframe(bgr, 'Particle systems')
+      ul
+        li.highlight-sec a collection of point masses that obeys certain physical laws
+        li can model complex fuzzy shapes and dynamics
+        li heavily used Flyweight pattern (array of positions, velocities, group lists)
+        li particles are not only moving points! Even a tree may become a particle!
+      h4 Applications
+      ul 
+        li fluids
+        li visual effects
+        li flocks
+        li rendered trails (plants)
+        li soft bodies (flag, cloth)
+      h4 Basic model
+      ol
+        li generate new particles
+        li assign individual attributes
+        li extinguish dead particles
+        li move and transform particles according to their dynamic attributes
+        li render meshes
+    +chapter(bgr, 'Lecture 08: Graphics')
+    +mframe(bgr, 'Rotation in 3D space')
+      div.tcenter
+        img.h900(src='../static/slides/svg/lecture08/pitch_yaw_roll.svg')
+    // ============================================================
+    +mframe(bgr, 'Rotational representations')
+      h4 Euler angles
+      ul
+        li Pitch, Yaw, Roll
+        li.upside simple, small size (3 floats), intuitive nature
+        li.downside the order in which the rotations are performed matters
+        li.downside
+          +strtext('', 'gimbal lock issue', '- when a 90-degree rotation causes one of the three principal axes to collapse onto another principal axis')
+      h4.mt60 Axis + angle
+      ul
+        li axis of rotation plus a scalar for the angle of rotation 
+          include ../build_pre/equations/lecture08/rot_representations.svg
+        li.upside intiutive and compact
+        li.downside rotations cannot be easily interpolated
+        li.downside rotations cannot be applied to vectors directly
+    // ============================================================
+    +mframe(bgr, 'Rotational representations')(class='space-vert-m')
+      h4 Quaternions
+      ul
+        li similar to axis + angle, however, this is an algebraic field
+        li
+          include ../build_pre/equations/lecture08/quaternions_01.svg
+        li unit-length 
+          include ../build_pre/equations/lecture08/quaternions_02.svg
+        li.mt40 a unit quaternion can be visualised as a 3D vector + scalar
+          ul
+            li
+              include ../build_pre/equations/lecture08/quaternions_03.svg
+            li
+              include ../build_pre/equations/lecture08/quaternions_04.svg
+        li.upside permits rotations to be concatenated and applied directly 
+        li.upside permits rotations to be easily interpolated
+        li.downside can perform only one full rotation between keyframes
+      .tcenter.w100.highlight-sec.mt30 
+        span Usually, Euler angles are used for fast rotation around one axis<br> and quaternions for complex yet slow rotations around all axes
+    +mframe(bgr, 'Space')
+      h4 Model space
+      ul
+        li origin is usually placed at a central location (center of mass)
+        li axes are aligned to natural direction of the model (e.g. a nose of an animal)
+      h4 World space
+      ul
+        li fixed coordinate space, in which the positions, orientations and scales of all objects in the game world are expressed
+      h4 View/Camera space
+      ul
+        li coordinate frame fixed to the camera
+        li space origin is placed at the focal point of the camera
+        li OpenGL: camera faces toward negative 
+          include ../build_pre/equations/lecture08/space.svg
+      h4 Clip space
+      ul
+        li a rectangular prism extending from -1 to 1 (OpenGL)
+      h4 View/screen space
+      ul
+        li a region of the screen used to display a portion of the final image
+    // ============================================================
+    +mframe(bgr, 'World-model-view')
+      div.tcenter
+        img.h900(src='../static/slides/svg/lecture08/model_world_view.svg')
+    +mframe(bgr, 'View volume')
+      ul
+        li
+          +strtext('', 'View volume', '- region of space the camera can see')
+        li
+          +strtext('', 'Frustum', '- the shape of view volume for perspective projection')
+        li
+          +strtext('', 'Rectangular prism', '- the shape of view volume for orthographic projection')
+        li
+          +strtext('', 'Field of view (FOV)', '- the angle between the top and bottom of the 2D surface on which the world will be projected')
+      .columns-2
+        figure
+          img.h500(src='../static/slides/svg/lecture08/projection_persp.svg')
+          p Perspective projection
+        figure
+          img.h500(src='../static/slides/svg/lecture08/projection_ortho.svg')
+          p Orthographic projection
+    +mframe(bgr, 'Animations')
+      h4 Stop-motion animation
+      ul
+        li predefined set of images/sprites
+        li simple and intuitive, but impossible to re-define without changing the assets
+      h4 Keyframed animation
+      ul
+        li keyframes contain values (position, color, modifier,...) at given point of time
+        li intermediate frames are 
+          span.highlight-sec interpolated
+      .columns-4
+        figure
+          img.h300(src='../static/slides/images/lecture08/anim_sprite.gif')
+          p Sprite animation
+        figure
+          img.h300(src='../static/slides/images/lecture08/anim_spine.gif')
+          p Skeletal 2D
+        figure
+          img.h300(src='../static/slides/images/lecture08/anim_skeletal.gif')
+          p Skeletal 3D
+        figure
+          img.h300(src='../static/slides/images/lecture08/anim_vertex.gif')
+          p Vertex
+    // ============================================================
+    +mframe(bgr, 'Interpolation')
+      div.bottom-content.justify-right
+        img.h600(src='../static/slides/svg/lecture08/transform_cube.svg')
+      div
+        ul
+          li.highlight Method that calculates points within the range of given points
+          li.mt40
+            span.highlight Applications
+            ul
+              li graphics - image resizing 
+              li animations - morph between two transformations 
+              li multiplayer - morph between two game states 
+              li video - keyframe interpolation 
+              li sound processing - sample interpolation 
+          li
+            span.highlight Main methods 
+            ul
+              li Constant interpolation (none/hold) 
+              li.highlight-sec Linear interpolation 
+              li Cosine interpolation 
+              li Cubic interpolation 
+              li Bézier interpolation 
+              li Hermite interpolation
+    +mframe(bgr, 'Linear interpolation')
+      div.top-content.justify-right
+        img.h400(src='../static/slides/svg/lecture08/linear_interpolation_1d.svg')
+      div.center-content.justify-right
+        img.mr500.h400(src='../static/slides/svg/lecture08/linear_interpolation_2d.svg')
+      div.bottom-content.justify-right
+        img.h400(src='../static/slides/svg/lecture08/linear_interpolation_3d.svg')
+      h4 Linear interpolation
+      ul
+        li
+          include ../build_pre/equations/lecture08/linear_interpolation.svg
+        li for 1D values (time, sound)
+      h4.mt100 Bilinear interpolation 
+      ul
+        li on a rectilinear 2D grid
+        li for 2D values (images, textures)
+        li Q - known points (closest pixels)
+        li P - desired point
+      h4.mt150 Trilinear interpolation
+      ul
+        li on a regular 3D grid
+        li for 3D values (mipmaps)
+    +mframe(bgr, 'Terms')
+      .center-content.justify-right
+        figure.mt150.mr50
+          img.h300(src='../static/slides/images/lecture08/zfighting.png')
+          p Z-Fighting
+      h4 Vertex
+      ul
+        li primarily a point in 3D space with 
+          include ../build_pre/equations/lecture08/pipeline_terms_01.svg
+          |&nbsp;coordinates
+        li attributes: position vector, normal, color, 
+          include ../build_pre/equations/lecture08/pipeline_terms_02.svg
+          |&nbsp;coordinates, skinning weights
+      h4 Fragment
+      ul
+        li a sample-sized segment of a rasterized primitive
+        li its size depends on sampling method
+      h4 Texture
+      ul
+        li a piece of bitmap that is applied to a model
+      h4 Occlusion
+      ul
+        li rendering two triangles that overlap each other
+        li Z-Fighting issue
+        li solution: more precise depth buffer
+      h4 Culling
+      ul
+        li process of removing triangles that aren't facing the camera
+        li frustum culling, portals, anti-portals,...
+    +mframe(bgr, 'Shaders')
+      ul
+        li programs that run on the video card in order to perform a variety of specialized functions (lighting, effects, post-processing, even physics or AI)
+      h4 Vertex shader
+      ul
+        li input is vertex, output is transformed vertex
+      h4 Geometry shader (optional)
+      ul
+        li input is n-vertex primitive, output is zero or more primitives
+      h4 Tessellation shader (optional)
+      ul
+        li input is primitive, output is subdivided primitive
+      h4 Pixel/fragment shader
+      ul
+        li input is fragment, output is color, depth value, stencil value
+      h4 Compute shader
+      ul
+        li shader that run outside of the rendering pipeline
+        li used for massively parallel GPGPU computing
+    +chapter(bgr, 'Lecture 09: Game AI')
+    +mframe(bgr, 'Navigation graph')
+      h4 Waypoint-based
+      ul
+        li level designer places waypoints that are later linked up
+      .tcenter
+        img.h250(src='../static/slides/svg/lecture09/navigation_graph_waypoints.svg')
+      h4 Mesh-based
+      ul
+        li created from a polygonal representation of the environment's floor
+        li describes walkable areas
+      .columns-2
+        .tcenter
+          img.h250(src='../static/slides/svg/lecture09/navigation_graph_meshbased_1.svg')
+        .tcenter
+          img.h350(src='../static/slides/svg/lecture09/navigation_graph_meshbased_2.svg')
+    +mframe(bgr, 'Navigation graph')
+      h4 Grid-based
+      ul
+        li created by superimposing a grid over a game environment
+        li
+          span.highlight-sec traversability flag 
+          | indicates whether the cell is traversable or not
+        li connection geometries: 
+          span.highlight-sec tile, octile, hex
+        li reflecting environmental changes = recalculation of the traversability flag
+      .tcenter
+        img.h300(src='../static/slides/svg/lecture09/navigation_graph_gridbased_types.svg')
+      .tcenter
+        img.h300(src='../static/slides/svg/lecture09/navigation_graph_gridbased_traversability.svg')
+    +mframe(bgr, 'Pathfinding algorithms')(class='line-sm')
+      h4 Uniformed graph searches
+      ul
+        li searches a graph without regard to any associated edge cost
+        li
+          span.highlight-sec DFS (depth-first search)
+          ul
+            li searches by moving as deep into the graph as possible
+            li doesn't guarantee to find the best path
+        li
+          span.highlight-sec BFS (breadth-first search)
+          ul
+            li fans out from the source node, always finds the best path
+      h4 Cost-based graph searches
+      ul
+        li
+          span.highlight-sec Dijkstra's Algorithm
+          ul
+            li explores every node in the graph and finds the shortest path from the start node to every other node in the graph
+            li uses 
+              span.highlight-sec CSF (cost-so-far) 
+              | metric
+            li explores many unnecessary nodes
+        li
+          span.highlight-sec A* (Dijkstra with a Twist)
+          ul
+            li extension of Dijkstra, first described in 1968
+            li main difference: augmentation of the CSF value with a 
+              span.highlight-sec heuristic value
+    // ============================================================
+    +mframe(bgr, 'A*')
+      ul
+        li improved Dijkstra by an estimate of the cost to the target from each node
+        li Cost 
+          include ../build_pre/equations/lecture09/astar_01.svg
+          |, where 
+          include ../build_pre/equations/lecture09/astar_02.svg
+          |&nbsp;is the cost-so-far and 
+          include ../build_pre/equations/lecture09/astar_03.svg
+          |&nbsp;is the heuristic estimate
+        li 
+          +strtext2('', 'Heuristics:', 'Euclidean, Manhattan, adaptive (penalty for direction change)')
+          ul
+            li Manhattan distance will work if almost no obstacles appear
+      ul
+        li 
+          span.highlight Improvements
+          ul
+            li preprocess the map, calculate universal paths
+            li mark tiles which cannot lead anywhere as dead-ends
+            li limit the search space
+      .tcenter
+        img.h400(src='../static/slides/svg/lecture09/astar.svg')
+    // ============================================================
+    +mframe(bgr, 'Pathfinding algorithms: comparison')
+      ul
+        li breadth-first search ignores costs
+        li Dijkstra ignores position of the target
+        li A* takes into account both of them
+      .tcenter.mt20
+        img.h600(src='../static/slides/svg/lecture09/pathfinding_comparison.svg')
+    +mframe(bgr, 'Scripting')
+      ul
+        li 
+          +strtext('', 'IF-THIS-THEN-THAT','approach')
+        li AI behavior is completely hardcoded
+        li.upside simple, easy to debug, easy to extend if programmed properly
+        li.downside human player should behave as the developers expect
+        li.downside good scripting behavior must cover a large amount of situations
+      div.code
+        include ../static/slides/snippets/lecture09/doom_chase.html
+    // ============================================================
+    +mframe(bgr, 'Finite state machine')
+      ul
+        li the oldest and most commonly used formalism to model game AIs
+        li useful for an entity whose behavior changes based on an internal state that can be divided<br> into small number of distinct options
+        li each game entity can be in exactly one of a finite number of states at any time
+      ul
+        li
+          span.highlight Definition
+          ul
+            li quadruple 
+              include ../build_pre/equations/lecture09/fsm_01.svg
+            li 
+              include ../build_pre/equations/lecture09/fsm_02.svg
+              |&nbsp;is a finite, non-empty set of states
+            li
+              include ../build_pre/equations/lecture09/fsm_03.svg
+              |&nbsp;is a finite set of inputs
+            li
+              include ../build_pre/equations/lecture09/fsm_04.svg
+              |&nbsp;is the state-transition function
+            li
+              include ../build_pre/equations/lecture09/fsm_05.svg
+              |&nbsp;is an initial state, 
+              include ../build_pre/equations/lecture09/fsm_06.svg
+        li.mt40 can be implemented via polymorphism or a state transition table
+        li.downside unmanageable for large complex systems, leading to transition explosion
+    +mframe(bgr, 'Hierarchical state machine')
+      .bottom-content.justify-right
+        img.h450(src='../static/slides/images/lecture09/fsm_doomguard.png')
+      ul
+        li also known as 
+          span.highlight statecharts
+        li each state can have a superstate or a substate
+        li groups of states share transitions
+        li usually implemented as a stack
+          ul
+            li push a low-level state on the stack when enter
+            li pop and move to the next state when finished
+      .tcenter
+        img.h500(src='../static/slides/svg/lecture09/hfsm_guardian.svg')
+    // ============================================================
+    +mframe(bgr, 'Behavior tree')
+      ul
+        li.highlight tree of hierarchical nodes that control decision making process
+        li originate from gaming industry around 2004 (Halo 2)
+        li combine elements from both Scripting and HFSMs
+        li there is no standardized formalization
+      ul
+        li inner nodes lead to appropriate leaves best suited to the situation
+        li depth-first traversal, starting with the root node
+        li each executed behavior passes back and returns a status
+          ul
+            li.highlight.code SUCCESS, FAILURE, RUNNING, (SUSPENDED)
+      .tcenter
+        img.h400(src='../static/slides/images/lecture09/btree.jpg')
+    // ============================================================
+    +mframe(bgr, 'Behavior tree')
+      .tcenter
+        img.h400(src='../static/slides/svg/lecture09/btree.svg')
+      table.ml150
+        tr
+          th Node Type
+          th Success
+          th Failure
+          th Running
+        tr
+          td Selector
+          td If one child succeeds
+          td If all children fail
+          td If one child is running
+        tr
+          td Sequence
+          td If all children succeed
+          td If one child fails
+          td If one child is running
+        tr
+          td Decorator
+          td It depends...
+          td It depends...
+          td It depends...
+        tr
+          td Parallel
+          td If N children succeed
+          td If M-N children succeed
+          td If all children are running
+        tr
+          td Action
+          td When completed
+          td Upon an error
+          td During completion
+        tr
+          td Condition
+          td If true
+          td If false
+          td Never
+    +mframe(bgr, 'Terms')
+      h4 Bot
+      ul
+        li an intelligent artificial player emulating a human player
+        li used mainly to describe AI in FPS game
+      h4 NPC
+      ul
+        li non-playable character - doesn't play the game but rather interacts with the player
+      h4 Planning
+      ul
+        li a formalized process of searching for sequence of actions to satisfy a 
+          span.highlight-sec goal
+      h4 Supervised learning
+      ul
+        li works just like learning at schools
+        li for certain input there is a 
+          span.highlight-sec correct output 
+          | the algorithm has to learn
+      h4 Unsupervised learning
+      ul
+        li the output cannot be categorized as being either correct or false
+        li the algorithm learns 
+          span.highlight-sec patterns 
+          | instead
+      h4 Reinforcement learning
+      ul
+        li an agent must learn the best possible output by using trial and error
+        li for each action chosen the agent obtains a 
+          span.highlight-sec feedback
+    +mframe(bgr, 'Occupancy map')
+      ul
+        li a grid over the game environment
+        li maintains probability for each grid cell
+        li probability represents the likelihood of an opponent presence
+        li when the opponent is not visible, the probabilities from the previous occupancy cells are propagated along the edges to neighboring cells
+      .tcenter
+        img.h600(src='../static/slides/images/lecture09/occupancy_map.gif')
+    // ============================================================
+    +mframe(bgr, 'Threat map')
+      ul
+        li used in RTS
+        li the value at any coordinate is the damage that the enemy can inflict
+        li updating is done through iterating the list of known enemies
+        li can be easily integrated into pathfinding
+      ul
+        li
+          span.highlight Example: 
+          | combat units bypass enemy defensive structure in order to attack their infrastructure
+      .tcenter 
+        img.h600(src='../static/slides/svg/lecture09/threat_map.svg')
+    // ============================================================
+    +mframe(bgr, 'Influence map')
+      ul
+        li more generalized than threat maps
+        li helps the AI to make better decisions by providing useful information
+          ul
+            li situation summary (borders, enemy presence)
+            li statistics summary (number of visits, number of assaults)
+            li future predictions
+        li
+          span.highlight Example: 
+          |number of units killed during last strike
+      .tcenter
+        img.h550(src='../static/slides/svg/lecture09/influence_map.svg') 
+    +mframe(bgr, 'Goal-oriented action planning')
+      ul
+        li centers on the idea of goals as desirable world states
+        li each action has a set of conditions it can satisfy, as well as a set of preconditions that <br>must be true in order to be satisfied
+        li originally implemented for F.E.A.R (2005)
+        li 
+          span.highlight two stages: 
+          |select a relevant goal and attempt to fulfill that goal
+      .tcenter
+        img.h600(src='../static/slides/svg/lecture09/goap.svg')
+    +mframe(bgr, 'RTS features')(class='line-s')
+      h4 Resource control
+      ul
+        li minerals, gas, oil, trees etc.
+        li controlling more resources increases the players' construction capabilities
+      h4 Tech tree
+      ul
+        li a directed acyclic graph that contains the whole technological development of a faction
+      h4 Build order (opening)
+      ul
+        li the timings at which the first buildings are constructed
+      h4 Fog of war
+      ul
+        li fog that covers the parts of the map the player has not yet explored
+        li requires to scout unexplored areas to find enemy sources
+      h4 Micromanagement
+      ul
+        li way of controlling units in detail while they are in combat
+      h4 Tactics
+      ul
+        li a set of specific actions used when applying a strategy
+      h4 Strategy
+      ul
+        li making decisions knowing what we saw from the opponent
+        li we can prioritize economy over technology or military production
+    +chapter(bgr, 'Lecture 10: Scripting Languages')
+    +mframe(bgr, 'Scripts')
+      h4 Script
+      ul
+        li a piece of code that performs a specific task
+        li originally, scripts were simple languages for punch-cards processing
+      h4 Scripting language
+      ul
+        li
+          span.highlight common definition: 
+          | a scripting language is a high-level language that can be interpreted by another program at runtime
+        li it is more about an environment than the language itself - even C/C++ can be considered as a scripting language if loaded by an interpreter
+        li C# is compiled into byte-code that is interpreted at runtime by .NET, yet most people don't consider it as a scripting language
+      h4 Common characteristics
+      ul
+        li economy of expression
+        li flexible dynamic typing
+        li easy access to other programs
+    +mframe(bgr, 'Game Engine script API')
+      ul
+        li the engine needs to communicate with the scripting part - provided by 
+          span.highlight bridges
+          ul
+            li JNI (Java - C++)
+            li P/Invoke (.NET - C++)
+            li LuaBridge (Lua - C++)
+            li Dukbind (Duktape JS - C++)
+      ul
+        li bridge is a performance bottleneck, especially for per-frame calls
+        li more scripting languages -> more bridges to maintain
+        ul
+          li crossing the boundary between C++ and the script is slow while marshalling a large amount of data
+      ul
+        li
+          span.highlight Marshalling
+          ul
+            li transforming the memory representation of an object between two domains (different programming languages)
+        li
+          span.highlight Semantic gap
+          ul
+            li descriptive difference of an object in various representations (relational database, object-oriented structure)
+    +chapter(bgr, 'Lecture 11: Multiplayer')
+    +mframe(bgr, 'Multiplayer categories')
+      .top-content.justify-right.r5
+        img.w500(src='../static/slides/images/lecture11/types_single.jpg')
+      .top-content.justify-right.r30.t20
+        img.w500(src='../static/slides/images/lecture11/types_split.jpg')
+      .top-content.justify-right.r5.t40
+        img.w500(src='../static/slides/images/lecture11/types_multi.jpg')
+      .top-content.justify-right.r30.t60
+        img.w500(src='../static/slides/images/lecture11/types_mmo.jpg')
+      ul
+        li single-screen multiplayer
+        li.mt200 split-screen multiplayer
+        li.mt200 networked multiplayer
+        li.mt200 MMOG
+    +mframe(bgr, 'Issues')
+      ul
+        li the main objective: how to synchronize several universes
+        li all clients have to achieve a certain degree of synchrony
+        li.highlight there is no (known) real-world picture for this type of problem
+      ul.mt40
+        li impact on the game design - game model, animation engine, sound engine, vehicle model, AI engine, physics,...
+      ul.mt40
+        li implement multiplayer features into a single-player game is a painful task
+        li converting a multiplayer game into a single-player game is trivial
+      ul.mt40
+        li
+          +strtext('', 'Naive approach:', 'transfer a complete game state repeatedly to all clients')
+        li
+          +strtext('', 'Most common approach:', 'transfer a minimal subset of a game state that is required to reconstruct the complete information')
+        li.mt40
+          +strtext('', 'Topologies:', 'peer-to-peer, client-server')
+    // ============================================================
+    +mframe(bgr, 'Peer-to-peer architecture')
+      ul
+        li each device exchanges data with each other in a fully connected graph
+        li
+          +strtext('used in', 'Doom,', 'early', 'Command & Conquer, Age of Empires, Starcraft')
+        li given 
+          include ../build_pre/equations/lecture11/peer_to_peer_01.svg
+          |&nbsp;peers, each peer must have 
+          include ../build_pre/equations/lecture11/peer_to_peer_02.svg
+          |&nbsp;connections -> 
+          include ../build_pre/equations/lecture11/peer_to_peer_03.svg
+          |&nbsp;in total
+        li methods: single master, partial authority, full replication
+      .tcenter.mt60
+        img.h500(src='../static/slides/svg/lecture11/arch_p2p.svg')
+    +mframe(bgr, 'Client-server architecture')
+      ul
+        li
+          include ../build_pre/equations/lecture11/client_server_01.svg
+          |&nbsp;devices, 
+          include ../build_pre/equations/lecture11/client_server_02.svg
+          |&nbsp;connections
+        li server must handle 
+          include ../build_pre/equations/lecture11/client_server_03.svg
+          |&nbsp;more messages per second
+        li server quickly becomes the bottleneck (lack of power and bandwidth)
+        li it is quite clear which code runs on a server machine
+        li
+          +strtext('', 'Dedicated server', '- only runs the game state and communicates')
+        li
+          +strtext('', 'Listen server', '- server is an active participant in the game itself')
+      .tcenter.mt60
+        img.h500(src='../static/slides/svg/lecture11/arch_client_server.svg')
+    +mframe(bgr, 'Replication')
+      ul
+        li.highlight the act of transmitting a state of an object from one device to another
+        li each object must be uniquely identified (network ID)
+        li the network message usually consists of a type of an object and all parameters required to construct this object on all machines
+      .code.mt100
+        include ../static/slides/snippets/lecture11/replication.html
+    +mframe(bgr, 'Latency handling summary')
+      h4 Interpolation/extrapolation
+      ul
+        li smoothens out incoming values by interpolating to them
+      h4 Deterministic prediction
+      ul
+        li runs simulated code, masks latency and keeps the client's state in sync
+      h4 Dead reckoning
+      ul
+        li non-deterministic prediction
+        li client uses the last known state of an object to extrapolate future state
+      h4 Server-side rewind
+      ul
+        li the server buffers object positions for several frames to match the client's view when processing instant events
+      .tcenter.highlight-third.mt100
+        p It is better to be wrong on time than right but late
+    +chapter(bgr, 'Lecture 12: Indie Games Development')
+    +gbquote(bgr, 'You are not prepared!', 'Illidan Stormrage')(class="w50")
+
+            
+include ./partial/footer.pug
+script(src!='../libs/revealjs/revealjs.ts')
+script(src!='../src/lectures/reveal-setup.ts')

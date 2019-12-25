@@ -1,5 +1,5 @@
 import * as ECSA from '../../../libs/pixi-component';
-import { Interpolation, TranslateAnimation, RotationAnimation } from '../../utils/animation';
+import { Interpolation, TranslateAnimation } from '../../utils/animation';
 
 class ExampleTween {
   engine: ECSA.GameLoop;

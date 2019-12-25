@@ -44,7 +44,7 @@ export class ExampleShaderMandelbrot {
 
     new ECSA.Builder(this.engine.scene)
       .asMesh('quad', geometry, PIXI.Shader.from(vertexShader, fragmentShader, uniforms))
-      .withComponent(new ECSA.GenericComponent('updater').doOnUpdate((cmp, delta, absolute) => cmp.owner.asMesh().shader.uniforms.u_time += 0.1))
+      .withComponent(new ECSA.GenericComponent('updater').doOnUpdate((cmp, delta, absolute) => cmp.owner.scale.set(cmp.owner.scale.x*1.01)))
       .withParent(this.engine.scene.stage)
       .build();
   });

@@ -1,6 +1,5 @@
 import * as ECSA from '../../../libs/pixi-component';
-import { checkTime } from '../../utils/functions';
-import { KeyInputComponent, Keys } from '../../../libs/pixi-component/components/key-input-component';
+import { KeyInputComponent } from '../../../libs/pixi-component/components/key-input-component';
 import { TranslateAnimation, Interpolation } from '../../utils/animation';
 import * as Net from '../../../libs/network-emulator';
 import { NetworkBehavior } from './example-network-basic';
@@ -56,7 +55,7 @@ class ExampleNetworkAnim {
       }))
       .build();
 
-      cmp.interpolation = Interpolation.easeinout;
+      cmp.interpolation = Interpolation.expoIn;
     });
   }
 }

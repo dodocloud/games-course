@@ -1,5 +1,5 @@
-import { NetReader } from "./net-reader";
-import { NetWriter } from "./net-writer";
+import { NetReader } from './net-reader';
+import { NetWriter } from './net-writer';
 
 /**
  * Network message types

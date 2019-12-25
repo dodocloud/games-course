@@ -1,9 +1,10 @@
-mixin contentlink(title, code)
+mixin contentlink(title, code, label)
   .input-container
     a.link-button(id=code href='./'+code+'.pug')
     .link-tile
       a.inner-container(href='./'+code+'.pug?print-pdf')
         img(class='print' src='../static/slides/svg/dashboard/ic_print.svg')
+      .inner-hint=label
       .icon
         block
       label.link-tile-label(for=code)!=title

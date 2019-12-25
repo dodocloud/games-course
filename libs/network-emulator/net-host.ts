@@ -91,7 +91,7 @@ export class NetworkHost extends ECSA.Component {
         }
       } else {
         // send to all peers
-        for (let [key, peer] of this.peers) {
+        for (let [, peer] of this.peers) {
           peer.messagesToSend.push(netMsg);
         }
       }
@@ -154,7 +154,7 @@ export class NetworkHost extends ECSA.Component {
         let response = new NetOutputMessage(1, 0, NetMsgTypes.DISCOVER_RESPONSE);
         this.network.sendUDPMessage(this.applicationId, response, time);
       } else if (message.msgType === NetMsgTypes.CONNECT_REQUEST) {
-        // received connect request . send connect response 
+        // received connect request . send connect response
         console.log(`Connected peer ${message.sourceIp}:${message.sourcePort}`);
         let newPeerId = this.connectToPeer(message.sourceIp, message.sourcePort);
         this.peers.get(newPeerId).lastReceivedMsgTime = time;
@@ -289,7 +289,7 @@ export class NetworkHost extends ECSA.Component {
       }
 
       // send all messages that haven't been confirmed
-      for (let [key, val] of peer.unconfirmedMessages) {
+      for (let [, val] of peer.unconfirmedMessages) {
         this.network.sendUDPMessage(this.applicationId, val, time);
       }
 

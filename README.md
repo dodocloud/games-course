@@ -93,7 +93,7 @@ Will be added on the day the particular lecture takes place
 | 10 | 26.11. | Scripting languages | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture10.html) |
 | 11 | 3.12. | **DAY OFF** | |
 | 12 | 10.12. | Multiplayer | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture11.html) |
-| **13** | **17.12.** | **Indie Game Development** | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture12.html) |
+| 13 | 17.12. | Indie Game Development | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lecture12.html) |
 
 
 ## Labs
@@ -112,7 +112,7 @@ Will be added on the day the particular lecture takes place
 | 10E | 26.11. | Game AI | [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab05.html) |
 | 11O | 3.12. | **DAY OFF**  | |
 | 12E | 10.12. | Multiplayer |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab06.html) |
-| **13O** | **17.12.** | **Multiplayer** |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab06.html) |
+| 13O | 17.12. | Multiplayer |  [Link](http://dodoworks.s3-website.eu-central-1.amazonaws.com/lab06.html) |
 
 ## Old materials
 
