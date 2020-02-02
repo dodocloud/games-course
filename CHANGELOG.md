@@ -7,6 +7,10 @@ Instead of a traditional versioning, a different one due to the nature of this p
 - second number indicates week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [3.12.6] - 2020-02-02
+### Changed
+- Simplified scene scaling for Arkanoid and Paratrooper minigames
+
 ## [3.12.5] - 2019-12-25
 ### Added
 - New minigame - Driver

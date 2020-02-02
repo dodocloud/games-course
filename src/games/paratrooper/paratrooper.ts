@@ -12,18 +12,12 @@ class Paratrooper {
 
     let canvas = (document.getElementById('gameCanvas') as HTMLCanvasElement);
 
-    let screenHeight = canvas.height;
-
-    // calculate ratio between intended resolution (here 400px of height) and real resolution
-    // - this will set appropriate scale
-    let gameScale = SPRITES_RESOLUTION_HEIGHT / screenHeight;
-    // scale the scene to 50 units if height
-    let resolution = screenHeight / SCENE_HEIGHT * gameScale;
-    this.engine.init(canvas, 800, screenHeight, resolution / gameScale, { flagsSearchEnabled: true});
+    // scale the scene to 50 units if height, hence SCENE_HEIGHT
+    this.engine.init(canvas, canvas.width, canvas.height, canvas.height / SCENE_HEIGHT, { flagsSearchEnabled: true});
 
     // set global scale which has to be applied for ALL sprites as it will
     // scale them to defined unit size
-    ParatrooperFactory.globalScale = 1 / resolution;
+    ParatrooperFactory.globalScale = SCENE_HEIGHT / SPRITES_RESOLUTION_HEIGHT;
 
     // set resized width according to the current aspect ratio
     ParatrooperFactory.screenWidth = SCENE_HEIGHT * (canvas.width / canvas.height);

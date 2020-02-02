@@ -11,18 +11,12 @@ class Arkanoid {
     this.engine = new ECSA.GameLoop();
     let canvas = (document.getElementById('gameCanvas') as HTMLCanvasElement);
 
-    let screenHeight = 600;
-
-    // calculate ratio between intended resolution (here 400px of height) and real resolution
-    // - this will set appropriate scale
-    let gameScale = SPRITES_RESOLUTION_HEIGHT / screenHeight;
     // scale the scene to 25 units if height
-    let resolution = screenHeight / SCENE_HEIGHT * gameScale;
-    this.engine.init(canvas, 800, screenHeight, resolution / gameScale);
+    this.engine.init(canvas, canvas.width, canvas.height, canvas.height / SCENE_HEIGHT);
 
     // set global scale which has to be applied for ALL sprites as it will
     // scale them to defined unit size
-    Factory.globalScale = 1 / resolution;
+    Factory.globalScale = SCENE_HEIGHT / SPRITES_RESOLUTION_HEIGHT;
 
     this.engine.app.loader
       .reset()    // necessary for hot reload
