@@ -1,0 +1,17 @@
+mixin header(title, description, author, favicon, theme)
+	head
+		meta(charset='utf-8')
+		title=title
+		meta(name='description' content=description)
+		meta(name='author' content=author)
+		meta(name='apple-mobile-web-app-capable' content='yes')
+		meta(name='HandheldFriendly' content='true')
+		meta(name='apple-mobile-web-app-status-bar-style' content='black-translucent')
+		meta(name='viewport' content='width=device-width initial-scale=1 maximum-scale=1 user-scalable=0')
+		meta(name='screen-orientation' content='landscape')
+		link(rel='shortcut icon' href=favicon ? favicon : '../favicon.png')
+		link(rel='stylesheet' href='../../node_modules/reveal.js/dist/reset.css')
+		link(rel='stylesheet' href='../../node_modules/reveal.js/dist/reveal.css')
+		link#theme(rel='stylesheet' href=theme ? theme : '../themes/default_dark/theme_dark.scss')
+		link(rel='stylesheet' href='../themes/base/print.scss')
+		block

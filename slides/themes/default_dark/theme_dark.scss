@@ -1,0 +1,26 @@
+// ============= Load default variables =============
+@import "../base/theme_base_variables.scss";
+@import "../base/fonts.scss";
+
+// ============= Override default variables =============
+
+/* Colors */
+$allColors: "white" #ffffff,;
+$highlight-color-1: #e9e56f;
+$highlight-color-2: #ff9abb;
+$highlight-color-3: #079ad9;
+$link-color: #f6c9a0;
+$background-color: #000;
+$text-color: #e0e0e0;
+$text-selection-color: #079ad9;
+
+$frame-color: #55555555;
+$frame-image: "./frame_dark.png";
+
+// ============= Load base templates =============
+// load templates
+@import "../base/templates.scss";
+@import "../base/theme_base.scss";
+
+// ============= Load other custom styles =============
+@import "./code_theme_dark.scss";

@@ -1,0 +1,83 @@
+mixin msection()
+	section(data-background-image!=(attributes.bgr ? attributes.bgr : (defaultBgr ? defaultBgr : undefined)),
+	data-background-color!=(attributes.color ? attributes.color : (defaultColor ? defaultColor : '#000000')),
+	data-auto-animate!=(attributes.autoAnimate ? true : undefined)
+	data-transition!=(attributes.transition ? attributes.transition : undefined))
+		block
+
+
+mixin mcontainer(title)
+	+msection()&attributes(attributes)
+		div(class!='container ' + (attributes.class ? attributes.class : ''))
+			if(title)
+				.frame.shard
+					h3.slide-title.p-20!=title
+			block
+
+mixin chapter(chapter)
+	+mcontainer()(class='content-center')&attributes(attributes)
+		h2=chapter
+
+mixin frameShard()
+	div(class!='frame shard ' + (attributes.class ? attributes.class : ''))
+		block
+
+// frame whose title is inside
+mixin frameInbox(title)
+	+mcontainer()&attributes(attributes)
+		div(class!='frame inbox ' + (attributes.class ? attributes.class : ''))
+			if(title)
+				h3.slide-title!=title
+				block
+			else
+				block
+
+// mid-size inbox
+mixin frameInboxMid(title)
+	+mcontainer()&attributes(attributes).flex-col.items-center.justify-center
+		.width-80p
+			div(class!='frame inbox mid ' + (attributes.class ? attributes.class : ''))
+				if(title)
+					h3.slide-title!=title
+					block
+				else
+					block
+
+// frame whose title is outside
+mixin frameOutbox(title)
+	+mcontainer()&attributes(attributes).flex-col
+		if(title)
+			h3.slide-title.outbox-title!=title
+		div(class!='frame outbox ' + (attributes.class ? attributes.class : ''))
+			block
+
+// mid-size outbox
+mixin frameOutboxMid(title)
+	+mcontainer()&attributes(attributes).flex-col.items-center.justify-center
+		.width-80p
+			if(title)
+				h3.slide-title.outbox-title!=title
+			div(class!='frame outbox mid ' + (attributes.class ? attributes.class : ''))
+				block
+
+mixin quote(title, author)
+	blockquote(class!=(attributes.class ? attributes.class : ''))=title
+		span.author=author
+
+// bubble tooltip
+mixin imgTooltip(picture, text)
+	.absolute(class!=(attributes.class ? attributes.class : ''))
+		.hint.fragment.fade-up!=text
+		div.text-center
+			img.height-300(src!=picture)
+
+
+mixin footer(author, description)
+	footer
+		p!=author
+		p!=description
+
+
+mixin quote(title, author)
+	blockquote(class!=(attributes.class ? attributes.class : ''))=title
+		span.author=author

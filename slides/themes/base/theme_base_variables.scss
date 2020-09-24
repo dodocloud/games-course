@@ -1,0 +1,49 @@
+/* List of all variables used in theme_base.scss */
+/* You can override any of those in your custom theme */
+
+
+/* Default colors for highlighting  */
+$allColors: "white" #FFFFFF,;
+$highlight-color-1: darken(#e9e56f, 30%);
+$highlight-color-2: darken(#ff9abb, 30%);
+$highlight-color-3: darken(#075a99, 30%);
+
+/* Color for links */
+$link-color: darken(#f6c9a0, 30%);
+/* Default background of body element */
+$background-color: #FFF;
+/* Default color of texts */
+$text-color: #333;
+/* Default color of selected texts */
+$text-selection-color: #079ad9;
+
+/* Settings for frames */
+$frame-color: #FFFFFF88;
+$frame-image: ""; /* no image by default */
+$frame-image-slice: 20 20 20 20 fill;
+$frame-image-width: 20px;
+
+/* Fonts */
+$font-monospace: "Inconsolata", monospace;
+$font-regular: "Roboto", sans-serif;
+
+/* Sizing */
+$width: 1650px;
+$height: 970px;
+
+$base-font-size: 36px;
+$base-line-height: 1.2;
+$title-font-size: 60px;
+
+$frame-padding: 30px;
+$indent-spacing: 40px;
+
+/* Margin of titles */
+$outbox-title-margin: 20px;
+$inbox-title-margin: 20px;
+
+/* Units for dummy spaces */
+$space-base-size: 20px;
+
+/* Margin between two consecutive lists */
+$lists-spacing: 20px;

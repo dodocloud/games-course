@@ -1,13 +1,21 @@
 {
-    "compilerOptions": {
-      "target": "es5",    
-      "lib": ["es6", "dom"], 
-      "module": "commonJS", 
-      "outDir": "./www",    
-      "downlevelIteration": true 
-    },
-    "include": ["./src/**/*", "./libs/**/*"],
-    "exclude": [
-      "./node_modules", "./scripts"
-    ]
-  }
+	"compilerOptions": {
+		"target": "es2017",
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"moduleResolution": "node",
+		"module": "esnext",
+		"outDir": "./build",
+		"downlevelIteration": true
+	},
+	"include": [
+		"./examples/src/**/*",
+		"./libs/**/*"
+	],
+	"exclude": [
+		"./node_modules",
+		"./scripts"
+	]
+}

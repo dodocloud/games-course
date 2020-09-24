@@ -1,0 +1,17 @@
+<pre><span class="linenum">   1</span> move_paddle
+<span class="linenum">   2</span>         <span class="token comment">;read input from joystick</span>
+<span class="linenum">   3</span>         <span class="token opcode property">lda</span>  joystick2<span class="token comment">;joy port 2</span>
+<span class="linenum">   4</span>         <span class="token opcode property">and</span>  <span class="token decimalnumber string">#8</span> <span class="token comment">;right</span>
+<span class="linenum">   5</span>         <span class="token opcode property">beq</span> move_paddle_right
+<span class="linenum">   6</span>         <span class="token opcode property">lda</span>  joystick2
+<span class="linenum">   7</span>         <span class="token opcode property">and</span>  <span class="token decimalnumber string">#4</span> <span class="token comment">;#left</span>
+<span class="linenum">   8</span>         <span class="token opcode property">beq</span> move_paddle_left
+<span class="linenum">   9</span>         <span class="token opcode property">rts</span>
+<span class="linenum">  10</span> check_ball_paddle_collision
+<span class="linenum">  11</span>         <span class="token opcode property">lda</span> sprite_collision
+<span class="linenum">  12</span>         <span class="token opcode property">and</span> <span class="token decimalnumber string">#2</span>
+<span class="linenum">  13</span>         <span class="token opcode property">cmp</span> <span class="token decimalnumber string">#2</span>
+<span class="linenum">  14</span>         <span class="token opcode property">beq</span> ball_paddle_collision
+<span class="linenum">  15</span>         <span class="token opcode property">rts</span>
+<span class="linenum">  16</span> ball_paddle_collision
+<span class="linenum">  17</span>         ...</pre>

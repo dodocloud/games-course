@@ -1,0 +1,28 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/bgr_gradient.jpg';
+
+
++header('NI-APH', 'Architecture of Computer Games', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+	.slides
+		// ============================================================
+		+title('Lecture 1', 'Games')
+		// ============================================================
+		include ./chapters/games.pug
+		include ./chapters/mechanics.pug
+		include ./chapters/engines_history.pug
+		+quote-doom()
+				
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

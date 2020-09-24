@@ -1,0 +1,381 @@
+/**
+*
+* Override Infima's variables + set color palette
+*
+**/
+
+/* Serif - SourceSans */
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-ExtraLight.otf");
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-ExtraLightIt.otf");
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-Light.otf");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-LightIt.otf");
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-Regular.otf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-It.otf");
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-Semibold.otf");
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-SemiboldIt.otf");
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-Bold.otf");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-BoldIt.otf");
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-Black.otf");
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Source Sans Pro";
+	src: url("/fonts/SourceSansPro-BlackIt.otf");
+	font-weight: 900;
+	font-style: italic;
+}
+
+/* MonoSpace */
+@font-face {
+  font-family: "Inconsolata";
+  src: url("/fonts/Inconsolata.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/*$color-midnight: #03060c;
+$color-white: #ffffff;
+$color-tomato: #cf2f25;
+$color-tomato-dark: #7d0600;
+$color-lemon: #e9e56f;
+$color-lemon-dark: #a19d22;
+$color-emerald: #47d58a;
+$color-emerald-dark: #009244;
+$color-aqua: #30d2d5;
+$color-aqua-dark: #00a0a0;
+$color-royal: #6f8ce9;
+$color-royal-dark: #4d6fdc;
+$color-azure: #2c57df;
+$color-azure-dark: #0a2c9d;
+$color-manhattan: #f6c9a0;
+$color-manhattan-dark: #a56b36;
+
+$color-rhino-100: #1d232d;
+$color-rhino-90: #2f3744;
+$color-rhino-80: #535e70;
+$color-rhino-60: #7b8694;
+$color-rhino-40: #a6aeb8;
+$color-rhino-20: #d2d6dc;
+$color-rhino-10: #e8eaec;
+$color-rhino-5: #f3f4f5;*/
+
+:root {
+  --palette-charade: #1d232d;
+  --palette-gray: #2f3744;
+  --palette-graylight: #535e70;
+  --palette-green: #47d58a;
+  --palette-green-darker: #009244;
+  --palette-midnight: #1d232d;
+  --palette-pale-blue: #6f8ce9;
+  --palette-pale-blue-lighter: #97ACF3;
+  --palette-pink: #e9e56f;
+  --palette-pink-darker: #a19d22;
+  --palette-rock: rgb(var(--palette-rock-raw));
+  --palette-rock-raw: 38, 40, 51;
+  --palette-sky: #2c57df;
+  --palette-turquoise: #30d2d5;
+  --palette-white: #fff;
+  --palette-white-03: rgba(255, 255, 255, 0.03);
+  --palette-white-05: rgba(255, 255, 255, 0.05);
+  --palette-white-10: rgba(255, 255, 255, 0.1);
+  --palette-white-20: rgba(255, 255, 255, 0.2);
+  --palette-white-30: rgba(255, 255, 255, 0.3);
+  --palette-white-darker: #f3f4f5;
+  --palette-yellow: #e9e56f;
+  --palette-red: #cf2f25;
+  --palette-red-darker: #7d0600;
+
+  --transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+
+  --font-family-base: "Source Sans Pro", Helvetica, sans-serif;
+
+  --font-size-small: 18px;
+  --font-size-normal: 20px;
+  --font-size-large: 24px;
+  --font-size-llarge: 32px;
+  --font-size-xlarge: 46px;
+  --font-size-xxlarge: 64px;
+  --font-size-xxxlarge: 80px;
+
+  --ifm-background-color: var(--palette-charade);
+  --ifm-blockquote-color: var(--palette-pale-blue);
+  --ifm-code-background: var(--palette-gray);
+  --ifm-code-color: var(--palette-white);
+  --ifm-code-font-size: var(--font-size-small);
+  --ifm-color-emphasis-300: var(--palette-pale-blue);
+  --ifm-color-primary: var(--palette-pink);
+  --ifm-color-primary-dark: #C4BF43;
+  --ifm-color-primary-darker: #a19d22;
+  --ifm-color-primary-darkest: #a19d22;
+  --ifm-color-primary-light: #e9e56f;
+  --ifm-color-primary-lighter: #fffca0;
+  --ifm-color-primary-lightest: #fffdc8;
+  --ifm-color-info: var(--palette-sky);
+  --ifm-color-success: var(--palette-green);
+  --ifm-color-warning: var(--palette-yellow);
+  --ifm-dropdown-background-color: var(--palette-rock);
+  --ifm-font-color-base: var(--palette-white);
+  --ifm-font-family-base: var(--font-family-base);
+  --ifm-font-family-monospace: "Inconsolata", monospace;
+  --ifm-font-size-base: var(--font-size-small);
+  --ifm-global-border-radius: 8px;
+  --ifm-h1-font-size: var(--font-size-xxlarge);
+  --ifm-h2-font-size: var(--font-size-llarge);
+  --ifm-h4-font-size: var(--font-size-large);
+  --ifm-heading-margin-bottom: 1.5rem;
+  --ifm-link-color: var(--palette-pale-blue-lighter);
+  --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
+  --ifm-navbar-background-color: var(--palette-charade);
+  --ifm-navbar-height: 80px;
+  --ifm-navbar-item-padding-horizontal: 20px;
+  --ifm-navbar-shadow: 0 1px 0 0 var(--palette-white-10);
+  --ifm-paragraph-margin-bottom: 1.25rem;
+  --ifm-pre-background: var(--palette-midnight);
+  --ifm-table-cell-padding: 0.15rem 1rem;
+  --ifm-toc-border-color: var(--palette-white-10);
+}
+
+html[data-theme="dark"] {
+  --ifm-background-color: var(--palette-charade);
+  --ifm-color-emphasis-300: var(--palette-pale-blue);
+  --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
+}
+
+html[data-theme="dark"] .DocSearch {
+  --docsearch-text-color: var(--ifm-font-color-base);
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(0, 0, 0, 0.5);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-background-color);
+  /* Search box */
+  --docsearch-searchbox-background: var(--palette-white-10);
+  --docsearch-searchbox-focus-background: var(--palette-midnight);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--palette-rock);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-background-color);
+  --docsearch-key-gradient: linear-gradient(
+    -26.5deg,
+    var(--palette-gray) 0%,
+    var(--palette-rock) 100%
+  );
+}
+
+/**
+ *
+ * Override Docusaurus/Infima
+ *
+ **/
+
+nav {
+  --ifm-font-size-base: var(--font-size-normal);
+  --ifm-link-color: var(--palette-pink);
+}
+
+.markdown {
+  --ifm-h2-vertical-rhythm-top: 3;
+  --ifm-h3-vertical-rhythm-top: 2;
+  --ifm-heading-vertical-rhythm-top: 2; /* h4 */
+  --ifm-heading-vertical-rhythm-bottom: 0.4;
+  --ifm-table-background: var(--palette-white-03);
+  --ifm-table-border-color: var(--palette-charade);
+  --ifm-table-border-width: 4px;
+  --ifm-table-head-background: var(--palette-gray);
+  --ifm-table-head-color: var(--palette-white);
+  --ifm-table-stripe-background: var(--palette-white-03);
+}
+
+.admonition {
+  --ifm-color-info: var(--palette-pale-blue);
+  --ifm-color-success: var(--ifm-color-primary-lightest);
+  --ifm-heading-color: #000;
+}
+
+.alert--success {
+  --ifm-alert-background-color: var(--palette-green);
+  --ifm-alert-border-color: var(--palette-green);  
+}
+
+.alert--secondary {
+  --ifm-alert-background-color: var(--palette-pale-blue);
+  --ifm-alert-border-color: var(--palette-pale-blue);
+}
+
+.alert--warning {
+  --ifm-alert-background-color: var(--palette-pink);
+  --ifm-alert-border-color: var(--palette-pink);
+}
+
+.pagination-nav {
+  --ifm-color-content-secondary: var(--palette-white);
+  --ifm-link-color: var(--palette-white);
+  --ifm-link-hover-color: var(--palette-white);
+  --ifm-pagination-nav-color-hover: var(--palette-white);
+  --ifm-pagination-nav-border-radius: var(--ifm-global-border-radius);
+  --ifm-color-emphasis-300: transparent;
+}
+
+/* This is from Layout.tsx (cf. upstream) */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  transition: var(--ifm-transition-fast) ease color;
+}
+
+#__docusaurus {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pagination */
+
+.pagination-nav__item--next .pagination-nav__link {
+  background: var(--palette-pink);
+}
+
+.pagination-nav__link {
+  background: var(--palette-white-05);
+}
+
+.navbar__link,
+.dropdown__link {
+  font-size: var(--ifm-font-size-base);
+}
+
+main article header h2 a {
+  color: var(--palette-white-darker);
+}
+
+.DocSearch-Button-Key {
+  display: none !important;
+}
+
+/**
+ *
+ * Custom global styles
+ *
+ **/
+
+/* Firefox */
+* {
+  scrollbar-color: var(--palette-pale-blue) var(--palette-gray);
+  scrollbar-width: thin;
+}
+
+/* WebKit / Blink */
+::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--palette-gray) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+  background: var(--palette-pale-blue) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--palette-gray) !important;
+}
+
+.navbar__item--slack {
+  padding-left: 2.25rem;
+  background-image: url("/img/navbar/slack.svg");
+  background-position-x: 0.5rem;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+}
+
+.color--pink {
+  color: var(--palette-pink);
+}
+
+.screenshot--shadow {
+  box-shadow: 0 15px 61px 5px rgba(20, 23, 37, 0.94);
+}
+
+.screenshot--docs {
+  display: block;
+  margin: 4rem auto;
+}
+
+.screenshot--small {
+  max-width: 500px;
+}

@@ -1,0 +1,116 @@
+pre {
+	color: $color-rhino-80;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+
+	tab-size: 4;
+	hyphens: none;
+
+	.current-fragment.visible,
+	.current-fragment.visible * {
+		color: $highlight-color-1 !important;
+	}
+}
+
+.token.comment,
+.token.prolog,
+.token.cdata {
+	color: $color-rhino-60;
+}
+
+.token.delimiter,
+.token.boolean,
+.token.keyword,
+.token.selector,
+.token.important,
+.token.atrule {
+	color: $color-emerald;
+}
+
+.token.operator,
+.token.punctuation,
+.token.attr-name {
+	color: $color-rhino-40;
+}
+
+.token.tag,
+.token.tag .punctuation,
+.token.doctype,
+.token.builtin {
+	color: $color-royal;
+}
+
+.token.entity,
+.token.number,
+.token.symbol {
+	color: $color-aqua;
+}
+
+.token.property,
+.token.constant,
+.token.variable {
+	color: $color-emerald;
+}
+
+.token.string,
+.token.char {
+	color: $color-aqua;
+}
+
+.token.attr-value,
+.token.attr-value .punctuation {
+	color: $color-royal;
+}
+
+.token.attr-value .punctuation:first-child {
+	color: $color-rhino-60;
+}
+
+.token.url {
+	color: $link-color;
+	text-decoration: underline;
+}
+
+.token.function {
+	color: $color-royal;
+}
+
+.token.regex {
+	background: $color-rhino-80;
+}
+
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.inserted {
+	background: $color-rhino-60;
+}
+
+.token.deleted {
+	background: $color-rhino-80;
+}
+
+code.language-css .token.property,
+code.language-css .token.property + .token.punctuation {
+	color: $color-rhino-40;
+}
+
+code.language-css .token.id {
+	color: $color-royal;
+}
+
+code.language-css .token.selector > .token.class,
+code.language-css .token.selector > .token.attribute,
+code.language-css .token.selector > .token.pseudo-class,
+code.language-css .token.selector > .token.pseudo-element {
+	color: $color-royal;
+}

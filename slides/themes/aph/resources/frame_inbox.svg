@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="491.21" version="1.1" viewBox="0 0 238.13 129.97" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g stroke="#7b8694" stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40" stroke-width=".30016">
+  <rect x="7.0097" y="2.5513" width="224.92" height="21.669" fill="#252a32"/>
+  <rect x="24.269" y="2.5513" width="194.46" height="4.8025" fill="#535e70"/>
+  <rect x="24.269" y="122.61" width="186.67" height="4.8025" fill="#535e70"/>
+  <path d="m235.58 0.15008 2.4013 2.4012v9.605l-2.4013 2.4012v100.85l2.4013 2.4012v9.605l-2.4013 2.4012h-7.2037l-2.4013-2.4012h-21.611l7.2038-7.2038h14.408l4.8025-4.8025v-100.85l-4.8025-4.8025h-14.408l-7.2038-7.2037h21.611l2.4013-2.4012z" fill="#2f3744"/>
+ </g>
+ <g fill="#7b8694">
+  <path d="m223.57 8.5545-4.8025-4.8025h4.8025l4.8025 4.8025z"/>
+  <path d="m215.77 8.5545-4.8025-4.8025h4.8025l4.8025 4.8025z"/>
+  <path d="m231.38 8.5545-4.8025-4.8025h7.2038v4.8025z"/>
+  <path d="m223.57 121.41-4.8025 4.8025h4.8025l4.8025-4.8025z"/>
+  <path d="m215.77 121.41-4.8025 4.8025h4.8025l4.8025-4.8025z"/>
+  <path d="m231.38 121.41-4.8025 4.8025h7.2038v-4.8025z"/>
+ </g>
+ <path d="m2.5513 0.15008-2.4012 2.4012v9.605l2.4012 2.4012v100.85l-2.4012 2.4012v9.605l2.4012 2.4012h7.2037l2.4013-2.4012h21.611l-7.2038-7.2038h-14.408l-4.8025-4.8025v-100.85l4.8025-4.8025h14.408l7.2038-7.2037h-21.611l-2.4013-2.4012z" fill="#2f3744" stroke="#7b8694" stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40" stroke-width=".30016"/>
+ <g fill="#7b8694">
+  <path d="m14.558 8.5545 4.8025-4.8025h-4.8025l-4.8025 4.8025z"/>
+  <path d="m22.362 8.5545 4.8025-4.8025h-4.8025l-4.8025 4.8025z"/>
+  <path d="m6.7535 8.5545 4.8025-4.8025h-7.2037v4.8025z"/>
+  <path d="m14.558 121.41 4.8025 4.8025h-4.8025l-4.8025-4.8025z"/>
+  <path d="m22.362 121.41 4.8025 4.8025h-4.8025l-4.8025-4.8025z"/>
+  <path d="m6.7535 121.41 4.8025 4.8025h-7.2037v-4.8025z"/>
+ </g>
+</svg>

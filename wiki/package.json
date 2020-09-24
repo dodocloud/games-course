@@ -1,0 +1,69 @@
+{
+  "name": "ni-aph-wiki",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build --out-dir ../build_wiki",
+    "swizzle": "docusaurus swizzle @docusaurus/theme-classis DocPaginator",
+    "deploy": "(set GIT_USER=user) && docusaurus deploy --out-dir ../build_wiki",
+    "serve": "docusaurus serve",
+    "lint": "eslint ./src --ext .js, .jsx, .ts, .tsx"
+  },
+  "dependencies": {
+    "@cmfcmf/docusaurus-search-local": "^0.3.0",
+    "@docusaurus/core": "2.0.0-alpha.63",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.63",
+    "@docusaurus/plugin-ideal-image": "2.0.0-alpha.63",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.63",
+    "@docusaurus/preset-classic": "2.0.0-alpha.63",
+    "@tsconfig/docusaurus": "1.0.2",
+    "@types/react": "16.9.49",
+    "@types/react-helmet": "6.1.0",
+    "@types/react-router-config": "5.0.1",
+    "@types/react-router-dom": "5.1.5",
+    "@types/throttle-debounce": "2.1.0",
+    "clsx": "1.1.1",
+    "date-fns": "2.16.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "throttle-debounce": "2.3.0",
+    "typescript": "4.0.2",
+    "unist-util-visit": "2.0.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "eslint": "7.8.1",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-babel": "5.3.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react-hooks": "4.1.0",
+    "eslint-plugin-standard": "4.0.1",
+    "fork-ts-checker-webpack-plugin": "5.1.0",
+    "glob": "7.1.6",
+    "lint-staged": "10.3.0",
+    "make-dir": "3.1.0",
+    "node-fetch": "2.6.0",
+    "rimraf": "3.0.2",
+    "sharp": "0.26.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "sharp": "0.26.0"
+  }
+}

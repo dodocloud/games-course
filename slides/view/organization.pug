@@ -1,0 +1,273 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var assets = '../assets/';
+- var globalAssets = assets +'all/';
+- var imgAssets = assets + 'organization/';
+- var defaultBgr = 'backgrounds/hall_blue.jpg';
+
+
++header('NI-APH', 'Architecture of Computer Games', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+// ===================================================== SLIDES =====================================================
+.reveal
+	.slides
+		// ============================================================
+		+title('Lecture 0', 'Course Organization')
+		// ============================================================
+		+mchapter('Organization of the course', imgAssets+'chapter_organization.svg')
+		+mcontainer
+			h3 Motivational Quotes
+			+frameShard().top-5p.fragment.fade-up
+				+quote('Nobody in this industry knows what they are doing. We just have a gut assumption.', 'Cliff Bleszinski').text-xl
+			+frameShard().top-10p.fragment.fade-up
+				+quote('There\'s a belief that working in game industry is a privilege, and that you should be willing to do whatever it takes to stay there.', 'Emily Grace Buck').text-xl
+			+frameShard().top-15p.fragment.fade-up
+				+quote('Games are great to work on because they are as much about art as they are science.', 'Mike McShaffry').text-xl
+		+frameInboxMid('Purpose of this course')
+			.absolute.center.fill
+				img.height-550.opacity-2(src=imgAssets+'gate.png')
+			ul.leading-3xl
+				li.fragment.fade-up Understand the difference between games and applications
+				li.fragment.fade-up Understand the architecture of game engines
+				li.fragment.fade-up Understand the aspects of data-oriented programming
+				li.fragment.fade-up Understand the basics of math and physics used in games 
+				li.fragment.fade-up Understand the basics of gaming AI
+				li.fragment.fade-up Understand the issues of multiplayer experience
+				li.fragment.fade-up Understand the pitfalls and perils of game industry
+		+frameInbox('History of APH')
+			.flex-cols-2
+				div
+					.list-title.fragment.fade-in(data-fragment-index="1") 2017
+					ul.fragment.fade-in(data-fragment-index="1")
+						li first run, OpenFrameworks engine, C++
+						li <span class="highlight">47</span> students, <span class="highlight">25</span> finished the course
+						li.highlight Average score: 1.48
+					.list-title.fragment.fade-in(data-fragment-index="2") 2018
+					ul.fragment.fade-in(data-fragment-index="2")
+						li design improvements
+						li migrated from C++ to TypeScript (PixiJS)
+						li <span class="highlight">50</span> students, <span class="highlight">30</span> finished the course
+						li.highlight Average score: 1.50
+					.list-title.fragment.fade-in(data-fragment-index="3") 2019
+					ul.fragment.fade-in(data-fragment-index="3")
+						li all slides rewritten into HTML (RevealJS engine)
+						li 23 new examples, 3 minigames, 3 new topics
+						li <span class="highlight">50</span> students, <span class="highlight">33</span> finished the course
+						li.highlight Average score: 1.67
+				div
+					.text-center.fragment.fade-in(data-fragment-index="1")
+						img.width-400(src=imgAssets+'aph_01.jpg')
+					.text-center.fragment.fade-in(data-fragment-index="2")
+						img.width-400(src=imgAssets+'aph_02.jpg')
+					.text-center.fragment.fade-in(data-fragment-index="3")
+						img.width-400(src=imgAssets+'aph_03.jpg')
+		- defaultBgr = 'backgrounds/bgr_microchip.jpg';
+		+frameInboxMid('NI-APH 2020')
+			div
+				ul.leading-2xl
+					li new brand identity (color palette, styles, logotypes)
+					li new examples and topics
+					li introduced ThreeJS library for 3D, next to PixiJS
+					li major changes in the content
+				div
+					ul
+						li.fragment.fade-up
+							span.highlight changes based on the feedback from last survey
+							ul
+								li.fragment.fade-up more time for consultations: <span class="color-emerald">of course</span>
+								li.fragment.fade-up allow to use other libraries than PixiJS: <span class="color-emerald">okay</span>
+								li.fragment.fade-up more practical examples: <span class="color-emerald">I will try</span>
+								li.fragment.fade-up introduce milestones for projects: <span class="color-emerald">absolutely</span>
+
+		- defaultBgr = 'backgrounds/hall_blue.jpg'
+		+mcontainer()
+			h3 Organization
+			.top-5p.left-40p
+				img.height-300(src=themePath+'resources/keen2.png')
+			.center.top-35p.z-index-100.width-100p
+				+frameShard().width-50p
+					div
+						.list-title Slides and materials
+						ul
+							li
+								a(href="https://gitlab.fit.cvut.cz/NI-APH/materials") https://gitlab.fit.cvut.cz/NI-APH/materials
+						.list-title Public Page
+						ul
+							li
+								a(href="https://aph.dodo.me") https://aph.dodo.me
+						.list-title Lectures
+						ul
+							li on Youtube, every Thursday at 16:15
+						.list-title Labs
+						ul
+							li will be uploaded to MS Teams periodically
+		+mcontainer()
+			h3 Assessment
+			.top-5p.left-40p
+				img.height-300(src=themePath+'resources/keen.png')
+			.center.top-35p.z-index-100.width-100p
+				+frameShard().width-50p
+					div
+						.list-title Project
+						ul
+							li a simple web game
+							li Total: <span class="highlight">70 points</span></span>
+							li To pass: <span class="highlight">35</span>
+							li Deadline: <span class="highlight">5.1.2021</span>
+							li Evaluation: after submitting
+							li All info can be found <a href="https://aph.dodo.me/">here</a>
+						.list-title Exam
+						ul
+							li only oral part, 3 questions
+							li Maximum points: <span class="highlight">30</span>, to pass: <span class="highlight">15</span>
+		+frameInboxMid('Lectures')
+			div.center
+				table.width-50p.text-left
+					tr
+						th Week
+						th Date
+						th Content
+					tr
+						td.text-center 01
+						td 24.9.2020
+						td Games
+					tr
+						td.text-center 02
+						td 1.10.2020
+						td Engines
+					tr
+						td.text-center 03
+						td 8.10.2020
+						td Assets
+					tr
+						td.text-center 04
+						td 15.10.2020
+						td Components
+					tr
+						td.text-center 05
+						td 22.10.2020
+						td Patterns
+					tr
+						td.text-center 06
+						td 29.10.2020
+						td Audio
+					tr
+						td.text-center 07
+						td 5.11.2020
+						td Space
+					tr
+						td.text-center 08
+						td 12.11.2020
+						td Physics
+					tr
+						td.text-center 09
+						td 19.11.2020
+						td.color-tomato --------------
+					tr
+						td.text-center 10
+						td 26.11.2020
+						td Graphics
+					tr
+						td.text-center 11
+						td 3.12.2020
+						td AI
+					tr
+						td.text-center 12
+						td 10.12.2020
+						td Multiplayer
+					tr
+						td.text-center 13
+						td 17.12.2020
+						td Design
+			+tipKeen3("And a short minitalk after each technical lecture").bottom-0
+		+mcontainer()
+			.center
+				+frameShard().top-120.width-70p.z-index-100
+					div
+						h3 Labs
+						ul
+							li labs will be pre-recorded and uploaded to MS Teams
+							li every week will be dedicated to consultations
+					div.center
+						table.width-80p.text-left
+							tr
+								th Week
+								th Upload Date
+								th Content
+							tr
+								td.text-center 01
+								td 24.9.2020
+								td Introduction
+							tr
+								td.text-center 02
+								td 1.10.2020
+								td PixiJS
+							tr
+								td.text-center 03
+								td 8.10.2020
+								td ThreeJS
+							tr
+								td.text-center 04
+								td 15.10.2020
+								td Components
+							tr
+								td.text-center 07
+								td 5.11
+								td Patterns, Algorithms
+							tr
+								td.text-center 08
+								td 12.11.2020
+								td Physics
+							tr
+								td.text-center 10
+								td 26.11.2020
+								td Graphics
+							tr
+								td.text-center 11
+								td 3.12.2020
+								td Game AI
+							tr
+								td.text-center 12
+								td 10.12.2020
+								td Multiplayer
+		+mcontainer()
+			h3 Importance markers
+			.center
+				.flex-cols-3.width-80p.top-20p
+					div.text-center.p-20
+						img.opacity-4.height-350(src='../themes/aph/resources/bulb_green_4x.png')
+						p.color-emerald.font-bold.text-xl Green bulb
+						p Attention! This is interesting
+					div.text-center.p-20
+						img.opacity-7.height-350(src='../themes/aph/resources/bulb_orange_4x.png')
+						p.color-manhattan.font-bold.text-xl Orange bulb
+						p This is important, you should learn about it
+					div.text-center.p-20
+						img.height-350(src='../themes/aph/resources/bulb_red_4x.png')
+						p.color-tomato.font-bold.text-xl Red bulb
+						p This is imperative, you <span class="font-bold">must</span> know it
+		+mcontainer
+			h3 Literature
+			.center
+				img.height-850(src=imgAssets+'literature.png')
+		+mcontainer('Literature')
+			+frameShard().top-200
+				div
+					.list-title For engineering
+					ul
+						li
+							a(href='https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459') Gregory, Json. 2018. Game Engine Architecture (3rd ed.)
+					.list-title For design
+					ul
+						li 
+							a(href='https://www.amazon.com/Theory-Game-Design-Raph-Koster/dp/1932111972') Koster, Raph. 2004. Theory of Fun for Game Design 
+				
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

@@ -1,0 +1,26 @@
+
+mixin title(title, subtitle)
+    +frameOutbox()
+        .absolute.left-10.top-15
+            .flex-row
+                div.mt-10
+                    img.height-120(src!=globalAssets+'cvut_logo.svg')
+                .flex-col.font-light.text-sm.ml-10
+                    p FIT CTU
+                    p Adam Vesecký
+                    p vesecky.adam@gmail.com
+        .absolute.right-10.top-15
+            .flex-col.font-light.text-xl.text-right
+                p!=title
+                p!=subtitle
+        .absolute.bottom-100.right-20.marker
+            p.font-light.color-lemon <a class="highlight" href="https://aph.dodo.me">APH.DODO.ME</a>
+            div.width-230.height-2.bgr-lemon
+        .height-250
+        div.flex-col.items-center.text-center
+            div.relative
+                .absolute.pac-man.left-390.bottom-160
+                img.width-650(src=globalAssets+'logo_title.svg')
+            div.text-center.text-center.width-700
+                h1.font-thin.uppercase Architecture of Computer Games
+            .text-md.font-thin.mt-10 Adam Vesecký

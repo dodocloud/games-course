@@ -1,0 +1,271 @@
+// ============= Load default variables =============
+@import "../base/theme_base_variables.scss";
+@import "../base/fonts.scss";
+@import "./fonts.scss";
+@import "./colors.scss";
+
+// ============= Override default variables =============
+
+
+/* Default colors for highlighting  */
+$highlight-color-1: $color-lemon;
+$highlight-color-2: $color-royal;
+$highlight-color-3: $color-rhino-60;
+/* Color for links */
+$link-color: $color-royal;
+/* Default background of body element */
+$background-color: $color-midnight;
+/* Default color of texts */
+$text-color: $color-rhino-20;
+/* Default color of selected texts */
+$text-selection-color: $color-rhino-80;
+
+/* Settings for frames */
+$frame-color: unset;
+$frame-image: "";
+
+/* Fonts */
+$font-tech: "Agency FB", monospace;
+$font-monospace: "Inconsolata", monospace;
+$font-regular: "Source Sans Pro", sans-serif;
+$font-dos: "PxPlus IBM VGA8", monospace;
+
+$base-font-size: 36px;
+$base-line-height: 1.2;
+$title-font-size: 60px;
+
+// ============= Load base templates =============
+// load templates
+@import "../base/templates.scss";
+@import "../base/theme_base.scss";
+
+// ============= Load other custom styles =============
+
+// load other custom styles
+@import "./code_theme_aph.scss";
+
+.reveal {
+	p,
+	ul {
+		@extend .leading-xl; /* spacing between paragraphs */
+	}
+	
+
+	/* Slide titles */
+	.slide-title {
+		color: $color-rhino-10;
+	}
+
+	/* Radial background of the frame */
+	.frame::before, .frame::after {
+		border: 1px solid $color-rhino-90;
+		border-radius: 20px;
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	/* Linear background */
+	.frame::before {
+		z-index: -2;
+		background: linear-gradient(to bottom right, rgba($color-midnight, 0.9) 0%, rgba($color-rhino-100, 0.9) 100%);
+	}
+
+	/* Pattern effect */
+	.frame::after {
+		z-index: -1;
+		background-image: url("./resources/pattern.png");
+		background-size: 25rem;
+		background-repeat: repeat;
+		box-shadow: 6px 5px 6px rgba($color-midnight, 0.6);
+	}
+
+	.list-title {
+		@extend .font-bold;
+		color: $highlight-color-1;
+	}
+
+	/* Importance markers */
+	.important-green, .important-orange, .important-red {
+
+		&:before {
+			content: "";
+			width: 64px;
+			height: 100px;
+			position: absolute;
+			right: 15px;
+			top: 15px;
+			margin: 0px 0px 0px 0px;
+			z-index: 100;
+		}
+
+		&.important-green:before {
+			background: url('./resources/bulb_green.png') no-repeat;
+		}
+		
+		&.important-orange:before {
+			background: url('./resources/bulb_orange.png') no-repeat;
+		}
+		
+		&.important-red:before {
+			background: url('./resources/bulb_red.png') no-repeat;
+		}
+	}
+
+	
+	.font-tech {
+		font-family: $font-tech;
+	}
+
+	.font-dos {
+		font-family: $font-dos;
+	}
+
+	.code.tiny {
+		p, span {
+			@extend .leading-base;
+		}
+	}
+
+	.code.small {
+		p, span {
+			@extend .leading-md;
+		}
+	}
+		
+
+	/* table styles */
+	table {
+		border-collapse: collapse;
+		table-layout: fixed;
+
+		tr {
+			th {
+				padding: 10px;
+				text-align: center;
+			}
+			th,
+			td,
+			td:first-child {
+				@extend .text-sm;
+				padding: 8px 10px 8px 10px;
+				color: $color-rhino-20;
+				overflow: hidden;
+			}
+			th {
+				background-color: rgba($color-rhino-100, 0.6);
+				text-transform: uppercase;
+				@extend .font-bold;
+				border-top: none;
+				border-left: none;
+				border-right: none;
+				border-bottom: 2px solid $color-rhino-80;
+			}
+			td,
+			td:first-child {
+				border: none;
+			}
+			td + td {
+				border-left: 2px solid $color-rhino-80;
+			}
+		}
+		tr {
+			background: rgba($color-rhino-100, 0.6);
+		}
+		tr:nth-child(2n + 3) {
+			background: rgba($color-rhino-90, 0.6);
+		}
+	}
+
+
+	/* hints */
+	.tip {
+		.content {
+			width: 550px;
+			padding: 20px;
+			border-image-slice: 50 50 50 50 fill;
+			border-image-width: 50px 50px 50px 50px;
+			border-image-outset: 30px 30px 30px 30px;
+			border-image-repeat: stretch stretch;
+		}
+
+		.icon {
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+
+		&.keen {
+			color: $color-midnight;
+			font-family: $font-dos;
+
+			.content {
+				border-image-source: url("./resources/hint_frame_keen.png");
+			}
+			.icon {
+				background-image: url('./resources/keen.png');
+			}
+		}
+
+		&.keen2 .icon {
+			background-image: url('./resources/keen2.png');
+		}
+
+		&.keen3 .icon {
+			background-image: url('./resources/keen3.png');
+		}
+	}
+
+	blockquote {
+		text-align: left;
+		position: relative;
+		display: inline-block;
+		padding: 40px 30px 30px 90px !important;
+		font-family: $font-regular;
+		color: $color-rhino-20;
+		@extend .text-2xl;
+		@extend .italic;
+		
+		> span.author {
+		  position: relative;
+		  display: block;
+		  text-align: right;
+		  margin-top: 15px;
+		  color: $color-lemon;
+		  @extend .not-italic;
+		}
+	
+		&::before {
+		  display: block;
+		  position: absolute;
+		  top: 20px;
+		  left: 20px;
+		  content: "\"";
+		  font-family: $font-regular, serif;
+		  font-size: 120px;
+		  color: $color-lemon;
+		}
+	  }
+}
+
+footer,
+.reveal .slide-number {
+	color: $color-white;
+}
+
+.reveal .controls .controls-arrow {
+	color: $highlight-color-1;
+}
+
+@import "./print.scss";
+
+// ============= "Lecture-specific styles" =============
+@import "./pacman.scss";
+
+
+/* Marker for first slide */
+.marker {
+	transform: rotate(270deg) translate(0, 100px);
+}

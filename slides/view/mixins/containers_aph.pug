@@ -1,0 +1,23 @@
+- var themePath = '../themes/aph/';
+
+// bubble tooltip
+mixin tip(imgurl, text)
+	.tip.absolute.content-center.nopadding(class!=(attributes.class ? attributes.class : ''))
+		.icon.height-250.width-250.fragment.fade-up(class=attributes.imgclass ? attributes.imgclass : '')
+		.content.fragment.fade-up.bottom-100.left-250.fade-up(class!=(attributes.class ? attributes.class : ''))!=text
+
+mixin tipKeen(text)
+	+tip(themePath+'resources/keen.png', text)(class='keen')&attributes(attributes)
+
+mixin tipKeen2(text)
+	+tip(themePath+'resources/keen2.png', text)(class='keen keen2')&attributes(attributes)
+
+mixin tipKeen3(text)
+	+tip(themePath+'resources/keen3.png', text)(class='keen keen3')&attributes(attributes)
+
+mixin mchapter(text, icon)
+	+frameOutbox
+		.flex-col.items-center
+			.top-28p.text-center
+				img.width-650(src!=icon)
+				h2.uppercase.font-light.highlight.mt-20.color-rhino-20!=text

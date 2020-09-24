@@ -1,0 +1,22 @@
+<pre><span class="linenum">   1</span> <span class="token comment">// This is a bad way to implement HL1 style sprite fonts, </span>
+<span class="linenum">   2</span> <span class="token comment">// but it will work for now</span>
+<span class="linenum">   3</span> CHL1HudNumbers<span class="token operator">:</span><span class="token operator">:</span><span class="token function">CHL1HudNumbers</span><span class="token punctuation">(</span> vgui<span class="token operator">:</span><span class="token operator">:</span>Panel <span class="token operator">*</span>parent<span class="token punctuation">,</span> 
+<span class="linenum">   4</span> <span class="token keyword">const</span> char <span class="token operator">*</span>name <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">BaseClass</span><span class="token punctuation">(</span> <span class="token parameter">parent<span class="token punctuation">,</span> name</span> <span class="token punctuation">)</span>
+<span class="linenum">   5</span> <span class="token punctuation">{</span>
+<span class="linenum">   6</span> 	vgui<span class="token operator">:</span><span class="token operator">:</span>Panel <span class="token operator">*</span>pParent <span class="token operator">=</span> g_pClientMode<span class="token operator">-</span><span class="token operator">></span><span class="token function">GetViewport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">   7</span> 	<span class="token function">SetParent</span><span class="token punctuation">(</span> pParent <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">   8</span> <span class="token punctuation">}</span>
+<span class="linenum">   9</span> 	
+<span class="linenum">  10</span> <span class="token comment">// I don't know why, I don't want to know why, I shouldn't</span>
+<span class="linenum">  11</span> <span class="token comment">// have to wonder why, but for whatever reason this stupid</span>
+<span class="linenum">  12</span> <span class="token comment">// panel isn't laying out correctly unless we do this</span>
+<span class="linenum">  13</span> <span class="token function">InvalidateLayout</span><span class="token punctuation">(</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  14</span> m_pContents<span class="token operator">-</span><span class="token operator">></span><span class="token function">InvalidateLayout</span><span class="token punctuation">(</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  15</span> 
+<span class="linenum">  16</span> 
+<span class="linenum">  17</span> <span class="token comment">// My hope is that this code is so awful I'm never allowed </span>
+<span class="linenum">  18</span> <span class="token comment">// to write UI code again.</span>
+<span class="linenum">  19</span> float fXScale   <span class="token operator">=</span> <span class="token number">1.0</span>f <span class="token operator">/</span> <span class="token punctuation">(</span>float<span class="token punctuation">)</span>iSubtileCount<span class="token punctuation">,</span>
+<span class="linenum">  20</span> 		fXOffsetL <span class="token operator">=</span> <span class="token punctuation">(</span>float<span class="token punctuation">)</span>iSubtileIndex <span class="token operator">*</span> fXScale<span class="token punctuation">,</span>
+<span class="linenum">  21</span> 		fXOffsetR <span class="token operator">=</span> <span class="token punctuation">(</span>float<span class="token punctuation">)</span><span class="token punctuation">(</span>iSubtileIndex <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> fXScale<span class="token punctuation">,</span>
+<span class="linenum">  22</span> 		fXUpperLowerOffset <span class="token operator">=</span> fXScale <span class="token operator">*</span> <span class="token number">0.65</span>f<span class="token punctuation">;</span></pre>

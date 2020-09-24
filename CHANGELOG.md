@@ -1,11 +1,21 @@
 # Changelog
 All notable changes to this project/subject will be documented in this file.
 
-Instead of a traditional versioning, a different one due to the nature of this project will be used:
-
-- first number indicates year (3 for the third year of MI-APH)
-- second number indicates week (1 for the first week)
+Versioning info:
+- first number indicates a year (4 for the 4th run)
+- second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
+
+## [4.1] - 2020-09-23
+### Added
+- A lot of stuff, primarily docusaurus-powered dashboard
+  
+### Changed
+- As every year, almost everything
+
+### Removed
+- Sources and examples from 3rd run (will be re-added later on)
+- Cordova files (no need for them)
 
 ## [3.12.6] - 2020-02-02
 ### Changed
