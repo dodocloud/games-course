@@ -6,12 +6,13 @@ title: NI-APH Introduction
 ## Materials
 
 - upon every commit, the content gets deployed to a live environment in [aph.dodo.me](https://aph.dodo.me/)
-- tutorial explaining how to make this project work can be found in [environment.md](./environment.md)
-- requirements to finish this course can be found in [requirements.md](./requirements.md)
+- tutorial explaining how to make this project work can be found in [environment](./environment.md)
+- requirements to finish this course can be found in [requirements](./requirements.md)
 - evaluation of the classes will be located on [grades.fit.cvut.cz](https://grades.fit.cvut.cz/)
 
 ### Code examples
 - examples will be written in **TypeScript**
+- if you build the examples in this project (by running `npm run dev-examples`), you will find all examples listed in `localhost:1234/index.html`
 
 #### PixiJS
 - HTML5 creation 2D library
@@ -34,6 +35,7 @@ title: NI-APH Introduction
 
 ### Presentation
 - slides are written in HTML, powered by [**RevealJS**](https://revealjs.com/) library
+- if you build the slides in this project (by running `npm run dev-slides`), you will, find all slides listed in `localhost:1234/index.html`
 
 Keyboard shortcuts for the slides:
 
@@ -71,7 +73,7 @@ Keyboard shortcuts for the slides:
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
 | 1 | 24.9. | Games | [Link 1](https://aph.dodo.me/slides/organization.html#/) [Link 2](https://aph.dodo.me/slides/lecture01.html#/)  |
-| 2 | 1.10. | Engines | |
+| 2 | 1.10. | Engines |  |
 | 3 | 8.10. | Assets |  |
 | 4 | 15.10. | Components |  |
 | 5 | 22.10. | Patterns ||

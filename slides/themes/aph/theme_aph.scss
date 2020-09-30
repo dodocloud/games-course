@@ -83,7 +83,7 @@ $title-font-size: 60px;
 		box-shadow: 6px 5px 6px rgba($color-midnight, 0.6);
 	}
 
-	.list-title {
+	.list-title > p:nth-child(1) {
 		@extend .font-bold;
 		color: $highlight-color-1;
 	}
@@ -216,6 +216,39 @@ $title-font-size: 60px;
 		&.keen3 .icon {
 			background-image: url('./resources/keen3.png');
 		}
+	}
+
+	/* upside/downside markers */
+	.upside, .downside {
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			display: inline-block;
+			width: 35px;
+			height: 35px;
+			left: -45px;
+			top: 10px;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+	}
+
+	.upside::before {
+		background-image: url("./resources/ghost_upside.png");
+	}
+    
+	.downside::before {
+		background-image: url("./resources/ghost_downside.png");
+	}
+  
+	.upside {
+	  color: $color-emerald;
+	}
+  
+	.downside {
+	  color: $color-tomato-light;
 	}
 
 	blockquote {

@@ -1,11 +1,20 @@
 import Reveal from 'reveal.js';
 (window).Reveal = Reveal;
 
+const isPresentationMode = window.location.search.match(/presentation/gi);
+const margin = isPresentationMode ? 0.18 : 0.05; // % margins of the slides after scale
 
-/* disable tips
-document.querySelectorAll('.tip').forEach(tip => {
-	tip.parentNode.removeChild(tip);
-})*/
+// disable tips and all fragments
+if(!isPresentationMode) {
+	document.querySelectorAll('.tip').forEach(tip => {
+		tip.parentNode.removeChild(tip);
+	})
+
+	// remove fragments so that it will always show the whole content of the slide
+	document.querySelectorAll('.fragment').forEach(frag => {
+		frag.classList.remove('fragment');
+	})
+}
 
 // common setup for RevealJS lib
 Reveal.initialize({
@@ -19,7 +28,7 @@ Reveal.initialize({
 	pdfMaxPagesPerSlide: 1,
 	width: 1650,
 	height: 970,
-	margin: 0.18,
+	margin: margin,
 	transition: 'slide', // none/fade/slide/convex/concave/zoom
 	dependencies: [
 		{ src: './plugins/search/search.js', async: true },

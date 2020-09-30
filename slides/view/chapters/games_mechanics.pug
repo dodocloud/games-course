@@ -1,0 +1,195 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/games_mechanics/';
+- var defaultBgr = 'backgrounds/bgr_wolfenstein.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Game Mechanics', imgAssets+'chapter_mechanics.svg')
++frameInbox('Terms')
+    div.important-orange
+        .list-title.fragment 
+            p Emergence
+            ul
+                li refers to the fact that the behavior is the result of a complex and dynamic system of rules
+        .list-title.fragment 
+            p Progression
+            ul
+                li refers to the structures in games where a designer outlined the possible game states beforehand, usually through level design.
+        .list-title.fragment
+            p Gameplay
+            ul
+                li an emergent property of the game as defined by its rules
+        .list-title.fragment 
+            p Mechanics
+            ul
+                li a set of rules governing the behavior of a single game element.
+        .list-title.fragment 
+            p System
+            ul
+                li interacting group of game elements forming a unified whole
+        .list-title.fragment 
+            p Level
+            ul
+                li structure in a game that dictates what challenges players encounter
++frameInbox('Terms')
+    div.important-orange
+        .list-title.fragment
+            p Simulation
+            ul
+                li a representation of a source system via a less complex system that correlates with the user's understanding of the source system
+        .list-title.fragment
+            p Bot
+            ul
+                li an intelligent artificial player emulating a human player
+        .list-title.fragment
+            p Agent
+            ul
+                li an intelligent autonomous entity, having the ability to manipulate its environment
+        .list-title.fragment
+            p Mob
+            ul
+                li a generic monster/enemy or a group of monsters
+        .list-title.fragment
+            p NPC
+            ul
+                li non-playable character - doesn't play the game but rather interacts with the player
++frameInbox('Game Basic Elements')
+    div.important-orange
+        .list-title.fragment
+            p Mechanics
+            ul
+                li a set of rules governing the behavior of a single game element
+        .list-title.fragment
+            p Story
+            ul
+                li a sequence of events that unfolds in the game
+        .list-title.fragment
+            p Aesthetics
+            ul
+                li how the game looks, sounds, tastes, feels,...
+        .list-title.fragment
+            p Technology
+            ul
+                li any materials and interactions that make the game possible
+        .list-title.fragment
+            p Goals
+            ul
+                li define what players try to achieve
+        .bottom-40.right-40.fragment
+            img.width-600(src=imgAssets+'visible_mechanics.svg')
++frameInbox('Mechanics')
+    .fill.center
+        figure
+            img.height-700(src=imgAssets+'factorio.jpg')
+            p Factorio
++frameInbox('Story')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-350(src=imgAssets+'story_naughdog.jpg')
+            p Naughty Dog Games
+        figure
+            img.height-350(src=imgAssets+'story_bethesda.jpg')
+            p Bethesda Games
+        figure
+            img.height-350(src=imgAssets+'story_valve.jpg')
+            p Valve Games
++frameInbox('Aesthetics')
+    .fill.center
+        figure
+            img.height-700(src=imgAssets+'inside.jpg')
+            p INSIDE
++frameInbox('Technology')
+    .fill.center
+        figure
+            img.height-700(src=imgAssets+'spore.jpg')
+            p Spore
++frameInbox('Goals')
+    .fill.center
+        figure
+            img.height-700(src=imgAssets+'wow.jpg')
+            p World of Warcraft
++frameInbox('Example: Space Invaders')
+    div
+        .spacing-lg
+            p <span class="font-bold">Mechanics</span> - introduced concept of highscore
+            p <span class="font-bold">Story</span> - didn't need to have a story
+            p <span class="font-bold">Aesthetics</span> - three different alien designs
+            p <span class="font-bold">Technology</span> - first videogame of it's kind
+            p <span class="font-bold">Goals</span> - survive as long as you can
+    .flex-row.justify-center.bottom-0.width-100p.nopadding
+        img.height-440(src=imgAssets+'invaders.jpg')
++frameInbox('Example: Doom')
+    div
+        .spacing-lg
+            p <span class="font-bold">Mechanics</span> - levels, ambushes, locations, keys, doors, elevators,...
+            p <span class="font-bold">Story</span> - unnamed hero (Doomguy) fighting against invading demons
+            p <span class="font-bold">Aesthetics</span> - advanced sounds and music (for that period)
+            p <span class="font-bold">Technology</span> - pseudo 3D FPS perspective
+            p <span class="font-bold">Goals</span> - beat all levels
+    .flex-row.justify-center.bottom-0.width-100p.nopadding
+        img.height-440(src=imgAssets+'doom.jpg')
++frameInbox('Example: No man\'s sky')
+    div
+        .spacing-lg
+            p <span class="font-bold">Mechanics</span> - exploration, crafting, gathering, building
+            p <span class="font-bold">Story</span> - space-exploration game with heavy resource-gathering elements
+            p <span class="font-bold">Aesthetics</span> - visually stunning lush world
+            p <span class="font-bold">Technology</span> - (pseudo) random generated world
+            p <span class="font-bold">Goals</span> - get to the centre of the galaxy
+    .flex-row.justify-center.bottom-0.width-100p.nopadding
+        img.height-440(src=imgAssets+'nomansky.jpg')
++frameInbox('Example: League of Legends')
+    div
+        .spacing-lg
+            p <span class="font-bold">Mechanics</span> - crowd, elo, gank, items, juking, kiting, last hit, pushing, recall, points, warding, zoning
+            p <span class="font-bold">Story</span> - a plethora of stories in the LoL blog
+            p <span class="font-bold">Aesthetics</span> - cartoonish style
+            p <span class="font-bold">Technology</span> - MOBA (Multiplayer Online Battle Arena), Riot Servers
+            p <span class="font-bold">Goals</span> - defeat the opposite team
+    .flex-row.justify-center.bottom-0.width-100p.nopadding
+        img.height-440(src=imgAssets+'lol.jpg')
++frameInbox('Example: Tormentum Dark Sorrow')
+    div
+        .spacing-lg
+            p <span class="font-bold">Mechanics</span> - point-and-click adventure (go, move, examine, walk)
+            p <span class="font-bold">Story</span> - the main element of the game
+            p <span class="font-bold">Aesthetics</span> - biomechanic surrealism
+            p <span class="font-bold">Technology</span> - simple sprite fragments
+            p <span class="font-bold">Goals</span> - finish the game and unravel the story
+    .flex-row.justify-center.bottom-0.width-100p.nopadding
+        img.height-440(src=imgAssets+'tormentum.jpg')
++frameInbox('Game Mechanic Entities')
+    div.important-orange
+        .list-title.fragment.fade-up
+            p Space
+            ul
+                li various spaces that can exist in a game and how they are related
+                li physical and conceptual relationships
+        .list-title.fragment.fade-up
+            p Objects
+            ul
+                li entities that can be seen or manipulated
+        .list-title.fragment.fade-up
+            p Actions
+            ul
+                li an object's turn to act
+        .list-title.fragment.fade-up
+            p Rules
+            ul
+                li statements that describe constraints, consequences and goals
+        .bottom-0.right-0.width-550
+            img(src=globalAssets+'memes/unlocked.jpg')
++frameInbox('Example: Pong')
+    div
+        .spacing-lg
+            p <span class="font-bold">Space</span> - 2D board
+            p <span class="font-bold">Objects</span> - two players (paddles) and colliding ball, score
+            p <span class="font-bold">Actions</span> - move up/down (1 degree of freedom), release the ball
+            p <span class="font-bold">Rules</span> - the ball has a constant linear velocity. Angle of incidence is angle of reflection. Player earns one point when the other player fails to return the ball. The winner is the one who reaches eleven points before the opponent
+        .center.bottom-0.width-100p
+            img.height-380(src=imgAssets+'pong.gif')
++frameInbox('Example: Block Breaker')
+    .center.fill
+        img.height-700(src=imgAssets+'tronic.png')
+

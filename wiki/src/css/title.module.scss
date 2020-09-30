@@ -1,0 +1,30 @@
+@import "./variables.scss";
+
+.title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.title__title {
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	flex: 0 1 410px;
+	align-items: self-end;
+}
+
+.title__title h2 {
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: $font-size-xlarge;
+	text-align: right;
+}
+
+.title__logo {
+	display: flex;
+	flex-direction: column;
+	flex: 0 1 610px;
+	align-items: self-start;
+}

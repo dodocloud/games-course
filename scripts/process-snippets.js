@@ -4,6 +4,8 @@ const prism = require('prismjs');
 require('prismjs/components/prism-typescript');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-asm6502');
+require('prismjs/components/prism-c');
+require('prismjs/components/prism-cpp');
 
 
 
@@ -13,6 +15,8 @@ const extensionMapper = (ext) => {
 	switch (ext) {
 		case 'ts':
 			return 'typescript';
+		case 'cpp':
+			return 'cpp';
 		case 'js':
 		case 'json':
 			return 'javascript';
@@ -49,35 +53,36 @@ module.exports = {
 				const language = extensionMapper(extension);
 				console.log(`Parsing code snippet from ${file} with language ${language}`);
 
-				// each line that starts with @fragment will be highlighted
+				// each line that starts with @H will be highlighted
 				let allLines = snippet.split('\n');
 				let highlights = new Map();
-				let highlightCounter = 0;
+
+				const highlightToken = '@H';
 
 				allLines.forEach((line, index) => {
-					if (line.startsWith('@fragment')) {
-						const highlight = line.substr(1);
-						highlights.set(highlightCounter, highlight);
-					} else {
-						highlightCounter++;
+					if (line.startsWith(highlightToken)) {
+						const highlight = '  ' + line.substr(highlightToken.length);
+						highlights.set(index, highlight);
 					}
 				});
 
-				allLines = allLines.filter(line => !line.startsWith('@fragment'));
+				const allLinesLength = allLines.length;
+				allLines = allLines.filter(line => !line.startsWith(highlightToken));
 
-				const highlighted = prism.highlight(allLines.join('\n'), Prism.languages[language], language);
+				const highlighted = prism.highlight(allLines.join('\n'), Prism.languages[language], language).split('\n');
+				const output = [];
+				let lineCounter = 0;
 
-				const withLineNumbers = highlighted
-					.split('\n')
-					.map((line, index) => {
-						if (highlights.has(index)) {
-							return `<span class="${highlights.get(index)}"><span class="linenum">${(index + 1).toString().padStart(4, ' ')}</span> ${line}</span>`;
-						}
-						return `<span class="linenum">${(index + 1).toString().padStart(4, ' ')}</span> ${line}`;
-					})
-					.join('\n');
+				for (let i=0; i< allLinesLength; i++) {
+					if (highlights.has(i)) {
+						output.push(`<span class="linenum highlight">${(i + 1).toString().padStart(4, ' ')}</span> <span class="highlight">${highlights.get(i)}</span>`);
+					} else {
+						const line = highlighted[lineCounter++];
+						output.push(`<span class="linenum">${(i + 1).toString().padStart(4, ' ')}</span> ${line}`);
+					}
+				}
 
-				const wrappedHtml = `<pre>${withLineNumbers}</pre>`;
+				const wrappedHtml = `<pre>${output.join('\n')}</pre>`;
 
 				utils.strToFile(targetPath, wrappedHtml);
 			}

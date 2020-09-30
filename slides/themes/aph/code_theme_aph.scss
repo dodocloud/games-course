@@ -24,17 +24,23 @@ pre {
 
 .token.delimiter,
 .token.boolean,
-.token.keyword,
 .token.selector,
 .token.important,
 .token.atrule {
 	color: $color-emerald;
 }
 
-.token.operator,
+.token.keyword {
+	color: $color-tomato-light;
+}
+
 .token.punctuation,
 .token.attr-name {
 	color: $color-rhino-40;
+}
+
+.token.operator {
+	color: $color-royal;
 }
 
 .token.tag,
@@ -47,7 +53,7 @@ pre {
 .token.entity,
 .token.number,
 .token.symbol {
-	color: $color-aqua;
+	color: $color-emerald;
 }
 
 .token.property,
@@ -58,7 +64,7 @@ pre {
 
 .token.string,
 .token.char {
-	color: $color-aqua;
+	color: $color-emerald;
 }
 
 .token.attr-value,

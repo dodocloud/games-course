@@ -29,9 +29,14 @@ module.exports = {
 			type: 'doc'
 		},
 		{
+			label: 'Cheatsheets',
+			type: 'category',
+			items: ['cheatsheets/javascript', 'cheatsheets/typescript']
+		},
+		{
 			label: 'Tutorials',
 			type: 'category',
-			items: ['tutorials/typescript']
-		}
+			items: ['tutorials/pixi_intro']
+		},
 	].filter(Boolean)
 }

@@ -1,0 +1,113 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/games_engines/';
+- var defaultBgr = 'backgrounds/hall_blue.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Rise of game engines', imgAssets+'chapter_engines.svg')
++frameInbox('Pre-engine era')
+    .center.fill
+        .grid.grid-cols-3.grid-rows-2.gap-40
+            .height-350
+                img(src=imgAssets+'engine_pinball_floppy.png')
+            .height-350
+                img(src=imgAssets+'engine_tforce_floppy.png')
+            .height-350
+                img(src=imgAssets+'engine_adventure_floppy.png')
+            .height-350
+                img(src=imgAssets+'engine_gamemaker_floppy.png')
+            .height-350
+                img(src=imgAssets+'engine_arcade_floppy.png')
+            .height-350
+                img(src=imgAssets+'engine_rpgmaker_floppy.png')
++frameInbox('1984: Breakout')
+    .flex-cols-2
+        .code.tiny.font-dos
+            include ../../assets/games_engines/snippets_generated/breakout.html
+        img.height-500(src=imgAssets+'breakout.png')
++frameInbox('1989: Prince of Persia')
+    .flex-cols-2
+        div
+            p Guard controller
+            .code.tiny.font-dos
+                include ../../assets/games_engines/snippets_generated/prince_of_persia.html
+        div
+            img.height-500(src=imgAssets+'prince.jpg')
+            p Source code for Apple II: <a href="https://github.com/jmechner/Prince-of-Persia-Apple-II">link</a>
++frameInbox('ID Tech')
+    div.important-orange
+        ul
+            li Family of game engines developed by ID Software
+            li <span class="highlight">Id Tech 0</span> - the very first game engine
+            li Every next game had more advanced technology
+            li Still, memory constraints sabotaged attempts to create data-heavy design
+        .flex-cols-4.mt-80
+            div.text-center
+                img.height-350(src=imgAssets+'idtech_hovertank_floppy.png')
+            div.text-center
+                img.height-350(src=imgAssets+'idtech_catacomb_floppy.png')
+            div.text-center
+                img.height-350(src=imgAssets+'idtech_wolfenstein_floppy.png')
+            div.text-center
+                img.height-350(src=imgAssets+'idtech_shadowcast_floppy.png')
++frameInbox('1993: Doom')
+    .flex-cols-2
+        .code.tiny.text-2xs
+            include ../../assets/games_engines/snippets_generated/doom.html 
+        div
+            img.height-550(src=imgAssets+'doom.jpg')
+            p Source code: <a href"https://github.com/id-Software/DOOM/tree/master/linuxdoom-1.10">link</a>
++frameInbox('1996: Quake')
+    div
+        .flex-cols-2
+            .code.tiny.text-2xs
+                include ../../assets/games_engines/snippets_generated/quake.html 
+            div
+                img.height-550(src=imgAssets+'quake.jpg')
+                p Source code: <a href="https://github.com/id-Software/Quake">link</a>
++frameInbox('1998: Half-Life')
+    div
+        .flex-cols-2
+            .code.tiny.text-2xs
+                include ../../assets/games_engines/snippets_generated/half-life.html 
+            div
+                img.height-550(src=imgAssets+'half-life.jpg')
+                p Source code: <a href="https://github.com/ValveSoftware/halflife">link</a>
++frameInbox('Quake Engine')
+    div.important-orange
+        .flex-cols-2
+            div
+                ul
+                    li ~id Tech 1
+                    li Released by ID Software in 1996
+                    li True 3D real-time rendering
+                    li Binary space partitioning
+                    li 3D light sources, Gouraud shading
+                    li Games released: <span class="highlight">Quake, Hexen 2, Silver Wings</span>
+                    li Source code released in 1999
+                ul
+                    li <span class="highlight">Successors:</span>
+                    ul
+                        li id Tech 2: 1997
+                        li id Tech 3: 1999
+                        li id Tech 4: 2004
+                        li id Tech 5: 2011
+                        li id Tech 6: 2016
+                        li id Tech 7: 2018
+            div.self-end.text-right
+                img.height-550(src=imgAssets+'idtech_5.jpg')
++frameInbox('Quake engine family')
+    .center
+        img.height-700(src=imgAssets+'idtech_family.svg')
++frameInbox('Influence of Game Engines')
+    div.nopadding.fill.center.absolute
+        img.height-900(src=imgAssets+'games_evolution.svg')
+    div.nopadding.fill.center.absolute.top-50
+        img.height-700(src=imgAssets+'games_evolution.png')
++frameInbox('Game Engines Today')
+    div.nopadding.fill.center.absolute
+        img.height-600(src=imgAssets+'engines_today.svg')
+    div.nopadding.fill.center.absolute
+        img.height-530.left-400(src=imgAssets+'engines.png')
+

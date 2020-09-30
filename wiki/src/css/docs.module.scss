@@ -1,0 +1,55 @@
+
+@import './variables.scss';
+
+.colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+
+    &.smaller {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    > div {
+        text-align: center;
+        > :nth-child(1) {
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+}
+
+@each $name, $color in $allColors {
+    .bgr-#{$name} {
+        background-color: $color !important;
+    }
+
+    .color-#{$name} {
+        color: $color !important;
+    }
+}
+
+.oldaph {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+    > div {
+        text-align: center;
+    }
+}
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+
+    img {
+        object-fit: contain;
+    }
+}

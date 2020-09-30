@@ -4,8 +4,8 @@ import React from 'react'
 
 import useMetadataContext from '@theme/useMetadataContext'
 
-import sectionStyles from '../../css/section.module.css'
-import footerStyles from './styles.module.css'
+import sectionStyles from '../../css/section.module.scss'
+import footerStyles from './styles.module.scss'
 
 const Footer = () => {
 	const { siteConfig } = useDocusaurusContext()

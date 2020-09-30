@@ -5,6 +5,7 @@ wiki/node_modules/
 # Production
 /build_wiki
 /build_slides
+/build_examples
 
 # Generated files
 .docusaurus

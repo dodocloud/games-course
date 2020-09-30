@@ -6,10 +6,12 @@ import React from 'react'
 import Layout from '@theme/Layout'
 import { MetadataContextProvider } from '@theme/useMetadataContext'
 
-import featureStyles from '../css/feature.module.css'
-import sectionStyles from '../css/section.module.css'
-import titleStyles from '../css/title.module.css'
-import slidesStyles from '../css/slides.module.css'
+import { slidesData, slide } from '../internals/pages-data'
+
+import featureStyles from '../css/feature.module.scss'
+import sectionStyles from '../css/section.module.scss'
+import titleStyles from '../css/title.module.scss'
+import slidesStyles from '../css/slides.module.scss'
 
 const Title = () => {
 	return (
@@ -32,6 +34,11 @@ const Title = () => {
 }
 
 const Slides = () => {
+	const groupedSlides = slidesData.reduce(
+		(entryMap, e) => entryMap.set(e.group, [...entryMap.get(e.group) || [], e]),
+		new Map<number, slide[]>()
+	)
+
 	return (
 		<section
 			className={clsx(sectionStyles.section)}
@@ -41,115 +48,50 @@ const Slides = () => {
 			>
 				Lectures
 			</h3>
-			<div className={slidesStyles.slides__group}>
-				<div className={slidesStyles.input_container}>
-					<a className={slidesStyles.link_button} id="lecture00" href="/slides/organization.html" />
-					<div className={slidesStyles.link_tile}>
-						<a className={slidesStyles.inner_container} href="/slides/organization.html?print-pdf">
-							<img className={slidesStyles.print} src="/img/pages/index/ic_print.svg" />
-						</a>
-						<div className={slidesStyles.inner_hint}>Lecture 0</div>
-						<div className={slidesStyles.icon}>
-							<img src="/img/pages/index/ic_organization.svg" />
-						</div>
-						<label className={slidesStyles.link_tile_label} htmlFor="lecture01">Organization</label>
-					</div>
-				</div>
-			</div>
-			<div className={sectionStyles['section--inner']}>
-				<div className={slidesStyles.slides__group}>
-					<div className={slidesStyles.input_container}>
-						<a className={slidesStyles.link_button} id="lecture01" href="/slides/lecture01.html" />
-						<div className={slidesStyles.link_tile}>
-							<a className={slidesStyles.inner_container} href="/slides/lecture01.html?print-pdf">
-								<img className={slidesStyles.print} src="/img/pages/index/ic_print.svg" />
-							</a>
-							<div className={slidesStyles.inner_hint}>Lecture 01</div>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lecture01.svg" />
-							</div>
-							<label className={slidesStyles.link_tile_label} htmlFor="lecture01">Games</label>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
+			{
+				Array.from(groupedSlides.keys()).map(groupId => {
+					return (
+						<div key={`inner_${groupId}`} className={slidesStyles['slides--group']}>
+							<div className={slidesStyles.slides__group}>
+								{
+									groupedSlides.get(groupId)?.map(slide => {
+										return (
+											<div key={`${groupId}_${slide.id}`} className={slidesStyles.input_container}>
+												{slide.desc &&
+													<>
+														<a className={slidesStyles.link_button} id={slide.id} href={`/slides/${slide.id}.html`} />
+														<div className={slidesStyles.link_tile}>
+															<a className={slidesStyles.inner_container} href={`/slides/${slide.id}.html?print-pdf`}>
+																<img src="/img/pages/index/ic_print.svg" />
+															</a>
+															<a className={slidesStyles.inner_container} href={`/slides/${slide.id}.html?presentation`}>
+																<img src="/img/pages/index/ic_presentation.svg" />
+															</a>
+															<div className={slidesStyles.inner_hint}>{slide.hint}</div>
+															<div className={slidesStyles.icon}>
+																<img src={`/img/pages/index/ic_${slide.id}.svg`} />
+															</div>
+															<label className={slidesStyles.link_tile_label} htmlFor={slide.id}>{slide.desc}</label>
+														</div>
+													</>
+												}
+												{!slide.desc &&
+													<div className={slidesStyles.link_tile}>
+														<div className={slidesStyles.icon}>
+															<img src="/img/pages/index/ic_lock.svg" />
+															<p className={slidesStyles.link_date}>{slide.date}</p>
+														</div>
+													</div>
+												}
+											</div>
+										)
+									})
+								}
 							</div>
 						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-					<div className={slidesStyles.input_container}>
-						<div className={slidesStyles.link_tile}>
-							<div className={slidesStyles.icon}>
-								<img src="/img/pages/index/ic_lock.svg" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+					)
+				})
+			}
 		</section>
 	)
 }

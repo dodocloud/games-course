@@ -7,22 +7,28 @@ include ./mixins/quotes.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
-- var defaultBgr = 'backgrounds/bgr_gradient.jpg';
-
+- var defaultBgr = 'backgrounds/hall_blue.jpg';
 
 +header('NI-APH', 'Architecture of Computer Games', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
 
-// ===================================================== SLIDES =====================================================
 .reveal
 	.slides
-		// ============================================================
-		+title('Lecture 1', 'Games')
-		// ============================================================
-		include ./chapters/games.pug
-		include ./chapters/mechanics.pug
-		include ./chapters/engines_history.pug
+		+title('Lecture 1', 'Games', 'color-azure-light')
+		include ./chapters/games_intro.pug
+		include ./chapters/games_mechanics.pug
+		include ./chapters/games_engines.pug
+		- var defaultBgr = 'backgrounds/hall_blue.jpg';
+		+frameInbox('Lecture Summary')
+			ul.leading-3xl
+				li.fragment I'm able to define somehow what a game is
+				li.fragment I know the difference between games and applications
+				li.fragment I know the difference between emergence and progression
+				li.fragment I know terms like gameplay, mechanics, system, level, simulation, bot, agent, mob, NPC
+				li.fragment I know game basic elements
+				li.fragment I know elements/entities of game mechanics
+				li.fragment I know a thing or two about IDTech
+		- var defaultBgr = 'backgrounds/doom.jpg';
 		+quote-doom()
 				
-
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
 script(src!='../../scripts/reveal-setup.js')

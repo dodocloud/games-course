@@ -1,0 +1,116 @@
+@import "../../css/variables.scss";
+
+:global(.docs-sidebar .menu__link),
+:global(.docs-sidebar .menu__list) {
+	border-radius: var(--ifm-global-border-radius);
+}
+
+:global(.docs-sidebar .menu__link::after) {
+	background-image: url("/img/docs/chevron.svg");
+	background-size: 12px 12px;
+	background-repeat: no-repeat;
+}
+
+:global(.docs-sidebar .menu > .menu__list) {
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	background: #{$color-white-5};
+}
+
+:global(.docs-sidebar .menu > .menu__list > .menu__list-item:not(:first-child) > .menu__link) {
+	font-weight: var(--ifm-font-weight-bold);
+}
+
+:global(.docs-sidebar .menu__link--active.active) {
+	--ifm-menu-color-active: #{$color-white};
+}
+
+:global(.table-of-contents) {
+	border-left-width: 3px;
+	font-size: $font-size-small;
+	font-weight: var(--ifm-font-weight-semibold);
+}
+
+:global(.table-of-contents li) {
+	position: relative;
+}
+
+:global(.table-of-contents__link--active::before) {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: -18px;
+	width: 3px;
+	content: " ";
+	background: #{$color-lemon};
+}
+
+ul ul :global(.table-of-contents__link--active::before) {
+	left: -33px;
+}
+
+.doc {
+	--ifm-heading-color: #{$color-white};
+	--ifm-container-width: 1000px;
+	--ifm-menu-color: #{$color-white};
+	--ifm-menu-color-background-active: #{$color-rhino-80};
+	--ifm-menu-link-padding-horizontal: 0.75rem;
+	display: flex;
+	justify-content: center;
+}
+
+.doc :global(.container) {
+	margin-left: initial;
+	margin-right: initial;
+	max-width: unset !important;
+}
+
+.doc__sidebar {
+	position: relative;
+	width: 300px;
+	margin-top: calc(-1 * var(--ifm-navbar-height));
+	margin-right: 1rem;
+	box-sizing: border-box;
+}
+
+.doc__main {
+	flex: 0 1 var(--ifm-container-width);
+}
+
+@media (max-width: 996px) {
+	.doc {
+		display: inherit;
+	}
+
+	.doc__sidebar {
+		width: auto;
+		margin-top: 0;
+	}
+}
+
+
+@media (min-width: 1320px) {
+	.doc {
+		--ifm-container-width: 1400px;
+	}
+}
+
+@media (min-width: 1248px) and (max-width: 1320px) {
+	.doc {
+		--ifm-container-width: 1300px;
+	}
+}
+
+@media (min-width: 1124px) and (max-width: 1248px) {
+	.doc {
+		--ifm-container-width: 1200px;
+	}
+}
+
+@media (min-width: 997px) and (max-width: 1124px) {
+	.doc {
+		--ifm-container-width: 1100px;
+	}
+}

@@ -80,6 +80,8 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-this-alias": "off",
     "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "quote-props": ["error", "as-needed"],
     "object-shorthand": ["error", "always"],
     "indent": ["error", "tab"],

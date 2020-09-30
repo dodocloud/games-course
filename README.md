@@ -28,12 +28,10 @@
 - if you want to build everything
   - execute `npm run deploy-all` from the root folder. Everything gets bundled into `build_wiki` 
 
-
 Changelog is available [here](./CHANGELOG.md)
-
 
 ## Old materials
 
 [Materials from 1st year (PDF)](https://www.dropbox.com/s/89su9beu24a0m1r/FIT_APH_2017.zip?dl=0)
 [Materials from 2nd year (PDF)](https://www.dropbox.com/s/pin6nvqp714hh7x/FIT_APH.zip?dl=0)
-[Materials from 3rd year (S3 bucket)](dodoworks.s3-website.eu-central-1.amazonaws.com/)
+[Materials from 3rd year (S3 bucket)](http://dodoworks.s3-website.eu-central-1.amazonaws.com/)

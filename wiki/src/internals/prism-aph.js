@@ -1,91 +1,104 @@
-const color = {
-  draculaBackground: '#262833',
-  draculaForeground: '#f8f8f2',
-  draculaSelection: '#44475a',
-  draculaComment: '#6272a4',
-  draculaRed: '#ff5555',
-  draculaOrange: '#ffb86c',
-  draculaYellow: '#f1fa8c',
-  draculaGreen: '#50fa7b',
-  draculaPurple: '#bd93f9',
-  draculaCyan: '#8be9fd',
-  draculaPink: '#ff79c6'
-}
+
+const aphColors = require('./aph-colors')
+
 
 const theme = {
-  plain: {
-    color: color.draculaForeground,
-    backgroundColor: color.draculaBackground
-  },
-  styles: [
-    {
-      types: ['prolog', 'constant', 'boolean', 'builtin'],
-      style: {
-        color: color.draculaPurple
-      }
-    },
-    {
-      types: ['inserted', 'function'],
-      style: {
-        color: color.draculaCyan
-      }
-    },
-    {
-      types: ['dataType'],
-      style: {
-        color: color.draculaCyan,
-        fontStyle: 'italic'
-      }
-    },
-    {
-      types: ['deleted'],
-      style: {
-        color: color.draculaRed
-      }
-    },
-    {
-      types: ['changed'],
-      style: {
-        color: color.draculaOrange
-      }
-    },
-    {
-      types: ['punctuation', 'symbol'],
-      style: {
-        color: color.draculaForeground
-      }
-    },
-    {
-      types: ['string', 'char', 'tag', 'selector'],
-      style: {
-        color: color.draculaYellow
-      }
-    },
-    {
-      types: ['keyword', 'variable', 'operator'],
-      style: {
-        color: color.draculaPink
-      }
-    },
-    {
-      types: ['number'],
-      style: {
-        color: color.draculaGreen
-      }
-    },
-    {
-      types: ['comment'],
-      style: {
-        color: color.draculaComment
-      }
-    },
-    {
-      types: ['attr-name'],
-      style: {
-        color: 'rgb(241, 250, 140)'
-      }
-    }
-  ]
+	plain: {
+		color: aphColors.rhino20,
+		backgroundColor: aphColors.midnightLight
+	},
+	styles: [
+		{
+			types: ['comment', 'prolog', 'cdata'],
+			style: {
+				color: aphColors.rhino60
+			}
+		},
+		{
+			types: ['delimiter', 'boolean', 'selector', 'important', 'atrule'],
+			style: {
+				color: aphColors.emerald
+			}
+		},
+		{
+			types: ['keyword'],
+			style: {
+				color: aphColors.tomatoLight
+			}
+		},
+		{
+			types: ['punctuation', 'attr-name'],
+			style: {
+				color: aphColors.rhino40
+			}
+		},
+		{
+			types: ['operator'],
+			style: {
+				color: aphColors.emerald
+			}
+		},
+		{
+			types: ['tag', 'doctype', 'builtin'],
+			style: {
+				color: aphColors.royal
+			}
+		},
+		{
+			types: ['entity', 'number', 'symbol'],
+			style: {
+				color: aphColors.emerald
+			}
+		},
+		{
+			types: ['property', 'constant', 'variable'],
+			style: {
+				color: aphColors.emerald
+			}
+		},
+		{
+			types: ['string', 'char'],
+			style: {
+				color: aphColors.emerald
+			}
+		},
+		{
+			types: ['attr-value'],
+			style: {
+				color: aphColors.royal
+			}
+		},
+		{
+			types: ['url'],
+			style: {
+				color: aphColors.royal
+			}
+		},
+		{
+			types: ['function'],
+			style: {
+				color: aphColors.royal
+			}
+		},
+		{
+			types: ['regex'],
+			style: {
+				color: aphColors.rhino80
+			}
+		},
+		{
+			types: ['inserted'],
+			style: {
+				color: aphColors.rhino60
+			}
+		},
+		{
+			types: ['deleted'],
+			style: {
+				color: aphColors.rhino80
+			}
+		}
+	]
 }
 
 module.exports = theme

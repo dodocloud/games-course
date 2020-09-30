@@ -1,0 +1,48 @@
+@import "./variables.scss";
+
+
+.section {
+	width: 100%;
+}
+
+.section--inner {
+	display: flex;
+	max-width: var(--ifm-container-width);
+	width: 100%;
+	justify-content: center;
+	padding: 4.5rem 1rem;
+	margin: 0 auto;
+	--ifm-code-padding-horizontal: 1.5rem;
+	--ifm-code-padding-vertical: 1rem;
+	--ifm-pre-padding: 1rem 1.5rem;
+}
+
+.section--odd {
+	background: #{$color-midnight-light};
+}
+
+.section__title {
+	font-size: $font-size-xxlarge;
+}
+
+.section__subtitle {
+	font-size: $font-size-llarge;
+	font-weight: var(--ifm-font-weight-normal);
+	color: #{$color-royal};
+}
+
+@media (max-width: 996px) {
+	.section--inner {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 1026px) {
+	.section__title {
+		font-size: $font-size-xlarge;
+	}
+
+	.section__subtitle {
+		font-size: $font-size-large;
+	}
+}

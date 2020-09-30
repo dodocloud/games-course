@@ -43,23 +43,26 @@ include ./mixins/quotes.pug
 		+frameInbox('History of APH')
 			.flex-cols-2
 				div
-					.list-title.fragment.fade-in(data-fragment-index="1") 2017
-					ul.fragment.fade-in(data-fragment-index="1")
-						li first run, OpenFrameworks engine, C++
-						li <span class="highlight">47</span> students, <span class="highlight">25</span> finished the course
-						li.highlight Average score: 1.48
-					.list-title.fragment.fade-in(data-fragment-index="2") 2018
-					ul.fragment.fade-in(data-fragment-index="2")
-						li design improvements
-						li migrated from C++ to TypeScript (PixiJS)
-						li <span class="highlight">50</span> students, <span class="highlight">30</span> finished the course
-						li.highlight Average score: 1.50
-					.list-title.fragment.fade-in(data-fragment-index="3") 2019
-					ul.fragment.fade-in(data-fragment-index="3")
-						li all slides rewritten into HTML (RevealJS engine)
-						li 23 new examples, 3 minigames, 3 new topics
-						li <span class="highlight">50</span> students, <span class="highlight">33</span> finished the course
-						li.highlight Average score: 1.67
+					.list-title.fragment.fade-in(data-fragment-index="1")
+						p 2017
+						ul
+							li first run, OpenFrameworks engine, C++
+							li <span class="highlight">47</span> students, <span class="highlight">25</span> finished the course
+							li.highlight Average score: 1.48
+					.list-title.fragment.fade-in(data-fragment-index="2")
+						p 2018
+						ul
+							li design improvements
+							li migrated from C++ to TypeScript (PixiJS)
+							li <span class="highlight">50</span> students, <span class="highlight">30</span> finished the course
+							li.highlight Average score: 1.50
+					.list-title.fragment.fade-in(data-fragment-index="3")
+						p 2019
+						ul
+							li all slides rewritten into HTML (RevealJS engine)
+							li 23 new examples, 3 minigames, 3 new topics
+							li <span class="highlight">50</span> students, <span class="highlight">33</span> finished the course
+							li.highlight Average score: 1.67
 				div
 					.text-center.fragment.fade-in(data-fragment-index="1")
 						img.width-400(src=imgAssets+'aph_01.jpg')
@@ -93,20 +96,24 @@ include ./mixins/quotes.pug
 			.center.top-35p.z-index-100.width-100p
 				+frameShard().width-50p
 					div
-						.list-title Slides and materials
-						ul
-							li
-								a(href="https://gitlab.fit.cvut.cz/NI-APH/materials") https://gitlab.fit.cvut.cz/NI-APH/materials
-						.list-title Public Page
-						ul
-							li
-								a(href="https://aph.dodo.me") https://aph.dodo.me
-						.list-title Lectures
-						ul
-							li on Youtube, every Thursday at 16:15
-						.list-title Labs
-						ul
-							li will be uploaded to MS Teams periodically
+						.list-title
+							p Slides and materials
+							ul
+								li
+									a(href="https://gitlab.fit.cvut.cz/NI-APH/materials") https://gitlab.fit.cvut.cz/NI-APH/materials
+						.list-title
+							p Public Page
+							ul
+								li
+									a(href="https://aph.dodo.me") https://aph.dodo.me
+						.list-title
+							p Lectures
+							ul
+								li on Youtube, every Thursday at 16:15
+						.list-title 
+							p Labs
+							ul
+								li will be uploaded to MS Teams periodically
 		+mcontainer()
 			h3 Assessment
 			.top-5p.left-40p
@@ -114,18 +121,20 @@ include ./mixins/quotes.pug
 			.center.top-35p.z-index-100.width-100p
 				+frameShard().width-50p
 					div
-						.list-title Project
-						ul
-							li a simple web game
-							li Total: <span class="highlight">70 points</span></span>
-							li To pass: <span class="highlight">35</span>
-							li Deadline: <span class="highlight">5.1.2021</span>
-							li Evaluation: after submitting
-							li All info can be found <a href="https://aph.dodo.me/">here</a>
-						.list-title Exam
-						ul
-							li only oral part, 3 questions
-							li Maximum points: <span class="highlight">30</span>, to pass: <span class="highlight">15</span>
+						.list-title
+							p Project
+							ul
+								li a simple web game
+								li Total: <span class="highlight">70 points</span></span>
+								li To pass: <span class="highlight">35</span>
+								li Deadline: <span class="highlight">5.1.2021</span>
+								li Evaluation: after submitting
+								li All info can be found <a href="https://aph.dodo.me/docs/seminars">here</a>
+						.list-title
+							p Exam
+							ul
+								li only oral part, 3 questions
+								li Maximum points: <span class="highlight">30</span>, to pass: <span class="highlight">15</span>
 		+frameInboxMid('Lectures')
 			div.center
 				table.width-50p.text-left
@@ -218,7 +227,7 @@ include ./mixins/quotes.pug
 								td Components
 							tr
 								td.text-center 07
-								td 5.11
+								td 5.11.2020
 								td Patterns, Algorithms
 							tr
 								td.text-center 08
@@ -259,14 +268,16 @@ include ./mixins/quotes.pug
 		+mcontainer('Literature')
 			+frameShard().top-200
 				div
-					.list-title For engineering
-					ul
-						li
-							a(href='https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459') Gregory, Json. 2018. Game Engine Architecture (3rd ed.)
-					.list-title For design
-					ul
-						li 
-							a(href='https://www.amazon.com/Theory-Game-Design-Raph-Koster/dp/1932111972') Koster, Raph. 2004. Theory of Fun for Game Design 
+					.list-title
+						p For engineering
+						ul
+							li
+								a(href='https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459') Gregory, Json. 2018. Game Engine Architecture (3rd ed.)
+					.list-title
+						p For design
+						ul
+							li 
+								a(href='https://www.amazon.com/Theory-Game-Design-Raph-Koster/dp/1932111972') Koster, Raph. 2004. Theory of Fun for Game Design 
 				
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')

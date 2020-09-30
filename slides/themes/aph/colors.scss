@@ -2,19 +2,34 @@
 
 /* Brand colors */
 $color-midnight: #03060c;
+$color-midnight-light: #121824;
 $color-white: #ffffff;
+
+$color-tomato-light: #FF867F; 
 $color-tomato: #cf2f25;
 $color-tomato-dark: #7d0600;
+
+$color-lemon-light: #FFFDC8;
 $color-lemon: #e9e56f;
 $color-lemon-dark: #a19d22;
+
+$color-emerald-light: #A0F1C6;
 $color-emerald: #47d58a;
 $color-emerald-dark: #009244;
+
+$color-aqua-light: #86ECEC;
 $color-aqua: #30d2d5;
 $color-aqua-dark: #00a0a0;
+
+$color-royal-light: #C9D4FB;
 $color-royal: #6f8ce9;
 $color-royal-dark: #4d6fdc;
+
+$color-azure-light: #7893EA;
 $color-azure: #2c57df;
 $color-azure-dark: #0a2c9d;
+
+$color-manhattan-light: #FFF2E6;
 $color-manhattan: #f6c9a0;
 $color-manhattan-dark: #a56b36;
 
@@ -29,10 +44,10 @@ $color-rhino-10: #e8eaec;
 $color-rhino-5: #f3f4f5;
 
 /* List of all colors for auto-generated classes - in PUG we will be able to write classes like color-tomato, bgr-tomato etc. */
-$allColors: "midnight" $color-midnight, "white" $color-white, "tomato" $color-tomato, "tomato-dark" $color-tomato-dark,
-	"lemon" $color-lemon, "lemon-dark" $color-lemon-dark, "emerald" $color-emerald, "emerald-dark" $color-emerald-dark,
-	"aqua" $color-aqua, "aqua-dark" $color-aqua-dark, "royal" $color-royal, "royal-dark" $color-royal-dark,
-	"manhattan" $color-manhattan, 'manhattan-dark' $color-manhattan-dark,
-	"azure" $color-azure, "azure-dark" $color-azure-dark, "rhino-100" $color-rhino-100, "rhino-90" $color-rhino-90,
-	"rhino-80" $color-rhino-80, "rhino-60" $color-rhino-60, "rhino-40" $color-rhino-40, "rhino-20" $color-rhino-20,
-	"rhino-10" $color-rhino-10, "rhino-5" $color-rhino-5;
+$allColors: "midnight" $color-midnight, "midnight-light" $color-midnight-light, "white" $color-white, "tomato" $color-tomato, "tomato-light" $color-tomato-light, "tomato-dark" $color-tomato-dark,
+	"lemon" $color-lemon, "lemon-light" $color-lemon-light, "lemon-dark" $color-lemon-dark, "emerald" $color-emerald, "emerald-light" $color-emerald-light, 
+	"emerald-dark" $color-emerald-dark, "aqua" $color-aqua, "aqua-light" $color-aqua-light, "aqua-dark" $color-aqua-dark, "royal" $color-royal, 
+	"royal-light" $color-royal-light, "royal-dark" $color-royal-dark, "manhattan" $color-manhattan, "manhattan-light" $color-manhattan-light, 
+	'manhattan-dark' $color-manhattan-dark, "azure" $color-azure, "azure-light" $color-azure-light, "azure-dark" $color-azure-dark, 
+	"rhino-100" $color-rhino-100, "rhino-90" $color-rhino-90, "rhino-80" $color-rhino-80, "rhino-60" $color-rhino-60, "rhino-40" $color-rhino-40, 
+	"rhino-20" $color-rhino-20, "rhino-10" $color-rhino-10, "rhino-5" $color-rhino-5;

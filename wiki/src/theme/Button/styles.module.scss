@@ -1,0 +1,76 @@
+@import "../../css/variables.scss";
+
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	height: 55px;
+	padding: 0 2rem;
+	border: none;
+	border-radius: calc(var(--ifm-global-border-radius) / 2);
+	font-weight: var(--ifm-font-weight-bold);
+	font-size: $font-size-normal;
+	transition: background-color 100ms var(--transition-bezier);
+}
+
+.button:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button--primary {
+	background-color: $color-lemon;
+	color: $color-white;
+}
+
+.button--primary:hover {
+	color: $color-white;
+	background-color: $color-lemon-dark;
+}
+
+.button--icon img {
+	margin-right: 0.5rem;
+}
+
+.button--secondary {
+	background-color: $color-white;
+	color: $color-rhino-100;
+}
+
+.button--secondary:hover {
+	color: $color-rhino-100;
+	background-color: $color-rhino-5;
+}
+
+.button--tertiary {
+	background-color: $color-white-10;
+	color: $color-white;
+}
+
+.button--tertiary:hover {
+	color: $color-white;
+	background-color: $color-white-20;
+}
+
+.button--small {
+	height: 3.5rem;
+}
+
+.button--xsmall {
+	height: 2.6rem;
+	padding: 0 1rem;
+}
+
+.button--uppercase {
+	text-transform: uppercase;
+}
+
+@media (max-width: 996px) {
+	.button {
+		padding: 0 1.75rem;
+	}
+
+	.button--xsmall {
+		padding: 0 1rem;
+	}
+}

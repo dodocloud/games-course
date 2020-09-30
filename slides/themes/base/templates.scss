@@ -381,33 +381,33 @@
     /* Paddings: -100..0px */
     @for $i from -100 through 0 {
         .-p-#{-$i} {
-            padding: $i * 1px !important;
+            padding: (-$i * 1px) !important;
         }
 
         .-pl-#{-$i} {
-            padding-left: $i * 1px !important;
+            padding-left: (-$i * 1px) !important;
         }
 
         .-pt-#{-$i} {
-            padding-top: $i * 1px !important;
+            padding-top: (-$i * 1px) !important;
         }
 
         .-pr-#{-$i} {
-            padding-right: $i * 1px !important;
+            padding-right: (-$i * 1px) !important;
         }
 
         .-pb-#{-$i} {
-            padding-bottom: $i * 1px !important;
+            padding-bottom: (-$i * 1px) !important;
         }
 
         .-px-#{-$i} {
-            padding-left: $i * 1px !important;
-            padding-right: $i * 1px !important;
+            padding-left: (-$i * 1px) !important;
+            padding-right: (-$i * 1px) !important;
         }
 
         .-py-#{-$i} {
-            padding-top: $i * 1px !important;
-            padding-bottom: $i * 1px !important;
+            padding-top: (-$i * 1px) !important;
+            padding-bottom: (-$i * 1px) !important;
         }
     }
 

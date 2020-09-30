@@ -6,6 +6,12 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+
+## [4.1.5] - 2020-09-30
+### Added
+- Materials for pixi tutorial
+- Documentation of the visual identity
+
 ## [4.1] - 2020-09-23
 ### Added
 - A lot of stuff, primarily docusaurus-powered dashboard

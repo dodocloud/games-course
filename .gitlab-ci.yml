@@ -1,0 +1,18 @@
+image: jtredoux/node-aws
+
+stages:
+  - deploy
+
+master_deploy:
+  stage: deploy
+  only:
+    - stage
+  script:
+    - echo "Installing"
+    - npm install
+    - (cd wiki && npm install)
+    - echo "Building"
+    - npm run deploy-all
+    - echo "Deloying master on AWS S3"
+    - aws s3 rm s3://$AWS_BUCKET --recursive
+    - aws s3 sync ./build_wiki/ s3://$AWS_BUCKET

@@ -1,0 +1,210 @@
+/**
+*
+* Override Infima's variables + set color palette
+*
+**/
+
+@import './fonts.scss';
+@import "./variables.scss";
+
+
+:root {
+	--transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+	--font-family-base: "Source Sans Pro", Helvetica, sans-serif;
+
+	--ifm-background-color: #{$color-rhino-100};
+	--ifm-blockquote-color: #{$color-royal};
+	--ifm-code-background: #{$color-rhino-90};
+	--ifm-code-color: #{$color-white};
+	--ifm-code-font-size: #{$font-size-small};
+	--ifm-color-emphasis-300: #{$color-royal};
+	--ifm-color-primary: #{$color-lemon};
+	--ifm-color-primary-dark: #{$color-lemon-dark};
+	--ifm-color-primary-darker: #{$color-lemon-dark};
+	--ifm-color-primary-darkest: #{$color-lemon-dark};
+	--ifm-color-primary-light: #{$color-lemon};
+	--ifm-color-primary-lighter: #{$color-lemon-light};
+	--ifm-color-primary-lightest:#{$color-lemon-light};
+	--ifm-color-info: #{$color-azure};
+	--ifm-color-success: #{$color-emerald};
+	--ifm-color-warning: #{$color-lemon};
+	--ifm-dropdown-background-color: #{$color-midnight-light};
+	--ifm-font-color-base: #{$color-white};
+	--ifm-font-family-base: var(--font-family-base);
+	--ifm-font-family-monospace: "Inconsolata", monospace;
+	--ifm-font-size-base: #{$font-size-small};
+	--ifm-global-border-radius: 8px;
+	--ifm-h1-font-size: #{$font-size-xxlarge};
+	--ifm-h2-font-size: #{$font-size-llarge};
+	--ifm-h4-font-size: #{$font-size-large};
+	--ifm-heading-margin-bottom: 1.5rem;
+	--ifm-link-color: #{$color-royal-light};
+	--ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
+	--ifm-navbar-background-color: #{$color-rhino-100};
+	--ifm-navbar-height: 80px;
+	--ifm-navbar-item-padding-horizontal: 20px;
+	--ifm-navbar-shadow: 0 1px 0 0 #{$color-white-10};
+	--ifm-paragraph-margin-bottom: 1.25rem;
+	--ifm-pre-background: #{$color-rhino-100};
+	--ifm-table-cell-padding: 0.15rem 1rem;
+	--ifm-toc-border-color: #{$color-white-10};
+}
+
+html[data-theme="dark"] {
+	--ifm-background-color: #{$color-rhino-100};
+	--ifm-color-emphasis-300: #{$color-royal};
+	--ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
+}
+
+html[data-theme="dark"] .DocSearch {
+	--docsearch-text-color: var(--ifm-font-color-base);
+	--docsearch-muted-color: var(--ifm-color-secondary-darkest);
+	--docsearch-container-background: rgba($color-midnight, 0.5);
+	/* Modal */
+	--docsearch-modal-background: var(--ifm-background-color);
+	/* Search box */
+	--docsearch-searchbox-background: #{$color-white-10};
+	--docsearch-searchbox-focus-background: #{$color-rhino-100};
+	/* Hit */
+	--docsearch-hit-color: var(--ifm-font-color-base);
+	--docsearch-hit-active-color: var(--ifm-color-white);
+	--docsearch-hit-background: #{$color-midnight};
+	/* Footer */
+	--docsearch-footer-background: var(--ifm-background-color);
+	--docsearch-key-gradient: linear-gradient(-26.5deg, #{$color-rhino-90} 0%, #{$color-midnight} 100%);
+}
+
+/**
+ *
+ * Override Docusaurus/Infima
+ *
+ **/
+
+nav {
+	--ifm-font-size-base: #{$font-size-normal};
+	--ifm-link-color: #{$color-lemon};
+}
+
+.markdown {
+	--ifm-h2-vertical-rhythm-top: 3;
+	--ifm-h3-vertical-rhythm-top: 2;
+	--ifm-heading-vertical-rhythm-top: 2; /* h4 */
+	--ifm-heading-vertical-rhythm-bottom: 0.4;
+	--ifm-table-background: #{$color-white-3};
+	--ifm-table-border-color: #{$color-rhino-100};
+	--ifm-table-border-width: 4px;
+	--ifm-table-head-background: #{$color-rhino-90};
+	--ifm-table-head-color: #{$color-white};
+	--ifm-table-stripe-background: #{$color-white-3};
+}
+
+.admonition {
+	--ifm-color-info: #{$color-royal};
+	--ifm-color-success: var(--ifm-color-primary-lightest);
+	--ifm-heading-color: #000;
+}
+
+.alert--success {
+	--ifm-alert-background-color: #{$color-emerald};
+	--ifm-alert-border-color: #{$color-emerald};
+}
+
+.alert--secondary {
+	--ifm-alert-background-color: #{$color-royal};
+	--ifm-alert-border-color: #{$color-royal};
+}
+
+.alert--warning {
+	--ifm-alert-background-color: #{$color-lemon};
+	--ifm-alert-border-color: #{$color-lemon};
+}
+
+.pagination-nav {
+	--ifm-color-content-secondary: #{$color-white};
+	--ifm-link-color: #{$color-white};
+	--ifm-link-hover-color: #{$color-white};
+	--ifm-pagination-nav-color-hover: #{$color-white};
+	--ifm-pagination-nav-border-radius: var(--ifm-global-border-radius);
+	--ifm-color-emphasis-300: transparent;
+}
+
+/* This is from Layout.tsx (cf. upstream) */
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	transition: var(--ifm-transition-fast) ease color;
+}
+
+#__docusaurus {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Pagination */
+
+.pagination-nav__item--next .pagination-nav__link {
+	background: #{$color-lemon};
+}
+
+.pagination-nav__link {
+	background: #{$color-white-5};
+}
+
+.navbar__link,
+.dropdown__link {
+	font-size: var(--ifm-font-size-base);
+}
+
+main article header h2 a {
+	color: $color-rhino-5;
+}
+
+.DocSearch-Button-Key {
+	display: none !important;
+}
+
+/**
+ *
+ * Custom global styles
+ *
+ **/
+
+/* Firefox */
+* {
+	scrollbar-color: #{$color-royal} #{$color-rhino-90};
+	scrollbar-width: thin;
+}
+
+/* WebKit / Blink */
+::-webkit-scrollbar {
+	width: 7px !important;
+	height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+	background: #{$color-rhino-90} !important;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 0 !important;
+	background: #{$color-royal} !important;
+}
+
+::-webkit-scrollbar-corner {
+	background: #{$color-rhino-90} !important;
+}
+
+.navbar__item--slack {
+	padding-left: 2.25rem;
+	background-image: url("/img/navbar/slack.svg");
+	background-position-x: 0.5rem;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 18px 18px;
+}

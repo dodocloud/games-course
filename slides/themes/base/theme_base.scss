@@ -369,6 +369,7 @@ body {
     /* left/right arrows */
     .controls {
         bottom: 45px !important;
+        z-index: 10000;
 
         .controls-arrow {
             color: $highlight-color-3;

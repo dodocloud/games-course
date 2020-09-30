@@ -1,0 +1,11 @@
+@import "../../css/variables.scss";
+
+.brand {
+	width: 126px;
+}
+
+@media (max-width: 768px) {
+	:global(.DocSearch-Button) {
+		margin: 0 !important;
+	}
+}

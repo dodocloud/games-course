@@ -1,5 +1,8 @@
 const visit = require('unist-util-visit')
 
+// override this when running locally. This is used to navigate to the static content
+const url = `https://aph.dodo.me`;
+
 const customFields = {
 	copyright: `Copyright © ${new Date().getFullYear()} Adam Vesecký`,
 	description: 'Materials for classes about computer games',
@@ -32,9 +35,6 @@ function variable() {
 	return transformer
 }
 
-// todo... override navbar item and allow to redirect to the static folder
-const url = `https://aph.dodo.me`;
-
 const config = {
 	title: 'Architecture of Computer Games',
 	url: url,
@@ -54,54 +54,7 @@ const config = {
 				steps: 2 // the max number of images generated between min and max (inclusive)
 			}
 		],
-		[
-			'@docusaurus/plugin-pwa',
-			{
-				pwaHead: [
-					{
-						tagName: 'link',
-						rel: 'icon',
-						href: '/img/favicon.png'
-					},
-					{
-						tagName: 'meta',
-						name: 'theme-color',
-						content: '#d14671'
-					},
-					{
-						tagName: 'meta',
-						name: 'apple-mobile-web-app-capable',
-						content: 'yes'
-					},
-					{
-						tagName: 'meta',
-						name: 'apple-mobile-web-app-status-bar-style',
-						content: '#21222c'
-					},
-					{
-						tagName: 'link',
-						rel: 'apple-touch-icon',
-						href: '/img/favicon.png'
-					},
-					{
-						tagName: 'link',
-						rel: 'mask-icon',
-						href: '/img/favicon.png',
-						content: '#fff'
-					},
-					{
-						tagName: 'meta',
-						name: 'msapplication-TileImage',
-						content: '/img/favicon.png'
-					},
-					{
-						tagName: 'meta',
-						name: 'msapplication-TileColor',
-						content: '#21222c'
-					}
-				]
-			}
-		]
+		require.resolve('docusaurus-plugin-sass')
 	],
 	themeConfig: {
 		colorMode: {
@@ -139,7 +92,11 @@ const config = {
 					label: 'Seminars',
 					position: 'left',
 					to: '/docs/seminars/',
-					activeBasePath: 'docs'
+				},
+				{
+					label: 'Brand',
+					position: 'left',
+					to: '/docs/brand/',
 				},
 			/*	{
 					label: 'Blog',
@@ -171,7 +128,7 @@ const config = {
 					priority: 0.7
 				},
 				theme: {
-					customCss: require.resolve('./src/css/global.css')
+					customCss: require.resolve('./src/css/global.scss')
 				}
 			}
 		]

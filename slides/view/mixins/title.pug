@@ -1,5 +1,5 @@
 
-mixin title(title, subtitle)
+mixin title(title, subtitle, color)
     +frameOutbox()
         .absolute.left-10.top-15
             .flex-row
@@ -10,7 +10,7 @@ mixin title(title, subtitle)
                     p Adam Vesecký
                     p vesecky.adam@gmail.com
         .absolute.right-10.top-15
-            .flex-col.font-light.text-xl.text-right
+            .flex-col.font-light.text-xl.text-right(class!=color)
                 p!=title
                 p!=subtitle
         .absolute.bottom-100.right-20.marker

@@ -1,4 +1,3 @@
-
 ---
 title: Course requirements
 
@@ -23,6 +22,8 @@ title: Course requirements
   - yet, you can use any game engine you like
 - the game will be deployed as a **web application** (you can either use gitlab CI/CD or any service of your choosing)
 - **the topic is solely up to you**, yet it must be approved by the lecturer
+- the game, especially the implementation of its mechanics, must be your own contribution. If you use any 3rd party libraries, tools, assets, or any existing minigames as a template project, it must be documented in the readme
+- game assets, such as images and sounds, should have **Public Domain** license or any other license that makes the assets freely available
 - pay your utmost attention to the technical solution, **clean code** and polished gameplay
 - the deadline is set at **5.1.2021**
 
@@ -35,14 +36,25 @@ title: Course requirements
 - some mechanics you may choose from:
   - interesting AI
   - advanced pathfinding
+  - dialogue tree for event-based adventure game
   - particle systems
   - advanced steering behaviors
   - adaptive audio
   - advanced randomness (Perlin Noise)
   - looting table
+  - physics engine (simple collision detector and resolver)
+
+### How to start
+- analyse several dozens of existing games
+- pick up a few interesting mechanics
+- choose one mechanic that will be the most challenging one from technical perspective
+- prepare or download very simple assets (dots, squares, circles)
+- start prototyping
+- bring your gaming mechanics to perfection
+- polish your game (better assets, better HUD,...)
+- prepare your game for submitting (add readme, diagrams, refactor your code a bit,...)
 
 ### Instructions for submitting
-
 - create your own repository under your username. The name should be NI-APH `gitlab.fit.cvut.cz/<username>/NI-APH`
 - assign access permission to the lecturer (loginname svecadam)
 - if you choose to use PixiJS or ThreeJS library for your work:
@@ -52,7 +64,7 @@ title: Course requirements
 - your repository must contain ONLY your game and documentation in the README (or any other files that are linked from the readme)
 - readme should contain following information:
   - where the game is deployed
-  - how to make the game run
+  - how to make the game install and run
   - **diagram of the game architecture**
   - short description and manual, if necessary
 
@@ -73,7 +85,7 @@ title: Course requirements
 | ------ | ------ | 
 | 8.10. | List of mechanics for approval |
 | 26.11 / 3.12 | Presentation of the progress |
-| 5.11. | Deadline | 
+| 5.1. | Deadline | 
 | January | Evaluation + exam |
 
 ## Exam requirements

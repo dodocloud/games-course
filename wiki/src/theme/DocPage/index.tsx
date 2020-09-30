@@ -12,60 +12,60 @@ import MDXComponents from '@theme/MDXComponents'
 import NotFound from '@theme/NotFound'
 import { MetadataContextProvider } from '@theme/useMetadataContext'
 
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 type Routes = Props['route']['routes']
 
 const DocPage = ({
-  location,
-  route: { routes },
-  versionMetadata,
-  ...rest
+	location,
+	route: { routes },
+	versionMetadata,
+	...rest
 }: Props) => {
-  const { siteConfig, isClient } = useDocusaurusContext()
-  const { permalinkToSidebar, docsSidebars } = versionMetadata || {}
-  const docRoutes = (routes as unknown) as Routes[]
-  const currentDocRoute = routes.find((docRoute) =>
-    matchPath(location.pathname, docRoute)
-  )
+	const { siteConfig, isClient } = useDocusaurusContext()
+	const { permalinkToSidebar, docsSidebars } = versionMetadata || {}
+	const docRoutes = (routes as unknown) as Routes[]
+	const currentDocRoute = routes.find((docRoute) =>
+		matchPath(location.pathname, docRoute)
+	)
 
-  if (!currentDocRoute) {
-    return <NotFound location={location} {...rest} />
-  }
+	if (!currentDocRoute) {
+		return <NotFound location={location} {...rest} />
+	}
 
-  const sidebar = docsSidebars[permalinkToSidebar[currentDocRoute.path]]
+	const sidebar = docsSidebars[permalinkToSidebar[currentDocRoute.path]]
 
-  return (
-    <MetadataContextProvider>
-      <Layout
-        description={siteConfig.customFields.description}
-        key={isClient.toString()}
-        title="Introduction"
-      >
-        <div className={styles.doc}>
-          {sidebar && (
-            <div
-              className={clsx('docs-sidebar', styles.doc__sidebar)}
-              role="complementary"
-            >
-              <DocSidebar
-                path={currentDocRoute.path}
-                sidebar={sidebar}
-                sidebarCollapsible={
-                  siteConfig.themeConfig?.sidebarCollapsible ?? true
-                }
-              />
-            </div>
-          )}
-          <main className={styles.doc__main}>
-            <MDXProvider components={MDXComponents}>
-              {renderRoutes(docRoutes)}
-            </MDXProvider>
-          </main>
-        </div>
-      </Layout>
-    </MetadataContextProvider>
-  )
+	return (
+		<MetadataContextProvider>
+			<Layout
+				description={siteConfig.customFields.description}
+				key={isClient.toString()}
+				title="Introduction"
+			>
+				<div className={styles.doc}>
+					{sidebar && (
+						<div
+							className={clsx('docs-sidebar', styles.doc__sidebar)}
+							role="complementary"
+						>
+							<DocSidebar
+								path={currentDocRoute.path}
+								sidebar={sidebar}
+								sidebarCollapsible={
+									siteConfig.themeConfig?.sidebarCollapsible ?? true
+								}
+							/>
+						</div>
+					)}
+					<main className={styles.doc__main}>
+						<MDXProvider components={MDXComponents}>
+							{renderRoutes(docRoutes)}
+						</MDXProvider>
+					</main>
+				</div>
+			</Layout>
+		</MetadataContextProvider>
+	)
 }
 
 export default DocPage
