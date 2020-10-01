@@ -85,6 +85,10 @@ const config = {
 						{
 							label: 'Lecture 1: Games',
 							href: url + '/slides/lecture01.html',
+						},
+						{
+							label: 'Lecture 2: Engines',
+							href: url + '/slides/lecture02.html',
 						}
 					]
 				},

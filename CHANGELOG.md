@@ -7,6 +7,10 @@ Versioning info:
 - third number indicates minor changes, such as hotfixes and updates
 
 
+## [4.2] - 2020-10-01
+### Added
+- Lecture 2
+
 ## [4.1.5] - 2020-09-30
 ### Added
 - Materials for pixi tutorial

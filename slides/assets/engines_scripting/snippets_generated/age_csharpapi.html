@@ -1,0 +1,16 @@
+<pre><span class="linenum">   1</span> ATOMIC_EXPORT_API <span class="token keyword">bool</span> <span class="token function">csb_Atomic_FileSystem_SetCurrentDir_4667</span><span class="token punctuation">(</span>FileSystem<span class="token operator">*</span> self<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> pathName<span class="token punctuation">)</span>
+<span class="linenum">   2</span> <span class="token punctuation">{</span> 
+<span class="linenum">   3</span>    <span class="token keyword">return</span> self<span class="token operator">-></span><span class="token function">SetCurrentDir</span><span class="token punctuation">(</span>pathName <span class="token operator">?</span> <span class="token function">String</span><span class="token punctuation">(</span>pathName<span class="token punctuation">)</span> <span class="token operator">:</span> String<span class="token operator">::</span>EMPTY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">   4</span> <span class="token punctuation">}</span>
+<span class="linenum">   5</span>  
+<span class="linenum">   6</span>  
+<span class="linenum">   7</span> ATOMIC_EXPORT_API <span class="token keyword">bool</span> <span class="token function">csb_Atomic_FileSystem_CreateDir_4668</span><span class="token punctuation">(</span>FileSystem<span class="token operator">*</span> self<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> pathName<span class="token punctuation">)</span>
+<span class="linenum">   8</span> <span class="token punctuation">{</span>
+<span class="linenum">   9</span>    <span class="token keyword">return</span> self<span class="token operator">-></span><span class="token function">CreateDir</span><span class="token punctuation">(</span>pathName <span class="token operator">?</span> <span class="token function">String</span><span class="token punctuation">(</span>pathName<span class="token punctuation">)</span> <span class="token operator">:</span> String<span class="token operator">::</span>EMPTY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  10</span> <span class="token punctuation">}</span>
+<span class="linenum">  11</span>  
+<span class="linenum">  12</span>  
+<span class="linenum">  13</span> ATOMIC_EXPORT_API <span class="token keyword">void</span> <span class="token function">csb_Atomic_FileSystem_SetExecuteConsoleCommands_4669</span><span class="token punctuation">(</span>FileSystem<span class="token operator">*</span> self<span class="token punctuation">,</span> <span class="token keyword">bool</span> enable<span class="token punctuation">)</span>
+<span class="linenum">  14</span> <span class="token punctuation">{</span>
+<span class="linenum">  15</span>    self<span class="token operator">-></span><span class="token function">SetExecuteConsoleCommands</span><span class="token punctuation">(</span>enable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  16</span> <span class="token punctuation">}</span></pre>

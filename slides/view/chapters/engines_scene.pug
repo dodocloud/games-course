@@ -1,0 +1,48 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_scene/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Scene Graph', imgAssets+'chapter_engines_scene.svg')
++frameInbox('Scene Graph')
+    .important-orange
+        .list-title.fragment
+            p Scene Graph
+            ul
+                li.fragment essential structure of every interactive application
+                li.fragment a way of ordering the data into a hierarchy
+                li.fragment represented as N-Tree or a regular graph
+                li.fragment implemented as an array, oct-tree, quad-tree, bounding volume hierarchy,...
+                li.highlight.fragment parent nodes affect child nodes (translation, rotation, scale,...)
+                li.fragment leaves represent atomic units (shapes, vertices, imported meshes)
+        .list-title.fragment
+            p Scene Manager
+            ul
+                li.fragment manages objects in the scene
+                li.fragment similar to HTML DOM along with Event Manager
+                li.fragment responsibility: sending events, searching for objects, applying transformations,...
+                li.fragment Unity Engine - game objects form a hierarchy
+                li.fragment Unreal Engine - components form a hierarchy
+                li.fragment Godot Engine - everyting forms a hierarchy
++frameInbox('Example: Scene Hierarchy')
+    .center.bottom-0.width-100p
+        img.height-380.mr-100(src=imgAssets+'scene_game.gif')
+    .center.top-0.left-20
+        img.height-650(src=imgAssets+'graph_creature.svg')
++frameInbox('Example: Complex Object Hierarchy')
+    ul.absolute
+        li T - Translation
+        li R - Rotation
+        li I - Identity
+    .top-0.right-0.height-500
+        img(src=imgAssets+'scenegraph_droid.png')
+    .center
+        img.height-700(src=imgAssets+'graph_droid.svg')
++frameOutbox('Example: Unity Scene Graph')
+    .center
+        img.height-100p(src=imgAssets+'scenegraph_unity.jpg')
++frameOutbox('Example: Godot Nodes')
+    .center.fill
+        img.height-400(src=imgAssets+'godot_nodes.png')

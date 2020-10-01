@@ -1,0 +1,157 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_intro/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Game Engines Overview', imgAssets+'chapter_engines_intro.svg')
++frameInbox('Unreal Engine')
+    div.important-green
+        div.z-index-1000
+            .list-title
+                p Unreal Engine 1
+                ul
+                    li Released in 1998 by Epic Games as FPS game engine
+                    li <span class="highlight-2">Unreal</span> - the first game powered by this engine 
+                    li Introduced the concept of assets, HW & SW rendering,...
+            .flex-cols-2.space-md.width-70p
+                div
+                    .list-title.fragment(data-fragment-index="0")
+                        p Unreal Engine 4
+                        ul
+                            li Film-Quality postprocessing
+                            li VFX & Particle Systems
+                            li Beta Raytracing
+                div
+                    .list-title.fragment(data-fragment-index="1")
+                        p Unreal Engine 5
+                        ul
+                            li available in early 2021
+                            li Nanite virtualized geometry
+                            li Lumen illumination engine
+        .bottom-0.left-0.grid.grid-cols-3.grid.rows-2.width-100p.gap-20
+            div.text-center
+            div
+            div.text-center
+                img.height-280(src=imgAssets+'unreal.jpg')
+            div.text-center.fragment(data-fragment-index="0")
+                img.height-280(src=imgAssets+'unreal_engine.jpg')
+            div.text-center.fragment(data-fragment-index="0")
+                img.height-290(src=imgAssets+'unreal_engine_2.jpg')
+            div.text-center.fragment(data-fragment-index="1")
+                img.height-290(src=imgAssets+'unreal_engine_3.jpg')
++frameInbox('Unity')
+    div.important-green
+        ul
+            li All-Purpose (not only) game engine 
+            li First announced for MacOS in 2005
+            li over 27 platforms supported
+            li Most common choice for indie developers
+            li Supports 2D and 3D games
+        .list-title.fragment
+            p Unity 2020.1.6 - current version
+            ul
+                li Unity 2020.2 Beta was released also
+                li DirectX, OpenGL, Vulkan
+                li new shader graph
+                li C# 8 support
+    div
+        img.height-350.right-0.top-0(src=imgAssets+'unity_ori.jpg')
+        p.right-80.top-350 Ori
+        img.height-350.right-200.top-250(src=imgAssets+'unity_besiege.jpg')
+        p.right-240.top-600 Besiege
+        img.height-350.right-400.top-500(src=imgAssets+'unity_cuphead.jpg')
+        p.right-650.top-850 Cuphead
++frameInbox('Godot')
+    div.important-green
+        ul
+            li 2D and 3D game engine
+            li GDScript scripting language
+            li component architecture
+            li.upside.fragment MIT license, completely free
+            li.downside.fragment no famous games so far
+        
+    div
+        img.height-300.left-770.top-50(src=imgAssets+'godot.png')
+        img.height-350.left-50.bottom-50(src=imgAssets+'godot_interface.jpg')
+        img.height-450.right-0.bottom-50(src=imgAssets+'godot_games.png')
++frameInbox('Which engine do I need?')
+    div
+        ul
+            li some engines are easy to learn but difficult to master
+            li Unity is good for 2D and 3D indie games, Unreal for 3D AAA games, Godot for smaller, modest games
+        .flex-cols-4.space-xl
+            .height-180.text-center.fragment
+                img(src=imgAssets+'engine_horse.png')
+            .height-180.text-center.fragment
+                img(src=imgAssets+'engine_car.png')
+            .height-180.text-center.fragment
+                img(src=imgAssets+'engine_jet.png')
+            .height-180.text-center.fragment
+                img(src=imgAssets+'engine_rocket.png')
+        .list-title 
+            p.fragment Still, they all have similar core components
+            ul
+                li.fragment every game engine needs a <span class="highlight">game loop</span>
+                li.fragment almost every game needs to manage <span class="highlight">assets</span>
+                li.fragment every game needs a <span class="highlight">rendering engine</span>
+                li.fragment game objects are structured in a <span class="highlight">scene graph</span>
+                li.fragment we couldn't do much without a <span class="highlight">physics engine</span>
+                li.fragment interactive games require an advanced <span class="highlight">audio engine</span>
+        .bottom-20.right-10.fragment
+            img.height-400(src=imgAssets+'engines.jpg')
+        +tipKeen("Rocket engine works everywhere!")(class='bottom-0')
++frameInbox('Engine Architecture')
+    .important-green.center
+        img.height-800(src=imgAssets+'architecture.svg')
++frameInbox('Engine Architecture')
+    .important-green
+        .list-title.m-0.fragment
+            p Hardware
+            ul
+                li Playstation, Xbox, Nintendo Switch, iPhone, Samsung Galaxy, PC
+        .list-title.m-0.fragment
+            p Drivers
+            ul
+                li NVidia, Realtek audio, Gamepad driver
+        .list-title.m-0.fragment
+            p OS
+            ul
+                li Windows, Linux, MacOS, Android, iOS
+        .list-title.m-0.fragment 
+            p 3rd Party SDKs
+            ul
+                li DirectX, OpenGL, Vulkan, Boost, Havok, STL, Hardware-specific dev kit
+        .list-title.m-0.fragment
+            p Core Systems
+            ul
+                li Threading lib, File system, Network layer, Movie player, Math library, Parsers, Memory Allocator
+        .list-title.m-0.fragment 
+            p Modules
+            ul
+                li Scripting system, Messaging system, DSP, match-making management, skeletal animation, inverse kinematics, LERP, Rigid bodies, Spatial subdivision, 
+                    | LOD system, Particle system, Shading system
+        .list-title.m-0.fragment
+            p Game
+            ul
+                li HUD, Terrain renderer, Vehicle system, Puzzle system, Dialogue system, State machines, Camera
++frameInbox('Game Engine Primary Modules')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">Game Loop</span> - heartbeat of all games
+            li.fragment <span class="highlight">Scene Manager</span> - manages objects and structures them in a scene graph
+            li.fragment <span class="highlight">Resource Manager</span> - manages assets, controls a cache
+            li.fragment <span class="highlight">Input Manager</span> - handles inputs (keyboard, mouse, touch, joystick, gamepad,...)
+            li.fragment <span class="highlight">Memory Manager</span> - memory allocator and deallocator
+            li.fragment <span class="highlight">Rigidbody Engine</span> - event-based collision detection
+            li.fragment <span class="highlight">Physics Engine</span> - handles behavior of objects based on forces and impulses
+            li.fragment <span class="highlight">Rendering Engine</span> - renders the game, takes care of the rendering pipeline 
+            li.fragment <span class="highlight">Animation Engine</span> - handles animations
+            li.fragment <span class="highlight">Scripting Engine</span> - a bridge between the engine and interpreted languages (JS, C#,...)
+            li.fragment <span class="highlight">Audio Engine</span> - plays music, clips, sounds, calculates 3D sound
+            li.fragment <span class="highlight">AI Engine</span> - abstract engine for AI (state machines, behavioral trees,...)
+            li.fragment <span class="highlight">Networking Engine</span> - handles multipeer communication
+        div.fragment
+            ul
+                li Other modules - GUI framework, Level Editor, Camera, Event System, LOD system,...

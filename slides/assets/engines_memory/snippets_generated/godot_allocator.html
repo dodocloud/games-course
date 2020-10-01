@@ -1,0 +1,23 @@
+<pre><span class="linenum">   1</span> PoolAllocator<span class="token operator">::</span>ID <span class="token class-name">PoolAllocator</span><span class="token operator">::</span><span class="token function">alloc</span><span class="token punctuation">(</span><span class="token keyword">int</span> p_size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="linenum">   2</span> 	<span class="token keyword">int</span> size_to_alloc <span class="token operator">=</span> <span class="token function">aligned</span><span class="token punctuation">(</span>p_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">   3</span> 
+<span class="linenum">   4</span> 	EntryIndicesPos new_entry_indices_pos<span class="token punctuation">;</span>
+<span class="linenum">   5</span> 
+<span class="linenum">   6</span> 	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">find_hole</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>new_entry_indices_pos<span class="token punctuation">,</span> size_to_alloc<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="linenum">   7</span> 		<span class="token comment">/* No hole could be found, try compacting mem */</span>
+<span class="linenum">   8</span> 		<span class="token function">compact</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">   9</span> 		<span class="token comment">/* Then search again */</span>
+<span class="linenum">  10</span> 		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">find_hole</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>new_entry_indices_pos<span class="token punctuation">,</span> size_to_alloc<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="linenum">  11</span> 			<span class="token function">ERR_FAIL_V_MSG</span><span class="token punctuation">(</span>POOL_ALLOCATOR_INVALID_ID<span class="token punctuation">,</span> <span class="token string">"Memory can't be compacted further."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  12</span> 		<span class="token punctuation">}</span>
+<span class="linenum">  13</span> 	<span class="token punctuation">}</span>
+<span class="linenum">  14</span> 	EntryArrayPos new_entry_array_pos<span class="token punctuation">;</span>
+<span class="linenum">  15</span> 	<span class="token keyword">bool</span> found_free_entry <span class="token operator">=</span> <span class="token function">get_free_entry</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>new_entry_array_pos<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  16</span> 
+<span class="linenum">  17</span> 	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>found_free_entry<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="linenum">  18</span> 		<span class="token function">ERR_FAIL_V_MSG</span><span class="token punctuation">(</span>POOL_ALLOCATOR_INVALID_ID<span class="token punctuation">,</span> <span class="token string">"No free entry found in PoolAllocator."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="linenum">  19</span> 	<span class="token punctuation">}</span>
+<span class="linenum">  20</span>     <span class="token comment">// ... move all entry indices up and allocate the entry</span>
+<span class="linenum">  21</span>     <span class="token comment">// ...</span>
+<span class="linenum">  22</span> 	<span class="token keyword">return</span> retval<span class="token punctuation">;</span>
+<span class="linenum">  23</span> <span class="token punctuation">}</span></pre>

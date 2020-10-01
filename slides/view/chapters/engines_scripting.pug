@@ -1,0 +1,109 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_scripting/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Scripting Engine', imgAssets+'chapter_engines_scripting.svg')
++frameInbox('Scripts')
+    .important-green
+        .list-title.fragment
+            p Scripting language
+            ul
+                li high-level language that can be interpreted by another program at runtime
+                li it is more about an environment than the language itself (even C# can be considered as a scripting language)
+        .list-title.fragment
+            p Common characteristics
+            ul
+                li economy of expression
+                li flexible dynamic typing
+                li easy access to other programs/components
+        .list-title.fragment
+            p Scripts in games
+            ul
+                li allow rapid prototyping
+                li can be reloaded at runtime 
+                li can separate gameplay and core components 
+                li can be exposed to the end users for modding
+        .bottom-0.right-0.fragment
+            img.height-450(src=imgAssets+'monkey.png')
++frameInbox('Example: Arma 2 SQS Script')
+    .flex-cols-2
+        div
+            .code.text-xs
+                include ../../assets/engines_scripting/snippets_generated/arma2.html
+        div.text-right
+            img.height-400(src=imgAssets+'arma.jpg')
++frameInboxMid('Example: Hexen ACS Script')
+    .flex-cols-2
+        div
+            .code.text-xs
+                include ../../assets/engines_scripting/snippets_generated/hexen.html
+        div.text-right
+            img.height-300(src=imgAssets+'hexen.jpg')
++frameInboxMid('Example: World of Warcraft')
+    .flex-cols-2
+        div
+            .code.text-xs
+                include ../../assets/engines_scripting/snippets_generated/wow.html
+        div.text-right
+            img.height-300(src=imgAssets+'wow.jpg')
++frameInbox('Scripting architectures')
+    div.leading-2xl.important-orange
+        .list-title.fragment
+            p Scripted callbacks
+            ul
+                li certain functions are customizable via scripts
+                li a game object can respond to some relevant occurrence within the game world (in-game scripts)
+        .list-title.fragment
+            p Scripted components
+            ul
+                li new components/objects/properties can be constructed entirely in a script
+                li firstly used in <span class="highlight-2">Dungeon Siege</span>
+        .list-title.fragment
+            p Script-driven engine
+            ul
+                li script drives the entire engine (PixiJS, ThreeJS, p5.js, BabylonJS)
+        .list-title.fragment
+            p Script-driven game
+            ul
+                li script is running the game and the core systems are written in the engine
+                li used in Unreal, Unity, Godot, GameMaker,...
++frameInbox('Game Engine Scripting API')
+    .center
+        img.height-750.mt-20(src=imgAssets+'scripting_engine.svg')
++frameInbox('Game Engine Scripting API')
+    .important-orange
+        div
+            ul
+                li.fragment the engine needs to communicate with the script - provided by <span class="highlight">bridging</span>
+                ul
+                    li.fragment JNI (Java and C++)
+                    li.fragment P/Invoke (.NET and C++)
+                    li.fragment Dukbind (Duktape JS and C++)
+                li.fragment bridge is a performance bottleneck, especially for per-frame calls
+                li.fragment more scripting languages = more bridges to maintain
+                li.mt-40.fragment
+                    span.highlight Marshalling
+                    ul
+                        li transforming memory representation of an object between two domains (different programming languages)
+                li.mt-40.fragment
+                    span.highlight Semantic gap
+                    ul
+                        li descriptive difference of an object in various representations (e.g. relational database vs object-oriented structure)
++frameInbox('Example: Atomic Game Engine JS API')
+    div
+        .code.text-xs
+            include ../../assets/engines_scripting/snippets_generated/age_jsapi.html
++frameInbox('Example: Atomic Game Engine C# API')
+    div
+        ul
+            li mapping from C++ to C# is easy
+        .code.text-xs.mt-40
+            include ../../assets/engines_scripting/snippets_generated/age_csharpapi.html
++frameInboxMid('Example: Openframeworks LUA Api')
+    div
+        .code.text-xs
+            include ../../assets/engines_scripting/snippets_generated/of_luaapi.html
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100.1" height="50.1" version="1.1" viewBox="0 0 26.485 13.256" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-119.81 -81.063)" stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40">
+  <circle cx="140.85" cy="82.565" r="0" fill="#e9e56f" stroke-width=".72974"/>
+  <circle cx="140.74" cy="82.565" r="0" fill="#a56b36" stroke-width=".61884"/>
+  <circle cx="139.95" cy="82.3" r="0" fill="#a56b36" stroke-width=".61884"/>
+  <rect x="129.51" y="89.83" width="3.5278" height="2.6458" fill="#a0f1c6" stroke-width=".88889"/>
+  <rect x="128.62" y="88.066" width="4.4097" height="1.7639" fill="#a0f1c6" stroke-width=".89893"/>
+  <rect transform="scale(-1,1)" x="-136.56" y="89.83" width="3.5278" height="2.6458" fill="#47d58a" stroke-width=".88889"/>
+  <rect x="119.81" y="91.594" width="26.458" height="2.6458" fill="#a56b36" stroke-width="1.3333"/>
+  <rect transform="scale(-1,1)" x="-137.44" y="88.066" width="4.4097" height="1.7639" fill="#47d58a" stroke-width=".89893"/>
+  <rect transform="scale(-1,1)" x="-136.56" y="89.83" width="7.0556" height=".17639" fill="#009244" stroke-width=".32458"/>
+  <path d="m134.67 83.776c0 1.2321-0.62869 1.8118-1.7146 1.8118-0.78912 0-1.1431-0.81119-1.1431-1.8118 0-1.0007 0.35395-1.8118 1.1431-1.8118 1.0288 0 1.7146 0.57979 1.7146 1.8118" fill="#a56b36" stroke-width=".4865"/>
+  <path d="m134.38 83.776a1.4288 1.8118 0 0 1-1.4288 1.8118 1.4288 1.8118 0 0 1-1.4288-1.8118 1.4288 1.8118 0 0 1 1.4288-1.8118 1.4288 1.8118 0 0 1 1.4288 1.8118z" fill="#e9e56f" stroke-width=".4865"/>
+  <path d="m134.09 83.776a1.2117 1.5365 0 0 1-1.2117 1.5365 1.2117 1.5365 0 0 1-1.2117-1.5365 1.2117 1.5365 0 0 1 1.2117-1.5365 1.2117 1.5365 0 0 1 1.2117 1.5365" fill="#a56b36" stroke-width=".41256"/>
+  <path transform="matrix(.055206 .018758 -.014792 .070004 124.46 56.154)" d="m252.9 339.13-9.7702-1.9403-7.1372 6.9485-1.1738-9.8916-8.8139-4.6407 9.0447-4.1731 1.6899-9.8166 6.7638 7.3125 9.8583-1.4263-4.8645 8.6924z" fill="#e9e56f" stroke-width="7.5591"/>
+ </g>
+</svg>

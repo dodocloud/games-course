@@ -1,0 +1,68 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_speedrunning/';
+- var defaultBgr = 'backgrounds/marioworld.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Speedrunning', imgAssets+'chapter_speedrunning.svg')
++frameInbox('Speedrunning')
+    div
+        ul
+            li.fragment one goal: beat the clock
+            li.fragment practice of playing games to its authored conclusion as fast as possible
+            li.fragment speedrunners treat games differently than ordinary players do
+        .list-title.fragment
+            p Categories
+            ul
+                li.fragment <span class="highlight-2">any%</span> - just finish the game by all means
+                li.fragment <span class="highlight-2">100%</span> - collect all keys, upgrades, find all secrets
+                li.fragment <span class="highlight-2">low%</span> - obtain the fewest keys and upgrades as possible
+                li.fragment <span class="highlight-2">IL</span> - individual level, speedrun of only specific parts/levels
+                li.fragment <span class="highlight-2">blind run</span> - attempted without playing a game first
+                li.fragment <span class="highlight-2">blindfolded run</span> - runner is literally blindfolded
+    .bottom-20.right-20.fragment
+        img.height-350(src=imgAssets+'speedrunning.jpg')
++frameInbox('Speedrunning')
+    div
+        .list-title.fragment
+            p Important milestones
+            ul
+                li.fragment 1986 - released <span class="highlight-2">Metroid</span>, a game that rewarded fast playthroughs
+                li.fragment 1993 - released <span class="highlight-2">Doom</span>, allowed to record demo files of playthrough
+                li.fragment 1994 - launched COMPET-N database, definitive installment of Doom speedrunning
+                li.fragment 1997 - released video <span class="highlight-2">Quake done Quick</span>, first time speedrunning spread into gaming
+                li.fragment 1998 - released <span class="highlight-2">Zelda: Ocarina of Time</span>, game well-known for its catalogue of glitches
+                li.fragment 2005 - launch of Youtube
+                li.fragment 2009 - launched SpeedRunsLive.com
+                li.fragment 2010 - first run of <span class="highlight-2">Games Done Quick</span>, speedrun charity marathon
+                li.fragment 2011 - launch of Twitch
+                li.fragment 2014 - launched Speedrun.com
+                li.fragment 2016 - speedrunning is becoming increasingly popular
+    .bottom-20.right-20
+        img.height-300(src=imgAssets+'GDQ_2017.jpg')
++frameInbox('Speedruning')
+    div
+        .list-title.fragment
+            p Terms
+            ul
+                li.fragment <span class="highlight-2">Clipping</span> - going through something solid
+                li.fragment <span class="highlight-2">Cutscene skip</span> - skipping otherwise unskippable cutscenes
+                li.fragment <span class="highlight-2">Damage boost</span> - purposefully getting hit to gain a momentum
+                li.fragment <span class="highlight-2">Death warp</span> - dying to warp back to a checkpoint faster
+                li.fragment <span class="highlight-2">Sequence breaking</span> - acquiring progress before the game design intends
+                li.fragment <span class="highlight-2">TAS</span> - tool assisted speedrun
+                li.fragment <span class="highlight-2">Warp</span> - getting from one area to another without traveling there
+                li.fragment <span class="highlight-2">Zip</span> - taking advantage of a game's collision detection to move faster
+        .list-title.fragment
+            p Popular games for speedrunning
+            ul
+                li.fragment Super Metroid, Super Mario, The Legend of Zelda
+                li.fragment Doom, Quake, Dark Souls, Cuphead
+    .top-20.right-20
+        figure.fragment
+            img.width-400(src=imgAssets+'arbitrary_code.jpg')
+            p Super Mario glitch
+        figure.mt-20.fragment
+            img.width-400(src=imgAssets+'rayman_sidescrolling.jpg')
+            p Auto-scrolling in Rayman

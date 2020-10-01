@@ -1,0 +1,101 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_loop/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Game Loop', imgAssets+'chapter_engines_loop.svg')
++frameInbox('Application and Loop')
+    .important-orange.leading-xl
+        .list-title.fragment
+            p Initialization process
+            ol
+                li.fragment Initialize engine object
+                li.fragment Register all systems
+                li.fragment Initialize rendering window
+                li.fragment Run game loop
+                li.fragment Terminate
+        .list-title.fragment
+            p Game Loop process
+            ol
+                li.fragment Process inputs
+                li.fragment Update game state
+                li.fragment Render game objects
+                li.fragment Repeat
+    .bottom-0.right-0
+        img.width-800(src=imgAssets+'hello_world_triangle.png')
++frameInbox('Example: Atomic Game Engine init')
+    .important-green.center
+        img.height-780(src=imgAssets+'age_init.svg')
++frameInbox('Game Loop')
+    .important-orange
+        ul
+            li simple, yet the most important part of the game engine
+            li each turn advances the state of the game
+            li the loop is usually coordinated with the event loop of the platform/virtual machine
+            li optimal time step for rendering: 
+                span.highlight.font-bold 60 FPS = 16.6 ms per frame
+            li audio and input processing are usually separated as they require more frequent updates
+        .space-2xl
+        .text-center.center.fragment
+            .width-55p.highlight.font-bold In general, a program spends 90% of its time in 10% of its code. The game loop will be firmly in those 10%.
++frameInbox('Simple Game Loop')
+    .important-orange.center.fill
+        img.height-750(src=imgAssets+'loop_simple.svg')
++frameInbox('Game loop with separated rendering')
+    .important-orange.center.fill
+        img.height-750(src=imgAssets+'loop_multithreaded.svg')
++frameInbox('Cooperative game loop')
+    .important-orange
+        ul
+            li implemented by small, relatively independent jobs
+            li.fragment firstly used in <span class="highlight">Ultima VII (1994)</span>
+        .bottom-0.left-100
+            img.height-720(src=imgAssets+'loop_cooperative.svg')
++frameInbox('Update method')
+    .important-red
+        .list-title.fragment 
+            p Fixed time step
+            ul
+                li.fragment each update advances game time by a certain amount of time
+                li.upside.fragment precise and stable
+                li.downside.fragment the game may slow down
+        .list-title.fragment
+            p Variable time step
+            ul
+                li.fragment each update advances game time based on how much real time passed since the last frame
+                li.upside.fragment natural
+                li.downside.fragment non-deterministic and unstable
+        .list-title.fragment
+            p Adaptive time step
+            ul
+                li.fragment switches between variable and fixed time step
+                li.fragment based either on thresholds or a more sophisticated approach
+                li.fragment deals with long breaks better than the other two
+        +tipKeen("Some old games were tied wtoith the system clock, hence their CPU-sensitivity.")(class='bottom-0 right-300')
++frameInbox('Example: Atomic Game Engine Loop 1/3')
+    .code.text-xs
+        include ../../assets/engines_loop/snippets_generated/atomic_update_01.html
++frameInbox('Example: Atomic Game Engine Loop 2/3')
+    .code.text-xs
+        include ../../assets/engines_loop/snippets_generated/atomic_update_02.html
++frameInbox('Example: Atomic Game Engine Loop 3/3')
+    .code.text-xs
+        include ../../assets/engines_loop/snippets_generated/atomic_update_03.html
++frameInbox('Example: Godot Engine Game Loop')
+    .code.text-2xs
+        include ../../assets/engines_loop/snippets_generated/godot_update.html
++frameInbox('Example: Unity Game Loop')
+    .center
+        img.height-800(src=imgAssets+'loop_unity.svg')
++frameInbox('Update Inconsistencies')
+    .important-orange
+        ul
+            li.fragment game objects are consistent before and after every update
+            li.fragment they may get to an inconsistent state during update - <span class="highlight">one-frame-off lag</span>
+            li.fragment possible solutions: bucket update, <span class="highlight">script execution order</span> (Unity)
+        .center.fragment
+            figure.width-1000.mt-40
+                img.width-1000(src=imgAssets+'update_inconsistencies.svg')
+                p Object A reads previous state of Object B and Object B reads previous state of Object C

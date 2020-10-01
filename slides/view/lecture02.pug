@@ -1,0 +1,48 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+
++header('NI-APH', 'Engines', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+.reveal
+	.slides
+		+title('Lecture 2', 'Engines', 'color-manhattan')
+		+frameInbox('Literature')
+			ul
+				li
+					a(href="https://www.amazon.co.uk/Engine-Architecture-Third-Jason-Gregory/dp/1138035459") Gregory, Json. 2018. Game Engine Architecture (3rd ed.)
+			div.text-center
+				img.height-500(src=globalAssets+'book_game_engine_arch.jpg')
+		include ./chapters/engines_intro.pug
+		include ./chapters/engines_loop.pug
+		include ./chapters/engines_scene.pug
+		include ./chapters/engines_input.pug
+		include ./chapters/engines_memory.pug
+		include ./chapters/engines_scripting.pug
+		+frameInbox('Lecture Summary')
+			ul.leading-2xl
+				li.fragment I know primary modules of game engines
+				li.fragment I know how game loop works
+				li.fragment I know the options of game update and inconsistencies that may occur
+				li.fragment I know what scene graph is and what elements it contains
+				li.fragment I know categories of input events and input device
+				li.fragment I know what dead-zone of input is
+				li.fragment I know the purpose of a resource manager
+				li.fragment I know the purpose of pool allocator
+				li.fragment I know the options of data loading in games
+				li.fragment I know the types of scripting architectures
+				li.fragment I know what marshalling is
+		include ./chapters/bonus_speedrunning.pug
+		- var defaultBgr = 'backgrounds/portal.jpg';
+		+quote-portal()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

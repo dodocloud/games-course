@@ -1,0 +1,113 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_memory/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Memory', imgAssets+'chapter_engines_memory.svg')
++frameInbox('Memory Manager')
+    .important-orange
+        div
+            ul
+                li.fragment.fade-up default managers are not suitable for games (i.e. malloc function)
+                li.fragment.fade-up game engines usually have their own allocators
+        .list-title.mt-40.fragment.fade-up
+            p Custom allocators
+            ul
+                li.fragment.fade-up stack allocator
+                li.fragment.fade-up pool allocator
+                li.fragment.fade-up heap allocator
+                li.fragment.fade-up bucket allocator
+        .bottom-20.right-50.fragment.fade-up
+            img.height-500(src=imgAssets+'fragmentation.svg')
++frameInbox('Stack allocator')
+    .important-green
+        div
+            ul
+                li suitable for level-based games
+                li implementations: single-ended, double-ended
+            ol.mt-20
+                li.fragment.fade-up allocate a large contiguous block of memory
+                li.fragment.fade-up maintain a pointer to the top of the stack
+                li.fragment.fade-up everything above the pointer is considered as a free area
+                li.fragment.fade-up deallocate in an order opposite to that which blocks were allocated
+        .center.mt-40
+            img.height-400(src=imgAssets+'stack_allocator.svg')
++frameInbox('Pool allocator')
+    .important-orange
+        div
+            ul
+                li allocates lots of small blocks of memory, each of the same size
+                li.upside.fragment.fade-up doesn't suffer from memory fragmentation
+                li.downside.fragment.fade-up entities have to be of the same size
+        .center.mt-100
+            img.height-400(src=imgAssets+'pool_allocator.svg')
++frameInboxMid('Other allocators')
+    .important-orange
+        div
+            .list-title.fragment.fade-up
+                p Bucket allocator
+                ul
+                    li several pool allocators for objects of various sizes
+                    li.upside great solution for demanding games
+                    li.downside difficult to manage
+            .list-title.fragment.fade-up
+                p Heap allocator
+                ul
+                    li more or less the same as heaps in virtual machines
+                    li.upside very flexible
+                    li.downside requires garbage collector
+
++frameInbox('Example: Atomic GE Allocation')
+    .code.text-xs
+        include ../../assets/engines_memory/snippets_generated/age_allocator.html
++frameInbox('Example: Godot Engine Allocation')
+    .code.text-xs
+        include ../../assets/engines_memory/snippets_generated/godot_allocator.html
++frameInbox('Data loading')
+    .important-orange
+        .list-title.fragment.fade-up 
+            p Level loading
+            ul
+                li used in <span class="highlight-2">Tomb Raider, Doom, Quake,...</span>
+                li requires a loading screen
+                li only one game chunk is loaded at a time
+                li appropriate for games with levels, separated scenes or star topology
+        .list-title.fragment.fade-up
+            p Air locks
+            ul
+                li used in <span class="highlight-2">Half-Life, Inside, Portal (partially)</span>
+                li air lock is a small scene (room, hall)
+                li when the player enters the area from which can't see the previous one, next scene is loaded
+        .list-title.fragment.fade-up
+            p World streams
+            ul
+                li used in <span class="highlight-2">GTA, WoW, Arma, Spiderman</span>
+                li the world is divided into regions
+                li the engine unloads chunks too far away and loads new chunks the player is heading to
+                li uses <span class="highlight">LOD system</span> - chunks are loaded at variable granularity
++frameInbox('Example: Loading Screen')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-400(src=imgAssets+'loading_raptor.gif')
+            p Raptor (1994)
+        figure
+            img.height-400(src=imgAssets+'loading_tomb_raider.jpg')
+            p Shadow of the Tomb Raider (2018)
++frameInbox('Example: Air Lock')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-400(src=imgAssets+'airlock_duke.gif')
+            p Duke Nukem (1991)
+        figure
+            img.height-400(src=imgAssets+'airlock_portal.jpg')
+            p Portal (2007)
++frameInbox('Example: World Streaming')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-400(src=imgAssets+'openworld_wow.jpg')
+            p World of Warcraft (2004)
+        figure
+            img.height-400(src=imgAssets+'openworld_witcher.jpg')
+            p Witcher 3 (2015)

@@ -1,0 +1,101 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/engines_input/';
+- var defaultBgr = 'backgrounds/hall_orange.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Input', imgAssets+'chapter_engines_input.svg')
++frameInbox('Input Manager')
+    .important-orange
+        p.fragment(data-fragment-index="0") Detects input events from devices
+        .flex-cols-2
+            div
+                .list-title.fragment(data-fragment-index="1")
+                    p Atomic events
+                    ul
+                        li KEY_DOWN
+                        li KEY_UP
+                        li MOUSE_WHEEL
+                        li JOYPAD_A
+                .list-title.fragment(data-fragment-index="2")
+                    p Compound events
+                    ul
+                        li FLING
+                        li PINCH_TO_ZOOM
+                        li DOUBLE_TAP
+                .list-title.fragment(data-fragment-index="3")
+                    p Special events
+                    ul
+                        li cheat codes
+                        li fighting combos
+            div
+                div.text-center.fragment(data-fragment-index="1")
+                    img.height-150(src=imgAssets+'input_joypad.png')
+                div.text-center.mt-80.fragment(data-fragment-index="2")
+                    img.height-150(src=imgAssets+'input_pinch.png')
+                div.text-center.mt-80.fragment(data-fragment-index="3")
+                    img.height-200(src=imgAssets+'input_cheat.png')
++frameInbox('Input Devices')
+    .important-orange
+        .flex.flex-row.flex-no-wrap
+            div
+                .list-title
+                    p.fragment Receiving the state of the device
+                    ul
+                        li.fragment <span class="highlight">polling</span> - compare against previous state
+                        li.fragment <span class="highlight">callbacks</span> - handled by upper SW layer
+                .list-title.fragment
+                    p Devices
+                    ul
+                        li keyboard, touch sensor, camera, Oculus Touch,...
+                        li one-axis controller - single analog state
+                        li two-axis controller - mouse and joystick
+                        li three-axis controller - accelerometer
+                .list-title.fragment
+                    p Dead zone
+                    ul
+                        li area of a control interface that has no input effect (analog joystick)
+                .list-title.fragment
+                    p Normalization
+                    ul
+                        li analog axis are mapped to a Cartesian space, not a circular one
+                        li input must be normalized
+            div.width-30p.self-end
+                div.text-center
+                    figure.fragment
+                        img.height-350(src=globalAssets+'memes/keyboard_games.jpg')
+                        p Keyboards for various games
+                    figure.fragment
+                        img.height-350(src=imgAssets+'normalization.svg')
+                        p Normalized input
++frameOutbox('Example: Unity Input Manager')
+    .center.fill
+        img.height-100p(src=imgAssets+'input_unity.png')
++frameOutbox('Special Events')
+    .flex.flex-row
+        div.width-85p
+            .list-title
+                p.fragment(data-fragment-index="0") Sequence detection
+                ul
+                    li.fragment(data-fragment-index="1") cheats: IDDQD, IDKFA
+                    li.fragment(data-fragment-index="2") chords: combo moves in fighting games
+            .space-md
+            .list-title.fragment(data-fragment-index="3")
+                p Controller input remapping
+                ul
+                    li button ID -> action ID mapping
+                    li can be implemented as a table
+            .space-md
+            .list-title.fragment(data-fragment-index="4")
+                p Context-sensitive inputs
+                ul
+                    li handlers vary by a mode (walking, driving, flying)
+                    li implemented via a state machine, table or polymorphism
+        div
+                div.text-right
+                    img.width-460.fragment(data-fragment-index="1", src=globalAssets+'memes/cheatcodes.jpg')
+                    img.width-460.mt-20.fragment(data-fragment-index="2", src=imgAssets+'street_fighter.jpg')
++frameInbox('Example: Doom 2 Cheat Detection')
+    .code.text-xs
+        include ../../assets/engines_input/snippets_generated/doom_cheats.html
