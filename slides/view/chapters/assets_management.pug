@@ -1,0 +1,41 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/assets_management/';
+
++mchapter('Assets management', imgAssets+'chapter_assets_management.svg')
++frameInbox('Game Resources')
+	div.text-center
+		img.height-700.mt-40(src=imgAssets+'resource_manager.svg')
++frameInbox('Resource Manager')
+	.important-orange.leading-xl
+		.list-title.fragment.fade-up
+			.highlight Provides access to all resources (~assets)
+			ul
+				li meshes, materials, shaders, animations, textures, clips, levels
+				li many assets are not used in their original format
+				li <span class="highlight-2">Resource Cache</span> - used for faster access
+		.list-title.fragment.fade-up
+			.highlight Manages lifetime of each resource
+			ul
+				li most managers maintain some kind of registry
+		.list-title.fragment.fade-up
+			.highlight Ensures that only one copy of each resource exists in memory
+			ul
+				li resource GUID - usually path to the file, guaranteed to be unique
+		.list-title.fragment.fade-up
+			.highlight Loads required resources and unloads those no longer needed
+			ul
+				li loading is simpler than unloading
+		.list-title.fragment.fade-up
+			.highlight Handles streaming
+			ul
+				li in case of open worlds
++frameInbox('Example: Godot Engine Resource Loader')
+	div
+		.code.text-sm
+			include ../../assets/assets_management/snippets_generated/godot_resource_loader.html
++frameInbox('Example: Godot Engine Resource Cache')
+	div
+		.code.mt-80
+			include ../../assets/assets_management/snippets_generated/godot_resource_cache.html

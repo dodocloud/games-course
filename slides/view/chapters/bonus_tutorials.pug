@@ -1,0 +1,118 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_tutorials/';
+- var defaultBgr = 'backgrounds/bgr_assassins.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Manuals and Tutorials', imgAssets+'chapter_tutorials.svg')
++frameInbox('Tutorials and Manuals')
+    .flex-cols-2
+        div
+            ul
+                li.fragment a process that should lead to the preparedness of the player by the end of it
+                li.fragment supports the overall immersion of the flow
+                li.fragment neglected part of game development because of its supposed insignificance
+                li.fragment if a game badly presents instructions the player needs, he/she may lose focus in the game
+                li.mt-20.fragment <span class="highlight">forms</span>
+                    ul
+                        li.fragment printed instruction manuals
+                        li.fragment first-play tutorials
+                        li.fragment training campaigns
+                        li.fragment hints and tips
+                        li.fragment wiki
+                        li.fragment hidden tutorials
+        div.text-center.fragment
+            div
+                img.width-350.ml-20(src=globalAssets+'memes/tutorials.jpg')
+            div
+                img.width-420.mt-10(src=imgAssets+'flow.svg')
+    .bottom-0.left-600.fragment
+        img.height-200(src=imgAssets+'press_f_to_help.jpg')
++frameInbox('Example: Instruction Manuals')
+    .flex-cols-3.items-center.fill
+        figure
+            img.height-360(src=imgAssets+'kingsquest.jpg')
+            p King's Quest (1984)
+        figure
+            img.height-360(src=imgAssets+'earthbound.jpg')
+            p Earthbound (1994)
+        figure
+            img.height-360(src=imgAssets+'manual_wolfenstein.jpg')
+            p Return to Castle Wolfenstein (2001)
++frameInbox('Example: Instruction Manuals')
+    .flex-cols-3.items-center.fill
+        figure
+            img.height-600(src=imgAssets+'wing.jpg')
+            p Wing Commander (1990)
+        figure
+            img.height-600(src=imgAssets+'raptor.jpg')
+            p Raptor (1994)
+        figure
+            img.height-600(src=imgAssets+'aoe2.jpg')
+            p Age of Empires 2 (1999)
++frameInbox('Example: First-play tutorials')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-500(src=imgAssets+'skyrim.jpg')
+            p Skyrim (2011)
+        figure
+            img.height-500(src=imgAssets+'assassins.jpg')
+            p Assassin's Creed Odyssey (2018)
++frameInbox('Example: Training Campaigns')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-500(src=imgAssets+'warcraft3.jpg')
+            p Warcraft 3 (2002)
+        figure
+            img.height-500(src=imgAssets+'vietcong.jpg')
+            p Vietcong (2003)
++frameInbox('Example: Hints and tips')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-430(src=imgAssets+'duke1.jpg')
+            p Duke Nukem 1 (1991)
+        figure
+            img.height-430(src=imgAssets+'portal.jpg')
+            p Portal (2007)
++frameInbox('Example: Wiki')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-500(src=imgAssets+'manual_warhammer.jpg')
+            p Warhammer Online (2008)
+        figure
+            img.height-500(src=imgAssets+'hon.jpg')
+            p Heroes of Newerth (2010)
++frameInbox('Example: Hidden Tutorials')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-430(src=imgAssets+'inside.jpg')
+            p INSIDE (2016)
+        figure
+            img.height-430(src=imgAssets+'darksouls3.jpg')
+            p Dark Souls 3 (2016)
++frameInbox('Tutorial Patterns')
+    .flex-cols-2
+        div
+            ul
+                li.fragment(data-fragment-index="1")
+                    span.upside Positive patterns
+                    ul
+                        li.fragment(data-fragment-index="2") doesn't feel like tutorial (INSIDE, Super Mario)
+                        li.fragment(data-fragment-index="3") doesn't disrupt game flow (Skyrim)
+                        li.fragment(data-fragment-index="4") low chance of failing (Assassin's Creed)
+                        li.fragment(data-fragment-index="5") ability to skip it (Total War)
+                        li.fragment(data-fragment-index="6") freedom to experiment (Rayman)
+                li.mt-20.fragment(data-fragment-index="7")
+                    span.downside Negative patterns
+                    ul
+                        li.fragment(data-fragment-index="8") hand-holding (Warcraft 3)
+                        li.fragment(data-fragment-index="9") overload of information (Total War)
+                        li.fragment(data-fragment-index="10") irrelevant information (Mario & Luigi: Dream Team)
+                        li.fragment(data-fragment-index="11") too complicated (The Witcher 2)
+                        li.fragment(data-fragment-index="12") too long (The Legend Of Zelda: Twilight Princess)
+        div.text-center
+            div.mt-20.fragment(data-fragment-index="6")
+                img.width-600(src=imgAssets+'rayman.jpg')
+            div.mt-50.fragment(data-fragment-index="10")
+                img.width-600(src=imgAssets+'mario.jpg')

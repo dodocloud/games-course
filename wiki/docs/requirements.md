@@ -45,14 +45,34 @@ title: Course requirements
   - physics engine (simple collision detector and resolver)
 
 ### How to start
-- analyse several dozens of existing games
-- pick up a few interesting mechanics
+- analyse a few existing games
+- pick up some interesting mechanics
 - choose one mechanic that will be the most challenging one from technical perspective
-- prepare or download very simple assets (dots, squares, circles)
+- make up or download very simple assets (dots, squares, circles)
 - start prototyping
 - bring your gaming mechanics to perfection
 - polish your game (better assets, better HUD,...)
 - prepare your game for submitting (add readme, diagrams, refactor your code a bit,...)
+
+### Project description
+- submit until 8.10.
+- content: your team, engine/library of your choosing, list of game mechanics
+
+**Example:**
+- Genre: Platformer
+- Library: PixiJS
+- Space: 2D world, sidescroller, grid environment, 2 maps to choose from
+- Objects: animated player, enemies, power-ups, weapons, platforms
+- Actions
+  - running, jumping over platforms, picking up power-ups, killing enemies, switching weapons
+- Rules
+  - player has got 2 weapons: a laser and a rifle. The laser affects the target instantly, the rifle shoots projectiles at a given speed
+  - enemies spawn randomly
+  - there is no exit. The goal is to survive as long as possible.
+  - power-ups are falling from above. They add damage boost and extra speed to the player
+- Technical mechanic
+  - AI behavior - enemies will jump over platforms, chasing the player, capable of avoiding projectiles
+
 
 ### Instructions for submitting
 - create your own repository under your username. The name should be NI-APH `gitlab.fit.cvut.cz/<username>/NI-APH`
@@ -69,11 +89,11 @@ title: Course requirements
   - short description and manual, if necessary
 
 ### Milestones
-- **until 8.10**, prepare following:
+- **until 8.10**, prepare the description of your project:
   - your team (if you are gonna work as an individual or in a group of two)
   - list of game mechanics  (space, objects, action, rules)
   - library/game engine you chose
-  - send it all to the lecturer either via e-mail on in the MSTeams chat
+  - send it all to the lecturer either via e-mail or in the MSTeams chat
 - **on 26.11 and 3.12** for each group respectively:
   - every team/individual will present their progress during the lab
 - **until 5.1. 2021**

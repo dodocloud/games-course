@@ -1,0 +1,37 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_yellowgreen.jpg';
+
+
++header('NI-APH', 'Assets', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+.reveal
+	.slides
+		+title('Lecture 3', 'Assets', 'color-emerald')
+		include ./chapters/assets_intro.pug
+		include ./chapters/assets_management.pug
+		include ./chapters/assets_multimedia.pug
+		include ./chapters/assets_generic.pug
+		+frameInbox('Lecture Summary')
+			ul.leading-2xl
+				li.fragment I know what game assets are
+				li.fragment I know the purpose of a Resource manager
+				li.fragment I know the difference between the use-cases of WAV and MP3/OGG formats
+				li.fragment I know the difference between PNG and JPEG formats
+				li.fragment I know what a cutscene is
+				li.fragment I know what a sprite is
+				li.fragment I know the types of textures
+				li.fragment I know what a tilemap is
+		include ./chapters/bonus_tutorials.pug
+		- var defaultBgr = 'backgrounds/god_of_war.png';
+		+quote-god-of-war()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

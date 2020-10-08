@@ -16,6 +16,17 @@ if(!isPresentationMode) {
 	})
 }
 
+// prepare print style if there is print-pdf in the query string
+if (window.location.search.match(/print-pdf/gi)) {
+	document.body.parentElement.className += ' print-pdf';
+
+	// additionally, replace logo with the one that display static pac-man
+	const logoTitle = document.getElementById('logo_title');
+	if(logoTitle && logoTitle.src) {
+		logoTitle.src = './logo.svg';
+	}
+}
+
 // common setup for RevealJS lib
 Reveal.initialize({
 	controls: true,
@@ -36,7 +47,3 @@ Reveal.initialize({
 	],
 });
 
-// prepare print style if there is print-pdf in the query string
-if (window.location.search.match(/print-pdf/gi)) {
-	document.body.parentElement.className += ' print-pdf';
-}

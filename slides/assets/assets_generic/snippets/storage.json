@@ -1,0 +1,11 @@
+{
+	"player": {
+		"difficulty": "hard",
+		"scene": "mountains_02",
+		"posX" : 12,
+		"posY" : 56,
+		"inventory" : ["flashlight, lighter, candle"],
+		"stamina": 45,
+		"agility": 12
+	}
+}

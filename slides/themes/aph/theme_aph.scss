@@ -18,7 +18,7 @@ $background-color: $color-midnight;
 /* Default color of texts */
 $text-color: $color-rhino-20;
 /* Default color of selected texts */
-$text-selection-color: $color-rhino-80;
+$text-selection-color: $color-rhino-40;
 
 /* Settings for frames */
 $frame-color: unset;
@@ -71,7 +71,7 @@ $title-font-size: 60px;
 	/* Linear background */
 	.frame::before {
 		z-index: -2;
-		background: linear-gradient(to bottom right, rgba($color-midnight, 0.9) 0%, rgba($color-rhino-100, 0.9) 100%);
+		background: linear-gradient(to bottom right, rgba($color-midnight, 0.92) 0%, rgba($color-rhino-100, 0.92) 100%);
 	}
 
 	/* Pattern effect */
@@ -180,6 +180,21 @@ $title-font-size: 60px;
 		}
 	}
 
+	.code table, table pre {
+		border-collapse: collapse;
+		tr, td {
+			padding: 0px !important;
+			border: none;
+			background: none;
+			margin: 0px;
+		}
+
+		td:first-child {
+			padding-right: 10px !important;
+			border-right: 2px solid $color-rhino-80;
+		}
+	}
+
 
 	/* hints */
 	.tip {
@@ -216,6 +231,11 @@ $title-font-size: 60px;
 		&.keen3 .icon {
 			background-image: url('./resources/keen3.png');
 		}
+
+		&.keen4 .icon {
+			background-image: url('./resources/keen4.png');
+			padding: 10px;
+		}
 	}
 
 	/* upside/downside markers */
@@ -250,6 +270,16 @@ $title-font-size: 60px;
 	.downside {
 	  color: $color-tomato-light;
 	}
+
+	.rotating {
+		-webkit-animation:spin 20s linear infinite;
+		-moz-animation:spin 20s linear infinite;
+		animation:spin 20s linear infinite;
+	}
+
+	@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+	@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+	@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 	blockquote {
 		text-align: left;

@@ -13,6 +13,7 @@ wiki/node_modules/
 .cache/
 .parcel-cache/
 slides/assets/generated/
+snippets_generated
 
 
 # Misc

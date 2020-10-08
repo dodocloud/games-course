@@ -1,0 +1,14 @@
+<svg width="33" height="30" version="1.1" viewBox="0 0 8.7313 7.9377" xmlns="http://www.w3.org/2000/svg">
+ <path d="m2.0778 0-1.986 3.4397h0.61083l1.6806-2.9105h3.972l1.6806 2.9105h0.61083l-1.986-3.4397zm-1.986 4.498 1.986 3.4397h4.5828l1.986-3.4397h-0.61083l-1.6806 2.9105h-3.972l-1.6806-2.9105z" fill="#6f8ce9"/>
+ <path d="m7.1422 3.9689h1.0584" fill="none" stroke="#6f8ce9" stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40" stroke-width=".26459"/>
+ <path d="m0.52745 3.9689 1.323-3e-6" fill="none" stroke="#6f8ce9" stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40" stroke-width=".26459"/>
+ <g>
+  <path d="m2.9944 1.5875-1.3748 2.3813 1.3748 2.3813h2.7497l1.3748-2.3813-1.3748-2.3813zm0.18325 0.31751h2.3832l1.1916 2.0638-1.1916 2.0638h-2.3832l-1.1916-2.0638z" fill="#6f8ce9"/>
+  <rect x="3.7025" y="3.1751" width=".52918" height="1.5875" fill="#e9e56f"/>
+  <circle cx=".39515" cy="3.9689" r=".39689" fill="#6f8ce9"/>
+  <rect x="4.4963" y="3.1751" width=".52918" height="1.5875" fill="#e9e56f"/>
+  <circle cx="8.3329" cy="3.9689" r=".39689" fill="#6f8ce9"/>
+  <rect x="5.2901" y="3.1751" width=".52918" height="1.5875" fill="#e9e56f"/>
+  <rect x="2.9088" y="3.1751" width=".52918" height="1.5875" fill="#e9e56f"/>
+ </g>
+</svg>

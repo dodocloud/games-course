@@ -73,8 +73,8 @@ Keyboard shortcuts for the slides:
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
 | 1 | 24.9. | Games | [Link 1](https://aph.dodo.me/slides/organization.html#/) [Link 2](https://aph.dodo.me/slides/lecture01.html#/)  |
-| 2 | 1.10. | Engines | [Link 1](https://aph.dodo.me/slides/lecture02.html/) |
-| 3 | 8.10. | Assets |  |
+| 2 | 1.10. | Engines | [Link](https://aph.dodo.me/slides/lecture02.html/) |
+| 3 | 8.10. | Assets |  [Link](https://aph.dodo.me/slides/lecture03.html/) |
 | 4 | 15.10. | Components |  |
 | 5 | 22.10. | Patterns ||
 | 6 | 29.10. | Audio |  |

@@ -51,7 +51,7 @@ test.foo();     // "this" in foo refers to test
 new foo();      // "this" in foo will refer to a newly created object 
 foo.apply(bar, [1, 2, 3]);  // "this" in foo is set to bar
 foo.call(bar, 1, 2, 3);     // "this" in foo is set to bar
-foo = () => { ... }         // "this" in foo is set to the surrounding scope
+foo = () => { ... }         // "this" is set to the surrounding scope
 ```
 
 ### Arguments
@@ -184,7 +184,8 @@ console.log(first)
 // old way
 TagComponent.prototype.render = function(){
     getRequest(this.urlPath, function(data) {
-        displayTags(this.targetElement, ... tags) // this points to getRequest() scope
+        // this points to getRequest() scope
+        displayTags(this.targetElement, ... tags) 
     })
 }
 
@@ -234,13 +235,16 @@ const moreThanTwo = numbers.splice(2, numbers.length) // [2, 3, 4]
 - other functions
 
 ```javascript
-concat, entries, fill, filter, find, flat, flatMap, forEach, join, includes, keys, map, push, pop, reduce, reverse, shift, slice, sort, splice, unshift, values
+concat, entries, fill, filter, find, flat, flatMap, forEach, join, 
+includes, keys, map, push, pop, reduce, reverse, shift, slice, 
+sort, splice, unshift, values
 ```
 
 - sorting arrays
 
 ```javascript
-// sorting function: if < 0, then a < b if == 0, then a == b if > 0, then b > a
+// sorting function: 
+// if < 0, then a < b if == 0, then a == b if > 0, then b > a
 nums.sort((a,b) => {
   return a-b // ascending 
 })
@@ -538,7 +542,7 @@ function Foo() {
           return Reflect.get(object, property)
         } else {
           return function methodMissing() {
-            console.log('you called ' + property + ' but it doesn\'t exist!')
+            console.log(`You called ${property} but it doesn't exist!`)
           }
         }
       }
@@ -651,8 +655,8 @@ const obj = { foo1: 'bar1', foo2: { value: 'bar2' } };
 
 Object.freeze( obj );
 
-obj.foo = 'foo'; // doesn't change the property nor does throw any Error
-obj.foo2.value = 'bar3'; // does change the value of a property since it's nested!
+obj.foo = 'foo'; // doesn't change the property, doesn't throw Error
+obj.foo2.value = 'bar3'; // does change the value - it's nested!
 
 ```
 
@@ -693,7 +697,8 @@ delete obj.bar // removes key
 
 // you can't delete global variables declared by var!
 var mojo = 12
-// use assignment to a global property instead, if you need to create a global variable
+// use assignment to a global property instead, 
+// if you need to create a global variable
 global.mojo = 12
 
 // arrays 
@@ -736,23 +741,6 @@ new Boolean(0)          // false (for any falsy parameter)
 // but careful, (new Boolean(anything) === true/false) -> always FALSE
 new Boolean(true)        // true (for any truthy parameter)
 
-// this invocation returns [1, NaN, 2]
-['1', '2', '10'].map(parseInt); 
-// explanation: 
-//  map callback has 3 arguments: (val, index, array) 
-//  parseInt has 2 arguments: (string, radix) where radix represents a base (2 for binary, 10 for dec)
-//  map will put array index as the second parameter to the parseInt function
-//  invocation: parseInt(1, 0), parseInt(2, 1), parseInt(10, 2) results in [1, NaN, 2]
-//  conclusion: be aware of optional parameters when using a function pointer
-
-// this will throw TypeError, tags is undefined
-if(tags = content.getTags() && tags.length > 0) {
-
-}
-// explanation: priority of operators = and &&
-if((tags = content.getTags()) && tags.length > 0) {
-    // this will work
-}
 
 // why is this comma recommended? Because it prevents any previous code from 
 // executing your code as the arguments to that function

@@ -6,7 +6,7 @@ require('prismjs/components/prism-bash');
 require('prismjs/components/prism-asm6502');
 require('prismjs/components/prism-c');
 require('prismjs/components/prism-cpp');
-
+require('prismjs/components/prism-json');
 
 
 // add your languages here
@@ -18,8 +18,9 @@ const extensionMapper = (ext) => {
 		case 'cpp':
 			return 'cpp';
 		case 'js':
-		case 'json':
 			return 'javascript';
+		case 'json':
+			return 'json';
 		case 'bash':
 			return 'bash';
 		case 'asm':
@@ -75,14 +76,14 @@ module.exports = {
 
 				for (let i=0; i< allLinesLength; i++) {
 					if (highlights.has(i)) {
-						output.push(`<span class="linenum highlight">${(i + 1).toString().padStart(4, ' ')}</span> <span class="highlight">${highlights.get(i)}</span>`);
+						output.push(`<tr><td><span class="linenum highlight">${(i + 1).toString().padStart(4, ' ')}</span></td> <td><span class="highlight">${highlights.get(i)}</span></td></tr>`);
 					} else {
 						const line = highlighted[lineCounter++];
-						output.push(`<span class="linenum">${(i + 1).toString().padStart(4, ' ')}</span> ${line}`);
+						output.push(`<tr><td><span class="linenum">${(i + 1).toString().padStart(4, ' ')}</span></td><td> ${line}</td></tr>`);
 					}
 				}
 
-				const wrappedHtml = `<pre>${output.join('\n')}</pre>`;
+				const wrappedHtml = `<pre><table>${output.join('\n')}</table></pre>`;
 
 				utils.strToFile(targetPath, wrappedHtml);
 			}

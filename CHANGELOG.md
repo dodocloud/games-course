@@ -7,6 +7,13 @@ Versioning info:
 - third number indicates minor changes, such as hotfixes and updates
 
 
+## [4.3] - 2020-10-08
+### Added
+- Lecture 3
+
+### Changed
+- Fix a few visual artifacts
+
 ## [4.2] - 2020-10-01
 ### Added
 - Lecture 2

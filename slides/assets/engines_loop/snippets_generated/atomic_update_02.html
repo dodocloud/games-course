@@ -1,21 +1,21 @@
-<pre><span class="linenum">   1</span> <span class="token keyword">void</span> <span class="token class-name">Engine</span><span class="token operator">::</span><span class="token function">RunFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="linenum">   2</span>     Time<span class="token operator">*</span> time <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Time<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">   3</span>     Input<span class="token operator">*</span> input <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Input<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">   4</span>     Audio<span class="token operator">*</span> audio <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Audio<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">   5</span>  
-<span class="linenum">   6</span>     time<span class="token operator">-></span><span class="token function">BeginFrame</span><span class="token punctuation">(</span>timeStep_<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">   7</span>     <span class="token comment">// ... process input and audio</span>
-<span class="linenum highlight">   8</span> <span class="highlight">    Update();</span>
-<span class="linenum">   9</span>  
-<span class="linenum">  10</span>     fpsTimeSinceUpdate_ <span class="token operator">+=</span> timeStep_<span class="token punctuation">;</span>
-<span class="linenum">  11</span>     <span class="token operator">++</span>fpsFramesSinceUpdate_<span class="token punctuation">;</span>
-<span class="linenum">  12</span>     <span class="token keyword">if</span> <span class="token punctuation">(</span>fpsTimeSinceUpdate_ <span class="token operator">></span> ENGINE_FPS_UPDATE_INTERVAL<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="linenum">  13</span>         fps_ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>fpsFramesSinceUpdate_ <span class="token operator">/</span> fpsTimeSinceUpdate_<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">  14</span>         fpsFramesSinceUpdate_ <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="linenum">  15</span>         fpsTimeSinceUpdate_ <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="linenum">  16</span>     <span class="token punctuation">}</span>
-<span class="linenum">  17</span>     
-<span class="linenum highlight">  18</span> <span class="highlight">    Render();</span>
-<span class="linenum">  19</span>     <span class="token function">ApplyFrameLimit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">  20</span>     time<span class="token operator">-></span><span class="token function">EndFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="linenum">  21</span> <span class="token punctuation">}</span></pre>
+<pre><table><tr><td><span class="linenum">   1</span></td><td> <span class="token keyword">void</span> <span class="token class-name">Engine</span><span class="token operator">::</span><span class="token function">RunFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></td></tr>
+<tr><td><span class="linenum">   2</span></td><td>     Time<span class="token operator">*</span> time <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Time<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">   3</span></td><td>     Input<span class="token operator">*</span> input <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Input<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">   4</span></td><td>     Audio<span class="token operator">*</span> audio <span class="token operator">=</span> GetSubsystem<span class="token operator">&lt;</span>Audio<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">   5</span></td><td>  </td></tr>
+<tr><td><span class="linenum">   6</span></td><td>     time<span class="token operator">-></span><span class="token function">BeginFrame</span><span class="token punctuation">(</span>timeStep_<span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">   7</span></td><td>     <span class="token comment">// ... process input and audio</span></td></tr>
+<tr><td><span class="linenum highlight">   8</span></td> <td><span class="highlight">    Update();</span></td></tr>
+<tr><td><span class="linenum">   9</span></td><td>  </td></tr>
+<tr><td><span class="linenum">  10</span></td><td>     fpsTimeSinceUpdate_ <span class="token operator">+=</span> timeStep_<span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  11</span></td><td>     <span class="token operator">++</span>fpsFramesSinceUpdate_<span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  12</span></td><td>     <span class="token keyword">if</span> <span class="token punctuation">(</span>fpsTimeSinceUpdate_ <span class="token operator">></span> ENGINE_FPS_UPDATE_INTERVAL<span class="token punctuation">)</span> <span class="token punctuation">{</span></td></tr>
+<tr><td><span class="linenum">  13</span></td><td>         fps_ <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>fpsFramesSinceUpdate_ <span class="token operator">/</span> fpsTimeSinceUpdate_<span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  14</span></td><td>         fpsFramesSinceUpdate_ <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  15</span></td><td>         fpsTimeSinceUpdate_ <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  16</span></td><td>     <span class="token punctuation">}</span></td></tr>
+<tr><td><span class="linenum">  17</span></td><td>     </td></tr>
+<tr><td><span class="linenum highlight">  18</span></td> <td><span class="highlight">    Render();</span></td></tr>
+<tr><td><span class="linenum">  19</span></td><td>     <span class="token function">ApplyFrameLimit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  20</span></td><td>     time<span class="token operator">-></span><span class="token function">EndFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></td></tr>
+<tr><td><span class="linenum">  21</span></td><td> <span class="token punctuation">}</span></td></tr></table></pre>

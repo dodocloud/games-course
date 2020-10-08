@@ -1,12 +1,12 @@
-<pre><span class="linenum">   1</span> :underctrl
-<span class="linenum">   2</span> <span class="token opcode property">lda</span> CharSword
-<span class="linenum">   3</span> <span class="token opcode property">cmp</span> <span class="token decimalnumber string">#2</span> <span class="token comment">;in fighting mode?</span>
-<span class="linenum">   4</span> <span class="token opcode property">beq</span> FightCtrl <span class="token comment">;yes</span>
-<span class="linenum">   5</span>  
-<span class="linenum">   6</span> <span class="token opcode property">lda</span> CharID
-<span class="linenum">   7</span> <span class="token opcode property">cmp</span> <span class="token decimalnumber string">#2</span> <span class="token comment">;kid or shadowman?</span>
-<span class="linenum">   8</span> <span class="token opcode property">bcc</span> :cont
-<span class="linenum">   9</span> <span class="token opcode property">jmp</span> GuardCtrl <span class="token comment">;no</span>
-<span class="linenum">  10</span>  
-<span class="linenum">  11</span> * What is he doing now?
-<span class="linenum">  12</span> :cont <span class="token opcode property">ldx</span> CharPosn <span class="token comment">;previous frame #</span></pre>
+<pre><table><tr><td><span class="linenum">   1</span></td><td> :underctrl</td></tr>
+<tr><td><span class="linenum">   2</span></td><td> <span class="token opcode property">lda</span> CharSword</td></tr>
+<tr><td><span class="linenum">   3</span></td><td> <span class="token opcode property">cmp</span> <span class="token decimalnumber string">#2</span> <span class="token comment">;in fighting mode?</span></td></tr>
+<tr><td><span class="linenum">   4</span></td><td> <span class="token opcode property">beq</span> FightCtrl <span class="token comment">;yes</span></td></tr>
+<tr><td><span class="linenum">   5</span></td><td>  </td></tr>
+<tr><td><span class="linenum">   6</span></td><td> <span class="token opcode property">lda</span> CharID</td></tr>
+<tr><td><span class="linenum">   7</span></td><td> <span class="token opcode property">cmp</span> <span class="token decimalnumber string">#2</span> <span class="token comment">;kid or shadowman?</span></td></tr>
+<tr><td><span class="linenum">   8</span></td><td> <span class="token opcode property">bcc</span> :cont</td></tr>
+<tr><td><span class="linenum">   9</span></td><td> <span class="token opcode property">jmp</span> GuardCtrl <span class="token comment">;no</span></td></tr>
+<tr><td><span class="linenum">  10</span></td><td>  </td></tr>
+<tr><td><span class="linenum">  11</span></td><td> * What is he doing now?</td></tr>
+<tr><td><span class="linenum">  12</span></td><td> :cont <span class="token opcode property">ldx</span> CharPosn <span class="token comment">;previous frame #</span></td></tr></table></pre>
