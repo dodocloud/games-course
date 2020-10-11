@@ -7,6 +7,11 @@ Versioning info:
 - third number indicates minor changes, such as hotfixes and updates
 
 
+## [4.3.5] - 2020-10-11
+### Added
+- New PixiJS and ThreeJS examples
+
+
 ## [4.3] - 2020-10-08
 ### Added
 - Lecture 3

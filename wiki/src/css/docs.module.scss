@@ -52,4 +52,8 @@
     img {
         object-fit: contain;
     }
+
+    img.fill {
+        width: 100%;
+    }
 }

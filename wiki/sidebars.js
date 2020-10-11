@@ -36,7 +36,7 @@ module.exports = {
 		{
 			label: 'Tutorials',
 			type: 'category',
-			items: ['tutorials/pixi_intro']
+			items: ['tutorials/pixi_intro', 'tutorials/pixi_positions', 'tutorials/three_intro']
 		},
 	].filter(Boolean)
 }

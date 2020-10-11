@@ -47,10 +47,6 @@ import styles from '@site/src/css/docs.module.scss';
 - **Shader** - helper class for GPU shaders
 - **Spritesheet** - utility class for maintaining reference to a collection of textures
 
-<div className={styles.figure}>
-  <img src={useBaseUrl('img/docs/tutorials/02-pixi/diag_pixi_classes.svg')} />
-</div>
-
 ### Display Entities
 
 - **EventEmitter** - high-performance event emitter, similar to the default NodeJS emitter
@@ -67,6 +63,11 @@ import styles from '@site/src/css/docs.module.scss';
 - **CubeTexture** - image/canvas/video/svg texture
 - **Texture** - BaseTexture with metadata
 - **RenderTexture** - RenderTexture with metadata
+
+<div className={styles.figure}>
+  <img src={useBaseUrl('img/docs/tutorials/02-pixi/diag_pixi_classes.svg')} />
+</div>
+
 
 ### DisplayObject
 
