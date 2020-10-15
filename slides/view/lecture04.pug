@@ -1,0 +1,36 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_red.jpg';
+
+
++header('NI-APH', 'Components', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 4', 'Components', 'color-tomato-light')
+        include ./chapters/components_model.pug
+        include ./chapters/components_objects.pug
+        include ./chapters/components_components.pug
+        include ./chapters/components_messaging.pug
+        include ./chapters/components_engines.pug
+        +frameInbox('Lecture Summary')
+            ul.leading-2xl
+                li.fragment I know what a game model is and what is it made of
+                li.fragment I know the pitfalls of object-oriented architecture in games
+                li.fragment I know what a component is
+                li.fragment I know the ECS pattern
+                li.fragment I know messaging practices for component architecture
+                li.fragment I know the purpose of a message broker in games
+        include ./chapters/bonus_colors.pug
+        - var defaultBgr = 'backgrounds/planescape.jpg'
+        +quote-planescape()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

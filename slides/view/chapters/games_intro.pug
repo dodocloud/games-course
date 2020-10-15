@@ -118,7 +118,21 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">simulation-based play</span> - models a real-world system
 +frameInbox('Game genres')
     .center
-        img.height-750(src=imgAssets+'game_genres.svg')
+        .grid-rows-3.grid-cols-4.grid.gap-10.width-65p
+            +gbGame(imgAssets+'genre_casual.jpg', 'Casual')
+            +gbGame(imgAssets+'genre_sandbox.jpg', 'Sandbox')
+            +gbGame(imgAssets+'genre_fighting.jpg', 'Fighting')
+            +gbGame(imgAssets+'genre_racing.jpg', 'Racing')
+            +gbGame(imgAssets+'genre_shooter.jpg', 'Shooter')
+            +gbGame(imgAssets+'genre_platformer.jpg', 'Platformer')
+            +gbGame(imgAssets+'genre_puzzle.jpg', 'Puzzle')
+            +gbGame(imgAssets+'genre_arcade.jpg', 'Arcade')
+            +gbGame(imgAssets+'genre_rpg.jpg', 'RPG')
+            +gbGame(imgAssets+'genre_sports.jpg', 'Sports')
+            +gbGame(imgAssets+'genre_strategy.jpg', 'Strategy')
+            +gbGame(imgAssets+'genre_adventure.jpg', 'Adventure')
+            
+            
 +frameInbox('History of games and consoles')
     .center
         img.height-750(src=imgAssets+'games_history.svg')

@@ -29,6 +29,10 @@ module.exports = {
 			type: 'doc'
 		},
 		{
+			id: 'ecsdocs',
+			type: 'doc'
+		},
+		{
 			label: 'Cheatsheets',
 			type: 'category',
 			items: ['cheatsheets/javascript', 'cheatsheets/typescript']

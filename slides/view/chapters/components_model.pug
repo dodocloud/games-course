@@ -1,0 +1,133 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/components_model/';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Game Model', imgAssets+'chapter_components_model.svg')
++mcontainer('What is a Game Model').important-orange
+    +frameShard.width-70px.height-20p.top-280.center.z-index-100.fragment
+        p <span class="highlight">Game model</span> is a model of a domain in which the simulated world takes place.
++frameInbox('Game Model')
+    .important-green
+        ul
+            li.fragment Gameplay and all mechanics are incorporated into a game model
+            li.fragment Game model can be divided into several parts: domain model, view model, networking model,...
+            li.fragment A game engine updates the model and interprets it to the player
+            li.fragment With each update, the current <span class="highlight">state</span> of the model is drawn on screen
+            li.fragment <span class="highlight">State</span> - values of all attributes of a model at a given point in time
+        .space-xl
+        .text-center
+            img.height-200(src=imgAssets+'input_model_view.svg')
++frameInbox('Game Model')
+    .important-orange
+        .list-title.fragment
+            p Domain Model
+            ul
+                li contains rules, game mechanics and essential data to the gameplay
+        .list-title.fragment
+            p Presentation Model
+            ul
+                li a model represented to the player
+                li e.g. played sounds, animated sprites
+        .list-title.fragment
+            p Physics model
+            ul
+                li all entities that take part in physical interaction
+        .list-title.fragment
+            p AI model
+            ul
+                li all data and structures that are processed by AI (navigation maps, behavioral trees,...)
+        .list-title.fragment
+            p Networking model
+            ul
+                li everything that has to be in sync with other models on other devices
++frameInbox('Example: Super Mario Bros.')
+    .important-green
+        .text-center
+            img.height-300(src=imgAssets+'mario_screen.jpg')
+        .bottom-40.left-40
+            img.height-370(src=imgAssets+'mario_model.svg')
+        .right-0.bottom-150
+            img.height-320(src=imgAssets+'mario_spritesheet.png')
++mcontainer('Game Model')
+    +frameShard.height-30p.top-280.center.z-index-100
+        div
+            ul
+                li.fragment The more complex the system, the more complex the models
+                li.fragment Simple games have a tiny domain model that can be easily detached from other parts 
+                li.fragment Complex games have highly coupled respective models
++frameInbox('Example: Chess')
+    .flex-cols-2.items-center.fill
+        figure
+            img.height-450(src=imgAssets+'chessmaster_2000.gif')
+            p Chessmaster 2000 (1986)
+        figure
+            img.height-450(src=imgAssets+'chessmaster_11.jpg')
+            p Chessmaster 11 (2007)
++frameInbox('Chess Model')
+    .text-center
+        img.height-750(src=imgAssets+'diag_chess.svg')
++frameInboxMid('Chess models')
+    .important-green.center.fill
+        table
+            tr
+                th
+                th Chessmaster 2000
+                th Chessmaster 11
+            tr.fragment
+                td.color-lemon Domain model
+                td Board, pieces, time, game rules
+                td Board, pieces, time, game rules
+            tr.fragment
+                td.color-lemon Presentation model
+                td CGA Sprites, beep sounds
+                td Animated 3D objects, 3D sounds
+            tr.fragment
+                td.color-lemon Physics model
+                td None
+                td Rigidbody engine
+            tr.fragment
+                td.color-lemon AI model
+                td David Kittinger's engine
+                td King engine
+            tr.fragment
+                td.color-lemon Networking model
+                td None
+                td Move commands
++frameInbox('Example: Pacman')
+    .fill.center
+        img.height-800(src=imgAssets+'pacman.png')
+    .top-90.left-260
+        img.height-480(src=imgAssets+'pacman.svg')
++frameInbox('Pacman architecture')
+    .text-center
+        img.height-750(src=imgAssets+'diag_pacman.svg')
++frameInbox('Example: Strategy')
+    .fill.center
+        figure
+            img.height-650(src=imgAssets+'hom.jpg')
+            p Heroes of Might and Magic
++frameInbox('Heroes of Might and Magic architecture')
+    .text-center
+        img.height-750(src=imgAssets+'diag_heroes.svg')
++frameInbox('Example: Adventure')
+    .flex-cols-3.fill.items-center
+        figure
+            img.height-350(src=imgAssets+'belegost.png')
+            p Belegost (1989)
+        figure
+            img.height-350(src=imgAssets+'polda.jpg')
+            p Polda (1998-2020)
+        figure
+            img.height-350(src=imgAssets+'longest_journey.jpg')
+            p Dreamfall Saga (1999-2016)
++frameInbox('Adventure architecture')
+    .text-center
+        img.height-750(src=imgAssets+'diag_adventure.svg')
++frameInbox('Adventure events')
+    .fill.center
+        figure
+            img.height-700(src=imgAssets+'belegost.png')
+    .top-100
+        img.height-350(src=imgAssets+'adventure_events.svg')

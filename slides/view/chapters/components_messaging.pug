@@ -1,0 +1,91 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/components_messaging/';
+
+
++mchapter('Messaging', imgAssets+'chapter_components_messaging.svg')
++frameInbox('Messaging possibilities')
+    .important-orange
+        .list-title.fragment
+            p By modifying the container object's state
+            ul
+                li e.g. shared state machine
+                li indirect communication
+                li difficult to debug
+        .list-title.fragment
+            p By direct calls
+            ul
+                li OOP way
+                li fast, but increases coupling
+                li we need to know what to call
+                li e.g. calling a global component that is always present
+        .list-title.fragment
+            p By using a message broker
+            ul
+                li events and commands
+                li each component can declare interest in relevant messages
+                li slower than the direct call
+                li e.g. listening to GAME_OVER event and stopping the game
+        .top-160.right-150
+            img.width-700(src=imgAssets+'messaging.svg')
++frameInbox('Message Broker')
+    .important-red
+        ul
+            li.fragment components should be notified of any state change that is relevant
+            li.fragment can be used for returning values (danger of <span class="highlight">feedback deadlock</span>)
+            li.fragment a handler can be implemented inside components - <span class="highlight code">OnMessage()</span> function 
+            li.fragment processing can be instant or delayed/scheduled
+            li.fragment <span class="highlight">Event</span> - a message informing that something happened
+            li.fragment <span class="highlight">Command</span> - a message instructing that something should happen
+        .space-md
+        .text-center
+            img.height-300(src=imgAssets+'diag_message.svg')
++frameInbox('Message Types')
+    .important-orange
+        .list-title.fragment
+            p Unicast
+            ul
+                li a component sends a message to another component
+                li in most cases, this can be handled by a direct call
+                li example: pause the game
+        .list-title.fragment
+            p Multicast
+            ul
+                li a) component sends a message to subscribers
+                li b) component sends a message to all objects that meet specific criteria
+                li example: notify all nearby units that the player has entered the area
+                li example: collision trigger - notify all subscribers 
+        .list-title.fragment
+            p Broadcast
+            ul
+                li rarely used, usually for global messages
+                li example: level completed, game over
+        .bottom-0.right-20
+            img.height-680(src=imgAssets+'messaging_types.svg')
++frameInbox('Example: Atomic Game Engine Event Passing')
+    .code.text-sm
+        include ../../assets/components_messaging/snippets_generated/atomic_ge_event_passing.html
++frameInbox('Example: Unity Messages')
+    .code.text-sm
+        include ../../assets/components_messaging/snippets_generated/unity_messages.html
++frameInbox('Example: Unreal Message Bus')
+    div
+        ul
+            li.fragment facilitates communication between application parts via <span class="highlight">Message Passing</span>
+            li.fragment messages are classified into commands and events
+            li.fragment all messages are wrapped into <span class="highlight code">IMessageContext</span>, containing additional information
+        .space-xl
+        .text-center
+            img.height-300(src=imgAssets+'diag_message_unreal.svg')
++frameInbox('Message Broker Summary')
+    .important-green
+        ul
+            li.upside.fragment allows to make the game event-based
+            li.upside.fragment components can react on any message that goes into event bus
+            li.downside.fragment not intended for per-frame processing
+            li.downside.fragment once established, it's not easy to revise the messaging architecture
+            li.mt-40.fragment if there is something that should run every frame, it's better to use polling or direct call
+            li.fragment avoid expensive processing in <span class="highlight code">OnMessage</span> handler
+        .bottom-0.right-60
+            img.height-350(src=imgAssets+'boxes.png')

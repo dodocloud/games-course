@@ -18,6 +18,13 @@ mixin tipKeen3(text)
 mixin tipKeen4(text)
 	+tip(themePath+'resources/keen4.png', text)(class='keen keen4')&attributes(attributes)
 
+mixin gbGame(image, text)
+	div.relative.height-250
+		img.absolute.height-250(src=globalAssets+'gb_cartridge.png')
+		.absolute.height-150.left-30.bottom-30.opacity-7.p-3.mb-2
+			img(src!=image)
+		.absolute.width-160.height-40.bottom-30.left-30.bgr-rhino-100.ml-3.mb-5.opacity-7
+		div.absolute.bottom-40.width-160.left-30.text-center.text-xs.font-bold.color-rhino-50!=text
 
 mixin mchapter(text, icon)
 	+frameOutbox

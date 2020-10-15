@@ -1,9 +1,10 @@
 {
   "name": "ni-aph",
   "author": "Adam Vesecký",
-  "version": "4.0.0",
+  "version": "4.4.0",
   "license": "MIT",
   "scripts": {
+    "dev": "node scripts/prebuild-project.js && parcel view/index.html --out-dir build_project",
     "dev-slides": "npm run prebuild-slides && npm run serve-slides",
     "serve-slides": "parcel slides/view/*.html slides/view/*.pug --out-dir build_slides",
     "prebuild-slides": "node scripts/prebuild-slides.js",

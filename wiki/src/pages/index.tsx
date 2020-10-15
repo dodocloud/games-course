@@ -157,7 +157,7 @@ const Feature = () => (
 					PixiJS and ThreeJS libraries
 				</p>
 				<p className={featureStyles.feature__description}>
-					Improved ECSA support library
+					Improved ECS support library
 				</p>
 			</div>
 		</div>

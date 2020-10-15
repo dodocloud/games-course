@@ -44,6 +44,7 @@ Reveal.initialize({
 	dependencies: [
 		{ src: './plugins/search/search.js', async: true },
 		{ src: './plugins/notes/notes.js', async: true },
+		{ src: './plugins/pointer/pointer.js', async: true },
 	],
 });
 

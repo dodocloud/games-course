@@ -1,0 +1,99 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_colors/';
+- var defaultBgr = 'backgrounds/colors.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Colors in games', imgAssets+'chapter_colors.svg')
++frameInbox('Colors')
+    div
+        ul
+            li.fragment Many games have only a few dominant colors in most scenes
+            li.fragment The color pallete allows you to tell a story through it, especially mood and emotions
+            li.fragment Colors underline individuality and emotions
+            li.fragment Primary color sets the mood, secondary color adds the depth
+        .center.mt-40
+            .grid.grid-cols-3.grid-rows-3.width-70p.gap-20
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-lemon
+                        .absolute.text-center.width-200.top-70.color-rhino-100 Yellow
+                    p harmony, optimism
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-white
+                        .absolute.text-center.width-200.top-70.color-rhino-100 White
+                    p clarity, pureness
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-tomato
+                        .absolute.text-center.width-200.top-70 Red
+                    p energy, anger, passion
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-emerald
+                        .absolute.text-center.width-200.top-70.color-rhino-100 Green
+                    p health, nature, wealth
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-midnight
+                        .absolute.text-center.width-200.top-70 Black
+                    p death, nothingness
+                figure.fragment
+                    .relative.size-200
+                        .absolute.size-200.bgr-azure
+                        .absolute.text-center.width-200.top-70 Blue
+                    p peace, security
++frameInbox('Colors in games')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-400(src=imgAssets+'col_prince.jpg')
+            p Prince of Persia
+        figure
+            img.height-400(src=imgAssets+'col_prince2.jpg')
+            p Prince of Persia 2
++frameInbox('Colors in games')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-400(src=imgAssets+'col_prehistorik2.jpg')
+            p Prehistorik 2
+        figure
+            img.height-400(src=imgAssets+'col_prehistorik.jpg')
+            p Prehistorik 2
++frameInbox('Colors in games')
+    .top-0.left-0.width-700
+        figure
+            img(src=imgAssets+'col_hollow_knight.jpg')
+            p Hollow Knight
+    .top-200.left-500.width-700
+        figure
+            img(src=imgAssets+'col_thor.jpg')
+            p Tiny Thor
+    .top-350.left-950.width-700
+        figure
+            img(src=imgAssets+'ncol_cuphead.jpg')
+            p Cuphead
++frameInbox('Colors in games')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-400(src=imgAssets+'col_inside.jpg')
+            p INSIDE
+        figure
+            img.height-400(src=imgAssets+'ncol_alpha.jpg')
+            p Planet Alpha
++frameInbox('Colors in games')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-400(src=imgAssets+'col_journey.jpg')
+            p Journey
+        figure
+            img.height-400(src=imgAssets+'col_esther.jpg')
+            p Dear Esther
++frameInbox('Hellblade')
+    .top-0.left-0.width-800
+        img(src=imgAssets+'col_hellblade.jpg')
+    .top-200.left-500.width-800
+        img(src=imgAssets+'col_hellblade2.jpg')
+    .top-350.left-850.width-800
+        img(src=imgAssets+'col_hellblade3.jpg')

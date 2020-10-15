@@ -1,0 +1,146 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/components_components/';
+
++mchapter('Component-oriented architecture', imgAssets+'chapter_components_components.svg')
++frameInbox('Component')
+    .important-red
+        ul
+            li.fragment(data-fragment-index="1") a unit of composition with specified interfaces and explicit context dependencies
+            li.fragment(data-fragment-index="2") components are <span class="highlight">plug-and-play objects</span>
+            li.fragment(data-fragment-index="3") prefers composition over inheritance
+            li.fragment(data-fragment-index="4") behavior of an entity is determined by the aggregation of its components
+            li.fragment(data-fragment-index="5") <span class="highlight">Dungeon Siege (2002)</span> - one of the first games featuring component-based systems
+        .space-2xl
+        .text-center
+            img.height-250(src=imgAssets+'component.svg')
+        .bottom-60.left-40.width-400.fragment(data-fragment-index="5")
+            img(src=imgAssets+'dsiege.jpg')
++frameInbox('ECS Pattern')
+    .important-red
+        ul
+            li.fragment.highlight Entity-Component-System
+            li.fragment common pattern for component-oriented libraries and engines
+            li.fragment game object is just a container for data and logic
+            li.fragment components are attached to their game objects
+            li.fragment can be easily integrated into <span class="highlight">scene graph</span>
+        .text-center
+            img.height-500.mt-15(src=imgAssets+'ecs.svg')
++frameInbox('Terms')
+    .important-orange
+        .list-title.fragment
+            p Entity
+            ul
+                li a single entity/game object, usually incorporated into a scene graph
+        .list-title.fragment
+            p Attribute
+            ul
+                li data unit attached to an entity
+        .list-title.fragment
+            p Property
+            ul
+                li data unit attached to a component
+        .list-title.fragment
+            p Component
+            ul
+                li instantiable unit that defines <span class="highlight">simple</span> functional behavior
+        .list-title.fragment
+            p System
+            ul
+                li a superior component responsible for a bigger scope (HealthSystem, GameManager, AudioSystem)
+        +tipKeen('The naming varies. Some engines use behaviours for components, components for systems, property for attributes etc.').bottom-0.right-30p
++frameInbox('Example: Platformer')
+    ul
+        li.fragment attributes are <span class="highlight font-bold">DATA</span>, components are <span class="highlight font-bold">CODE</span>
+    .text-center
+        img.height-500(src=imgAssets+'diag_platformer_cmp.svg')
++frameInbox('ECS Architecture in C++')
+    .important-green
+        .text-center
+            img.height-770(src=imgAssets+'diag_ecs.svg')
++frameInbox('ECS example')
+    .top-140.left-370
+        img.height-450(src=imgAssets+'components_jazz.jpg')
+    .fill.center.absolute
+        img.height-700(src=imgAssets+'cmp_jazz.svg')
++frameInbox('Example: Pacman')
+    .important-green
+        .text-center
+            img.height-700.mt-20(src=imgAssets+'cmp_pacman.svg')
++frameInbox('Pacman')
+    .important-green
+        .list-title.fragment
+            p Stage
+            ul
+                li parent of all game objects
+        .list-title.fragment
+            p Maze
+            ul
+                li model of the maze, contains location of dots, power-pellets etc.
+        .list-title.fragment
+            p GameManager
+            ul
+                li controls the game as a unified whole
+                li may be responsible for collision handling (e.g. by killing pacman or a ghost)
+        .list-title.fragment
+            p BoxBehavior
+            ul
+                li game logic of the center box
+        .list-title.fragment
+            p PacmanBehavior
+            ul
+                li controls the movement of Pacman using the <span class="highlight code">InputManager</span> 
++frameInbox('Where is the game model?')
+    .important-green
+        ul
+            li.fragment we can put it in attributes, components or both
+            li.fragment if it's an attribute, it can be detached and tested separately, but we need to keep it in sync
+            li.fragment if it's a component/system, it can make full use of the architecture
+        .list-title.fragment
+            p Simple games
+            ul
+                li.fragment one tiny model that contains game rules and global attributes, stored in the root element
+                li.fragment game entities have their logic implemented in respective components
+                li.fragment game model can be used as an API layer by all components
+        .list-title.fragment
+            p Complex games
+            ul
+                li.fragment game rules are implemented in systems (physics, relations, triggers)
+                li.fragment components customize behavior of individual game elements
++frameInbox('Example: Platformer')
+    .text-center
+        img.height-760.mt-20(src=imgAssets+'cmp_platformer.svg')
+    .bottom-0.right-0
+        img.width-400(src=imgAssets+'platformer.jpg')
++frameInbox('Example: Paratrooper')
+    .fill.center
+        img.height-600(src=imgAssets+'paratrooper.gif')
++frameInbox('Example: Paratrooper')
+    .text-center
+        img.height-760.mt-20(src=imgAssets+'cmp_paratrooper.svg')
++frameInbox('Example: Driver')
+    .fill.center
+        img.height-600(src=imgAssets+'driver.gif')
++frameInbox('Example: Driver')
+    .text-center
+        img.height-760.mt-20(src=imgAssets+'cmp_driver.svg')
++frameInbox('Component-oriented architecture: summary')
+    div
+        div
+            ul
+                li.upside.fragment scalable
+                li.upside.fragment data-oriented
+                li.upside.fragment components are easy to reuse
+                li.upside.fragment easy to make new object types
+                li.upside.fragment polymorphic operations for components
+        .space-md
+        div
+            ul
+                li.downside.fragment dynamic typing - everything is assembled at runtime
+                li.downside.fragment all depedencies have to be wired together
+                li.downside.fragment the code must be written in a generic way
+                li.downside.fragment refactoring may become annoying
+                li.downside.fragment harder to debug
+    .bottom-0.right-0
+        img.height-250(src=imgAssets+'component.svg')

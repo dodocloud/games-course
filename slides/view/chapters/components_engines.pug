@@ -1,0 +1,105 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/components_engines/';
+
+
+
++mchapter('Component-oriented game engines', imgAssets+'chapter_components_engines.svg')
++frameInbox('Component-oriented game engines')
+    div
+        .list-title.fragment
+            p Artemis framework
+            ul.leading-md
+                li
+                    a(href="https://github.com/junkdog/artemis-odb") https://github.com/junkdog/artemis-odb
+                li Java, ported to C#, ECS implementation in its essential nature
+        .list-title.fragment
+            p Atomic Game Engine
+            ul.leading-md
+                li
+                    a(href="https://github.com/AtomicGameEngine/AtomicGameEngine") https://github.com/AtomicGameEngine/AtomicGameEngine
+                li C++, forsaken, but still a good source of inspiration
+        .list-title.fragment
+            p Unity
+            ul.leading-md
+                li ECS architecture
+        .list-title.fragment
+            p Unreal Engine
+            ul.leading-md
+                li hybrid component architecture
+        .list-title.fragment
+            p Godot Engine
+            ul.leading-md
+                li signal-passing architecture
+    .bottom-0.right-0
+        img.height-400(src=imgAssets+'engines.gif')
++frameInbox('Example: Artemis Engine')
+    div
+        ul
+            li Systems encapsulate logic, components encapsulate data
+        .code.text-sm
+            include ../../assets/components_engines/snippets_generated/artemis.html
++frameInbox('Unity')
+    .important-green
+        ul
+            li ECS architecture with messaging system
+            li <span class="highlight code">MonoBehaviour</span> can encapsulate both data and logic
+        .space-xl
+        .text-center
+            img.height-400(src=imgAssets+'unity_prefab.gif')
++frameInbox('Unity Architecture')
+    .important-green
+        .text-center
+            img.height-770(src=imgAssets+'diag_ecs_unity.svg')
++frameInbox('Unity Game Object')
+    .code.text-xs
+        include ../../assets/components_engines/snippets_generated/unity_game_object.html
++frameInbox('Example: Platformer2D')
+    .text-center
+        img.height-700(src=imgAssets+'platformer2D.jpg')
++frameInbox('Example: Platformer2D Scene Graph')
+    .text-center
+        img.height-770.mt-20(src=imgAssets+'diag_unity_platformer.svg')
++frameInbox('Example: Platformer2D Events')
+    .code.text-sm
+        include ../../assets/components_engines/snippets_generated/platformer_events.html
++frameInbox('Component-oriented libraries')
+    div
+        .list-title.fragment
+            p Unity DOTS
+            ul.leading-md
+                li
+                    a(href="https://unity.com/dots") https://unity.com/dots
+                li multi-threaded, wires ECS with the Job system
+        .list-title.fragment
+            p EnTT
+            ul.leading-md
+                li
+                    a(href="https://github.com/skypjack/entt") https://github.com/skypjack/entt
+                li header-only C++ library, pure ECS
+        .list-title.fragment
+            p Entitas
+            ul.leading-md
+                li
+                    a(href="https://github.com/sschmid/Entitas-CSharp") https://github.com/sschmid/Entitas-CSharp
+                li ECS Framework for Unity, ported to many other languages
+        .list-title.fragment
+            p A-Frame
+            ul.leading-md
+                li
+                    a(href="https://aframe.io") https://aframe.io
+                li declarative framework for virtual reality, built on top of ThreeJS
+        .list-title.fragment
+            p ECSY
+            ul.leading-md
+                li 
+                    a(href="https://ecsy.io") https://ecsy.io
+                li experimental ECS framework for PixiJS, ThreeJS and BabylonJS
++frameInbox('Example: ECSY Framework')
+    div
+        .flex.flex-row.mt-100
+            .code.text-xs
+                include ../../assets/components_engines/snippets_generated/ecsy.html
+            .text-center
+                img.height-400(src=imgAssets+'ecsy.svg')

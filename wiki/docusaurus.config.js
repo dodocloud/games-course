@@ -93,6 +93,10 @@ const config = {
 						{
 							label: 'Lecture 3: Assets',
 							href: url + '/slides/lecture03.html',
+						},
+						{
+							label: 'Lecture 4: Components',
+							href: url + '/slides/lecture04.html',
 						}
 					]
 				},
@@ -105,6 +109,11 @@ const config = {
 					label: 'Brand',
 					position: 'left',
 					to: '/docs/brand/',
+				},
+				{
+					label: 'Youtube channel',
+					position: 'right',
+					href: 'https://www.youtube.com/channel/UC1PTa9NCygXV_0IgOBRMw-Q',
 				},
 			/*	{
 					label: 'Blog',

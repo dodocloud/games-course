@@ -6,6 +6,14 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.4.0] - 2020-10-15
+### Added
+- Lecture 04
+- PIXI-ECS library
+- Tutorial 03
+
+### Changed
+- improved skeleton for semestral projects
 
 ## [4.3.5] - 2020-10-11
 ### Added

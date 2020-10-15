@@ -80,7 +80,11 @@ title: Course requirements
 - if you choose to use PixiJS or ThreeJS library for your work:
   - fork this repo to your own project
   - execute script `npm run clean-repo`, this will remove all materials, slides and other things not related to coding
-  - re-work one of the examples provided and start working on your project
+  - remove all unnecessary dependencies from `package.json`
+  - execute `npm run dev`
+  - go to `localhost:1234`, you should see the skeleton project
+  - skeleton is located in `src/my-game`, loaded from `view/index.html`
+  - happy working
 - your repository must contain ONLY your game and documentation in the README (or any other files that are linked from the readme)
 - readme should contain following information:
   - where the game is deployed

@@ -1,0 +1,80 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/components_objects/';
+
++mchapter('Object-oriented architecture', imgAssets+'chapter_components_oop.svg')
++frameInbox('Example: Platformer Scene')
+    .text-center
+        img.height-700(src=imgAssets+'platformer.jpg')
+    .bottom-70.left-270
+        img.height-390(src=imgAssets+'platformer.svg')
++frameInbox('Hierarchy for the model')
+    .important-green.fill.center
+        img.height-750(src=imgAssets+'diag_platformer_oop.svg')
++frameInbox('How things may get messed up')
+    .important-green.fill.center
+        img.height-750(src=imgAssets+'diag_platformer_oop_2.svg')
++frameInbox('Issues')
+    .important-green
+        ul
+            li.fragment(data-fragment-index="1") dragon may have ability to use mana
+                ul
+                    li.fragment(data-fragment-index="2") opt. a) rework the object hierarchy
+                    li.fragment(data-fragment-index="3") opt. b) move mana to a base class
+            li.fragment(data-fragment-index="4") mage may have ability to transform himself into a dragon
+                ul
+                    li.fragment(data-fragment-index="5") opt. a) create a new object <span class="highlight">DragonMage</span>
+                    li.fragment(data-fragment-index="6") opt. b) add a reference to an object the mage has transformed into
+                li.fragment(data-fragment-index="7") orc may have ability to walk on foot
+                    ul
+                        li.fragment(data-fragment-index="8") add more states
+            li.fragment(data-fragment-index="9") mage may have an inventory of items affecting his abilities
+            li.fragment(data-fragment-index="10") we might want to add a dozen features during the development without the necessity of rearranging the class hierarchy
+        .right-0.top-150.fragment(data-fragment-index="5")
+            img.height-400(src=imgAssets+'mage.png')
+        +tipKeen('Not every set of relationships can be described in a directed acyclic graph').bottom-0
++frameInbox('Generalizing')
+    .text-center
+        img.height-550.mt-80(src=imgAssets+'diag_platformer_oop_3.svg')
+        p.fragment This may work for attributes but not for game logic
++frameInbox('All-purpose object pattern')
+    .important-green
+        ul
+            li.fragment used in 90's and early 2000's
+            li.fragment one class determines behavior of every game object
+            li.fragment lots of switches and if-checks
+        .text-center
+            img.height-500.mt-40(src=imgAssets+'diag_allinone.svg')
++frameInbox('Example: Doom 2')
+    .right-20.top-240
+        img.height-250(src=imgAssets+'doom_a.png')
+    .right-0.top-450
+        img.height-250(src=imgAssets+'doom_b.png')
+    .left-0.top-180
+        img.height-300(src=imgAssets+'doom_c.png')
+    .fill.center.absolute
+        img.height-750(src=imgAssets+'diag_doom.svg')
++frameInbox('Object-oriented architecture: summary')
+    div
+        ul
+            li.fragment The most common way of expressing object hierarchy is via OOP and inheritance
+            li.fragment This approach works well for games with a <span class="highlight">tiny model</span> and a <span class="highlight">weak emergence</span>
+            li.fragment In case of more complex games we can end up with thousands of dependencies
+            li.highlight.fragment Inheritance is insufficient relation for relationship modelling
+            li.fragment We need to use <span class="highlight">composition</span>, and that's where the <span class="highlight">component architecture</span> comes into place
+        .space-md
+        p.highlight.fragment Summary
+        .flex-cols-2
+            div.width-25p
+                ul
+                    li.fragment.upside simple
+                    li.fragment.upside fast prototyping
+                    li.fragment.upside low overhead
+                    li.fragment.upside easy to debug
+            div
+                ul
+                    li.fragment.downside hard to maintain
+                    li.fragment.downside hard to scale
+                    li.fragment.downside not flexible
+                    li.fragment.downside game objects may have not needed features
