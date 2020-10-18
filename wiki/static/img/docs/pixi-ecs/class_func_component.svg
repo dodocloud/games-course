@@ -64,7 +64,7 @@
            width="117.87"
            height="43.132"
            id="rect2"
-           style="fill:#1d232d;stroke:#30d2d5;stroke-linecap:round" />
+           style="fill:#1d232d;stroke:#009244;stroke-linecap:round" />
         <g
            aria-label="FuncComponent"
            id="g30"
@@ -126,7 +126,7 @@
            d="m 98.896,161.66 h 117.48"
            id="path32"
            inkscape:connector-curvature="0"
-           style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+           style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
         <g
            aria-label="+ doOnInit(function): FuncComponent + doOnAttach(function): FuncComponent + doOnMessage(string, function): FuncComponent + doOnMessageOnce(string, function): FuncComponent + doOnMessageConditional(string, QueryCondition, function): FuncComponent + doOnFixedUpdate(function): FuncComponent + doOnUpdate(function): FuncComponent + doOnDetach(function): FuncComponent + doOnRemove(function): FuncComponent + doOnFinish(function): FuncComponent + setDuration(number): FuncComponent"
            id="g960"

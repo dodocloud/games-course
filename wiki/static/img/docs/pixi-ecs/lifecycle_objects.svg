@@ -57,7 +57,7 @@
          d="m 72.364,85.869 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 H 91.877 L 94.6882,92.219 V 88.2502 L 91.877,85.869 Z"
          id="path2"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="New"
          id="g10"
@@ -256,12 +256,12 @@
          d="m 125.28,74.492 -4.1341,3.7042 v 32.279 l 4.1341,3.7042 h 45.971 l 4.1341,-3.7042 V 78.1962 L 171.251,74.492 Z"
          id="path96"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <path
          d="m 129.25,81.107 -4.1341,3.7042 v 21.696 l 4.1341,3.7042 h 38.034 l 4.1341,-3.7042 V 84.8112 L 167.284,81.107 Z"
          id="path98"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="GAMEOBJECT"
          id="g120"
@@ -359,14 +359,14 @@
          width="33.073002"
          height="5.2782001"
          id="rect144"
-         style="fill:#2f3744;stroke:#30d2d5" />
+         style="fill:#2f3744;stroke:#009244" />
       <rect
          x="131.73"
          y="100.96"
          width="33.073002"
          height="5.2782001"
          id="rect146"
-         style="fill:#2f3744;stroke:#30d2d5" />
+         style="fill:#2f3744;stroke:#009244" />
       <g
          aria-label="addChild()"
          id="g168"
@@ -440,7 +440,7 @@
          width="33.073002"
          height="5.2782001"
          id="rect180"
-         style="fill:#2f3744;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:round" />
+         style="fill:#2f3744;stroke:#009244;stroke-width:0.26458001;stroke-linecap:round" />
       <g
          aria-label="attach()"
          id="g198"
@@ -718,7 +718,7 @@
            d="m 222.38,128.2 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 h 19.513 l 2.8112,-2.3812 v -3.9688 L 241.893,128.2 Z"
            id="path310"
            inkscape:connector-curvature="0"
-           style="fill:#1d232d;stroke:#30d2d5" />
+           style="fill:#1d232d;stroke:#009244" />
         <g
            aria-label="Detached"
            id="g328"

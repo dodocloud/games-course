@@ -698,14 +698,14 @@
          d="m 57.588,49.504 v 130.7 l 4.1341,3.7042 h 65.98 v -130.7 L 123.568,49.504 Z"
          id="path300"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <rect
          x="72.007004"
          y="54.662998"
          width="35.851002"
          height="14.684"
          id="rect302"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="Container"
          id="g322"
@@ -753,7 +753,7 @@
          width="35.851002"
          height="14.684"
          id="rect324"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="ParticleContainer"
          id="g360"
@@ -833,7 +833,7 @@
          width="35.851002"
          height="14.684"
          id="rect362"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="Graphics"
          id="g380"
@@ -877,7 +877,7 @@
          width="35.851002"
          height="14.684"
          id="rect382"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="BitmapText"
          id="g404"
@@ -929,7 +929,7 @@
          width="35.851002"
          height="14.684"
          id="rect406"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="Sprite"
          id="g420"
@@ -965,7 +965,7 @@
          width="35.851002"
          height="14.684"
          id="rect422"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="TilingSprite"
          id="g448"
@@ -1025,7 +1025,7 @@
          width="35.851002"
          height="14.684"
          id="rect450"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
     </g>
     <g
        id="g562"
@@ -1376,7 +1376,7 @@
          d="m 57.588,44.212 v 5.2917 h 51.329 v -1.5875 l -4.1341,-3.7042 z"
          id="path608"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="PIXI"
          id="g618"

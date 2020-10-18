@@ -60,7 +60,7 @@
          width="109.93"
          height="82.82"
          id="rect2"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:round" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001;stroke-linecap:round" />
       <g
          aria-label="ChainComponent"
          id="g32"
@@ -126,7 +126,7 @@
          d="M 138.69,146.76 H 248.23"
          id="path34"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+         style="fill:none;stroke:#009244;stroke-width:0.26458001;stroke-linecap:square;stroke-dashoffset:1.20000005" />
       <g
          aria-label="+ beginRepeat(number | function): ChainComponent + endRepeat(): ChainComponent + call(function): ChainComponent + executeUpon(Container): ChainComponent + beginWhile(function): ChainComponent + endWhile(): ChainComponent + beginInterval(number | function): ChainComponent + endInterval(): ChainComponent + beginIf(): ChainComponent + else(): ChainComponent + endIf(): ChainComponent + addComponent(component | function): ChainComponent + waitFor(Component | function): ChainComponent + waitUntil(function): ChainComponent + waitFrames(number): ChainComponent + waitTime(number | function): ChainComponent + waitForMessage(string): ChainComponent + waitForMessageConditional(string, QueryCondition): ChainComponent + removeComponent(Component, Container): ChainComponent + detachGameObjectsByQuery(QueryCondition): ChainComponent + detachGameObject(Container): ChainComponent + destroyGameObject(Container): ChainComponent + addAbortCondition(function): ChainComponent"
          id="g1898"

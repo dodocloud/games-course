@@ -57,7 +57,7 @@
          d="m 47.231,92.036 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 H 66.744 L 69.5552,98.386 V 94.4172 L 66.744,92.036 Z"
          id="path2"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="New"
          id="g10"
@@ -162,7 +162,7 @@
          d="m 219.21,113.2 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 h 19.513 l 2.8112,-2.3812 v -3.9688 L 238.723,113.2 Z"
          id="path52"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="Finished"
          id="g70"
@@ -204,7 +204,7 @@
          d="m 219.21,134.37 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 h 19.513 l 2.8112,-2.3812 v -3.9688 L 238.723,134.37 Z"
          id="path72"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="Detached"
          id="g90"
@@ -340,12 +340,12 @@
          d="m 100.15,80.659 -4.1341,3.7042 v 32.279 l 4.1341,3.7042 h 45.971 l 4.1341,-3.7042 V 84.3632 L 146.121,80.659 Z"
          id="path136"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <path
          d="m 104.12,87.274 -4.1341,3.7042 v 21.696 l 4.1341,3.7042 h 38.034 l 4.1341,-3.7042 V 90.9782 L 142.154,87.274 Z"
          id="path138"
          inkscape:connector-curvature="0"
-         style="fill:#1d232d;stroke:#30d2d5" />
+         style="fill:#1d232d;stroke:#009244" />
       <g
          aria-label="GAMEOBJECT"
          id="g160"
@@ -471,14 +471,14 @@
          width="33.073002"
          height="5.2782001"
          id="rect198"
-         style="fill:#2f3744;stroke:#30d2d5" />
+         style="fill:#2f3744;stroke:#009244" />
       <rect
          x="106.6"
          y="107.13"
          width="33.073002"
          height="5.2782001"
          id="rect200"
-         style="fill:#2f3744;stroke:#30d2d5" />
+         style="fill:#2f3744;stroke:#009244" />
       <g
          aria-label="addComponent()"
          id="g230"
@@ -568,7 +568,7 @@
          width="33.073002"
          height="5.2782001"
          id="rect242"
-         style="fill:#2f3744;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:round" />
+         style="fill:#2f3744;stroke:#009244;stroke-width:0.26458001;stroke-linecap:round" />
       <g
          aria-label="onInit()"
          id="g260"
@@ -1197,7 +1197,7 @@
            d="m 173.04,92.036 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 h 19.513 l 2.8112,-2.3812 V 94.4172 L 192.553,92.036 Z"
            id="path542"
            inkscape:connector-curvature="0"
-           style="fill:#1d232d;stroke:#30d2d5" />
+           style="fill:#1d232d;stroke:#009244" />
         <g
            aria-label="Initialized"
            id="g566"
@@ -1322,7 +1322,7 @@
            d="m 173.04,134.37 -2.8112,2.3812 v 3.9688 l 2.8112,2.3812 h 19.513 l 2.8112,-2.3812 v -3.9688 L 192.553,134.37 Z"
            id="path602"
            inkscape:connector-curvature="0"
-           style="fill:#1d232d;stroke:#30d2d5" />
+           style="fill:#1d232d;stroke:#009244" />
         <g
            aria-label="Removed"
            id="g618"

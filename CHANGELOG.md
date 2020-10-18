@@ -6,6 +6,16 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+
+## [4.4.5] - 2020-10-18
+### Added
+- Another example for Tutorial 03
+
+### Changed
+- colors of a few diagrams
+- design of a few slides from Lecture 01
+
+
 ## [4.4.0] - 2020-10-15
 ### Added
 - Lecture 04

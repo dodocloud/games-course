@@ -10,7 +10,7 @@
   </rdf:RDF>
  </metadata>
  <g transform="translate(-100.06 -81.954)">
-  <g fill="none" stroke="#30d2d5" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".26458">
+  <g fill="none" stroke="#009244" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".26458">
    <rect x="144.36" y="89.446" width="2.6458" height="2.6458"/>
    <rect x="147.01" y="89.446" width="2.6458" height="2.6458"/>
    <rect x="141.71" y="89.446" width="2.6458" height="2.6458"/>
@@ -83,7 +83,7 @@
     <path d="m117.56 146.83h0.30374v-1.3039c0.18151-0.18151 0.30745-0.27782 0.49266-0.27782 0.23707 0 0.34078 0.14447 0.34078 0.48155v1.1001h0.30374v-1.1409c0-0.45932-0.17039-0.70379-0.54821-0.70379-0.24818 0-0.43339 0.13335-0.60378 0.30374h-0.0111l-0.0259-0.25929h-0.25189z"/>
    </g>
   </g>
-  <g fill="none" stroke="#30d2d5" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".52917">
+  <g fill="none" stroke="#009244" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".52917">
    <path d="m120.55 83.625h25.4v3.9688"/>
    <path d="m120.55 90.505h18.256"/>
    <path d="m120.55 98.178h18.521"/>

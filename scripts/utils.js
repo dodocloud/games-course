@@ -96,7 +96,7 @@ module.exports = {
 		for (let i = 0; i < files.length; i++) {
 			const filename = path.join(startPath, files[i]);
 			const stat = fs.lstatSync(filename);
-			if (stat.isDirectory()) {
+			if (stat.isDirectory() && !filename.includes('node_modules')) {
 				output = output.concat(module.exports.searchFiles(filename, filter, pathMask));
 			}
 			else if ((!pathMask || startPath.indexOf('/' + pathMask + '/') >= 0 || startPath.endsWith(pathMask)) 

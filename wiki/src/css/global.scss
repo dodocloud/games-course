@@ -51,7 +51,7 @@
 }
 
 html[data-theme="dark"] {
-	--ifm-background-color: #{$color-rhino-100};
+	--ifm-background-color: #{$color-midnight-light};
 	--ifm-color-emphasis-300: #{$color-royal};
 	--ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
 }
@@ -91,7 +91,7 @@ nav {
 	--ifm-heading-vertical-rhythm-top: 2; /* h4 */
 	--ifm-heading-vertical-rhythm-bottom: 0.4;
 	--ifm-table-background: #{$color-white-3};
-	--ifm-table-border-color: #{$color-rhino-100};
+	--ifm-table-border-color: #{$color-midnight-light};
 	--ifm-table-border-width: 4px;
 	--ifm-table-head-background: #{$color-rhino-90};
 	--ifm-table-head-color: #{$color-white};

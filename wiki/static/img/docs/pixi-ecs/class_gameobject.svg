@@ -56,7 +56,7 @@
        width="79.507004"
        height="107.96"
        id="rect2"
-       style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:round" />
+       style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001;stroke-linecap:round" />
     <g
        id="g308"
        style="stroke-width:0.26458001">
@@ -169,7 +169,7 @@
          d="m 110.07,104.03 h 79.11"
          id="path56"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+         style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
       <g
          aria-label="+ id: number + name: string + stateId: number + pixiObj: PIXI.Container + parentGameObject: GameObject + scene: Scene # _proxy: GameObjectProxy"
          id="g304"
@@ -671,7 +671,7 @@
          d="m 110.07,129.69 h 79.11"
          id="path306"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+         style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
     </g>
     <g
        id="g1374"

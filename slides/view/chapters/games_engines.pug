@@ -8,19 +8,13 @@ include ../mixins/containers_aph.pug
 +mchapter('Rise of game engines', imgAssets+'chapter_engines.svg')
 +frameInbox('Pre-engine era')
     .center.fill
-        .grid.grid-cols-3.grid-rows-2.gap-40
-            .height-350
-                img(src=imgAssets+'engine_pinball_floppy.png')
-            .height-350
-                img(src=imgAssets+'engine_tforce_floppy.png')
-            .height-350
-                img(src=imgAssets+'engine_adventure_floppy.png')
-            .height-350
-                img(src=imgAssets+'engine_gamemaker_floppy.png')
-            .height-350
-                img(src=imgAssets+'engine_arcade_floppy.png')
-            .height-350
-                img(src=imgAssets+'engine_rpgmaker_floppy.png')
+        .grid.grid-cols-3.grid-rows-2.gap-40.width-80p
+            +floppyApp(imgAssets+'engine_pinball.jpg', 'Pinball Construction Kit', '1983')
+            +floppyApp(imgAssets+'engine_tforce.jpg', 'Thunder Force Construction', '1984')
+            +floppyApp(imgAssets+'engine_adventure.jpg', 'Adventure Construction Kit', '1984')
+            +floppyApp(imgAssets+'engine_gamemaker.jpg', 'Garry Kitchen\'s GameMaker', '1988')
+            +floppyApp(imgAssets+'engine_arcade.jpg', 'Arcade Construction Kit', '1988')
+            +floppyApp(imgAssets+'engine_rpgmaker.jpg', 'RPG Maker', '1990')
 +frameInbox('1984: Breakout')
     .flex-cols-2
         .code.tiny.font-dos
@@ -43,14 +37,10 @@ include ../mixins/containers_aph.pug
             li Every next game had more advanced technology
             li Still, memory constraints sabotaged attempts to create data-heavy design
         .flex-cols-4.mt-80
-            div.text-center
-                img.height-350(src=imgAssets+'idtech_hovertank_floppy.png')
-            div.text-center
-                img.height-350(src=imgAssets+'idtech_catacomb_floppy.png')
-            div.text-center
-                img.height-350(src=imgAssets+'idtech_wolfenstein_floppy.png')
-            div.text-center
-                img.height-350(src=imgAssets+'idtech_shadowcast_floppy.png')
+                +floppyApp(imgAssets+'idtech_hovertank.jpg', 'Hovertank 3-D', '1991')
+                +floppyApp(imgAssets+'idtech_catacomb.jpg', 'Catacomb 3-D', '1991')
+                +floppyApp(imgAssets+'idtech_wolfenstein.jpg', 'Wolfenstein 3-D', '1992')
+                +floppyApp(imgAssets+'idtech_shadowcast.jpg', 'Shadowcaster', '1993')
 +frameInbox('1993: Doom')
     .flex-cols-2
         .code.tiny.text-2xs

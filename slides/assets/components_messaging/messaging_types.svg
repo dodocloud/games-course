@@ -15,7 +15,7 @@
   <path d="m185.52 90.949h56.608" fill="none" stroke="#47d58a" stroke-linecap="square" stroke-miterlimit="22" stroke-width=".26458"/>
   <g>
    <g stroke-linecap="round" stroke-width=".26458">
-    <path d="m140.26 77.72h44.979v15.875h-44.979z" fill="#1d232d" stroke="#30d2d5"/>
+    <path d="m140.26 77.72h44.979v15.875h-44.979z" fill="#1d232d" stroke="#009244"/>
     <g fill="#e8eaec" aria-label="Component">
      <path d="m154.17 85.559c0 0.75494 0.43392 1.1994 1.016 1.1994 0.2928 0 0.52211-0.12347 0.70202-0.33514l-0.1658-0.17992c-0.14817 0.1658-0.31045 0.25753-0.52917 0.25753-0.44097 0-0.71966-0.36689-0.71966-0.94897 0-0.57503 0.2928-0.93486 0.73377-0.93486 0.1905 0 0.33867 0.08467 0.46214 0.21519l0.16581-0.18697c-0.13759-0.15169-0.35631-0.28575-0.63147-0.28575-0.59267 0-1.0336 0.45508-1.0336 1.1994z"/>
      <path d="m156.16 85.862c0 0.56797 0.37394 0.89605 0.79375 0.89605 0.4198 0 0.79374-0.32808 0.79374-0.89605 0-0.57503-0.37394-0.90311-0.79374-0.90311-0.41981 0-0.79375 0.32808-0.79375 0.90311zm0.29986 0c0-0.39511 0.20108-0.66322 0.49389-0.66322 0.29633 0 0.49388 0.26811 0.49388 0.66322 0 0.39158-0.19755 0.65617-0.49388 0.65617-0.29281 0-0.49389-0.26458-0.49389-0.65617z"/>
@@ -38,7 +38,7 @@
   </g>
   <g fill="#1d232d">
    <rect x="203.76" y="102.86" width="19.844" height="48.948" stroke="#47d58a" stroke-linecap="round" stroke-width=".26458"/>
-   <path d="m140.26 101.53h44.979v15.875h-44.979z" stroke="#30d2d5" stroke-linecap="round" stroke-width=".26458"/>
+   <path d="m140.26 101.53h44.979v15.875h-44.979z" stroke="#009244" stroke-linecap="round" stroke-width=".26458"/>
    <rect x="185.38" y="104.18" width="18.521" height="10.583"/>
   </g>
   <path d="m185.51 104.18h18.256" fill="none" stroke="#47d58a" stroke-linecap="square" stroke-miterlimit="22" stroke-width=".26458"/>
@@ -124,7 +124,7 @@
      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="123.85"/>
     </g>
    </g>
-   <path d="m287.11 119.52h-44.979v15.875h44.979z" fill="#1d232d" stroke="#30d2d5" stroke-linecap="round" stroke-width=".26458"/>
+   <path d="m287.11 119.52h-44.979v15.875h44.979z" fill="#1d232d" stroke="#009244" stroke-linecap="round" stroke-width=".26458"/>
    <rect transform="scale(-1,1)" x="-242" y="122.17" width="18.521" height="10.583" fill="#1d232d"/>
   </g>
   <g stroke-width=".26458">
@@ -144,7 +144,7 @@
   </g>
   <g fill="#1d232d">
    <rect x="203.76" y="161.06" width="19.844" height="48.948" stroke="#47d58a" stroke-linecap="round" stroke-width=".26458"/>
-   <path d="m140.26 159.74h44.979v15.875h-44.979z" stroke="#30d2d5" stroke-linecap="round" stroke-width=".26458"/>
+   <path d="m140.26 159.74h44.979v15.875h-44.979z" stroke="#009244" stroke-linecap="round" stroke-width=".26458"/>
    <rect x="185.38" y="162.39" width="18.521" height="10.583"/>
   </g>
   <path d="m185.51 162.39h18.256" fill="none" stroke="#47d58a" stroke-linecap="square" stroke-miterlimit="22" stroke-width=".26458"/>
@@ -218,7 +218,7 @@
      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="123.85"/>
     </g>
    </g>
-   <path d="m287.11 177.73h-44.979v15.875h44.979z" fill="#1d232d" stroke="#30d2d5" stroke-linecap="round" stroke-width=".26458"/>
+   <path d="m287.11 177.73h-44.979v15.875h44.979z" fill="#1d232d" stroke="#009244" stroke-linecap="round" stroke-width=".26458"/>
    <rect transform="scale(-1,1)" x="-242" y="180.38" width="18.521" height="10.583" fill="#1d232d"/>
   </g>
   <path d="m241.86 180.38h-18.256" fill="none" stroke="#47d58a" stroke-linecap="square" stroke-miterlimit="22" stroke-width=".26458"/>

@@ -11,7 +11,7 @@
  </metadata>
  <g transform="translate(7.9663 -187.49)">
   <g stroke-dashoffset="1.2" stroke-linecap="square" stroke-miterlimit="40" stroke-width=".26458">
-   <circle cx="18.624" cy="215.55" r="23.812" fill="#1d232d" stroke="#30d2d5" style="paint-order:normal"/>
+   <circle cx="18.624" cy="215.55" r="23.812" fill="#1d232d" stroke="#009244" style="paint-order:normal"/>
    <path d="m18.624 189.09v52.917" fill="#0a1b1b" stroke="#7b8694" style="paint-order:normal"/>
    <path d="m-7.834 215.55h52.917" fill="#0a1b1b" stroke="#7b8694" style="paint-order:normal"/>
   </g>

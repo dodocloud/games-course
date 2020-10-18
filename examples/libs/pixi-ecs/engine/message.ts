@@ -81,7 +81,7 @@ export default class Message {
 	responses: MessageResponses;
 
 
-	constructor(action: string, component?: Component<any>, gameObject?: Container, data: any = null) {
+	constructor(action: string, component?: Component<any>, gameObject?: Container, data?: any) {
 		this._action = action;
 		this._component = component;
 		this._gameObject = gameObject;

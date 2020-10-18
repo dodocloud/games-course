@@ -12,7 +12,7 @@
  <g transform="translate(168.41 -206.18)">
   <g fill="#e8eaec" stroke="#cf2f25" stroke-linecap="round" stroke-width=".26458" aria-label="+ id: number + action: String + sender: Component* + recipientId: number + contextObject: GameObject* + data: any">
    <g>
-    <rect x="-140.24" y="206.31" width="71.57" height="82.153" fill="#1d232d" stroke="#30d2d5" stroke-linecap="round" stroke-width=".26458"/>
+    <rect x="-140.24" y="206.31" width="71.57" height="82.153" fill="#1d232d" stroke="#009244" stroke-linecap="round" stroke-width=".26458"/>
     <g stroke-width=".26458">
      <g fill="#47d58a" stroke="none" stroke-linecap="round" aria-label="Enemy">
       <path d="m-108.82 207.94v2.3077h1.4076v-0.22966h-1.1594v-0.85567h0.96308v-0.23706h-0.96308v-0.75565h1.1668v-0.22966z"/>
@@ -21,7 +21,7 @@
       <path d="m-103.34 210.25h0.24447v-1.1261c0-0.0815 7e-3 -0.15558 0.0556-0.24448 0.0593-0.11112 0.13335-0.15557 0.20373-0.15557 0.0593 0 0.12594 0.037 0.15558 0.12964 0.0222 0.0704 0.0185 0.15188 0.0185 0.22225v1.1742h0.24818v-1.1187c0-0.0889 7e-3 -0.15928 0.0704-0.2667 0.0296-0.0444 0.0926-0.15187 0.19632-0.15187 0.0556 0 0.10742 0.0333 0.13335 0.0963 0.0333 0.0704 0.0259 0.16669 0.0259 0.24448v1.2002h0.25188v-1.2038c0-0.14076 4e-3 -0.28152-0.0704-0.39635-0.063-0.0963-0.17039-0.13335-0.26299-0.13335-0.16299 0-0.31486 0.0963-0.38153 0.24447-0.0259-0.14075-0.14447-0.24447-0.29634-0.24447-0.14076 0-0.2704 0.0889-0.34819 0.20743l4e-3 -0.16669h-0.24817z"/>
       <path d="m-101.46 208.56 0.68898 1.6854-0.0556 0.12224c-0.0296 0.0704-0.063 0.14076-0.11483 0.19632-0.0704 0.0778-0.15928 0.11113-0.23707 0.11113-0.12594 0-0.18891-0.0852-0.20002-0.10002-0.0111-0.0185-7e-3 -0.0444-0.0296-0.063l-0.13705 0.24077c0.0963 0.0926 0.22595 0.14076 0.36671 0.14076 0.15187 0 0.31115-0.0556 0.42228-0.1815 0.0741-0.0852 0.11112-0.1741 0.14816-0.27041l0.52599-1.3965c0.063-0.15928 0.11854-0.32226 0.1704-0.48895h-0.27782c-0.0296 0.15558-0.0778 0.30374-0.12964 0.45191l-0.32226 0.90752-0.49636-1.2483c-4e-3 -0.0111-4e-3 -0.0185-4e-3 -0.0296 0-0.0259 0.0185-0.0445 0.0148-0.0778z"/>
      </g>
-     <path d="m-140.04 211.74h71.173" fill="none" stroke="#30d2d5" stroke-dashoffset="1.2" stroke-linecap="square"/>
+     <path d="m-140.04 211.74h71.173" fill="none" stroke="#009244" stroke-dashoffset="1.2" stroke-linecap="square"/>
      <g stroke="none" stroke-linecap="round" aria-label="+ A_BossDeath(mobj_t*): void + A_BspiAttack(mobj_t*): void + A_Chase(mobj_t*): void + A_CposAttack(mobj_t*): void + A_CposRefire(mobj_t*): void + A_FaceTarget(mobj_t*): void + A_Fall(mobj_t*): void + A_SpidRefire(mobj_t*): void + A_KeenDie(mobj_t*): void + A_Look(mobj_t*): void + A_PosAttack(mobj_t*): void + A_SargAttack(mobj_t*): void + A_Scream(mobj_t*): void + A_HeadAttack(mobj_t*): void + A_SPosAttack(mobj_t*): void + A_TroopAttack(mobj_t*): void + P_CheckMeleeRange(mobj_t*): bool + P_CheckMissileRange(mobj_t*): bool + P_LookForPlayers(mobj_t*): bool + P_Move(mobj_t*): bool + P_NewChaseDir(mobj_t*): void + P_TryWalk(mobj_t*): bool">
       <g fill="#6f8ce9">
        <path d="m-138.25 213.62v0.53975h-0.56197v0.19685h0.56197v0.59373h0.20003v-0.59373h0.54292v-0.19685h-0.54292v-0.53975z"/>

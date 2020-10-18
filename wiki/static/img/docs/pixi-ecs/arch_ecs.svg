@@ -61,12 +61,12 @@
            d="m 81.422,26.961 v 24.871 l 4.1341,3.7042 h 166.52 V 30.6652 L 247.942,26.961 Z"
            id="path2"
            inkscape:connector-curvature="0"
-           style="fill:#1d232d;stroke:#30d2d5" />
+           style="fill:#1d232d;stroke:#009244" />
         <path
            d="m 81.422,21.67 v 5.2917 h 51.329 V 25.3742 L 128.6169,21.67 Z"
            id="path4"
            inkscape:connector-curvature="0"
-           style="fill:#1d232d;stroke:#30d2d5" />
+           style="fill:#1d232d;stroke:#009244" />
         <g
            aria-label="PIXI"
            id="g14"
@@ -95,7 +95,7 @@
          width="35.851002"
          height="14.684"
          id="rect18"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="Application"
          id="g42"
@@ -151,7 +151,7 @@
          width="35.851002"
          height="14.684"
          id="rect44"
-         style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001" />
+         style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001" />
       <g
          aria-label="Ticker"
          id="g58"
@@ -191,7 +191,7 @@
          width="35.851002"
          height="14.684"
          id="rect62"
-         style="stroke:#30d2d5;stroke-width:0.26458001" />
+         style="stroke:#009244;stroke-width:0.26458001" />
       <path
          d="m 81.422,69.295 v 75.142 l 4.1341,3.7042 h 166.52 V 72.9992 L 247.942,69.295 Z"
          id="path64"

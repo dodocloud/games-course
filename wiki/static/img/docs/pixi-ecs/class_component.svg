@@ -54,7 +54,7 @@
      height="109.2179"
      width="76.800682"
      id="rect8418"
-     style="opacity:1;fill:#1d232d;fill-opacity:1;stroke:#30d2d5;stroke-width:0.403889;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+     style="opacity:1;fill:#1d232d;fill-opacity:1;stroke:#009244;stroke-width:0.403889;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   <g
      aria-label="Component&lt;Props&gt;"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.49979353px;line-height:1.25;font-family:'Small Fonts';-inkscape-font-specification:'Small Fonts';text-align:center;text-anchor:middle;opacity:1;fill:#47d58a;fill-opacity:1;stroke:#cf2f25;stroke-width:0.39284238;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -125,7 +125,7 @@
        id="path1829" />
   </g>
   <path
-     style="fill:none;fill-opacity:1;stroke:#30d2d5;stroke-width:0.39284238;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.20000005;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#009244;stroke-width:0.39284238;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.20000005;stroke-opacity:1"
      d="M 0.49657685,8.2552132 H 76.707996"
      id="path8424"
      inkscape:connector-curvature="0"
@@ -578,7 +578,7 @@
      inkscape:connector-curvature="0"
      id="path8442"
      d="M 0.49657685,45.96808 H 76.707996"
-     style="fill:none;fill-opacity:1;stroke:#30d2d5;stroke-width:0.39284238;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.20000005;stroke-opacity:1" />
+     style="fill:none;fill-opacity:1;stroke:#009244;stroke-width:0.39284238;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.20000005;stroke-opacity:1" />
   <g
      aria-label="+ onInit()
 + onAttach()

@@ -56,7 +56,7 @@
        width="83.475998"
        height="94.058998"
        id="rect2"
-       style="fill:#1d232d;stroke:#30d2d5;stroke-width:0.26458001;stroke-linecap:round" />
+       style="fill:#1d232d;stroke:#009244;stroke-width:0.26458001;stroke-linecap:round" />
     <g
        id="g282"
        style="stroke-width:0.26458001">
@@ -89,7 +89,7 @@
          d="m 89.602,113.83 h 83.079"
          id="path16"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+         style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
       <g
          aria-label="+ app: PIXI.Application + name: string + stage: GameObject + currentDelta: number + currentAbsolute: number"
          id="g204"
@@ -471,7 +471,7 @@
          d="m 89.602,132.62 h 83.079"
          id="path206"
          inkscape:connector-curvature="0"
-         style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+         style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
       <g
          aria-label="+ callWithDelay(number, function): void"
          id="g280"

@@ -34,7 +34,7 @@
     <path d="m-467.12 572.13c0 1.944 0.948 3.048 2.412 3.048 0.684 0 1.308-0.384 1.764-0.828h0.036l0.084 0.684h0.816v-8.544h-0.996v2.244l0.048 0.996c-0.516-0.42-0.96-0.672-1.632-0.672-1.332 0-2.532 1.176-2.532 3.072zm1.02-0.012c0-1.332 0.744-2.232 1.68-2.232 0.48 0 0.924 0.168 1.416 0.612v3.048c-0.48 0.54-0.948 0.804-1.488 0.804-1.02 0-1.608-0.84-1.608-2.232z"/>
    </g>
   </g>
-  <rect x="-565.21" y="526.67" width="129" height="316" fill="none" stroke="#30d2d5" stroke-dashoffset="1.2" stroke-linecap="square"/>
+  <rect x="-565.21" y="526.67" width="129" height="316" fill="none" stroke="#009244" stroke-dashoffset="1.2" stroke-linecap="square"/>
   <g>
    <rect x="-563.21" y="582.67" width="125" height="30" fill="#2f3744"/>
    <g fill="#e9e56f" stroke-linecap="round" aria-label="File #1 DATA">

@@ -57,7 +57,7 @@
        width="49.080002"
        height="27.257"
        id="rect2"
-       style="fill:#1d232d;stroke:#30d2d5;stroke-linecap:round" />
+       style="fill:#1d232d;stroke:#009244;stroke-linecap:round" />
     <g
        aria-label="Message"
        id="g18"
@@ -95,7 +95,7 @@
        d="m 53.808,119.81 h 48.683"
        id="path20"
        inkscape:connector-curvature="0"
-       style="fill:none;stroke:#30d2d5;stroke-linecap:square;stroke-dashoffset:1.20000005" />
+       style="fill:none;stroke:#009244;stroke-linecap:square;stroke-dashoffset:1.20000005" />
     <g
        aria-label="+ action: string + component: Component + gameObject: GameObject + expired: boolean + data: any + responses: MessageResponses"
        id="g238"

@@ -321,7 +321,7 @@ it can differentiate the content from other examples.
 
 ## Diagrams
 
-Diagrams combine UML components and sci-fi HUD elements. Preferred colors are **emerald** and **aqua**. Other colors should only be used to highlight respective parts.
+Diagrams combine UML components and sci-fi HUD elements. Preferred color is **emerald**. Other colors should only be used to highlight respective parts.
 
 <img src={useBaseUrl('img/docs/brand/diagrams.svg')} />
 

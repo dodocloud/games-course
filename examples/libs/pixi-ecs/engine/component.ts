@@ -137,9 +137,9 @@ export default class Component<T = void> {
 	/**
 	 * Sends a message to all subscribers
 	 */
-	sendMessage(action: string, data: any = null): Message {
+	sendMessage(action: string, data?: any, tagFilter?: string[]): Message {
 		const msg = new Message(action, this, this.owner, data);
-		this.scene.sendMessage(msg);
+		this.scene.sendMessage(msg, tagFilter);
 		return msg;
 	}
 
