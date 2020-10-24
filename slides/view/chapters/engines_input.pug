@@ -97,5 +97,7 @@ include ../mixins/containers_aph.pug
                     img.width-460.fragment(data-fragment-index="1", src=globalAssets+'memes/cheatcodes.jpg')
                     img.width-460.mt-20.fragment(data-fragment-index="2", src=imgAssets+'street_fighter.jpg')
 +frameInbox('Example: Doom 2 Cheat Detection')
-    .code.text-xs
-        include ../../assets/engines_input/snippets_generated/doom_cheats.html
+    .flex-cols-2
+        .code.text-xs
+           include ../../assets/engines_input/snippets_generated/doom_cheats.html
+        img.height-300.mt-80(src=imgAssets+'doom_cheat.svg')

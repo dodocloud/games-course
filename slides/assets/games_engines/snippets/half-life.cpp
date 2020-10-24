@@ -17,6 +17,6 @@ m_pContents->InvalidateLayout( true, true );
 // My hope is that this code is so awful I'm never allowed 
 // to write UI code again.
 float fXScale   = 1.0f / (float)iSubtileCount,
-		fXOffsetL = (float)iSubtileIndex * fXScale,
-		fXOffsetR = (float)(iSubtileIndex + 1) * fXScale,
-		fXUpperLowerOffset = fXScale * 0.65f;
+	fXOffsetL = (float)iSubtileIndex * fXScale,
+	fXOffsetR = (float)(iSubtileIndex + 1) * fXScale,
+	fXUpperLowerOffset = fXScale * 0.65f;

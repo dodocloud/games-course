@@ -1,0 +1,61 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_structural/';
+
++mchapter('Structural Patterns', imgAssets+'chapter_patterns_structural.svg')
++frameInbox('Variant')
+    .important-green
+        ul
+            li.fragment a class that is designed to store a variety of other types
+            li.fragment engines use variants to track all scripting API variables
+            li.fragment <span class="highlight">VariantMap</span> - a generic structure that is often used for message processing
+            li.fragment 
+                span.highlight features
+                ul
+                    li.fragment can store any datatype
+                    li.fragment can be hashed and compared to other variants
+                    li.fragment can be used to safely convert between datatypes
+                    li.fragment can be serialized as binary or text and stored to disk
+        .code.text-xs.mt-10.fragment.fragment
+            include ../../assets/patterns_structural/snippets_generated/variant_godot.html
+        .bottom-60.right-60.fragment
+            img.height-600(src=imgAssets+'variant.svg')
++frameInbox('Two-stage initialization')
+    .important-green
+        ul
+            li.fragment avoids passing everything through the constructor
+            li.fragment <span class="highlight code">constructor</span> creates an object, <span class="highlight code">init</span> method initializes it
+            li.upside.fragment objects can be initialized several times
+            li.upside.fragment objects can be allocated in-advance in a pool
+        .code.text-sm.mt-20.fragment
+                    include ../../assets/patterns_structural/snippets_generated/twostage.html
+        .bottom-0.right-40
+            img.height-500(src=imgAssets+'brainbot.gif')
++frameInbox('Locator and Blackboard')
+    .important-green
+        .list-title.fragment
+            p Locator
+            ul
+                li.fragment provides global or scoped services
+                li.fragment in component-based engines, the whole scene may work as a locator
+                li.fragment we can initialize the locator to provide a given set of services
+                li.fragment we can implement <span class="highlight">null service</span> to disable certain behavior (e.g. sound)
+        .list-title.fragment
+            p Blackboard (Context)
+            ul
+                li.fragment shared data structure for a scope (or the whole game)
+                li.fragment provides global or scoped data (e.g. player score, money, number of lives)
+                li.fragment often used in behavioral trees
+        .code.text-xs.mt-20.fragment
+            include ../../assets/patterns_structural/snippets_generated/context.html
+    +tipKeen('Please, avoid using SINGLETONS').bottom-0.right-240
++frameInbox('Selector')
+    .important-orange
+        ul
+            li.fragment a function that returns a value
+            li.fragment centralizes the knowledge of how to find an entity/attribute/component
+            li.upside.fragment can be used by components to access dynamic data
+            li.upside.fragment can form a hierarchy from other selectors
+        .code.mt-20.fragment
+            include ../../assets/patterns_structural/snippets_generated/selector.html

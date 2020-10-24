@@ -19,7 +19,7 @@ include ./mixins/quotes.pug
 		include ./chapters/assets_management.pug
 		include ./chapters/assets_multimedia.pug
 		include ./chapters/assets_generic.pug
-		+frameInbox('Lecture Summary')
+		+summary()
 			ul.leading-2xl
 				li.fragment I know what game assets are
 				li.fragment I know the purpose of a Resource manager
@@ -30,7 +30,6 @@ include ./mixins/quotes.pug
 				li.fragment I know the types of textures
 				li.fragment I know what a tilemap is
 		include ./chapters/bonus_tutorials.pug
-		- var defaultBgr = 'backgrounds/god_of_war.png';
 		+quote-god-of-war()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')

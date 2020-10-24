@@ -27,7 +27,7 @@ include ./mixins/quotes.pug
 		include ./chapters/engines_input.pug
 		include ./chapters/engines_memory.pug
 		include ./chapters/engines_scripting.pug
-		+frameInbox('Lecture Summary')
+		+summary()
 			ul.leading-2xl
 				li.fragment I know primary modules of game engines
 				li.fragment I know how game loop works
@@ -41,7 +41,6 @@ include ./mixins/quotes.pug
 				li.fragment I know the types of scripting architectures
 				li.fragment I know what marshalling is
 		include ./chapters/bonus_speedrunning.pug
-		- var defaultBgr = 'backgrounds/portal.jpg';
 		+quote-portal()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')

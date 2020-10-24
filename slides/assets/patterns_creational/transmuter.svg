@@ -1,0 +1,62 @@
+<svg width="125.94mm" height="43.921mm" version="1.1" viewBox="0 0 125.94 43.921" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-73.119 -141.78)">
+  <g>
+   <g stroke-linecap="round" stroke-width="1.566">
+    <rect x="87.804" y="149.85" width="11.906" height="5.2917" fill="#e9e56f"/>
+    <rect x="74.575" y="149.85" width="11.906" height="5.2917" fill="#cf2f25"/>
+    <rect x="101.03" y="149.85" width="11.906" height="5.2917" fill="#47d58a"/>
+    <rect x="114.26" y="149.85" width="11.906" height="5.2917" fill="#30d2d5"/>
+    <rect x="74.575" y="156.47" width="11.906" height="5.2917" fill="#7d0600"/>
+    <rect x="87.804" y="156.47" width="11.906" height="5.2917" fill="#a19d22"/>
+    <rect x="101.03" y="156.47" width="11.906" height="5.2917" fill="#009244"/>
+    <rect x="114.26" y="156.47" width="11.906" height="5.2917" fill="#00a0a0"/>
+    <rect x="87.804" y="143.24" width="11.906" height="5.2917" fill="#fffdc8"/>
+    <rect x="74.575" y="143.24" width="11.906" height="5.2917" fill="#ff867f"/>
+    <rect x="101.03" y="143.24" width="11.906" height="5.2917" fill="#a0f1c6"/>
+    <rect x="114.26" y="143.24" width="11.906" height="5.2917" fill="#86ecec"/>
+   </g>
+   <rect x="80.131" y="182.93" width="10.319" height="2.6458" fill="#535e70"/>
+  </g>
+  <path d="m73.252 141.92h54.24v43.656h-54.24z" fill="none" stroke="#a6aeb8" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".26458"/>
+  <path d="m78.543 174.81 6.6146 7.9375 8.2196-6.8497" fill="none" stroke="#47d58a" stroke-linecap="round" stroke-width=".26458"/>
+  <g>
+   <circle cx="94.767" cy="174.79" r="1.3229" fill="#e8eaec"/>
+   <g transform="matrix(.00058053 .0024857 -.0025283 .00059047 93.713 175.46)" fill="#47d58a" stroke-width="205.55">
+    <g fill="#47d58a" stroke-width="205.55">
+     <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="205.55"/>
+    </g>
+   </g>
+   <g stroke-linecap="round" stroke-width="1.566">
+    <rect x="159.24" y="149.85" width="11.906" height="5.2917" fill="#e9e56f"/>
+    <rect x="146.01" y="149.85" width="11.906" height="5.2917" fill="#cf2f25"/>
+    <rect x="172.47" y="149.85" width="11.906" height="5.2917" fill="#47d58a"/>
+    <rect x="185.7" y="149.85" width="11.906" height="5.2917" fill="#30d2d5"/>
+    <rect x="146.01" y="156.47" width="11.906" height="5.2917" fill="#7d0600"/>
+    <rect x="159.24" y="156.47" width="11.906" height="5.2917" fill="#a19d22"/>
+    <rect x="172.47" y="156.47" width="11.906" height="5.2917" fill="#009244"/>
+    <rect x="185.7" y="156.47" width="11.906" height="5.2917" fill="#00a0a0"/>
+    <rect x="159.24" y="143.24" width="11.906" height="5.2917" fill="#fffdc8"/>
+    <rect x="146.01" y="143.24" width="11.906" height="5.2917" fill="#ff867f"/>
+    <rect x="172.47" y="143.24" width="11.906" height="5.2917" fill="#a0f1c6"/>
+    <rect x="185.7" y="143.24" width="11.906" height="5.2917" fill="#86ecec"/>
+   </g>
+   <rect x="151.57" y="182.93" width="10.319" height="2.6458" fill="#535e70"/>
+  </g>
+  <path d="m144.69 141.92h54.24v43.656h-54.24z" fill="none" stroke="#a6aeb8" stroke-dashoffset="1.2" stroke-linecap="square" stroke-width=".26458"/>
+  <circle cx="173.22" cy="168.93" r="2.4262" fill="#e8eaec"/>
+  <path d="m167.19 174 3.8619-3.2183" fill="none" stroke="#47d58a" stroke-linecap="round" stroke-width=".26458"/>
+  <g>
+   <circle cx="166.2" cy="174.79" r="1.3229" fill="#e8eaec"/>
+   <g transform="matrix(.00058053 .0024857 -.0025283 .00059047 171.39 170.34)" fill="#47d58a" stroke-width="205.55">
+    <g fill="#47d58a" stroke-width="205.55">
+     <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="205.55"/>
+    </g>
+   </g>
+   <g transform="matrix(-.0059888 .010373 -.010551 -.0060914 140.39 163.27)" fill="#47d58a" stroke-width="43.806">
+    <g fill="#47d58a" stroke-width="43.806">
+     <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="43.806"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

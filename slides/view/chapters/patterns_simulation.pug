@@ -1,0 +1,54 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_simulation/';
+
++mchapter('Simulation Patterns', imgAssets+'chapter_patterns_simulation.svg')
++frameInbox('Sandbox')
+    .important-green
+        ul
+            li.fragment(data-fragment-index="1") full simulation takes place within a space close to the player
+            li.fragment(data-fragment-index="2") simulation in an area further away is either <span class="highlight">omitted or simplified</span>
+            li.fragment(data-fragment-index="3") often used in racing games and open-world games with <span class="highlight">persistent objects</span>
+            li.fragment(data-fragment-index="4") can be implemented as a separate branch of the scene - the same objects are used, but certain components (rigidbody, animator,...) are disabled
+        .bottom-50.left-50.fragment(data-fragment-index="2")
+            img.height-450(src=imgAssets+'sandbox_arma3.jpg')
+        .bottom-90.left-210.fragment(data-fragment-index="2")
+            img.height-250(src=imgAssets+'sandbox.svg')
+        .bottom-50.right-50.fragment(data-fragment-index="2")
+            img.height-450(src=imgAssets+'sandbox_mariokart.jpg')
++frameInbox('Replay')
+    .important-green
+        ul
+            li.fragment(data-fragment-index="0") allows to reproduce any state of a game at any time
+            li.fragment(data-fragment-index="1") all game entities must have a reproducible behavior (similar to multiplayer facility)
+            li.mt-20.fragment(data-fragment-index="2")
+                span.highlight Solution a)
+                ul
+                    li.fragment(data-fragment-index="3") store all input events from the player and re-play them in the same order
+                    li.downside.fragment(data-fragment-index="4") not robust, may break on other platforms
+            li.mt-20.fragment(data-fragment-index="5")
+                span.highlight Solution b)
+                ul
+                    li.fragment(data-fragment-index="6") reversible counterpart for each function that modifies the game state
+                    li.downside.fragment(data-fragment-index="7") too complicated, random access will be difficult
+            li.mt-20.fragment(data-fragment-index="8")
+                span.highlight Solution c)
+                ul
+                    li.fragment(data-fragment-index="9") snapshot the game state every frame (or by keyframes and interpolate)
+        .bottom-0.left-0.fragment(data-fragment-index="2")
+            img.height-200(src=imgAssets+'braid_c.png')
+        .bottom-0.left-500.fragment(data-fragment-index="8")
+            img.height-150(src=imgAssets+'braid_b.png')
+        .bottom-0.right-0.fragment(data-fragment-index="5")
+            img.height-350(src=imgAssets+'braid_a.png')
++frameInbox('Example: Doom Demo File')
+    div
+        ul
+            li.fragment Lump file (*.LMP)
+            li.fragment fixed time-loop at a rate of 35 FPS (handled by <span class="highlight">tic</span> command)
+            li.fragment the file contains only keyboard inputs at each tick
+            li.fragment the game plays the demo, injecting input commands from the demo file
+            li.fragment 13B header + 4B data for each tick <span class="highlight">~140B/s</span>
+        .mt-20.text-center.fragment
+            img.height-500(src=imgAssets+'doom_replay.svg')

@@ -1,0 +1,43 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_creational/';
+
++mchapter('Creational Patterns', imgAssets+'chapter_patterns_creational.svg')
++frameInbox('Builder')
+    .important-orange
+        ul
+            li.fragment a template that keeps attributes from which it can build new objects
+            li.fragment each method returns back the builder itself, so it can be chained
+        .code.mt-20.text-xs.fragment
+            include ../../assets/patterns_creational/snippets_generated/builder.html
+    .right-0.bottom-150.fragment
+        img.height-420(src=imgAssets+'builder.svg')
++frameInbox('Prototype')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">Builder</span> builds new objects from scratch, <span class="highlight">Prototype</span> creates new objects by copying their attributes 
+            li.fragment in some implementations, the prototype is linked to its objects - if we change the prototype, it will affect all derived entities
+            li.fragment e.g. templates in Godot, linked prefabs in Unity and Unreal engine
+        .flex-cols-2.items-end.mt-20.fragment
+            img.height-420.mb-60(src=imgAssets+'prototype.svg')
+            figure
+                img.height-500(src=imgAssets+'unity_prefab.gif')
+                p Prefabs in Unity
++frameInbox('Transmuter')
+    .important-green
+        ul
+            li.fragment modifies a state and behavior of an object
+            li.fragment useful when the change is not trivial 
+            li.fragment we can move the modification process from components to separate functions
+        .code.mt-20.text-sm.fragment
+            include ../../assets/patterns_creational/snippets_generated/transmuter.html
+        .text-center.mt-20.fragment
+            img.height-350(src=imgAssets+'transmuter.svg')
++frameInbox('Factory')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">Builder</span> assembles an object, <span class="highlight">factory</span> manages the assembling
+            li.fragment Factory creates an object according to the parameters but with respect to the context
+        .code.mt-20.text-sm.fragment
+            include ../../assets/patterns_creational/snippets_generated/factory.html

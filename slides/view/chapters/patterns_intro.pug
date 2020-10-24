@@ -1,0 +1,46 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_intro/';
+
++mcontainer
+    +frameShard().top-40p.fragment.fade-up
+        +quote('If game programmers ever cracked open Design Patterns at all, never got past Singleton. Gang of Four’s is inapplicable to games in its original version.', 'Robert Nystrom').text-xl
++frameInbox('Games and S.O.L.I.D principles')
+    .important-green
+        ul.leading-md.fragment
+            li principles and patterns were built for software engineering, not game development
+        .list-title.mt-5.fragment
+            p Single Responsibility Principle
+            ul.leading-md
+                li.fragment actual meaning: every class should have only one job
+                li.fragment in game dev: every component should have a narrow scope of responsibilities
+        .list-title.mt-5.fragment
+            p Open-Closed Principle
+            ul.leading-md
+                li.fragment actual meaning: objects should be open for extension, but closed for modification
+                li.fragment in game dev: adding new mechanics means adding new components, not modifying the old ones
+        .list-title.mt-5.fragment
+            p Liskov Substitution Principle
+            ul.leading-md
+                li.fragment actual meaning: subclasses are substitutable for their parent classes
+                li.fragment in game dev: specialized components are substitutable for their base components
+        .list-title.mt-5.fragment 
+            p Dependency-Inversion Principle
+            ul.leading-md
+                li.fragment actual meaning: entities must depend on abstractions not on concretions
+                li.fragment in game dev: components shouldn't care about what object is but rather what it has
+        .list-title.mt-5.fragment
+            p Interface-Segregation Principle
+            ul.leading-md
+                li.fragment actual meaning: class shouldn't depend on methods it doesn't need
+                li.fragment in game dev: components shouldn't subscribe messages they don't need to react to
++frameInbox('Design patterns')
+    div
+        .flex-cols-2
+            figure.fragment
+                img.height-700(src=imgAssets+'patterns_apps.svg')
+                p Design patterns in applications
+            figure.fragment
+                img.height-700(src=imgAssets+'patterns_games.svg')
+                p Design patterns in games

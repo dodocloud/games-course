@@ -1,0 +1,86 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_state/';
+
++mchapter('State Patterns', imgAssets+'chapter_patterns_state.svg')
++frameInbox('Dirty Flag')
+    .important-green
+        ul
+            li.fragment marks changed objects that need to be recalculated
+            li.fragment can be applied to various attributes (animation, physics, transformation)
+            li.fragment you have to make sure to set the flag every time the state changes
+        .list-title
+            p.fragment Cleaning
+            ul
+                li.highlight-2.fragment When the result is needed
+                    ul
+                        li.upside.fragment avoids doing recalculation if the result is never used
+                        li.downside.fragment game can freeze for expensive calculations
+                li.highlight-2.fragment At well-defined checkpoints
+                    ul
+                        li.upside.fragment less impact on user experience
+                        li.downside.fragment you never know, when it happens
+                li.highlight-2.fragment On the background
+                    ul
+                        li.upside.fragment you can do more redundant work
+                        li.downside.fragment danger of race-condition
+        .bottom-50.right-50.fragment
+            img.height-460(src=imgAssets+'dirty_flag.svg')
++frameInbox('Example: Godot Cache')
+    div
+        .code.text-sm
+            include ../../assets/patterns_state/snippets_generated/godot_cache.html
++frameInbox('Mutability')
+    .important-green
+        ul.spacing-xl
+            li.fragment immutable state is a luxury only simple games can afford
+            li.fragment we should assume that everything can be mutable
+            li.fragment <span class="highlight">selectors</span> can help us access properties that are deep in the hierarchy
+            li.fragment <span class="highlight">dirty flag</span> can help us find out if an entity has changed during the update
+            li.fragment <span class="highlight">chain</span> can help us centralize complex modifications and handle side effects
+            li.fragment <span class="highlight">messages</span> can help us discover if any important structure has changed
++frameInbox('ID generator')
+    .important-green
+        ul
+            li.fragment a simple way to generate consecutive integers
+            li.highlight.fragment Java (Thread safe)
+            .code.text-sm.fragment
+                include ../../assets/patterns_state/snippets_generated/idgen_java.html
+        .flex-cols-2.mt-40
+            div
+                ul
+                    li.highlight.fragment TypeScript, using a generator
+                    .code.text-sm.fragment
+                        include ../../assets/patterns_state/snippets_generated/idgen_ts_gen.html
+            div
+                ul
+                    li.highlight.fragment TypeScript, using a static variable
+                    .code.text-sm.fragment
+                        include ../../assets/patterns_state/snippets_generated/idgen_ts_var.html
++frameInbox('Flag')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">bit array</span> that stores binary properties of game objects
+            li.fragment may be used for queries (e.g. find all MOVABLE objects)
+            li.fragment similar to a state machine but the use-case is different
+            li.fragment if we maintain all flags within one single structure, we can search very fast
+        .bottom-70.left-150.fragment
+            img.height-250(src=imgAssets+'flag_01.svg')
+        .bottom-50.right-300.fragment
+            img.height-150(src=imgAssets+'mage.png')
++frameInbox('Example: Flag Table')
+    .importat-green
+        .text-center
+            img.height-700(src=imgAssets+'flag_02.svg')
+        .bottom-100.left-280
+            img.height-500(src=imgAssets+'flag_units.png')
++frameInbox('Numeric state')
+    .important-orange
+        ul
+            li.fragment the most basic state of an entity
+            li.fragment allows us to set conditions upon which a transition to other states is possible
+        .code.mt-20.fragment
+            include ../../assets/patterns_state/snippets_generated/numeric_state.html
+        .bottom-0.right-0.fragment
+            img.height-400(src=imgAssets+'jump.gif')

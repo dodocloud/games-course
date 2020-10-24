@@ -97,6 +97,10 @@ const config = {
 						{
 							label: 'Lecture 4: Components',
 							href: url + '/slides/lecture04.html',
+						},
+						{
+							label: 'Lecture 5: Patterns',
+							href: url + '/slides/lecture05.html',
 						}
 					]
 				},

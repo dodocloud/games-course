@@ -1,0 +1,62 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/patterns_optimizing/';
+
++mchapter('Optimizing Patterns', imgAssets+'chapter_patterns_optimizing.svg')
++frameInbox('Memory issues')
+    .important-green
+        .flex.flex-row
+            .width-60p
+                .list-title.fragment.fade-up
+                    p Memory caching issues
+                    ul.leading-lg
+                        li.fragment.fade-up CPU first tries to find data in the L1 cache
+                        li.fragment.fade-up then it tries the larger but higher-latency L2 cache
+                        li.fragment.fade-up then it tries L3 cache and DDR memory
+                .list-title.fragment.fade-up
+                    p Avoiding cache miss
+                    ul.leading-lg
+                        li.fragment.fade-up arrange your data in RAM in such a way that min cache misses occur
+                        li.fragment.fade-up organise data in contiguous blocks that are as small as possible
+                        li.fragment.fade-up avoid calling functions from within a performance-critical section of code
+                .list-title.fragment.fade-up
+                    p Avoiding branch misprediction
+                    ul.leading-lg
+                        li.highlight-2.fragment.fade-up branch = using an IF statement
+                        li.fragment.fade-up pipelined CPU tries to guess which branch is going to be taken
+                        li.fragment.fade-up if the guess is wrong, the pipeline must be flushed
+            div
+                .code.text-sm.fragment.fade-up
+                    include ../../assets/patterns_optimizing/snippets_generated/array_iteration.html
+                .code.text-sm.mt-40.fragment.fade-up
+                    include ../../assets/patterns_optimizing/snippets_generated/array_iteration2.html
+                .code.text-sm.mt-40.fragment.fade-up
+                    include ../../assets/patterns_optimizing/snippets_generated/forloop.html
++frameInbox('Data storing')
+    .important-green
+        .flex-cols-2
+            figure.fragment
+                img.width-750.height-650(src=imgAssets+'memory_noopt.svg')
+                p Randomly
+            figure.fragment
+                img.width-750.height-650(src=imgAssets+'memory_opt.svg')
+                p Sequentially
++frameInbox('String Hash')
+    .important-green
+        ul
+            li.fragment in C++, strings are expensive to work with at runtime, <span class="highlight code">strcmp</span> has <span class="color-tomato-light code">O(n)</span> complexity
+            li.fragment many scripting engines use <span class="highlight">string interning</span>
+            li.fragment game engines widely use <span class="highlight">string hash</span> which maps a string onto a semi-unique integer
+            li.fragment algorithms: djb2, sdbm, lose lose,...
+            li.highlight.fragment example: sdbm
+        .code.text-sm.mt-20.fragment
+            include ../../assets/patterns_optimizing/snippets_generated/strhash_sdbm.html
++frameInbox('Flyweight')
+    .important-orange
+        ul
+            li.fragment an object keeps shared data to support large number of fine-grained objects
+            li.fragment e.g. instanced rendering, geometry hashing, particle systems
+            li.fragment here we move a position and a tile index (Sprite) into an array
+        .text-center.mt-20.fragment
+            img.height-610(src=imgAssets+'flyweight.svg')

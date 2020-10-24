@@ -21,7 +21,7 @@ mixin tipKeen4(text)
 mixin gbGame(image, text)
 	div.relative.height-250
 		img.absolute.height-250(src=globalAssets+'gb_cartridge.png')
-		.absolute.height-150.left-30.bottom-30.opacity-6.p-3.mb-2
+		.absolute.height-150.left-30.bottom-30.opacity-7.p-3.mb-2
 			img(src!=image)
 		.absolute.width-160.height-40.bottom-30.left-30.bgr-rhino-100.ml-3.mb-5.opacity-7
 		div.absolute.bottom-40.width-160.left-30.text-center.text-xs.font-bold.color-rhino-50!=text
@@ -34,7 +34,7 @@ mixin floppyApp(image, text, year)
 		.absolute.width-250.height-70.bottom-0.left-40.bgr-rhino-100.mb-1.ml-2.opacity-9
 		div.absolute.bottom-0.width-250.height-80.left-40.text-center.text-xs.color-rhino-50.flex.items-center.justify-center
 			div!=text
-		div.absolute.left-90.top-50.opacity-6!=year
+		div.absolute.left-90.top-50.color-rhino-5.opacity-6!=year
 
 mixin mchapter(text, icon)
 	+frameOutbox
@@ -42,3 +42,12 @@ mixin mchapter(text, icon)
 			.top-28p.text-center
 				img.width-650(src!=icon)
 				h2.uppercase.font-light.highlight.mt-20.color-rhino-20!=text
+
+mixin summary()
+	+mcontainer()&attributes(attributes)
+		div(class!='frame inbox ' + (attributes.class ? attributes.class : ''))
+				h3.slide-title.color-manhattan Lecture Summary
+				.bottom-0.right-0
+					img.height-300(src=globalAssets+'keen_summary.png')
+				.important-orange
+					block

@@ -343,6 +343,17 @@ let chargedIdleDroids = scene.findObjectsByQuery({
 });
 ```
 
+### Delayed invocation
+- don't use `setInterval()` nor `setTimeout()`, as those two methods are invoked from the browser's event loop
+- if you want something to happen at a delay, you can use `scene.callWithDelay()` instead, which is invoked at the end of the update loop
+- **example: clear the whole scene after 3 seconds**
+
+```typescript
+// invoked from within a component
+this.scene.callWithDelay(1000, () => this.scene.clearScene());
+```
+
+
 ### Messaging
 
 - `Message` is an crate for inter-component communication
@@ -358,7 +369,38 @@ let chargedIdleDroids = scene.findObjectsByQuery({
   <img src={useBaseUrl('img/docs/pixi-ecs/class_message.svg')} />
 </div>
 
-### Built-int messages
+#### Example: Finish a component by a message
+
+```typescript
+
+class Sender extends ECS.Component {
+
+  onInit() {
+    this.fixedFrequency = 1;
+  }
+
+	onFixedUpdate() {
+    this.sendMessage('RECEIVER_FINISH');
+	}
+}
+
+class Receiver extends ECS.Component {
+
+  onInit() {
+    this.subscribe('RECEIVER_FINISH');
+  }
+
+  onMessage(msg: ECS.Message) {
+    if(msg.action === 'RECEIVER_FINISH') {
+      this.finish(); // will be removed from the scene instantly
+    }
+  }
+
+}
+
+```
+
+### Built-in messages
 - `ANY` - gets all messages (good for debugging)
 - `OBJECT_ADDED` - object was added to the scene
 - `OBJECT_REMOVED` - object was removed
@@ -374,6 +416,26 @@ let chargedIdleDroids = scene.findObjectsByQuery({
 - `TAG_REMOVED` - tag was removed from an object (sent only when `notifyTagChanges = true`)
 - `SCENE_CLEAR` - the whole scene was erased 
 
+#### Example: Collect new objects by messaging pattern 
+
+```typescript
+
+class TreeCollector extends ECS.Component {
+
+  trees: ECS.Container[] = [];
+
+	onInit() {
+		this.subscribe('OBJECT_ADDED');
+	}
+
+	onMessage(msg: ECS.Message) {
+		if (msg.action === 'OBJECT_ADDED' && msg.gameObject.hasTag('TREE')) {
+			trees.push(msg.gameObject);
+		}
+	}
+}
+
+```
 
 ## Built-in components and tools
 

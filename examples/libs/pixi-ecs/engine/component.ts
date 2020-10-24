@@ -2,7 +2,6 @@
 import Message from './message';
 import Scene from './scene';
 import Container from './game-objects/container';
-import { MessageResponse } from '../../dist/engine/message';
 
 export enum ComponentState {
 	NEW = 0,
