@@ -1,0 +1,40 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_green.jpg';
+
+
++header('NI-APH', 'Patterns', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 6', 'Audio', 'color-emerald-light')
+        +frameInbox('Literature')
+            ul
+                li
+                    a(href="https://www.amazon.com/Game-Sound-Introduction-History-Practice/dp/026203378X") Collins, Karen. 2008. Game Sound: An Introduction to the History, Theory, and Practice of Video Game Music and Sound Design
+            div.text-center
+                img.height-500(src=globalAssets+'book_audio.jpg')
+        include ./chapters/audio_digital_sound.pug
+        include ./chapters/audio_synth.pug
+        include ./chapters/audio_music.pug
+        include ./chapters/audio_sounds.pug
+        include ./chapters/audio_apis.pug
+        +summary()
+            ul.leading-2xl
+                li.fragment I know what PCM is and how buffer size affects the gameplay
+                li.fragment I know 4 basic types of synthesis
+                li.fragment I know basic waveforms of sound generators
+                li.fragment I know categories of audio assets in games
+                li.fragment I know features of dynamic music (looping, branching, layering, transitions)
+                li.fragment I know what attenuation, occlusion and obstruction in 3D sound are
+        +quote-kane()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+script(src!='../../scripts/reveal-setup.js')

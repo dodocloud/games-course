@@ -1,0 +1,242 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/audio_music/';
+
+
++mchapter('Music in games', imgAssets+'chapter_audio_gamemusic.svg')
++frameInbox('Music in games')
+    .important-green
+        .list-title.fragment
+            p Genre
+            ul
+                li.fragment chiptune (pixel-art)
+                li.fragment electronic music (arcades, shoot-em-ups)
+                li.fragment instrumental music (games with a story)
+        .list-title.fragment
+            p Presentation
+            ul
+                li.fragment <span class="highlight-2">character-based</span> - focuses on characters (usually narrative games)
+                li.fragment <span class="highlight-2">environment-based</span> - games with diverse locations
+                li.fragment <span class="highlight-2">emotional-based</span> - games with strong story, music invokes feelings
+        .list-title.fragment
+            p Usage
+            ul
+                li.fragment to reflect the game state
+                li.fragment to reflect the environment
+                li.fragment to reflect the story
+                li.fragment to alert the player about an event
+        .bottom-300.right-200
+            img.height-300(src=imgAssets+'key.svg')
++frameInbox('Music in games')
+    .important-green
+        .list-title.fragment
+            p Monkey Island 2: LeChuck's Revenge (1991)
+            ul
+                li iMUSE engine for smooth transitions between locations
+        .list-title.fragment
+            p The Legend of Zelda: Ocarina of Time (1998)
+            ul
+                li important role of musical themes (e.g. Saria's Theme) 
+        .list-title.fragment
+            p F.E.A.R (2005)
+            ul
+                li reactive music tailored to each individual event
+        .list-title.fragment
+            p League of Legends (2009)
+            ul
+                li looping score and many in-game alerts
+        .list-title.fragment
+            p Mass Effect 3 (2012)
+            ul
+                li epic emotional soundtrack
+        .list-title.fragment
+            p Hellblade: Senua's Sacrifice (2017)
+            ul
+                li uses binaural audio to create a horrifying experience 
++frameInbox('Music as the core mechanic')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-380(src=imgAssets+'tileshop.jpg')
+            p Tiles Hop
+        figure
+            img.height-380(src=imgAssets+'guitar_hero.jpg')
+            p Guitar Hero
+        figure
+            img.height-380(src=imgAssets+'ddr.jpg')
+            p Dance Dance Revolution
++frameInbox('Music in games')
+    .important-orange
+        .list-title.fragment
+            p Assets
+            ul.leading-lg
+                li.fragment <span class="highlight-2">sound cues</span> - collection of audio clips with metadata
+                li.fragment <span class="highlight-2">sound banks</span> - package of sound clips and cues (e.g. all voices of one person)
+        .list-title.fragment
+            p Asset categories
+            ul.leading-lg
+                li.fragment <span class="highlight-2">diegetic</span> - visible (character voices, sounds of objects, footsteps)
+                li.fragment <span class="highlight-2">non-diegetic sound</span> - invisible (sountrack, narrator)
+                li.fragment <span class="highlight-2">background music</span> - ambient music (e.g. river)
+                li.fragment <span class="highlight-2">score</span> - soundtrack, is clearly recognizable
+                li.fragment <span class="highlight-2">interface music</span> - button press
+                li.fragment <span class="highlight-2">custom music</span> (e.g. GTA radio)
+                li.fragment <span class="highlight-2">alert</span> - music triggered by an event
+        .list-title.fragment
+            p Dynamics
+            ul.leading-lg
+                li.fragment <span class="highlight-2">linear audio</span> - only reflects major changes (e.g. finished level)
+                li.fragment <span class="highlight-2">dynamic audio</span> - changes in response to changes in the environment or gameplay
+                li.fragment <span class="highlight-2">adaptive audio</span> - responses to the gameplay, adapts itself based on game attributes
++frameInbox('Example: Linear audio')
+    div
+        .top-100.left-50.fragment(data-fragment-index='0')
+            figure.mt-40
+                img.width-750(src=imgAssets+'music_doom.svg')
+                p Doom 2
+        .bottom-50.right-100.fragment(data-fragment-index='1')
+            figure
+                img.width-750(src=imgAssets+'music_pop.svg')
+                p Prince of Persia 2: Shadow and the flame
+        .right-100.top-100.fragment(data-fragment-index='0')
+            img.height-300(src=imgAssets+'doom2.jpg')
+        .left-200.bottom-50.fragment(data-fragment-index='1')
+            img.height-350(src=imgAssets+'pop2.jpg')
++frameInbox('Dynamic music')
+    .important-orange
+        .list-title.fragment
+            p Features
+            ul
+                li.fragment <span class="highlight">looping</span> - going around and around
+                    div
+                        img.mt-20.width-800(src=imgAssets+'features_looping.svg')
+                li.fragment <span class="highlight">branching</span> - conditional music
+                    div
+                        img.mt-20.width-600(src=imgAssets+'features_branching.svg')
+                li.fragment <span class="highlight">layering</span> - some pieces can be muted on and off and re-combined
+                    div
+                        img.mt-20.width-900(src=imgAssets+'features_layering.svg')
+                li.fragment <span class="highlight">transitions</span> - moving smoothly from one cue to another
+                    div
+                        img.mt-20.width-800(src=imgAssets+'features_transitions.svg')
++frameInbox('Looping')
+    .important-green
+        ul.spacing-2xl
+            li.color-tomato-light.fragment.fade-up experienced players will detect the looping point!
+            li.fragment.fade-up we need to find out how much time the player spends during each session - <span class="highlight">gameplay time</span>
+            li.fragment.fade-up the length of the music should extend the gameplay time to avoid repetition
+            li.fragment.fade-up you don't know how long the player will stay there
+            li.fragment.fade-up you don't know if the player moves fast or slow
+            li.fragment.fade-up 2 repetitions are acceptable, 5 and more are annoying
++frameInbox('Looping solutions')
+    .important-green
+        .list-title.fragment
+            p Looped composition
+            ul
+                li.fragment beginning and end are seamlessly connected
+                li.fragment challenge - making the loop pleasing to the ear for longer periods
+                    div
+                        img.height-50.mt-20(src=imgAssets+'looping_loopedcomp.svg')
+        .list-title.mt-40.fragment
+            p Switching keys
+            ul
+                li.fragment we may play the melody in a different key
+                li.upside.fragment enhancing the familiarity without repeating it exactly as before
+        .list-title.mt-40.fragment
+            p Divided song
+            ul
+                li.fragment divide the song into parts, loop only certain parts, don't start at the beginning
+                li.upside.fragment lower feeling of repetition
+                    div
+                        img.height-50.mt-20(src=imgAssets+'looping_invert.svg')
++frameInbox('Looping solutions')
+    .important-green
+        .list-title.fragment
+            p Mute the melody
+            ul
+                li.upside.fragment you can increase the number of loops while muting the melody
+                li.downside.fragment the music can lose impact
+        .list-title.fragment
+            p Silence
+            ul
+                li.upside.fragment no undesirable effects
+                li.downside.fragment reintroduction of the music may become annoying
+        .list-title.fragment
+            p Layered patterns
+            ul
+                li.fragment divide the song into layers and introduce looping separately for each
+                li.upside.fragment greater diversity
+                li.downside.fragment may result in undesirable melodies
+                    div
+                        img.height-180.mt-20(src=imgAssets+'looping_layers.svg')
++frameInbox('Transitions')
+    .important-green
+        ul
+            li.fragment moving from one cue to another one
+            li.color-tomato-light.fragment never stop anything instantly, it may disrupt the gameplay experience
+        img.top-350.right-100.height-50.fragment(src=imgAssets+'transition_crossfade.svg')
+        .list-title.fragment
+            p Cross-fade
+            ul
+                li.fragment simple solution, one song fades out and another one fades in 
+                li.downside.fragment not very good for instrumental music
+        img.top-500.right-100.height-50.fragment(src=imgAssets+'transition_cue.svg')
+        .list-title.mt-40.fragment
+            p Transition cue
+            ul
+                li.fragment every song has a separate transition cue 
+        img.top-700.right-100.height-100.fragment(src=imgAssets+'transition_points.svg')
+        .list-title.mt-40.fragment
+            p Transition points
+            ul
+                li.fragment every song has several points at which the transition may happen
+                li.downside.fragment difficult to implement
++frameInbox('iMUSE')
+    .important-green
+        ul
+            li.fragment dynamic audio for SCUMM engine
+            li.fragment developed by LucasArts in 1991
+            li.fragment database of musical sequences contained decision points within the tracks
+            li.fragment the segments could change, be enabled or disabled, loop, converge, branch, jump etc.
+        .flex.flex-row.justify-evenly.mt-50.fragment
+            div.text-center
+                img.height-400(src=imgAssets+'monkey_island.svg')
+            figure.mt-40
+                img.height-300(src=imgAssets+'monkey_island.jpg')
+                p Monkey Island 2
++frameInbox('Disruptive audio')
+    div
+        ul
+            li.fragment(data-fragment-index='0') bad mood
+            li.fragment(data-fragment-index='1') bad looping
+            li.fragment(data-fragment-index='2') bad transitions
+            li.fragment(data-fragment-index='3') bad mixing (e.g. ambient sound that superimposes a dialog)
+            li.fragment(data-fragment-index='4') repetitive NPC voices
+            li.fragment(data-fragment-index='5') little variation (same music for different levels, one sound for footsteps, explosions etc.)
+            li.fragment(data-fragment-index='6') false alarm
+            li.fragment(data-fragment-index='8') too many sounds playing at the same time
+        .top-0.right-0.fragment(data-fragment-index='4')
+            img.height-350(src=globalAssets+'memes/adventurer.jpg')
+        .bottom-0.right-0.fragment(data-fragment-index='6')
+            img.height-450(src=globalAssets+'memes/battle_music.jpg')
+        .bottom-0.left-90.fragment(data-fragment-index='8')
+            img.height-350(src=imgAssets+'justcause.jpg')
++frameInbox('Adaptive music')
+    .important-green
+        ul
+            li.fragment <span class="highlight">dynamic music</span> reflects changes in the gameplay, but still follows pre-scripted patterns
+            li.fragment <span class="highlight">adaptive music</span> is more diverse, it supports emergent gameplay
+        .list-title.mt-80.fragment
+            p Variability options
+            ul
+                li.fragment variable tempo
+                li.fragment variable pitch
+                li.fragment variable rhythm
+                li.fragment variable volume
+                li.fragment variable DSP/timbres
+                li.fragment variable melodies
+                li.fragment variable harmony (chordal arrangements)
+        .right-100.bottom-150.fragment
+            figure
+                img.height-400(src=imgAssets+'apeout.jpg')
+                p Ape Out (2019) - reactive music system

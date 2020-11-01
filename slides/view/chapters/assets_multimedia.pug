@@ -5,369 +5,369 @@ include ../mixins/containers_aph.pug
 
 +mchapter('Multimedia assets', imgAssets+'chapter_assets_multimedia.svg')
 +frameInbox('Music Formats')
-	.important-green
-		.flex-cols-2
-			div
-				.list-title.mt-5.fragment.fade-up
-					p AIFF
-					ul.leading-md
-						li Audio Interchange File Format
-						li uncompressed pulse-code modulation
-						li may contain loops and samples
-				.list-title.mt-5.fragment.fade-up
-					p MP3
-					ul.leading-md
-						li MPEG-1 Audio Layer III
-						li lossy data-compression
-				.list-title.mt-5.fragment.fade-up
-					p OGG
-					ul.leading-md
-						li more advanced and a bit smaller in size than MP3
-						li open-source (in sharp contrast with MP3)
-				.list-title.mt-5.fragment.fade-up
-					p WAV
-					ul.leading-md
-						li linear pulse-code modulation
-						li used when time involved in compressing is a concern (short sounds)
-				.list-title.mt-5.fragment.fade-up
-					p Trackers
-					ul.leading-md
-						li will be discussed in next lectures
-			div.text-center
-				img.height-420.mt-80(src=imgAssets+'assets_music.svg')
+    .important-green
+        .flex-cols-2
+            div
+                .list-title.mt-5.fragment.fade-up
+                    p AIFF
+                    ul.leading-md
+                        li Audio Interchange File Format
+                        li uncompressed pulse-code modulation
+                        li may contain loops and samples
+                .list-title.mt-5.fragment.fade-up
+                    p MP3
+                    ul.leading-md
+                        li MPEG-1 Audio Layer III
+                        li lossy data-compression
+                .list-title.mt-5.fragment.fade-up
+                    p OGG
+                    ul.leading-md
+                        li more advanced and a bit smaller in size than MP3
+                        li open-source (in sharp contrast with MP3)
+                .list-title.mt-5.fragment.fade-up
+                    p WAV
+                    ul.leading-md
+                        li linear pulse-code modulation
+                        li used when time involved in compressing is a concern (short sounds)
+                .list-title.mt-5.fragment.fade-up
+                    p Trackers
+                    ul.leading-md
+                        li will be discussed in next lectures
+            div.text-center
+                img.height-420.mt-80(src=imgAssets+'assets_music.svg')
 +frameInbox('MP3')
-	.important-green
-		ul
-			li lossy format
-			li reduces accuracy by psychoacoustic analysis
-		.center.mt-30
-			img.height-600(src=imgAssets+'formats_mp3.svg')
+    .important-green
+        ul
+            li lossy format
+            li reduces accuracy by psychoacoustic analysis
+        .center.mt-30
+            img.height-600(src=imgAssets+'formats_mp3.svg')
 +frameInbox('Image Formats')
-	.important-orange
-		.flex-cols-2
-			div
-				.list-title.fragment(data-fragment-index="1")
-					p JPEG
-					ul
-						li Joint Photographic Experts Group
-						li used for storing digital photography
-						li doesn't support alpha channel
-				.list-title.fragment(data-fragment-index="2")
-					p PNG
-					ul
-						li Portable Network Graphics
-						li good results for simple images (not real pictures)
-				.list-title.fragment(data-fragment-index="3")
-					p TGA
-					ul
-						li Truevision TGA
-						li favorite format for textures
-				.list-title.fragment(data-fragment-index="4")
-					p SVG
-					ul
-						li Scalable Vector Graphics
-						li format for vector images
-			div.text-center
-				div.fragment(data-fragment-index="1")
-					img.height-300.mt-20(src=imgAssets+'assets_images_jpg.jpg')
-				div.fragment(data-fragment-index="2")
-					img.height-300.mt-20(src=imgAssets+'assets_images_png.png')
-				div.fragment(data-fragment-index="4")
-					img.height-100.mt-20(src=imgAssets+'assets_images_svg.svg')
+    .important-orange
+        .flex-cols-2
+            div
+                .list-title.fragment(data-fragment-index="1")
+                    p JPEG
+                    ul
+                        li Joint Photographic Experts Group
+                        li used for storing digital photography
+                        li doesn't support alpha channel
+                .list-title.fragment(data-fragment-index="2")
+                    p PNG
+                    ul
+                        li Portable Network Graphics
+                        li good results for simple images (not real pictures)
+                .list-title.fragment(data-fragment-index="3")
+                    p TGA
+                    ul
+                        li Truevision TGA
+                        li favorite format for textures
+                .list-title.fragment(data-fragment-index="4")
+                    p SVG
+                    ul
+                        li Scalable Vector Graphics
+                        li format for vector images
+            div.text-center
+                div.fragment(data-fragment-index="1")
+                    img.height-300.mt-20(src=imgAssets+'assets_images_jpg.jpg')
+                div.fragment(data-fragment-index="2")
+                    img.height-300.mt-20(src=imgAssets+'assets_images_png.png')
+                div.fragment(data-fragment-index="4")
+                    img.height-100.mt-20(src=imgAssets+'assets_images_svg.svg')
 
 +frameInbox('JPEG')
-	.important-green
-		.flex-cols-2.absolute.z-index-1000
-			div
-				ul
-					li lossy compression for digital images
-					li note very good for pixel art or masking (compression noise)
-					li.mt-40.fragment <span class="highlight font-bold">Stages</span>
-						ul
-							li <span class="highlight">Color Transform</span> - RGB to YCbCr
-							li <span class="highlight">Down-sampling</span> - chroma reduction
-							li <span class="highlight">DCT</span> - discrete cosine transform, from color domain into frequency domain
-							li <span class="highlight">Quantization</span> - removal of high-frequency components
-			img.height-780(src=imgAssets+'formats_jpeg.svg')
-		.bottom-100.right-580.absolute
-			img.ml-60.height-300(src=imgAssets+'DCT.png')
+    .important-green
+        .flex-cols-2.absolute.z-index-1000
+            div
+                ul
+                    li lossy compression for digital images
+                    li note very good for pixel art or masking (compression noise)
+                    li.mt-40.fragment <span class="highlight font-bold">Stages</span>
+                        ul
+                            li <span class="highlight">Color Transform</span> - RGB to YCbCr
+                            li <span class="highlight">Down-sampling</span> - chroma reduction
+                            li <span class="highlight">DCT</span> - discrete cosine transform, from color domain into frequency domain
+                            li <span class="highlight">Quantization</span> - removal of high-frequency components
+            img.height-780(src=imgAssets+'formats_jpeg.svg')
+        .bottom-100.right-580.absolute
+            img.ml-60.height-300(src=imgAssets+'DCT.png')
 +frameInbox('PNG')
-	.important-green
-		.flex-cols-2
-			div.pr-20
-				ul
-					li lossless compression
-					li.highlight-2.fragment appropriate for solid-color images
-					li.highlight-2.fragment if there is no reason to do otherwise, use PNG for image assets
-					li.fragment DEFLATE algorithm, supports alpha channel
-					li.fragment.mt-40 <span class="highlight font-bold">Stages</span>
-						ul
-							li <span class="highlight">Indexing</span> - creates a palette if only up to 256 colors are present
-							li <span class="highlight">Alpha compaction</span> - optimizing - replaces the alpha channel with a color that is not present 
-							li <span class="highlight">Pass extraction</span> - splits an image into a few interlaced images
-			div.text-center
-				img.height-780(src=imgAssets+'formats_png.svg')
+    .important-green
+        .flex-cols-2
+            div.pr-20
+                ul
+                    li lossless compression
+                    li.highlight-2.fragment appropriate for solid-color images
+                    li.highlight-2.fragment if there is no reason to do otherwise, use PNG for image assets
+                    li.fragment DEFLATE algorithm, supports alpha channel
+                    li.fragment.mt-40 <span class="highlight font-bold">Stages</span>
+                        ul
+                            li <span class="highlight">Indexing</span> - creates a palette if only up to 256 colors are present
+                            li <span class="highlight">Alpha compaction</span> - optimizing - replaces the alpha channel with a color that is not present 
+                            li <span class="highlight">Pass extraction</span> - splits an image into a few interlaced images
+            div.text-center
+                img.height-780(src=imgAssets+'formats_png.svg')
 +frameInbox('Videos and Cutscenes')
-	.important-orange
-		.flex-cols-2
-			div
-				ul
-					li.fragment <span class="highlight font-bold">Cutscene</span>
-						ul
-							li.fragment one of the most progressive properties of a game
-							li.fragment <span class="highlight-2">a) fully progressive</span> - video, in-game cutscene
-							li.fragment <span class="highlight-2">b) partially progressive</span> - i.e. custom skin of the avatar in the scene
-							li.fragment <span class="highlight-2">c) partially emergent</span> - the player can walk around but can't control the scene
-							li.fragment <span class="highlight-2">d) fully emergent</span> - generated cutscene
-					li.mt-30.fragment <span class="highlight">1980's</span> - in-game cutscenes
-					li.fragment <span class="highlight">1990's</span> - pre-rendered video cutscenes
-					li.fragment <span class="highlight">2000's</span> - in-game cutscenes
-					li.fragment <span class="highlight">2010's</span> - pre-rendered video cutscenes ¯\_(ツ)_/¯
-			div.text-center
-				img.height-380(src=imgAssets+'cutscene_w3.jpg')
-				img.height-380(src=imgAssets+'cutscene_hellblade.jpg')
+    .important-orange
+        .flex-cols-2
+            div
+                ul
+                    li.fragment <span class="highlight font-bold">Cutscene</span>
+                        ul
+                            li.fragment one of the most progressive properties of a game
+                            li.fragment <span class="highlight-2">a) fully progressive</span> - video, in-game cutscene
+                            li.fragment <span class="highlight-2">b) partially progressive</span> - i.e. custom skin of the avatar in the scene
+                            li.fragment <span class="highlight-2">c) partially emergent</span> - the player can walk around but can't control the scene
+                            li.fragment <span class="highlight-2">d) fully emergent</span> - generated cutscene
+                    li.mt-30.fragment <span class="highlight">1980's</span> - in-game cutscenes
+                    li.fragment <span class="highlight">1990's</span> - pre-rendered video cutscenes
+                    li.fragment <span class="highlight">2000's</span> - in-game cutscenes
+                    li.fragment <span class="highlight">2010's</span> - pre-rendered video cutscenes ¯\_(ツ)_/¯
+            div.text-center
+                img.height-380(src=imgAssets+'cutscene_w3.jpg')
+                img.height-380(src=imgAssets+'cutscene_hellblade.jpg')
 +frameInbox('Videos and Cutscenes')
-	div
-		.flex-cols-2.mt-20
-			figure.fragment
-				img.width-600(src=imgAssets+'cut_render_tombraider.jpg')
-				p Shadow of the Tomb Raider, in-game
-			figure.fragment
-				img.width-600(src=imgAssets+'cut_video_wolf2.jpg')
-				p Wolfenstein 2: New Colossus, video
-		.flex-cols-2.mt-20
-			figure.fragment
-				img.width-600(src=imgAssets+'w3_cutscene.jpg')
-				p Warcraft 3, in-game
-			figure.fragment
-				img.width-600(src=imgAssets+'w3_reforged_cutscene.jpg')
-				p Warcraft 3 Reforged, video
-		.bottom-0.right-560.fragment.tip
-			img.height-400(src=globalAssets+'memes/ifonly.png')
+    div
+        .flex-cols-2.mt-20
+            figure.fragment
+                img.width-600(src=imgAssets+'cut_render_tombraider.jpg')
+                p Shadow of the Tomb Raider, in-game
+            figure.fragment
+                img.width-600(src=imgAssets+'cut_video_wolf2.jpg')
+                p Wolfenstein 2: New Colossus, video
+        .flex-cols-2.mt-20
+            figure.fragment
+                img.width-600(src=imgAssets+'w3_cutscene.jpg')
+                p Warcraft 3, in-game
+            figure.fragment
+                img.width-600(src=imgAssets+'w3_reforged_cutscene.jpg')
+                p Warcraft 3 Reforged, video
+        .bottom-0.right-560.fragment.tip
+            img.height-400(src=globalAssets+'memes/ifonly.png')
 +frameInbox('Textures')
-	.important-orange
-		.flex-cols-2
-			div
-				ul
-					li.fragment(data-fragment-index="1") pieces of bitmap that are applied to an object
-					li.highlight-2.fragment(data-fragment-index="2") textures are ultimately converted to formats that are specific to platform and graphic API
-				.list-title.fragment(data-fragment-index="3")
-					p Types
-					ul
-						li.fragment(data-fragment-index="4") diffuse texture
-						li.fragment(data-fragment-index="5") displacement texture
-						li.fragment(data-fragment-index="6") normal texture
-						li.fragment(data-fragment-index="7") volumetric texture
-						li.fragment(data-fragment-index="8") tileable texture
-						li.fragment(data-fragment-index="9") sprite atlas
-				.list-title.fragment(data-fragment-index="10")
-					p Formats
-					ul
-						li Desktop: BC6H, BC7, DXT1, DXT5
-						li iOS: ATSC, PVRTC
-						li Android: ASTC
-			.grid.grid-cols-2
-				div
-					figure.fragment(data-fragment-index="4")
-						img.height-210(src=imgAssets+'texture_color.jpg')
-						p Diffuse
-					figure.fragment(data-fragment-index="5")
-						img.height-210(src=imgAssets+'texture_displacement.jpg')
-						p Displacement
-					figure.fragment(data-fragment-index="6")
-						img.height-210(src=imgAssets+'texture_normal.jpg')
-						p Normal
-				div
-					figure.fragment(data-fragment-index="7")
-						img.height-210(src=imgAssets+'texture_volumetric.jpg')
-						p Volumetric
-					figure.fragment(data-fragment-index="8")
-						img.height-210(src=imgAssets+'texture_tileable.jpg')
-						p Tileable
-					figure.fragment(data-fragment-index="9")
-						img.height-210(src=imgAssets+'spriteanim.gif')
-						p Sprite atlas
+    .important-orange
+        .flex-cols-2
+            div
+                ul
+                    li.fragment(data-fragment-index="1") pieces of bitmap that are applied to an object
+                    li.highlight-2.fragment(data-fragment-index="2") textures are ultimately converted to formats that are specific to platform and graphic API
+                .list-title.fragment(data-fragment-index="3")
+                    p Types
+                    ul
+                        li.fragment(data-fragment-index="4") diffuse texture
+                        li.fragment(data-fragment-index="5") displacement texture
+                        li.fragment(data-fragment-index="6") normal texture
+                        li.fragment(data-fragment-index="7") volumetric texture
+                        li.fragment(data-fragment-index="8") tileable texture
+                        li.fragment(data-fragment-index="9") sprite atlas
+                .list-title.fragment(data-fragment-index="10")
+                    p Formats
+                    ul
+                        li Desktop: BC6H, BC7, DXT1, DXT5
+                        li iOS: ATSC, PVRTC
+                        li Android: ASTC
+            .grid.grid-cols-2
+                div
+                    figure.fragment(data-fragment-index="4")
+                        img.height-210(src=imgAssets+'texture_color.jpg')
+                        p Diffuse
+                    figure.fragment(data-fragment-index="5")
+                        img.height-210(src=imgAssets+'texture_displacement.jpg')
+                        p Displacement
+                    figure.fragment(data-fragment-index="6")
+                        img.height-210(src=imgAssets+'texture_normal.jpg')
+                        p Normal
+                div
+                    figure.fragment(data-fragment-index="7")
+                        img.height-210(src=imgAssets+'texture_volumetric.jpg')
+                        p Volumetric
+                    figure.fragment(data-fragment-index="8")
+                        img.height-210(src=imgAssets+'texture_tileable.jpg')
+                        p Tileable
+                    figure.fragment(data-fragment-index="9")
+                        img.height-210(src=imgAssets+'spriteanim.gif')
+                        p Sprite atlas
 +frameInbox('Sprites')
-	.important-orange
-		.list-title.fragment.fade-up
-			p Sprite
-			ul.leading-md
-				li a single graphic image that is incorporated into a scene
-				li allows to create large scenes as you can manipulate each sprite separately
-		.list-title.fragment.fade-up
-			p Spritesheet
-			ul.leading-md
-				li a set of corresponding sprites
-		.list-title.fragment.fade-up
-			p Sprite atlas
-			ul.leading-md
-				li a single texture image containing a list of spritesheets
-		.text-center.mt-30.fragment.fade-up
-			img.height-370(src=imgAssets+'prince2.png')
+    .important-orange
+        .list-title.fragment.fade-up
+            p Sprite
+            ul.leading-md
+                li a single graphic image that is incorporated into a scene
+                li allows to create large scenes as you can manipulate each sprite separately
+        .list-title.fragment.fade-up
+            p Spritesheet
+            ul.leading-md
+                li a set of corresponding sprites
+        .list-title.fragment.fade-up
+            p Sprite atlas
+            ul.leading-md
+                li a single texture image containing a list of spritesheets
+        .text-center.mt-30.fragment.fade-up
+            img.height-370(src=imgAssets+'prince2.png')
 +frameInbox('3D Objects')
-	.important-green.text-center
-		img.height-700(src=imgAssets+'3Dship.png')
+    .important-green.text-center
+        img.height-700(src=imgAssets+'3Dship.png')
 +frameInbox('3D File Formats')
-	.important-green
-		ul
-			li.fragment encode 3D geometry, material, textures, animations,...
-			li.fragment geometry encoding - approximate mesh, precise mesh and constructive solid geometry (CSG)
-			li.fragment <span class="highlight">BLEND</span> - internal blender file, supported by many engines
-			li.fragment <span class="highlight">COLLADA</span> - .DAE, sharing models across CAD software
-			li.fragment <span class="highlight">X3D</span> - popular format for WEB
-		.center.mt-20.fragment
-			table
-				tr
-					th
-					th Appr. mesh
-					th Prec. mesh
-					th CSG
-					th Color
-					th Material
-					th Texture
-					th Camera
-					th Lights
-				tr
-					td STL
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-				tr
-					td OBJ
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-				tr
-					td FBX
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-				tr
-					td DAE
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-				tr
-					td 3DS
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-				tr
-					td STEP
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-tomato.radius-50.size-30.inline-block
-				tr
-					td X3D
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-				tr
-					td BLEND
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
-					td.text-center
-						div.bgr-emerald.radius-50.size-30.inline-block
+    .important-green
+        ul
+            li.fragment encode 3D geometry, material, textures, animations,...
+            li.fragment geometry encoding - approximate mesh, precise mesh and constructive solid geometry (CSG)
+            li.fragment <span class="highlight">BLEND</span> - internal blender file, supported by many engines
+            li.fragment <span class="highlight">COLLADA</span> - .DAE, sharing models across CAD software
+            li.fragment <span class="highlight">X3D</span> - popular format for WEB
+        .center.mt-20.fragment
+            table
+                tr
+                    th
+                    th Appr. mesh
+                    th Prec. mesh
+                    th CSG
+                    th Color
+                    th Material
+                    th Texture
+                    th Camera
+                    th Lights
+                tr
+                    td STL
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                tr
+                    td OBJ
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                tr
+                    td FBX
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                tr
+                    td DAE
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                tr
+                    td 3DS
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                tr
+                    td STEP
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-tomato.radius-50.size-30.inline-block
+                tr
+                    td X3D
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                tr
+                    td BLEND
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block
+                    td.text-center
+                        div.bgr-emerald.radius-50.size-30.inline-block

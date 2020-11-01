@@ -1,0 +1,86 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/audio_digital_sound/';
+
++mchapter('Digital Sound', imgAssets+'chapter_digital_sound.svg')
++frameInbox('PCM')
+    .important-orange
+        ul.leading-lg
+            li.fragment.fade-up pulse-code modulation, a method used to digitally represent sampled analog signals
+            li.fragment.fade-up <span class="highlight">sample</span> - fundamental unit, representing the amplitude of an audio signal in time
+            li.fragment.fade-up <span class="highlight">bit depth</span> - each bit of resolution is equal to 6dB of dynamic range
+            li.fragment.fade-up <span class="highlight">sample rate</span> - number of samples per second: 8 kHz, 22.05 kHz, 44.1 kHz, 48 kHz
+            li.fragment.fade-up <span class="highlight">frequency</span> - a measure of the number of pulses in a given space of time
+            li.fragment.fade-up <span class="highlight">frame</span> - collection of samples, one for each output (e.g. 2 for stereo)
+            li.fragment.fade-up <span class="highlight">buffer</span> - collection of frames in memory, typically 64-4096 samples per buffer
+                ul.fragment.fade-up
+                    li.highlight-2 the greater the buffer, the greater the latency, but less strain being placed on the cpu
+        .text-center.mt-20.fragment.fade-up
+            img.height-400(src=imgAssets+'digital_sound.svg')
++frameInbox('Bit depth and sample rate')
+    .important-green
+        .text-center
+            img.height-780(src=imgAssets+'pcm_attributes.svg')
++frameInbox('Sound formats')
+    div
+        .list-title.fragment.fade-up
+            p Time Domain formats
+            ul
+                li.fragment.fade-up better for random access
+                li.fragment.fade-up sound samples and effects
+                li.fragment.fade-up PCM, WAV, FLAC
+        .list-title.fragment.fade-up
+            p Frequency Domain formats
+            ul
+                li.fragment.fade-up better for compression
+                li.fragment.fade-up music and voices
+                li.fragment.fade-up MP3, OGG Vorbis
+        .list-title.fragment.fade-up
+            p Synth formats
+            ul
+                li.fragment.fade-up contain notes, effects,...
+                li.fragment.fade-up old trackers: MOD, S3M, XM, IT
+                li.fragment.fade-up MIDI for streaming (e.g. from electronic piano)
+                li.fragment.fade-up proprietary formats of various audio editors
+                li.fragment.fade-up mostly used for pre-production
+        .bottom-200.right-0
+            img.height-500(src=imgAssets+'audio_logo.png')
++frameInbox('Sound formats')
+    div
+        .bottom-0.right-360
+            img.height-790(src=imgAssets+'domains.svg')
+        .bottom-10.right-360
+            img.height-380(src=imgAssets+'domains.png')
++frameInbox('History of digital sound')
+    .important-green
+        .bottom-0.right-70
+            img.height-750(src=imgAssets+'history.svg')
+        .bottom-0.right-220
+            img.height-650(src=imgAssets+'history.png')
++frameInbox('History of digital sound')
+    .important-green
+        ul
+            li.fragment before 1980 - simple programmable sound generators
+            li.fragment <span class="highlight">1981</span> - <span class="highlight-2">Commodore MOS 6581</span>, rise of demoscene
+            li.fragment <span class="highlight">1985</span> - <span class="highlight-2">Yamaha YM3812 (OPL2)</span>, FM synth widely used in DOS games
+            li.fragment <span class="highlight">1987</span> - <span class="highlight-2">Amiga Ultimate Soundtracker</span>, rise of trackers
+            li.fragment <span class="highlight">1989</span> - <span class="highlight-2">Sound Blaster 1.0</span> - IBM PC gets PCM sounds
+            li.fragment <span class="highlight">1992</span> - <span class="highlight-2">Gravis Ultrasound</span> - boosted MIDI music with wavetables
+            li.fragment <span class="highlight">1996</span> - <span class="highlight-2">DirectSound</span> - rise (and fall) of hardware-accelerated sound in games
+            li.fragment <span class="highlight">1996</span> - <span class="highlight-2">VST plugins</span> - pushed limits of synthetic music
+            li.fragment <span class="highlight">1997</span> - <span class="highlight-2">Realtek ALC5611</span> - rise of on-board chips for audio
+            li.fragment <span class="highlight">1998</span> - <span class="highlight-2">Sound Blaster Live!</span> - Creative Labs takes the lead (for the last time)
+            li.fragment <span class="highlight">2004</span> - <span class="highlight-2">High Definition Audio</span> - new specification for PC audio
+            li.fragment <span class="highlight">2005</span> - sound processing goes back to software (thanks to multicore CPUs)
+            li.fragment <span class="highlight">2012</span> - <span class="highlight-2">Dolby Atmos</span> - technology for 3D sound 
+            li.fragment <span class="highlight">2017</span> - <span class="highlight-2">NVidia VRWorks</span>, rise of GPU-powered sound processing
+        .top-0.right-0.fragment
+            img.height-400(src=imgAssets+'gus.png')
+        .top-300.right-240.fragment
+            img.height-200(src=imgAssets+'arrow.svg')
+        .bottom-260.right-210.fragment
+            img.height-100(src=imgAssets+'realtek.png')
+        .bottom-0.right-180.fragment.tip
+            img.height-200(src=globalAssets+'shrug.png')
+        +tipKeen2('... I/O 220, IRQ 7 DMA 1').bottom-0.left-0

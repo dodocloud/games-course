@@ -1,0 +1,211 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/audio_synth/';
+
+
++mchapter('Sound synthesizing, recording and composing', imgAssets+'chapter_synth.svg')
++frameInbox('Sound generators')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">generator</span> - oscillator that can make a tone, either independently or by pairing with another generator
+                ul
+                    li.fragment synth music is a combination of generated tones, effects, filters, and recorded sound samples
+            li.fragment <span class="highlight">main synthesis types</span>: additive, subtractive, FM, wavetable
+        .text-center.mt-20.fragment
+            img.height-600(src=imgAssets+'waves.svg')
++frameInbox('ADSR Envelope')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='0') envelope describes a change of a sound over time
+            li.fragment(data-fragment-index='2') <span class="highlight">attack</span> - time it takes for the sound to go from silent to the loudest level
+            li.fragment(data-fragment-index='3') <span class="highlight">decay</span> - how long it takes for the sound to go from the initial peak to the steady state
+            li.fragment(data-fragment-index='4') <span class="highlight">sustain</span> - steady state at its maximum intensity (until the source stops)
+            li.fragment(data-fragment-index='5') <span class="highlight">release</span> - time it takes for the sound to return to silence (fade out)
+        .text-center.mt-20.fragment(data-fragment-index='0')
+            img.height-500(src=imgAssets+'adsr.svg')
++frameInbox('Additive Synthesis')
+    .important-green
+        div
+            ul
+                li.fragment(data-fragment-index='0') creates waveforms with only specific harmonics
+                li.fragment(data-fragment-index='1') best for organs and bell sounds
+        div
+            .list-title.mt-20.fragment(data-fragment-index='2')
+                p Circuit abbreviations
+                ul.fragment(data-fragment-index='2')
+                    li <span class="highlight">VCA</span> - amplifier 
+                    li <span class="highlight">VCO</span> - oscillator
+                    li <span class="highlight">VCF</span> - filter
+                    li <span class="highlight">EG</span> - envelope generator
+                    li <span class="highlight">LFO</span> - low frequency oscillator, used for vibrato, tremolo etc.
+        .text-center.mt-50.fragment(data-fragment-index='0')
+            img.width-800(src=imgAssets+'synth_additive.svg')
++frameInbox('Subtractive Synthesis')
+    .important-green
+        div
+            ul
+                li.fragment(data-fragment-index='0') starts with a sound that is rich in harmonics and applies filters to attenuate or subtract frequencies
+                li.fragment(data-fragment-index='1') filters control cut-off frequency and resonance
+                li.fragment(data-fragment-index='2') sound is warm and organic
+        div
+            ul
+                li.fragment(data-fragment-index='3') <span class="highlight-2">dry signal</span> - original sound
+                li.fragment(data-fragment-index='4') <span class="highlight-2">wet signal</span> - processed sound (reflections, reverberations)
+        .text-center.mt-20.fragment(data-fragment-index='0')
+            img.width-1000(src=imgAssets+'synth_subtractive.svg')
++frameInbox('FM Synthesis')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='0') gets a clean tone and uses operators to modulate the pitch of the oscillator
+            li.fragment(data-fragment-index='1') consists of an array of operators
+            li.fragment(data-fragment-index='2') each FM sound needs two generators - <span class="highlight">carrier</span> and <span class="highlight">modulator</span>
+            li.fragment(data-fragment-index='3') <span class="highlight">carrier</span> - tones you hear
+            li.fragment(data-fragment-index='4') <span class="highlight">modulator</span> - tones that vibrate the carriers
+            li.fragment(data-fragment-index='5') cold, alien-like sound
+        .text-center.mt-40.fragment(data-fragment-index='0')
+            img.width-1000(src=imgAssets+'synth_fm.svg')
++frameInbox('Wavetable Synthesis')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='0') <span class="highlight">wavetable</span> - a collection of wave shapes in a single oscillator, usually 50ms of length
+            li.fragment(data-fragment-index='1') realistic but requires more RAM
+            li.fragment(data-fragment-index='2') can generate complex sound
+        .text-center.mt-80.fragment(data-fragment-index='0')
+            img.width-1000(src=imgAssets+'synth_wavetable.svg')
++frameInbox('Effects')
+    .important-green
+        ul
+            li.fragment <span class="highlight">Echo</span> - delayed signals of 50ms or more
+            li.fragment <span class="highlight">Reverberation (Reverb)</span> - reflection of sound waves off a solid surface, used for in-door environments
+            li.fragment <span class="highlight">Chorus</span> - delayed sound added to original with constant delay, adds depth
+            li.fragment <span class="highlight">Time stretching</span> - altering the speed without adjusting the pitch
+            li.fragment <span class="highlight">Compressor</span> - reduces the dynamic range of a sound, make loud sounds quieter and quite louder
+            li.fragment <span class="highlight">Equalization</span> - attenuating or amplifying various frequency bands
+            li.fragment <span class="highlight">Filtering</span> - specific frequency ranges can be emphasized or attenuated
+            li.fragment <span class="highlight">Lowpass/highpass</span> - filter that cuts off high or low frequencies
+            li.fragment <span class="highlight">Portamento</span> - gradually increases pitch
+            li.fragment <span class="highlight">Vibrato</span> - a regular, pulsating change of pitch
+            li.fragment <span class="highlight">Tremolo</span> - variation in amplitude (volume)
+            li.fragment <span class="highlight">Panning</span> - changing the volume for respective channels
++frameInbox('MOS Technology - SID')
+    .important-green
+        .flex.flex-row
+            div.width-46p
+                ul
+                    li.fragment(data-fragment-index='0') SID (Sound Interface Device) - built-in programmable sound generator
+                    li.fragment(data-fragment-index='1') subtractive synthesizer, invented in 1981 for Commodore C64
+                    li.fragment(data-fragment-index='2') one of the first sound chips of its kind
+                    li.fragment(data-fragment-index='3') ADSR, 3 programmable audio oscillators, 4 waveforms (sawtooth, triangle, pulse, noise)
+            div.fragment(data-fragment-index='3')
+                img.height-780(src=imgAssets+'sid.svg')
+        .bottom-100.left-200.fragment(data-fragment-index='0')
+            img.height-250(src=imgAssets+'mos.png')
++frameInbox('Other HW-based synthesizers')
+    .important-green
+        .list-title.fragment
+            p Atari 800XL
+            ul
+                li POKEY chip
+                li 4 semi-independent audio channels
+        .list-title.fragment
+            p IBM PC Speaker
+            ul
+                li 1-bit on-board generator, square waves
+        .list-title.fragment
+            p Nintendo Entertainment System
+            ul
+                li 2 pulse waves, triangle, noise and PCM audio
+        .list-title.fragment
+            p Yamaha YM3812
+            ul
+                li sound chip created by Yamaha in 1985, used in IBM PC sound cards
+                li 9 channels of sound, each made of 2 oscillators
+        .list-title.fragment
+            p Game boy Advance
+            ul
+                li 4 sound channels (square, wave, wave table, noise) + 2 DAC channels
+                li PCM samples, 32 kHz sampling
+    .top-100.right-100
+        img.height-200(src=imgAssets+'mario_jump.svg')
++frameInbox('Trackers')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='0') set of tools for wavetable synthesis
+            li.fragment(data-fragment-index='1') <span class="highlight">demoscene</span> and <span class="highlight">cracktro</span> makers heavily used trackers for their soundtracks
+            li.fragment(data-fragment-index='2') each channel has a vertical lane, with the vertical axis representing time
+            li.fragment(data-fragment-index='3') songs are constructed from patterns, each pattern has a set of notes, played by instruments
+            li.fragment(data-fragment-index='4') notes are generated from samples
+            li.fragment(data-fragment-index='5') 1987 - <span class="highlight-2">Ultimate SoundTracker</span> for Amiga, <span class="highlight-2">*.MOD</span> file format
+            li.fragment(data-fragment-index='6') 1994 - <span class="highlight-2">Scream Tracker</span> for MS-DOS, <span class="highlight-2">*.S3M</span> file format
+            li.fragment(data-fragment-index='7') 1994 - <span class="highlight-2">Fast Tracker 2</span> for MS-DOS, <span class="highlight-2">*.XM</span> file format
+            li.fragment(data-fragment-index='8') 1995 - <span class="highlight-2">Impulse Tracker</span> for MS-DOS, <span class="highlight-2">*.IT</span> file format
+            li.mt-40.fragment(data-fragment-index='9') <a href="http://modarchive.org/">http://modarchive.org/</a> - archive of MOD files
+            li.fragment(data-fragment-index='10') trackers used nowadays: SunVox, OpenMPT, Renoise
+        .bottom-80.right-20.fragment(data-fragment-index='7')
+            figure
+                img.height-400(src=imgAssets+'fast_tracker.png')
+                p Fast Tracker 2
++frameInbox('Example: Sunvox')
+    div
+        .text-center
+            img.height-750(src=imgAssets+'sunvox.png')
++frameInbox('MIDI')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='0') streaming protocol, introduced in 1982
+            li.fragment(data-fragment-index='1') enables different manufacturers to trigger events by sending messages on a serial connection
+            li.fragment(data-fragment-index='2') <span class="highlight">midi is not audio</span> but it can control audio
+            li.fragment(data-fragment-index='3') <span class="highlight">General MIDI</span> - a way of ensuring that every device has the exact same basic sounds
+            li.fragment(data-fragment-index='4') <span class="highlight-2">MIDI doesn't contain samples</span>, only notes and commands, thus it requires <span class="highlight">sound fonts</span>
+                ul
+                    li.downside.fragment(data-fragment-index='5') MIDI sounds different when played on different SW/HW (big issue in 1990's)  
+                    li.upside.fragment(data-fragment-index='6') old game soundtracks can be played at high quality by using good sound fonts (FluidSynth)
+        .text-center.mt-40.fragment(data-fragment-index='4')
+            img.height-350(src=imgAssets+'midi.svg')
++frameInbox('VST plugins')
+    .important-green
+        ul
+            li.fragment.highlight Visual Studio Technology
+            li.fragment interface for digital audio processing
+            li.fragment can be integrated in almost every DAW (digital audio workstation)
+            li.fragment can simulate basically everything - used as effects, converters, filters, virtual instruments,...
+        .text-center.mt-40.fragment
+            img.height-500(src=imgAssets+'vst.jpg')
++frameInbox('Sound recording')
+    div
+        ul
+            li.fragment(data-fragment-index='0') <span class="highlight">ambient sounds</span> - directly in the environment, using a good quality microphone
+            li.fragment(data-fragment-index='1') <span class="highlight">synthetic sound effects</span> - DAW software (FLStudio, Audacity,...) and a set of VLC plugins
+            li.fragment(data-fragment-index='2') <span class="highlight">real sound effects</span> - by foley artists
+        .flex-cols-2.text-center.mt-40
+            div.fragment(data-fragment-index='0')
+                img.height-400(src=imgAssets+'sound_rec.jpg')
+            div.fragment(data-fragment-index='2')
+                img.height-400(src=imgAssets+'foley_stage.jpg')
++frameInbox('Music composing')
+    .important-green
+        ul
+            li.fragment either real orchestra, synth music or combination of both
+            li.fragment many composing techniques: chords-first, melody-first, structure-first
+        .list-title.fragment
+            p Scales
+            ul
+                li.fragment major scale - happy scale
+                li.fragment minor scale - sad scale (natural, harmonic, melodic)
+        .list-title.fragment
+            p Keys
+            ul
+                li.fragment most songs are in a Key
+                li.fragment key is a specific group of pitches that follow a scale
+                li.fragment <span class="highlight-2">melody shaping</span> - moving away from the starting note and back
+        .list-title.fragment
+            p Bassline
+            ul
+                li.fragment bottom notes of chords
+                li.fragment we can build chords from basslines
+                li.fragment e.g. CGFA basslines gives chords CEG, GBD, FAC, ACE
+    .bottom-100.right-0.fragment
+        figure
+            img.height-450(src=imgAssets+'eastwest.jpg')
+            p EastWest Symphonic Orchestra

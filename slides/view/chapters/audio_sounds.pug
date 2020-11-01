@@ -1,0 +1,71 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/audio_sounds/';
+
+
+
++mchapter('Sounds in games', imgAssets+'chapter_audio_gamesound.svg')
++frameInbox('Sound effects')
+    .important-green
+        ul
+            li.fragment the illusion of being immersed in a 3D atmosphere is greatly enhanced by sounds
+            li.fragment 2D games - main focus is the music, sound effects are usually simple
+            li.fragment 3D games - complex positional sounds
+        .list-title.mt-80.fragment
+            p Types
+            ul
+                li.fragment <span class="highlight-2">one-shot</span> - always the same (barks, clicks)
+                li.fragment <span class="highlight-2">buzzers</span> - e.g. humming, sound of tube lights
+                li.fragment <span class="highlight-2">moving objects</span> - e.g. doppler effect for cars
+                li.fragment <span class="highlight-2">random</span> - e.g. a set of sounds for explosions
+                li.fragment <span class="highlight-2">periodic</span> - e.g. waterfall
+                li.fragment <span class="highlight-2">dynamic</span> - e.g. walking on various surfaces
+        .bottom-130.right-50.fragment
+            img.height-400(src=imgAssets+'corgi.gif')
+
++frameInbox('3D Sound')
+    .important-orange
+        .list-title.fragment
+            p Attenuation
+            ul
+                li the further the sound, the quieter it is
+            .right-50.top-100
+                img.height-260(src=imgAssets+'3dsound_attenuation.svg')
+        .space-md
+        .list-title.mt-100.fragment
+            p Occlusion
+            ul
+                li how sound is occluded by solid objects, losing its high frequency
+            .right-50.top-370
+                img.height-260(src=imgAssets+'3dsound_occlusion.svg')
+        .space-md
+        .list-title.mt-100.fragment
+            p Obstruction
+            ul
+                li when the direct path to a sound is muffled but not enclosed
+                li creates delays
+            .right-50.top-640
+                img.height-260(src=imgAssets+'3dsound_obstruction.svg')
++frameInbox('3D Sound')
+    .important-green
+        .list-title.fragment
+            p Panning
+            ul
+                li.fragment changing the channel based on the location of the source
+        .list-title.fragment
+            p HRTF
+            ul
+                li.fragment transfer function which models sound perception with two ears to determine positions of the source
+                li.fragment describes how a given sound wave input is filtered by the diffraction properties of the head
+                li.fragment can be used to generate <span class="highlight">binaural sound</span>
+        .list-title.fragment
+            p Ambisonics
+            ul
+                li.fragment full-sphere surround sound format, covers sources <br> above and below the listener
+        .list-title.fragment
+            p Raytracing
+            ul
+                li physically precise sound rendering, used in VRWorks
+            .bottom-0.right-30
+                img.height-450(src=imgAssets+'3dsound_raytracing.svg')

@@ -5,142 +5,142 @@ include ../mixins/containers_aph.pug
 
 +mchapter('Introduction to Assets', imgAssets+'chapter_assets_intro.svg')
 +mcontainer('What are assets?').important-orange
-	+frameShard.width-860.top-3p.fragment.fade-up
-		p Everything that is specific to a game (and not to an engine).
-	+frameShard.width-860.top-6p.left-20p.fragment.fade-up
-		p Any piece of data which is in a format that can be used by the game engine.
-	+frameShard.width-860.top-9p.left-40p.fragment.fade-up
-		p All visual elements that are presented to the user and protected by copyright.
+    +frameShard.width-860.top-3p.fragment.fade-up
+        p Everything that is specific to a game (and not to an engine).
+    +frameShard.width-860.top-6p.left-20p.fragment.fade-up
+        p Any piece of data which is in a format that can be used by the game engine.
+    +frameShard.width-860.top-9p.left-40p.fragment.fade-up
+        p All visual elements that are presented to the user and protected by copyright.
 +frameInbox('What are assets')
-	div
-		ul
-			li many games are very similar in their mechanics, yet the assets are different
-		.flex-cols-2.mt-80
-			figure.fragment
-				img.height-400(src=imgAssets+'assetssim_mario.png')
-				p Super Mario (1985)
-			figure.fragment
-				img.height-400(src=imgAssets+'assetssim_ddave.png')
-				p Dangerous Dave (1988)
+    div
+        ul
+            li many games are very similar in their mechanics, yet the assets are different
+        .flex-cols-2.mt-80
+            figure.fragment
+                img.height-400(src=imgAssets+'assetssim_mario.png')
+                p Super Mario (1985)
+            figure.fragment
+                img.height-400(src=imgAssets+'assetssim_ddave.png')
+                p Dangerous Dave (1988)
 +frameInbox('What are assets')
-	div
-		.flex-cols-2
-			figure.fragment(data-fragment-index="1")
-				img.width-500(src=imgAssets+'assetssim_trolls.png')
-				p Trolls (1992)
-			figure.fragment(data-fragment-index="1")
-				img.width-500(src=imgAssets+'assetssim_oscar.png')
-				p Oscar (1993)
-		.flex-cols-2.mt-15
-			figure.fragment(data-fragment-index="2")
-				img.width-500(src=imgAssets+'assetssim_wow.jpg')
-				p World of Warcraft (2004)
-			figure.fragment(data-fragment-index="2")
-				img.width-500(src=imgAssets+'assetssim_order_and_chaos_2.jpg')
-				p Order and Chaos 2 (2015)
+    div
+        .flex-cols-2
+            figure.fragment(data-fragment-index="1")
+                img.width-500(src=imgAssets+'assetssim_trolls.png')
+                p Trolls (1992)
+            figure.fragment(data-fragment-index="1")
+                img.width-500(src=imgAssets+'assetssim_oscar.png')
+                p Oscar (1993)
+        .flex-cols-2.mt-15
+            figure.fragment(data-fragment-index="2")
+                img.width-500(src=imgAssets+'assetssim_wow.jpg')
+                p World of Warcraft (2004)
+            figure.fragment(data-fragment-index="2")
+                img.width-500(src=imgAssets+'assetssim_order_and_chaos_2.jpg')
+                p Order and Chaos 2 (2015)
 +frameInbox('Assets')
-	.top-0.left-0
-		figure.height-350
-			img(src=imgAssets+'assets_binary.png')
-			p Binary data
-	.bottom-0.left-0
-		figure.height-350
-			img(src=imgAssets+'assets_bytecode.png')
-			p Bytecode
-	.top-0.right-0
-		figure.height-350
-			img(src=imgAssets+'assets_text.png')
-			p Text files
-	.bottom-0.right-0
-		figure.height-350
-			img(src=imgAssets+'assets_hybrid.png')
-			p Hybrid files
-	.top-40p.left-44p
-		div.text-2xl Assets
-	div.text-center
-		img.height-700.mt-40.rotating(src=imgAssets+'assets_overview.svg')
+    .top-0.left-0
+        figure.height-350
+            img(src=imgAssets+'assets_binary.png')
+            p Binary data
+    .bottom-0.left-0
+        figure.height-350
+            img(src=imgAssets+'assets_bytecode.png')
+            p Bytecode
+    .top-0.right-0
+        figure.height-350
+            img(src=imgAssets+'assets_text.png')
+            p Text files
+    .bottom-0.right-0
+        figure.height-350
+            img(src=imgAssets+'assets_hybrid.png')
+            p Hybrid files
+    .top-40p.left-44p
+        div.text-2xl Assets
+    div.text-center
+        img.height-700.mt-40.rotating(src=imgAssets+'assets_overview.svg')
 +frameInbox('Medias')
-	div
-		.grid.grid-rows-7.grid-cols-4.items-center
-			div.text-center
-				img.height-100(src=globalAssets+'nes_cartridge.png')
-			div NES cartridge
-			div 8kB - 1MB
-			div Super Mario
-			
-			div.text-center
-				img.height-100(src=globalAssets+'gb_cartridge.png')
-			div Game Boy cartridge
-			div 256 kB - 8 MB
-			div Pokémon Yellow
+    div
+        .grid.grid-rows-7.grid-cols-4.items-center
+            div.text-center
+                img.height-100(src=globalAssets+'nes_cartridge.png')
+            div NES cartridge
+            div 8kB - 1MB
+            div Super Mario
 
-			div.text-center
-				img.height-100(src=globalAssets+'disk_floppy.png')
-			div Floppy Disk
-			div 1.44 MB
-			div Duke Nukem 1
+            div.text-center
+                img.height-100(src=globalAssets+'gb_cartridge.png')
+            div Game Boy cartridge
+            div 256 kB - 8 MB
+            div Pokémon Yellow
 
-			div.text-center
-				img.height-100(src=globalAssets+'disk_cd.png')
-			div CD
-			div 700 MB
-			div Half-Life
+            div.text-center
+                img.height-100(src=globalAssets+'disk_floppy.png')
+            div Floppy Disk
+            div 1.44 MB
+            div Duke Nukem 1
 
-			div.text-center
-				img.height-100(src=globalAssets+'disk_dvd.png')
-			div DVD
-			div 4.7 GB - 8.5 GB
-			div GTA San Andreas
+            div.text-center
+                img.height-100(src=globalAssets+'disk_cd.png')
+            div CD
+            div 700 MB
+            div Half-Life
 
-			div.text-center
-				img.height-100(src=globalAssets+'disk_bluray.png')
-			div Blu-ray
-			div 25 GB - 50 GB
-			div Witcher 3
+            div.text-center
+                img.height-100(src=globalAssets+'disk_dvd.png')
+            div DVD
+            div 4.7 GB - 8.5 GB
+            div GTA San Andreas
 
-			div.text-center
-				img.height-100(src=globalAssets+'disk_hdd.png')
-			div HDD
-			div ¯\_(ツ)_/¯
-			div Call of Duty: Warzone
-	+tipKeen3('Super Mario took less space than the actual screenshot of it!').bottom-0
+            div.text-center
+                img.height-100(src=globalAssets+'disk_bluray.png')
+            div Blu-ray
+            div 25 GB - 50 GB
+            div Witcher 3
+
+            div.text-center
+                img.height-100(src=globalAssets+'disk_hdd.png')
+            div HDD
+            div ¯\_(ツ)_/¯
+            div Call of Duty: Warzone
+    +tipKeen3('Super Mario took less space than the actual screenshot of it!').bottom-0
 +frameInbox('Size of game assets')
-	div.text-center.important-green
-		img.height-760(src=imgAssets+'assets_size.svg')
-	+tipKeen4('And where is Call of Duty 4?').bottom-0
+    div.text-center.important-green
+        img.height-760(src=imgAssets+'assets_size.svg')
+    +tipKeen4('And where is Call of Duty 4?').bottom-0
 +frameInbox('Asset Types')
-	div
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Sounds
-			ul
-				li AIFF, WAV, MP3, OGG
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Images
-			ul
-				li PNG, JPG, TGA, SVG
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Video
-			ul
-				li MP4, MKV, AVI, MOV, MPG, WEBM
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base 3D Models
-			ul
-				li OBJ, FBX, BLEND, DAE, 3DS, X3D
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Game Data
-			ul
-				li ZIP, XML, JSON, INI, CFG, SQLITE,...
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Levels
-			ul
-				li CAS, DAT, RPF, TIGER, WAD
-		.list-title.mt-5.fragment.fade-up
-			p.leading-base Fonts
-			ul
-				li OTF, TTF, WOFF
-		.list-title.mt-5.fragment.fade-up
-			p Scripts
-			ul
-				li JS, LUA, PY, CS
-	.top-0.right-0
-		img.height-700(src=imgAssets+'data_hex.png')
+    div
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Sounds
+            ul
+                li AIFF, WAV, MP3, OGG
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Images
+            ul
+                li PNG, JPG, TGA, SVG
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Video
+            ul
+                li MP4, MKV, AVI, MOV, MPG, WEBM
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base 3D Models
+            ul
+                li OBJ, FBX, BLEND, DAE, 3DS, X3D
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Game Data
+            ul
+                li ZIP, XML, JSON, INI, CFG, SQLITE,...
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Levels
+            ul
+                li CAS, DAT, RPF, TIGER, WAD
+        .list-title.mt-5.fragment.fade-up
+            p.leading-base Fonts
+            ul
+                li OTF, TTF, WOFF
+        .list-title.mt-5.fragment.fade-up
+            p Scripts
+            ul
+                li JS, LUA, PY, CS
+    .top-0.right-0
+        img.height-700(src=imgAssets+'data_hex.png')

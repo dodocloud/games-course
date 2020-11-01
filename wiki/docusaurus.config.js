@@ -101,7 +101,11 @@ const config = {
 						{
 							label: 'Lecture 5: Patterns',
 							href: url + '/slides/lecture05.html',
-						}
+						},
+						{
+							label: 'Lecture 6: Audio',
+							href: url + '/slides/lecture06.html',
+						},
 					]
 				},
 				{

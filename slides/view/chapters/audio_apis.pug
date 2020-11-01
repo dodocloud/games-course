@@ -1,0 +1,54 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/audio_apis/';
+
++mchapter('Audio APIs', imgAssets+'chapter_audio_tech.svg')
++frameInbox('Audio API')
+    .important-green
+        ul
+            li.fragment in sharp contrast with the game loop, audio loop depends on sample rate and buffer size
+            li.fragment audio engines use <span class="highlight">double buffer</span> - we are feeding one while the other is playing
+            li.fragment <span class="highlight">callback API</span> - OS-level thread calls into user code when a buffer is available (e.g. CoreAudio for MacOS)
+            li.fragment <span class="highlight">polling API</span> - user must periodically check if the buffer is available (e.g. Windows WASAPI)
+        figure.mt-10.fragment
+            img.height-520(src=imgAssets+'audio_engine.svg')
+            p Audio Engine
++frameInbox('Example: Godot audio loop')
+    div
+        .code.text-sm
+            include ../../assets/audio_apis/snippets_generated/godot_audio_loop.html
++frameInbox('Audio Engines')
+    div
+        ul
+            li.fragment <span class="highlight">FMOD Engine</span> - integrated in Unity (via plugin) and Unreal
+            li.fragment <span class="highlight">WebAudio API</span> - node-based API for sound processing in web browsers
+            li.fragment <span class="highlight">RealSpace 3D Audio</span> - pin-point accurate engine, supported by Unreal
+            li.fragment <span class="highlight">VRWorks</span> - raytraced sound rendering by NVidia
+            li.fragment <span class="highlight">Audiokinetic Wwise</span> - feature-rich interactive engine
+            li.fragment <span class="highlight">Windows Sonic</span> - HRTF-based spatialization for Windows and HoloLens
+            li.fragment <span class="highlight">Project Acoustics</span> - complete auralization system, combines HRTF with Project Triton engine
+        figure.mt-40.fragment
+            img.height-300(src=imgAssets+'audio_engine_pipeline.svg')
+            p Audio engine pipeline
++frameInbox('VRWorks')
+    div
+        ul
+            li.fragment path-traced geometric audio from NVidia
+            li.fragment based on <span class="highlight">Acoustic Raytracer Technology</span>
+            li.fragment uses GPU to compute acoustic environmental model
+            li.fragment supported by Unreal Engine
+        .text-center.mt-20.fragment
+            img.height-540(src=imgAssets+'vrworks.svg')
++frameInbox('WebAudio API')
+    .important-green
+        ul
+            li.fragment high-level JavaScript API for audio processing
+            li.fragment <span class="highlight">features:</span> modular routing, spatialized audio, convolution engine, biquad filters,...
+            li.fragment spatialized audio (distance attenuation, sound cones, obstruction, panning models)
+            li.fragment convolution engine (cathedral, cave, tunnel)
+            li.fragment audio operations are performed with audio <span class="highlight">nodes</span> that are linked together
+        figure.mt-40.fragment
+            img.height-430(src=imgAssets+'webaudioapi.svg')
+            p Node setup example
+

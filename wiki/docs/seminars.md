@@ -77,7 +77,7 @@ Keyboard shortcuts for the slides:
 | 3 | 8.10. | Assets |  [Link](https://aph.dodo.me/slides/lecture03.html/) |
 | 4 | 15.10. | Components |  [Link](https://aph.dodo.me/slides/lecture04.html/) |
 | 5 | 22.10. | Patterns | [Link](https://aph.dodo.me/slides/lecture05.html/) |
-| 6 | 29.10. | Audio |  |
+| 6 | 29.10. | Audio | [Link](https://aph.dodo.me/slides/lecture06.html/) |
 | 7 | 5.11. | Space | |
 | 8 | 12.11. | Physics | |
 | 9 | 19.11. | ------ | |

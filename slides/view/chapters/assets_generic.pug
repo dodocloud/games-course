@@ -5,149 +5,149 @@ include ../mixins/containers_aph.pug
 
 +mchapter('Generic Assets', imgAssets+'chapter_assets_generic.svg')
 +frameInbox('ZIP')
-	.important-green
-		.flex-cols-2
-			div
-				ul
-					li.fragment many games use their own proprietary format derived from ZIP
-				.list-title.fragment
-					p ZIP
-					ul
-						li lossless archive format
-						li compressions: shrink, DEFLATE, bzip2, none
-						li directory-like structure
-				.list-title.fragment
-					p zlib
-					ul
-						li open-source library
-						li implements DEFLATE compression
-			div.text-center
-				img.height-700(src=imgAssets+'formats_zip.svg')
+    .important-green
+        .flex-cols-2
+            div
+                ul
+                    li.fragment many games use their own proprietary format derived from ZIP
+                .list-title.fragment
+                    p ZIP
+                    ul
+                        li lossless archive format
+                        li compressions: shrink, DEFLATE, bzip2, none
+                        li directory-like structure
+                .list-title.fragment
+                    p zlib
+                    ul
+                        li open-source library
+                        li implements DEFLATE compression
+            div.text-center
+                img.height-700(src=imgAssets+'formats_zip.svg')
 +frameInbox('Game Data')
-	.important-green
-		.list-title.fragment
-			p Serialized data
-			ul
-				li XML, JSON, CSV, CFG,...
-				li it's good to use XML for tree-like structures and JSON for flat entities 
-				li some languages (such as C++) don't provide a standardized serialization facility
-				li JSON is a good fit for JavaScript as it is it's natural object notation
-		.list-title.fragment
-			p Database
-			ul
-				li Web environment: Web storage (small data), IndexedDB (large data)
-				li Desktop/mobile: SQLite
-				li Games that don't have multiplayer rarely need more than a simple database for config and save data
-		.list-title.fragment
-			p Save data
-			ul
-				li dump of all the parts of the game engine required to restore the full state
-				li size varies, for most games it's usually a few MBs
+    .important-green
+        .list-title.fragment
+            p Serialized data
+            ul
+                li XML, JSON, CSV, CFG,...
+                li it's good to use XML for tree-like structures and JSON for flat entities 
+                li some languages (such as C++) don't provide a standardized serialization facility
+                li JSON is a good fit for JavaScript as it is it's natural object notation
+        .list-title.fragment
+            p Database
+            ul
+                li Web environment: Web storage (small data), IndexedDB (large data)
+                li Desktop/mobile: SQLite
+                li Games that don't have multiplayer rarely need more than a simple database for config and save data
+        .list-title.fragment
+            p Save data
+            ul
+                li dump of all the parts of the game engine required to restore the full state
+                li size varies, for most games it's usually a few MBs
 +frameInbox('Web Storage')
-	.important-green
-		.flex-cols-2
-			div
-				.list-title.fragment 
-					p Local Storage
-					ul
-						li for data of smaller size (config, game state)
-						li up to 10MBs, no expiration time
-						li keys and values are <span class="highlight">strings</span>
-					.code.text-sm.mt-5
-						include ../../assets/assets_generic/snippets_generated/local_storage.html
-				.list-title.fragment
-					p IndexedDB
-					ul
-						li JS-based object-oriented DB
-						li low-level API for structured data
-					.code.text-sm.text-sm.mt-5
-						include ../../assets/assets_generic/snippets_generated/indexed_db.html
-			div.fragment
-				.code.text-xs
-						include ../../assets/assets_generic/snippets_generated/storage.html
+    .important-green
+        .flex-cols-2
+            div
+                .list-title.fragment 
+                    p Local Storage
+                    ul
+                        li for data of smaller size (config, game state)
+                        li up to 10MBs, no expiration time
+                        li keys and values are <span class="highlight">strings</span>
+                    .code.text-sm.mt-5
+                        include ../../assets/assets_generic/snippets_generated/local_storage.html
+                .list-title.fragment
+                    p IndexedDB
+                    ul
+                        li JS-based object-oriented DB
+                        li low-level API for structured data
+                    .code.text-sm.text-sm.mt-5
+                        include ../../assets/assets_generic/snippets_generated/indexed_db.html
+            div.fragment
+                .code.text-xs
+                    include ../../assets/assets_generic/snippets_generated/storage.html
 +frameInbox('Example: OpenTTD Save format')
-	.flex-cols-2
-		div
-			img.height-700(src=imgAssets+'formats_openttd.svg')
-		div
-			ul
-				li 3 data layers
-				li very complex
-			.space-xl
-			img.height-420.mt-50(src=imgAssets+'transport_tycoon.gif')
+    .flex-cols-2
+        div
+            img.height-700(src=imgAssets+'formats_openttd.svg')
+        div
+            ul
+                li 3 data layers
+                li very complex
+            .space-xl
+            img.height-420.mt-50(src=imgAssets+'transport_tycoon.gif')
 +frameInbox('Example: DOOM Save format')
-	.flex.flex-row
-		div.width-45p
-			ul
-				li.fragment DSG files
-				li.fragment the game loads the level and restores the state by going through its aspects
-				li.fragment virtually nullifies the feasibility of manual hacking except the player data
-				li.mt-30.fragment
-					span.highlight Aspects:
-					ul
-						li.fragment doors, switches, elevators, stairs, lights
-						li.fragment items picked/available
-						li.fragment projectiles, teleport, respawn
-						li.fragment animation, damage
-						li.fragment linedefs seen on automap
-						li.fragment items/kills gained counter
-		div.mt-20
-			.code.text-sm
-				include ../../assets/assets_generic/snippets_generated/doom_save.html
+    .flex.flex-row
+        div.width-45p
+            ul
+                li.fragment DSG files
+                li.fragment the game loads the level and restores the state by going through its aspects
+                li.fragment virtually nullifies the feasibility of manual hacking except the player data
+                li.mt-30.fragment
+                    span.highlight Aspects:
+                    ul
+                        li.fragment doors, switches, elevators, stairs, lights
+                        li.fragment items picked/available
+                        li.fragment projectiles, teleport, respawn
+                        li.fragment animation, damage
+                        li.fragment linedefs seen on automap
+                        li.fragment items/kills gained counter
+        div.mt-20
+            .code.text-sm
+                include ../../assets/assets_generic/snippets_generated/doom_save.html
 +frameInbox('Levels, Maps, Dialogues')
-	ul.important-green
-		li.fragment mostly proprietary formats of respective libraries/frameworks
-		li.fragment
-			span.highlight TMX Maps
-			ul
-				li.fragment tile map XML format for 2D games
-				li.fragment layers, properties, objects, animations, terrains, wangsets
-		li.highlight.mt-30.fragment Popular tools for Unity
-		ul
-			li.fragment
-				a(href="https://www.chatmapper.com/") Chat Mapper 
-				span - tool for writing nonlinear dialogue
-				ul
-					li branching trees
-					li barks and alerts
-					li QTE
-					li localization
-					li optional scripting
-			li.fragment
-				a(href="https://www.articy.com/en/") Articy Draft 
-				span - visual database of characters, storylines and game variables
-			li.fragment
-				a(href="https://assetstore.unity.com/packages/templates/systems/quest-machine-39834") Quest Machine 
-				span - extensible quest system
-	.top-100.right-0
-		img.height-400(src=imgAssets+'tileset.jpg')
+    ul.important-green
+        li.fragment mostly proprietary formats of respective libraries/frameworks
+        li.fragment
+            span.highlight TMX Maps
+            ul
+                li.fragment tile map XML format for 2D games
+                li.fragment layers, properties, objects, animations, terrains, wangsets
+        li.highlight.mt-30.fragment Popular tools for Unity
+        ul
+            li.fragment
+                a(href="https://www.chatmapper.com/") Chat Mapper 
+                span - tool for writing nonlinear dialogue
+                ul
+                    li branching trees
+                    li barks and alerts
+                    li QTE
+                    li localization
+                    li optional scripting
+            li.fragment
+                a(href="https://www.articy.com/en/") Articy Draft 
+                span - visual database of characters, storylines and game variables
+            li.fragment
+                a(href="https://assetstore.unity.com/packages/templates/systems/quest-machine-39834") Quest Machine 
+                span - extensible quest system
+    .top-100.right-0
+        img.height-400(src=imgAssets+'tileset.jpg')
 +frameInbox('Example: DOOM WAD file')
-	.important-green
-		.flex-cols-2
-			div
-				ul
-					li.highlight.fragment "Where's all the data"
-					li.fragment Binary format of package files for Doom
-						ul
-							li.fragment Levels (walls, floors, monsters)
-							li.fragment Sound effects, music
-							li.fragment Color palettes, images
-					li.fragment Designed by John D. Carmack
-				img.fragment.height-450(src=imgAssets+'doom_map.png')
-			div.text-center
-				img.height-600(src=imgAssets+'formats_wad.png')
+    .important-green
+        .flex-cols-2
+            div
+                ul
+                    li.highlight.fragment "Where's all the data"
+                    li.fragment Binary format of package files for Doom
+                        ul
+                            li.fragment Levels (walls, floors, monsters)
+                            li.fragment Sound effects, music
+                            li.fragment Color palettes, images
+                    li.fragment Designed by John D. Carmack
+                img.fragment.height-450(src=imgAssets+'doom_map.png')
+            div.text-center
+                img.height-600(src=imgAssets+'formats_wad.png')
 +frameInbox('Tilemaps')
-	.important-green
-		ul
-			li.fragment several layers - 1st-layer tiles, sprites, 2nd-layer tiles, background (for parallax scrolling)
-			li.fragment <span class="highlight">Tile</span> - the smallest element on a map
-			li.fragment <span class="highlight">Wang</span> - a set of tiles that make a unified whole (e.g. a building)
-		.flex-cols-2.mt-50
-			figure.fragment
-				img.height-450(src=imgAssets+'zelda_tilemap.png')
-				p Zelda (2004)
-			figure.fragment
-				img.height-450(src=imgAssets+'tiles_messenger.jpg')
-				p The Messenger (2018)
-		.bottom-140.right-30.fragment
-			img.height-410(src=imgAssets+'tiles_messenger.svg')
+    .important-green
+        ul
+            li.fragment several layers - 1st-layer tiles, sprites, 2nd-layer tiles, background (for parallax scrolling)
+            li.fragment <span class="highlight">Tile</span> - the smallest element on a map
+            li.fragment <span class="highlight">Wang</span> - a set of tiles that make a unified whole (e.g. a building)
+        .flex-cols-2.mt-50
+            figure.fragment
+                img.height-450(src=imgAssets+'zelda_tilemap.png')
+                p Zelda (2004)
+            figure.fragment
+                img.height-450(src=imgAssets+'tiles_messenger.jpg')
+                p The Messenger (2018)
+        .bottom-140.right-30.fragment
+            img.height-410(src=imgAssets+'tiles_messenger.svg')
