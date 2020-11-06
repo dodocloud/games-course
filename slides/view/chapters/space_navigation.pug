@@ -1,0 +1,181 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/space_navigation/';
+
++mchapter('Navigation', imgAssets+'chapter_navigation.svg')
++frameInbox('Navigation')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') essential feature for many games
+        .list-title.mt-20.fragment(data-fragment-index='2')
+            p Types
+            ul
+                li.fragment(data-fragment-index='3') local navigation in the environment (collision avoidance, ORCA)
+                li.fragment(data-fragment-index='4') global navigation in the environment (pathfinding)
+                li.fragment(data-fragment-index='5') navigation in a custom graph (e.g. task-based planning)
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-440(src=imgAssets+'navigation.gif')
++frameInbox('Navigation graph')
+    .important-green
+        ul
+            li.fragment abstraction of all locations in a game environment the agents may visit
+            li.fragment enables game agents to calculate paths that avoid water, prefer traveling on roads to forest etc.
+            li.fragment may carry additional attributes (functions, type of a crossing etc.)
+            li.highlight-2.fragment waypoint-based, mesh-based, grid-based
+        ul.mt-10
+            li.fragment <span class="highlight">Node</span> - position of a key area within the environment
+            li.fragment <span class="highlight">Edge</span> - connection between those points
+        .text-center.fragment
+            img.height-450(src=imgAssets+'navigation_graph.svg')
++frameInbox('Navigation graph')
+    .important-green
+        .list-title.fragment
+            p Waypoint-based
+            ul
+                li level designer places waypoints that are later linked up
+            .text-center.mt-20
+                img.height-220(src=imgAssets+'nav_waypoint.svg')
+        .list-title.fragment
+            p Mesh-based
+            ul
+                li created from a polygonal representation of the environment's floor
+                li describes walkable areas
+            .text-center
+                img.height-220(src=imgAssets+'nav_mesh.svg')
+        .bottom-40.right-30.fragment
+            img.height-370(src=imgAssets+'nav_mesh_2.svg')
++frameInbox('Example: Unity mesh editor')
+    .text-center
+        img.height-770(src=imgAssets+'unity_nav_mesh.jpg')
++frameInbox('Example: Counter-strike mesh editor')
+    div.center
+        .grid.grid-cols-2.grid-rows-2.gap-15
+            img.height-380(src=imgAssets+'cstrike_01.jpg')
+            img.height-380(src=imgAssets+'cstrike_02.jpg')
+            img.height-380(src=imgAssets+'cstrike_03.jpg')
+            img.height-380(src=imgAssets+'cstrike_04.jpg')
++frameInbox('Navigation graph')
+    .important-orange
+        .list-title.fragment(data-fragment-index='1')
+            p Grid-based
+            ul
+                li.fragment(data-fragment-index='2') created by superimposing a grid over a game environment
+                li.fragment(data-fragment-index='3') <span class="highlight-2">traversability flag</span> indicates whether the cell is traversable or not
+                li.fragment(data-fragment-index='4') connection geometries: <span class="highlight-2">tile, octile, hex</span>
+                li.fragment(data-fragment-index='5') reflecting renvironmental changes = recalculation of the traversability flag
+        .text-center.mt-30.fragment(data-fragment-index='4')
+            img.height-190(src=imgAssets+'nav_grid.svg')
+        .text-center.mt-10.fragment(data-fragment-index='3')
+            img.height-280(src=imgAssets+'nav_grid_2.svg')
++frameInbox('Example: Connection geometry')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-350(src=imgAssets+'cgeometry_pokemon.jpg')
+            p Pokémon series (Tile)
+        figure
+            img.height-350(src=imgAssets+'cgeometry_openttdmap.jpg')
+            p OpenTTD (Octile)
+        figure
+            img.height-350(src=imgAssets+'cgeometry_heroes3.jpg')
+            p Heroes of M&M 3 (Hex)
++frameInbox('Combined geometry')
+    div
+        ul
+            li units can move in any direction, static objects are located on a grid
+        .text-center.mt-20
+            figure
+                img.height-650(src=imgAssets+'connection_geometry_sc.jpg')
+                p Starcraft II
++frameInbox('Pathfinding')
+    .important-green
+        .list-title.fragment
+            p Properties
+            ul
+                li.fragment <span class="highlight-2">completness</span> - whether a solution is found or not
+                li.fragment <span class="highlight-2">optimality</span> - quality of the solution found
+                li.fragment <span class="highlight-2">smoothing</span> - whether the agent could move along the path smoothly
+        .list-title.fragment
+            p Environment type
+            ul
+                li.fragment <span class="highlight-2">static</span> - the map never changes during the gameplay
+                li.fragment <span class="highlight-2">dynamic</span> - areas previously traversable can be obstructed later
+                li.fragment the higher the dynamicity, the higher the amount of replanning
+        .list-title.fragment
+            p NPC movement
+            ol
+                li.fragment find the closest graph node to the NPC's current location: A
+                li.fragment find the closest graph node to the target location: B
+                li.fragment find path from A to B
+                li.fragment move to A
+                li.fragment move along the path to B
+                li.fragment move from B to target location
+        .bottom-0.right-0
+            img.height-500(src=imgAssets+'pathfinding.gif')
++frameInbox('Pathfinding algorithms')
+    .important-orange
+        .list-title.fragment
+            p Uniformed graph searches
+            ul.leading-sm
+                li.fragment searches a graph without regard to any associated edge cost
+                li.fragment <span class="highlight-2">DFS (depth-first search)</span>
+                    ul.leading-md
+                        li.fragment searches by moving as deep into the graph as possible
+                        li.fragment doesn't guarantee to find the best path
+                li.fragment <span class="highlight-2">BFS (breadth-first-search)</span>
+                    ul.leading-md
+                        li.fragment fans out from the source node, always finds the best path
+        .list-title.fragment
+            p Cost-based graph searches
+            ul.leading-sm
+                li.fragment <span class="highlight-2">Dijkstra's Algorithm</span>
+                    ul.leading-md
+                        li.fragment explores every node in the graph and finds the shortest path from the start node to every other node in the graph
+                        li.fragment uses <span class="highlight-2">CSF (cost-so-far)</span> metric
+                        li.fragment explores many unnecessary nodes
+                li.fragment <span class="highlight-2">A* (Dijkstra with a Twist)</span>
+                    ul.leading-md
+                        li.fragment extension of Dijkstra, invented in 1968
+                        li.fragment main difference: augmentation of the CSF value with a <span class="highlight-2">heuristic value</span>
+        .top-50.right-50
+            img.height-470(src=imgAssets+'pathfinding.png')
++frameInbox('A*')
+    .important-orange
+        ul
+            li.fragment improved Dijkstra by an <span class="highlight-2">estimate of the cost</span> to the target from each node
+            li.fragment Cost 
+                include ../../assets/space_navigation/equations_generated/astar_01.svg
+                |, where 
+                include ../../assets/space_navigation/equations_generated/astar_02.svg
+                |&nbsp;is the cost-so-far and 
+                include ../../assets/space_navigation/equations_generated/astar_03.svg
+                |&nbsp;is the heuristic estimate
+            li.fragment <span class="highlight-2">Heuristics:</span> Euclidean, Manhattan, adaptive, dynamic,...
+                ul
+                    li.fragment Manhattan distance will work if almost no obstacles appear
+        .list-title.mt-20.fragment
+            p Improvements
+            ul
+                li.fragment preprocess the map, calculate universal paths
+                li.fragment mark tiles which cannot lead anywhere as dead-ends
+                li.fragment limit the search space
+        .text-center.mt-20.fragment
+            img.height-300(src=imgAssets+'astar.svg')
++frameInbox('Pathfinding algorithms: Comparison')
+    .important-orange
+        ul
+            li.fragment breadth-first search ignores the cost
+            li.fragment Dijkstra ignores the topology of the graph
+            li.fragment A* considers both
+        .text-center.mt-20
+            img.height-530(src=imgAssets+'pathfinding_comparison.svg')
++frameInbox('HPA*: Hierarchical Pathfinding A*')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') uses a fixed-size clustering abstraction (problem subdivision)
+            li.fragment(data-fragment-index='2') divides the navgraphs into regions, transitions are connected by intra-edges
+            li.fragment(data-fragment-index='3') <span class="highlight">gate</span> - longest obstacle-free segment along a border
+            li.highlight-2.fragment(data-fragment-index='4') fast enough for most games, but requires semi-static environment
+            li.fragment(data-fragment-index='5') <span class="highlight">3 stages</span>: build an abstract graph, search the abstract graph for an abstract path, refine the abstract path into a low-level path
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'hpa.svg')

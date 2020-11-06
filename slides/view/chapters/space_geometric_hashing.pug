@@ -1,0 +1,158 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/space_geometric_hashing/';
+
++mchapter('Geometric hashing', imgAssets+'chapter_spatial.svg')
++frameInbox('World size')
+    .important-green
+        ul
+            li.fragment diameter of the known universe: 
+                include ../../assets/space_geometric_hashing/equations_generated/world_size_01.svg
+            li.fragment the smallest theoretical structure: 
+                include ../../assets/space_geometric_hashing/equations_generated/world_size_02.svg
+            li.fragment 256 bits gives us 
+                include ../../assets/space_geometric_hashing/equations_generated/world_size_03.svg
+                |&nbsp;values
+            li.fragment IEEE 754 format stores 24b of resolution in the mantissa: range of 
+                include ../../assets/space_geometric_hashing/equations_generated/world_size_04.svg
+                ul
+                    li.fragment single precision, 32bit: 
+                        include ../../assets/space_geometric_hashing/equations_generated/world_size_05.svg
+                    li.fragment double precision, 64bit:
+                        include ../../assets/space_geometric_hashing/equations_generated/world_size_06.svg
+            li.highlight.fragment most games set their basic units as meter, making millimeter the smallest unit
+            li.fragment range areas for 32b numbers:
+        .center.mt-20.fragment
+            table
+                tr
+                    th Unit Size
+                    th Smallest Unit
+                    th Upper Range [m]
+                    th Upper Range Area
+                tr
+                    td 100m
+                    td Space Ship
+                    td 1.67 x 10^9
+                    td Diameter of the Sun
+                tr
+                    td 1m
+                    td Car
+                    td 1.67 x 10^7
+                    td Asia
+                tr
+                    td 1cm
+                    td Coin
+                    td 1.67 x 10^6
+                    td Mexico
+                tr
+                    td 1mm
+                    td Fluid Particle
+                    td 1.67 x 10^5
+                    td Paris
+                tr
+                    td 100μm
+                    td Dust
+                    td 1.67 x 10^4
+                    td Manhattan
++frameInbox('Map size comparison')
+    div.text-center
+        img.height-790(src=imgAssets+'map_comparison.png')
++frameInbox('IEEE 754 precision')
+    .important-green
+        ul
+            li.fragment a quarter of all 32b numbers are in the range of 
+                include ../../assets/space_geometric_hashing/equations_generated/ieee_754_01.svg
+                |, half of them in 
+                include ../../assets/space_geometric_hashing/equations_generated/ieee_754_02.svg
+            li.fragment from <span class="highlight">8 388 608</span> to <span class="highlight">16 777 216</span>, the precision for 32b is 1
+            li.fragment if the game world is too large, the precision close to borders may become insufficient
+        .space-md
+        .text-center
+            img.height-600(src=imgAssets+'ieee_754.svg')
+
+
++frameInbox('Spatial partitioning')
+    .important-orange
+        .list-title.fragment
+            p Bounding volume
+            ul
+                li.fragment groups objects or their parts together based on their positions and sizes
+                li.fragment if the object moves, so will the hierarchy
+                li.fragment used for physics, shape analysis, precise collision detection
+        .list-title.fragment
+            p Spatial data structure
+            ul
+                li.fragment a structure that stores objects by their position
+                li.fragment is locked to the world
+                li.fragment used for range queries, neighborhood searching, rough collision detection
+                li.highlight-2.fragment the more objects we have, the more benefits we get
+        .list-title.fragment
+            p Implementations
+            ul
+                li.fragment <span class="highlight-2">BSP</span> - binary-space partitioning
+                li.fragment <span class="highlight-2">Quad-tree</span> - for 2D and semi-3D space
+                li.fragment <span class="highlight-2">Oct-tree</span> - for 3D space
+                li.fragment <span class="highlight-2">Grid</span> - a square grid
+            .bottom-50.right-50
+                figure
+                    img.height-300(src=imgAssets+'oct_tree.svg')
+                    p Oct-tree
++frameInbox('Binary Space Partitioning')
+    .important-orange
+        ul
+            li.fragment(data-fragment-index='1') algorithm that decomposes a <span class="highlight">polygon-soup</span> into a tree that contains <span class="highlight">convex sets</span>
+            li.fragment(data-fragment-index='2') first used in Doom to solve difficult rendering of circles around pillars in level 2
+            li.upside.fragment(data-fragment-index='3') very good for rendering, ray-casting and collision detection in complex <span class="highlight">indoor</span> environments
+            li.downside.fragment(data-fragment-index='4') works only in static environments and requires a complex preprocessing stage
+        .space-md
+        .space-md
+        .flex-cols-2
+            img.height-300.fragment(data-fragment-index='1', src=imgAssets+'bsp.svg')
+            img.height-300.fragment(data-fragment-index='5', src=imgAssets+'bsp_example.svg')
++frameInbox('Quad-tree')
+    .important-orange
+        ul
+            li.fragment(data-fragment-index='1') hierarchical partition
+            li.fragment(data-fragment-index='2') each inner node has 4 children
+            li.fragment(data-fragment-index='3') overlapping solid objects are put into all children they touch
+            li.fragment(data-fragment-index='4') only objects in the same leaf can be in collision
+            li.fragment(data-fragment-index='5') useful for <span class="highlight">outdoor</span> scenes
+            li.fragment(data-fragment-index='6') good for object sparsely spread that do not move too fast
+        .text-center.fragment(data-fragment-index='1')
+            img.height-460(src=imgAssets+'quad_tree.svg')
++frameInbox('Quad-tree and geometric hashing')
+    .important-orange
+        .text-center.mt-80
+            img.height-620(src=imgAssets+'quad_tree_hashing.svg')
++frameInbox('Quad-tree for bounding boxes')
+    div
+        .center
+            div
+                img.height-750(src=imgAssets+'quad_tree_bbx.svg')
++frameInbox('Oct-tree')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') doesn't need an expensive preprocessing stage
+            li.fragment(data-fragment-index='2') allows very complex level geometry and easy editing
+            li.fragment(data-fragment-index='3') the tree may contain a whole scene or only one object
+            li.fragment(data-fragment-index='4') used for LoD, collision detection, voxel graphics,...
+        .space-md
+        ul.fragment(data-fragment-index='5')
+            li no subdivision - 1 node
+            li 1 subdivision - 9 nodes
+            li 2 full subdivisions - 73 nodes
+            li 3 full subdivision - 585 nodes
+        .bottom-50.right-50.fragment(data-fragment-index='1')
+            img.height-550(src=imgAssets+'oct_tree_subdivision.svg') 
++frameInbox('Grid')
+    .important-orange
+        ul
+            li.fragment(data-fragment-index='1') implemented as an 1D/2D/3D array or a hash-table
+            li.fragment(data-fragment-index='2') each cell has a list of units that are inside
+            li.fragment(data-fragment-index='3') if a unit crosses the boundary of the cell, we need to move it to the other list
+            li.highlight.fragment(data-fragment-index='4') good for a large amount of fast objects that are uniformly distributed
+            li.upside.fragment(data-fragment-index='5') very fast to locate an object - in sharp contrast with recursing down a quad-tree
+            li.downside.fragment(data-fragment-index='6') takes up more memory, granularity is static
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'grid.svg')

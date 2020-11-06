@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34mm" height="33.669mm" version="1.1" viewBox="0 0 34 33.669" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-332.13 -142.26)">
+  <path d="m348.53 175.54v-31.625" fill="none" stroke="#7b8694" stroke-width=".26458"/>
+  <path d="m332.66 159.52h31.625" fill="none" stroke="#7b8694" stroke-width=".26458"/>
+  <path d="m355.58 155.63-16.567 8.7266 0.36772 0.61326 16.217-9.2943z" color="#000000" color-rendering="auto" dominant-baseline="auto" fill="#7b8694" fill-rule="evenodd" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;isolation:auto;mix-blend-mode:normal;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal"/>
+  <g fill="#e8eaec" stroke="#cf2f25" stroke-linecap="round" stroke-width=".26458">
+   <g transform="scale(.99996 1)" aria-label="x">
+    <path d="m364.91 158.75h0.22754l0.17462-0.29898c0.0423-0.0794 0.0847-0.1561 0.12965-0.23019h0.0106c0.0476 0.0741 0.0953 0.15346 0.14023 0.23019l0.18785 0.29898h0.23548l-0.41804-0.64823 0.38894-0.63765h-0.22754l-0.15611 0.28311c-0.0397 0.0688-0.0794 0.14287-0.11641 0.21431h-0.0106c-0.045-0.0714-0.0873-0.14552-0.127-0.21431l-0.17198-0.28311h-0.23547l0.38893 0.61384z" fill="#e8eaec" stroke="none"/>
+   </g>
+   <g transform="scale(.99996 1)" aria-label="y">
+    <path d="m350.18 144.03-0.0423 0.17198c0.0423 0.0159 0.0926 0.0265 0.15082 0.0265 0.25929 0 0.39158-0.19314 0.48154-0.44714l0.48418-1.3917h-0.21166l-0.23019 0.71173c-0.0344 0.11377-0.0714 0.24606-0.10848 0.36248h-0.0106c-0.0397-0.11907-0.0847-0.25136-0.12436-0.36248l-0.26193-0.71173h-0.2249l0.51594 1.2885-0.0291 0.0952c-0.0529 0.15875-0.14552 0.27517-0.29104 0.27517-0.0317 0-0.0714-0.0106-0.0979-0.0185z" fill="#e8eaec" stroke="none"/>
+   </g>
+   <g transform="scale(.99996 1)" aria-label="z">
+    <path d="m356.48 155.58h0.97367v-0.17727h-0.6985l0.67733-0.99218v-0.11642h-0.87841v0.17727h0.60325l-0.67734 0.99219z" fill="#e8eaec" stroke="none"/>
+   </g>
+  </g>
+  <g fill="#d2d6dc">
+   <g stroke-width="247.7">
+    <g transform="matrix(0 -.0021183 .0021546 0 347.94 144.23)">
+     <g fill="#d2d6dc" stroke-width="247.7">
+      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="247.7"/>
+     </g>
+    </g>
+    <g transform="matrix(0 .0021183 .0021546 0 347.94 174.81)">
+     <g fill="#d2d6dc" stroke-width="247.7">
+      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="247.7"/>
+     </g>
+    </g>
+    <g transform="matrix(-.0021183 0 0 .0021546 333.24 158.93)">
+     <g fill="#d2d6dc" stroke-width="247.7">
+      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="247.7"/>
+     </g>
+    </g>
+    <g transform="matrix(.0021183 0 0 .0021546 363.82 158.93)">
+     <g fill="#d2d6dc" stroke-width="247.7">
+      <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="247.7"/>
+     </g>
+    </g>
+   </g>
+   <g transform="matrix(.00082773 -.00050137 .00078306 .0012928 355.18 155.39)" stroke-width="437.54">
+    <g fill="#d2d6dc" stroke-width="437.54">
+     <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="437.54"/>
+    </g>
+   </g>
+   <g transform="matrix(-.0048636 .0034085 .0026769 .0038197 339.88 162.75)" stroke-width="100.54">
+    <g fill="#d2d6dc" stroke-width="100.54">
+     <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#d2d6dc" stroke-width="100.54"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

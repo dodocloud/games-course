@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="105.77mm" height="39.641mm" version="1.1" viewBox="0 0 105.77 39.641" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-98.891 -85.121)">
+  <g fill="#1d232d" fill-rule="evenodd" stroke="#7b8694" stroke-width=".26458">
+   <path d="m165.31 85.416h39.164l-19.657 4.6897z"/>
+   <path d="m165.26 85.416v39.122l4.6895-19.756z"/>
+   <path d="m165.37 124.61h39.159l-19.826-4.8683z"/>
+   <path d="m204.52 85.45v39.088l-4.7978-19.473z"/>
+   <path d="m170 104.92 14.768-14.718-19.407-4.6897z"/>
+   <path d="m184.87 90.106 14.917 14.967 4.6399-19.607z"/>
+   <path d="m184.82 119.84 14.817-14.768 4.8394 19.407z"/>
+   <path d="m184.72 119.69-14.768-14.668-4.5899 19.557z"/>
+  </g>
+  <path d="m167.43 105 4.6183-12.971 12.772-4.8848 12.772 4.9348 5.0174 13.071-5.0673 12.273-12.722 5.1515-12.772-5.1515z" fill="none" stroke="#47d58a" stroke-width=".26458"/>
+  <g fill="#47d58a">
+   <ellipse cx="167.5" cy="105.07" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="184.83" cy="87.233" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="202.57" cy="105.07" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="172.12" cy="92.202" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="197.62" cy="92.202" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="172.12" cy="117.45" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="197.62" cy="117.45" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="184.83" cy="122.55" rx="1.2223" ry="1.2223"/>
+  </g>
+  <path d="m99.024 85.253v39.229h39.229v-39.229zm19.615 4.7172 14.898 14.898-14.898 14.898-14.898-14.898z" fill="#1d232d" stroke="#7b8694" stroke-width=".26458"/>
+  <g transform="matrix(.28222 0 0 .28222 -30.427 -175.21)" fill="#47d58a">
+   <rect transform="rotate(-90)" x="-997.56" y="615.9" width="9.5" height="43.5"/>
+   <path transform="rotate(-90 730.52 904.44)" d="m641.9 848.56-15.372-26.625h30.744z"/>
+  </g>
+ </g>
+</svg>

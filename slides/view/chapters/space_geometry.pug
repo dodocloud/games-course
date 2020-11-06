@@ -1,0 +1,239 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/space_geometry/';
+
+
+
++mchapter('Geometry', imgAssets+'chapter_geometry.svg')
++frameInbox('Homogeneous coordinates')
+    .important-green
+        ul
+            li.fragment in Euclidean geometry we use <span class="highlight">Cartesian coordinates</span>
+            li.fragment in projective geometry we use <span class="highlight">Homogeneous coordinates</span>
+            li.fragment we can express all affine transforms and projections as one matrix
+            li.fragment transformations can be composed by matrix multiplication
+            li.fragment 
+                include ../../assets/space_geometry/equations_generated/coordinates_01.svg
+                |&nbsp;for points, 
+                include ../../assets/space_geometry/equations_generated/coordinates_02.svg
+                |&nbsp;for vectors
+            li.fragment Example: homogeneous matrix 
+                include ../../assets/space_geometry/equations_generated/coordinates_03.svg
+                |&nbsp;of a rotation matrix 
+                include ../../assets/space_geometry/equations_generated/coordinates_04.svg
+                |&nbsp;and a position vector 
+                include ../../assets/space_geometry/equations_generated/coordinates_05.svg
+                ul
+                    li.fragment 
+                        include ../../assets/space_geometry/equations_generated/coordinates_06.svg
+            li.fragment
+                span.highlight Homogeneous coordinates -> Cartesian coordinates
+                ul
+                    li.fragment
+                        include ../../assets/space_geometry/equations_generated/coordinates_07.svg
+            li.fragment
+                span.highlight Cartesian coordiantes -> Homogeneous coordinates
+                ul
+                    li.fragment
+                        include ../../assets/space_geometry/equations_generated/coordinates_08.svg
++frameInbox('Points and Vectors')
+    .important-green
+        ul
+            li.fragment <span class="highlight">Cartesian coordinate system</span> - by far the most common
+            li.fragment other systems: cylindrical, spherical
+            li.fragment in 2D engines, Y-axis is usually inverted
+        .flex-cols-2.mt-20
+            figure.fragment
+                img.height-500(src=imgAssets+'coord_2D.svg')
+                p 2D coordinate system
+            figure.fragment
+                img.height-500(src=imgAssets+'coord_3D.svg')
+                p 3D coordinate system
++frameInbox('Points and Vectors')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">Vector</span> - a quantity that has both a magnitude and a direction
+            li.fragment vector can be used to represent a point, provided that we fix the tail of the vector to the origin of the coordinate system
+        .space-lg
+        .list-title.fragment
+            p Addition and subtraction
+            ul
+                li vector + vector = vector
+                li vector - vector = vector
+                li point + vector = point
+                li point - point = vector
+                li point + point = <span class="highlight">undefined</span>
+            .bottom-220.right-180
+                figure
+                    img.height-250(src=imgAssets+'add_subtract.svg')
+                    p Vector addition and subtraction
++frameInbox('Points and Vectors')
+    .important-orange
+        .list-title.fragment
+            p Magnitude
+            ul
+                li scalar representing the length of the vector
+                li 
+                    include ../../assets/space_geometry/equations_generated/vectors_01.svg
+            .top-10.right-50
+                figure
+                    img.height-270(src=imgAssets+'magnitude.svg')
+                    p Magnitude of a vector
+        .list-title.mt-5.fragment
+            p Normalization
+            ul
+                li a unit vector is a vector with a magnitude of one: 
+                    include ../../assets/space_geometry/equations_generated/vectors_02.svg
+        .list-title.mt-5.fragment
+            p Normal vector
+            ul
+                li vector is normal to a surface if it is perpendicular to it
+        .list-title.mt-5.fragment
+            p Dot product
+            ul
+                li
+                    include ../../assets/space_geometry/equations_generated/vectors_03.svg
+                li
+                    include ../../assets/space_geometry/equations_generated/vectors_04.svg
+            .bottom-10.right-20
+                figure
+                    img.height-300(src=imgAssets+'dot_product.svg')
+                    p Dot Product
+        .list-title.mt-5.fragment
+            p Cross product
+            ul
+                li yields another vector that is perpendicular to two vectors
+                li
+                    include ../../assets/space_geometry/equations_generated/vectors_05.svg
++frameInbox('Example: Direction')
+    div
+        ul
+            li.fragment we want to rotate the bottom ship toward the other one
+        .space-md
+        div
+            ol
+                li.fragment we know 
+                    include ../../assets/space_geometry/equations_generated/direction_01.svg
+                li.fragment calculate 
+                    include ../../assets/space_geometry/equations_generated/direction_02.svg
+                    ul
+                        li it is already normalized
+                li.fragment calculate 
+                    include ../../assets/space_geometry/equations_generated/direction_03.svg
+                li.fragment normalize 
+                    include ../../assets/space_geometry/equations_generated/direction_04.svg
+                li.highlight.fragment
+                    include ../../assets/space_geometry/equations_generated/direction_05.svg
+            ul.mt-60.fragment
+                li alternative:   
+                    include ../../assets/space_geometry/equations_generated/direction_06.svg
+                .bottom-40.left-550
+                    img.height-200(src=imgAssets+'atan2.svg')
+        .top-30.right-30
+            img.height-550(src=imgAssets+'direction.svg')
++frameInbox('Lines')
+    div
+        ul
+            li.fragment we have two points: 
+                include ../../assets/space_geometry/equations_generated/lines_01.svg
+                |&nbsp;and will take one step in 
+                include ../../assets/space_geometry/equations_generated/lines_02.svg
+                |&nbsp;direction for the second one: 
+                include ../../assets/space_geometry/equations_generated/lines_03.svg
+            li.fragment subtracting both, we get a vector 
+                include ../../assets/space_geometry/equations_generated/lines_04.svg
+                |&nbsp;with the same orientation
+            li.fragment all scalar multiplies of this vector from 
+                include ../../assets/space_geometry/equations_generated/lines_05.svg
+                |&nbsp;will generate points along the line
+            li.highlight-2.fragment
+                include ../../assets/space_geometry/equations_generated/lines_06.svg
+        .list-title.fragment
+            p Example: closest point to a line
+            .bottom-20.right-500
+                img.height-360(src=imgAssets+'lines.svg')
+            ul
+                li.fragment given 
+                    include ../../assets/space_geometry/equations_generated/lines_07.svg
+                    |, we need to find 
+                    include ../../assets/space_geometry/equations_generated/lines_08.svg
+                    |&nbsp;closest to 
+                    include ../../assets/space_geometry/equations_generated/lines_09.svg
+                li.fragment we compute the difference vector 
+                    include ../../assets/space_geometry/equations_generated/lines_10.svg
+                    |, then we project this onto 
+                    include ../../assets/space_geometry/equations_generated/lines_11.svg
+                    |&nbsp;to get 
+                    include ../../assets/space_geometry/equations_generated/lines_12.svg
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/lines_13.svg
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/lines_14.svg
++frameInbox('Rotation in 3D space')
+    .important-orange.text-center
+        img.height-750(src=imgAssets+'rotation.svg')
++frameInbox('Rotational representations')
+    .important-orange
+        .list-title.fragment
+            p Euler angles
+            ul
+                li.fragment Pitch, Yaw, Roll
+                li.upside.fragment simple, small size (3 floats), intuitive
+                li.downside.fragment the order in which the rotations are performed matters
+                li.downside.fragment gimbal lock issue - when a 90-degree rotation causes one axis to collapse onto another
+        .list-title.mt-80.fragment
+            p Axis + angle
+            ul
+                li.fragment axis of rotation plus a scalar for the angle of rotation 
+                    include ../../assets/space_geometry/equations_generated/rot_representations.svg
+                li.upside.fragment intuitive and compact
+                li.downside.fragment rotations cannot be easily interpolated
+                li.downside.fragment rotations cannot be applied to vectors directly
+            .bottom-0.right-0
+                img.height-300(src=imgAssets+'mass_effect_glitch.gif')
++frameInbox('Rotational representations')
+    .important-orange
+        .list-title.fragment
+            p Quaternions
+            .bottom-20.right-20
+                img.height-550(src=imgAssets+'quaternions.svg')
+            ul
+                li.fragment similar to axis + angle, but with an algebraic twist
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/quaternions_01.svg
+                li.fragment alternative form: 
+                    include ../../assets/space_geometry/equations_generated/quaternions_02.svg
+                li.fragment unit-length: 
+                    include ../../assets/space_geometry/equations_generated/quaternions_03.svg
+            .space-md
+            ul
+                li.fragment a unit quaternion can be visualised as a 3D vector + scalar
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/quaternions_04.svg
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/quaternions_05.svg
+        ul.mt-20
+            li.upside.fragment permits rotations to be concatenated and applied directly
+            li.upside.fragment permits rotations to be easily interpolated
+            li.downside.fragment can perform only one full rotation between keyframes
+        +tipKeen('Use Euler angles for fast rotation around one axis and quaternions for complex rotations around all axes').bottom-0.left-0
++frameInbox('Rotation in affine space')
+    .important-green
+        .list-title.fragment
+            p Rotation about a fixed point 
+                include ../../assets/space_geometry/equations_generated/affine_01.svg
+            ul
+                li.fragment move 
+                    include ../../assets/space_geometry/equations_generated/affine_01.svg
+                    |&nbsp;to the origin, rotate, move back
+                li.fragment
+                    include ../../assets/space_geometry/equations_generated/affine_02.svg
+                li.fragment post-multiply order -> right to left in the expresion and bottom to top in the code
+                li.fragment the origin of the object matters
+        .list-title.mt-10.fragment
+            p OpenGL example:
+            .code
+                include ../../assets/space_geometry/snippets_generated/rotation_opengl.html
+            .bottom-0.right-0
+                img.height-380(src=imgAssets+'rotation_affine.svg')

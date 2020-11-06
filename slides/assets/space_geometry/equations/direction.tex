@@ -1,0 +1,6 @@
+P, Q, rot
+\mathrm{lookAt} = (\cos{(\frac{\pi}{2}-rot)}, \sin{(\frac{\pi}{2}-rot)})
+\mathrm{lookAt'} = (Q-P)
+\mathrm{lookAt'_n} = \frac{\mathrm{lookAt'}}{|\mathrm{lookAt'}|}
+rot' = \mathrm{arccos}(\mathrm{lookAt'}\cdot\mathrm{lookAt'_n})
+rot' = rot - \mathrm{atan2}(lookAt'_x, lookAt'_y)

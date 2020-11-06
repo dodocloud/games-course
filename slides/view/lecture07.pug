@@ -1,0 +1,48 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_lightblue.jpg';
+
+
++header('NI-APH', 'Space', 'Adam Vesecký', themePath + 'resources/favicon.png', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 7', 'Space', 'color-azure-light')
+        +frameInbox('Literature')
+            ul
+                li
+                    a(href="https://www.amazon.com/Essential-Mathematics-Games-Interactive-Applications/dp/0123742978") Verth, Van. 2008. Essential Mathematics for Games and Interactive Applications
+                li
+                    a(href="https://www.amazon.com/Procedural-Generation-Design-Tanya-Short/dp/1498799191") Adams, Tarn & Short, Tanya X. 2017. Procedural Generation in Game Design 
+            .flex-cols-2
+                div.text-center
+                    img.height-500(src=globalAssets+'book_math_for_games.jpg')
+                div.text-center
+                    img.height-500(src=globalAssets+'book_procedural_generation.jpg')
+        include ./chapters/space_randomness.pug
+        include ./chapters/space_procedural.pug
+        include ./chapters/space_geometry.pug
+        include ./chapters/space_geometric_hashing.pug
+        include ./chapters/space_navigation.pug
+        +summary()
+            ul.leading-2xl
+                li.fragment I know what purpose can serve uniform and gaussian distributions
+                li.fragment I know what is a loot, spinning, rarity slotting and random encounter in games
+                li.fragment I know something about noise functions
+                li.fragment I know basic vector operations: addition, subtraction, magnitude, normalization, and dot product
+                li.fragment I know what quaternions and Euler angles are, and what use-cases they are good for
+                li.fragment I know basic structures for spatial partitioning: grid, quad-tree, oct-tree and BSP
+                li.fragment I know basic types of navigation graphs
+                li.fragment I know something about pathfinding algorithms, such as BFS, Dijkstra and A*
+        include ./chapters/bonus_doom.pug
+        +quote-arthas()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 7: Space')
+script(src!='../../scripts/reveal-setup.js')

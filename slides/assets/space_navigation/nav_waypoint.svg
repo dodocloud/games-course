@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="105.55mm" height="39.494mm" version="1.1" viewBox="0 0 105.55 39.494" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-78.008 -87.034)">
+  <path d="m144.19 87.167v39.229h39.229v-39.229zm19.615 4.7174 14.898 14.898-14.898 14.898-14.898-14.898z" fill="#1d232d" stroke="#7b8694" stroke-width=".26458"/>
+  <path d="m146.38 106.91 4.6183-12.971 12.772-4.8848 12.772 4.9347 5.0174 13.071-5.0673 12.273-12.722 5.1514-12.772-5.1514z" fill="none" stroke="#47d58a" stroke-width=".26458"/>
+  <g fill="#47d58a">
+   <ellipse cx="146.45" cy="106.99" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="163.77" cy="89.147" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="163.77" cy="124.46" rx="1.2223" ry="1.2223" stroke="#f6c9a0" stroke-width=".28222"/>
+   <ellipse cx="181.52" cy="106.99" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="151.07" cy="94.116" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="176.56" cy="94.116" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="151.07" cy="119.36" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="176.56" cy="119.36" rx="1.2223" ry="1.2223"/>
+   <ellipse cx="163.77" cy="124.46" rx="1.2223" ry="1.2223"/>
+  </g>
+  <g>
+   <path d="m78.14 87.167v39.229h39.229v-39.229zm19.614 4.7172 14.898 14.898-14.898 14.898-14.898-14.898z" fill="#1d232d" stroke="#7b8694" stroke-width=".26458"/>
+   <rect transform="rotate(-90)" x="-108.23" y="122.51" width="2.6811" height="12.277" fill="#47d58a"/>
+   <path transform="matrix(0 -.28222 .28222 0 -100.39 288.12)" d="m641.9 848.56-15.372-26.625h30.744z" fill="#47d58a"/>
+  </g>
+  <flowRoot transform="matrix(.28222 0 0 .28222 -168.51 -130.69)" fill="#e9e56f" font-family="sans-serif" letter-spacing="0px" stroke-width="1px" word-spacing="0px" style="line-height:0.01%" xml:space="preserve"><flowRegion><rect x="966.25" y="823.11" width="54.75" height="40" fill="#e9e56f"/></flowRegion><flowPara font-size="40px" style="line-height:1.25"> </flowPara></flowRoot>
+ </g>
+</svg>

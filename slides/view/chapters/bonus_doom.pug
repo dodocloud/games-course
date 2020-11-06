@@ -6,7 +6,124 @@ include ../mixins/containers_aph.pug
 
 // ===================================================== SLIDES =====================================================
 +mchapter('Story of Doom', imgAssets+'chapter_doom.svg')
-+frameInbox('Doom')
++frameInbox('Doom history')
 	div
 		ul
-			li mojo
+			li.fragment(data-fragment-index='1') 1974 - Mazewar, first FPS game
+			li.fragment(data-fragment-index='2') 1985 - raycasting invented (first game - Alternate Reality: The City)
+			li.fragment(data-fragment-index='3') 1988 - two skilled developers appeared - John Romero and John Carmack, focusing mainly on IBM PC
+			li.fragment(data-fragment-index='4') 1989 - IBM PC 486 was announced (IBM was still targetting office work)
+			li.fragment(data-fragment-index='5') 1991 - ID software founded by Adrian Carmack, John Carmack, Tom Hall, and John Romero
+			li.fragment(data-fragment-index='6') 1991 - first ID software game: Rescue Rover
+			li.fragment(data-fragment-index='7') 1992 - Wolfenstein 3D released
+		.flex-cols-4.mt-40
+			.fragment(data-fragment-index='3')
+				+floppyApp(imgAssets+'bongobash.jpg', 'Romero\'s <br> Bongo\'s Bash', '1985')
+			.fragment(data-fragment-index='3')
+				+floppyApp(imgAssets+'shadowforge.jpg', 'Carmack\'s<br> Shadowforge', '1989')
+			.fragment(data-fragment-index='3')
+				+floppyApp(imgAssets+'ddave.jpg', 'Romero\'s <br>Dangerous Dave', '1990')
+			.fragment(data-fragment-index='6')
+				+floppyApp(imgAssets+'rover.jpg', 'ID Software\'s <br>Rescue Rover', '1991')
++frameInbox('Doom history')
+	div
+		ul
+			li.fragment <span class="highlight">1993 - Doom 1 released</span>
+				ul
+					li shareware license, 3 episodes (+1 added later)
+			li.fragment <span class="highlight">1994 - Doom 2 released</span>
+				ul
+					li innovations: double-barreled shotgun, new enemies, megasphere powerup, larger maps
+			li.fragment 1996 - Final Doom released
+				ul
+					li new 32-level episodes, 640x480 resolution
+			li.fragment 1997 - Doom64 released
+				.bottom-0.right-20
+					figure
+						img.height-460(src=imgAssets+'doom64.jpg')
+						p Doom 64
+			li.fragment 1997 - source code released
+			li.fragment 2004 - Doom 3 released
+			li.fragment 2016 - Doom 4 released
+			li.fragment 2020 - Doom Eternal released
++frameInbox('Doom development')
+	div
+		ul
+			li.fragment developed on NEXT supercomputer at 1120x832 resolution
+			li.fragment recommended target hardware: Intel 80486DX2, SoundBlaster-compatible sound card, 4MB of RAM
+			li.fragment distribution: shareware, first episode for free
+		.text-center.mt-60.fragment
+			img.height-500(src=imgAssets+'next.jpg')
++frameInbox('Doom development timeline')
+	div
+		.text-center.mt-40
+			img.height-700(src=imgAssets+'timeline.svg')
++frameInbox('Architecture')
+	div
+		ul
+			li.fragment allocation of 4MB in a pool, divided into zones
+			li.fragment 3D renderer and six 2D renderers: intermissions, status bar, menu, HUD, automap, transition screen
+			li.fragment 8bit sound samples, 11025 Hz Mono, MIDI music
+			li.fragment sound propagation by flooding algorithm
+			li.fragment perspective correct, subpixel accurate texture mapping
+			li.fragment Bruce Naylor's binary space partitioning
+			li.fragment collision detection on 128x128 axis-aligned map blocks
+			li.fragment no scripting language, FSM-based AI baked into engine library
+			li.fragment more than 130 action types: open/close door, raise/lower floor
+			li.fragment UDP port 666 for networking
+		.bottom-0.right-0
+			img.height-450(src=imgAssets+'doom_rendering.gif')
++frameInbox('Features and legacy')
+	div
+		.list-title.fragment
+			p Features
+			ul
+				li.fragment angled walls and halls that darken in the distance
+				li.fragment locked doors, hidden ambushes, secret chambers, each level builds on the complexity
+				li.fragment black-white mode - predecessor of shadering techniques
+				li.fragment level design by John Romero and Sandy Petersen (their style is clearly distinguishable)
+				li.fragment resourceful enemy menagerie
+				li.fragment different difficulties -> different enemies, light settings, appearance of medkits etc.
+				li.fragment action-based movement - key element of all DOOM games
+		.list-title.fragment
+			p Legacy
+			ul
+				li.fragment rise of PC games
+				li.fragment rise of modding community
+				li.fragment competitive FPS deathmatch
+				li.fragment importance of level design
++mcontainer
+	+frameShard().top-15p.fragment.fade-up
+		+quote('There are often tradeoffs that can be made that gets you a significant advantage in exchange for limitations that you can cover up with good design.', 'John Carmack').text-xl
+	+frameShard().top-25p.fragment.fade-up
+		+quote('We didn\' challenge ourselves like that before DOOM, nor after it. 1993 was the only year we challenged ourselves to create a game that was as good as anything we could have imagined.', 'John Romero').text-xl
++frameInbox('Doom runs everywhere')
+	.top-50.left-340.fragment
+		img.height-300(src=imgAssets+'doom_applewatch.jpg')
+	.top-0.left-0.fragment
+		img.height-400(src=imgAssets+'doom_ipod.jpg')
+	.top-0.right-0.fragment
+		img.height-400(src=imgAssets+'doom_tester.jpg')
+	.top-220.right-500.fragment
+		img.height-400(src=imgAssets+'doom_pocketbook.jpg')
+	.bottom-0.right-0.fragment
+		img.height-300(src=imgAssets+'doom_cashdesk.jpg')
+	.bottom-0.left-0.fragment
+		img.height-400(src=imgAssets+'doom_in_doom.jpg')
+	.bottom-0.right-550.fragment.tip
+		img.height-300(src=globalAssets+'memes/doom.jpg')
++frameInbox('Doom mods')
+	div.center
+		.grid.grid-cols-2.grid-rows-2.gap-10
+			figure.fragment
+				img.height-350(src=imgAssets+'overdoom.gif')
+				p OverDOOM
+			figure.fragment
+				img.height-350(src=imgAssets+'ashes2063.jpg')
+				p Ashes 2063
+			figure.fragment
+				img.height-350(src=imgAssets+'going_down.jpg')
+				p Going Down
+			figure.fragment
+				img.height-350(src=imgAssets+'brutaldoom.jpg')
+				p Brutal Doom

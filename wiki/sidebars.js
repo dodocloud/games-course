@@ -35,7 +35,7 @@ module.exports = {
 		{
 			label: 'Cheatsheets',
 			type: 'category',
-			items: ['cheatsheets/javascript', 'cheatsheets/typescript']
+			items: ['cheatsheets/datastruct', 'cheatsheets/javascript', 'cheatsheets/typescript']
 		},
 		{
 			label: 'Tutorials',

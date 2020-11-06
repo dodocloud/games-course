@@ -106,6 +106,10 @@ const config = {
 							label: 'Lecture 6: Audio',
 							href: url + '/slides/lecture06.html',
 						},
+						{
+							label: 'Lecture 7: Space',
+							href: url + '/slides/lecture07.html',
+						},
 					]
 				},
 				{
