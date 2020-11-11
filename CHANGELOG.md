@@ -6,6 +6,10 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.7.2] - 2020-11-11
+### Added
+- Assets for new tutorials
+
 ## [4.7] - 2020-11-06
 ### Added
 - Slides for Lecture 07
