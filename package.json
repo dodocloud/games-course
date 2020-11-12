@@ -13,8 +13,9 @@
     "serve-examples": "parcel examples/view/*.html examples/view/*.pug --out-dir build_examples",
     "prebuild-examples": "node scripts/prebuild-examples.js",
     "deploy-examples": "npm run prebuild-examples && parcel build examples/view/*.html examples/view/*.pug --out-dir build_examples --public-url PUBLICURL --no-cache --no-source-maps && node scripts/fix-links.js",
+    "export-examples": "parcel build examples/src/examples.ts --no-content-hash --no-source-maps --out-dir build_examples",
     "clean-repo": "node scripts/clean-repo.js",
-    "deploy-all": "npm run deploy-examples && npm run deploy-slides && node scripts/copy_materials.js && cd wiki && npm run build && cd ..",
+    "deploy-all": "npm run deploy-examples && npm run export-examples && npm run deploy-slides && node scripts/copy_materials.js && cd wiki && npm run build && cd ..",
     "lint": "eslint ./src ./libs --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {

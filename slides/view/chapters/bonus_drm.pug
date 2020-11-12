@@ -1,0 +1,102 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_drm/';
+- var defaultBgr = 'backgrounds/bgr_drm.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('DRM', imgAssets+'chapter_drm.svg')
++frameInbox('DRM')
+    div
+        ul
+            li.fragment Digital Rights Management
+            li.fragment method that controls access to copyrighted material protected by IP
+            li.fragment tied to marketed products, not to the copyright law
+            li.fragment main purpose: to prevent people from copying or sharing a game, sometimes even <span class="highlight-2">playing a single-player game without an internet connection</span>
+        .text-center.fragment
+            img.height-500(src=imgAssets+'error37.jpg')
++frameInbox('History of DRM')
+    div
+        .list-title.fragment
+            p On-disk copy protection
+            ul
+                li.fragment intentionally bad sectors, odd address markers,...
+                li.fragment dummy Files, oversized CDs, SafeDisc protection
+        .list-title.fragment
+            p Off-disk copy protection
+            ul
+                li.fragment <span class="highlight-2">Code Wheel</span>
+                    ul
+                        li you need a wheel and holes
+                    .top-80.right-80
+                        img.height-300(src=imgAssets+'code_wheel.png')
+                    .top-200.right-300
+                        img.height-300(src=imgAssets+'codewheel_another.png')
+                li.fragment <span class="highlight-2">Code Sheet</span>
+                    ul
+                        li look up at something in the manual
+                        li printed in such a way that it can't be copied by a copy machine
+                    .top-350.right-100
+                        img.height-300(src=imgAssets+'code_sheet.jpg')
+                l.fragment <span class="highlight-2">Lenslook</span>
+                    .bottom-20.right-10
+                            img.height-400(src=imgAssets+'lenslook.jpg')
+                li.fragment <span class="highlight-2">Serial Numbers and Keys</span>
++frameInbox('History of DRM')         
+    div
+        .list-title.fragment
+            p Activation codes
+            ul
+                li only a few installations are possible
+            .bottom-200.right-30
+                img.height-300(src=imgAssets+'activation_code.png')
+        .list-title.fragment
+            p 3rd party DRM
+            ul
+                li SecuROM (CD/DVD protection) - BioShock, Mass Effect, Dragon Age II
+                li FADE (Operation Flashpoint, ARMA 3)
+                li Denuvo (Sonic Mania, Devil May Cry 5)
+        .list-title.fragment
+            p Retail services combined with DRM
+            ul
+                li Steam
+        .list-title.fragment
+            p Constant Internet Connection DRM
+            ul
+                li you can't play your game without the internet
+        .list-title.fragment
+            p Spoiled Gameplay 
+            ul
+                li the game finds out if it's an illegal copy and begins to humiliate the player
++frameInbox('Spoiled gameplay')
+    div
+        ul
+            li.fragment the game finds out if it has been copied
+            li.fragment gameplay starts getting worse and worse
+            li.fragment sometimes, weird assets show up
+        .space-md
+        .text-center.fragment
+            img.height-550(src=imgAssets+'spyro_psx.jpg')
++frameInbox('Cracktro')
+    div
+        ul
+            li.fragment(data-fragment-index='1') originated in 80's with Commodore computers
+            li.fragment(data-fragment-index='2') groups and parties that create cracked games, attached their signatures in a form of artistic assets
+                ul
+                    li.fragment(data-fragment-index='3') ASCII art, tracker music, intros
+                    li.fragment(data-fragment-index='4') spilled over into demoscene
+        .bottom-150.left-40.fragment(data-fragment-index='3')
+            img.height-400(src=imgAssets+'hybrid.gif')
+        .bottom-0.left-300.fragment(data-fragment-index='3')
+            img.height-400(src=imgAssets+'c64_cracktro.jpg')
+        .bottom-60.left-800.fragment(data-fragment-index='5')
+            img.height-500(src=imgAssets+'fairlight.png')
+        .bottom-0.right-40.fragment(data-fragment-index='6')
+            img.height-400(src=imgAssets+'kc_codex.jpg')
++frameInbox('Literature about IP')
+    div
+        ul
+            li
+                a(href="https://www.amazon.com/Video-Game-Law-Everything-Business-ebook/dp/B07F41MKBX") Boyd, Gregory. 2018. Video Game Law: Everything you need to know about Legal and Business Issues in the Game Industry
+        div.text-center
+            img.height-650(src=imgAssets+'videogamelaw.jpg')

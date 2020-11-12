@@ -1,20 +1,9 @@
 import * as PIXI from 'pixi.js';
+import { PIXIExample } from '../utils/APHExample';
 
-export class TextExample extends PIXI.Application {
+export class Text extends PIXIExample {
 
-	constructor(view: HTMLCanvasElement) {
-        super({
-			view,
-			backgroundColor: 0x000000,
-			width: view.clientWidth,
-			height: view.clientHeight,
-        });
-
-        this.init();
-		this.ticker.add(deltaTime => this.update(deltaTime));
-	}
-
-	init() {
+	load() {
         // TODO put your code here
         // 1) define PIXI.TextStyle
         // 2) create PIXI.Text object
@@ -26,5 +15,3 @@ export class TextExample extends PIXI.Application {
         // TODO put your code here
     }
 }
-
-new TextExample(<HTMLCanvasElement>document.getElementById('gameCanvas'));

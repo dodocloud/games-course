@@ -83,7 +83,7 @@ export default class Engine {
 		this.config.debugEnabled = this.config.debugEnabled || /[?&]debug/.test(location.search);
 
 		// do not resize to screen if debug window is on
-		this.config.resizeToScreen = this.config.resizeToScreen && !this.config.debugEnabled;
+		this.config.resizeToScreen = (this.config.resizeToScreen || /[?&]responsive/.test(location.search)) && !this.config.debugEnabled;
 
 		this.virtualWidth = this.config.width || canvas.width;
 		this.virtualHeight = this.config.height || canvas.height;

@@ -33,6 +33,30 @@ module.exports = {
 			type: 'doc'
 		},
 		{
+			label: 'Examples',
+			type: 'category',
+			items: [{
+				label: 'Pixi Introduction',
+				type: 'category',
+				items: ['examples/pixi-intro/config', 'examples/pixi-intro/animation']
+			},
+			{
+				label: 'Components',
+				type: 'category',
+				items: ['examples/components/squares', 'examples/components/animation']
+			},
+			{
+				label: 'Space',
+				type: 'category',
+				items: ['examples/space/random-dist', 'examples/space/pathfinding', 'examples/space/perlin', 'examples/space/quadtree']
+			},
+			{
+				label: 'Other',
+				type: 'category',
+				items: ['examples/other/perfect-hit-test']
+			}]
+		},
+		{
 			label: 'Cheatsheets',
 			type: 'category',
 			items: ['cheatsheets/datastruct', 'cheatsheets/javascript', 'cheatsheets/typescript']

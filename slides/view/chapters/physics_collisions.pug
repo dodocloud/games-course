@@ -1,0 +1,368 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/physics_collisions/';
+
++mchapter('Collision Detection', imgAssets+'chapter_collisions.svg')
++frameInbox('Collision Detection')
+    .important-green
+        .list-title.fragment
+            p Steps
+            ul
+                li.fragment positions for the next frame are determined
+                li.fragment a spatial data structure finds collision candidates
+                li.fragment collision candidates are filtered out into a set of real collision pairs
+                li.fragment collisions are resolved by the <span class="highlight-2">collision resolver</span>, by applying impulses or penalty forces
+                li.fragment constraints are satisfied by the <span class="highlight-2">constraint resolver</span>
+        .list-title.fragment
+            p Collidable entities
+            ul
+                li.fragment we need to provide a collision representation for each object
+                li.fragment simple shapes are preferred (a car might be modelled as a rectangle)
+                li.fragment more-complex shapes should only be used when the simples ones provide inadequate information to achieve the desired behavior
+                li.mt-40.fragment if collidable entities don't overlap, no more testing is required
+                li.fragment if they do overlap, more refined testing is required
++frameInbox('Example: Unity Interaction Matrix')
+    div
+        table
+            tr
+                th
+                th.align-middle Static Collider
+                th.align-middle Rigidbody Collider
+                th.align-middle Kinematic Rigidbody Collider
+                th.align-middle Static Trigger Collider
+                th.align-middle Rigidbody Trigger Collider
+                th.align-middle Kinematic Rigidbody Trigger Collider
+            tr.text-center
+                td Static Collider
+                td
+                td.highlight collision
+                td
+                td
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+            tr.text-center
+                td Rigidbody Collider
+                td.highlight collision
+                td.highlight collision
+                td.highlight collision
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+            tr.text-center
+                td Kinematic Rigidbody Collider
+                td
+                td.highlight collision
+                td
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+            tr.text-center
+                td Static Trigger Collider
+                td
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+            tr.text-center
+                td Rigidbody Trigger Collider
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+            tr.text-center
+                td Kinematic Rigidbody Trigger Collider
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
+                td.highlight-2 trigger
++frameInbox('Primitives')
+    .important-orange
+        .list-title.fragment
+            p Sphere
+            ul
+                li.fragment center point and radius (4 numbers for 3D)
+        .list-title.fragment
+            p Capsule
+            ul
+                li.fragment 2D: rectangle and two circles
+                li.fragment 3D: cylinder and two hemispherical end-caps
+                li.fragment representation: two points and radius
+            .text-center
+                img.height-120(src=imgAssets+'primitives_capsule.svg')
+        .list-title.fragment
+            p AABB
+            ul
+                li.fragment axis-aligned bounding box
+                li.fragment rectangular volume (cuboid) whose faces are parallel to the axes of the coordinate system
+                li.upside.fragment very efficient test for penetration
+                li.downside.fragment AABB must be recalculated whenever the object rotates
++frameInbox('Primitives')
+    .important-orange
+        .list-title.fragment
+            p OBB
+            ul
+                li.fragment oriented bounding box
+                li.fragment defined by a position, half-extents and orientation
+                li.fragment commonly used
+            .top-50.right-100
+                img.width-350(src=imgAssets+'primitives_obb.svg')
+        .list-title.fragment
+            p k-DOP
+            ul
+                li.fragment discrete oriented polytope
+                li.fragment more general case of AABB and OBB
+                li.fragment approximates the shape of an object
+            .top-350.right-100
+                img.width-350(src=imgAssets+'primitives_kdop.svg')
+        .list-title.fragment
+            p Convex volume
+            ul
+                li.fragment more general shape
+                li.fragment must be convex
+                li.fragment expensive for intersection test
+            .top-630.right-100
+                img.width-350(src=imgAssets+'primitives_convex.svg')
++frameInbox('Primitives')
+    .important-green
+        .list-title.fragment
+            p Poly Soup
+            ul
+                li.fragment used to model complex static geometry (terrain)
+                li.fragment very expensive kind of collision test
+            .top-80.right-200
+                img.height-200(src=imgAssets+'primitives_polysoup.svg')
+        .list-title.fragment
+            p Compound shapes
+            ul
+                li.fragment more efficient alternative to a poly-soup
+                li.fragment the system first tests bounding volumes of compound shapes
+            .top-280.right-100
+                img.height-170(src=imgAssets+'primitives_compound.svg')
+        .list-title.fragment
+            p Convex hull
+            ul
+                li.fragment smallest convex volume containing the object
+            .top-480.right-250
+                img.height-150(src=imgAssets+'primitives_convexhull.svg')
+        .list-title.fragment
+            p Complex shape/volume
+            ul
+                li.fragment not necessarily convex
+                li.fragment simplified mesh/sprite
+                li.fragment needs preprocessing (BSP)
+            .top-650.right-240
+                img.height-180(src=imgAssets+'primitives_complex.svg')
++frameInbox('Comparison')
+    .important-green
+        .text-center
+            img.height-760(src=imgAssets+'primitives_comparison.svg')
+        .top-310.left-60
+            img.width-1510(src=imgAssets+'primitives_comparison.png')
++frameInbox('Collisions in 2D games')
+    .important-green
+        ul
+            li.fragment even side-scrollers need compound objects
+            li.fragment simple AABB collision will not work for irregular sprites
+        .space-xl
+        .text-center
+            img.height-450(src=imgAssets+'bad overlapping.png')
++frameInbox('Looking for collision candidates')
+    .important-green
+        .list-title.fragment
+            p Naive solution
+            ul
+                li.fragment each pair
+                li.fragment
+                    include ../../assets/physics_collisions/equations_generated/collision_detection_01.svg
+                    |&nbsp;-> 10 objects result in 100 checks, 100 in 10 000 etc.
+        .list-title.fragment
+            p Quad-tree
+            ul
+                li.fragment efficiency is 
+                    include ../../assets/physics_collisions/equations_generated/collision_detection_02.svg
+                    |, since the index takes about 
+                    include ../../assets/physics_collisions/equations_generated/collision_detection_03.svg
+                    |&nbsp;comparisons to traverse
+                li.fragment good for point-like small objects
+                li.fragment worst case: 
+                    include ../../assets/physics_collisions/equations_generated/collision_detection_04.svg
+        .list-title.fragment
+            p Sweep and Prune
+            ul
+                li.fragment sorts the starts (lower bounds) and ends (upper bound) of bounding volumes of each solid along a number of axes
+        .list-title.fragment
+            p BSP
+            ul
+                li.fragment binary space partitioning, good for complex static geometries (buildings)
+        .list-title.fragment
+            p Grid, Oct-tree, R-tree, R+tree, R*tree, X-tree, M-tree,...
++frameInbox('Resolving collision candidates')
+    .important-green
+        .list-title.fragment
+            p Sphere-Sphere
+            ul
+                li.fragment
+                    include ../../assets/physics_collisions/equations_generated/resolving_candidates_01.svg
+                    |, where 
+                    include ../../assets/physics_collisions/equations_generated/resolving_candidates_02.svg
+                    |&nbsp;is a central point
+        .list-title.fragment
+            p Sphere-ray
+            ul
+                li.fragment we just test the distance between a single sphere center and a ray
+        .list-title.fragment
+            p AABB-AABB
+            ul
+                li.fragment test the borders
+        .list-title.fragment
+            p AABB-Ray
+            ul
+                li.fragment intervals 
+                    include ../../assets/physics_collisions/equations_generated/resolving_candidates_03.svg
+                    |&nbsp;and 
+                    include ../../assets/physics_collisions/equations_generated/resolving_candidates_04.svg
+                    |&nbsp;mustn't overlap
+            .text-center
+                img.height-300(src=imgAssets+'aabb_ray.svg')
++frameInbox('Resolving collision candidates')
+    .important-green
+        .list-title.fragment
+            p Capsules
+            ul
+                li.fragment <span class="highlight-2">capsule-capsule</span> - calculate the distance between two line segments
+                li.fragment <span class="highlight-2">capsule-ray</span> - find the distance between a ray and a line segment
+        .list-title.fragment
+            p OBB-OBB
+            ul
+                li.fragment axis-separating theorem by Gottschalk
+        .list-title.fragment
+            p Triangles
+            ul
+                li.fragment <span class="highlight-2">triangle-triangle</span> - compute the plane equation and test each point if it lies on the same side
+                li.fragment <span class="highlight-2">triangle-ray</span> - Möller's affine combination
+            .text-center
+                img.height-300(src=imgAssets+'triangles.svg')
++frameInbox('SAT')
+    .important-orange
+        .list-title.fragment
+            p SAT (separating axis theorem)
+            ul
+                li.fragment based on collection of intersection tests
+                li.fragment if an axis can be found along which the projection of two <span class="highlight-2">convex</span> shapes do not overlap, then the two shapes do not intersect
+                li.fragment for 2D: AABB 2 axes, OBB 4 axes
+                li.fragment for 3D: AABB 3 axes, OBB 15 axes
+            .bottom-0.right-50
+                img.height-600(src=imgAssets+'sat.svg')
+        .list-title.fragment
+            p Other methods
+            ul
+                li.fragment GJK, Line Sweep, Sphere test
++frameInbox('SAT Example')
+    div
+        ul
+            li AABB in 2D: only 2 axis to test
+        .text-center
+            img.height-700(src=imgAssets+'sat_aabb.svg')
++frameInbox('Tunneling problem')
+    .important-orange
+        .list-title.fragment
+            p Stepped world
+            ul.leading-md
+                li.fragment time steps vary based on occurring situation
+                li.fragment collision time is calculated by doing binary search in time, moving object back and forth by 1/2 steps (5 iterations is usually enough)
+            .text-center
+                img.height-230(src=imgAssets+'stepped_world.svg')
+        .list-title.mt-10.fragment
+            p Continuous Collision Detection (CCD)
+            ul.leading-md
+                li.fragment uses <span class="highlight-2">Swept Shapes</span> technique
+                li.fragment a new shape is formed by the motion of the original one
+                li.fragment rotating shapes may result in shapes that aren't convex
+            .text-center
+                img.height-160(src=imgAssets+'ccd.svg')
++frameInbox('Collision queries')
+    .important-green
+        .list-title.fragment
+            p Queries:
+            ul
+                li.fragment find the first target the bullet hits
+                li.fragment can the camera move without interpenetrating the wall?
+                li.fragment find all objects within a given radius
+        .list-title.fragment
+            p Ray casting
+            ul
+                li.fragment any game is going to need a good raycaster
+                li.fragment the cast line segment is tested against the collidable objects in the collision world; if it intersects any of them, the contact point is returned
+                li.fragment weapon systems, player mechanics, AI systems, vehicle systems, line-of-sight
+                li.fragment in addition, used in 80's and 90's for pseudo-3D rendering, nowadays is being replaced by raytracing
+        .list-title.fragment
+            p Shape casting
+            ul
+                li.fragment how far a shape would be able to travel along a directed line segment before it hits something
+                li.fragment <span class="highlight-2">sphere casts</span> - e.g. to determine whether the camera is in a collision
+                li.fragment <span class="highlight-2">capsule casts</span> - e.g. character movement on uneven terrain
++frameInbox('Collision response')
+    .important-green
+        p.highlight-2.fragment How to respond to a collision?
+        .list-title.fragment
+            p Explosion
+            ul.leading-md
+                li.fragment adding energy to a system of rigid bodies
+        .list-title.fragment
+            p Fracturing
+            ul.leading-md
+                li.fragment breaking objects apart
+        .list-title.fragment
+            p Restitution
+            ul.leading-md
+                li.fragment amount of bounce an object has when it hits something
+        .list-title.fragment
+            p Impulsive response
+            ul.leading-md
+                li.fragment when two bodies collide, they compress slightly and then rebound, changing their velocities, losing energy
+        .list-title.fragment
+            p Friction
+            ul.leading-md
+                li.fragment force that arises between two bodies that are in continuous contact, resisting their movement relative to one another
+                li.fragment removes energy from a system of rigid bodies
+                li.fragment static, dynamic, rolling
+        .top-40.right-40
+            img.height-400(src=imgAssets+'animation_2.gif')
++frameInbox('Collision Resolver')
+    .important-green
+        .list-title.fragment
+            p Collision Resolving
+            ul
+                li.highlight-2.fragment LCP - Linear Complementarity Problem
+                li.fragment very complex numeric algorithms
+                li.fragment resolvers: PGS, Dantzig solver, Lemke method, Jacobi method
+        .list-title.fragment
+            p Coming to rest
+            ul
+                li.fragment all objects lose energy, leading to eventual rest
+                li.fragment not simple (floating-point error, inaccuracies, numerical instability)
+                    ul
+                        li.fragment
+                            span.highlight-2 sleep criteria
+                            ul
+                                li.fragment momentum or energy are below a threshold
+                        li.fragment
+                            span.highlight-2 simulation islands
+                            ul
+                                li.fragment grouping objects that either are interacting or have a potential to interact
+        .text-center
+            img.height-150(src=imgAssets+'physics_02.png')
+        .top-100.right-50.fragment
+                figure
+                    img.height-200(src=imgAssets+'platformers.svg')
+                    p Common issue of simple resolvers
++frameInbox('Sleeping Objects')
+    div
+        .text-center
+            img.height-750(src=imgAssets+'sleeping_objects.svg')

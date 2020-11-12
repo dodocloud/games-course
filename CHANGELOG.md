@@ -6,6 +6,11 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.8] - 2020-11-13
+### Added
+- New examples for Space
+- Slides for Lecture 08
+
 ## [4.7.2] - 2020-11-11
 ### Added
 - Assets for new tutorials

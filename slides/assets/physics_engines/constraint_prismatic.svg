@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86.982" height="142.93" version="1.1" viewBox="0 0 23.014 37.816" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-139.77 -75.898)">
+  <g transform="matrix(0 -.41424 .41424 0 -359.97 152.69)" stroke="#7b8694" stroke-width=".63872">
+   <g fill-rule="evenodd">
+    <path d="m119.06 1216.4 1.2816 37.035 26.605-10.386-0.26517-31.599z" fill="#2f3744"/>
+    <path d="m94.443 1210.3 24.484 5.8778 1.3312 37.163-24.135-13.254z" fill="#121824"/>
+    <path d="m94.344 1210.2 25.069-3.4806 27.454 4.6608-27.94 4.8409z" fill="#1d232d"/>
+    <path d="m125.69 1222.8 42.312 10.938-0.75 27.75-40.812-17.5z" fill="#121824"/>
+    <path d="m168.19 1233.9-0.57812 27.5 16.078-8.25 0.9375-24.688z" fill="#2f3744"/>
+    <path d="m168.19 1234.1 16.062-5.8125-42.312-9.4375-16.359 3.9062z" fill="#1d232d"/>
+   </g>
+   <path d="m152.56 1216.4 26.75 6.3125" fill="none"/>
+  </g>
+  <g transform="matrix(.00075034 -.0035078 .0035678 .00076318 145.45 78.747)" fill="#e8eaec" stroke-width="201.8">
+   <g fill="#e8eaec" stroke-width="201.8">
+    <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#e8eaec" stroke-width="201.8"/>
+   </g>
+  </g>
+  <g transform="matrix(.0033995 -.001145 .0011646 .0034577 142.9 88.685)" fill="#e8eaec" stroke-width="201.8">
+   <g fill="#e8eaec" stroke-width="201.8">
+    <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#e8eaec" stroke-width="201.8"/>
+   </g>
+  </g>
+ </g>
+</svg>

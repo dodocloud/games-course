@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64.236" height="133.09" version="1.1" viewBox="0 0 16.996 35.214" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-115.7 -68.566)">
+  <g fill="#1d232d" stroke-width=".26458">
+   <path d="m124.09 96.393v-25.243" stroke="#a6aeb8"/>
+   <rect x="121.78" y="68.698" width="4.6883" height="4.6883" stroke="#7b8694" stroke-linecap="round"/>
+   <circle cx="124.09" cy="96.393" r="3.8835" stroke="#7b8694" stroke-linecap="square" stroke-linejoin="round" style="paint-order:normal"/>
+  </g>
+  <path d="m131.68 101.28c-0.4131 0.46463-1.0109 0.88304-1.7495 1.2344-0.73866 0.35139-1.6182 0.63577-2.5949 0.83227-0.97668 0.19651-2.0505 0.30517-3.1776 0.30517-1.1272 0-2.201-0.10866-3.1776-0.30517-0.97668-0.1965-1.8562-0.48088-2.5949-0.83227-0.73866-0.35137-1.3364-0.76978-1.7495-1.2344" fill="none" stroke="#a6aeb8" stroke-linecap="square" stroke-linejoin="round" stroke-width=".26458" style="paint-order:normal"/>
+  <g transform="matrix(.0023207 -.0027353 .0027821 .0023605 130.64 100.99)" fill="#e8eaec" stroke-width="201.8">
+   <g fill="#e8eaec" stroke-width="201.8">
+    <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#e8eaec" stroke-width="201.8"/>
+   </g>
+  </g>
+  <g transform="matrix(-.0023207 -.0027353 -.0027821 .0023605 117.75 100.99)" fill="#e8eaec" stroke-width="201.8">
+   <g fill="#e8eaec" stroke-width="201.8">
+    <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#e8eaec" stroke-width="201.8"/>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -1,24 +1,12 @@
 import * as PIXI from 'pixi.js';
+import { PIXIExample } from '../utils/APHExample';
 
-
-export class ParticlesExample extends PIXI.Application {
+export class Particles extends PIXIExample {
 	container: PIXI.ParticleContainer;
 
 	private static particlesNum = 250;
 
-	constructor(view: HTMLCanvasElement) {
-        super({
-			view,
-			backgroundColor: 0x000000,
-			width: view.clientWidth,
-			height: view.clientHeight,
-		});
-
-		this.init();
-		this.ticker.add(deltaTime => this.update(deltaTime));
-	}
-
-	init() {
+	load() {
         // TODO put your code here
         // 1) create PIXI.ParticleContainer
         // 2) load assets/02-pixi-intro/ghost.png
@@ -26,9 +14,7 @@ export class ParticlesExample extends PIXI.Application {
         // 4) in the update loop, rotate the particles
 	}
 
-	update(deltaTime: number) {
+	update(delta: number) {
 		// TODO put your code here
 	}
 }
-
-new ParticlesExample(<HTMLCanvasElement>document.getElementById('gameCanvas'));

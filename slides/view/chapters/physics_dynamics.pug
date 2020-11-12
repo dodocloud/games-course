@@ -1,0 +1,270 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/physics_dynamics/';
+
++mchapter('Dynamics', imgAssets+'chapter_dynamics.svg')
++frameInbox('Terms')
+    .important-green
+        ul
+            li.fragment.fade-up <span class="highlight">Kinematics</span> - determines motion of objects without reference to forces
+            li.fragment.fade-up <span class="highlight">Dynamics</span> - determines how objects interact under the influence of forces
+            li.fragment.fade-up <span class="highlight">Time</span> - a continuous progress of events, measured in seconds
+            li.fragment.fade-up <span class="highlight">Mass</span> - a scalar quantity measured in kilograms
+            li.fragment.fade-up <span class="highlight">Position</span> - a point or an area occupied by an object
+            li.fragment.fade-up <span class="highlight">Velocity</span> - the rate of change of distance over time
+            li.fragment.fade-up <span class="highlight">Acceleration</span> - the rate of change of velocity over time
+            li.fragment.fade-up <span class="highlight">Force</span> - an action exerted upon a body in order to change its state
+        .text-center.mt-20.fragment.fade-up
+            img.height-280(src=imgAssets+'dynamics_forces.svg')
+        +tipKeen2('Most engines use MKS units (meters, kilograms, seconds) and radians for angles.').bottom-0.left-0
++frameInbox('Dynamics')
+    .important-green
+        .list-title
+            p.fragment Linear Dynamics
+            ul
+                li.fragment we ignore all rotational effects
+                li.fragment position can be described by a position vector 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_01.svg
+                li.fragment
+                    span.highlight-2 velocity: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_02.svg
+                li.fragment
+                    span.highlight-2 acceleration: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_03.svg
+                li.fragment
+                    span.highlight-2 net force: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_04.svg
+                li.fragment
+                    span.highlight-2 Newton's second law: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_05.svg
+                li.fragment
+                    span.highlight-2 linear momentum: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_06.svg
+        .list-title.fragment
+            p Angular dynamics
+            ul
+                li.fragment
+                    span.highlight-2 angular velocity: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_07.svg
+                li.fragment
+                    span.highlight-2 angular acceleration: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_08.svg
+                li.fragment
+                    span.highlight-2 torque: 
+                    include ../../assets/physics_dynamics/equations_generated/dynamics_09.svg
+                    |, caused by a force applied to a location
+            .top-30.right-30
+                img.height-350(src=imgAssets+'angry_birds.gif')
+            .bottom-220.right-30
+                img.height-250(src=imgAssets+'dynamics_hammer.svg')
+            .bottom-30.right-30.fragment
+                div.width-600.text-center.italic Any physical behavior of the object can be decomposed into the linear motion of the center of mass and the angular motion around the same point
++frameInbox('Newton\'s Laws')
+    .important-green
+        .list-title.fragment
+            p Lex I
+            ul
+                li A body will remain at rest or continue to move in a straight line at a constant speed unless acted upon by a force.
+        .list-title.mt-40.fragment
+            p Lex II
+            ul
+                li The acceleration of a body is proportional to the resultant force acting on the body and is in the same direction as the resultant force.
+        .list-title.mt-40.fragment
+            p Lex III
+            ul
+                li When one body exerts a force on a second body, the second body exerts an equal force with opposite direction on the first body.
+    +tipKeen('In most games, Newton\'s laws don\'t apply to trees').bottom-0
++frameInbox('Motion')
+    .important-orange
+        .list-title.fragment
+            p Projectile motion
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_01.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_02.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_03.svg
+            .top-30.right-150
+                img.width-700(src=imgAssets+'motion_projectile.svg')
+        .space-xl
+        .list-title.fragment
+            p Slope motion (no friction)
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_04.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_05.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/motion_06.svg
+            .bottom-150.right-250
+                img.width-450(src=imgAssets+'motion_force.svg')
++frameInbox('Motion')
+    .important-green
+        .list-title.fragment
+            p Mass-Spring Motion
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/spring_01.svg
+                li.fragment Hook's Law: 
+                    include ../../assets/physics_dynamics/equations_generated/spring_02.svg
+                    ul
+                        li.fragment
+                            include ../../assets/physics_dynamics/equations_generated/spring_03.svg 
+                            |&nbsp;is the spring constant 
+                            include ../../assets/physics_dynamics/equations_generated/spring_04.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/spring_05.svg 
+            .top-50.right-60
+                img.height-750(src=imgAssets+'spring_motion.svg')
+            .bottom-0.left-0
+                img.height-500(src=imgAssets+'springs.png')
++frameInbox('Equations of motion')
+    div
+        ul
+            li.fragment finding 
+                include ../../assets/physics_dynamics/equations_generated/equations_of_motion_01.svg
+                |, given knowledge of 
+                include ../../assets/physics_dynamics/equations_generated/equations_of_motion_02.svg
+            li.fragment vertical motion under the influence of gravity
+                ul
+                    li.fragment
+                        include ../../assets/physics_dynamics/equations_generated/equations_of_motion_03.svg
+                    li.fragment
+                        include ../../assets/physics_dynamics/equations_generated/equations_of_motion_04.svg
+                    li.fragment
+                        include ../../assets/physics_dynamics/equations_generated/equations_of_motion_05.svg
+            li.mt-40.fragment <span class="highlight">moving with variable acceleration</span>
+                ul
+                    li.fragment drag force: 
+                        include ../../assets/physics_dynamics/equations_generated/equations_of_motion_06.svg
+                    li.fragment a simple approximation to air friction (the faster we go, the greater the friction force)
+                    li.fragment how to handle this: derive a function for velocity
+                        ul
+                            li.fragment
+                                include ../../assets/physics_dynamics/equations_generated/equations_of_motion_07.svg
+                            li.fragment
+                                include ../../assets/physics_dynamics/equations_generated/equations_of_motion_08.svg
+                    li.fragment too difficult - with any change of any force, we would need to modify the simulation code
+                    li.highlight.fragment analytical solutions are almost never possible in game physics
+            .top-10.right-10
+                img.height-400(src=imgAssets+'besiege.gif')
++frameInbox('Numerical integration')
+    div
+        .flex-cols-2
+            div
+                ul
+                    li.fragment <span class="highlight">Conditions:</span>
+                    ul
+                        li.fragment we know an initial value of the function:
+                            include ../../assets/physics_dynamics/equations_generated/numerical_integration_01.svg
+                        li.fragment we know the derivatives 
+                            include ../../assets/physics_dynamics/equations_generated/numerical_integration_02.svg
+                        li.fragment we know the time interval 
+                            include ../../assets/physics_dynamics/equations_generated/numerical_integration_03.svg
+                    li.fragment given 
+                        include ../../assets/physics_dynamics/equations_generated/numerical_integration_04.svg
+                        |, the problem is to find 
+                        include ../../assets/physics_dynamics/equations_generated/numerical_integration_05.svg
+                    li.fragment we will start at 
+                        include ../../assets/physics_dynamics/equations_generated/numerical_integration_06.svg
+                        |&nbsp;and take steps in time along the tangent, until we generate an approximation for 
+                        include ../../assets/physics_dynamics/equations_generated/numerical_integration_07.svg
+                    li.mt-40.fragment integration methods provide us with the possibility of an approximation with increasing precision
+            div.text-center
+                img.height-600(src=imgAssets+'numerical_integration.svg')
++frameInbox('Integration Methods')
+    .important-green
+        .list-title.fragment
+            p.color-tomato-light Implicit methods
+            ul
+                li.fragment make use of quantities from the next time step
+                li.fragment decrease energy from the system
+        .list-title.mt-10.fragment
+            p.color-lemon Explicit methods
+            ul
+                li.fragment make use of known quantities at each time step
+        .list-title.mt-10.fragment
+            p.color-royal Semi-implicit methods
+            ul
+                li.fragment combination of explicit and implicit methods
+                li.fragment very stable
+        .list-title.mt-10.fragment
+            p.color-rhino-40 Runge-Kutta family
+            ul
+                li.fragment Euler methods, midpoint methods, RK4,...
+        .list-title.mt-10.fragment
+            p.color-rhino-40 Verlet family
+            ul
+                li.fragment Regular Verlet
+                li.fragment Leapfrog Verlet
+                li.fragment Velocity Verlet
+        .bottom-0.right-0
+            img.height-500(src=imgAssets+'integration_euler.svg')
++frameInbox('Euler Integration')
+    .important-orange
+        ul
+            li.fragment(data-fragment-index='1')
+                include ../../assets/physics_dynamics/equations_generated/euler_01.svg
+        .list-title.fragment(data-fragment-index='2')
+            p Explicit method
+            ul
+                li
+                    include ../../assets/physics_dynamics/equations_generated/euler_02.svg
+        .list-title.fragment(data-fragment-index='3')
+            p Improved method
+            ul
+                li
+                    include ../../assets/physics_dynamics/equations_generated/euler_03.svg
+        .list-title.fragment(data-fragment-index='4')
+            p Implicit method
+            ul
+                li
+                    include ../../assets/physics_dynamics/equations_generated/euler_04.svg
+        .space-md
+        ul
+            li.upside.fragment(data-fragment-index='5') cheap and easy to implement
+            li.downside.fragment(data-fragment-index='6') high error and poor stability, depending <br>directly on the time step
+        .top-60.right-30.fragment(data-fragment-index='1')
+            img.height-350(src=imgAssets+'euler_curve.svg')
+        .bottom-30.right-30.fragment(data-fragment-index='5')
+            img.height-350(src=imgAssets+'euler_comparison.svg')
+        .top-170.left-330.fragment(data-fragment-index='2')
+            img.width-50(src=imgAssets+'euler_explicit.svg')
+        .top-300.left-330.fragment(data-fragment-index='3')
+            img.width-50(src=imgAssets+'euler_improved.svg')
+        .top-440.left-330.fragment(data-fragment-index='4')
+            img.width-50(src=imgAssets+'euler_implicit.svg')
++frameInbox('Verlet integration')
+    div
+        ul
+            li.fragment used in molecural dynamics, useful in simulating small particles (cloth, rope, soft objects)
+            li.fragment time invariant - we can run it forwards and then backwards, ending up in the same place
+        .list-title.mt-10.fragment
+            p Regular Verlet
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/verlet_01.svg
+                li.fragment derived by adding two Taylor series expansions
+        .list-title.mt-10.fragment
+            p Verlet leap-frog
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/verlet_02.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/verlet_03.svg
+                li.fragment method that tracks velocity, but at half a time step off from the position calculation
+        .list-title.mt-10.fragment
+            p Velocity Verlet
+            ul
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/verlet_04.svg
+                li.fragment
+                    include ../../assets/physics_dynamics/equations_generated/verlet_05.svg
+                li.fragment most accurate, acceleration needs to be computed twice
+                li.fragment advantages over Euler when dealing with multiple bodies
++frameInbox('Dynamics in games')
+    div
+        .text-center
+            img.height-780(src=imgAssets+'dynamics_in_games.svg')

@@ -1,69 +1,53 @@
-import * as THREE from 'three'
-import 'regenerator-runtime/runtime'
+import * as THREE from 'three';
+import { ThreeJSExample, getBaseUrl } from '../utils/APHExample';
 
-let container;
-let camera, scene, renderer;
-let uniforms;
+export class ThreeHelloWorld extends ThreeJSExample {
 
-
-async function init() {
-	container = document.getElementById('container');
-
-	const vertexShader =  await (await fetch(new Request('./assets/01-helloworld/example-3D.vert'))).text();
-	const fragmentShader = await (await fetch(new Request('./assets/01-helloworld/example-3D.frag'))).text();
-	camera = new THREE.Camera();
-	camera.position.z = 1;
-
-	scene = new THREE.Scene();
-
-	var geometry = new THREE.PlaneBufferGeometry(2, 2);
-
+	camera: THREE.Camera;
 	uniforms = {
 		u_time: { type: "f", value: 1.0 },
 		u_resolution: { type: "v2", value: new THREE.Vector2() },
 		u_mouse: { type: "v2", value: new THREE.Vector2() }
 	};
+	loadFinished = false;
 
-	var material = new THREE.ShaderMaterial({
-		uniforms: uniforms,
-		vertexShader: vertexShader,
-		fragmentShader: fragmentShader
-	});
+    load() {
+		let vertexShader = null;
+		let fragmentShader = null;
 
-	var mesh = new THREE.Mesh(geometry, material);
-	scene.add(mesh);
+		fetch(new Request(`${getBaseUrl()}/assets/01-helloworld/example-3D.vert`))
+			.then(response => response.text())
+			.then(data => {
+				vertexShader = data;
+				fetch(new Request(`${getBaseUrl()}/assets/01-helloworld/example-3D.frag`))
+				.then(response => response.text())
+				.then(data => {
+					fragmentShader = data;
+					this.camera = new THREE.Camera();
+					this.camera.position.z = 1;
+				
+					var geometry = new THREE.PlaneBufferGeometry(2, 2);
+			
+					var material = new THREE.ShaderMaterial({
+						uniforms: this.uniforms,
+						vertexShader: vertexShader,
+						fragmentShader: fragmentShader
+					});
+				
+					var mesh = new THREE.Mesh(geometry, material);
+					this.scene.add(mesh);
+				
+					this.uniforms.u_resolution.value.x = this.renderer.domElement.width;
+					this.uniforms.u_resolution.value.y = this.renderer.domElement.height;
+					this.loadFinished = true;			
+				})
+			})				
+    }
 
-	renderer = new THREE.WebGLRenderer();
-	renderer.setPixelRatio(window.devicePixelRatio);
-
-	container.appendChild(renderer.domElement);
-
-	onWindowResize();
-	window.addEventListener('resize', onWindowResize, false);
-
-	document.onmousemove = function (e) {
-		uniforms.u_mouse.value.x = e.pageX
-		uniforms.u_mouse.value.y = e.pageY
-	}
+    update() {
+		if(this.loadFinished) {
+			this.uniforms.u_time.value += 0.05;
+			this.renderer.render(this.scene, this.camera);
+		}
+    }
 }
-
-function onWindowResize() {
-	renderer.setSize(window.innerWidth, window.innerHeight);
-	uniforms.u_resolution.value.x = renderer.domElement.width;
-	uniforms.u_resolution.value.y = renderer.domElement.height;
-}
-
-function animate() {
-	requestAnimationFrame(animate);
-	render();
-}
-
-function render() {
-	uniforms.u_time.value += 0.05;
-	renderer.render(scene, camera);
-}
-
-
-
-init();
-animate();

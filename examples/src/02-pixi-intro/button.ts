@@ -1,33 +1,20 @@
 import * as PIXI from 'pixi.js';
+import { PIXIExample, getBaseUrl } from '../utils/APHExample';
 
-
-export class ButtonExample extends PIXI.Application {
+export class Button extends PIXIExample {
 	private sonic: PIXI.Sprite;
 	private animRunning = false;
 
-	constructor(view: HTMLCanvasElement) {
-		super({
-			view,
-			backgroundColor: 0x000000,
-			width: view.clientWidth,
-			height: view.clientHeight,
-		});
-
-		this.init();
-		this.ticker.add(deltaTime => this.update(deltaTime));
-	}
-
-	init() {
-		let texture = PIXI.Texture.from('./assets/02-pixi-intro/sonic.png');
+	load() {
+		let texture = PIXI.Texture.from(`${getBaseUrl()}/assets/02-pixi-intro/sonic.png`);
 		this.sonic = new PIXI.Sprite(texture); // or PIXI.Sprite.from(<url>)
-		this.sonic.position.set(this.screen.width / 2, this.screen.height / 2);
+		this.sonic.position.set(this.app.screen.width / 2, this.app.screen.height / 2);
 		this.sonic.anchor.set(0.5);
-
 
 		// TODO put your code here
 		// 1) If you click on the sprite, the animation will stop
 		// 2) If you click twice, the animation will resume
-		this.stage.addChild(this.sonic);
+		this.app.stage.addChild(this.sonic);
 	}
 
 	update(deltaTime: number) {
@@ -36,6 +23,3 @@ export class ButtonExample extends PIXI.Application {
 		}
 	}
 }
-
-
-new ButtonExample(<HTMLCanvasElement>document.getElementById('gameCanvas'));

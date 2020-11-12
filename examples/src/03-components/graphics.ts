@@ -1,5 +1,6 @@
 
 import * as ECS from '../../libs/pixi-ecs';
+import { ECSExample } from '../utils/APHExample';
 import { KeyInputComponent } from '../../libs/pixi-ecs/components/key-input-component';
 
 /**
@@ -263,26 +264,13 @@ class SceneManager extends ECS.Component {
 	}
 }
 
-class GraphicsExample {
-	engine: ECS.Engine;
-
-	constructor() {
-		this.engine = new ECS.Engine();
-		let canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
-
-		this.engine.init(canvas, {
-			resizeToScreen: true,
-		});
-
+export class Graphics extends ECSExample {
+	load() {
 		this.engine.scene.assignGlobalAttribute(Attributes.SCENE_STATE, {
 			isRunning: true
 		} as SceneState);
 
-
 		this.engine.scene.addGlobalComponent(new KeyInputComponent());
 		this.engine.scene.addGlobalComponent(new SceneManager());
-
 	}
 }
-
-export default new GraphicsExample();

@@ -5,7 +5,6 @@ title: PIXI-ECS Docs
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from '@site/src/css/docs.module.scss';
 
-
 ## Pixi architecture
 
 

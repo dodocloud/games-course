@@ -22,108 +22,92 @@
 		font-size: 60px;
 	}
 
-	table {
+	h2 {
 		font-size: 40px;
-		width: 80%;
-		text-align: left;
 	}
 
-	th {
-		text-transform: uppercase;
-	}
-
-
-	tr {
-		background-color: #535e70;
-	}
-
-	td,
-	th {
-		padding: 20px;
-	}
-
-	table tr:nth-child(2n+2) {
-		background-color: #2f3744;
-	}
 
 	.container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		margin-top: 100px;
+		margin-bottom: 100px;
 	}
 
-	a {
-		color: #6f8ce9;
+	.list {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
 	}
+
+	.list a {
+		width: 100%;
+		padding: 20px;
+		font-size: 40px;
+		text-align: left;
+		text-decoration: none;
+		color: #e8eaec; 
+		background-color: #535e70;
+	}
+
+	.list a:nth-child(2n+2) {
+		background-color: #2f3744;
+	}
+
+	a:hover, a:active {
+		background-color: #676f81 !important;
+	}
+
+
 </style>
 
 <body>
 	<div class="container">
 		<h1>NI-APH Examples</h1>
-		<table>
-			<tr>
-				<th>Tutorial</th>
-				<th>Desc</th>
-				<th>Link</th>
-			</tr>
-			<tr>
-				<td>01</td>
-				<td>Sprite example</td>
-				<td><a href='./01_sprite.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>01</td>
-				<td>ThreeJS Example</td>
-				<td><a href='./01_threejs.html'>link</a></td>
-			</tr>
-
-			<tr>
-				<td>02</td>
-				<td>Primitives Example</td>
-				<td><a href='./02_primitives.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>Text Example</td>
-				<td><a href='./02_text.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>Particles Example</td>
-				<td><a href='./02_particles.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>Sound Example</td>
-				<td><a href='./02_sound.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>ThreeJS Simple Scene</td>
-				<td><a href='./02_simple_scene.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>ThreeJS Sprites</td>
-				<td><a href='./02_sprites.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>Game Loop</td>
-				<td><a href='./02_loop.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>03</td>
-				<td>Simple component</td>
-				<td><a href='./03_components.html'>link</a></td>
-			</tr>
-			<tr>
-				<td>03</td>
-				<td>Squares and circles</td>
-				<td><a href='./03_graphics.html'>link</a></td>
-			</tr>
-		</table>
+		<h2>Hello World</h2>
+		<div class='list'>
+			<a href='./01_pixi_scene.html'>PIXIJS</a>
+			<a href='./01_threejs_scene.html'>ThreeJS</a>
+		</div>
+		<h2>PixiJS Introduction</h2>
+		<div class='list'>
+			<a href='./02_button.html'>Button</a>
+			<a href='./02_loop.html'>Loop</a>
+			<a href='./02_particles.html'>Particles</a>
+			<a href='./02_primitives.html'>Primitives</a>
+			<a href='./02_sound.html'>Sound</a>
+			<a href='./02_text.html'>Text</a>
+			<a href='./02_animation.html'>Animation</a>
+		</div>
+		<h2>ThreeJS Introduction</h2>
+		<div class='list'>
+			<a href='./02_scene.html'>Scene</a>
+			<a href='./02_sprites.html'>Sprites</a>
+		</div>
+		<h2>Components</h2>
+		<div class='list'>
+			<a href='./03_squares.html'>Squares</a>
+			<a href='./03_graphics.html'>Graphics</a>
+			<a href='./03_animation.html'>Animation</a>
+		</div>
+		<h2>Space</h2>
+		<div class='list'>
+			<a href='./04_distribution_normal.html'>Normal Distribution</a>
+			<a href='./04_distribution_uniform.html'>Uniform Distribution</a>
+			<a href='./04_pathfinding.html'>Pathfinding</a>
+			<a href='./04_perlin.html'>Perlin Noise</a>
+			<a href='./04_quadtree.html'>QuadTree</a>
+		</div>
+		<h2>Other examples</h2>
+		<div class='list'>
+			<a href='./others_hittest.html'>Pixel-perfect hit test</a>
+		</div>
+		<h2>Games</h2>
+		<div class='list'>
+			<a href='./game_blockbreaker.html'>Block Breaker</a>
+		</div>
 	</div>
 </body>
 

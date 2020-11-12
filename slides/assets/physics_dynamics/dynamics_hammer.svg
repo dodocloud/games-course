@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="273.5" height="112.81" version="1.1" viewBox="0 0 72.362 29.847" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-119.79 -85.318)">
+  <g fill="#1d232d">
+   <g stroke="#f3f4f5" stroke-width=".26458">
+    <path d="m171.42 89.268c-0.20423 0.90813-0.32438 1.2653-1.047 1.6695l1.4903 2.5812c0.067-0.80912 1.1189-0.72755 1.5824-0.5466z"/>
+    <path d="m171.28 88.996c3.5132-2.2722 8.634-5.4341 11.494-2.0931 0.47483 0.48461 0.65487 1.0193 0.83024 1.6838l-0.0468 0.19878c-1.9453-2.5571-5.3347-0.85085-4.876 1.4382l0.3742 0.77174 0.40923 0.70157-2.9435 1.6994c-0.38565-0.47572-0.67286-1.0367-1.266-0.96277-0.59939 0.07472-1.0812 0.54904-1.602 0.85357z"/>
+    <rect transform="rotate(-30.077)" x="100.13" y="163.17" width="1.7115" height="4.1672" stroke-linecap="square" style="paint-order:fill markers stroke"/>
+   </g>
+   <g stroke-linecap="square">
+    <path d="m176.5 93.434 2.9906-1.7651s7.7069 12.889 12.171 20.621c1.3599 1.9043-1.473 4.0307-2.9906 1.7651-2.9931-5.1842-12.171-20.621-12.171-20.621z" stroke="#7b8694" stroke-width=".26458" style="paint-order:fill markers stroke"/>
+    <path transform="matrix(.17262 0 0 .17169 198.09 -136.35)" d="m-306.78 1449.8h-25.003l12.502-21.654z" stroke="#7b8694" stroke-width="1.5369" style="paint-order:fill markers stroke"/>
+    <rect x="119.92" y="105.52" width="45.971" height="3.2411" stroke="#f3f4f5" stroke-width=".26458" style="paint-order:fill markers stroke"/>
+   </g>
+  </g>
+  <circle cx="142.92" cy="107.07" r=".90036" fill="#121824" stroke="#7b8694" stroke-linecap="square" stroke-width=".28231" style="paint-order:fill markers stroke"/>
+  <circle cx="179.59" cy="95.129" r=".90036" fill="#121824" stroke="#7b8694" stroke-linecap="square" stroke-width=".28231" style="paint-order:fill markers stroke"/>
+ </g>
+</svg>
