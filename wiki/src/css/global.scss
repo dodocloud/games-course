@@ -28,7 +28,7 @@
 	--ifm-color-info: #{$color-azure};
 	--ifm-color-success: #{$color-emerald};
 	--ifm-color-warning: #{$color-lemon};
-	--ifm-dropdown-background-color: #{$color-midnight-light};
+	--ifm-dropdown-background-color: #{$color-midnight};
 	--ifm-font-color-base: #{$color-white};
 	--ifm-font-family-base: var(--font-family-base);
 	--ifm-font-family-monospace: "Inconsolata", monospace;
@@ -51,7 +51,7 @@
 }
 
 html[data-theme="dark"] {
-	--ifm-background-color: #{$color-midnight-light};
+	--ifm-background-color: #{$color-midnight};
 	--ifm-color-emphasis-300: #{$color-royal};
 	--ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
 }
@@ -59,7 +59,7 @@ html[data-theme="dark"] {
 html[data-theme="dark"] .DocSearch {
 	--docsearch-text-color: var(--ifm-font-color-base);
 	--docsearch-muted-color: var(--ifm-color-secondary-darkest);
-	--docsearch-container-background: rgba($color-midnight, 0.5);
+	--docsearch-container-background: rgba($color-midnight-dark, 0.5);
 	/* Modal */
 	--docsearch-modal-background: var(--ifm-background-color);
 	/* Search box */
@@ -68,10 +68,10 @@ html[data-theme="dark"] .DocSearch {
 	/* Hit */
 	--docsearch-hit-color: var(--ifm-font-color-base);
 	--docsearch-hit-active-color: var(--ifm-color-white);
-	--docsearch-hit-background: #{$color-midnight};
+	--docsearch-hit-background: #{$color-midnight-dark};
 	/* Footer */
 	--docsearch-footer-background: var(--ifm-background-color);
-	--docsearch-key-gradient: linear-gradient(-26.5deg, #{$color-rhino-90} 0%, #{$color-midnight} 100%);
+	--docsearch-key-gradient: linear-gradient(-26.5deg, #{$color-rhino-90} 0%, #{$color-midnight-dark} 100%);
 }
 
 /**
@@ -95,7 +95,7 @@ canvas {
 	--ifm-heading-vertical-rhythm-top: 2; /* h4 */
 	--ifm-heading-vertical-rhythm-bottom: 0.4;
 	--ifm-table-background: #{$color-white-3};
-	--ifm-table-border-color: #{$color-midnight-light};
+	--ifm-table-border-color: #{$color-midnight};
 	--ifm-table-border-width: 4px;
 	--ifm-table-head-background: #{$color-rhino-90};
 	--ifm-table-head-color: #{$color-white};

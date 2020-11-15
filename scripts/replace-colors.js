@@ -4,13 +4,16 @@ const utils = require('./utils');
 // script for replacing colors in diagrams
 
 const colorsToReplace = {
-    '30D2D5' : '009244'
+    '1D232D' : '121824'
 };
 
 
 const files = utils.searchFiles('.', '.svg');
 
 files.forEach(file => {
+    if(file.includes('chapter_')) {
+        return;
+    }
     let content = utils.fileToStr(file);
 
     Object.keys(colorsToReplace).forEach((color1) => {

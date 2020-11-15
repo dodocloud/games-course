@@ -19,6 +19,7 @@
     "lint": "eslint ./src ./libs --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "matter-js": "^0.14.2",
     "pixi-sound": "^3.0.5",
     "pixi.js": "^5.3.3",
     "reveal.js": "^4.0.2",

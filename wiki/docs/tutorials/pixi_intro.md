@@ -93,6 +93,13 @@ import styles from '@site/src/css/docs.module.scss';
 - [pixi-inspector](https://github.com/bfanger/pixi-inspector) - Chrome DevTools for inspecting scene
 - [SpritesheetGenerator](https://github.com/cixzhang/SpritesheetGenerator) - spritesheet generator
 
+## DevTools
+- you can use [PixiJS devtools](https://chrome.google.com/webstore/detail/pixijs-devtools/aamddddknhcagpehecnhphigffljadon) to debug and modify your PIXIJs scene
+
+<div className={styles.figure}>
+  <img src={useBaseUrl('img/docs/tutorials/02-pixi/chrome_plugin.jpg')} />
+</div>
+
 ## Basic setup
 
 ```typescript
@@ -203,6 +210,7 @@ loader.onComplete.add(() => {}); // called once when the queued resources all lo
 
 
 ## Exercises
+- **all exercises are relevant to a project version with a tag of 4.2**
 
 ### Primitive shapes
 - go to `examples/src/02-pixi-intro/primitives.ts`

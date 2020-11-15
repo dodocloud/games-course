@@ -5,6 +5,8 @@ title: PIXI-ECS Docs
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from '@site/src/css/docs.module.scss';
 
+- documentation to the `PIXI-ECS` library that can be found in the repository
+
 ## Pixi architecture
 
 
@@ -67,8 +69,8 @@ import styles from '@site/src/css/docs.module.scss';
 
 - import the ECS library
 - get your canvas
-- call the init function
-- load your resources by using PIXI loader
+- call the `init` function
+- load your resources by using `PIXI loader`
 - access the `engine.scene`
 
 ```typescript
@@ -378,9 +380,9 @@ class Sender extends ECS.Component {
     this.fixedFrequency = 1;
   }
 
-	onFixedUpdate() {
+  onFixedUpdate() {
     this.sendMessage('RECEIVER_FINISH');
-	}
+  }
 }
 
 class Receiver extends ECS.Component {
@@ -394,7 +396,6 @@ class Receiver extends ECS.Component {
       this.finish(); // will be removed from the scene instantly
     }
   }
-
 }
 
 ```
@@ -484,28 +485,6 @@ new ECS.Builder(scene)
 .build();
 ```
 
-### Key-Input Component
-- a simple keyboard handled that only stores pressed keys
-- doesn't send any messages, it has to be polled manually
-
-```typescript
-export class CannonInputController extends CannonController {
-
-onUpdate(delta: number, absolute: number) {
-    // assuming that we added this component to the stage
-    let cmp = this.scene.findGlobalComponentByName<KeyInputComponent>(ECS.KeyInputComponent.name);
- 
-    if (cmp.isKeyPressed(ECS.Keys.KEY_LEFT)) {
-      this.turnLeft();
-    }
- 
-    if (cmp.isKeyPressed(ECS.Keys.KEY_RIGHT)) {
-      this.turnRight();
-    }
-  }
-}
-```
-
 
 ### Chain Component
 
@@ -554,12 +533,101 @@ new ECS.FuncComponent('view')
     .doOnFixedUpdate((cmp, delta, absolute) => cmp.displayCurrentState())
 ```
 
+### Key-Input Component
+- a simple keyboard handled that only stores pressed keys
+- doesn't send any messages, it has to be polled manually
+
+```typescript
+// Factory.ts
+initGame(scene: ECS.Scene) {
+  ...
+  // here we need to add the KeyInputComponent globally
+  scene.addGlobalComponent(new KeyInputComponent());
+  ...
+}
+
+// CannonInputController.ts
+export class CannonInputController extends CannonController {
+
+onUpdate(delta: number, absolute: number) {
+    // assuming that we added this component to the stage
+    let cmp = this.scene
+      .findGlobalComponentByName<KeyInputComponent>(ECS.KeyInputComponent.name);
+ 
+    if (cmp.isKeyPressed(ECS.Keys.KEY_LEFT)) {
+      this.turnLeft();
+    }
+ 
+    if (cmp.isKeyPressed(ECS.Keys.KEY_RIGHT)) {
+      this.turnRight();
+    }
+  }
+}
+```
+
+### Pointer-Input Component
+- a global pointer handler
+- PIXI has a built-in support for mouse events; this component handles mouse/pointer events for the canvas as a whole
+- unlike `Key-Input Component`, this one is using messaging pattern to notify the observers
+- the component handles both a mouse and a pointer
+- **config**
+  - you need to explicitly configure which events should be captured
+  - `handleClick` will capture down/release actions
+
+```typescript
+// add component
+obj.addComponent(new ECS.PointerInputComponent( {
+  handleClick: false,
+  handlePointerDown: true,
+  handlePointerOver: true,
+  handlePointerRelease: true, 
+}));
+
+```
+- then, you can subscribe for following messages (you can find the enum in `ECS.PointerMessages`):
+  - `pointer-tap`
+  - `pointer-down`
+  - `pointer-over`
+  - `pointer-release`
+
+### Virtual-Gamepad Component
+- a simple gamepad that extends `KeyInputComponent` and translates clicks to keys
+- if you replace your `KeyInputComponent` with `VirtualGamepadComponent`, your game shouldn't notice the difference
+- **config**
+  - you need to provide a mapper to the keys
+  - if you omit certain keys, respective buttons will not render
+
+```typescript
+		this.engine.scene.addGlobalComponent(new ECS.VirtualGamepadComponent({
+			KEY_UP: ECS.Keys.KEY_UP,
+			KEY_DOWN: ECS.Keys.KEY_DOWN,
+			KEY_LEFT: ECS.Keys.KEY_LEFT,
+			KEY_RIGHT: ECS.Keys.KEY_RIGHT,
+			KEY_A: ECS.Keys.KEY_SPACE,
+			KEY_B: ECS.Keys.KEY_ENTER,
+			KEY_X: ECS.Keys.KEY_ALT,
+			KEY_Y: ECS.Keys.KEY_SHIFT
+		}));
+```
+
+- this being configured, the scene will contain a gamepad rendered on the top
+
+<div className={styles.figure}>
+  <img src={useBaseUrl('img/docs/pixi-ecs/virtual_gamepad.jpg')} />
+</div>
+
 ### Vector
 - helper class for vectors
 
 <div className={styles.figure}>
   <img src={useBaseUrl('img/docs/pixi-ecs/class_vector.svg')} />
 </div>
+
+### Responsive mode
+- if you want your game render in full-screen mode, scaling with the browser window, you have 2 options:
+  - 1) set `resizeToScreen` to `true` while initializing the engine
+  - 2) add `?responsive` query string
+
 
 ### Debug Component
 
@@ -569,5 +637,6 @@ new ECS.FuncComponent('view')
   - 2) add `?debug` query string
   - 3) set `debugEnabled` to `true` while initializing the engine
 
-
- 
+<div className={styles.figure}>
+  <img src={useBaseUrl('img/docs/pixi-ecs/debug_window.jpg')} />
+</div>

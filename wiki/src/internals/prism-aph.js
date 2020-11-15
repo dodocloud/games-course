@@ -1,11 +1,10 @@
 
 const aphColors = require('./aph-colors')
 
-
 const theme = {
 	plain: {
 		color: aphColors.rhino20,
-		backgroundColor: aphColors.midnightLight
+		backgroundColor: aphColors.rhino100
 	},
 	styles: [
 		{

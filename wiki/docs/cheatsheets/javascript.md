@@ -87,19 +87,6 @@ for(let user of activeUsers) {
 }
 ```
 
-### Math operations
-
-- every bitwise operation converts numbers into integers (removing the fraction part)
-
-
-|value/func|`trunc`|`floor`|`ceil`|`round`|`~~x`| x&#124;0 | `x << 0`| `x >> 0` | `x >>> 0`|
-|---|---|--|--|--|--|--|--|--|--|
-|3.8|3|3|4|4|3|3|3|3|3|
-|3.2|3|3|4|3|3|3|3|3|3|
-|-3.2|-3|-4|-3|-3|-3|-3|-3|-3|4294967293|
-|-3.8|-3|-4|-3|-4|-3|-3|-3|-3|4294967293|
-
-
 ### Destructuring assignment
 - array destructuring - allows to extract multiple array elements
 

@@ -149,42 +149,6 @@ APH palette is bright and consists of several colors that helps the course to be
 
 <div className={clsx(styles.colors, styles.smaller)}>
     <div>
-        <div className={clsx(styles["bgr-lemon-light"], styles["color-rhino-90"])}>#FFFDC8</div>
-        <span>Lemon Light</span>
-    </div>
-    <div>
-        <div className={clsx(styles["bgr-lemon"], styles["color-rhino-60"])}>#E9E56F</div>
-        <span>Lemon</span>
-    </div>
-    <div>
-        <div className={styles["bgr-lemon-dark"]}>#A19D22</div>
-        <span>Lemon Dark</span>
-    </div>
-    <div>
-        <div className={clsx(styles["bgr-emerald-light"], styles["color-rhino-90"])}>#A0F1C6</div>
-        <span>Emerald Light</span>
-    </div>
-    <div>
-        <div className={styles["bgr-emerald"]}>#47D58A</div>
-        <span>Emerald</span>
-    </div>
-    <div>
-        <div className={styles["bgr-emerald-dark"]}>#009244</div>
-        <span>Emerald Dark</span>
-    </div>
-    <div>
-        <div className={clsx(styles["bgr-royal-light"], styles["color-rhino-90"])}>#C9D4FB</div>
-        <span>Royal Light</span>
-    </div>
-    <div>
-        <div className={styles["bgr-royal"]}>#6F8CE9</div>
-        <span>Royal</span>
-    </div>
-    <div>
-        <div className={styles["bgr-royal-dark"]}>#4D6FDC</div>
-        <span>Royal Dark</span>
-    </div>
-    <div>
         <div className={clsx(styles["bgr-tomato-light"], styles["color-rhino-90"])}>#FF867F</div>
         <span>Tomato Light</span>
     </div>
@@ -207,6 +171,42 @@ APH palette is bright and consists of several colors that helps the course to be
     <div>
         <div className={styles["bgr-manhattan-dark"]}>#A56B36</div>
         <span>Manhattan Dark</span>
+    </div>
+    <div>
+        <div className={clsx(styles["bgr-goldenrod-light"], styles["color-rhino-90"])}>#FFD179</div>
+        <span>Goldenrod Light</span>
+    </div>
+    <div>
+        <div className={styles["bgr-goldenrod"]}>#FBB227</div>
+        <span>Goldenrod</span>
+    </div>
+    <div>
+        <div className={styles["bgr-goldenrod-dark"]}>#A96F00</div>
+        <span>Goldenrod Dark</span>
+    </div>
+    <div>
+        <div className={clsx(styles["bgr-lemon-light"], styles["color-rhino-90"])}>#FFFDC8</div>
+        <span>Lemon Light</span>
+    </div>
+    <div>
+        <div className={clsx(styles["bgr-lemon"], styles["color-rhino-60"])}>#E9E56F</div>
+        <span>Lemon</span>
+    </div>
+    <div>
+        <div className={styles["bgr-lemon-dark"]}>#A19D22</div>
+        <span>Lemon Dark</span>
+    </div>
+    <div>
+        <div className={clsx(styles["bgr-emerald-light"], styles["color-rhino-90"])}>#A0F1C6</div>
+        <span>Emerald Light</span>
+    </div>
+    <div>
+        <div className={styles["bgr-emerald"]}>#47D58A</div>
+        <span>Emerald</span>
+    </div>
+    <div>
+        <div className={styles["bgr-emerald-dark"]}>#009244</div>
+        <span>Emerald Dark</span>
     </div>
     <div>
         <div className={clsx(styles["bgr-aqua-light"], styles["color-rhino-90"])}>#86ECEC</div>
@@ -232,6 +232,18 @@ APH palette is bright and consists of several colors that helps the course to be
         <div className={styles["bgr-azure-dark"]}>#0A2C9D</div>
         <span>Azure Dark</span>
     </div>
+    <div>
+        <div className={clsx(styles["bgr-royal-light"], styles["color-rhino-90"])}>#C9D4FB</div>
+        <span>Royal Light</span>
+    </div>
+    <div>
+        <div className={styles["bgr-royal"]}>#6F8CE9</div>
+        <span>Royal</span>
+    </div>
+    <div>
+        <div className={styles["bgr-royal-dark"]}>#4D6FDC</div>
+        <span>Royal Dark</span>
+    </div>
 </div>
 
 
@@ -240,13 +252,17 @@ APH palette is bright and consists of several colors that helps the course to be
 - midnight should only be used for backgrounds
 - white color is a text color for labels. Default text color is Rhino 20
 
-<div className={clsx(styles.colors, styles.smaller)}>
+<div className={clsx(styles.colors)}>
     <div>
-        <div className={styles["bgr-midnight"]}>#03060C</div>
+        <div className={styles["bgr-midnight-dark"]}>#03060C</div>
+        <span>Midnight dark</span>
+    </div>
+    <div>
+        <div className={styles["bgr-midnight"]}>#121824</div>
         <span>Midnight</span>
     </div>
     <div>
-        <div className={styles["bgr-midnight-light"]}>#121824</div>
+        <div className={styles["bgr-midnight-light"]}>#3A414E</div>
         <span>Midnight light</span>
     </div>
     <div>

@@ -1,7 +1,11 @@
 export const colors = {
-	midnight: '#03060c',
-	midnightLight: '#121824',
+	midnightLight: '#3a414e',
+	midnight: '#121824',
+	midnightDark: '#03060c',
 	white: '#ffffff',
+	goldenrodLight: '#ffd179',
+	goldenrod: '#fbb227',
+	goldenrodDark: '#a96f00',
 	tomatoLight: '#ff867f',
 	tomato: '#cf2f25',
 	tomatoDark: '#7d0600',

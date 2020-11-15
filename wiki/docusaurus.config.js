@@ -127,6 +127,11 @@ const config = {
 					to: '/docs/brand/',
 				},
 				{
+					label: 'Github',
+					position: 'right',
+					href: 'https://github.com/dodocloud/games-course',
+				},
+				{
 					label: 'Youtube channel',
 					position: 'right',
 					href: 'https://www.youtube.com/channel/UC1PTa9NCygXV_0IgOBRMw-Q',

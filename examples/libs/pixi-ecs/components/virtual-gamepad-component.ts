@@ -46,8 +46,8 @@ export class VirtualGamepadComponent extends KeyInputComponent {
 		let w = this.scene.app.screen.width;
 		let h = this.scene.app.screen.height;
 		// TODO make it configurable. This is a mess. Mess mess messsssssssss
-		let circX = w * 0.15;
-		let circX2 = w * 0.85;
+		let circX = w * 0.17;
+		let circX2 = w * 0.82;
 		let circY = h * 0.75;
 		let cSize = h * 0.24;
 		let buttonSize = cSize / 1.8;

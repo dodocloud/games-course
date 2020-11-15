@@ -1,9 +1,15 @@
 /* Colors */
 
 /* Brand colors */
-$color-midnight: #03060c;
-$color-midnight-light: #121824;
+$color-midnight-light: #3a414e;
+$color-midnight: #121824;
+$color-midnight-dark: #03030c;
+
 $color-white: #ffffff;
+
+$color-goldenrod-light: #ffd179;
+$color-goldenrod: #fbb227;
+$color-goldenrod-dark: #a96f00; 
 
 $color-tomato-light: #FF867F; 
 $color-tomato: #cf2f25;
@@ -44,7 +50,8 @@ $color-rhino-10: #e8eaec;
 $color-rhino-5: #f3f4f5;
 
 /* List of all colors for auto-generated classes - in PUG we will be able to write classes like color-tomato, bgr-tomato etc. */
-$allColors: "midnight" $color-midnight, "midnight-light" $color-midnight-light, "white" $color-white, "tomato" $color-tomato, "tomato-light" $color-tomato-light, "tomato-dark" $color-tomato-dark,
+$allColors: "midnight" $color-midnight, "midnight-light" $color-midnight-light, "midnight-dark" $color-midnight-dark, "white" $color-white, "tomato" $color-tomato, "tomato-light" $color-tomato-light, "tomato-dark" $color-tomato-dark,
+	"goldenrod" $color-goldenrod, "goldenrod-light" $color-goldenrod-light, "goldenrod-dark" $color-goldenrod-dark,
 	"lemon" $color-lemon, "lemon-light" $color-lemon-light, "lemon-dark" $color-lemon-dark, "emerald" $color-emerald, "emerald-light" $color-emerald-light, 
 	"emerald-dark" $color-emerald-dark, "aqua" $color-aqua, "aqua-light" $color-aqua-light, "aqua-dark" $color-aqua-dark, "royal" $color-royal, 
 	"royal-light" $color-royal-light, "royal-dark" $color-royal-dark, "manhattan" $color-manhattan, "manhattan-light" $color-manhattan-light, 

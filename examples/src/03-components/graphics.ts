@@ -212,6 +212,10 @@ class SceneManager extends ECS.Component {
 
 	onInit() {
 		this.keyInput = this.scene.findGlobalComponentByName(ECS.KeyInputComponent.name);
+		// emit 3 objects
+		this.emitObject();
+		this.emitObject();
+		this.emitObject();
 	}
 
 	onUpdate() {
@@ -233,7 +237,6 @@ class SceneManager extends ECS.Component {
 				this.resumeScene();
 			}
 
-			// modify the global attribute
 			this.scene.assignGlobalAttribute(Attributes.SCENE_STATE, {
 				...sceneState,
 				isRunning: isRunning

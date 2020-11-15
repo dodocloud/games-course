@@ -11,9 +11,14 @@ export class Button extends PIXIExample {
 		this.sonic.position.set(this.app.screen.width / 2, this.app.screen.height / 2);
 		this.sonic.anchor.set(0.5);
 
-		// TODO put your code here
-		// 1) If you click on the sprite, the animation will stop
-		// 2) If you click twice, the animation will resume
+		
+		this.sonic.interactive = true;
+		this.sonic.buttonMode = true;
+
+		this.sonic.on('pointerdown', () => {
+			this.animRunning = !this.animRunning;
+		});
+
 		this.app.stage.addChild(this.sonic);
 	}
 

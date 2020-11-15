@@ -149,6 +149,7 @@ let texture = textureLoader.load('./assets/icon.png');
   - `scale`
 
 ## Exercise
+- **the exercise is relevant to a project version with a tag of 4.2**
 
 - go to `examples\src\02-three-intro\sprites.ts`
 - follow the instructions in TODO blocks and render animated particles by the picture below

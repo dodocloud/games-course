@@ -14,7 +14,7 @@ $highlight-color-3: $color-rhino-60;
 /* Color for links */
 $link-color: $color-royal;
 /* Default background of body element */
-$background-color: $color-midnight;
+$background-color: $color-midnight-dark;
 /* Default color of texts */
 $text-color: $color-rhino-20;
 /* Default color of selected texts */
@@ -71,7 +71,7 @@ $title-font-size: 60px;
 	/* Linear background */
 	.frame::before {
 		z-index: -2;
-		background: linear-gradient(to bottom right, rgba($color-midnight, 0.92) 0%, rgba($color-rhino-100, 0.92) 100%);
+		background: linear-gradient(to bottom right, rgba($color-midnight-dark, 0.92) 0%, rgba($color-rhino-100, 0.92) 100%);
 	}
 
 	/* Pattern effect */
@@ -80,7 +80,7 @@ $title-font-size: 60px;
 		background-image: url("./resources/pattern.png");
 		background-size: 25rem;
 		background-repeat: repeat;
-		box-shadow: 6px 5px 6px rgba($color-midnight, 0.6);
+		box-shadow: 6px 5px 6px rgba($color-midnight-dark, 0.6);
 	}
 
 	.list-title > p:nth-child(1) {
@@ -213,7 +213,7 @@ $title-font-size: 60px;
 		}
 
 		&.keen {
-			color: $color-midnight;
+			color: $color-midnight-dark;
 			font-family: $font-dos;
 
 			.content {

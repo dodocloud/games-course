@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { PIXIExample } from '../utils/APHExample';
+import { PIXIExample, getBaseUrl } from '../utils/APHExample';
 
 export class Particles extends PIXIExample {
 	container: PIXI.ParticleContainer;
@@ -7,14 +7,29 @@ export class Particles extends PIXIExample {
 	private static particlesNum = 250;
 
 	load() {
-        // TODO put your code here
-        // 1) create PIXI.ParticleContainer
-        // 2) load assets/02-pixi-intro/ghost.png
-        // 3) create ~200 random particles
-        // 4) in the update loop, rotate the particles
+		this.container = new PIXI.ParticleContainer(Particles.particlesNum, {
+			position: true,
+			rotation: true,
+		});
+		
+		let texture = PIXI.Texture.from(`${getBaseUrl()}/assets/02-pixi-intro/ghost.png`);
+
+		for(let i=0; i< Particles.particlesNum; i++) {
+			let particle = new PIXI.Sprite(texture);
+			particle.position.set(Math.random() * this.app.screen.width, 
+			Math.random() * this.app.screen.height);
+			particle.anchor.set(0.5);
+			particle.rotation = Math.random() * Math.PI;
+			particle.scale.set(0.25);
+			this.container.addChild(particle);
+		}
+
+		this.app.stage.addChild(this.container);
 	}
 
 	update(delta: number) {
-		// TODO put your code here
+		for(let child of this.container.children) {
+			child.rotation += 0.1 * delta;
+		}
 	}
 }

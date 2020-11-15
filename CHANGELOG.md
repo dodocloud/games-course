@@ -6,6 +6,18 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.8.5] - 2020-11-15
+### Added
+- New examples for Dynamics and Physics
+- MatterJS library
+  - you need to call `npm ci` to update the packages
+- MatterJS tutorial
+
+### Changed
+- Refactored documentation
+- Improved a few slides
+- Downscaled large GIF and PNG images
+
 ## [4.8] - 2020-11-13
 ### Added
 - New examples for Space
