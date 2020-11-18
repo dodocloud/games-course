@@ -30,6 +30,7 @@ import { MatterCar } from './06-physics/matter-car';
 import { MatterChains } from './06-physics/matter-chains'; 
 import { MatterCradle } from './06-physics/matter-cradle'; 
 import { MatterMixedShapes } from './06-physics/matter-mixed-shapes'; 
+import { ClothView as Cloth } from './06-physics/cloth'; 
 
 import { PixiHitTest } from './others/pixi-hittest';
 
@@ -67,5 +68,6 @@ import { PixiHitTest } from './others/pixi-hittest';
     MatterChains,
     MatterCradle,
     MatterMixedShapes,
+    Cloth,
     PixiHitTest
 };

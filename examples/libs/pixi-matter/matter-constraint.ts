@@ -18,8 +18,8 @@ export class MatterConstraint extends ECS.Graphics {
 	world: Matter.World;
 	options?: MatterConstraintOptions;
 
-	constructor(tag: string = '', constraint: Matter.Constraint, world: Matter.World, options?: MatterConstraintOptions) {
-		super(tag);
+	constructor(name: string = '', constraint: Matter.Constraint, world: Matter.World, options?: MatterConstraintOptions) {
+		super(name);
 		this.constraint = constraint;
 		this.world = world;
 		this.options = options || new MatterConstraintOptions();

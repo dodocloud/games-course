@@ -1,5 +1,5 @@
 import { MatterBind, MatterBindConfig } from './matter-bind';
-import { MatterBody } from './matter-body';
-import { MatterConstraint } from './matter-constraint';
+import { MatterBody, MatterBodyOptions } from './matter-body';
+import { MatterConstraint, MatterConstraintOptions } from './matter-constraint';
 
-export { MatterBind, MatterBody, MatterConstraint, MatterBindConfig };
+export { MatterBind, MatterBody, MatterBodyOptions, MatterConstraint, MatterConstraintOptions, MatterBindConfig };

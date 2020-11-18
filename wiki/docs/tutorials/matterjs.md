@@ -40,17 +40,16 @@ import styles from '@site/src/css/docs.module.scss';
   - rigid bodies, compound bodies, composite bodies, concave and convex hulls, restitution, momentum, friction, events, constraints, gravity, sleeping bodies, static bodies
 
 ### Architecture
-- `Body` - contains methods for creating and manipulating body models
-- `IBodyDefinition` - a physical object, contains all necessary attributes
-- all manipulations are handled by static methods in `Body` class
-- `ICompositeDefinition` - contains composition of bodies
-- `Composite` - contains methods to manipulate with composite objects, consisting of multiple bodies
+- `Body` - static class that contains methods for creating and manipulating body models
+- `IBodyDefinition` - a structure that keeps all attributes
+- `ICompositeDefinition` - a structure that defines composite objects, consisting of bodies and constraints
+- `Composite` - static class that contains methods for manipulating with composite objects
 - `IPair` - contains attributes for a colliding pair of two bodies
 - `IConstraintDefinition` - contains attributes for a constraint that connects bodies together in order to simulate interaction
 - `Events`
   - `sleepStart`, `sleepEnd`, `beforeAdd`, `afterAdd`, `beforeRemove`, `afterRemove`, `afterUpdate`, `beforeRender`, `afterRender`, `beforeUpdate`, `collisionActive`, `collisionEnd`, `collisionStart`, `beforeTick`, `tick`, `afterTick`, `beforeRender`, `afterRender`, `mousedown`, `mousemove`, `mouseup`
-- `Bodies` - static methods for creating new simple bodies
-- `Composites` - static methods for creating complex objects
+- `Bodies` - static class with methods for creating new simple bodies
+- `Composites` - static class with methods for creating complex objects
   - `car` - creates a composite with simple car setup of bodies and constraints
   - `chain` - chains all bodies in the given composite together using constraints
   - `mesh` - connects bodies in the composite with constraints in a grid pattern
@@ -87,18 +86,19 @@ Matter.Render.lookAt(render, {
 ### MatterJS and PIXI
 - MatterJS has its own renderer
 - in order to connect MatterJS to Pixi, we need to create a copy of every MatterJS body and synchronize it
-- there is a small library in `libs/pixi-matter` that connects MatterJS to `pixi-ecs`
+- there is a small library in `libs/pixi-matter` that connects MatterJS to `pixi-ecs`, by means of `MatterBind` class
 - update can be handled either automatically by `MatterJS.Runner` or manually by invoking `Matter.Runner.tick` 
 - examples of how to use it can be found in `examples/06-physics`
-- keep in mind that `pixi-matter` is experimental and will require some addition work, in order to make a full-fledged game with it
+- PIXI objects synchronize their positions and rotations with their MatterJS counterparts. As such, you need to move with MatterJS objects in order to move with PIXI objects that are synchronized with them, **not the other way round!**
+- keep in mind that `pixi-matter` is experimental and will require some additional work, if you wanna use it for your game
 
 ```typescript
 // create binder
 const binder = new PixiMatter.MatterBind();
 binder.init(this.engine.scene, {
-                mouseControl: true,
-        renderConstraints: true,
-        renderAngles: true,
+        mouseControl: true, // allows mouse control of MatterJS object
+        renderConstraints: true, // will render constraints
+        renderAngles: true, // will render angles (red horizontal half-lines if the angle is 0)
 
 });
 
@@ -106,7 +106,17 @@ binder.init(this.engine.scene, {
 Matter.World.add(binder.mWorld, [
     Matter.Bodies.rectangle(200, 100, 60, 60, { frictionAir: 0.001 }),
 ]);}
+
+// alternative (will return the sync object)
+binder.addBody(Matter.Bodies.rectangle(200, 100, 60, 60, { frictionAir: 0.001 }));
 ```
+
+- what if we want to use ECS components for our MatterJS example?
+  - as stated above, `MatterBind` adds a new object into PIXI once either a body or a constraint has been added to the MatterJS world (by using `afterAdd` hook)
+  - this object can be used as a regular PIXI-ECS object (it extends `ECS.Container`)
+  - we have two options how to access synchronized objects
+    - a) call `binder.findSyncObjectForBody(body)` - PIXI counterparts have specific names, following this pattern: `matter_body_<matterid>`
+    - b) add your object to the world by calling `binder.addBody(body)` - this method will return the PIXI object that gets synchronized with the Matter object
 
 <div className={styles.figure}>
   <img className={styles.fill} src={useBaseUrl('img/docs/tutorials/06-matterjs/lifecycle.svg')} />

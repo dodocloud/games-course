@@ -6,6 +6,16 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.8.6] - 2020-11-18
+
+### Added
+- Solutions from the last tutorial
+- TypeScript types for MatterJS
+  - you need to call `npm ci` to update the packages
+### Changed
+- Updated MatterJS docs
+- Simplified MatterBind class
+
 ## [4.8.5] - 2020-11-15
 ### Added
 - New examples for Dynamics and Physics

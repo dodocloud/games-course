@@ -32,7 +32,7 @@ export class MatterBody extends ECS.Graphics {
 			fillStyle: (options && options.fillStyle) ? options.fillStyle : 0x1a1a0aff,
 			strokeStyle: (options && options.strokeStyle) ? options.strokeStyle : 0xe9e66f,
 			strokeStyleWireframe: (options && options.strokeStyleWireframe) ? options.strokeStyleWireframe : 0xacacac,
-			strokeStyleAngle: (options && options.strokeStyleAngle) ? options.strokeStyleAngle : 0xd54d47,
+			strokeStyleAngle: (!options || !options.showAngleIndicator) ? undefined : ((options && options.strokeStyleAngle) ? options.strokeStyleAngle : 0xd54d47),
 			lineWidth: (options && options.lineWidth) ? options.lineWidth : 1,
 			showWireframes: (options && options.showWireframes) ? options.showWireframes : true,
 			showAngleIndicator: (options && options.showAngleIndicator) ? options.showAngleIndicator : true,
