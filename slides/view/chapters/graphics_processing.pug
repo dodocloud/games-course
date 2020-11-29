@@ -1,0 +1,251 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/graphics_processing/';
+
++mchapter('GPU processing', imgAssets+'chapter_gpu.svg')
++frameInbox('History of PC GPU')
+    div
+        .bottom-20.right-40
+            img.height-800(src=imgAssets+'history.svg')
+        .bottom-20.right-40
+            img.height-800(src=imgAssets+'history.png')
++frameInbox('History of PC GPU')
+    div
+        ul.spacing-lg
+            li.fragment(data-fragment-index='1') <span class="highlight">1981</span> - <span class="highlight-2">IBM MDA</span>, Monochrome Display Adapter
+            li.fragment(data-fragment-index='2') <span class="highlight">1982</span> - <span class="highlight-2">IBM CGA</span>, Color Graphics Adapter, 4/16 colors
+            li.fragment(data-fragment-index='3') <span class="highlight">1984</span> - <span class="highlight-2">IBM EGA</span>, Enhanced Graphics Adapter, 16/64 colors
+            li.fragment(data-fragment-index='4') <span class="highlight">1987</span> - <span class="highlight-2">VGA</span> - Video Graphics Array, 256 colors
+            li.fragment(data-fragment-index='5') <span class="highlight">1994</span> - <span class="highlight-2">S3 Trio64</span> - golden era of DOS games
+            li.fragment(data-fragment-index='6') <span class="highlight">1996</span> - <span class="highlight-2">3dfx Voodoo</span> - rise of 3D acceleration
+            li.fragment(data-fragment-index='7') <span class="highlight">1999</span> - <span class="highlight-2">Geforce 256</span> - rendering pipeline
+            li.fragment(data-fragment-index='8') <span class="highlight">2003</span> - <span class="highlight-2">Geforce 3</span> - rise of shaders
+            li.fragment(data-fragment-index='9') <span class="highlight">2006</span> - <span class="highlight-2">Geforce 8</span> - SM architecture, CUDA
+            li.fragment(data-fragment-index='10') <span class="highlight">2016</span> - <span class="highlight-2">Oculus Rift</span> - rise of VR headsets
+            li.fragment(data-fragment-index='11') <span class="highlight">2018</span> - <span class="highlight-2">Geforce 10</span> - Tensor cores and Raytracing
+        .top-0.right-50.fragment(data-fragment-index='2')
+            img.height-250(src=imgAssets+'history_cga.png')
+        .top-180.right-150.fragment(data-fragment-index='3')
+            img.height-250(src=imgAssets+'history_ega.png')
+        .top-300.right-400.fragment(data-fragment-index='4')
+            img.height-250(src=imgAssets+'history_vga.png')
+        .top-400.right-30.fragment(data-fragment-index='5')
+            img.height-250(src=imgAssets+'history_svga.jpg')
+        .top-500.right-380.fragment(data-fragment-index='6')
+            img.height-250(src=imgAssets+'history_glquake.jpg')
+        .top-650.right-40.fragment(data-fragment-index='11')
+            img.height-250(src=imgAssets+'history_turing.jpg')
++frameInbox('Graphics API')
+    div
+        .list-title.fragment
+            p DirectX
+            ul
+                li.fragment since 1995
+                li.fragment widely used for Windows and Xbox games
+                li.fragment current version - DirectX 12 Ultimate
+            .top-80.right-60
+                img.width-300(src=imgAssets+'logo_directx.png')
+        .list-title.fragment
+            p OpenGL
+            ul
+                li.fragment since 1992
+                li.fragment concept of state machine
+                li.fragment cross-platform
+                li.fragment OpenGL ES - main graphics library for Android, iOS
+            .top-460.right-60
+                img.width-300(src=imgAssets+'logo_opengl.png')
+        .list-title.fragment
+            p Vulkan
+            ul
+                li.fragment since 2015
+                li.fragment referred as the next generation of OpenGL
+                li.fragment lower overhead, more direct control over the GPU than OpenGL
+                li.fragment unified management of compute kernels and shaders
+            .top-760.right-60
+                img.width-300(src=imgAssets+'logo_vulkan.png')
++frameInbox('Triangle meshes')
+    .important-green
+        ul
+            li.fragment the simplest type of polygons, always planar
+            li.fragment all GPUs are designed around triangle rasterization
+        .list-title.fragment
+            p Constructing a triangle mesh
+            ul
+                li.fragment a) winding order (clockwise or counter-cw)
+                li.fragment b) triangle lists, strips and fans
+                li.fragment c) mesh instancing - shared data
+        .text-center.mt-40
+            img.height-400(src=imgAssets+'triangles.svg')
++frameInbox('Terms')
+    .important-orange
+        .list-title.fragment
+            p Vertex
+            ul.leading-md
+                li.fragment primarily a point in 3D space with x, y, z coordinates
+                li.fragment attributes: position vector, normal, color, uv coordinates, skinning weights,...
+        .list-title.fragment
+            p Fragment
+            ul.leading-md
+                li.fragment a sample-sized segment of a rasterized primitive
+                li.fragment its size depends on sampling method
+        .list-title.fragment
+            p Texture
+            ul.leading-md
+                li.fragment a piece of bitmap that is applied to a model
+        .list-title.fragment
+            p Occlusion
+            ul.leading-md
+                li.fragment rendering two triangles that overlap each others
+                li.fragment Z-fighting issue
+                    .right-60.top-500
+                        figure
+                            img.height-250(src=imgAssets+'zfighting.png')
+                            p Z-Fighting
+                li.fragment solution: more precise depth buffer
+        .list-title.fragment
+            p Culling
+            ul.leading-md
+                li.fragment process of removing triangles that aren't facing the camera
+                li.fragment frustum culling, portals, anti-portals,...
++frameInbox('NVidia Amper Architecture')
+    div
+        .center
+            img.height-760(src=imgAssets+'gpu_architecture.svg')
++frameInbox('Rendering pipeline')
+    .important-green
+        ul.fragment
+            li.fragment <span class="highlight">Vertex Fetch</span>: driver inserts the command in a GPU-readable encoding inside a pushbuffer
+            li.fragment <span class="highlight">Poly Morph Engine</span> of SM fetches the vertex data
+            li.fragment Warps of 32 threads are scheduled inside the SM
+            li.fragment Vertex shaders in the warp are executed
+            li.fragment H/D/G shaders are executed (optional step)
+            li.fragment <span class="highlight">Raster engine</span> generates the pixel information
+            li.fragment data is sent to <span class="highlight">ROP</span> (Render Output Unit)
+            li.fragment ROP performs depth-testing, blending, antialiasing etc.
+            .text-center.mt-20
+                img.height-320(src=imgAssets+'gpu_process.svg')
++frameInbox('Rendering pipeline')
+    .important-green
+        .list-title.fragment
+            p Vertex shader phase
+            ul.leading-lg
+                li.fragment handles transformation from model space to view space
+                li.fragment full access to texture data (height maps)
+        .list-title.fragment
+            p Tessellation shader phase (optional)
+            ul.leading-lg
+                li.fragment subdivides geometry (e.g. for brick walls)
+                li.fragment <span class="highlight-2">Tessellation Control Shader</span> - determines the amount of tessellation
+                li.fragment <span class="highlight-2">Tessellation Evaluation Shader</span> - applies the interpolation
+        .list-title.fragment
+            p Geometry shader phase (optional)
+            ul.leading-lg
+                li.fragment operates on entire primitives in homogeneous clip space
+        .list-title.fragment
+            p Rasterization phase
+            ul.leading-lg
+                li.fragment <span class="highlight-2">Assembly</span> - converts a vertex stream into a sequence of base primitives
+                li.fragment <span class="highlight-2">Clipping</span> - transformation of clip space to window-space, discarding triangles that are outside
+                li.fragment <span class="highlight-2">Culling</span> - discards triangles facing away from the viewer
+                li.fragment <span class="highlight-2">Rasterization</span> - generates a sequence of fragments (window-space)
++frameInbox('Rendering pipeline')
+    .important-green
+        .list-title.fragment
+            p Fragment shader phase
+            ul
+                li.fragment input: fragment, output: color, depth value, stencil value
+                li.fragment can address texture maps and run per-pixel calculations
+        .list-title.fragment
+            p Final phase
+            ul
+                li.fragment <span class="highlight">Additional culling tests</span>
+                    ul
+                        li.fragment <span class="highlight-2">pixel ownership</span> - fails if the pixel is not owned by the API
+                        li.fragment <span class="highlight-2">scissor test</span> - fails if the pixel lies outside of a screen rectangle
+                        li.fragment <span class="highlight-2">stencil test</span> - comparing against stencil buffer
+                        li.fragment <span class="highlight-2">depth test</span> - comparing against depth buffer
+                li.fragment <span class="highlight">Color blending</span>
+                    ul
+                        li.fragment combines colors from fragment shader with colors in the color buffers
+                        li.fragment fragments can override each other or be mixed together
+                li.fragment writes data to framebuffer
+                li.fragment swaps buffers
++frameInbox('Rendering pipeline')
+    div
+        .space-xl
+        .space-lg
+        div.text-center
+            img.height-300(src=imgAssets+'pipeline_example.svg')
++frameInbox('Shaders')
+    .important-orange
+        ul
+            li.fragment programs that run on the video card in order to perform a variety of specialized functions (lighting, effects, post-processing, physics, AI)
+        .list-title.fragment
+            p Vertex shader
+            ul
+                li.fragment input is vertex, output is transformed vertex
+        .list-title.fragment
+            p Geometry shader (optional)
+            ul
+                li.fragment input is n-vertex primitive, output is zero or more primitives
+        .list-title.fragment
+            p Tessellation shader (optional)
+            ul
+                li.fragment input is primitive, output is subdivided primitive
+        .list-title.fragment
+            p Pixel (fragment) shader
+            ul
+                li.fragment input is fragment, output is color, depth value, stencil value
+                li.fragment widely used for visual effects
+            .bottom-50.right-50
+                figure
+                    img.height-500(src=imgAssets+'asciident.jpg')
+                    p ASCIIdent
+        .list-title.fragment
+            p Compute shader
+            ul
+                li.fragment shader that runs outside of the rendering pipeline (e.g. CUDA)
++frameInbox('Shader applications')
+    div
+        .list-title.fragment
+            p Vertex shader
+            ul.leading-md
+                li.fragment 3D-to-2D transformation
+                li.fragment displacement mapping
+                li.fragment skinning
+        .list-title.fragment
+            p Tessellation shader
+            ul.leading-md
+                li.fragment Hull Shader - tessellation control
+                li.fragment Domain Shader - tessellation evaluation
+            .top-40.right-40
+                figure
+                    img.height-200(src=imgAssets+'tessellation.jpg')
+                    p Surface Tessellation
+        .list-title.fragment
+            p Geometry shader
+            ul.leading-md
+                li.fragment sprite-from-point transformation
+                li.fragment cloth simulation
+                li.fragment fractal subdivision
+            .top-300.right-40
+                figure
+                    img.height-250(src=imgAssets+'geom_shader.gif')
+                    p Geometry shader grass
+        .list-title.fragment
+            p Pixel (fragment) shader
+            ul.leading-md
+                li.fragment bump mapping
+                li.fragment particle systems
+                li.fragment visual effects
+            .bottom-0.right-40
+                figure
+                    img.height-250(src=imgAssets+'screen_shader.gif')
+                    p Screen Effect
++frameInbox('Example: Geometry shader')
+    div
+        .code.text-sm
+            include ../../assets/graphics_processing/snippets_generated/geom.html
+    .top-40.right-40
+        img.height-300(src=imgAssets+'geom_shader.svg')

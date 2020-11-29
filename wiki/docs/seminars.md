@@ -81,7 +81,7 @@ Keyboard shortcuts for the slides:
 | 7 | 5.11. | Space | [Link](https://aph.dodo.me/slides/lecture07.html/) |
 | 8 | 12.11. | Physics | [Link](https://aph.dodo.me/slides/lecture08.html/) |
 | 9 | 19.11. | ------ | |
-| 10 | 26.11. | Graphics | |
+| 10 | 26.11. | Graphics |[Link](https://aph.dodo.me/slides/lecture09.html/) |
 | 11 | 3.12. | AI | |
 | 12 | 10.12. | Multiplayer | |
 | 13 | 17.12. | Design |  |

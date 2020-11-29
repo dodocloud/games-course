@@ -114,6 +114,10 @@ const config = {
 							label: 'Lecture 8: Physics',
 							href: url + '/slides/lecture08.html',
 						},
+						{
+							label: 'Lecture 9: Graphics',
+							href: url + '/slides/lecture09.html',
+						},
 					]
 				},
 				{

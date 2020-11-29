@@ -1,0 +1,37 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_demoscene/';
+- var defaultBgr = 'backgrounds/beyond.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Demoscene', imgAssets+'chapter_demoscene.svg')
++frameInbox('Demoscene')
+    div
+        ul
+            li.fragment.fade-up Demos are things that happen when a group of AI geeks sit together and make something spectacular
+            li.fragment.fade-up originates in 80's (audio loops, C64 cracktro, MS-DOS demos)
+            li.fragment.fade-up mainly a European phenomenon, part of UNESCO in Finland as of 2020
+            li.fragment.fade-up Demoparty - an event that gathers demosceners and other enthusiasts
+            li.fragment.fade-up <span class="highlight">Competitions:</span> Demo, 64K intro (reintroduced in 2017), 4K/8K intro, Short film
+        .text-center.mt-20.fragment.fade-up
+            img.height-500(src=imgAssets+'demoscene.jpg')
++frameInbox('Demoscene')
+    .center.fill
+        .grid.grid-cols-3.grid-rows-2.gap-40.width-80p
+            +floppyApp(imgAssets+'demo_2ndreality.jpg', 'Second Reality', '1993')
+            +floppyApp(imgAssets+'demo_fr08.jpg', 'FR-08 64K', '2000')
+            +floppyApp(imgAssets+'demo_kkrieger.jpg', 'Kkrieger 96K', '2004')
+            +floppyApp(imgAssets+'demo_timeless.jpg', 'Timeless 64K', '2012')
+            +floppyApp(imgAssets+'demo_instant_god.jpg', 'Instant God', '2016')
+            +floppyApp(imgAssets+'demo_phobos.jpg', 'Phobos 8K', '2018')
++frameInbox('Example: Tube')
+    div
+        ul
+            li 256B MS-DOS binary file
+        .code.text-sm.mt-20
+            include ../../assets/bonus_demoscene/snippets_generated/tube.html
+    .right-0.top-0
+        div
+            img.height-600(src=imgAssets+'tube.jpg')
+        a(href="http://www.pouet.net/prod.php?which=3397") LINK

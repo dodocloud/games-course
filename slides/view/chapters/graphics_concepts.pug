@@ -1,0 +1,218 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/graphics_concepts/';
+
++mchapter('Rendering concepts', imgAssets+'chapter_graphics.svg')
++frameInbox('Rendering techniques')
+        figure.fragment.fade-up.top-20.left-0
+            img.height-320(src=imgAssets+'conc_placement.jpg')
+            p Sprite placement
+        figure.fragment.fade-up.top-150.left-400
+            img.height-320(src=imgAssets+'conc_raycasting.jpg')
+            p Raycasting
+        figure.fragment.fade-up.top-300.left-740
+            img.height-320(src=imgAssets+'conc_rasterization.jpg')
+            p Rasterization
+        figure.fragment.fade-up.top-400.right-0
+            img.height-320(src=imgAssets+'conc_raytracing.jpg')
+            p Raytracing
++frameInbox('Raycasting')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') used as a variation of raster effects to circumvent hardware limits in early-gaming era
+            li.fragment(data-fragment-index='2') we cast a ray, obtain an object it hits and render a its trapezoid
+            li.fragment(data-fragment-index='3') horizontal raycasting (racing games, fighting games), vertical raycasting (FPS) 
+            li.fragment(data-fragment-index='4') Blood (1997) - one of the last AAA games that used raycasting
+        .text-center.mt-100.fragment(data-fragment-index='1')
+            img.height-350(src=imgAssets+'rendering_raycasting.svg')
+        .bottom-100.left-40.fragment(data-fragment-index='3')
+            figure
+                img.height-300(src=imgAssets+'raycasting_outrunners.gif')
+                p 1992: Outrunners
+        .bottom-100.right-40.fragment(data-fragment-index='3')
+            figure
+                img.height-300(src=imgAssets+'raycasting_wolf3d.gif')
+                p 1992: Wolfenstein 3D
++frameInbox('Raycasting')
+    div
+        ol
+            li.fragment(data-fragment-index='1') send out a ray that starts at the player's location
+            li.fragment(data-fragment-index='2') move this ray forward with the direction of the player
+            li.fragment(data-fragment-index='3') if the ray hits an object, process it
+        .space-lg
+        .flex-cols-3
+            figure.fragment(data-fragment-index='1')
+                img.height-400(src=imgAssets+'raycasting_rays.svg')
+                p Principle
+            figure.fragment(data-fragment-index='3')
+                img.height-400(src=imgAssets+'raycasting_sampling_fixed.svg')
+                p Precise sampling
+            figure.fragment(data-fragment-index='3')
+                img.height-400(src=imgAssets+'raycasting_sampling_borders.svg')
+                p Fixed sampling
++frameInbox('Rasterization')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') converts each triangle into pixels on a 2D screen
+            li.fragment(data-fragment-index='2') shadows are either baked, or calculated via <span class="highlight">shadow maps</span> or <span class="highlight">shadow volumes</span>
+            li.fragment(data-fragment-index='3') lighting is calculated in vertex or fragment shader
+        .bottom-150.left-600.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'rendering_rasterization.svg')
+        .bottom-150.left-40.fragment(data-fragment-index='3')
+            figure
+                img.height-200(src=imgAssets+'lighting_vertex.png')
+                p Vertex lighting
+        .bottom-150.left-280.fragment(data-fragment-index='3')
+            figure
+                img.height-200(src=imgAssets+'lighting_fragment.png')
+                p Fragment lighting
+        .bottom-150.right-20.fragment(data-fragment-index='2')
+            figure
+                img.height-300(src=imgAssets+'shadow_maps.svg')
+                p Shadow mapping
++frameInbox('Raytracing')
+    .important-green
+        ul
+            li.fragment.fade-up(data-fragment-index='1') provides realistic lighting by simulating the physical behavior of light
+            li.fragment.fade-up(data-fragment-index='2') several phases: ray-triangle tests, BVH traversal, denoising
+            li.fragment.fade-up(data-fragment-index='3') <span class="highlight">use-cases</span>: reflections, shadows, global illumination, caustics
+            li.fragment.fade-up(data-fragment-index='4') the light traverses the scene, reflecting from objects, being blocked (shadows), passing through transparent objects (refractions), producing the final color
+            li.fragment.fade-up(data-fragment-index='5') APIs: OptiX, DXR, VKRay
+        .text-center.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'rendering_raytracing.svg')
++frameInbox('Other techniques')
+    .important-orange
+        .list-title.fragment(data-fragment-index='1')
+            p LOD
+            ul
+                li.fragment(data-fragment-index='2') level of detail, boosts draw distance
+                li.fragment(data-fragment-index='3') pioneered with Spyro the Dragon Series
+        .list-title.fragment(data-fragment-index='4')
+            p Texture mapping
+            ul
+                li.fragment(data-fragment-index='5') mapping of 2D surface (texture map) onto a 3D object
+                li.fragment(data-fragment-index='6') early games have issues with perspective correctness
+                li.fragment(data-fragment-index='7') common use - UV mapping
+        .list-title.fragment(data-fragment-index='8')
+            p Baking
+            ul
+                li.fragment(data-fragment-index='9') a.k.a rendering to texture
+                li.fragment(data-fragment-index='10') generating texture maps that describe different properties of the surface of a 3D model
+                li.fragment(data-fragment-index='11') effects are pre-calculated in order to save computational time and circumvent hardware limits
+        .top-50.right-40.fragment(data-fragment-index='1')
+            img.height-300(src=imgAssets+'lod.png')
+        .top-300.right-40.fragment(data-fragment-index='7')
+            img.height-290(src=imgAssets+'uv_mapping.png')
+        .top-350.right-450.fragment(data-fragment-index='6')
+            img.height-200(src=imgAssets+'texture_mapping.svg')
+        .bottom-10.right-40.fragment(data-fragment-index='8')
+            img.height-170(src=imgAssets+'normal_map.png')
++frameInbox('Texture filtering')
+    .important-green
+        ul
+            li.fragment there is not a clean one-to-one mapping between texels and pixels
+            li.fragment GPU has to sample more than one texel and blend the resulting colors
+        .list-title.fragment
+            p Mipmapping
+            ul.leading-md
+                li.fragment for each texture, we create a sequence of lower-resolution bitmaps
+                li.fragment objects further from the camera will use low-res textures
+            .top-180.right-20
+                img.height-300(src=imgAssets+'mipmaps.svg')
+        .list-title.fragment
+            p Nearest neighbor
+            ul.leading-md
+                li.fragment the closest texel to the pixel center is selected
+        .list-title.fragment
+            p Bilinear filtering
+            ul.leading-md
+                li.fragment the four texels surrounding the pixel center are sampled, and the resulting color is a weighted average of their colors
+        .list-title.fragment
+            p Trilinear filtering
+            ul.leading-md
+                li.fragment bilinear filtering is used on each of the two nearest mipmap levels
+        .list-title.fragment
+            p Anisotropic filtering
+            ul.leading-md
+                li.fragment samples texels within a region corresponding to the view angle
++frameInbox('Texture filtering')
+    div
+        .grid.grid-cols-2.grid-rows-2
+            figure
+                img.height-340(src=imgAssets+'filtering_none.jpg')
+                p Nearest neighbor
+            figure
+                img.height-340(src=imgAssets+'filtering_anis.jpg')
+                p Anisotropic
+            figure
+                img.height-340(src=imgAssets+'filtering_bili.jpg')
+                p Bilinear
+            figure
+                img.height-340(src=imgAssets+'filtering_trili.jpg')
+                p Trilinear
++frameInbox('Anisotropic filtering')
+    .important-green
+        ul.leading-md
+            li.fragment used to smooth sharp edges of vertices
+            li.highlight-2.fragment should be disabled for pixel-art games!
+                .top-20.right-20
+                    img.width-450(src=imgAssets+'giggly effect.gif')
+        .list-title.fragment
+            p FSAA/SSAA (Super-Sampled Antialiasing)
+            ul.leading-md
+                li.fragment uses sub-pixel values to average out the final values
+            .bottom-20.right-20
+                img.width-450(src=imgAssets+'antialiasing.svg')
+        .list-title.fragment
+            p DSR (Dynamic Super Resolution)
+            ul.leading-md
+                li.fragment scene is rendered into a frame buffer that is larger than the  screen
+                li.fragment oversized image is downsampled
+        .list-title.fragment
+            p MSAA (Multisampled Antialiasing)
+            ul.leading-md
+                li.fragment comparable to DSR, half of the overhead
+                li.fragment the pixel shader only evaluates once per pixel
+        .list-title.fragment
+            p CSAA (Coverage sample Antialiasing)
+            ul.leading-md
+                li.fragment NVidia's optimization of MSAA
+                li.fragment new sample type: coverage sample
+        .list-title.fragment
+            p DLSS (Deep Learning Super Sampling)
+            ul.leading-md
+                li.fragment AI-based DSR, uses Tensor Cores
++frameInbox('Example: Anisotropic filtering')
+    .center
+        img.height-700(src=imgAssets+'antialiasing.jpg')
++frameInbox('Rendering features')
+    div
+        .grid.grid-cols-2.grid-rows-2
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_motion.jpg')
+                p Motion blur
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_chroma.jpg')
+                p Chromatic Aberration
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_decal.jpg')
+                p Decals
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_depthoffield.jpg')
+                p Depth of field
++frameInbox('Rendering features')
+    div
+        .grid.grid-cols-2.grid-rows-2
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_caustics.jpg')
+                p Caustics
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_lens.jpg')
+                p Lens flare
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_subsurfaces.jpg')
+                p Subsurface Scattering
+            figure.fragment
+                img.height-340(src=imgAssets+'effects_ao.jpg')
+                p Ambient Occlusion

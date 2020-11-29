@@ -1,0 +1,122 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/graphics_animations/';
+
++mchapter('Animations', imgAssets+'chapter_animations.svg')
++frameInbox('Animations')
+    .important-green
+        .list-title.fragment(data-fragment-index='1')
+            p Rotoscoping animations
+            ul
+                li.fragment(data-fragment-index='2') predefined set of images/sprites
+                li.fragment(data-fragment-index='3') simple and intuitive, but impossible to re-define without changing the assets
+        .list-title.fragment(data-fragment-index='4')
+            p Keyframed animation
+            ul
+                li.fragment(data-fragment-index='5') keyframes contain values (position, color, modifier,...) at given point in time
+                li.fragment(data-fragment-index='6') intermediate frames are <span class="highlight-2">interpolated</span>
+        .list-title.fragment(data-fragment-index='7')
+            p Skeletal animation
+            ul
+                li.fragment(data-fragment-index='8') object has a skeleton (rigging) bound to its mesh by assigning weights (skinning)
+        .flex-cols-4.mt-10
+            figure.fragment(data-fragment-index='1')
+                img.height-250(src=imgAssets+'anim_sprite.gif')
+                p Rotoscoping
+            figure.fragment(data-fragment-index='4')
+                img.height-250(src=imgAssets+'anim_vertex.gif')
+                p Keyframed
+            figure.fragment(data-fragment-index='7')
+                img.height-250(src=imgAssets+'anim_spine.gif')
+                p Skeletal 2D
+            figure.fragment(data-fragment-index='7')
+                img.height-250(src=imgAssets+'anim_skeletal.gif')
+                p Skeletal 3D
++frameInbox('Interpolation')
+    .important-orange
+        ul
+            li.fragment method that calculates semi-points within the range of given points
+        .list-title.fragment
+            p Applications
+            ul
+                li.fragment graphics - image resizing
+                li.fragment animations - transformation morphing
+                li.fragment multiplayer - game state morphing
+                li.fragment audio/video - sample/keyframe interpolation
+            .bottom-80.right-40
+                img.height-600(src=imgAssets+'interpolation.svg')
+        .list-title.fragment
+            p Main methods
+            ul
+                li.fragment Constant interpolation (none/hold)
+                li.fragment Linear interpolation
+                li.fragment Cosine interpolation
+                li.fragment Cubic interpolation
+                li.fragment Bézier interpolation
+                li.fragment Hermite interpolation
+                li.fragment SLERP (spherical linear interpolation)
+            +tipKeen('SLERP is widely used in animation blending').bottom-0.right-350
++frameInbox('Bezier Curve')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') parametric curve defined by a set of control points
+            li.fragment(data-fragment-index='2') most common - <span class="highlight">cubic curve</span>, 4 points, 2 points provide directional information
+        .space-lg
+        .text-center.fragment(data-fragment-index='2')
+            img.height-550(src=imgAssets+'bezier.svg')
++frameInbox('Linear Interpolation')
+    .important-green
+        .list-title.fragment(data-fragment-index='1')
+            p Linear Interpolation
+            ul
+                li.fragment(data-fragment-index='2')
+                    include ../../assets/graphics_animations/equations_generated/linear_interpolation.svg
+                li.fragment(data-fragment-index='3') for 1D values (time, sound)
+        .list-title.mt-80.fragment(data-fragment-index='4')
+            p Bilinear interpolation
+            ul
+                li.fragment(data-fragment-index='5') on a rectilinear 2D grid
+                li.fragment(data-fragment-index='6') for 2D values (images, textures)
+                li.fragment(data-fragment-index='7') Q - known points (closest pixels)
+                li.fragment(data-fragment-index='8') P - desired point
+        .list-title.mt-60.fragment(data-fragment-index='9')
+            p Trilinear interpolation
+            ul
+                li.fragment(data-fragment-index='10') on a regular 3D grid
+                li.fragment(data-fragment-index='11') for 3D values (mipmaps)
+        .top-20.right-20.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'interp_linear.svg')
+        .top-300.right-500.fragment(data-fragment-index='4')
+            img.height-400(src=imgAssets+'interp_bilinear.svg')
+        .bottom-20.right-20.fragment(data-fragment-index='9')
+            img.height-400(src=imgAssets+'interp_trilinear.svg')
++frameInbox('Example: 1D interpolation')
+    div
+        .center.mt-60
+            img.height-600(src=imgAssets+'interpolation_1D.svg')
++frameInbox('Example: 2D interpolation')
+    div
+        .text-center.fragment
+            img.height-200(src=imgAssets+'scale_original.png')
+        .flex-cols-4
+            figure.fragment
+                img.height-400(src=imgAssets+'scale_nosamp.png')
+                p No interpolation
+            figure.fragment
+                img.height-400(src=imgAssets+'scale_constant.png')
+                p Constant (nearest neighbor)
+            figure.fragment
+                img.height-400(src=imgAssets+'scale_bilinear.png')
+                p Bilinear
+            figure.fragment
+                img.height-400(src=imgAssets+'scale_cubic.png')
+                p Cubic
++frameInbox('Animation blending')
+    .important-green
+        ul
+            li.fragment key concept in run-time animation to create smooth transitions
+            li.fragment for each joint rotation, we compute in-between values
+            li.highlight.fragment a significant amount of effort in 3D games comes from animation-physics-gameplay sync
+        .center.mt-80.fragment
+            img.height-500(src=imgAssets+'anim_blending.gif')

@@ -70,7 +70,8 @@ module.exports = {
 				type: 'category',
 				items: ['examples/physics/matter-friction', 'examples/physics/matter-airfriction',
 				'examples/physics/matter-bridge', 'examples/physics/matter-car', 'examples/physics/matter-chains',
-				'examples/physics/matter-cradle', 'examples/physics/matter-mixed-shapes', 'examples/physics/cloth']
+				'examples/physics/matter-cradle', 'examples/physics/matter-mixed-shapes', 'examples/physics/cloth',
+				'examples/physics/matter-binding']
 			},
 			{
 				label: 'Other',

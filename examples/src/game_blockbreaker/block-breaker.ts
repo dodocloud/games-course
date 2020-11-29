@@ -14,15 +14,91 @@ enum BallStates {
 	RELEASED = 2
 }
 
+enum Tags {
+	BRICK = 'brick',
+	BALL = 'ball',
+	PADDLE = 'paddle'
+}
+
+enum Attrs {
+	VELOCITY = 'velocity',
+	SCENE_HEIGHT = 'scene_height'
+}
+
 const releaseSpeed = 0.1;
+
+class CollisionHandler extends ECS.Component {
+	
+	onUpdate(delta: number, absolute: number) {
+		const ball = this.scene.findObjectByTag(Tags.BALL);
+		const bricks = this.scene.findObjectsByTag(Tags.BRICK);
+		const paddle = this.scene.findObjectByTag(Tags.PADDLE);
+
+		const colliders = [...bricks, paddle];
+		const ballBox = ball.getBounds();
+		const velocity = ball.getAttribute<ECS.Vector>(Attrs.VELOCITY);
+
+		for(let collider of colliders) {
+			const cBox = collider.getBounds();
+			const horizIntersection = this.horizIntersection(ballBox, cBox);
+			const vertIntersection = this.vertIntersection(ballBox, cBox);
+
+			const collides = horizIntersection > 0 && vertIntersection > 0;
+			
+			if(collides) {
+				let newVelocity: ECS.Vector;
+
+				if(collider.hasTag(Tags.BRICK)) {
+					if(horizIntersection < vertIntersection) {
+						newVelocity = new ECS.Vector(-velocity.x, velocity.y);
+					} else {
+						newVelocity = new ECS.Vector(velocity.x, -velocity.y);
+					}
+				} else if(collider.hasTag(Tags.PADDLE)) {
+					const magnitude = velocity.magnitude();
+					if((ballBox.left + ballBox.width / 2) > (cBox.left + cBox.width / 2)) {
+						newVelocity = new ECS.Vector(velocity.x + magnitude / 5, -velocity.y).normalize().multiply(magnitude);
+					} else {
+						newVelocity = new ECS.Vector(velocity.x - magnitude / 5, -velocity.y).normalize().multiply(magnitude);
+					}
+				}
+
+				ball.assignAttribute(Attrs.VELOCITY, newVelocity);
+				
+				if(collider.hasTag(Tags.BRICK)) {
+					collider.destroy();
+				}
+				break;
+			}
+
+		}
+	}
+
+	private horizIntersection(boundsA: PIXI.Rectangle, boundsB: PIXI.Rectangle) {
+		return Math.min(boundsA.right, boundsB.right) - Math.max(boundsA.left, boundsB.left);
+	}
+
+	private vertIntersection(boundsA: PIXI.Rectangle, boundsB: PIXI.Rectangle) {
+		return Math.min(boundsA.bottom, boundsB.bottom) - Math.max(boundsA.top, boundsB.top);
+	}
+}
+
 class BallController extends ECS.Component {
 	paddle: ECS.Container;
-	velocity: ECS.Vector;
 	lastAttachPositionX: number;
 
+	get velocity() {
+		return this.owner.getAttribute<ECS.Vector>(Attrs.VELOCITY);
+	}
+
+	set velocity(velocity: ECS.Vector) {
+		this.owner.assignAttribute(Attrs.VELOCITY, velocity);
+	}
+	
 	onInit() {
 		this.subscribe(Messages.BALL_ATTACH, Messages.BALL_RELEASE);
-		this.paddle = this.scene.findObjectByName('paddle');
+		this.paddle = this.scene.findObjectByTag(Tags.PADDLE);
+		this.velocity = new ECS.Vector(0);
 	}
 
 	onMessage(msg: ECS.Message) {
@@ -45,7 +121,8 @@ class BallController extends ECS.Component {
 	releaseBall() {
 		this.owner.stateId = BallStates.RELEASED;
 		const diffX = this.owner.position.x - this.lastAttachPositionX;
-		this.velocity = new ECS.Vector(diffX, -releaseSpeed);
+		const diffY = -releaseSpeed;
+		this.velocity = new ECS.Vector(diffX / 2, diffY).normalize().multiply(releaseSpeed);
 		this.lastAttachPositionX = null;
 	}
 
@@ -74,7 +151,7 @@ class BallController extends ECS.Component {
 		if (bounds.top < 0) {
 			this.velocity = new ECS.Vector(this.velocity.x, -this.velocity.y);
 		}
-		if (bounds.top > this.scene.getGlobalAttribute<number>('SCENE_HEIGHT')) {
+		if (bounds.top > this.scene.getGlobalAttribute<number>(Attrs.VELOCITY)) {
 			this.attachBall();
 		}
 	}
@@ -153,18 +230,19 @@ class BlockBreaker {
 				sprite.scale.set(TEXTURE_SCALE);
 				sprite.position.x = i;
 				sprite.position.y = j * 0.5;
+				sprite.addTag(Tags.BRICK);
 				bricks.addChild(sprite);
 			}
 		}
 
 		const sceneHeight = SCENE_WIDTH / (this.engine.app.view.width / this.engine.app.view.height);
 
-		scene.assignGlobalAttribute('SCENE_HEIGHT', sceneHeight);
+		scene.assignGlobalAttribute(Attrs.SCENE_HEIGHT, sceneHeight);
 
 		new ECS.Builder(this.engine.scene)
 			.anchor(0.5)
 			.localPos(SCENE_WIDTH / 2, sceneHeight - 1)
-			.withName('paddle')
+			.withTag(Tags.PADDLE)
 			.asSprite(this.createTexture(0, 125, 100, 25))
 			.withParent(scene.stage)
 			.withComponent(new PaddleController())
@@ -173,13 +251,14 @@ class BlockBreaker {
 
 		new ECS.Builder(this.engine.scene)
 			.anchor(0.5)
-			.withName('ball')
+			.withTag(Tags.BALL)
 			.asSprite(this.createTexture(0, 100, 20, 20))
 			.withParent(scene.stage)
 			.withComponent(new BallController())
 			.scale(TEXTURE_SCALE)
 			.build();
 
+		scene.addGlobalComponent(new CollisionHandler());
 		scene.sendMessage(new ECS.Message(Messages.BALL_ATTACH));
 	}
 

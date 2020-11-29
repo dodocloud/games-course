@@ -6,6 +6,11 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.9] - 2020-11-29
+### Added
+- Slides for Lecture 09
+- Solution to the MatterJS binding tutorial
+
 ## [4.8.6] - 2020-11-18
 
 ### Added

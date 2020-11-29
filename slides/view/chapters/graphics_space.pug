@@ -1,0 +1,110 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/graphics_space/';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Space', imgAssets+'chapter_space.svg')
++mcontainer()
+    +frameShard.width-70px.height-33p.top-300.center.z-index-100
+        +quote('Game graphics is about squeezing a great deal of linear algebra into the tiny slice of computational time the game loop gives us.')
++frameInbox('Game categories')
+    div
+        .list-title.fragment
+            p 2D
+            ul.leading-lg
+                li.fragment top-down or side view
+                li.fragment sprites are mapped onto quads
+                li.fragment layered rendering, orthographic projection
+            .top-80.right-450
+                img.height-220(src=imgAssets+'cat_2D.svg')
+            .top-80.right-100
+                img.width-290(src=imgAssets+'cat_2D.png')
+        .list-title.fragment
+            p Isometric 2D
+            ul.leading-lg
+                li.fragment view that reveal more facets than pure 2D
+                li.fragment several types of projection: 104°-135°
+            .top-310.right-530
+                img.height-120(src=imgAssets+'cat_iso.svg')
+            .top-250.right-100
+                img.width-290(src=imgAssets+'cat_iso.jpg')
+        .list-title.fragment
+            p Fake 3D
+            ul.leading-lg
+                li.fragment raycasting
+                li.fragment Mode 7 from SNES games
+            .top-420.right-100
+                img.width-290(src=imgAssets+'cat_raycasting.png')
+        .list-title.fragment
+            p 2.5D
+            ul.leading-lg
+                li.fragment 3D game with a gameplay limited to 2 dimensions (e.g. sidescrollers)
+            .top-630.right-100
+                img.width-290(src=imgAssets+'cat_25D.jpg')
+        .list-title.fragment
+            p 3D
+            ul.leading-lg
+                li.fragment regular 3-dimensional game
++frameInbox('Example: Game Boy Advance layers')
+    div
+        .space-lg
+        .center
+            img.height-550(src=imgAssets+'gba_gfx.jpg')
++frameInbox('Space')
+    .important-orange
+        .list-title.fragment
+            p Model Space
+            ul.leading-md
+                li.fragment origin is usually placed at a central location (center of mass)
+                li.fragment axes are aligned to natural direction of the model
+        .list-title.fragment
+            p World Space
+            ul.leading-md
+                li.fragment fixed coordinate space, in which the transformations of all objects in the game world are expressed
+        .list-title.fragment
+            p View/Camera Space
+            ul.leading-md
+                li.fragment coordinate frame fixed to the camera
+                li.fragment space origin is placed at the focal point of the camera
+                li.fragment OpenGL: camera faces toward negative <span class="italic">z</span>
+        .list-title.fragment
+            p Clip Space
+            ul.leading-md
+                li.fragment a rectangular prism extending from -1 to 1 (OpenGL)
+        .list-title.fragment
+            p View/Screen Space
+            ul.leading-md
+                li.fragment a region of the screen used to display a portion of the final image
++frameInbox('World-Model-View')
+    .important-orange
+        .center
+            img.height-750(src=imgAssets+'world-model-view.svg')
++frameInbox('Clip Space')
+    .important-orange
+        .center
+            img.height-750(src=imgAssets+'clip_space.svg')
++frameInbox('View Volume')
+    .important-orange
+        ul
+            li.fragment <span class="highlight">View volume</span> - region of space the camera can see
+            li.fragment <span class="highlight">Frustum</span> - the shape of view volume for perspective projection
+            li.fragment <span class="highlight">Rectangular prism</span> - the shape of view volume for orthographic projection
+            li.fragment <span class="highlight">Field of View (FOV)</span> - the angle between the top and bottom of a 2D surface of the projected world
+        .space-md
+        .flex-cols-2.fragment
+            figure
+                img.height-400(src=imgAssets+'projection_perspective.svg')
+                p Perspective projection
+            figure
+                img.height-400(src=imgAssets+'projection_ortographic.svg')
+                p Orthographic projection
++frameInbox('Lookat Vector')
+    .important-green
+        ul
+            li.fragment a unit vector that points in the same direction as the camera
+            li.fragment if the dot product between <span class="code highlight">lookAt</span> vector an the <span class="code highlight">normal</span> vector of a polygon is lower than zero, the polygon is facing the camera
+        .bottom-90.right-620
+            img.height-500(src=imgAssets+'doomdoor.png')
+        .bottom-100.right-500
+            img.height-500(src=imgAssets+'lookat.svg')
