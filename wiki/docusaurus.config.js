@@ -118,6 +118,10 @@ const config = {
 							label: 'Lecture 9: Graphics',
 							href: url + '/slides/lecture09.html',
 						},
+						{
+							label: 'Lecture 10: AI',
+							href: url + '/slides/lecture10.html',
+						},
 					]
 				},
 				{

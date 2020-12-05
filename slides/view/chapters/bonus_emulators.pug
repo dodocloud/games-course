@@ -1,0 +1,73 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_emulators/';
+- var defaultBgr = 'backgrounds/bgr_emulators.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Emulators', imgAssets+'chapter_emulators.svg')
++frameInbox('Emulation')
+    div
+        ul
+            li.fragment(data-fragment-index='1') replication of internal processes of another hardware
+            li.fragment(data-fragment-index='2') <span class="highlight-2">game console emulators</span> - try to match or even improve the gameplay experience of the original HW
+            li.mt-10.fragment(data-fragment-index='3') <span class="highlight">Factors</span>
+                ul
+                    li.fragment(data-fragment-index='4') nostalgy
+                    li.fragment(data-fragment-index='5') quick but engaging gameplay (pick-up-and-play)
+                    li.fragment(data-fragment-index='6') emulation features (streaming, statistics, load/save, fast forward,...)
+                    li.fragment(data-fragment-index='7') the only way how to play certain games (Pokémon ROM hacks, fan-made translations)            
+                    li.fragment(data-fragment-index='8') legal issues (downloading games you don't own a copy of is illegal)
+        .text-center.mt-30.fragment(data-fragment-index='2')
+            img.height-240(src=imgAssets+'snes.png')
++frameInbox('History') 
+    div
+        ul
+            li.fragment(data-fragment-index='1') 1990 - <span class="highlight-2">Family Computer Emulator</span> for NES
+            li.fragment(data-fragment-index='2') 1993 - <span class="highlight-2">VICE emulator</span> for Commodore 64
+            li.fragment(data-fragment-index='3') 1995 - <span class="highlight-2">Virtual GameBoy</span>
+            li.fragment(data-fragment-index='4') 1997 - <span class="highlight-2">NESticle</span> - emulator that defined retro-gaming
+            li.fragment(data-fragment-index='5') 1997 - <span class="highlight-2">NO$GMB</span> GameBoy emulator for DOS
+            li.fragment(data-fragment-index='6') 1998 - <span class="highlight-2">PSEmu</span> PlayStation emulator
+            li.fragment(data-fragment-index='7') 2000 - <span class="highlight-2">VGBA</span> GameBoy emulator
+            li.fragment(data-fragment-index='8') 2001 - <span class="highlight-2">PSCX2</span> PS2 emulator
+            li.fragment(data-fragment-index='9') 2002 - <span class="highlight-2">Dosbox</span>, DOS full CPU emulator
+            li.fragment(data-fragment-index='10') 2010 - <span class="highlight-2">RetroArch</span> released, cross-platform front-end for emulators
+            li.fragment(data-fragment-index='11') 2015 - revival of home-made arcade cabinets
+            li.fragment(data-fragment-index='12') 2016 - <span class="highlight-2">Raspberry 3</span> released, a new wave of retro-gaming emerged
+            li.fragment(data-fragment-index='13') 2020 - <span class="highlight-2">3DSen</span> beta version of 3D Voxel NES emulator
+        .top-20.right-20.fragment(data-fragment-index='2')
+            img.height-300(src=imgAssets+'vice.jpg')
+        .top-200.right-280.fragment(data-fragment-index='4')
+            img.height-300(src=imgAssets+'nesticle.png')
+        .top-300.right-20.fragment(data-fragment-index='9')
+            img.height-300(src=imgAssets+'dosbox.jpg')
+        .bottom-20.right-0.fragment(data-fragment-index='13')
+            img.height-300(src=imgAssets+'3dsen.jpg')
+        .top-350.right-300.fragment(data-fragment-index='11')
+            img.height-400(src=imgAssets+'cabinet.png')
++frameInbox('Pokémon ROM hacks')
+    div
+        ul
+            li.fragment(data-fragment-index='1') fan-made mods of Pokémon games for GBC/GBA/3DS
+            li.fragment(data-fragment-index='2') expansion into a universe the game has already established
+            li.fragment(data-fragment-index='3') despite the fear of Nintendo, the community is still growing
+            li.fragment(data-fragment-index='4') <span class="highlight">Pokémon Prism</span> - full-fledged character customization, rewritten story
+            li.fragment(data-fragment-index='5') <span class="highlight">Pokémon Light Platinum</span> - rewritten story, based on Pokémon Ruby
+            li.fragment(data-fragment-index='6') <span class="highlight">Pokémon Mega Power</span> - new areas and story
+            li.fragment(data-fragment-index='7') <span class="highlight">Pokémon Glazed</span> - rewritten story
+        .bottom-0.left-0.fragment(data-fragment-index='1')
+            img.height-420(src=imgAssets+'romhacks_posts.jpg')
+        .bottom-0.right-0.fragment(data-fragment-index='4')
+            img.height-520(src=imgAssets+'romhacks.png')
++frameInbox('Raspberry')
+    div
+        ul
+            li.fragment full-fledged (not only) retro-gaming device
+                .bottom-20.right-20
+                    img.height-460(src=imgAssets+'raspberry.png')
+            li.fragment Rpi 3 is capable of emulating C64, GBC, GBA, PSX, MegaDrive, NES, SNES, DOS (~486DX2 CPU)
+            li.fragment Rpi 4 is also more or less capable of emulating PSP, N64, and Dreamcast
+            li.fragment emulation is managed by <span class="highlight">libretro</span> framework with <span class="highlight">RetroArch gui</span>, running in <span class="highlight">Emulationstation</span> front-end, powered by <span class="highlight">RetroPie</span> OS 
+                .bottom-20.left-150
+                    img.height-500(src=imgAssets+'retropie.svg')

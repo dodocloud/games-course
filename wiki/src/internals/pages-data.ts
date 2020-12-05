@@ -70,7 +70,8 @@ export const slidesData: slide[] = [
 	{
 		id: 'lecture10',
 		group: 2,
-		date: '3.12.2020'
+		hint: 'Lecture 10',
+		desc: 'AI'
 	},
 	{
 		id: 'lecture11',

@@ -1,0 +1,30 @@
+<svg width="90.809mm" height="38.379mm" version="1.1" viewBox="0 0 90.809 38.379" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(29.885 -224.51)">
+  <rect transform="scale(1,-1)" x="-29.753" y="-262.76" width="36.74" height="36.169" fill="#1d232d" stroke="#7b8694" stroke-width=".26458"/>
+  <g fill="#e8eaec">
+   <rect x="-29.47" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-26.644" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-26.644" y="259.68" width="2.8261" height="2.8257"/>
+   <rect x="-18.166" y="259.68" width="2.8261" height="2.8257"/>
+   <rect x="-18.166" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-15.34" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-12.514" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-9.6874" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-6.8613" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-4.0351" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="-1.209" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="1.6171" y="257.39" width="2.8261" height="2.8257"/>
+   <rect x="1.6171" y="259.65" width="2.8261" height="2.8257"/>
+   <rect x="-9.6874" y="246.09" width="2.8261" height="2.8257"/>
+   <rect x="-6.8613" y="246.09" width="2.8261" height="2.8257"/>
+   <rect x="3.9134" y="237.61" width="2.8261" height="2.8257"/>
+   <rect x="1.0872" y="237.61" width="2.8261" height="2.8257"/>
+  </g>
+  <path d="m-10.315 236.93 70.537-11.426" fill="none" stroke="#47d58a" stroke-linecap="square" stroke-width=".26458"/>
+  <g transform="matrix(.004145 -.00087579 .00089079 .004216 58.493 224.59)" fill="#47d58a" stroke-width="123.85">
+   <g fill="#47d58a" stroke-width="123.85">
+    <path d="m486.41 221.41-364.07-208.5c-52.938-30.318-95.852-5.44-95.852 55.563v415.65c0 61.004 42.914 85.882 95.852 55.563l364.07-208.49c52.938-30.317 52.938-79.473 0-109.79z" fill="#47d58a" stroke-width="123.85"/>
+   </g>
+  </g>
+ </g>
+</svg>

@@ -6,6 +6,10 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.10] - 2020-12-05
+### Added
+- Slides for Lecture 10
+
 ## [4.9] - 2020-11-29
 ### Added
 - Slides for Lecture 09

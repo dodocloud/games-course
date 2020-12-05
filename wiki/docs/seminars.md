@@ -82,7 +82,7 @@ Keyboard shortcuts for the slides:
 | 8 | 12.11. | Physics | [Link](https://aph.dodo.me/slides/lecture08.html/) |
 | 9 | 19.11. | ------ | |
 | 10 | 26.11. | Graphics |[Link](https://aph.dodo.me/slides/lecture09.html/) |
-| 11 | 3.12. | AI | |
+| 11 | 3.12. | AI |[Link](https://aph.dodo.me/slides/lecture10.html/) |
 | 12 | 10.12. | Multiplayer | |
 | 13 | 17.12. | Design |  |
 

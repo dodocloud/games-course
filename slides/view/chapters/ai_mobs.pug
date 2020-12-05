@@ -1,0 +1,300 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/gameai_mobs/';
+
++mchapter('AI for mobs', imgAssets+'chapter_mobs.svg')
++frameInbox('Scripting')
+    .important-orange
+        ul
+            li.fragment(data-fragment-index='1') <span class="highlight">IF-THIS-THEN-THAT</span>
+            li.fragment(data-fragment-index='2') AI behavior is completely hardcoded
+            li.upside.fragment(data-fragment-index='2') simple, easy to debug, easy to extend
+            li.downside.fragment(data-fragment-index='3') human player should behave as the developers expected
+            li.downside.fragment(data-fragment-index='4') good scripting behavior must cover a large amount of situations
+        .code.text-sm.mt-10.fragment(data-fragment-index='5')
+            include ../../assets/gameai_mobs/snippets_generated/doom_chase.html
+        .right-0.bottom-0.fragment(data-fragment-index='5')
+            img.height-500(src=imgAssets+'doom_chase.png')
++frameInbox('Finite State Machine')
+    .important-orange
+        ul
+            li.fragment the oldest and most commonly used formalism to model game AIs
+            li.fragment useful for entities with a small set of distinct states
+                .bottom-300.right-20
+                    img.height-320(src=imgAssets+'dungeon.jpg')
+            li.fragment each entity can be in <span class="highlight-2">exactly one</span> of a finite number of states at any time
+            li.mt-20.fragment <span class="highlight font-bold">Definition</span>
+                ul
+                    li.fragment quadruple: 
+                        include ../../assets/gameai_mobs/equations_generated/fsm_01.svg
+                    li.fragment 
+                        include ../../assets/gameai_mobs/equations_generated/fsm_02.svg
+                        |&nbsp;is a finite, non-empty set of states
+                    li.fragment
+                        include ../../assets/gameai_mobs/equations_generated/fsm_03.svg
+                        |&nbsp;is a finite set of inputs
+                    li.fragment
+                        include ../../assets/gameai_mobs/equations_generated/fsm_04.svg
+                        |&nbsp;is the state-transition function
+                    li.fragment
+                        include ../../assets/gameai_mobs/equations_generated/fsm_05.svg
+                        |&nbsp;is an initial state, 
+                        include ../../assets/gameai_mobs/equations_generated/fsm_06.svg
+            li.mt-20.fragment can be implemented via polymorphism or a state transition table
+            li.downside.fragment unmanageable for large complex systems, leading to transition explosion
++frameInbox('Example: Pacman FSM')
+    .important-green
+        .text-center
+            img.height-700(src=imgAssets+'fsm_pacman.svg')
+        .top-90.right-250
+            img.height-100(src=imgAssets+'fsm_pacman.png')
++frameInbox('Example: Pacman transition table')
+    div.center
+        .space-xl
+        .space-md
+        table
+            tr
+                th State
+                th Transition
+                th Condition
+            tr
+                td Wander the maze
+                td Chase pacman
+                td Pacman spotted
+            tr
+                td Wander the maze
+                td Flee Pacman
+                td PowerPellet eaten
+            tr
+                td Chase Pacman
+                td Wander the maze
+                td Pacman lost
+            tr
+                td Chase Pacman
+                td Flee Pacman
+                td PowerPellet eaten
+            tr
+                td Flee Pacman
+                td Return to Base
+                td Eaten by Pacman
+            tr
+                td Flee Pacman
+                td Wander the maze
+                td PowerPellet expired
+            tr
+                td Return to Base
+                td Wander the maze
+                td Central base reached
++frameInbox('Example: Doomguard')
+    div
+        .text-center
+            img.height-700(src=imgAssets+'fsm_doomguard.svg')
+        .bottom-40.right-20
+            img.height-400(src=imgAssets+'fsm_doomguard.png')
++frameInbox('Example: Doomguard')
+    div
+        ul
+            li let's add an ability to fall asleep
+    .bottom-40.right-20
+        img.height-400(src=imgAssets+'fsm_doomguard.png')
+    .bottom-0.right-240
+        img.height-700(src=imgAssets+'fsm_doomguard_2.svg')
++frameInbox('Hierarchical state machine')
+    .important-orange
+        ul
+            li.fragment also known as <span class="highlight">statecharts</span>
+            li.fragment each state can have a superstate or a set of substates
+            li.fragment groups of states share transitions
+            li.fragment usually implemented as a stack
+                ul
+                    li.fragment push a low-level state on the stack when entered
+                    li.fragment pop and move to the next state when finished
+        .text-center.fragment
+            img.height-440(src=imgAssets+'hfsm_doomguard.svg')
+            .bottom-40.right-20
+                img.height-400(src=imgAssets+'fsm_doomguard.png')
++frameInbox('Fuzzy logic')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') a complementary asset for state machines and scripting
+            li.fragment(data-fragment-index='2') instead of thresholding, we can blurry out state transitions
+            li.fragment(data-fragment-index='3') used in Halo 3 for unit control, threat assessment and classification
+        .text-center.mt-60.fragment(data-fragment-index='1')
+            img.height-500(src=imgAssets+'fuzzy.svg')
++frameInbox('Behavior Tree')
+    .important-orange
+        ul
+            li.fragment tree of hierarchical nodes that control decision making process
+            li.fragment originated from gaming industry since Halo 2 (2004)
+            li.fragment combines elements from both Scripting and HFSMs
+            li.fragment there is no standardized formalization
+            li.fragment depth-first traversal, starting with the root node
+            li.fragment each executed behavior passes back and returns a status
+                ul
+                    li.highlight.code SUCCESS, FAILURE, RUNNING, (SUSPENDED)
+        .text-center.mt-20.fragment
+            img.height-400(src=imgAssets+'btree.jpg')
++frameInbox('Behavior Tree')
+    .important-orange
+        .text-center.fragment
+            img.height-350(src=imgAssets+'btree.svg')
+        .space-md
+        .center.text-center
+            table.fragment
+                tr
+                    th Node Type
+                    th Success
+                    th Failure
+                    th Running
+                tr
+                    td.color-lemon Selector
+                    td If one child succeeds
+                    td If all children fail
+                    td If one child is running
+                tr
+                    td.color-lemon Sequence
+                    td If all children succeed
+                    td If one child fails
+                    td If one child is running
+                tr
+                    td.color-lemon Decorator
+                    td It depends
+                    td It depends
+                    td It depends
+                tr
+                    td.color-lemon Parallel
+                    td If N children succeed
+                    td If M-N children succeed
+                    td If all children are running
+                tr
+                    td.color-lemon Action
+                    td When completed
+                    td Upon an error
+                    td During completion
+                tr
+                    td.color-lemon Condition
+                    td If true
+                    td If false
+                    td Never
++frameInbox('Behavior Tree - Node Types')
+    .important-green
+        .list-title.fragment
+            p Selector
+            ul
+                li.fragment tries to execute its child nodes from left to right until it receives a successful response
+                li.fragment when a successful response is received, responds with a success
+        .list-title.fragment
+            p Sequence
+            ul
+                li.fragment will execute each of its child nodes in a sequence from left to right until a failure is received
+                li.fragment if every child node responds with a success, the sequence node itself will respond with a success
+        .list-title.fragment
+            p Decorator
+            ul
+                li.fragment allows for additional behavior to be added without modifying the code
+                li.fragment only one child node
+                li.fragment returns success if the specified condition is met, and its subtree has been executed successfully
+                li.fragment Example: <span class="highlight-2">Repeater, Invertor, Succeeder, Failer, UntilFail, UntilSucceed</span>
++frameInbox('Behavior Tree - Node Types')
+    .important-green
+        .list-title.fragment
+            p Parallel node
+            ul
+                li.fragment a node that concurrently executes all of its children
+        .list-title.fragment
+            p Condition
+            ul
+                li.fragment a node that will observe the state of the game environment and respond with either a success or a failure based on the observation, condition etc.
+                li.fragment <span class="highlight-2">Instant Check condition</span> - the check is run once
+                li.fragment <span class="highlight-2">Monitoring condition</span> - keeps checking a condition over time
+        .list-title.fragment
+            p Action
+            ul
+                li.fragment a node used to interact with the game environment
+                li.fragment may represent an atomic action, a script or even another BT
+        .list-title.fragment
+            p Blackboard
+            ul
+                li.fragment a construct that stores whatever information is written to it
+                li.fragment any node inside or outside the tree has an access to the blackboard
++frameInbox('Example: Unreal Engine BT Editor')
+    .text-center
+        img.height-760(src=imgAssets+'bt_unreal.jpg')
++frameInbox('Example: Doomguard')
+    .text-center
+        img.height-770(src=imgAssets+'bt_doomguard.svg')
++frameInbox('BT Improvements')
+    .important-green
+        ul
+            li we can define a conditional selector in order to simplify the diagram
+        .text-center.mt-10
+            img.height-180(src=imgAssets+'bt_optimization.svg')
+            img.height-550.mt-10(src=imgAssets+'bt_doomguard_2.svg')
++frameInbox('Example: Locked door')
+    div
+        .bottom-0.right-0
+            img.height-350(src=imgAssets+'door_open.gif')
+        .top-170.left-260
+            img.height-500(src=imgAssets+'bt_door.svg')
++frameInbox('Goal-Oriented Action Planning')
+    .important-green
+        ul.leading-md
+            li.fragment(data-fragment-index='1') centers on the idea of goals as desirable world states -> select a goal and attempt to fulfill it
+            li.fragment(data-fragment-index='2') each action has a set of conditions it can satisfy, as well as a set of preconditions that must be true in order to be satisfied
+            li.fragment(data-fragment-index='3') implemented for <span class="highlight">F.E.A.R (2005)</span> and <span class="highlight">Tomb Raider (2013)</span>
+        .text-center.mt-20.fragment(data-fragment-index='3')
+            img.height-600(src=imgAssets+'goap.svg')
++frameInbox('Example: F.E.A.R.')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') Advanced AI behavior: blind fire, dive through windows, take cover,...
+            li.fragment(data-fragment-index='2') <span class="highlight">key idea:</span> to determine when to switch and what parameters to set
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-600(src=imgAssets+'fear.jpg')
++frameInbox('Example: F.E.A.R')
+    .important-green
+        ul
+            li.fragment a set of goals is assigned to each mob
+            li.fragment these goals compete for activation, and the AI uses a planner to try to satisfy the highest priority goal
+            li.fragment the AI figures out the dependencies at run-time, based on the goal state and effects of actions
+        div.fragment
+            table.center.mt-80
+                tr
+                    th Soldier
+                    th Assassin
+                    th Rat
+                tr
+                    td Attack
+                    td Attack
+                    td Animate
+                tr
+                    td AttackCrouch
+                    td InspectDisturbance
+                    td Idle
+                tr
+                    td SuppressionFire
+                    td LookAtDisturbance
+                    td GotoNode
+                tr
+                    td FlushOutWithGrenade
+                    td AttackMeleeUncloaked
+                    td
+                tr
+                    td AttackFromCover
+                    td TraverseBlockedDoor
+                    td
+                tr
+                    td BlindFireFromCover
+                    td AttackFromAmbush
+                    td 
+                tr
+                    td ReloadCovered
+                    td AttackLungeUncloaked
+                    td
+            .top-270.left-450
+                img.height-150(src=imgAssets+'fear_soldier.png')
+            .top-270.left-750
+                img.height-150(src=imgAssets+'fear_assassin.png')
+            .top-330.left-970
+                img.height-70(src=imgAssets+'fear_rat.png')

@@ -1,0 +1,192 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/gameai_strategies/';
+
++mchapter('AI in strategies', imgAssets+'chapter_rts.svg')
++frameInbox('Real-time strategy')
+    .important-orange
+        ul
+            li.italic.highlight-2.fragment Real-time strategy is a Bayesian, zero-sum game (Rubinstein, 1994)
+                .bottom-0.right-0
+                    img.height-500(src=imgAssets+'totalwar.jpg')
+            li.fragment a game where the player is in control of certain, usually military, assets, with which the player can manipulate in order to achieve victory
+            li.fragment goal: build up a base, gather resources, produce army, destroy the enemy
+            li.fragment <span class="highlight-2">methods:</span> layer-based AI, rule-based AI
+        .list-title.fragment
+            p Main elements
+            ul
+                li.fragment map, mini-map
+                li.fragment resources
+                li.fragment units and their attributes
+                li.fragment buildings
+        .list-title.fragment
+            p Other features
+            ul
+                li.fragment real-time aspect (no turns)
+                li.fragment fog of war
+                li.fragment tech tree
++frameInbox('RTS games')
+    .center.fill
+        .grid.grid-cols-3.grid-rows-2.gap-40.width-80p
+            +floppyApp(imgAssets+'rts_dune2.jpg', 'Dune II', '1992')
+            +floppyApp(imgAssets+'rts_redalert.jpg', 'C&C Red Alert', '1995')
+            +floppyApp(imgAssets+'rts_annihilation.jpg', 'Total Annihilation', '1997')
+            +floppyApp(imgAssets+'rts_warcraft3.jpg', 'Warcraft 3: Reign of Chaos', '2002')
+            +floppyApp(imgAssets+'rts_starcraft2.jpg', 'Starcraft II', '2010')
+            +floppyApp(imgAssets+'rts_ashes.jpg', 'Ashes of the Singularity', '2016')
++frameInbox('RTS Features')
+    .important-orange
+        .list-title.fragment
+            p Resource Control
+            ul.leading-md
+                li.fragment minerals, gas, oil, trees,...
+                li.fragment controlling more resources increases the players' constsruction capabilities
+        .list-title.mt-5.fragment
+            p Tech tree
+            ul.leading-md
+                li.fragment a directed acyclic graph that contains the whole technological development of a faction
+        .list-title.mt-5.fragment
+            p Build order (opening)
+            ul.leading-md
+                li.fragment the timing at which the first buildings are constructed
+            .bottom-0.right-0
+                img.height-500(src=imgAssets+'rts.png')
+        .list-title.mt-5.fragment
+            p Fog of war
+            ul.leading-md
+                li.fragment fog that covers the parts of the map the player has not yet explored
+                li.fragment requires to scout unexplored areas to find enemy sources
+        .list-title.mt-5.fragment
+            p Micromanagement
+            ul.leading-md
+                li.fragment way of controlling units in detail while they are in combat
+        .list-title.mt-5.fragment
+            p Tactics
+            ul.leading-md
+                li.fragment a set of specific actions used when applying a strategy
+        .list-title.mt-5.fragment
+            p Strategy
+            ul.leading-md
+                li.fragment making decisions knowing what we saw from the opponent
++frameInbox('Example: Starcraft 2 Tech-tree')
+    div
+        .text-center
+            img.height-760(src=imgAssets+'techtree_sc2.png')
++frameInbox('RTS AI Layers')
+    .important-green
+        ul
+            li.fragment micromanagement
+            li.fragment tactics (army positions)
+            li.fragment strategy (tech tree)
+        .text-center
+            img.height-500(src=imgAssets+'rts_layers.svg')
+
++frameInbox('Layer-based AI')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='1') each layer handles specific task
+            li.fragment(data-fragment-index='2') decision components consider available information, retrieved by lower components, to make decisions; executors are triggered afterwards
+            li.mt-50.fragment(data-fragment-index='3') <span class="highlight-2">Sensor</span> - reads the game state
+            li.fragment(data-fragment-index='4') <span class="highlight-2">Analyzer</span> - combines sensing data to form a coherent picture
+            li.fragment(data-fragment-index='5') <span class="highlight-2">Memorizer</span> - stores various types of data (terrain analysis, past decisions,...) 
+            li.fragment(data-fragment-index='6') <span class="highlight-2">Decider</span> - a strategic decider, determines goals
+            li.fragment(data-fragment-index='7') <span class="highlight-2">Executor</span> - translates goals into actions
+            li.fragment(data-fragment-index='8') <span class="highlight-2">Coordinator</span> - synchronizes groups of units
+            li.fragment(data-fragment-index='9') <span class="highlight-2">Actuator</span> - executes actions by modifying the game state
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-120(src=imgAssets+'rts_event_flow.svg')
++frameInbox('Example: Layer-based AI')
+    .bottom-0.right-0
+        img.height-400(src=imgAssets+'layer_based_ai.png')
+    .top-80.left-200
+        img.height-500(src=imgAssets+'rts_layer_based_ai.svg')
++frameInbox('Example: Layer-based AI')
+    .top-20.left-20
+        img.height-700(src=imgAssets+'rts_layer_based_example.svg')
+    .top-20.right-0
+        img.height-480(src=imgAssets+'layer_based_ai_cossacks.jpg')
++frameInbox('Example: Megaglest')
+    .important-green
+        ul
+            li.fragment Open-source 3D RTS (<a href="https://megaglest.org/download">LINK</a>)
+            li.fragment seven factions: tech, magic, egypt, indians, norsemen, persian, romans
+            li.fragment rule-based AI
+        .text-center.mt-40
+            img.height-550(src=imgAssets+'rule_based_megaglest.jpg')
++frameInbox('Megaglest architecture')
+    div.text-center
+        img.height-780(src=imgAssets+'megaglest_arch.svg')
++frameInbox('Megaglest rules')
+    div
+        table.center
+            tr
+                th Rule
+                th Condition
+                th Command
+                th Freq [ms]
+            tr
+                td AiRuleWorkerHarvest
+                td Worker stopped
+                td Order worker to harvest
+                td 2 000
+            tr
+                td AiRuleRefreshHarvester
+                td Worker reassigned
+                td
+                td 20 000
+            tr
+                td AiRuleScoutPatrol
+                td Base is stable
+                td Send scout patrol
+                td 10 000
+            tr
+                td AiRuleRepair
+                td Building Damaged
+                td Repair
+                td 10 000
+            tr
+                td AiRuleReturnBase
+                td Stopped unit
+                td Order return to base
+                td 5 000
+            tr
+                td AiRuleMassiveAttack
+                td Enough soldiers
+                td Order massive attack
+                td 1 000
+            tr
+                td AiRuleAddTasks
+                td Tasks empty
+                td Add tasks
+                td 5 000
+            tr
+                td AiRuleBuildOneFarm
+                td Not enough farms
+                td Build farm
+                td 10 000
+            tr
+                td AiRuleResourceProducer
+                td Not enough resources
+                td Build resource producer
+                td 5 000
+            tr
+                td AiRuleProduce
+                td Performing prod. task
+                td
+                td 2 000
+            tr
+                td AiRuleBuild
+                td Performing build task
+                td
+                td 2 000
+            tr
+                td AiRuleUpgrade
+                td Performing upg. task
+                td
+                td 30 000
+            tr
+                td AiRuleUnBlock
+                td Blocked units
+                td Move surrounding units
+                td 3 000

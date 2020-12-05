@@ -1,0 +1,44 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_azure.jpg';
+
++header('Game AI', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture10.svg', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 10', 'Game AI', 'color-azure-light')
+        +frameInbox('Literature')
+            ul
+                li
+                    a(href="https://www.amazon.com/Programming-Example-Wordware-Developers-Library/dp/1556220782") Buckland, Mat. 2005. Programming Game AI by Example
+                li
+                    a(href="https://www.pearson.com/store/p/artificial-intelligence-a-modern-approach/P100000291856/9780134610993") Russell, Stuart. 2020. Artificial Intelligence: A Modern Approach (4th ed.)
+            .flex-cols-2
+                div.text-center
+                    img.height-500(src=globalAssets+'book_ai_by_example.jpg')
+                div.text-center
+                    img.height-500(src=globalAssets+'book_ai_modern_approach.jpg')
+        include ./chapters/ai_introduction.pug
+        include ./chapters/ai_mobs.pug
+        include ./chapters/ai_navigation.pug
+        include ./chapters/ai_real.pug
+        include ./chapters/ai_strategies.pug
+        +summary()
+            ul.leading-2xl
+                li.fragment I know what challenges in terms of game AI the developers face
+                li.fragment I know basic AI techniques, such as scripting, FSM, and HFSM
+                li.fragment I know something about behavior trees
+                li.fragment I know the definition of supervised, unsupervised, and reinforcement learning
+                li.fragment I know the main element and features of RTS
+        include ./chapters/bonus_emulators.pug
+        +quote-oblivion()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 10: AI')
+script(src!='../../scripts/reveal-setup.js')
