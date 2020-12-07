@@ -1,4 +1,6 @@
 import * as ECS from '../../libs/pixi-ecs';
+import LevelParser from './level-parser';
+import Level, { BRICK_INDEX_NONE } from './level';
 
 const SCENE_WIDTH = 16;
 
@@ -23,6 +25,11 @@ enum Tags {
 enum Attrs {
 	VELOCITY = 'velocity',
 	SCENE_HEIGHT = 'scene_height'
+}
+
+enum Assets {
+	SPRITESHEET = 'spritesheet',
+	LEVELS = 'levels'
 }
 
 const releaseSpeed = 0.1;
@@ -142,10 +149,10 @@ class BallController extends ECS.Component {
 		this.owner.position.y += delta * this.velocity.y * 0.04;
 
 		const bounds = this.owner.getBounds();
-		if (bounds.right < 0) {
+		if (bounds.left < 0) {
 			this.velocity = new ECS.Vector(-this.velocity.x, this.velocity.y);
 		}
-		if (bounds.left > SCENE_WIDTH) {
+		if (bounds.right > SCENE_WIDTH) {
 			this.velocity = new ECS.Vector(-this.velocity.x, this.velocity.y);
 		}
 		if (bounds.top < 0) {
@@ -214,24 +221,35 @@ class BlockBreaker {
 
 		this.engine.app.loader
 			.reset()
-			.add('spritesheet', './assets/game_blockbreaker/spritesheet.png')
-			.load(() => this.load())
+			.add(Assets.SPRITESHEET, './assets/game_blockbreaker/spritesheet.png')
+			.add(Assets.LEVELS, './assets/game_blockbreaker/levels.txt')
+			.load(() => this.loadGame())
 	}
 
-	load() {
+	loadGame() {
+		const levelsStr = this.engine.app.loader.resources[Assets.LEVELS].data;
+		const parser = new LevelParser();
+		const levels = parser.parse(levelsStr);
+		this.loadLevel(levels[0]);
+	}
+
+	loadLevel(level: Level) {
 		const scene = this.engine.scene;
 		let bricks = new ECS.Container('bricksLayer');
 		scene.stage.addChild(bricks);
 		scene.addGlobalComponent(new ECS.KeyInputComponent());
 
-		for (let i = 0; i < SCENE_WIDTH; i++) {
-			for (let j = 0; j < 5; j++) {
-				let sprite = new ECS.Sprite('', this.createTexture(100, 0, 100, 50));
-				sprite.scale.set(TEXTURE_SCALE);
-				sprite.position.x = i;
-				sprite.position.y = j * 0.5;
-				sprite.addTag(Tags.BRICK);
-				bricks.addChild(sprite);
+		for (let i = 0; i < level.columns; i++) {
+			for (let j = 0; j < level.rows; j++) {
+				const index = level.getBrick(i, j);
+				if(index !== BRICK_INDEX_NONE) {
+					let sprite = new ECS.Sprite('', this.createBrickTexture(index));
+					sprite.scale.set(TEXTURE_SCALE);
+					sprite.position.x = i;
+					sprite.position.y = j * 0.5;
+					sprite.addTag(Tags.BRICK);
+					bricks.addChild(sprite);
+				}
 			}
 		}
 
@@ -262,8 +280,18 @@ class BlockBreaker {
 		scene.sendMessage(new ECS.Message(Messages.BALL_ATTACH));
 	}
 
+	private createBrickTexture(index: number) {
+		if(index >= 0 && index <= 4) {
+			return this.createTexture(100 * index, 0, 100, 50);
+		} else if(index >= 5 && index <= 9) {
+			return this.createTexture(100 * (index - 5), 50, 100, 50);
+		} else {
+			throw new Error(`Wrong brick texture index: ${index}`);
+		}
+	}
+
 	private createTexture(offsetX: number, offsetY: number, width: number, height: number) {
-		let texture = PIXI.Texture.from('spritesheet');
+		let texture = PIXI.Texture.from(Assets.SPRITESHEET);
 		texture = texture.clone();
 		texture.frame = new PIXI.Rectangle(offsetX, offsetY, width, height);
 		return texture;

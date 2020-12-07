@@ -6,6 +6,11 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.10.2] - 2020-12-07
+### Added
+- Materials for Dialog tutorial
+- Solution to the BlockBreaker tutorial, part 4
+
 ## [4.10] - 2020-12-05
 ### Added
 - Slides for Lecture 10
