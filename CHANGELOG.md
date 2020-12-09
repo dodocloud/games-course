@@ -6,6 +6,12 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.10.5] - 2020-12-07
+### Added
+- Solution to the Dialog tutorial
+- New examples for Graphics
+
+
 ## [4.10.2] - 2020-12-07
 ### Added
 - Materials for Dialog tutorial

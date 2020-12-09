@@ -74,9 +74,15 @@ module.exports = {
 				'examples/physics/matter-binding']
 			},
 			{
+				label: 'Graphics',
+				type: 'category',
+				items: ['examples/graphics/raycaster', 'examples/graphics/shader-basic', 'examples/graphics/shader-noise', 'examples/graphics/shader-wave',
+				'examples/graphics/tween-rotation', 'examples/graphics/tween-translation', 'examples/graphics/vision-cone']
+			},
+			{
 				label: 'Other',
 				type: 'category',
-				items: ['examples/other/perfect-hit-test']
+				items: ['examples/other/perfect-hit-test', 'examples/other/dialog']
 			}]
 		},
 		{
