@@ -1,0 +1,89 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/multiplayer_mmog/';
+
+
++mchapter('MMOG', imgAssets+'chapter_mmog.svg')
++frameInbox('MMOG')
+    div
+        ul
+            li.fragment Massively Multiplayer Online Game
+            li.fragment Ultime Online, World of Warcraft, Guild Wars, Skyforge, Elder Scrolls Online
+            li.fragment <span class="highlight">interaction is not really massive</span>
+                ul
+                    li.fragment players can only interact with a limited amount of players at the same time
+                    li.fragment when more than expected number of players gather together, the game may crash
+        .text-center.mt-30.fragment
+            figure
+                img.height-450(src=imgAssets+'wow.jpg')
+                p Swifty Invasion in WoW
++frameInbox('Object Relevancy')
+    .important-green
+        ul
+            li.fragment an object is considered relevant for a client when it should be informed about its updates
+            li.fragment in a MMOG, it may not be important to know about players several miles away
+            li.fragment similar sort of problems as visibility culling (or spheres or influence)
+        .list-title.fragment
+            p Static zones
+            ul
+                li.fragment splits the world into regions and assigns a separate process/server to each region
+                li.fragment only objects in the same zone as the player are relevant
+        .list-title.fragment
+            p Server partitioning
+            ul
+                li.fragment splits the world into completely isolated regions
+                li.fragment e.g. islands, continents
+        .list-title.fragment
+            p Instancing
+            ul
+                li.fragment one shared game supports several separated instances at once
+                li.fragment example: dungeons in WoW, Dota/LoL tournaments
+            .bottom-0.right-0
+                img.height-450(src=globalAssets+'memes/lobby.jpg')
++frameInbox('Example: Ultima Online')
+    div
+        ul
+            li.fragment network is based on <span class="highlight">Pastry DHT</span> (Distributed Hash Tables)
+            li.fragment world is split into regions of size based on the amount of players
+            li.fragment each region is assigned an ID and mapped into the DHT
+            li.fragment each node is responsible for exactly one region
+        .list-title.mt-20.fragment
+            p 3 data types
+            ul
+                li.fragment <span class="highlight-2">static objects</span> - immutable part of the world (terrain)
+                li.fragment <span class="highlight-2">dynamic objects</span> - interactive items and NPCs, deterministic
+                li.fragment <span class="highlight-2">avatars</span> - players, nondeterministic
+        .flex-cols-3.mt-20
+            .text-center
+                img.height-300(src=imgAssets+'ultima.jpg')
+            .text-center
+                img.height-300(src=imgAssets+'ultima2.jpg')
+            .text-center
+                img.height-300(src=imgAssets+'ultima3.jpg')
++frameInbox('Security')
+    .important-green
+        .list-title.fragment
+            p Classic threats
+            ul.leading-lg.fragment
+                li packet sniffing, man-in-the-middle
+                li.fragment <span class="highlight-2">ghosting</span> - scouting the players using multiple connections
+        .list-title.fragment
+            p Input validation
+            ul.leading-lg
+                li.fragment players can't perform an action that is invalid
+                li.fragment only a client responsible for Player A can send an action that affects that player
+                li.fragment client should validate the messages from server as well
+        .list-title.fragment
+            p Software cheat detection
+            ul.leading-lg
+                li.fragment actively monitors the integrity of the game
+                li.fragment cheating SW can hook into the game, overwrite memory, modify files
+                li.fragment <span class="highlight-2">map hacking</span> - removing fog of war and revealing resources
+                li.fragment <span class="highlight-2">bot cheat</span> - bot that either plays the game or assists the player
+                    ul
+                        li.fragment e.g. dummy levelling, aimbots
+                li.fragment <span class="highlight-2">Valve Anti-Cheat</span> - available for games that utilize Steamworks SDK
+                    ul
+                        li.fragment maintains a list of banned users, scans for known cheat programs
+                li.fragment <span class="highlight-2">Easy AntiCheat</span> - prevents cheating on a technical level

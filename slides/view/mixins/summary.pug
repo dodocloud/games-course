@@ -1,0 +1,135 @@
+mixin summary()
+	+mcontainer()&attributes(attributes)
+		div(class!='frame inbox ' + (attributes.class ? attributes.class : ''))
+			h3.slide-title.color-manhattan Lecture Summary
+			.bottom-0.right-0
+				img.height-300(src=globalAssets+'keen_summary.png')
+			.important-orange
+				block
+
+mixin summary_lecture01()
+	+summary()
+		ul.leading-3xl
+			li.fragment I'm able to define somehow what a game is
+			li.fragment I know the difference between games and applications
+			li.fragment I know the difference between emergence and progression
+			li.fragment I know terms like gameplay, mechanics, system, level, simulation, bot, agent, mob, NPC
+			li.fragment I know game basic elements
+			li.fragment I know elements/entities of game mechanics
+			li.fragment I know a thing or two about IDTech
+
+mixin summary_lecture02()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know primary modules of game engines
+			li.fragment I know how game loop works
+			li.fragment I know the options of game update and inconsistencies that may occur
+			li.fragment I know what scene graph is and what elements it contains
+			li.fragment I know categories of input events and input device
+			li.fragment I know what dead-zone of input is
+			li.fragment I know the purpose of a memory manager
+			li.fragment I know the purpose of pool allocator
+			li.fragment I know the options of data loading in games
+			li.fragment I know the types of scripting architectures
+			li.fragment I know what marshalling is
+
+mixin summary_lecture03()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know what game assets are
+			li.fragment I know the purpose of a Resource manager
+			li.fragment I know the difference between the use-cases of WAV and MP3/OGG formats
+			li.fragment I know the difference between PNG and JPEG formats
+			li.fragment I know what a cutscene is
+			li.fragment I know what a sprite is
+			li.fragment I know the types of textures
+			li.fragment I know what a tilemap is
+
+mixin summary_lecture04()
+	+summary()
+		ul.leading-3xl
+			li.fragment I know what a game model is and what is it made of
+			li.fragment I know the pitfalls of object-oriented architecture in games
+			li.fragment I know what a component is
+			li.fragment I know the ECS pattern
+			li.fragment I know messaging practices for component architecture
+			li.fragment I know the purpose of a message broker in games
+
+mixin summary_lecture05()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know how chain works
+			li.fragment I know something about responsibility ownership in component architecture
+			li.fragment I know flyweight pattern
+			li.fragment I know selector pattern
+			li.fragment I know flag pattern
+			li.fragment I know numeric state pattern
+			li.fragment I know builder pattern
+			li.fragment I know prototype pattern
+			li.fragment I know factory pattern
+
+mixin summary_lecture06()
+	+summary()
+		ul.leading-3xl
+			li.fragment I know what PCM is and how buffer size affects the gameplay
+			li.fragment I know 4 basic types of synthesis
+			li.fragment I know basic waveforms of sound generators
+			li.fragment I know categories of audio assets in games
+			li.fragment I know features of dynamic music (looping, branching, layering, transitions)
+			li.fragment I know what attenuation, occlusion and obstruction in 3D sound are
+
+mixin summary_lecture07()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know what purpose can serve uniform and gaussian distributions
+			li.fragment I know what is a loot, spinning, rarity slotting and random encounter in games
+			li.fragment I know something about noise functions
+			li.fragment I know basic vector operations: addition, subtraction, magnitude, normalization, and dot product
+			li.fragment I know what quaternions and Euler angles are, and what use-cases they are good for
+			li.fragment I know basic structures for spatial partitioning: grid, quad-tree, oct-tree and BSP
+			li.fragment I know basic types of navigation graphs
+			li.fragment I know something about pathfinding algorithms, such as BFS, Dijkstra and A*
+
+mixin summary_lecture08()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know basic motion equations
+			li.fragment I know basic Euler integration methods
+			li.fragment I know basic types of steering behaviors
+			li.fragment I know object types for physics engines
+			li.fragment I know basic constraints, such as rope, revolute, prismatic, and cone-twist
+			li.fragment I know basic collision primitives
+			li.fragment I know SAT theorem
+			li.fragment I know what CCD is
+			li.fragment I know what particle systems are
+
+mixin summary_lecture09()
+	+summary()
+		ul.leading-3xl
+			li.fragment I know the difference between model space, world space, view space, clip space and screen space
+			li.fragment I know what view volume and field of view is
+			li.fragment I know what interpolation is
+			li.fragment I know terms like Vertex, Fragment, Texture, Occlusion, and Culling
+			li.fragment I know what purpose serve vertex and fragment shader
+			li.fragment I know what LOD, texture mapping, texture filtering, and baking is 
+
+mixin summary_lecture10()
+	+summary()
+		ul.leading-3xl
+			li.fragment I know what challenges in terms of game AI the developers face
+			li.fragment I know basic AI techniques, such as scripting, FSM, and HFSM
+			li.fragment I know something about behavior trees
+			li.fragment I know the definition of supervised, unsupervised, and reinforcement learning
+			li.fragment I know the main element and features of RTS
+
+mixin summary_lecture11()
+	+summary()
+		ul.leading-2xl
+			li.fragment I know the difference between P2P and client-server architecture
+			li.fragment I know what issues networking architecture may face
+			li.fragment I know what types of messages can be used in multiplayer games
+			li.fragment I know what replication is
+			li.fragment I know how reliability in multiplayer works
+			li.fragment I know how interpolation works
+			li.fragment I know what server-side rewind is
+			li.fragment I know how games can deal with latency

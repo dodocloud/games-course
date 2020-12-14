@@ -4,6 +4,7 @@ include ./mixins/containers.pug
 include ./mixins/containers_aph.pug
 include ./mixins/title.pug
 include ./mixins/quotes.pug
+include ./mixins/summary.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
@@ -24,18 +25,7 @@ include ./mixins/quotes.pug
         include ./chapters/physics_steering.pug
         include ./chapters/physics_engines.pug
         include ./chapters/physics_collisions.pug
-        +summary()
-            ul.leading-2xl
-                li.fragment I know basic motion equations
-                li.fragment I know basic Euler integration methods
-                li.fragment I know basic types of steering behaviors
-                li.fragment I know object types for physics engines
-                li.fragment I know basic constraints, such as rope, revolute, prismatic, and cone-twist
-                li.fragment I know basic collision primitives
-                li.fragment I know SAT theorem
-                li.fragment I know what CCD is
-                li.fragment I know what particle systems are
-        include ./chapters/bonus_drm.pug
+        +summary_lecture08()
         +quote-oregon()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 8: Physics')

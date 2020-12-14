@@ -4,6 +4,7 @@ include ./mixins/containers.pug
 include ./mixins/containers_aph.pug
 include ./mixins/title.pug
 include ./mixins/quotes.pug
+include ./mixins/summary.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
@@ -41,18 +42,7 @@ include ./mixins/quotes.pug
                     li.fragment use <span class="highlight">transmuter</span> to change a composition of components upon an object
                     li.fragment use <span class="highlight">blackboard</span> to store global game data
 
-        +summary()
-            ul.leading-2xl
-                li.fragment I know how chain works
-                li.fragment I know something about responsibility ownership in component architecture
-                li.fragment I know flyweight pattern
-                li.fragment I know selector pattern
-                li.fragment I know flag pattern
-                li.fragment I know numeric state pattern
-                li.fragment I know builder pattern
-                li.fragment I know prototype pattern
-                li.fragment I know factory pattern
-        include ./chapters/bonus_exposition.pug
+        +summary_lecture05()
         +quote-chrono()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 5: Patterns')

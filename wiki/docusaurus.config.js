@@ -83,6 +83,10 @@ const config = {
 							href: url + '/slides/organization.html'
 						},
 						{
+							label: 'Course Summary',
+							href: url + '/slides/summary.html'
+						},
+						{
 							label: 'Lecture 1: Games',
 							href: url + '/slides/lecture01.html',
 						},
@@ -121,6 +125,10 @@ const config = {
 						{
 							label: 'Lecture 10: AI',
 							href: url + '/slides/lecture10.html',
+						},
+						{
+							label: 'Lecture 11: Multiplayer',
+							href: url + '/slides/lecture11.html',
 						},
 					]
 				},

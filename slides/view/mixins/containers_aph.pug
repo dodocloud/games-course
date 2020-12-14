@@ -42,12 +42,3 @@ mixin mchapter(text, icon)
 			.top-28p.text-center
 				img.width-650(src!=icon)
 				h2.uppercase.font-light.highlight.mt-20.color-rhino-20!=text
-
-mixin summary()
-	+mcontainer()&attributes(attributes)
-		div(class!='frame inbox ' + (attributes.class ? attributes.class : ''))
-				h3.slide-title.color-manhattan Lecture Summary
-				.bottom-0.right-0
-					img.height-300(src=globalAssets+'keen_summary.png')
-				.important-orange
-					block

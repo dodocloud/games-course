@@ -4,6 +4,7 @@ include ./mixins/containers.pug
 include ./mixins/containers_aph.pug
 include ./mixins/title.pug
 include ./mixins/quotes.pug
+include ./mixins/summary.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
@@ -31,17 +32,7 @@ include ./mixins/quotes.pug
         include ./chapters/space_geometry.pug
         include ./chapters/space_geometric_hashing.pug
         include ./chapters/space_navigation.pug
-        +summary()
-            ul.leading-2xl
-                li.fragment I know what purpose can serve uniform and gaussian distributions
-                li.fragment I know what is a loot, spinning, rarity slotting and random encounter in games
-                li.fragment I know something about noise functions
-                li.fragment I know basic vector operations: addition, subtraction, magnitude, normalization, and dot product
-                li.fragment I know what quaternions and Euler angles are, and what use-cases they are good for
-                li.fragment I know basic structures for spatial partitioning: grid, quad-tree, oct-tree and BSP
-                li.fragment I know basic types of navigation graphs
-                li.fragment I know something about pathfinding algorithms, such as BFS, Dijkstra and A*
-        include ./chapters/bonus_doom.pug
+        +summary_lecture07()
         +quote-arthas()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 7: Space')

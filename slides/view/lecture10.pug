@@ -4,6 +4,7 @@ include ./mixins/containers.pug
 include ./mixins/containers_aph.pug
 include ./mixins/title.pug
 include ./mixins/quotes.pug
+include ./mixins/summary.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
@@ -30,14 +31,7 @@ include ./mixins/quotes.pug
         include ./chapters/ai_navigation.pug
         include ./chapters/ai_real.pug
         include ./chapters/ai_strategies.pug
-        +summary()
-            ul.leading-2xl
-                li.fragment I know what challenges in terms of game AI the developers face
-                li.fragment I know basic AI techniques, such as scripting, FSM, and HFSM
-                li.fragment I know something about behavior trees
-                li.fragment I know the definition of supervised, unsupervised, and reinforcement learning
-                li.fragment I know the main element and features of RTS
-        include ./chapters/bonus_emulators.pug
+        +summary_lecture10()
         +quote-oblivion()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 10: AI')

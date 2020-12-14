@@ -1,0 +1,33 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+include ./mixins/summary.pug
+
+- var themePath = '../themes/aph/';
+- var globalAssets = '../assets/all/';
+- var defaultBgr = 'backgrounds/hall_mgreen.jpg';
+
++header('Multiplayer', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture11.svg', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 11', 'Multiplayer', 'color-rhino-40')
+        +frameInbox('Literature')
+            div
+                ul
+                    li
+                        a(href="https://www.amazon.com/Programming-Example-Wordware-Developers-Library/dp/1556220782") Glazer, Joshua. 2015. Multiplayer Game Programming
+                div.text-center.mt-60
+                    img.height-600(src=globalAssets+'book_multiplayer.jpg')
+        include ./chapters/multiplayer_architecture.pug
+        include ./chapters/multiplayer_transport.pug
+        include ./chapters/multiplayer_synchronization.pug
+        include ./chapters/multiplayer_mmog.pug
+        +summary_lecture11()
+        +quote-halo()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 11: Multiplayer')
+script(src!='../../scripts/reveal-setup.js')

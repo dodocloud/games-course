@@ -1,0 +1,309 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/multiplayer_transport/';
+
++mchapter('Transport', imgAssets+'chapter_transport.svg')
++frameInbox('Transport layer')
+    .important-green
+        ul
+            li.fragment <span class="highlight">TCP</span> - Transmission Control Protocol
+                .top-130.right-10
+                    figure
+                        img.width-780(src=imgAssets+'transport_tcp.svg')
+                        p TPC header
+            li.fragment <span class="highlight">UDP</span> - User Datagram Protocol
+                .top-540.right-10
+                    figure
+                        img.width-780(src=imgAssets+'transport_udp.svg')
+                        p UDP header
+            li.fragment <span class="highlight">DCCP</span> - Datagram Congestion Control Protocol
+            li.fragment <span class="highlight">RUDP</span> - Reliable User Datagram Protocol
+            li.fragment <span class="highlight">CUSP</span> - Channel-based Unidirectional Stream Prot.
+        .list-title.mt-10.fragment
+             p Ports
+             ul
+                li.fragment <span class="highlight-2">Well-known ports:</span> 0-1023
+                    ul.leading-md
+                        li 666: Doom
+                li.fragment <span class="highlight-2">Registered ports:</span> 1024-49151
+                    ul.leading-md
+                        li 2302: Arma
+                        li 6112: Battle.net
+                        li 27015: Valve Servers
+                        li 27500: Quake
+                        li 28960: Call of Duty
+                li.fragment <span class="highlight-2">Private ports:</span> 49152-65535
++frameInbox('TCP vs UDP')
+    .important-green
+        .list-title.fragment
+            p TCP
+            ul
+                li.fragment header size 20-40B
+                li.fragment connection-based (requires 3 packets to set up a connection)
+                li.upside.fragment guaranteed reliability and proper ordering
+                li.upside.fragment may be prioritized over UDP packets
+                li.downside.fragment allocates a lot of resources to manage connections
+        .list-title.fragment
+            p UDP
+            ul
+                li.fragment header size 8B
+                li.upside.fragment lightweight and fast
+                li.downside.fragment no concept of connection
+                li.downside.fragment no guarantee of reliability of ordering
+                li.downside.fragment no flow control
+                li.downside.fragment may be dropped before TCP packets
++frameInbox('TCP vs UDP')
+    .important-green
+        ul
+            li.fragment as opposed to SW applications, games have <span class="highlight-2">two main types of messages</span>
+            li.fragment changes to the gameplay (actions, events) need to be confirmed
+            li.fragment streaming data (positions) don't need to be confirmed
+            li.fragment critical events may have higher priority over others
+            li.mt-80.fragment UDP represents a basic streaming protocol onto which engines build a customized gaming protocol
+        .space-md
+        +quote('Using TCP is the worst possible mistake you can make when developing a multiplayer game.', 'Glenn Fielder, 2008').text-lg.fragment
++frameInbox('Multiplayer engine architecture')
+    .important-green
+        .text-center.mt-20.fragment
+            img.height-400(src=imgAssets+'multiplayer_architecture.svg')
+        ul.mt-50
+            li.fragment the server is running the game and clients only process inputs and display results
+        .list-title.fragment
+            p Issues
+            ul
+                li.fragment each player has only partially consistent view of the game world
+                li.fragment in some cases, the server may disagree with the client's state
+                li.fragment there is a delay between taking an action an observing the result
++frameInbox('Transfer Control')
+    .important-green
+        .list-title.fragment
+            p Connection
+            ul
+                li.fragment when a client wants to join a game, it sends a <span class="highlight-2">hello packet</span> to the server
+                li.fragment once the server receives the hello packet, it assigns a <span class="highlight-2">player ID</span> and sends a <span class="highlight-2">welcome packet</span> to the client, containing the assigned ID
+                li.fragment when the client receives the welcome packet, it saves its player ID and starts sending and receiving replication information to the server
+        .list-title.fragment
+            p Reliability
+            ul
+                li.fragment we have to identify packets by using sequence numbers and send them back to the server
+                li.fragment example: ACK field in the message headers
+                li.fragment issue: if the server sends 30 PPS and the client can only send 10 PPS, we need at least 3 ACKs included in each packet
+        .list-title.fragment
+            p Flow control
+            ul
+                li.fragment clients use basic congestion avoidance algorithms
+                li.fragment servers can change streaming frequency based on the situation
++frameInbox('Example: Message Header')
+    .important-green
+        ul
+            li.fragment(data-fragment-index='2') <span class="highlight">SEQ number</span> - sequential number of the message
+            li.fragment(data-fragment-index='3') <span class="highlight">ACK number</span> - number of another message to be confirmed
+            li.fragment(data-fragment-index='4') <span class="highlight">ACK bit array</span> - confirmation flags for previous 32 messages
+            li.fragment(data-fragment-index='5') <span class="highlight">Type</span> - type of the message (update, disconnect, command,...)
+            li.fragment(data-fragment-index='6') <span class="highlight">ActionID</span> - id of particular action
+        .text-center.mt-40.fragment(data-fragment-index='1')
+            img.height-400(src=imgAssets+'message_header.svg')
++frameInbox('Message Types')
+    .important-orange
+        .list-title.fragment
+            p Stream
+            ul.leading-md
+                li.fragment doesn't need to be confirmed, contains a collection of continuous values
+                li.fragment e.g. dynamic objects and their attributes (transformation)
+        .list-title.mt-7.fragment
+            p Snapshot
+            ul.leading-md
+                li.fragment complete information of the game state, sent either on demand or at given intervals
+        .list-title.mt-7.fragment
+            p Command
+            ul.leading-md
+                li.fragment messages that have an impact on the game state, have to be confirmed
+                li.fragment e.g.: UNIT_CREATED, UNIT_DESTROYED, BUILDING_COMPLETED
+        .list-title.mt-7.fragment
+            p Action
+            ul.leading-md
+                li.fragment high-priority messages (player's inputs, fire button,...)
+        .list-title.mt-7.fragment
+            p Procedure Call
+            ul.leading-md
+                li.fragment a generic message that allows to call any function (play sound, load assets, reset animation)
+        .list-title.mt-7.fragment
+            p Connection messages
+            ul.leading-md
+                li.fragment messages for handshake, ID assignment, disconnect, etc.
+        .list-title.mt-7.fragment
+            p Beacon
+            ul.leading-md
+                li.fragment regular messages to inform the server that the connection is still on
++frameInbox('Example: Goat Attacks')
+    div
+        ul
+            li <a href="http://goatattack.net">http://goatattack.net</a>
+            li a multiplayer 2D platformer pixel-art shooter
+        .text-center.mt-20
+            img.height-600(src=imgAssets+'goatattack.jpg')
++frameInbox('Example: Goat Attacks')
+    div
+        .bottom-30.right-30.fragment
+            img.height-260(src=imgAssets+'goat_attacks_header.svg')
+        .list-title.fragment
+            p Server-Client messages
+            ul
+                li.code.fragment GPCIdentifyPlayer
+                li.code.fragment GPCReady
+                li.code.fragment GPCAddPlayer
+                li.code.fragment GPCRemovePlayer
+                li.code.fragment GPCSpawnNPC
+                li.code.fragment GPCRemoveNPC
+                li.code.fragment GPCChatMessage
+        .list-title.fragment
+            p Client-server messages
+            ul
+                li.code.fragment GPSRespawnRequest
+                li.code.fragment GPSJoinRequest
+                li.code.fragment GPSChatMessage
+                li.code.fragment GPSBomb
+                li.code.fragment GPSPlayerChanged
++frameInbox('Serialization')
+    div
+        ul
+            li.fragment a large game world can have hundreds of moving objects
+            li.fragment we need to remove any information that doesn't need to be sent
+            li.fragment messages should be as close in size to <span class="highlight-2">MTU (~1500B)</span> as possible
+        .list-title.fragment
+            p Example with no optimization
+            ul
+                li.fragment RTS battle
+                li.fragment 5 players
+                li.fragment 500 moving units
+                li.fragment each unit has 20 attributes of 32-bit size -> 80 B per unit
+                li.fragment the server sends 30 messages per second
+                li.fragment header size is 42B (IP + UDP + networking header)
+                li.fragment required bandwidth for the server: 
+                    include ../../assets/multiplayer_transport/equations_generated/serialization.svg
+                    |&nbsp;Mbps
++frameInbox('Serialization - Binary Footprint')
+    div
+        ul
+            li we serialize everything - not a robust solution
+        .code.text-xs.mt-40
+            include ../../assets/multiplayer_transport/snippets_generated/serialization.html
+        .text-center.mt-60
+            figure
+                img.height-200(src=imgAssets+'serialization_binary.svg')
+                p Health = 10, Mana = 14; Little Endian
+        .bottom-0.right-20
+            img.height-180(src=imgAssets+'mage.png')
++frameInbox('Serialization - Streams')
+    div
+        ul
+            li streams allow us to customize what attributes to serialize and how
+            li better solution for collections
+        .code.text-xs.mt-20
+            include ../../assets/multiplayer_transport/snippets_generated/serialization_stream.html
+        .bottom-0.right-20
+            img.height-180(src=imgAssets+'mage.png')
++frameInbox('Compression')
+    .important-green
+        .list-title.fragment
+            p Compression of bits
+            ul
+                li.fragment it is helpful to represent values with as few bits as possible
+                li.fragment we can work with limited range and precision
+            .text-center
+                img.height-200(src=imgAssets+'compression_bits.svg')
+        .list-title.fragment
+            p Entropy Encoding
+            ul
+                li.fragment we compress data based on how unexpected it is
+                li.fragment example: we can assume that the rotation is 99% of its time equal to zero, hence we can use only one bit to indicate this
+            .text-center
+                img.height-200(src=imgAssets+'compression_entropy.svg')
++frameInbox('Compression')
+    .important-green
+        .list-title.fragment
+            p Compression of attributes
+            ul.leading-lg
+                li.fragment we can serialize only attributes that vary
+                li.fragment each object has a bit field that indicates which attributes follow in the stream
+            .text-center
+                img.height-480(src=imgAssets+'compression_attributes.svg')
+        .list-title.mt-40.fragment
+            p Compression of the payload
+            ul.leading-lg
+                li.fragment Huffman encoding, run-length encoding, LZ4,...
++frameInbox('Compression')
+    .important-green
+        .list-title.fragment
+            p Delta messages
+            ul
+                li.fragment if a number doesn't change much, nor will its bits
+                li.fragment between two frames, there is only a few changed bits for common attributes (position, rotation,...)
+                li.fragment we store only differences by using XOR operation and compress the data
+                li.fragment very effective but sensitive to packet loss
+                li.fragment we can store 2/3 of attributes as diffs and 1/3 as full data - we will only need 3 consecutive packets to retrieve the full state   
+            .text-center.mt-60
+                img.height-250(src=imgAssets+'compression_diff.svg')
++frameInbox('Replication')
+    .important-orange
+        ul
+            li.fragment the act of transmitting a state of an object from one device to another
+            li.fragment each object must be uniquely identified (network ID)
+            li.fragment the network message contains a type of an object and all parameters required to construct it
+        .code.text-sm.mt-80.fragment
+            include ../../assets/multiplayer_transport/snippets_generated/replication.html
++frameInbox('Reliability')
+    .important-orange
+        ul
+            li.fragment packets may get lost
+            li.fragment server keeps sending messages that have an impact on the game state until the client accepts them
+        .text-center.mt-100.fragment
+            img.height-450(src=imgAssets+'reliability.svg')
++frameInbox('Ordering')
+    .important-orange
+        ul
+            li.fragment packets may arrive in a different order
+            li.highlight-2.fragment the client shouldn't apply a command message to its state before it applies all previous messages
+        .text-center.mt-100.fragment
+            img.height-450(src=imgAssets+'order.svg')
++frameInbox('Latency')
+    .important-green
+        .list-title.fragment
+            p Latency
+            ul
+                li.fragment the amount of time between an observable cause and its observable effect
+                li.fragment e.g. mouse click and a unit responding to its orders
+        .list-title.mt-10.fragment
+            p Suitable latencies
+            ul
+                li.fragment FPS: 16-60 ms
+                li.fragment RTS: < 250 ms
+        .list-title.mt-10.fragment
+            p Non-network latency
+            ul
+                li.fragment input sampling latency (~2 ms)
+                li.fragment rendering pipeline latency (< 16 ms)
+                li.fragment frame decoding latency for cloud gaming (~2-16 ms)
+        .list-title.mt-10.fragment
+            p Network latency
+            ul
+                li.fragment processing delay (encryption, routing)
+                li.fragment queuing delay (router can only process a limited number of packets at a time)
+                li.fragment transmission delay (information can't travel faster than the speed of light)
+        .bottom-200.right-50
+            img.height-320(src=imgAssets+'latency_clock.svg')
++frameInbox('Latency Example')
+    .important-green
+        ul
+            li both clients have the same latency
+        .space-xl
+        .text-center
+            img.height-550(src=imgAssets+'latency_same.svg')
++frameInbox('Latency Example')
+    .important-green
+        ul
+            li client B has a higher latency
+        .space-xl
+        .text-center
+            img.height-550(src=imgAssets+'latency_higher.svg')

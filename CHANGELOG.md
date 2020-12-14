@@ -6,6 +6,12 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.11] - 2020-12-14
+### Added
+- Slides for Lecture 11
+- Summary for the exam
+- Materials for new tutorials
+
 ## [4.10.5] - 2020-12-07
 ### Added
 - Solution to the Dialog tutorial

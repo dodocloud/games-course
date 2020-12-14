@@ -1,0 +1,120 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/multiplayer_synchronization/';
+
++mchapter('Synchronization', imgAssets+'chapter_synchronization.svg')
++frameInbox('Interpolation')
+    .important-green
+        ul
+            li client can run at 60 FPS, the server usually sends state updates at 10-30 FPS
+        .text-center.mt-80
+            img.height-450(src=imgAssets+'interpolation_simple.svg')
+        ul.mt-80
+            li.fragment <span class="highlight-2">Interpolation:</span> whenever the client receives a new state, it smoothly interpolates to that state
+            li.fragment <span class="highlight-2">Problem:</span> the object might change its interpolated value instantly (teleport)
++frameInbox('Interpolation Reserve')
+    .important-green
+        ul
+            li client renders a state that is 2 frames old
+            li smooth interpolation, but we create artificial delay
+        .text-center.mt-80
+            img.height-450(src=imgAssets+'interpolation_reserve.svg')
++frameInbox('Extrapolation')
+    .important-green
+        ul
+            li without interpolation reserve, the client tries to extrapolate
+            li results in jittery animation
+        .text-center.mt-80
+            img.height-450(src=imgAssets+'interpolation_extrapolation.svg')
++frameInbox('Deterministic prediction')
+    .important-green
+        ul
+            li.fragment interpolation reserve is precise but delayed behind the server
+            li.highlight-2.fragment the client is always at least 1/2 RTT behind the true state
+            li.fragment some attributes can be handled on client side completely (e.g. camera pose in FPS)
+        .list-title.fragment
+            p Prediction
+            ul
+                li.fragment the client predicts the future value by running the same simulation code
+                li.fragment to perform extrapolation by 1/2 RTT, the client must approximate the RTT
+            .text-center.mt-30
+                img.height-400(src=imgAssets+'prediction_deterministic.svg')
++frameInbox('Non-deterministic prediction')
+    .important-green
+        ul
+            li.fragment non-deterministic values are hard to predict (steering behaviors, other players' movement,...)
+            li.fragment solution: make an educated guess and correct it when an update arrives
+            li.fragment <span class="highlight">Dead reckoning</span> - process of predicting a behavior of an entity based on the assumption that it will keep doing what it's currently doing
+        .flex-cols-2.mt-30.fragment
+            figure
+                img.height-270(src=imgAssets+'misprediction_server.svg')
+                p Server simulation
+            figure
+                img.height-270(src=imgAssets+'misprediction_client.svg')
+                p Client misprediction
+        .list-title.mt-10.fragment
+            p Dealing with correction
+            ul
+                li.fragment <span class="highlight-2">Instant state update</span> - updates immediately when the correct value arrives
+                li.fragment <span class="highlight-2">Interpolation</span> - smoothly interpolates to the correct value
+                li.fragment <span class="highlight-2">Second-order state adjustment</span> - adjust acceleration instead of velocity
++frameInbox('Server-side rewind')
+    .important-orange
+        ul
+            li.fragment dealing with instant actions that affect the gameplay (e.g. instant hit in FPS)
+            li.fragment occurs due to the inaccuracies of dead reckoning and time dilation
+            li.fragment server may change a state that has already been confirmed
+        .list-title.fragment
+            p Source engine's solution
+            ul
+                li.fragment rewinds state on the server to exactly the state in which the player fired
+                li.fragment server stores the poses of every relevant object for X last frames and looks up the two frames between which the client was interpolating
+        .flex-cols-2.fragment
+            figure
+                img.height-360(src=imgAssets+'cs_wrong.jpg')
+                p Wrong
+            figure
+                img.height-360(src=imgAssets+'cs_correct.jpg')
+                p Correct
+            .bottom-150.right-80
+                img.height-150(src=globalAssets+'troll.png')
++frameInbox('Example: Server-side rewind')
+    .important-green
+        ul
+            li Client B has 3x higher latency than Client A
+            li Client B performed a change before Client A did
+        .text-center.mt-100
+            img.height-500(src=imgAssets+'server_side_rewind.svg')
++frameInbox('Latency handling summary')
+    .important-orange
+        .list-title.fragment
+            p Time dilation
+            ul
+                li delays the values by a few frames and interpolates to them
+        .list-title.fragment
+            p Deterministic prediction
+            ul
+                li runs simulated code, masks latency and keeps the client's state in sync
+        .list-title.fragment
+            p Dead reckoning
+            ul
+                li non-deterministic prediction
+                li client uses the last known state of an object to extrapolate future state
+        .list-title.fragment
+            p Server-side rewind
+            ul
+                li the server buffers object positions for several frames to match the client's view when processing instant events
+        +tipKeen('It is better to be wrong on time than right but late').bottom-0.left-0
++frameInbox('Example: Source engine')
+    div
+        ul
+            li.fragment(data-fragment-index='1') server simulates the world at 30-60 FPS and sends 20 snapshots per second by default, using an interpolation reserve of 100 ms
+            li.fragment(data-fragment-index='2') client samples inputs at 30-60 FPS and buffers snapshots for 100 ms
+            li.fragment(data-fragment-index='3') server uses time dilation and rewind
+        .space-xl
+        .space-xl
+        .text-center.mt-40.fragment(data-fragment-index='1')
+            img.height-250(src=imgAssets+'delay_source.svg')
+        .bottom-340.right-100.fragment(data-fragment-index='1')
+            img.height-280(src=imgAssets+'lag_compensation.jpg')

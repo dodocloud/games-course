@@ -4,6 +4,7 @@ include ./mixins/containers.pug
 include ./mixins/containers_aph.pug
 include ./mixins/title.pug
 include ./mixins/quotes.pug
+include ./mixins/summary.pug
 
 - var themePath = '../themes/aph/';
 - var globalAssets = '../assets/all/';
@@ -18,15 +19,7 @@ include ./mixins/quotes.pug
         include ./chapters/graphics_animations.pug
         include ./chapters/graphics_processing.pug
         include ./chapters/graphics_concepts.pug
-        +summary()
-            ul.leading-2xl
-                li.fragment I know the difference between model space, world space, view space, clip space and screen space
-                li.fragment I know what view volume and field of view is
-                li.fragment I know what interpolation is
-                li.fragment I know terms like Vertex, Fragment, Texture, Occlusion, and Culling
-                li.fragment I know what purpose serve vertex and fragment shader
-                li.fragment I know what LOD, texture mapping, texture filtering, and baking is 
-        include ./chapters/bonus_demoscene.pug
+        +summary_lecture09()
         +quote-ea()
 
 +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 9: Graphics')

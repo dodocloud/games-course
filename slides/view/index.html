@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NI-APH examples</title>
+    <title>NI-APH slides</title>
     <meta name="description" content="Examples">
     <meta name="author" content="Adam Vesecký">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,53 +12,53 @@
 </head>
 
 <style type="text/css">
-    @font-face {
-    	font-family: "Source Sans Pro";
-	    src: url("../../slides/themes/aph/fonts/SourceSansPro-Regular.otf");
-    }
+	body {
+		font-family: "Arial";
+		background-color: #1d232d;
+		color: #e8eaec;
+	}
 
-    body {
-        font-family: "Source Sans Pro";
-        background-color: #1d232d;
-        color: #e8eaec;
-    }
-    
-    h1 {
-        font-size: 60px;
-    }
+	h1 {
+		font-size: 60px;
+	}
 
-    table {
-        font-size: 40px;
-        width: 80%;
-        text-align: left;
-    }
+	h2 {
+		font-size: 40px;
+	}
 
-    th {
-        text-transform: uppercase;
-    }
 
-    tr {
-        background-color: #535e70;
-    }
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-top: 100px;
+		margin-bottom: 100px;
+	}
 
-    td, th {
-        padding: 20px;
-    }
+	.list {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+	}
 
-    table tr:nth-child(2n+2) {
-        background-color: #2f3744;
-    }
+	.list a {
+		width: 100%;
+		padding: 20px;
+		font-size: 40px;
+		text-align: left;
+		text-decoration: none;
+		color: #e8eaec; 
+		background-color: #535e70;
+	}
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+	.list a:nth-child(2n+2) {
+		background-color: #2f3744;
+	}
 
-    a {
-        color: #6f8ce9;
-    }
+	a:hover, a:active {
+		background-color: #676f81 !important;
+	}
 
 
 </style>
@@ -66,68 +66,39 @@
 <body>
     <div class="container">
         <h1>NI-APH Slides</h1>
-        <table>
-            <tr>
-                <th>Lecture</th>
-                <th>Desc</th>
-                <th>Link</th>
-            </tr>
-            <tr>
-                <td>--</td>
-                <td>Organization</td>
-                <td><a href='./organization.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>01</td>
-                <td>Lecture 01: Games</td>
-                <td><a href='./lecture01.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>Lecture 02: Engines</td>
-                <td><a href='./lecture02.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>03</td>
-                <td>Lecture 03: Assets</td>
-                <td><a href='./lecture03.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>04</td>
-                <td>Lecture 04: Components</td>
-                <td><a href='./lecture04.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>05</td>
-                <td>Lecture 05: Patterns</td>
-                <td><a href='./lecture05.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>06</td>
-                <td>Lecture 06: Audio</td>
-                <td><a href='./lecture06.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>07</td>
-                <td>Lecture 07: Space</td>
-                <td><a href='./lecture07.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>08</td>
-                <td>Lecture 08: Physics</td>
-                <td><a href='./lecture08.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>09</td>
-                <td>Lecture 09: Graphics</td>
-                <td><a href='./lecture09.pug'>link</a></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Lecture 10: Game AI</td>
-                <td><a href='./lecture10.pug'>link</a></td>
-            </tr>
-        </table>
+        <h2>General</h2>
+		<div class='list'>
+            <a href='./organization.pug'>Organization of the course</a>
+            <a href='./summary.pug'>Course summary</a>
+        </div>
+
+        <h2>Lectures</h2>
+		<div class='list'>
+            <a href='./lecture01.pug'>Lecture 01: Games</a>
+            <a href='./lecture02.pug'>Lecture 02: Engines</a>
+            <a href='./lecture03.pug'>Lecture 03: Assets</a>
+            <a href='./lecture04.pug'>Lecture 04: Components</a>
+            <a href='./lecture05.pug'>Lecture 05: Patterns</a>
+            <a href='./lecture06.pug'>Lecture 06: Audio</a>
+            <a href='./lecture07.pug'>Lecture 07: Space</a>
+            <a href='./lecture08.pug'>Lecture 08: Physics</a>
+            <a href='./lecture09.pug'>Lecture 09: Graphics</a>
+            <a href='./lecture10.pug'>Lecture 10: Game AI</a>
+            <a href='./lecture11.pug'>Lecture 11: Multiplayer</a>
+        </div>
+        
+        <h2>Minitalks</h2>
+		<div class='list'>
+            <a href='./bonus_speedrunning.pug'>Speedrunning</a>
+            <a href='./bonus_tutorials.pug'>Tutorials</a>
+            <a href='./bonus_colors.pug'>Colors</a>
+            <a href='./bonus_exposition.pug'>Exposition</a>
+            <a href='./bonus_doom.pug'>Doom</a>
+            <a href='./bonus_drm.pug'>DRM</a>
+            <a href='./bonus_demoscene.pug'>Demoscene</a>
+            <a href='./bonus_emulators.pug'>Emulators</a>
+            <a href='./bonus_ui.pug'>Game UI</a>
+        </div>
     </div>
 </body>
 

@@ -1,0 +1,133 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/bonus_ui/';
+- var defaultBgr = 'backgrounds/ui.jpg';
+
+// ===================================================== SLIDES =====================================================
++mchapter('Game UI', imgAssets+'chapter_ui.svg')
++frameInbox('Game UI')
+    div
+        ul
+            li.fragment(data-fragment-index='1') the part of the game the player interacts with
+            li.fragment(data-fragment-index='2') a good UI tells you what you need to know, and then it gets out of the way
+            li.fragment(data-fragment-index='3') combines visual appearance from movie fake UIs and ergonomy from software UIs
+            li.highlight.fragment(data-fragment-index='4') Great Game UI is invisible
+        .flex-cols-3.mt-80.fragment(data-fragment-index='3')
+            figure
+                img.height-290(src=imgAssets+'fakeui.jpg')
+                p Movie UI
+            figure
+                img.height-290(src=imgAssets+'gameui.jpg')
+                p Game UI
+            figure
+                img.height-290(src=imgAssets+'softwareui.png')
+                p Software UI
++frameInbox('UI components')
+    div
+        ul
+            li.fragment Game UI is about space, structure, hierarchy and clarity
+            li.fragment it takes time and many iterations for UI to become amazing
+            li.fragment <span class="highlight-2">types</span>: non-diegetic, meta, spatial, diegetic
+        .text-center.mt-40
+            img.height-400(src=imgAssets+'ui_components.png')
++frameInbox('Non-diegetic components')
+    div
+        ul
+            li.fragment don't exist in the story, don't exist in the game space
+            li.fragment e.g. assessment of resources in strategic games, level map
+        .flex.flex-row.justify-between.mt-80
+            .text-center
+                figure
+                    img.height-460(src=imgAssets+'nondieg_ikari.png')
+                    p Ikari Warriors
+            .text-center
+                figure
+                    img.height-460(src=imgAssets+'aoe3.jpg')
+                    p Age of empires 3
++frameInbox('Meta components')
+    div
+        ul
+            li.fragment exist in the story, don't exist in the game space
+            li.fragment e.g. filter that signifies damage to a player's avatar
+        .flex.flex-row.justify-between.mt-80
+            .text-center
+                figure
+                    img.height-480(src=imgAssets+'meta_doom.jpg')
+                    p Doom
+            .text-center
+                figure
+                    img.height-480(src=imgAssets+'meta_cod.jpg')
+                    p Call of Duty
++frameInbox('Spatial components')
+    div
+        ul
+            li.fragment don't exist in the story, exist in the game space
+            li.fragment e.g. visual aids, text labels, racing lines
+        .flex.flex-row.justify-between.mt-80
+            .text-center
+                figure
+                    img.height-490(src=imgAssets+'spatial_forza.jpg')
+                    p Forza Motorsport 5
+            .text-center
+                figure
+                    img.height-490(src=imgAssets+'spatial_wow.jpg')
+                    p World of Warcraft
++frameInbox('Diegetic components')
+    div
+        ul
+            li.fragment exist in the story, exist in the game space
+            li.fragment e.g. in-game HUDs
+        .flex.flex-row.justify-between.mt-80
+            .text-center
+                figure
+                    img.height-450(src=imgAssets+'diegetic_metroid.jpg')
+                    p Metroid Prime
+            .text-center
+                figure
+                    img.height-450(src=imgAssets+'diegetic_project_cars.jpg')
+                    p Project Cars
++frameInbox('Game UI principles')
+    div
+        ul
+            li.fragment use color, size, shape, texture, and position for differentiation
+                .bottom-320.right-0
+                    img.height-400(src=imgAssets+'rules_diff.jpg')
+            li.fragment embrace consistency
+                .bottom-200.right-400
+                    img.height-400(src=imgAssets+'rules_consistency.jpg')
+            li.fragment less is more
+                .bottom-0.left-0
+                    img.height-470(src=imgAssets+'rules_less.jpg')
++frameInbox('Panelled vs overlaying interface')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-460(src=imgAssets+'organised_odallus.jpg')
+            p Odallus: The Dark Call
+        figure
+            img.height-460(src=imgAssets+'rayman.png')
+            p Rayman
++frameInbox('Simplicity')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-460(src=imgAssets+'simplicity_prince.png')
+            p Prince of Persia
+        figure
+            img.height-460(src=imgAssets+'simplicity_hf2.jpg')
+            p Half-life 2
++frameInbox('Consistency with the game')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-580(src=imgAssets+'consistency_1.jpg')
+        figure
+            img.height-580(src=imgAssets+'consistency_3.png')
+        figure
+            img.height-580(src=imgAssets+'consistency_2.jpg')
++frameInbox('Icons instead of labels')
+    .fill.center.flex-row.justify-evenly
+        figure
+            img.height-460(src=imgAssets+'icons_eternal_daughter.png')
+            p Eternal Daughter
+        figure
+            img.height-460(src=imgAssets+'icons_comkeen.png')
+            p Commander Keen
