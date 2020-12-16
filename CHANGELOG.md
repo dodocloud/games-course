@@ -6,6 +6,14 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.11.5] - 2020-12-16
+### Added
+- Solution for Mandelbrot and BitmapText
+- A new example for AI - Cargobots with statemachines
+
+### Changed
+- Deadline for semestral project submission to 10.1.
+
 ## [4.11] - 2020-12-14
 ### Added
 - Slides for Lecture 11

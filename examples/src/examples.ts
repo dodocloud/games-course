@@ -6,6 +6,7 @@ import { Particles } from './02-pixi-intro/particles';
 import { Primitives } from './02-pixi-intro/primitives';
 import { Sound } from './02-pixi-intro/sound';
 import { Text } from './02-pixi-intro/text';
+import { BitmapText } from './02-pixi-intro/bitmap-text';
 import { Animation as PIXIAnimation } from './02-pixi-intro/animation';
 import { Scene } from './02-three-intro/scene';
 import { Sprites } from './02-three-intro/sprites';
@@ -40,6 +41,9 @@ import { ShaderWave } from './07-graphics/shader-wave';
 import { TweenRotation } from './07-graphics/tween-rotation';
 import { TweenTranslation } from './07-graphics/tween-translation';
 import { VisionCone } from './07-graphics/vision-cone';
+import { Mandelbrot } from './07-graphics/mandelbrot';
+
+import { Bots } from './08-ai/bots';
 
 import { PixiHitTest } from './others/pixi-hittest';
 import { Dialog } from './others/dialog/dialog';
@@ -53,6 +57,7 @@ import { Dialog } from './others/dialog/dialog';
     Primitives,
     Sound,
     Text,
+    BitmapText,
     Scene,
     Sprites,
     Squares,
@@ -87,6 +92,8 @@ import { Dialog } from './others/dialog/dialog';
     TweenRotation,
     TweenTranslation,
     VisionCone,
+    Mandelbrot,
+    Bots,
     PixiHitTest,
     Dialog,
 };

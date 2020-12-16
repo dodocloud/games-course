@@ -25,7 +25,7 @@ title: Course requirements
 - the game, especially the implementation of its mechanics, must be your own contribution. If you use any 3rd party libraries, tools, assets, or any existing minigames as a template project, it must be documented in the readme
 - game assets, such as images and sounds, should have **Public Domain** license or any other license that makes the assets freely available
 - pay your utmost attention to the technical solution, **clean code** and polished gameplay
-- the deadline is set at **5.1.2021**
+- the deadline is set at **10.1.2021**
 
 ### Evaluation
 - in order to receive maximum points, you must prove that **some effortful work went into your solution and you analyzed well the mechanics you implemented** 
@@ -100,16 +100,16 @@ title: Course requirements
   - send it all to the lecturer either via e-mail or in the MSTeams chat
 - **on 26.11 and 3.12** for each group respectively:
   - every team/individual will present their progress during the lab
-- **until 5.1. 2021**
+- **until ~~5.1.~~ 10.1. 2021**
   - finish and submit your project
-- **after 5.1. 2021**
+- **after ~~5.1.~~ 10.1. 2021**
   - schedule a meeting with the lecturer for the final evaluation and the oral exam
 
 | Date | Description |
 | ------ | ------ | 
 | 8.10. | List of mechanics for approval |
 | 26.11 / 3.12 | Presentation of the progress |
-| 5.1. | Deadline | 
+| ~~5.1.~~ 10.1. | Deadline | 
 | January | Evaluation + exam |
 
 ## Exam requirements

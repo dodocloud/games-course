@@ -40,7 +40,7 @@ module.exports = {
 				type: 'category',
 				items: ['examples/pixi-intro/config', 'examples/pixi-intro/animation', 'examples/pixi-intro/button', 
 				'examples/pixi-intro/loop', 'examples/pixi-intro/particles', 'examples/pixi-intro/primitives', 
-				'examples/pixi-intro/sound', 'examples/pixi-intro/text']
+				'examples/pixi-intro/sound', 'examples/pixi-intro/bitmaptext', 'examples/pixi-intro/text']
 			},
 			{
 				label: 'ThreeJS Introduction',
@@ -50,7 +50,7 @@ module.exports = {
 			{
 				label: 'Components',
 				type: 'category',
-				items: ['examples/components/squares', 'examples/components/animation']
+				items: ['examples/components/squares', 'examples/components/animation', 'examples/components/graphics']
 			},
 			{
 				label: 'Space',
@@ -77,7 +77,12 @@ module.exports = {
 				label: 'Graphics',
 				type: 'category',
 				items: ['examples/graphics/raycaster', 'examples/graphics/shader-basic', 'examples/graphics/shader-noise', 'examples/graphics/shader-wave',
-				'examples/graphics/tween-rotation', 'examples/graphics/tween-translation', 'examples/graphics/vision-cone']
+				'examples/graphics/tween-rotation', 'examples/graphics/tween-translation', 'examples/graphics/vision-cone', 'examples/graphics/mandelbrot']
+			},
+			{
+				label: 'AI',
+				type: 'category',
+				items: ['examples/ai/bots']
 			},
 			{
 				label: 'Other',
@@ -93,7 +98,7 @@ module.exports = {
 		{
 			label: 'Tutorials',
 			type: 'category',
-			items: ['tutorials/pixi_intro', 'tutorials/pixi_positions', 'tutorials/three_intro', 'tutorials/matterjs']
+			items: ['tutorials/pixi_intro', 'tutorials/pixi_positions', 'tutorials/three_intro', 'tutorials/matterjs', 'tutorials/matterjs']
 		},
 	].filter(Boolean)
 }
