@@ -1,0 +1,92 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/design_indiepocalypse/';
+
+- var defaultBgr = 'backgrounds/halo_poster.jpg';
++mchapter('Indiepocalypse', imgAssets+'chapter_indiepocalypse.svg')
++mcontainer('Indie Games')
+    +frameShard.width-860.top-3p.fragment.fade-up
+        p Indie game is a video game that is often created without a financial support of a publisher.
+    +frameShard.width-860.top-6p.left-20p.fragment.fade-up
+        p Indie games are developed by individuals, small teams or small independent companies, having little to no budget available. 
+    +frameShard.width-880.top-9p.left-46p.fragment.fade-up
+        p Indie games are games that are smaller in size, less taxing on hardware and focusing mostly on art design.
++frameInbox('Indie games evolution')
+    div
+        .text-center
+            img.height-780(src=imgAssets+'indie_games.svg')
+        .bottom-20.right-140
+            img.height-690(src=imgAssets+'indie_games.png')
++frameInbox('AAA games vs INDIE games')
+    div
+        .fill.flex-row.justify-evenly
+            figure.fragment
+                img.height-300(src=imgAssets+'aaa_graphics.jpg')
+                p Cutting-edge graphics
+            figure.fragment
+                img.height-300(src=imgAssets+'aaa_building.jpg')
+                p Large studios
+            figure.fragment
+                img.height-300(src=imgAssets+'aaa_campaigns.jpg')
+                p Massive campaigns
+        .text-center.fragment
+            p.text-2xl.color-lemon VS
+        .fill.flex-row.justify-evenly
+            figure.fragment
+                img.height-300(src=imgAssets+'indie_graphics.jpg')
+                p Modest graphics
+            figure.fragment
+                img.height-300(src=imgAssets+'indie_building.jpg')
+                p Small office
+            figure.fragment
+                img.height-300(src=imgAssets+'indie_campaigns.jpg')
+                p Conference tours 
+
++frameInbox('AAA vs Indie')
+    div
+        .list-title.fragment
+            p Indie game developer
+            ul
+                li.fragment must span a huge number of various subject areas
+                li.fragment the less resources you have, the more creative you need to be
+        .list-title.fragment
+            p AAA game developer
+            ul
+                li.fragment specialized in a few areas
+                li.fragment making AAA is about delegating tasks to huge teams
+                li.fragment there isn't a lot of space for own expression
+                li.fragment many AAA devs eventually go indie
+                    ul
+                        li.fragment <span class="highlight-2">Jade Raymond</span> - oversaw Assassin's Creed, left Ubisoft in 2014
+                        li.fragment <span class="highlight-2">Cliff Bleszinski</span> - oversaw Gears of War, left Epic Games in 2012, started his own studio
+                        li.fragment <span class="highlight-2">Brian Reynolds</span> - SM Civilization designer, started his own studio
+                        li.fragment <span class="highlight-2">Keiji Inafune</span> - Mega Man designer, departed Capcom and started his own studio
+                        li.fragment <span class="highlight-2">David Jaffe</span> - directed God of War, left Sony, started his own studio
+                        li.fragment <span class="highlight-2">Ken Levine</span> - leader of BioShock development, left 2K Games in 2017
+            .top-40.right-40
+                img.height-500(src=imgAssets+'aaa_indie.jpg')
++frameInbox('Games released on Steam')
+    div
+        ul
+            li 2013 - opening the flood gates
+        .text-center.mt-50
+            img.height-650(src=imgAssets+'steam_release.svg')
++frameInbox('Global revenues')
+    div
+        .text-center
+            img.height-700(src=imgAssets+'market_revenues.svg')
++frameInbox('Game Industry Crisis')
+    div
+        ul
+            li.fragment in 1990s, the industry was small enough for developers to comp up with anything
+            li.fragment we have 2.7 billion gamers across the globe
+            li.highlight.fragment it is easier than ever to develop a game
+            li.highlight-2.fragment it is harder than ever to develop a successful game
+            li.mt-60.fragment <span class="highlight">Issues:</span>
+                ul
+                    li.fragment low barrier of entry (everyone can create a game, reading a tutorial)
+                    li.fragment low median ownership (number of players per each game)
+                    li.fragment lack of differentiation (do we need other 100 pixel-art platformers?)
+                    li.fragment with so many games to choose from it is hard to stand out without a unique selling point
+                    li.fragment many gamers spend their time playing a few games that are offered as a service

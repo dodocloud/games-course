@@ -1,0 +1,111 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/design_development/';
+
+- var defaultBgr = 'backgrounds/dev.jpg';
++mchapter('Game Development', imgAssets+'chapter_dev.svg')
++frameInbox('Game categories')
+    div
+        .space-lg.mt-60
+        .grid-rows-1.grid-cols-4.grid.gap-10.width-90p.mt-60.ml-80
+            .fragment
+                +gbGame2(imgAssets+'category_hypercasual.jpg', 'Hyper Casual Games')
+            .fragment
+                +gbGame2(imgAssets+'category_casual.jpg', 'Casual Games')
+            .fragment
+                +gbGame2(imgAssets+'category_indie.jpg', 'Indie Games')
+            .fragment
+                +gbGame2(imgAssets+'category_aaa.jpg', 'AAA games')
++frameInbox('Game Development Professions')
+    div
+        .list-title.fragment
+            p Developer
+            ul.leading-md
+                li.fragment writes code
+                li.fragment gameplay developers, tool developers, engine developers, VFX developers, scripters,...
+        .list-title.mt-10.fragment
+            p Game Designer
+            ul.leading-md
+                li.fragment determination of the goals, gameplay and objects
+                li.fragment story designers, gameplay designers, level designers, narrative designers
+        .list-title.mt-10.fragment
+            p Artist
+            ul.leading-md
+                li.fragment create everything what players see
+                li.fragment sketches, paintings, 3D models, character animations, credit screen, interface
+                li.fragment 3D modelers, texture artists, lighting artists, animators, cutscene animators, rigging specialists,...
+        .list-title.mt-10.fragment
+            p Sound specialists
+            ul.leading-md
+                li.fragment score composers, sound designers, sound specialists,...
+        .list-title.mt-10.fragment
+            p QA
+            ul.leading-md
+                li.fragment planning, organizing, running, and documenting playtests
+        .list-title.mt-10.fragment
+            p Other staff
+            ul.leading-md
+                li.fragment executive producer, technical director, project managers, marketing department, PR,...
++frameInbox('Game development team size')
+    div
+        ul
+            li.fragment <span class="highlight">Prince of Persia </span><span class="highlight-2">(1989)</span>: <span class="color-tomato-light">4</span>
+            li.fragment <span class="highlight">Doom </span><span class="highlight-2">(1993)</span>:  <span class="color-tomato-light">9</span>
+            li.fragment <span class="highlight">Rayman </span><span class="highlight-2">(1995)</span>:  <span class="color-tomato-light">20</span>
+            li.fragment <span class="highlight">Pokémon Ruby </span><span class="highlight-2">(2002)</span>:  <span class="color-tomato-light">77</span>
+                ul
+                    li.fragment 11 developers, 21 designers, 2 scripters, 4 map designers, 7 environment designers, 14 Pokémon designers, 4 parametric designers, 6 scenarists, 4 artists, 4 audio specialists
+            li.fragment <span class="highlight">Unreal Tournament 3 </span><span class="highlight-2">(2008)</span>:  <span class="color-tomato-light">83</span>
+                ul
+                    li.fragment 30 developers, 16 level designers, 30 artists, 7 audio specialists 
+            li.fragment <span class="highlight">Tomb Raider </span><span class="highlight-2">(2013)</span>:  <span class="color-tomato-light">105</span>
+                ul
+                    li.fragment 32 developers, 21 level designers, 2 camera designers, 30 artists, 14 animators, 6 audio specialists
+            li.fragment <span class="highlight">Kingdom Come: Deliverance </span><span class="highlight-2">(2018)</span>:  <span class="color-tomato-light">154</span>
+            li.fragment <span class="highlight">Wolfenstein: New Collosus </span><span class="highlight-2">(2018)</span>:  <span class="color-tomato-light">231</span>
+                ul
+                    li.fragment 26 developers, 24 level designers, 75 artists, 28 animators, 5 audio specialists, 70 people for facial animation tracking
+            li.fragment <span class="highlight">Devil May Cry V </span><span class="highlight-2">(2019)</span>:  <span class="color-tomato-light">251</span>
+
++frameInbox('Game development cost')
+    div
+        ul.leading-md
+            li.fragment Hyper casual games: < 500 hours of work
+            li.fragment Casual games: < 5000 hours of work
+            li.fragment Indie games: < 100 000 hours of work
+            li.fragment AAA games: 100 000+ hours of work 
+        .text-center.mt-30.fragment
+            img.height-600(src=imgAssets+'games_cost.svg')
++frameInbox('Games made by one person')
+    div
+        .grid-rows-2.grid-cols-4.grid.gap-10.width-90p.ml-100.mt-40
+            .fragment
+                +gbGame2(imgAssets+'singledev_tetris.jpg', 'Tetris')
+            .fragment
+                +gbGame2(imgAssets+'singledev_cavestory.jpg', 'Cave Story')
+            .fragment
+                +gbGame2(imgAssets+'singledev_braid.jpg', 'Braid')
+            .fragment
+               +gbGame2(imgAssets+'singledev_minecraft.jpg', 'Minecraft')
+            .fragment
+                +gbGame2(imgAssets+'singledev_dust.jpg', 'Dust: An Elysian Tale')
+            .fragment
+                +gbGame2(imgAssets+'singledev_flappy.jpg', 'FlappyBird')
+            .fragment
+                +gbGame2(imgAssets+'singledev_undertale.jpg', 'Undertale')
+            .fragment
+                +gbGame2(imgAssets+'singledev_axiom.jpg', 'Axiom Verge')
+
++frameInbox('Game industry failures')
+    div
+        .space-lg.mt-80
+        .grid-rows-1.grid-cols-4.grid.gap-10.width-90p.mt-60.ml-80
+            .fragment
+                +gbGame2(imgAssets+'failure_daikatana.jpg', 'Daikatana')
+            .fragment
+                +gbGame2(imgAssets+'failure_spore.jpg', 'Spore')
+            .fragment
+                +gbGame2(imgAssets+'failure_duke.jpg', 'Duke Nukem Forever')
+            .fragment
+                +gbGame2(imgAssets+'failure_simcity.jpg', 'Simcity 2013')

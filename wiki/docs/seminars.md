@@ -84,7 +84,7 @@ Keyboard shortcuts for the slides:
 | 10 | 26.11. | Graphics |[Link](https://aph.dodo.me/slides/lecture09.html/) |
 | 11 | 3.12. | AI | [Link](https://aph.dodo.me/slides/lecture10.html/) |
 | 12 | 10.12. | Multiplayer | [Link](https://aph.dodo.me/slides/lecture11.html/) |
-| 13 | 17.12. | Design |  |
+| 13 | 17.12. | Design |  [Link](https://aph.dodo.me/slides/lecture12.html/) |
 
 
 ## Labs

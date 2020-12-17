@@ -1,0 +1,59 @@
+doctype html
+include ./mixins/header.pug
+include ./mixins/containers.pug
+include ./mixins/containers_aph.pug
+include ./mixins/title.pug
+include ./mixins/quotes.pug
+include ./mixins/summary.pug
+
+- var themePath = '../themes/aph/';
+- var defaultBgr = 'backgrounds/marioworld2.jpg';
+- var globalAssets = '../assets/all/';
+
++header('Design', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture12.svg', themePath + 'theme_aph.scss')
+
+.reveal
+    .slides
+        +title('Lecture 12', 'Design', 'color-azure-light')
+        +frameInbox('Literature')
+            div
+                ul
+                    li.fragment.fade-up(data-fragment-index='1')
+                        a(href="https://www.amazon.com/Level-Guide-Great-Video-Design/dp/1118877160") Rogers, Scott. 2014. Level Up! The Guide to Great Video Game Design 
+                    li.fragment.fade-up(data-fragment-index='2')
+                        a(href='https://www.amazon.com/Theory-Game-Design-Raph-Koster/dp/1932111972') Koster, Raph. 2004. Theory of Fun for Game Design 
+                    li.fragment.fade-up(data-fragment-index='3')
+                        a(href='https://www.amazon.com/Games-Design-Play-detailed-iterative/dp/0134392078') Macklin, Colleen. 2016. Games, Design and Play: A detailed approach to iterative game design 
+                .flex-cols-3.mt-40
+                    div.text-center.fragment.fade-up(data-fragment-index='1')
+                        img.height-550(src=globalAssets+'book_levelup.jpg')
+                    div.text-center.fragment.fade-up(data-fragment-index='2')
+                        img.height-550(src=globalAssets+'book_theory_of_fun.jpg')
+                    div.text-center.fragment.fade-up(data-fragment-index='3')
+                        img.height-550(src=globalAssets+'book_games.jpg')
+        include ./chapters/design_design.pug
+        include ./chapters/design_development.pug
+        include ./chapters/design_indiepocalypse.pug
+        include ./chapters/design_howto.pug
+        +frameInboxMid('NI-APH legacy')
+            div
+                ul
+                    li.fragment To learn basic elements of games
+                    li.fragment To get familiar with the structure of game engines
+                    li.fragment To learn something about component architecture
+                    li.fragment To learn something about game physics, audio, graphics, AI, multiplayer
+                    li.fragment To get familiar with basic elements of game design
+                    li.fragment To comprehend how difficult game developent may become
+                    li.mt-60.fragment And, to gather enough knowledge that could be easily advanced further
+                        ul
+                            li.fragment Online courses
+                            li.fragment Youtube tutorials
+                            li.fragment Open-source games
+                            li.fragment Articles
+                            li.fragment Books
+                .bottom-0.right-0
+                    img.height-280(src=globalAssets+'keen.png')
+        +quote-duke()
+
++footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 12: Design')
+script(src!='../../scripts/reveal-setup.js')

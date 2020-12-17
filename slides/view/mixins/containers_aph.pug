@@ -26,6 +26,15 @@ mixin gbGame(image, text)
 		.absolute.width-160.height-40.bottom-30.left-30.bgr-rhino-100.ml-3.mb-5.opacity-7
 		div.absolute.bottom-40.width-160.left-30.text-center.text-xs.font-bold.color-rhino-50!=text
 
+
+mixin gbGame2(image, text)
+	div.relative.height-350
+		img.absolute.height-350(src=globalAssets+'gb_cartridge.png')
+		.absolute.height-200.left-40.bottom-50.opacity-7.ml-8.mb-1
+			img(src!=image)
+		.absolute.width-220.height-50.bottom-50.left-40.bgr-rhino-100.ml-6.opacity-7
+		div.absolute.bottom-60.width-220.left-40.ml-6.text-center.text-2xs.font-bold.color-rhino-50!=text
+
 mixin floppyApp(image, text, year)
 	div.relative.height-350
 		img.absolute.height-350(src=globalAssets+'disk_floppy.png')

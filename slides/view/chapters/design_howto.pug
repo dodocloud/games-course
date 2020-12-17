@@ -1,0 +1,137 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/design_howto/';
+
+- var defaultBgr = 'backgrounds/horizon.jpg';
++mchapter('How to make a game', imgAssets+'chapter_making_game.svg')
++frameInbox('Game Developer')
+    div.center
+        .grid.grid-cols-3.grid-rows-2.gap-20.width-80p.mt-60
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_1.jpg')
+                p What my friends think I do
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_2.jpg')
+                p Why my parents think I do
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_3.jpg')
+                p What society thinks I do
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_4.jpg')
+                p What the players think I do
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_5.jpg')
+                p What I think I do
+            figure.fragment
+                img.height-260(src=imgAssets+'gdev_6.jpg')
+                p What I really do
++frameInbox('I-wanna-be-a-game-developer starter pack')
+    div
+        .left-50.bottom-20.fragment(data-fragment-index='3')
+            img.height-690(src=imgAssets+'dev_today_01.jpg')
+        .right-50.top-190.fragment(data-fragment-index='4')
+            img.width-840(src=imgAssets+'dev_today_02.jpg')
+        .bottom-20.right-50.fragment(data-fragment-index='4')
+            img.width-840(src=imgAssets+'dev_today_03.jpg')
+        .bottom-190.left-100.fragment(data-fragment-index='1')
+            img.width-580(src=imgAssets+'dev_today_fb_02.jpg')
+        .bottom-420.right-630.fragment(data-fragment-index='2')
+            img.width-580(src=imgAssets+'dev_today_fb_01.jpg')
+        .top-120.left-30.fragment(data-fragment-index='2')
+            img.width-300(src=imgAssets+'dev_today_unity.jpg')
++frameInbox('Game development')
+    div
+        ul
+            li.fragment(data-fragment-index='1') serious games have very complex code, very complex user interactions, and a lot of decisions based on subjective views on top of coordination between art-focused and engineering-focused teams
+        .flex-cols-3.mt-100
+            .text-center.fragment(data-fragment-index='1')
+                img.height-420(src=globalAssets+'memes/learn_gamedev.jpg')
+            .text-center.fragment(data-fragment-index='2')
+                img.height-420(src=globalAssets+'memes/unreal.jpg')
+            .text-center.fragment(data-fragment-index='3')
+                img.height-420(src=globalAssets+'memes/gamedev.jpg')
++frameInbox('How to make a game')
+    div
+        .list-title.fragment
+            p Stage 1
+            ul
+                li.fragment create a few stupid simple games with little to zero budget
+                li.fragment learn how to use tools and game assets
+        .list-title.fragment
+            p Stage 2
+            ul
+                li.fragment do your research
+                li.fragment make up good design hooks
+                li.fragment prepare a development plan
+                li.fragment prepare a concept
+        .list-title.fragment
+            p Stage 3
+            ol.spacing-md
+                li.fragment get budget for 12 month of living + money for investments (assets, music,...)
+                li.fragment cut down on most unnecessary social interactions
+                li.fragment make a unique game that stands out
+                li.fragment don't tell your friends about your game until your prototype is finished
+                li.fragment if you run out of budget, get a job, and go back to step 1
+        .bottom-380.right-50.fragment
+            img.height-400(src=imgAssets+'games_shipping.png')
++frameInbox('How Not to make a game')
+    div
+        .top-100.left-40.fragment
+            img.width-470(src=imgAssets+'untitled_project.jpg')
+        .top-270.left-540.fragment
+            img.height-240(src=imgAssets+'gamedev_fail_flow.svg')
+        .bottom-40.right-20.fragment
+            img.height-360(src=imgAssets+'side_projects.jpg')
+        .bottom-40.left-40.fragment
+            img.width-470(src=imgAssets+'unfinished_projects.jpg')
+        .top-100.right-40.fragment
+            img.height-280(src=imgAssets+'unfinished_projects_2.jpg')
++frameInbox('The iceberg illusion')
+    div
+        .text-center
+            img.height-620.mt-30(src=imgAssets+'gamedev_success.svg')
+            p.pl-100.pr-100.highlight-2.fragment Making successful games is about persistence and hard work, as well as being in the right place at the right time with the right concept.
++frameInbox('Honorable mentions')
+    div
+        .top-100.left-20
+            a(href='http://gingearstudio.com/why-i-quit-my-dream-job-at-ubisoft')
+               img.width-500(src=imgAssets+'article_ubisoft.jpg')
+        .top-260.left-20
+            a(href='https://www.gamasutra.com/blogs/AdrielWallick/20140226/211761/Make_Many_Games_Learn_Many_Things.php')
+                img.width-500(src=imgAssets+'article_games.jpg')
+        .top-380.left-20
+            a(href='https://www.reddit.com/r/gamedev/comments/dwfwtp/three_years_ago_my_wife_and_i_quit_our_jobs_to/')
+                img.width-500(src=imgAssets+'article_ninefaced.png')
+        .top-580.left-20
+            a(href='https://enterprisecraftsmanship.com/posts/how-i-tried-to-get-into-game-development-and-failed/')
+                img.width-500(src=imgAssets+'article_khorikov.jpg')
+        .bottom-30.left-20
+            a(href='https://medium.com/@doandaniel/7-reasons-why-most-indie-game-developers-fail-5d6648ca6343/')
+                img.width-500(src=imgAssets+'article_7_mistakes.jpg')
+        .top-600.right-20
+            a(href='https://www.polygon.com/2019/2/16/18226581/activision-blizzard-layoffs-executive-pay-unions')
+                img.width-500(src=imgAssets+'article_blizzard.jpg')
+        .top-350.right-530
+            a(href='https://www.theverge.com/2018/10/4/17934166/telltale-games-studio-closed-layoffs-end-the-walking-dead')
+                img.width-580(src=imgAssets+'article_telltale.jpg')
+        .top-420.right-20
+            a(href='https://www.reddit.com/r/gamedev/comments/74fdi8/my_indie_game_failed_hard_on_steam/')
+                img.width-500(src=imgAssets+'article_indie_fail.jpg')
+        .top-100.right-20
+            a(href='https://www.gamasutra.com/blogs/AlvaMajo/20160801/278241/My_first_indie_game_failed_hard_Heres_the_data.php')
+                img.width-500(src=imgAssets+'article_first_game.jpg')
+        .bottom-20.right-20
+            a(href='https://siliconangle.com/2013/08/29/the-dark-side-of-failed-indie-game-developers/')
+                img.width-500(src=imgAssets+'article_failed_dev.jpg')
+        .top-250.right-20
+            a(href='https://www.gamesindustry.biz/articles/2020-07-22-how-to-guarantee-your-pitch-will-be-rejected/')
+                img.width-500(src=imgAssets+'article_pitch.jpg')
++frameInbox('Raison d\'etre')
+    div
+        ul
+            li.fragment(data-fragment-index='1') game development is a world with many heroes, a few stars and a very few superstars
+            li.fragment(data-fragment-index='2') developers make games for the same reason why writers write books or painters paint paintings
+            li.highlight-2.fragment(data-fragment-index='3') it is a way to leave creative footprints and express ideas to the world  
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-600(src=imgAssets+'kingdom_come.jpg')

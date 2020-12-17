@@ -1,0 +1,282 @@
+include ../mixins/containers.pug
+include ../mixins/containers_aph.pug
+
+- var imgAssets = '../assets/design_design/';
+
+- var defaultBgr = 'backgrounds/marioworld2.jpg';
++mchapter('Game Design', imgAssets+'chapter_design.svg')
++mcontainer()
+    +frameShard.width-70px.height-33p.top-300.center.z-index-100
+        +quote('At the very beginning, there was a dream. And a dreamer said: "Let\'s turn this dream into a game." And it was so. And it was a nightmare.')
++mcontainer('Game Design')
+    +frameShard.width-70px.height-40p.top-200.center.z-index-100
+        +quote('Game design is the act of deciding what a game should be. That\'s it. On the surface, it sounds too simple. The voyage of discovery is not in seeking new landscapes but in having new eyes.', 'Jesse Schell')
++frameInbox('What gamers want')
+    div
+        ul
+            li.fragment <span class="highlight-2 italic">Most gamers don't know what they want until it is shown to them.</span> <span class="highlight-2">(Scott Rogers)</span>
+            li.fragment a good game is a unique way of structuring experience and provoking emotions
+            li.fragment most successful games are addictive and mood-boosting
+            li.fragment gamers enjoy failing, as long as hope of success is at hand
+            li.fragment <span class="highlight-2">the destiny of all games is to eventually become boring</span>
+            li.mt-80.fragment <span class="highlight">Essential rewards to gameplay</span>
+                ul
+                    li.fragment satisfying work - being immersed in clearly defined activities
+                    li.fragment experience of being successful - flow pattern
+                    li.fragment social connection
+                    li.fragment meaning - chance to be part of something larger than ourselves
+        .bottom-20.right-20
+            img.height-650(src=imgAssets+'gamer.jpg')
++frameInbox('What is important')
+    div
+        ul.leading-2xl.spacing-lg
+            li.fragment(data-fragment-index='1') Great controls (<span class="highlight-2">Super Mario</span>)
+            li.fragment(data-fragment-index='2') Interesting visual style (<span class="highlight-2">ASCIIDENT</span>)
+            li.fragment(data-fragment-index='3') Excellent sound and music (<span class="highlight-2">Inmost</span>)
+            li.fragment(data-fragment-index='4') Captivating world (<span class="highlight-2">The Journey</span>)
+            li.fragment(data-fragment-index='5') Fun gameplay (<span class="highlight-2">Icy Tower</span>)
+            li.fragment(data-fragment-index='6') Solid level design (<span class="highlight-2">Braid</span>)
+            li.fragment(data-fragment-index='7') Memorable characters (<span class="highlight-2">Warcraft</span>)
+            li.fragment(data-fragment-index='8') Challenge & reward (<span class="highlight-2">Pokémon</span>) 
+            li.fragment(data-fragment-index='9') Entertaining story (<span class="highlight-2">Mass Effect</span>)
+        .top-80.right-0.fragment(data-fragment-index='1')
+            img.width-400(src=imgAssets+'design_features_mario.jpg')
+        .top-100.right-560.fragment(data-fragment-index='2')
+            img.width-400(src=imgAssets+'design_features_asciident.jpg')
+        .top-200.right-300.fragment(data-fragment-index='3')
+            img.width-400(src=imgAssets+'design_features_inmost.jpg')
+        .top-300.right-0.fragment(data-fragment-index='4')
+            img.width-400(src=imgAssets+'design_features_journey.jpg')
+        .top-370.right-560.fragment(data-fragment-index='5')
+            img.width-400(src=imgAssets+'design_features_icytower.jpg')
+        .top-450.right-300.fragment(data-fragment-index='6')
+            img.width-400(src=imgAssets+'design_features_braid.jpg')
+        .bottom-150.right-0.fragment(data-fragment-index='7')
+            img.width-400(src=imgAssets+'design_features_warcraft.jpg')
+        .bottom-50.right-560.fragment(data-fragment-index='8')
+            img.width-400(src=imgAssets+'design_features_pokemon.jpg')
+        .bottom-0.right-300.fragment(data-fragment-index='9')
+            img.width-400(src=imgAssets+'design_features_masseffect.jpg')
++frameInbox('Bad design examples')
+    div
+        ul
+            li.fragment lacking autosaves
+            li.highlight-2.fragment unnecessary waiting
+                .top-500.right-40
+                    img.width-560(src=imgAssets+'bad_design_waiting.jpg')
+            li.fragment unskippable cutscenes
+            li.fragment senseless dialogues
+            li.fragment changes of gameplay style
+            li.highlight-2.fragment invisible walls
+                .top-150.right-40
+                    img.width-560(src=imgAssets+'bad_design_breadth_of_the_wild.jpg')
+            li.fragment lack of a mini-map
+            li.fragment over-reliance on QTE (quick-time events)
+            li.fragment lack of a fast travel system in open-world game
+            li.fragment NPCs who walk slowly to an objective
+            li.highlight-2.fragment long-distance checkpoints
+                .top-150.right-640
+                    img.width-460(src=imgAssets+'bad_design_checkpoints.jpg')
+            li.fragment no meaningful outcome when choices are presented
+            li.fragment repetitive gameplay with little diversity
++frameInbox('Game Design Building Blocks')
+    div
+        ul
+            li.fragment <span class="highlight">constraint</span> - putting limits on actions and interactions
+            li.fragment <span class="highlight">direct actions</span> - immediate interactions with objects
+            li.fragment <span class="highlight">indirect actions</span> - occur without direct contact
+            li.fragment <span class="highlight">goals</span> - give shape and purpose
+            li.fragment <span class="highlight">challenge</span> - balance of reward (flow pattern)
+                .bottom-50.right-70
+                    img.width-550(src=imgAssets+'game_flow.svg')
+            li.fragment <span class="highlight">skill</span> - degree to which a player should learn an action
+            li.fragment <span class="highlight">strategy</span> - ability to determine the best ways for actions
+            li.fragment <span class="highlight">chance and uncertainty</span> - unpredictable events
+            li.fragment <span class="highlight">decision-making and feedback</span>
+            li.fragment <span class="highlight">abstraction</span> - of real-world activities
+            li.fragment <span class="highlight">theme</span> - tightly integrated with the game's goals
+            li.fragment <span class="highlight">storytelling</span> - gives clarity to goals
+            li.fragment <span class="highlight">context of play</span> - where the game is played and by whom
++mcontainer('Game Design Document')
+    +frameShard.width-840.top-3p.fragment.fade-up
+        p A design document is a <span class="highlight">bible</span> from which the producer preaches the goal, through which the designers reflect their ideas. 
+            span.highlight-2 Gamasutra (1999)
+    +frameShard.width-860.top-6p.left-20p.fragment.fade-up
+        p A design document should be just long enough to accurately describe what is going on in the game. 
+            span.highlight-2 Scott Rogers (2010)
+    +frameShard.width-860.top-9p.left-47p.fragment.fade-up
+        p A design document is the <span class="highlight">blueprint</span> from which a game is to be built. 
+            span.highlight-2 Game Developer Blog (2016)
++frameInbox('Game Design Document - Content')
+    div
+        ul.mt-40
+            li.fragment working title
+            li.fragment description of play experience
+            li.fragment basic elements (characters)
+            li.fragment gameplay, goals, intended mechanics
+            li.fragment design hooks
+            li.fragment interface and controls
+            li.fragment game flow - series of schematics
+            li.fragment level design
+            li.fragment technical overview
+            li.fragment story, campaigns, modes (DM, CTF, TDM,...)
+            li.fragment target audience
+            li.fragment ESRB/PEGI ratings
+            li.fragment competitive products
+        .bottom-80.right-200
+            img.height-600(src=imgAssets+'gdc.png')
++frameInbox('Example: Prince of Persia 2')
+    div.text-center
+        img.height-770(src=imgAssets+'pop.jpg')
++frameInbox('Iterative game design process')
+    div
+        .list-title.fragment 
+            p Mark Cerny's method
+            ul
+                li.fragment half of the development time is spent on pre-production => iterative prototyping
+                li.fragment by the end, you should come out with <span class="highlight-2">two good levels</span> that represent the overall quality
+        .text-center.mt-60.fragment
+            img.height-500(src=imgAssets+'game_design_process.svg')
++frameInbox('Iterative game design process')
+    div
+        ul
+            li.fragment(data-fragment-index='1') game design is a highly iterative process
+            li.fragment(data-fragment-index='2') <span class="highlight">conceptualize</span> - develop an idea and its play experience - written in design document
+            li.fragment(data-fragment-index='3') <span class="highlight">prototype</span> - make some aspect of the game's design into a playable form
+            li.fragment(data-fragment-index='4') <span class="highlight">playtest</span> - have the players see what you have made
+            li.fragment(data-fragment-index='5') <span class="highlight">evaluation</span> - capture feedback, take notes, videos, brainstorm, and start another iteration
+        .text-center.mt-20.fragment(data-fragment-index='1')
+            img.height-500(src=imgAssets+'game_design_iterations.svg')
++frameInbox('Design hooks')
+    div
+        ul
+            li.fragment(data-fragment-index='1') unique qualities and characteristics a game's designer wants to embody in the game
+            li.highlight-2.fragment(data-fragment-index='2') the main selling points that make the game stand out
+        .space-lg
+        .flex.flex-row.justify-between.m-60.fragment(data-fragment-index='2')
+            figure
+                img.height-400(src=imgAssets+'dvalues_cuphead.jpg')
+                p Cuphead
+            figure
+                img.height-400(src=imgAssets+'dvalues_horizon.jpg')
+                p Horizon: Zero Dawn
++frameInbox('Design structures')
+    div
+        ul.leading-4xl
+            li.fragment Sketches
+                .top-80.right-470
+                    img.width-450(src=imgAssets+'prototyping_01.jpg')
+            li.fragment Story and script
+                .top-0.right-0
+                    img.width-450(src=imgAssets+'struct_script_gta.jpg')
+            li.fragment Tables (skills, abilities, upgrades)
+                .top-300.right-0
+                    img.width-450(src=imgAssets+'struct_tables.jpg')
+            li.fragment Level mockups, puzzles,...
+                .top-480.right-470
+                    img.width-450(src=imgAssets+'struct_elements.jpg')
+            li.fragment Game map
+                .top-600.right-0
+                    img.width-450(src=imgAssets+'struct_map.png')
++frameInbox('Hero')
+    div
+        ul
+            li.fragment very important and often unjustly neglected element of games
+                .bottom-0.right-350
+                    img.height-300(src=imgAssets+'hero_doomguy.gif')
+                .bottom-0.right-280
+                    img.height-350(src=imgAssets+'hero_freeman.png')
+                .top-0.right-0
+                    img.height-300(src=imgAssets+'hero_glados.png')
+                .top-0.right-300
+                    img.height-500(src=imgAssets+'hero_guybrush.png')
+                .bottom-300.right-20
+                    img.height-200(src=imgAssets+'hero_jazz.png')
+            li.fragment main attributes: name, appearance, facial proportions, movement, humanity
+                .bottom-0.right-0
+                    img.height-200(src=imgAssets+'hero_keen.gif')
+                .bottom-280.left-380
+                    img.height-100(src=imgAssets+'hero_mario.png')
+                .bottom-0.left-0
+                    img.height-650(src=imgAssets+'hero_prince2.png')
+            li.fragment archetypes: humorous character, heroic character, villain character
+                .bottom-330.left-50
+                    img.height-180(src=imgAssets+'hero_crash.png')
+                .bottom-0.right-670
+                    img.height-400(src=imgAssets+'hero_cratos.png')
+                .bottom-0.right-850
+                    img.height-300(src=imgAssets+'hero_rayman.gif')
+                .bottom-0.left-950
+                    img.height-150(src=imgAssets+'hero_sonic.gif')
++frameInbox('Story')
+    div
+        ul
+            li.fragment(data-fragment-index='1') a story is a background aspect of a gameplay and gameplay is a medium used to tell a story
+            li.fragment(data-fragment-index='2') good gameplay can overshadow a terrible story
+            li.fragment(data-fragment-index='3') good story can't really overshadow a terrible gameplay
+            li.fragment(data-fragment-index='4') some games just don't need a story
+        .flex.flex-row.justify-between.m-40.fragment(data-fragment-index='1')
+            figure
+                img.height-400(src=imgAssets+'story_doom.jpg')
+                p Doom
+            figure
+                img.height-400(src=imgAssets+'story_fear.jpg')
+                p F.E.A.R.
++frameInbox('Worldbuilding')
+    div
+        ul
+            li.fragment responsibility of the narrative designer
+            li.fragment questions like who, what, when, where, why, how
+            li.fragment only a small portion of the work will ever be visible to players
+            li.fragment <span class="highlight">honorable mention</span>: <span class="highlight-2">Ultima (1980-2000)</span>
+                .bottom-420.right-500
+                    img.height-200(src=imgAssets+'ultima_06.png')
+                ul
+                    li.fragment laid the groundwork for most RPGs
+                        .bottom-0.right-300
+                            img.height-400(src=imgAssets+'ultima_02.jpg')
+                        .bottom-0.right-0
+                            img.height-400(src=imgAssets+'ultima_03.jpg')
+                    li.fragment started with a student project in 1980
+                        .bottom-0.right-620
+                            img.height-400(src=imgAssets+'ultima_04.png')
+                        .bottom-0.left-80
+                            img.height-390(src=imgAssets+'ultima_05.gif')
+                        .bottom-420.right-0
+                            img.height-300(src=imgAssets+'ultima_07.jpg')
+                    li.fragment ended with failed Ultima X project in 2003
++frameInbox('Space graphs for level design')
+    div
+        ul
+            li.fragment(data-fragment-index='1') describe paths, items, monsters, points of interest, constraints and events
+            li.fragment(data-fragment-index='2') <span class="highlight">place</span> - elemental unit of space (room, zone)
+            li.fragment(data-fragment-index='3') <span class="highlight">path</span> - indicates that players can move freely between two places
+            li.fragment(data-fragment-index='4') <span class="highlight">window</span> - a place visible from another place, but not reachable from there
+            li.fragment(data-fragment-index='5') <span class="highlight">lock</span> - place that is not accessible until activated (with a key), can be conditional
+            li.fragment(data-fragment-index='6') <span class="highlight">key</span> - key to a lock
+            li.fragment(data-fragment-index='7') <span class="highlight">valve</span> - connects two places, only one direction
+        .text-center.mt-40.fragment(data-fragment-index='1')
+            img.height-350(src=imgAssets+'level_elements.svg')
++frameInbox('Example: Level structure')
+    div
+        .top-140.left-300
+            img.height-400(src=imgAssets+'level_doom_21_nirvana.png')
+        .top-140.right-300
+            img.height-400(src=imgAssets+'level_doom_21_nirvana.svg')
+        .bottom-20.right-260
+            img.height-320(src=imgAssets+'level_doom_teleport.jpg')
+        .bottom-20.left-260
+            img.height-320(src=imgAssets+'level_doom_key.jpg')
++frameInbox('Example: Window element')
+    div
+        ul
+            li.fragment(data-fragment-index='1') window - a place visible from another place, but not directly reachable
+            li.fragment(data-fragment-index='2') may require certain skills the avatar have not yet acquired
+        .top-330.left-40.fragment(data-fragment-index='1')
+                img.height-300(src=imgAssets+'window_01.png')
+        .top-420.left-510.fragment(data-fragment-index='2')
+                img.height-300(src=imgAssets+'window_02.png')
+        .top-330.left-760.fragment(data-fragment-index='1')
+                img.height-300(src=imgAssets+'window_03.png')
+        .top-420.right-40.fragment(data-fragment-index='2')
+                img.height-300(src=imgAssets+'window_04.jpg')

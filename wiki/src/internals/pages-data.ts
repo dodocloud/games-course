@@ -97,7 +97,8 @@ export const slidesData: slideSection[] = [
 			{
 				id: 'lecture12',
 				group: 2,
-				date: '17.12.2020'
+				hint: 'Lecture 12',
+				desc: 'Design'
 			}
 		]
 	},

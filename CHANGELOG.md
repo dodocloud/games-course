@@ -6,6 +6,10 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.12] - 2020-12-17
+### Added
+Slides for Lecture 12
+
 ## [4.11.5] - 2020-12-16
 ### Added
 - Solution for Mandelbrot and BitmapText

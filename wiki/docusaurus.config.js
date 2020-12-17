@@ -130,6 +130,10 @@ const config = {
 							label: 'Lecture 11: Multiplayer',
 							href: url + '/slides/lecture11.html',
 						},
+						{
+							label: 'Lecture 12: Design',
+							href: url + '/slides/lecture12.html',
+						},
 					]
 				},
 				{
