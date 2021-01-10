@@ -7,11 +7,12 @@ include ./mixins/containers_aph.pug
 - var globalAssets = '../assets/all/';
 - var imgAssets = '../assets/bonus_exposition/';
 
-+header('Bonus: Exposition', 'Adam Vesecký', imgAssets + 'chapter_exposition.svg', themePath + 'theme_aph.scss')
+html(lang='en')
+	+header('Bonus: Exposition', 'Adam Vesecký', imgAssets + 'chapter_exposition.svg', themePath + 'theme_aph.scss')
 
-.reveal
-	.slides
-		include ./chapters/bonus_exposition.pug
-				
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
-script(src!='../../scripts/reveal-setup.js')
+	.reveal
+		.slides
+			include ./chapters/bonus_exposition.pug
+					
+	+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games')
+	script(src!='../../scripts/reveal-setup.js')

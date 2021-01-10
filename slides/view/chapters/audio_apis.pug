@@ -12,7 +12,7 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">callback API</span> - OS-level thread calls into user code when a buffer is available (e.g. CoreAudio for MacOS)
             li.fragment <span class="highlight">polling API</span> - user must periodically check if the buffer is available (e.g. Windows WASAPI)
         figure.mt-10.fragment
-            img.height-520(src=imgAssets+'audio_engine.svg')
+            img.height-520(src=imgAssets+'audio_engine.svg' alt='Audio engine diagram')
             p Audio Engine
 +frameInbox('Example: Godot audio loop')
     div
@@ -29,7 +29,7 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">Windows Sonic</span> - HRTF-based spatialization for Windows and HoloLens
             li.fragment <span class="highlight">Project Acoustics</span> - complete auralization system, combines HRTF with Project Triton engine
         figure.mt-40.fragment
-            img.height-300(src=imgAssets+'audio_engine_pipeline.svg')
+            img.height-300(src=imgAssets+'audio_engine_pipeline.svg' alt='Audio engine pipeline')
             p Audio engine pipeline
 +frameInbox('VRWorks')
     div
@@ -39,7 +39,7 @@ include ../mixins/containers_aph.pug
             li.fragment uses GPU to compute acoustic environmental model
             li.fragment supported by Unreal Engine
         .text-center.mt-20.fragment
-            img.height-540(src=imgAssets+'vrworks.svg')
+            img.height-540(src=imgAssets+'vrworks.svg' alt='VRWorks diagram')
 +frameInbox('WebAudio API')
     .important-green
         ul
@@ -49,6 +49,6 @@ include ../mixins/containers_aph.pug
             li.fragment convolution engine (cathedral, cave, tunnel)
             li.fragment audio operations are performed with audio <span class="highlight">nodes</span> that are linked together
         figure.mt-40.fragment
-            img.height-430(src=imgAssets+'webaudioapi.svg')
+            img.height-430(src=imgAssets+'webaudioapi.svg' alt='WebaudioApi diagram')
             p Node setup example
 

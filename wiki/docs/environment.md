@@ -1,5 +1,6 @@
 ---
 title: Environment
+description: Environment of the NI-APH repository
 
 ---
 
@@ -13,6 +14,7 @@ project
 │
 └───examples                // coding examples
 │   │   assets              // assets that are copied into build folder
+│   │   libs                // libraries for examples and demo projects
 │   │   src                 // source files
 │   │   view                // PUG templates that are bundled by Parcel
 │   

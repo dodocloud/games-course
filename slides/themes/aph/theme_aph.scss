@@ -83,7 +83,7 @@ $title-font-size: 60px;
 		box-shadow: 6px 5px 6px rgba($color-midnight-dark, 0.6);
 	}
 
-	.list-title > p:nth-child(1) {
+	.scope > p:nth-child(1) {
 		@extend .font-bold;
 		color: $highlight-color-1;
 	}

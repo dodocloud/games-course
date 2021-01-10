@@ -20,7 +20,7 @@ include ../mixins/containers_aph.pug
         +tipKeen2('Most engines use MKS units (meters, kilograms, seconds) and radians for angles.').bottom-0.left-0
 +frameInbox('Dynamics')
     .important-green
-        .list-title
+        .scope
             p.fragment Linear Dynamics
             ul
                 li.fragment we ignore all rotational effects
@@ -41,7 +41,7 @@ include ../mixins/containers_aph.pug
                 li.fragment
                     span.highlight-2 linear momentum: 
                     include ../../assets/physics_dynamics/equations_generated/dynamics_06.svg
-        .list-title.fragment
+        .scope.fragment
             p Angular dynamics
             ul
                 li.fragment
@@ -62,22 +62,22 @@ include ../mixins/containers_aph.pug
                 div.width-600.text-center.italic Any physical behavior of the object can be decomposed into the linear motion of the center of mass and the angular motion around the same point
 +frameInbox('Newton\'s Laws')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Lex I
             ul
                 li A body will remain at rest or continue to move in a straight line at a constant speed unless acted upon by a force.
-        .list-title.mt-40.fragment
+        .scope.mt-40.fragment
             p Lex II
             ul
                 li The acceleration of a body is proportional to the resultant force acting on the body and is in the same direction as the resultant force.
-        .list-title.mt-40.fragment
+        .scope.mt-40.fragment
             p Lex III
             ul
                 li When one body exerts a force on a second body, the second body exerts an equal force with opposite direction on the first body.
     +tipKeen('In most games, Newton\'s laws don\'t apply to trees').bottom-0
 +frameInbox('Motion')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Projectile motion
             ul
                 li.fragment
@@ -89,7 +89,7 @@ include ../mixins/containers_aph.pug
             .top-30.right-150
                 img.width-700(src=imgAssets+'motion_projectile.svg')
         .space-xl
-        .list-title.fragment
+        .scope.fragment
             p Slope motion (no friction)
             ul
                 li.fragment
@@ -102,7 +102,7 @@ include ../mixins/containers_aph.pug
                 img.width-450(src=imgAssets+'motion_force.svg')
 +frameInbox('Motion')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Mass-Spring Motion
             ul
                 li.fragment
@@ -176,25 +176,25 @@ include ../mixins/containers_aph.pug
                 img.height-600(src=imgAssets+'numerical_integration.svg')
 +frameInbox('Integration Methods')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p.color-tomato-light Implicit methods
             ul
                 li.fragment make use of quantities from the next time step
                 li.fragment decrease energy from the system
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p.color-lemon Explicit methods
             ul
                 li.fragment make use of known quantities at each time step
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p.color-royal Semi-implicit methods
             ul
                 li.fragment combination of explicit and implicit methods
                 li.fragment very stable
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p.color-rhino-40 Runge-Kutta family
             ul
                 li.fragment Euler methods, midpoint methods, RK4,...
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p.color-rhino-40 Verlet family
             ul
                 li.fragment Regular Verlet
@@ -207,17 +207,17 @@ include ../mixins/containers_aph.pug
         ul
             li.fragment(data-fragment-index='1')
                 include ../../assets/physics_dynamics/equations_generated/euler_01.svg
-        .list-title.fragment(data-fragment-index='2')
+        .scope.fragment(data-fragment-index='2')
             p Explicit method
             ul
                 li
                     include ../../assets/physics_dynamics/equations_generated/euler_02.svg
-        .list-title.fragment(data-fragment-index='3')
+        .scope.fragment(data-fragment-index='3')
             p Improved method
             ul
                 li
                     include ../../assets/physics_dynamics/equations_generated/euler_03.svg
-        .list-title.fragment(data-fragment-index='4')
+        .scope.fragment(data-fragment-index='4')
             p Implicit method
             ul
                 li
@@ -241,13 +241,13 @@ include ../mixins/containers_aph.pug
         ul
             li.fragment used in molecural dynamics, useful in simulating small particles (cloth, rope, soft objects)
             li.fragment time invariant - we can run it forwards and then backwards, ending up in the same place
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Regular Verlet
             ul
                 li.fragment
                     include ../../assets/physics_dynamics/equations_generated/verlet_01.svg
                 li.fragment derived by adding two Taylor series expansions
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Verlet leap-frog
             ul
                 li.fragment
@@ -255,7 +255,7 @@ include ../mixins/containers_aph.pug
                 li.fragment
                     include ../../assets/physics_dynamics/equations_generated/verlet_03.svg
                 li.fragment method that tracks velocity, but at half a time step off from the position calculation
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Velocity Verlet
             ul
                 li.fragment

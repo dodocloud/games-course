@@ -126,7 +126,7 @@ body {
         margin-left: $indent-spacing;
     }
 
-    ul + ul, ol + ol, .list-title + .list-title, ul + .list-title, ol + .list-title {
+    ul + ul, ol + ol, .scope + .scope, ul + .scope, ol + .scope {
         margin-top: $lists-spacing;
     }
 

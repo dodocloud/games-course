@@ -10,40 +10,40 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_yellow.jpg';
 
+html(lang='en')
+    +header('Patterns', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture05.svg', themePath + 'theme_aph.scss')
 
-+header('Patterns', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture05.svg', themePath + 'theme_aph.scss')
+    .reveal
+        .slides
+            +title('Lecture 5', 'Patterns', 'color-lemon-light')
+            +frameInbox('Literature')
+                ul
+                    li
+                        a(href="https://www.amazon.com/Game-Programming-Patterns-Robert-Nystrom/dp/0990582906") Nystrom, Robert. 2014. Game Programming Patterns
+                div.text-center
+                    img.height-550(src=globalAssets+'book_programming_patterns.jpg' alt='Nystrom, Robert. Game Programming Patterns')
+            include ./chapters/patterns_intro.pug
+            include ./chapters/patterns_action.pug
+            include ./chapters/patterns_optimizing.pug
+            include ./chapters/patterns_structural.pug
+            include ./chapters/patterns_state.pug
+            include ./chapters/patterns_creational.pug
+            include ./chapters/patterns_simulation.pug
+            +frameInbox('Design practices: Summary')
+                .important-green
+                    ul.spacing-xl
+                        li.fragment use <span class="highlight">builder</span> to build new objects
+                        li.fragment use <span class="highlight">factory</span> to manage construction of new objects
+                        li.fragment use <span class="highlight">prototype</span> to clone already existing objects
+                        li.fragment use <span class="highlight">chain</span> to chain up complex actions/processes
+                        li.fragment use <span class="highlight">selectors</span> to access attributes that are deep in the scene hierarchy
+                        li.fragment use <span class="highlight">flag</span> to collect a set of features of an object 
+                        li.fragment use <span class="highlight">numeric state</span> for a simple finite state machine
+                        li.fragment use <span class="highlight">transmuter</span> to change a composition of components upon an object
+                        li.fragment use <span class="highlight">blackboard</span> to store global game data
 
-.reveal
-    .slides
-        +title('Lecture 5', 'Patterns', 'color-lemon-light')
-        +frameInbox('Literature')
-            ul
-                li
-                    a(href="https://www.amazon.com/Game-Programming-Patterns-Robert-Nystrom/dp/0990582906") Nystrom, Robert. 2014. Game Programming Patterns
-            div.text-center
-                img.height-550(src=globalAssets+'book_programming_patterns.jpg')
-        include ./chapters/patterns_intro.pug
-        include ./chapters/patterns_action.pug
-        include ./chapters/patterns_optimizing.pug
-        include ./chapters/patterns_structural.pug
-        include ./chapters/patterns_state.pug
-        include ./chapters/patterns_creational.pug
-        include ./chapters/patterns_simulation.pug
-        +frameInbox('Design practices: Summary')
-            .important-green
-                ul.spacing-xl
-                    li.fragment use <span class="highlight">builder</span> to build new objects
-                    li.fragment use <span class="highlight">factory</span> to manage construction of new objects
-                    li.fragment use <span class="highlight">prototype</span> to clone already existing objects
-                    li.fragment use <span class="highlight">chain</span> to chain up complex actions/processes
-                    li.fragment use <span class="highlight">selectors</span> to access attributes that are deep in the scene hierarchy
-                    li.fragment use <span class="highlight">flag</span> to collect a set of features of an object 
-                    li.fragment use <span class="highlight">numeric state</span> for a simple finite state machine
-                    li.fragment use <span class="highlight">transmuter</span> to change a composition of components upon an object
-                    li.fragment use <span class="highlight">blackboard</span> to store global game data
+            +summary_lecture05()
+            +quote-chrono()
 
-        +summary_lecture05()
-        +quote-chrono()
-
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 5: Patterns')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 5: Patterns')
+    script(src!='../../scripts/reveal-setup.js')

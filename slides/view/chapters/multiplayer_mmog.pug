@@ -24,17 +24,17 @@ include ../mixins/containers_aph.pug
             li.fragment an object is considered relevant for a client when it should be informed about its updates
             li.fragment in a MMOG, it may not be important to know about players several miles away
             li.fragment similar sort of problems as visibility culling (or spheres or influence)
-        .list-title.fragment
+        .scope.fragment
             p Static zones
             ul
                 li.fragment splits the world into regions and assigns a separate process/server to each region
                 li.fragment only objects in the same zone as the player are relevant
-        .list-title.fragment
+        .scope.fragment
             p Server partitioning
             ul
                 li.fragment splits the world into completely isolated regions
                 li.fragment e.g. islands, continents
-        .list-title.fragment
+        .scope.fragment
             p Instancing
             ul
                 li.fragment one shared game supports several separated instances at once
@@ -48,7 +48,7 @@ include ../mixins/containers_aph.pug
             li.fragment world is split into regions of size based on the amount of players
             li.fragment each region is assigned an ID and mapped into the DHT
             li.fragment each node is responsible for exactly one region
-        .list-title.mt-20.fragment
+        .scope.mt-20.fragment
             p 3 data types
             ul
                 li.fragment <span class="highlight-2">static objects</span> - immutable part of the world (terrain)
@@ -63,18 +63,18 @@ include ../mixins/containers_aph.pug
                 img.height-300(src=imgAssets+'ultima3.jpg')
 +frameInbox('Security')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Classic threats
             ul.leading-lg.fragment
                 li packet sniffing, man-in-the-middle
                 li.fragment <span class="highlight-2">ghosting</span> - scouting the players using multiple connections
-        .list-title.fragment
+        .scope.fragment
             p Input validation
             ul.leading-lg
                 li.fragment players can't perform an action that is invalid
                 li.fragment only a client responsible for Player A can send an action that affects that player
                 li.fragment client should validate the messages from server as well
-        .list-title.fragment
+        .scope.fragment
             p Software cheat detection
             ul.leading-lg
                 li.fragment actively monitors the integrity of the game

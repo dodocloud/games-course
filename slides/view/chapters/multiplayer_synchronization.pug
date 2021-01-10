@@ -33,7 +33,7 @@ include ../mixins/containers_aph.pug
             li.fragment interpolation reserve is precise but delayed behind the server
             li.highlight-2.fragment the client is always at least 1/2 RTT behind the true state
             li.fragment some attributes can be handled on client side completely (e.g. camera pose in FPS)
-        .list-title.fragment
+        .scope.fragment
             p Prediction
             ul
                 li.fragment the client predicts the future value by running the same simulation code
@@ -53,7 +53,7 @@ include ../mixins/containers_aph.pug
             figure
                 img.height-270(src=imgAssets+'misprediction_client.svg')
                 p Client misprediction
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Dealing with correction
             ul
                 li.fragment <span class="highlight-2">Instant state update</span> - updates immediately when the correct value arrives
@@ -65,7 +65,7 @@ include ../mixins/containers_aph.pug
             li.fragment dealing with instant actions that affect the gameplay (e.g. instant hit in FPS)
             li.fragment occurs due to the inaccuracies of dead reckoning and time dilation
             li.fragment server may change a state that has already been confirmed
-        .list-title.fragment
+        .scope.fragment
             p Source engine's solution
             ul
                 li.fragment rewinds state on the server to exactly the state in which the player fired
@@ -88,20 +88,20 @@ include ../mixins/containers_aph.pug
             img.height-500(src=imgAssets+'server_side_rewind.svg')
 +frameInbox('Latency handling summary')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Time dilation
             ul
                 li delays the values by a few frames and interpolates to them
-        .list-title.fragment
+        .scope.fragment
             p Deterministic prediction
             ul
                 li runs simulated code, masks latency and keeps the client's state in sync
-        .list-title.fragment
+        .scope.fragment
             p Dead reckoning
             ul
                 li non-deterministic prediction
                 li client uses the last known state of an object to extrapolate future state
-        .list-title.fragment
+        .scope.fragment
             p Server-side rewind
             ul
                 li the server buffers object positions for several frames to match the client's view when processing instant events

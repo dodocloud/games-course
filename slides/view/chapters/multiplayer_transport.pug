@@ -20,7 +20,7 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">DCCP</span> - Datagram Congestion Control Protocol
             li.fragment <span class="highlight">RUDP</span> - Reliable User Datagram Protocol
             li.fragment <span class="highlight">CUSP</span> - Channel-based Unidirectional Stream Prot.
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
              p Ports
              ul
                 li.fragment <span class="highlight-2">Well-known ports:</span> 0-1023
@@ -36,7 +36,7 @@ include ../mixins/containers_aph.pug
                 li.fragment <span class="highlight-2">Private ports:</span> 49152-65535
 +frameInbox('TCP vs UDP')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p TCP
             ul
                 li.fragment header size 20-40B
@@ -44,7 +44,7 @@ include ../mixins/containers_aph.pug
                 li.upside.fragment guaranteed reliability and proper ordering
                 li.upside.fragment may be prioritized over UDP packets
                 li.downside.fragment allocates a lot of resources to manage connections
-        .list-title.fragment
+        .scope.fragment
             p UDP
             ul
                 li.fragment header size 8B
@@ -69,7 +69,7 @@ include ../mixins/containers_aph.pug
             img.height-400(src=imgAssets+'multiplayer_architecture.svg')
         ul.mt-50
             li.fragment the server is running the game and clients only process inputs and display results
-        .list-title.fragment
+        .scope.fragment
             p Issues
             ul
                 li.fragment each player has only partially consistent view of the game world
@@ -77,19 +77,19 @@ include ../mixins/containers_aph.pug
                 li.fragment there is a delay between taking an action an observing the result
 +frameInbox('Transfer Control')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Connection
             ul
                 li.fragment when a client wants to join a game, it sends a <span class="highlight-2">hello packet</span> to the server
                 li.fragment once the server receives the hello packet, it assigns a <span class="highlight-2">player ID</span> and sends a <span class="highlight-2">welcome packet</span> to the client, containing the assigned ID
                 li.fragment when the client receives the welcome packet, it saves its player ID and starts sending and receiving replication information to the server
-        .list-title.fragment
+        .scope.fragment
             p Reliability
             ul
                 li.fragment we have to identify packets by using sequence numbers and send them back to the server
                 li.fragment example: ACK field in the message headers
                 li.fragment issue: if the server sends 30 PPS and the client can only send 10 PPS, we need at least 3 ACKs included in each packet
-        .list-title.fragment
+        .scope.fragment
             p Flow control
             ul
                 li.fragment clients use basic congestion avoidance algorithms
@@ -105,36 +105,36 @@ include ../mixins/containers_aph.pug
         .text-center.mt-40.fragment(data-fragment-index='1')
             img.height-400(src=imgAssets+'message_header.svg')
 +frameInbox('Message Types')
-    .important-orange
-        .list-title.fragment
+    .important-orange.leading-md
+        .scope.fragment
             p Stream
-            ul.leading-md
+            ul
                 li.fragment doesn't need to be confirmed, contains a collection of continuous values
                 li.fragment e.g. dynamic objects and their attributes (transformation)
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Snapshot
-            ul.leading-md
+            ul
                 li.fragment complete information of the game state, sent either on demand or at given intervals
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Command
-            ul.leading-md
+            ul
                 li.fragment messages that have an impact on the game state, have to be confirmed
                 li.fragment e.g.: UNIT_CREATED, UNIT_DESTROYED, BUILDING_COMPLETED
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Action
-            ul.leading-md
+            ul
                 li.fragment high-priority messages (player's inputs, fire button,...)
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Procedure Call
-            ul.leading-md
+            ul
                 li.fragment a generic message that allows to call any function (play sound, load assets, reset animation)
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Connection messages
-            ul.leading-md
+            ul
                 li.fragment messages for handshake, ID assignment, disconnect, etc.
-        .list-title.mt-7.fragment
+        .scope.mt-7.fragment
             p Beacon
-            ul.leading-md
+            ul
                 li.fragment regular messages to inform the server that the connection is still on
 +frameInbox('Example: Goat Attacks')
     div
@@ -147,7 +147,7 @@ include ../mixins/containers_aph.pug
     div
         .bottom-30.right-30.fragment
             img.height-260(src=imgAssets+'goat_attacks_header.svg')
-        .list-title.fragment
+        .scope.fragment
             p Server-Client messages
             ul
                 li.code.fragment GPCIdentifyPlayer
@@ -157,7 +157,7 @@ include ../mixins/containers_aph.pug
                 li.code.fragment GPCSpawnNPC
                 li.code.fragment GPCRemoveNPC
                 li.code.fragment GPCChatMessage
-        .list-title.fragment
+        .scope.fragment
             p Client-server messages
             ul
                 li.code.fragment GPSRespawnRequest
@@ -171,7 +171,7 @@ include ../mixins/containers_aph.pug
             li.fragment a large game world can have hundreds of moving objects
             li.fragment we need to remove any information that doesn't need to be sent
             li.fragment messages should be as close in size to <span class="highlight-2">MTU (~1500B)</span> as possible
-        .list-title.fragment
+        .scope.fragment
             p Example with no optimization
             ul
                 li.fragment RTS battle
@@ -206,14 +206,14 @@ include ../mixins/containers_aph.pug
             img.height-180(src=imgAssets+'mage.png')
 +frameInbox('Compression')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Compression of bits
             ul
                 li.fragment it is helpful to represent values with as few bits as possible
                 li.fragment we can work with limited range and precision
             .text-center
                 img.height-200(src=imgAssets+'compression_bits.svg')
-        .list-title.fragment
+        .scope.fragment
             p Entropy Encoding
             ul
                 li.fragment we compress data based on how unexpected it is
@@ -222,20 +222,20 @@ include ../mixins/containers_aph.pug
                 img.height-200(src=imgAssets+'compression_entropy.svg')
 +frameInbox('Compression')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Compression of attributes
             ul.leading-lg
                 li.fragment we can serialize only attributes that vary
                 li.fragment each object has a bit field that indicates which attributes follow in the stream
             .text-center
                 img.height-480(src=imgAssets+'compression_attributes.svg')
-        .list-title.mt-40.fragment
+        .scope.mt-40.fragment
             p Compression of the payload
             ul.leading-lg
                 li.fragment Huffman encoding, run-length encoding, LZ4,...
 +frameInbox('Compression')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Delta messages
             ul
                 li.fragment if a number doesn't change much, nor will its bits
@@ -269,23 +269,23 @@ include ../mixins/containers_aph.pug
             img.height-450(src=imgAssets+'order.svg')
 +frameInbox('Latency')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Latency
             ul
                 li.fragment the amount of time between an observable cause and its observable effect
                 li.fragment e.g. mouse click and a unit responding to its orders
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Suitable latencies
             ul
                 li.fragment FPS: 16-60 ms
                 li.fragment RTS: < 250 ms
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Non-network latency
             ul
                 li.fragment input sampling latency (~2 ms)
                 li.fragment rendering pipeline latency (< 16 ms)
                 li.fragment frame decoding latency for cloud gaming (~2-16 ms)
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Network latency
             ul
                 li.fragment processing delay (encryption, routing)

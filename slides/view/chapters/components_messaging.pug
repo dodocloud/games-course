@@ -7,20 +7,20 @@ include ../mixins/containers_aph.pug
 +mchapter('Messaging', imgAssets+'chapter_components_messaging.svg')
 +frameInbox('Messaging possibilities')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p By modifying the container object's state
             ul
                 li e.g. shared state machine
                 li indirect communication
                 li difficult to debug
-        .list-title.fragment
+        .scope.fragment
             p By direct calls
             ul
                 li OOP way
                 li fast, but increases coupling
                 li we need to know what to call
                 li e.g. calling a global component that is always present
-        .list-title.fragment
+        .scope.fragment
             p By using a message broker
             ul
                 li events and commands
@@ -43,20 +43,20 @@ include ../mixins/containers_aph.pug
             img.height-300(src=imgAssets+'diag_message.svg')
 +frameInbox('Message Types')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Unicast
             ul
                 li a component sends a message to another component
                 li in most cases, this can be handled by a direct call
                 li example: pause the game
-        .list-title.fragment
+        .scope.fragment
             p Multicast
             ul
                 li a) component sends a message to subscribers
                 li b) component sends a message to all objects that meet specific criteria
                 li example: notify all nearby units that the player has entered the area
                 li example: collision trigger - notify all subscribers 
-        .list-title.fragment
+        .scope.fragment
             p Broadcast
             ul
                 li rarely used, usually for global messages

@@ -8,7 +8,7 @@ include ../mixins/containers_aph.pug
 +mchapter('Game Loop', imgAssets+'chapter_engines_loop.svg')
 +frameInbox('Application and Loop')
     .important-orange.leading-xl
-        .list-title.fragment
+        .scope.fragment
             p Initialization process
             ol
                 li.fragment Initialize engine object
@@ -16,7 +16,7 @@ include ../mixins/containers_aph.pug
                 li.fragment Initialize rendering window
                 li.fragment Run game loop
                 li.fragment Terminate
-        .list-title.fragment
+        .scope.fragment
             p Game Loop process
             ol
                 li.fragment Process inputs
@@ -55,19 +55,19 @@ include ../mixins/containers_aph.pug
             img.height-720(src=imgAssets+'loop_cooperative.svg')
 +frameInbox('Update method')
     .important-red
-        .list-title.fragment 
+        .scope.fragment 
             p Fixed time step
             ul
                 li.fragment each update advances game time by a certain amount of time
                 li.upside.fragment precise and stable
                 li.downside.fragment the game may slow down
-        .list-title.fragment
+        .scope.fragment
             p Variable time step
             ul
                 li.fragment each update advances game time based on how much real time passed since the last frame
                 li.upside.fragment natural
                 li.downside.fragment non-deterministic and unstable
-        .list-title.fragment
+        .scope.fragment
             p Adaptive time step
             ul
                 li.fragment switches between variable and fixed time step

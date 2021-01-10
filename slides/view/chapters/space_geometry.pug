@@ -56,7 +56,7 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">Vector</span> - a quantity that has both a magnitude and a direction
             li.fragment vector can be used to represent a point, provided that we fix the tail of the vector to the origin of the coordinate system
         .space-lg
-        .list-title.fragment
+        .scope.fragment
             p Addition and subtraction
             ul
                 li vector + vector = vector
@@ -70,7 +70,7 @@ include ../mixins/containers_aph.pug
                     p Vector addition and subtraction
 +frameInbox('Points and Vectors')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Magnitude
             ul
                 li scalar representing the length of the vector
@@ -80,16 +80,16 @@ include ../mixins/containers_aph.pug
                 figure
                     img.height-270(src=imgAssets+'magnitude.svg')
                     p Magnitude of a vector
-        .list-title.mt-5.fragment
+        .scope.mt-5.fragment
             p Normalization
             ul
                 li a unit vector is a vector with a magnitude of one: 
                     include ../../assets/space_geometry/equations_generated/vectors_02.svg
-        .list-title.mt-5.fragment
+        .scope.mt-5.fragment
             p Normal vector
             ul
                 li vector is normal to a surface if it is perpendicular to it
-        .list-title.mt-5.fragment
+        .scope.mt-5.fragment
             p Dot product
             ul
                 li
@@ -100,7 +100,7 @@ include ../mixins/containers_aph.pug
                 figure
                     img.height-300(src=imgAssets+'dot_product.svg')
                     p Dot Product
-        .list-title.mt-5.fragment
+        .scope.mt-5.fragment
             p Cross product
             ul
                 li yields another vector that is perpendicular to two vectors
@@ -149,7 +149,7 @@ include ../mixins/containers_aph.pug
                 |&nbsp;will generate points along the line
             li.highlight-2.fragment
                 include ../../assets/space_geometry/equations_generated/lines_06.svg
-        .list-title.fragment
+        .scope.fragment
             p Example: closest point to a line
             .bottom-20.right-500
                 img.height-360(src=imgAssets+'lines.svg')
@@ -175,14 +175,14 @@ include ../mixins/containers_aph.pug
         img.height-750(src=imgAssets+'rotation.svg')
 +frameInbox('Rotational representations')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Euler angles
             ul
                 li.fragment Pitch, Yaw, Roll
                 li.upside.fragment simple, small size (3 floats), intuitive
                 li.downside.fragment the order in which the rotations are performed matters
                 li.downside.fragment gimbal lock issue - when a 90-degree rotation causes one axis to collapse onto another
-        .list-title.mt-80.fragment
+        .scope.mt-80.fragment
             p Axis + angle
             ul
                 li.fragment axis of rotation plus a scalar for the angle of rotation 
@@ -194,7 +194,7 @@ include ../mixins/containers_aph.pug
                 img.height-300(src=imgAssets+'mass_effect_glitch.gif')
 +frameInbox('Rotational representations')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Quaternions
             .bottom-20.right-20
                 img.height-550(src=imgAssets+'quaternions.svg')
@@ -220,7 +220,7 @@ include ../mixins/containers_aph.pug
         +tipKeen('Use Euler angles for fast rotation around one axis and quaternions for complex rotations around all axes').bottom-0.left-0
 +frameInbox('Rotation in affine space')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Rotation about a fixed point 
                 include ../../assets/space_geometry/equations_generated/affine_01.svg
             ul
@@ -231,7 +231,7 @@ include ../mixins/containers_aph.pug
                     include ../../assets/space_geometry/equations_generated/affine_02.svg
                 li.fragment post-multiply order -> right to left in the expresion and bottom to top in the code
                 li.fragment the origin of the object matters
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p OpenGL example:
             .code
                 include ../../assets/space_geometry/snippets_generated/rotation_opengl.html

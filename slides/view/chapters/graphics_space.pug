@@ -9,10 +9,10 @@ include ../mixins/containers_aph.pug
     +frameShard.width-70px.height-33p.top-300.center.z-index-100
         +quote('Game graphics is about squeezing a great deal of linear algebra into the tiny slice of computational time the game loop gives us.')
 +frameInbox('Game categories')
-    div
-        .list-title.fragment
+    div.leading-lg
+        .scope.fragment
             p 2D
-            ul.leading-lg
+            ul
                 li.fragment top-down or side view
                 li.fragment sprites are mapped onto quads
                 li.fragment layered rendering, orthographic projection
@@ -20,31 +20,31 @@ include ../mixins/containers_aph.pug
                 img.height-220(src=imgAssets+'cat_2D.svg')
             .top-80.right-100
                 img.width-290(src=imgAssets+'cat_2D.png')
-        .list-title.fragment
+        .scope.fragment
             p Isometric 2D
-            ul.leading-lg
+            ul
                 li.fragment view that reveal more facets than pure 2D
                 li.fragment several types of projection: 104°-135°
             .top-310.right-530
                 img.height-120(src=imgAssets+'cat_iso.svg')
             .top-250.right-100
                 img.width-290(src=imgAssets+'cat_iso.jpg')
-        .list-title.fragment
+        .scope.fragment
             p Fake 3D
-            ul.leading-lg
+            ul
                 li.fragment raycasting
                 li.fragment Mode 7 from SNES games
             .top-420.right-100
                 img.width-290(src=imgAssets+'cat_raycasting.png')
-        .list-title.fragment
+        .scope.fragment
             p 2.5D
-            ul.leading-lg
+            ul
                 li.fragment 3D game with a gameplay limited to 2 dimensions (e.g. sidescrollers)
             .top-630.right-100
                 img.width-290(src=imgAssets+'cat_25D.jpg')
-        .list-title.fragment
+        .scope.fragment
             p 3D
-            ul.leading-lg
+            ul
                 li.fragment regular 3-dimensional game
 +frameInbox('Example: Game Boy Advance layers')
     div
@@ -52,29 +52,29 @@ include ../mixins/containers_aph.pug
         .center
             img.height-550(src=imgAssets+'gba_gfx.jpg')
 +frameInbox('Space')
-    .important-orange
-        .list-title.fragment
+    .important-orange.leading-md
+        .scope.fragment
             p Model Space
-            ul.leading-md
+            ul
                 li.fragment origin is usually placed at a central location (center of mass)
                 li.fragment axes are aligned to natural direction of the model
-        .list-title.fragment
+        .scope.fragment
             p World Space
-            ul.leading-md
+            ul
                 li.fragment fixed coordinate space, in which the transformations of all objects in the game world are expressed
-        .list-title.fragment
+        .scope.fragment
             p View/Camera Space
-            ul.leading-md
+            ul
                 li.fragment coordinate frame fixed to the camera
                 li.fragment space origin is placed at the focal point of the camera
                 li.fragment OpenGL: camera faces toward negative <span class="italic">z</span>
-        .list-title.fragment
+        .scope.fragment
             p Clip Space
-            ul.leading-md
+            ul
                 li.fragment a rectangular prism extending from -1 to 1 (OpenGL)
-        .list-title.fragment
+        .scope.fragment
             p View/Screen Space
-            ul.leading-md
+            ul
                 li.fragment a region of the screen used to display a portion of the final image
 +frameInbox('World-Model-View')
     .important-orange

@@ -17,34 +17,34 @@ include ../mixins/containers_aph.pug
         .bottom-0.right-0
             img.height-600(src=imgAssets+'physics_01.png')
 +frameInbox('Physics Engines')
-    div
-        .list-title.mt-10.fragment
+    div.leading-base
+        .scope.mt-10.fragment
             p N-Collide
-            ul.leading-base
+            ul
                 li.fragment 2D/3D collision detection library written in Rust
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Box2D
-            ul.leading-base
+            ul
                 li.fragment open-source C++ 2D physics engine
                 li.fragment supports CCD (continuous collision detection)
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Bullet
-            ul.leading-base
+            ul
                 li.fragment open-source 3D physics engine
                 li.fragment used in game and film industry
                 li.fragment supports CCD
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p PhysX
-            ul.leading-base
+            ul
                 li.fragment NVidia GPU engine
                 li.fragment PhysX destruction, PhysX clothing, PhysX particles
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p p2.js
-            ul.leading-base
+            ul
                 li.fragment module JavaScript engine, supports CCD
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Havok
-            ul.leading-base
+            ul
                 li.fragment gold commercial standard
         .bottom-0.right-0
             img.height-500(src=imgAssets+'physics_03.png')
@@ -93,31 +93,31 @@ include ../mixins/containers_aph.pug
         img.height-500(src=imgAssets+'physics_04.png')
 +frameInbox('Physics in games')
     div
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Pinballs (1980+)
             ul.spacing-md
                 li non-trivial OBB collision detection
-        .list-title.mt-10.fragment(data-fragment-index='2')
+        .scope.mt-10.fragment(data-fragment-index='2')
             p The Incredible Machine (1993)
             ul.spacing-md
                 li advanced physical interactions
-        .list-title.mt-10.fragment(data-fragment-index='3')
+        .scope.mt-10.fragment(data-fragment-index='3')
             p Half-Life 2 (2004)
             ul.spacing-md
                 li destructible environment, liquid physics
-        .list-title.mt-10.fragment(data-fragment-index='4')
+        .scope.mt-10.fragment(data-fragment-index='4')
             p Angry Birds (2009)
             ul.spacing-md
                 li physics as the core mechanic
-        .list-title.mt-10.fragment(data-fragment-index='5')
+        .scope.mt-10.fragment(data-fragment-index='5')
             p INSIDE (2016)
             ul.spacing-md
                 li soft-bodies driven by a network of impulses
-        .list-title.mt-10.fragment(data-fragment-index='6')
+        .scope.mt-10.fragment(data-fragment-index='6')
             p Half-Life Alyx (2020)
             ul.spacing-md
                 li physics-based interactions
-        .list-title.mt-10.fragment(data-fragment-index='7')
+        .scope.mt-10.fragment(data-fragment-index='7')
             p Noita (2020)
             ul.spacing-md
                 li pixel-level physics simulation
@@ -136,26 +136,26 @@ include ../mixins/containers_aph.pug
         
 +frameInbox('Object types')
     .important-orange
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Body
             ul
                 li.fragment fundamental object in the physics scene
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Rigid Body
             ul
                 li.fragment idealized, infinitely hard, non-deformable solid object
                 li.fragment <span class="highlight-2">physics-driven bodies</span> - driven entirely by the simulation
                 li.fragment <span class="highlight-2">game-driven bodies</span> - moved in a non-physical way (animations)
                 li.fragment <span class="highlight-2">fixed bodies</span> - collision-only bodies (e.g. triggers)
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Soft body
             ul
                 li.fragment deformable
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Shape
             ul
                 li.fragment region of space described by a boundary, with a definite inside and outside (curved line, polygon, curved surface, polyhedron)
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Fixture
             ul
                 li.fragment used to describe size, shape and material properties
@@ -163,20 +163,20 @@ include ../mixins/containers_aph.pug
             img.height-350(src=imgAssets+'cube.png')
 +frameInbox('Object Types')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Constraint
             ul
                 li.fragment connects bodies together in order to simulate interaction (ropes, wheels, vehicles, chains)
-        .list-title.fragment
+        .scope.fragment
             p Sensor/Phantom
             ul
                 li.fragment entity that provides a feedback when certain objects overlap
                 li.fragment participates on collision detection but doesn't affect the scene
-        .list-title.fragment
+        .scope.fragment
             p Rag doll
             ul
                 li.fragment displays human-like figures with a realistic motion
-        .list-title.fragment
+        .scope.fragment
             p Destructible object
             ul
                 li.fragment breakable object, can be implemented by using rigid body dynamics, dividing the model into a number of breakable pieces
@@ -247,7 +247,7 @@ include ../mixins/containers_aph.pug
             li.fragment can model complex fuzzy shapes and dynamics
             li.fragment uses Flyweight pattern (array of positions, velocities, group lists)
             li.fragment particles are not only moving points! Even a tree may become a particle
-        .list-title.fragment
+        .scope.fragment
             p Applications
             ul.leading-md
                 li.highlight-2.fragment fluids
@@ -255,7 +255,7 @@ include ../mixins/containers_aph.pug
                 li.fragment flocks
                 li.fragment rendered trails (plants)
                 li.fragment soft bodies (flag, cloth)
-        .list-title.fragment
+        .scope.fragment
             p Basic model
             ol.leading-md
                 li.fragment generate new particles

@@ -26,61 +26,61 @@ include ../mixins/containers_aph.pug
                     img.width-500(src=imgAssets+'types_mmo.jpg')
             li.fragment Cloud Gaming
 +frameInbox('Multiplayer history')
-    div
-        .list-title.fragment
+    div.leading-lg
+        .scope.fragment
             p Local multiplayer games
-            ul.leading-lg
+            ul
                 li.fragment Tennis for Two (1958)
                 li.fragment Spacewar! (1962)
                     .top-20.right-450
                         img.width-380(src=imgAssets+'history_spacewar.jpg')
-        .list-title.fragment
+        .scope.fragment
             p Networked multiplayer games
-            ul.leading-lg
+            ul
                 li.fragment Empire (1973)
                     .top-80.right-20
                         img.width-400(src=imgAssets+'history_empire.jpg')
                 li.fragment Maze War (1974)
-        .list-title.fragment
+        .scope.fragment
             p Local area network games
-            ul.leading-lg
+            ul
                 li.fragment Doom (1993)
                     .top-300.right-450
                         img.width-380(src=imgAssets+'history_doom.jpg')
                 li.fragment Duke Nukem 3D (1996)
-        .list-title.fragment
+        .scope.fragment
             p Online games
-            ul.leading-lg
+            ul
                 li.fragment Quake (1996)
                     .top-500.right-20
                         img.width-400(src=imgAssets+'history_quake.jpg')
                 li.fragment Unreal (1998)
-        .list-title.fragment
+        .scope.fragment
             p MMO
-            ul.leading-lg
+            ul
                 li.fragment Ultima Online (1997)
                     .top-600.right-450
                         img.width-380(src=imgAssets+'history_ultima.jpg')
                 li.fragment World of Warcraft (2004)
 +frameInbox('Libraries')
     div
-        .list-title.fragment
+        .scope.fragment
             p Torque Network Library (opentnl)
             ul
                 li.fragment uses ghost structures for object replication
                 li.fragment <a href="https://github.com/kocubinski/opentnl">https://github.com/kocubinski/opentnl</a>
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p ReplicaNet
             ul
                 li.fragment powerful library for object sharing (sessions)
                 li.fragment expensive
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p RakNet
             ul
                 li.fragment complex networking library
                 li.fragment free since 2014
                 li.fragment <a href="https://github.com/facebookarchive/RakNet">https://github.com/facebookarchive/RakNet</a>
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p NetStalker
             ul
                 li.fragment library for interpolated object replication
@@ -91,16 +91,16 @@ include ../mixins/containers_aph.pug
         ul
             li.fragment the main objective - how to synchronize several universes
             li.fragment all clients have to achieve a <span class="highlight-2">certain</span> degree of synchrony
-            li.framgnet attributes that affect the gameplay: <span class="highlight-2">capacity, speed, latency, jitter, packet loss</span> 
+            li.fragment attributes that affect the gameplay: <span class="highlight-2">capacity, speed, latency, jitter, packet loss</span> 
             li.fragment there is no known real-world picture for this type of problem
             li.fragment it's easy to convert multiplayer game into a single-player game
             li.fragment it's very difficult to implement multiplayer features into a single-player game
-        .list-title.fragment
+        .scope.fragment
             p Methods
             ul
                 li.fragment transfering a complete game state to all clients - for simple games
                 li.fragment transfering a minimal subset for recostructing the complete information - more common
-        .list-title.fragment
+        .scope.fragment
             p Topologies
             ul
                 li.fragment peer-to-peer
@@ -123,11 +123,11 @@ include ../mixins/containers_aph.pug
             img.height-300(src=imgAssets+'arch_peer_to_peer.svg')
 +frameInbox('Peer-to-peer architecture')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Single master
             ul
                 li.fragment one machine is chosen to be the <span class="highlight-2">game master</span>
-        .list-title.fragment
+        .scope.fragment
             p Partial authority
             ul
                 li.fragment certain peers have authority over certain parts of the game 
@@ -135,7 +135,7 @@ include ../mixins/containers_aph.pug
                 li.fragment difficult to implement and debug
                 li.highlight-2.fragment each dynamic object belongs to exactly one machine
                 li.fragment if one player drops out the game, all of the objects over which it had authority must be picked up by other machines
-        .list-title.fragment
+        .scope.fragment
             p Full replication
             ul
                 li.fragment each peer executes the game logic and only events are exchanged
@@ -144,7 +144,7 @@ include ../mixins/containers_aph.pug
                 li.fragment runs well for a few players over LAN but terribly over the internet
 +frameInbox('Peer-to-peer games')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Doom (1993)
             ul
                 li.fragment 14.4 kbps PPP or 28.8 kbps SLIP
@@ -152,7 +152,7 @@ include ../mixins/containers_aph.pug
                 li.fragment you had to wait for the inputs from the most lagged player
                 li.fragment every 30ms, the input from each player is sampled into a <span class="highlight-2">tic command</span>
                 li.fragment when the tic commands for all players have been received, the game advances its state
-        .list-title.fragment
+        .scope.fragment
             p Age of Empires (1997)
             ul
                 li.fragment for 8-player battle there could be up to 400 units
@@ -183,7 +183,7 @@ include ../mixins/containers_aph.pug
             li.fragment each client acts as a dumb terminal
             li.fragment outputs are picked up by the <span class="highlight-2">prediction layer</span>
             li.fragment the server runs at <span class="highlight-2">20 FPS</span>, while the client runs at <span class="highlight-2">60 FPS</span>
-        .list-title.fragment
+        .scope.fragment
             p Command
             ul
                 li.fragment the elementary unit of communication
@@ -203,7 +203,7 @@ include ../mixins/containers_aph.pug
                     img.height-400(src=imgAssets+'starsiege2.jpg')
             li.fragment highly optimized networking model
             li.fragment supported up to 128 players over LAN or modem (56.6 kbps)
-        .list-title.mt-40.fragment
+        .scope.mt-40.fragment
             p Data categories
             ul
                 li.fragment non-guaranteed data: nonessential to the game

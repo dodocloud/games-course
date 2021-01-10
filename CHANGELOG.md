@@ -6,6 +6,13 @@ Versioning info:
 - second number indicates a week (1 for the first week)
 - third number indicates minor changes, such as hotfixes and updates
 
+## [4.12.2] - 2021-01-10
+### Added
+Resources page for the wiki
+
+### Changed
+Refactored SCSS styles and fixed typos
+
 ## [4.12] - 2020-12-17
 ### Added
 Slides for Lecture 12

@@ -10,13 +10,13 @@ include ../mixins/containers_aph.pug
             div
                 ul
                     li.fragment many games use their own proprietary format derived from ZIP
-                .list-title.fragment
+                .scope.fragment
                     p ZIP
                     ul
                         li lossless archive format
                         li compressions: shrink, DEFLATE, bzip2, none
                         li directory-like structure
-                .list-title.fragment
+                .scope.fragment
                     p zlib
                     ul
                         li open-source library
@@ -25,20 +25,20 @@ include ../mixins/containers_aph.pug
                 img.height-700(src=imgAssets+'formats_zip.svg')
 +frameInbox('Game Data')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Serialized data
             ul
                 li XML, JSON, CSV, CFG,...
                 li it's good to use XML for tree-like structures and JSON for flat entities 
                 li some languages (such as C++) don't provide a standardized serialization facility
                 li JSON is a good fit for JavaScript as it is it's natural object notation
-        .list-title.fragment
+        .scope.fragment
             p Database
             ul
                 li Web environment: Web storage (small data), IndexedDB (large data)
                 li Desktop/mobile: SQLite
                 li Games that don't have multiplayer rarely need more than a simple database for config and save data
-        .list-title.fragment
+        .scope.fragment
             p Save data
             ul
                 li dump of all the parts of the game engine required to restore the full state
@@ -47,7 +47,7 @@ include ../mixins/containers_aph.pug
     .important-green
         .flex-cols-2
             div
-                .list-title.fragment 
+                .scope.fragment 
                     p Local Storage
                     ul
                         li for data of smaller size (config, game state)
@@ -55,7 +55,7 @@ include ../mixins/containers_aph.pug
                         li keys and values are <span class="highlight">strings</span>
                     .code.text-sm.mt-5
                         include ../../assets/assets_generic/snippets_generated/local_storage.html
-                .list-title.fragment
+                .scope.fragment
                     p IndexedDB
                     ul
                         li JS-based object-oriented DB
@@ -68,13 +68,13 @@ include ../mixins/containers_aph.pug
 +frameInbox('Example: OpenTTD Save format')
     .flex-cols-2
         div
-            img.height-700(src=imgAssets+'formats_openttd.svg')
+            img.height-700(src=imgAssets+'formats_openttd.svg' alt='OpenTTD save format')
         div
             ul
                 li 3 data layers
                 li very complex
             .space-xl
-            img.height-420.mt-50(src=imgAssets+'transport_tycoon.gif')
+            img.height-420.mt-50(src=imgAssets+'transport_tycoon.gif' alt='Transport Tycoon Deluxe')
 +frameInbox('Example: DOOM Save format')
     .flex.flex-row
         div.width-45p
@@ -120,7 +120,7 @@ include ../mixins/containers_aph.pug
                 a(href="https://assetstore.unity.com/packages/templates/systems/quest-machine-39834") Quest Machine 
                 span - extensible quest system
     .top-100.right-0
-        img.height-400(src=imgAssets+'tileset.jpg')
+        img.height-400(src=imgAssets+'tileset.jpg' alt='Tileset')
 +frameInbox('Example: DOOM WAD file')
     .important-green
         .flex-cols-2
@@ -133,9 +133,9 @@ include ../mixins/containers_aph.pug
                             li.fragment Sound effects, music
                             li.fragment Color palettes, images
                     li.fragment Designed by John D. Carmack
-                img.fragment.height-450(src=imgAssets+'doom_map.png')
+                img.fragment.height-450(src=imgAssets+'doom_map.png' alt='Doom Map')
             div.text-center
-                img.height-600(src=imgAssets+'formats_wad.png')
+                img.height-600(src=imgAssets+'formats_wad.png' alt='Doom WAD format')
 +frameInbox('Tilemaps')
     .important-green
         ul
@@ -144,10 +144,10 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">Wang</span> - a set of tiles that make a unified whole (e.g. a building)
         .flex-cols-2.mt-50
             figure.fragment
-                img.height-450(src=imgAssets+'zelda_tilemap.png')
+                img.height-450(src=imgAssets+'zelda_tilemap.png' alt='Zelda tilemap')
                 p Zelda (2004)
             figure.fragment
-                img.height-450(src=imgAssets+'tiles_messenger.jpg')
+                img.height-450(src=imgAssets+'tiles_messenger.jpg' alt='The Messenger screenshot')
                 p The Messenger (2018)
         .bottom-140.right-30.fragment
-            img.height-410(src=imgAssets+'tiles_messenger.svg')
+            img.height-410(src=imgAssets+'tiles_messenger.svg' alt='The Messenger tiles')

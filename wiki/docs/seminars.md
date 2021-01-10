@@ -1,5 +1,6 @@
 ---
 title: Introduction
+description: Introduction to the course
 
 ---
 
@@ -72,19 +73,19 @@ Keyboard shortcuts for the slides:
 
 | Week | Date | Topic | Link |
 | ------ | ------ | ------ | ------ |
-| 1 | 24.9. | Games | [Link 1](https://aph.dodo.me/slides/organization.html#/) [Link 2](https://aph.dodo.me/slides/lecture01.html#/)  |
-| 2 | 1.10. | Engines | [Link](https://aph.dodo.me/slides/lecture02.html/) |
-| 3 | 8.10. | Assets |  [Link](https://aph.dodo.me/slides/lecture03.html/) |
-| 4 | 15.10. | Components |  [Link](https://aph.dodo.me/slides/lecture04.html/) |
-| 5 | 22.10. | Patterns | [Link](https://aph.dodo.me/slides/lecture05.html/) |
-| 6 | 29.10. | Audio | [Link](https://aph.dodo.me/slides/lecture06.html/) |
-| 7 | 5.11. | Space | [Link](https://aph.dodo.me/slides/lecture07.html/) |
-| 8 | 12.11. | Physics | [Link](https://aph.dodo.me/slides/lecture08.html/) |
+| 1 | 24.9. | Games | [Link 1](https://aph.dodo.me/slides/organization.html) [Link 2](https://aph.dodo.me/slides/lecture01.html)  |
+| 2 | 1.10. | Engines | [Link](https://aph.dodo.me/slides/lecture02.html) |
+| 3 | 8.10. | Assets |  [Link](https://aph.dodo.me/slides/lecture03.html) |
+| 4 | 15.10. | Components |  [Link](https://aph.dodo.me/slides/lecture04.html) |
+| 5 | 22.10. | Patterns | [Link](https://aph.dodo.me/slides/lecture05.html) |
+| 6 | 29.10. | Audio | [Link](https://aph.dodo.me/slides/lecture06.html) |
+| 7 | 5.11. | Space | [Link](https://aph.dodo.me/slides/lecture07.html) |
+| 8 | 12.11. | Physics | [Link](https://aph.dodo.me/slides/lecture08.html) |
 | 9 | 19.11. | ------ | |
-| 10 | 26.11. | Graphics |[Link](https://aph.dodo.me/slides/lecture09.html/) |
-| 11 | 3.12. | AI | [Link](https://aph.dodo.me/slides/lecture10.html/) |
-| 12 | 10.12. | Multiplayer | [Link](https://aph.dodo.me/slides/lecture11.html/) |
-| 13 | 17.12. | Design |  [Link](https://aph.dodo.me/slides/lecture12.html/) |
+| 10 | 26.11. | Graphics |[Link](https://aph.dodo.me/slides/lecture09.html) |
+| 11 | 3.12. | AI | [Link](https://aph.dodo.me/slides/lecture10.html) |
+| 12 | 10.12. | Multiplayer | [Link](https://aph.dodo.me/slides/lecture11.html) |
+| 13 | 17.12. | Design |  [Link](https://aph.dodo.me/slides/lecture12.html) |
 
 
 ## Labs

@@ -10,30 +10,30 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_lightblue.jpg';
 
+html(lang='en')
+    +header('Space', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture07.svg', themePath + 'theme_aph.scss')
 
-+header('Space', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture07.svg', themePath + 'theme_aph.scss')
+    .reveal
+        .slides
+            +title('Lecture 7', 'Space', 'color-azure-light')
+            +frameInbox('Literature')
+                ul
+                    li
+                        a(href="https://www.amazon.com/Essential-Mathematics-Games-Interactive-Applications/dp/0123742978") Verth, Van. 2008. Essential Mathematics for Games and Interactive Applications
+                    li
+                        a(href="https://www.amazon.com/Procedural-Generation-Design-Tanya-Short/dp/1498799191") Adams, Tarn & Short, Tanya X. 2017. Procedural Generation in Game Design 
+                .flex-cols-2
+                    div.text-center
+                        img.height-500(src=globalAssets+'book_math_for_games.jpg' alt='Verth, Van. Essential Mathematics for Games and Interactive Applications')
+                    div.text-center
+                        img.height-500(src=globalAssets+'book_procedural_generation.jpg' alt='Adams, Tarn & Short, Tanya X. Procedural Generation in Game Design')
+            include ./chapters/space_randomness.pug
+            include ./chapters/space_procedural.pug
+            include ./chapters/space_geometry.pug
+            include ./chapters/space_geometric_hashing.pug
+            include ./chapters/space_navigation.pug
+            +summary_lecture07()
+            +quote-arthas()
 
-.reveal
-    .slides
-        +title('Lecture 7', 'Space', 'color-azure-light')
-        +frameInbox('Literature')
-            ul
-                li
-                    a(href="https://www.amazon.com/Essential-Mathematics-Games-Interactive-Applications/dp/0123742978") Verth, Van. 2008. Essential Mathematics for Games and Interactive Applications
-                li
-                    a(href="https://www.amazon.com/Procedural-Generation-Design-Tanya-Short/dp/1498799191") Adams, Tarn & Short, Tanya X. 2017. Procedural Generation in Game Design 
-            .flex-cols-2
-                div.text-center
-                    img.height-500(src=globalAssets+'book_math_for_games.jpg')
-                div.text-center
-                    img.height-500(src=globalAssets+'book_procedural_generation.jpg')
-        include ./chapters/space_randomness.pug
-        include ./chapters/space_procedural.pug
-        include ./chapters/space_geometry.pug
-        include ./chapters/space_geometric_hashing.pug
-        include ./chapters/space_navigation.pug
-        +summary_lecture07()
-        +quote-arthas()
-
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 7: Space')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 7: Space')
+    script(src!='../../scripts/reveal-setup.js')

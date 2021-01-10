@@ -10,17 +10,18 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_blue.jpg';
 
-+header('Games', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture01.svg', themePath + 'theme_aph.scss')
+html(lang='en')
+	+header('Games', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture01.svg', themePath + 'theme_aph.scss')
 
-.reveal
-	.slides
-		+title('Lecture 1', 'Games', 'color-azure-light')
-		include ./chapters/games_intro.pug
-		include ./chapters/games_mechanics.pug
-		include ./chapters/games_engines.pug
-		- var defaultBgr = 'backgrounds/hall_blue.jpg';
-		+summary_lecture01()
-		+quote-doom()
-				
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 1: Games')
-script(src!='../../scripts/reveal-setup.js')
+	.reveal
+		.slides
+			+title('Lecture 1', 'Games', 'color-azure-light')
+			include ./chapters/games_intro.pug
+			include ./chapters/games_mechanics.pug
+			include ./chapters/games_engines.pug
+			- var defaultBgr = 'backgrounds/hall_blue.jpg';
+			+summary_lecture01()
+			+quote-doom()
+					
+	+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 1: Games')
+	script(src!='../../scripts/reveal-setup.js')

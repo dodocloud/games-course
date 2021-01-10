@@ -19,7 +19,7 @@ include ../mixins/containers_aph.pug
             img.height-300(src=imgAssets+'steering_agent.svg')
 +frameInbox('Steering Behaviors')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Seek
             ul
                 li.fragment the simplest steering behavior
@@ -29,12 +29,12 @@ include ../mixins/containers_aph.pug
                 img.height-500(src=imgAssets+'steering_seek.svg')
 +frameInbox('Steering Behaviors')
     .important-orange
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Flee
             ul
                 li.fragment(data-fragment-index='2') opposite of seek
                 li.fragment(data-fragment-index='3') creates a force that steers the agent away
-        .list-title.fragment(data-fragment-index='4')
+        .scope.fragment(data-fragment-index='4')
             p Arrive
             ul
                 li.fragment(data-fragment-index='5') seek + stopping movement
@@ -44,13 +44,13 @@ include ../mixins/containers_aph.pug
             img.height-400(src=imgAssets+'steering_arrive.svg')
 +frameInbox('Steering Behaviors')
     .important-orange
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Pursuit
             ul
                 li.fragment(data-fragment-index='2') agent intercepts a moving target
                 li.fragment(data-fragment-index='3') predicts where the target is going to be in the future
                 li.fragment(data-fragment-index='4') calls for a good prediction function
-        .list-title.fragment(data-fragment-index='5')
+        .scope.fragment(data-fragment-index='5')
             p Evade
             ul
                 li.fragment(data-fragment-index='6') opposite of pursuit
@@ -60,7 +60,7 @@ include ../mixins/containers_aph.pug
             img.height-350(src=imgAssets+'steering_evade.svg')
 +frameInbox('Steering Behaviors')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Wander
             ul
                 li.fragment produces a force that will give an impression of a <span class="highlight">random walking</span>
@@ -73,7 +73,7 @@ include ../mixins/containers_aph.pug
                 img.height-420(src=imgAssets+'steering_wander.svg')
 +frameInbox('Steering Behaviors')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Path follow
             ul
                 li.fragment moves a vehicle along a set of waypoints
@@ -84,7 +84,7 @@ include ../mixins/containers_aph.pug
                 img.height-500(src=imgAssets+'steering_follow.svg')
 +frameInbox('Steering Behaviors')
     .important-green
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Obstacle avoidance
             ul
                 li.fragment(data-fragment-index='2') steers a vehicle to avoid obstacles (usually approximated by a circle)
@@ -92,7 +92,7 @@ include ../mixins/containers_aph.pug
                 li.fragment(data-fragment-index='4') two forces are calculated: <span class="highlight-2">lateral force</span> and <span class="highlight-2">braking force</span>
             .text-center.fragment(data-fragment-index='1')
                 img.height-220(src=imgAssets+'steering_avoidance.svg')
-        .list-title.mt-0.fragment(data-fragment-index='5')
+        .scope.mt-0.fragment(data-fragment-index='5')
             p Offset pursuit
             ul
                 li.fragment(data-fragment-index='6') keeps a vehicle positioned at a specified offset from a leader vehicle
@@ -101,7 +101,7 @@ include ../mixins/containers_aph.pug
                 img.height-180(src=imgAssets+'steering_offset.svg')
 +frameInbox('Steering Behaviors')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Flocking
             ul
                 li.fragment combination of three aspects:

@@ -7,22 +7,22 @@ include ../mixins/containers_aph.pug
 +frameInbox('Memory issues')
     .important-green
         .flex.flex-row
-            .width-60p
-                .list-title.fragment.fade-up
+            .width-60p.leading-lg
+                .scope.fragment.fade-up
                     p Memory caching issues
-                    ul.leading-lg
+                    ul
                         li.fragment.fade-up CPU first tries to find data in the L1 cache
                         li.fragment.fade-up then it tries the larger but higher-latency L2 cache
                         li.fragment.fade-up then it tries L3 cache and DDR memory
-                .list-title.fragment.fade-up
+                .scope.fragment.fade-up
                     p Avoiding cache miss
-                    ul.leading-lg
+                    ul
                         li.fragment.fade-up arrange your data in RAM in such a way that min cache misses occur
                         li.fragment.fade-up organise data in contiguous blocks that are as small as possible
                         li.fragment.fade-up avoid calling functions from within a performance-critical section of code
-                .list-title.fragment.fade-up
+                .scope.fragment.fade-up
                     p Avoiding branch misprediction
-                    ul.leading-lg
+                    ul
                         li.highlight-2.fragment.fade-up branch = using an IF statement
                         li.fragment.fade-up pipelined CPU tries to guess which branch is going to be taken
                         li.fragment.fade-up if the guess is wrong, the pipeline must be flushed

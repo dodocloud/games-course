@@ -6,17 +6,17 @@ include ../mixins/containers_aph.pug
 +mchapter('Animations', imgAssets+'chapter_animations.svg')
 +frameInbox('Animations')
     .important-green
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Rotoscoping animations
             ul
                 li.fragment(data-fragment-index='2') predefined set of images/sprites
                 li.fragment(data-fragment-index='3') simple and intuitive, but impossible to re-define without changing the assets
-        .list-title.fragment(data-fragment-index='4')
+        .scope.fragment(data-fragment-index='4')
             p Keyframed animation
             ul
                 li.fragment(data-fragment-index='5') keyframes contain values (position, color, modifier,...) at given point in time
                 li.fragment(data-fragment-index='6') intermediate frames are <span class="highlight-2">interpolated</span>
-        .list-title.fragment(data-fragment-index='7')
+        .scope.fragment(data-fragment-index='7')
             p Skeletal animation
             ul
                 li.fragment(data-fragment-index='8') object has a skeleton (rigging) bound to its mesh by assigning weights (skinning)
@@ -37,7 +37,7 @@ include ../mixins/containers_aph.pug
     .important-orange
         ul
             li.fragment method that calculates semi-points within the range of given points
-        .list-title.fragment
+        .scope.fragment
             p Applications
             ul
                 li.fragment graphics - image resizing
@@ -46,7 +46,7 @@ include ../mixins/containers_aph.pug
                 li.fragment audio/video - sample/keyframe interpolation
             .bottom-80.right-40
                 img.height-600(src=imgAssets+'interpolation.svg')
-        .list-title.fragment
+        .scope.fragment
             p Main methods
             ul
                 li.fragment Constant interpolation (none/hold)
@@ -67,20 +67,20 @@ include ../mixins/containers_aph.pug
             img.height-550(src=imgAssets+'bezier.svg')
 +frameInbox('Linear Interpolation')
     .important-green
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Linear Interpolation
             ul
                 li.fragment(data-fragment-index='2')
                     include ../../assets/graphics_animations/equations_generated/linear_interpolation.svg
                 li.fragment(data-fragment-index='3') for 1D values (time, sound)
-        .list-title.mt-80.fragment(data-fragment-index='4')
+        .scope.mt-80.fragment(data-fragment-index='4')
             p Bilinear interpolation
             ul
                 li.fragment(data-fragment-index='5') on a rectilinear 2D grid
                 li.fragment(data-fragment-index='6') for 2D values (images, textures)
                 li.fragment(data-fragment-index='7') Q - known points (closest pixels)
                 li.fragment(data-fragment-index='8') P - desired point
-        .list-title.mt-60.fragment(data-fragment-index='9')
+        .scope.mt-60.fragment(data-fragment-index='9')
             p Trilinear interpolation
             ul
                 li.fragment(data-fragment-index='10') on a regular 3D grid

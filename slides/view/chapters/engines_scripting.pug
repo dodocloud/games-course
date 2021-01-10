@@ -8,18 +8,18 @@ include ../mixins/containers_aph.pug
 +mchapter('Scripting Engine', imgAssets+'chapter_engines_scripting.svg')
 +frameInbox('Scripts')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Scripting language
             ul
                 li high-level language that can be interpreted by another program at runtime
                 li it is more about an environment than the language itself (even C# can be considered as a scripting language)
-        .list-title.fragment
+        .scope.fragment
             p Common characteristics
             ul
                 li economy of expression
                 li flexible dynamic typing
                 li easy access to other programs/components
-        .list-title.fragment
+        .scope.fragment
             p Scripts in games
             ul
                 li allow rapid prototyping
@@ -51,22 +51,22 @@ include ../mixins/containers_aph.pug
             img.height-300(src=imgAssets+'wow.jpg')
 +frameInbox('Scripting architectures')
     div.leading-2xl.important-orange
-        .list-title.fragment
+        .scope.fragment
             p Scripted callbacks
             ul
                 li certain functions are customizable via scripts
                 li a game object can respond to some relevant occurrence within the game world (in-game scripts)
-        .list-title.fragment
+        .scope.fragment
             p Scripted components
             ul
                 li new components/objects/properties can be constructed entirely in a script
                 li firstly used in <span class="highlight-2">Dungeon Siege</span>
-        .list-title.fragment
+        .scope.fragment
             p Script-driven game
             ul
                 li script is running the game and the core systems are written in the engine
                 li used in Unreal, Unity, Godot, GameMaker,...
-        .list-title.fragment
+        .scope.fragment
             p Script-driven engine
             ul
                 li script drives the entire engine (PixiJS, ThreeJS, p5.js, BabylonJS)

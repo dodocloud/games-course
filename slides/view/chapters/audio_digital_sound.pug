@@ -17,26 +17,26 @@ include ../mixins/containers_aph.pug
                 ul.fragment.fade-up
                     li.highlight-2 the greater the buffer, the greater the latency, but less strain being placed on the cpu
         .text-center.mt-20.fragment.fade-up
-            img.height-400(src=imgAssets+'digital_sound.svg')
+            img.height-400(src=imgAssets+'digital_sound.svg' alt='Digital sound diagram')
 +frameInbox('Bit depth and sample rate')
     .important-green
         .text-center
-            img.height-780(src=imgAssets+'pcm_attributes.svg')
+            img.height-780(src=imgAssets+'pcm_attributes.svg' alt='PCM attributes')
 +frameInbox('Sound formats')
     div
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Time Domain formats
             ul
                 li.fragment.fade-up better for random access
                 li.fragment.fade-up sound samples and effects
                 li.fragment.fade-up PCM, WAV, FLAC
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Frequency Domain formats
             ul
                 li.fragment.fade-up better for compression
                 li.fragment.fade-up music and voices
                 li.fragment.fade-up MP3, OGG Vorbis
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Synth formats
             ul
                 li.fragment.fade-up contain notes, effects,...
@@ -45,19 +45,19 @@ include ../mixins/containers_aph.pug
                 li.fragment.fade-up proprietary formats of various audio editors
                 li.fragment.fade-up mostly used for pre-production
         .bottom-200.right-0
-            img.height-500(src=imgAssets+'audio_logo.png')
+            img.height-500(src=imgAssets+'audio_logo.png' alt='NI-APH audio logo')
 +frameInbox('Sound formats')
     div
         .bottom-0.right-360
-            img.height-790(src=imgAssets+'domains.svg')
+            img.height-790(src=imgAssets+'domains.svg' alt='Sound Formats')
         .bottom-10.right-360
-            img.height-380(src=imgAssets+'domains.png')
+            img.height-380(src=imgAssets+'domains.png' alt='Sound Formats')
 +frameInbox('History of digital sound')
     .important-green
         .bottom-0.right-70
-            img.height-750(src=imgAssets+'history.svg')
+            img.height-750(src=imgAssets+'history.svg' alt='History of sound cards diagram')
         .bottom-0.right-220
-            img.height-650(src=imgAssets+'history.png')
+            img.height-650(src=imgAssets+'history.png' alt='History of sound cards')
 +frameInbox('History of digital sound')
     .important-green
         ul
@@ -76,11 +76,11 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">2012</span> - <span class="highlight-2">Dolby Atmos</span> - technology for 3D sound 
             li.fragment <span class="highlight">2017</span> - <span class="highlight-2">NVidia VRWorks</span>, rise of GPU-powered sound processing
         .top-0.right-0.fragment
-            img.height-400(src=imgAssets+'gus.png')
+            img.height-400(src=imgAssets+'gus.png' alt='Gravis Ultrasound')
         .top-300.right-240.fragment
-            img.height-200(src=imgAssets+'arrow.svg')
+            img.height-200(src=imgAssets+'arrow.svg' alt='Arrow')
         .bottom-260.right-210.fragment
-            img.height-100(src=imgAssets+'realtek.png')
+            img.height-100(src=imgAssets+'realtek.png' alt='Realtek')
         .bottom-0.right-180.fragment.tip
-            img.height-200(src=globalAssets+'shrug.png')
+            img.height-200(src=globalAssets+'shrug.png' alt='Shrug icon')
         +tipKeen2('... I/O 220, IRQ 7 DMA 1').bottom-0.left-0

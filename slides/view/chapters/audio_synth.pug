@@ -13,7 +13,7 @@ include ../mixins/containers_aph.pug
                     li.fragment synth music is a combination of generated tones, effects, filters, and recorded sound samples
             li.fragment <span class="highlight">main synthesis types</span>: additive, subtractive, FM, wavetable
         .text-center.mt-20.fragment
-            img.height-600(src=imgAssets+'waves.svg')
+            img.height-600(src=imgAssets+'waves.svg' alt='Sound Waves')
 +frameInbox('ADSR Envelope')
     .important-green
         ul
@@ -23,7 +23,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='4') <span class="highlight">sustain</span> - steady state at its maximum intensity (until the source stops)
             li.fragment(data-fragment-index='5') <span class="highlight">release</span> - time it takes for the sound to return to silence (fade out)
         .text-center.mt-20.fragment(data-fragment-index='0')
-            img.height-500(src=imgAssets+'adsr.svg')
+            img.height-500(src=imgAssets+'adsr.svg' alt='Sound ADSR Envelope diagram')
 +frameInbox('Additive Synthesis')
     .important-green
         div
@@ -31,7 +31,7 @@ include ../mixins/containers_aph.pug
                 li.fragment(data-fragment-index='0') creates waveforms with only specific harmonics
                 li.fragment(data-fragment-index='1') best for organs and bell sounds
         div
-            .list-title.mt-20.fragment(data-fragment-index='2')
+            .scope.mt-20.fragment(data-fragment-index='2')
                 p Circuit abbreviations
                 ul.fragment(data-fragment-index='2')
                     li <span class="highlight">VCA</span> - amplifier 
@@ -40,7 +40,7 @@ include ../mixins/containers_aph.pug
                     li <span class="highlight">EG</span> - envelope generator
                     li <span class="highlight">LFO</span> - low frequency oscillator, used for vibrato, tremolo etc.
         .text-center.mt-50.fragment(data-fragment-index='0')
-            img.width-800(src=imgAssets+'synth_additive.svg')
+            img.width-800(src=imgAssets+'synth_additive.svg' alt='Additive synthesis diagram')
 +frameInbox('Subtractive Synthesis')
     .important-green
         div
@@ -53,7 +53,7 @@ include ../mixins/containers_aph.pug
                 li.fragment(data-fragment-index='3') <span class="highlight-2">dry signal</span> - original sound
                 li.fragment(data-fragment-index='4') <span class="highlight-2">wet signal</span> - processed sound (reflections, reverberations)
         .text-center.mt-20.fragment(data-fragment-index='0')
-            img.width-1000(src=imgAssets+'synth_subtractive.svg')
+            img.width-1000(src=imgAssets+'synth_subtractive.svg' alt='Subtractive synthesis diagram')
 +frameInbox('FM Synthesis')
     .important-green
         ul
@@ -64,7 +64,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='4') <span class="highlight">modulator</span> - tones that vibrate the carriers
             li.fragment(data-fragment-index='5') cold, alien-like sound
         .text-center.mt-40.fragment(data-fragment-index='0')
-            img.width-1000(src=imgAssets+'synth_fm.svg')
+            img.width-1000(src=imgAssets+'synth_fm.svg' alt='FM synthesis diagram')
 +frameInbox('Wavetable Synthesis')
     .important-green
         ul
@@ -72,7 +72,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='1') realistic but requires more RAM
             li.fragment(data-fragment-index='2') can generate complex sound
         .text-center.mt-80.fragment(data-fragment-index='0')
-            img.width-1000(src=imgAssets+'synth_wavetable.svg')
+            img.width-1000(src=imgAssets+'synth_wavetable.svg' alt='Wavetable synthesis diagram')
 +frameInbox('Effects')
     .important-green
         ul
@@ -98,36 +98,36 @@ include ../mixins/containers_aph.pug
                     li.fragment(data-fragment-index='2') one of the first sound chips of its kind
                     li.fragment(data-fragment-index='3') ADSR, 3 programmable audio oscillators, 4 waveforms (sawtooth, triangle, pulse, noise)
             div.fragment(data-fragment-index='3')
-                img.height-780(src=imgAssets+'sid.svg')
+                img.height-780(src=imgAssets+'sid.svg' alt='SID in Commodore64')
         .bottom-100.left-200.fragment(data-fragment-index='0')
-            img.height-250(src=imgAssets+'mos.png')
+            img.height-250(src=imgAssets+'mos.png' alt='MOS die')
 +frameInbox('Other HW-based synthesizers')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Atari 800XL
             ul
                 li POKEY chip
                 li 4 semi-independent audio channels
-        .list-title.fragment
+        .scope.fragment
             p IBM PC Speaker
             ul
                 li 1-bit on-board generator, square waves
-        .list-title.fragment
+        .scope.fragment
             p Nintendo Entertainment System
             ul
                 li 2 pulse waves, triangle, noise and PCM audio
-        .list-title.fragment
+        .scope.fragment
             p Yamaha YM3812
             ul
                 li sound chip created by Yamaha in 1985, used in IBM PC sound cards
                 li 9 channels of sound, each made of 2 oscillators
-        .list-title.fragment
+        .scope.fragment
             p Game boy Advance
             ul
                 li 4 sound channels (square, wave, wave table, noise) + 2 DAC channels
                 li PCM samples, 32 kHz sampling
     .top-100.right-100
-        img.height-200(src=imgAssets+'mario_jump.svg')
+        img.height-200(src=imgAssets+'mario_jump.svg' alt='Mario jump sound sheet')
 +frameInbox('Trackers')
     .important-green
         ul
@@ -144,12 +144,12 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='10') trackers used nowadays: SunVox, OpenMPT, Renoise
         .bottom-80.right-20.fragment(data-fragment-index='7')
             figure
-                img.height-400(src=imgAssets+'fast_tracker.png')
+                img.height-400(src=imgAssets+'fast_tracker.png' alt='Fast Tracker')
                 p Fast Tracker 2
 +frameInbox('Example: Sunvox')
     div
         .text-center
-            img.height-750(src=imgAssets+'sunvox.png')
+            img.height-750(src=imgAssets+'sunvox.png' alt='Sunvox')
 +frameInbox('MIDI')
     .important-green
         ul
@@ -162,7 +162,7 @@ include ../mixins/containers_aph.pug
                     li.downside.fragment(data-fragment-index='5') MIDI sounds different when played on different SW/HW (big issue in 1990's)  
                     li.upside.fragment(data-fragment-index='6') old game soundtracks can be played at high quality by using good sound fonts (FluidSynth)
         .text-center.mt-40.fragment(data-fragment-index='4')
-            img.height-350(src=imgAssets+'midi.svg')
+            img.height-350(src=imgAssets+'midi.svg' alt='MIDI format')
 +frameInbox('VST plugins')
     .important-green
         ul
@@ -171,7 +171,7 @@ include ../mixins/containers_aph.pug
             li.fragment can be integrated in almost every DAW (digital audio workstation)
             li.fragment can simulate basically everything - used as effects, converters, filters, virtual instruments,...
         .text-center.mt-40.fragment
-            img.height-500(src=imgAssets+'vst.jpg')
+            img.height-500(src=imgAssets+'vst.jpg' alt='VST plugins')
 +frameInbox('Sound recording')
     div
         ul
@@ -180,26 +180,26 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='2') <span class="highlight">real sound effects</span> - by foley artists
         .flex-cols-2.text-center.mt-40
             div.fragment(data-fragment-index='0')
-                img.height-400(src=imgAssets+'sound_rec.jpg')
+                img.height-400(src=imgAssets+'sound_rec.jpg' alt='Sound Recording process')
             div.fragment(data-fragment-index='2')
-                img.height-400(src=imgAssets+'foley_stage.jpg')
+                img.height-400(src=imgAssets+'foley_stage.jpg' alt='Foley stage')
 +frameInbox('Music composing')
     .important-green
         ul
             li.fragment either real orchestra, synth music or combination of both
             li.fragment many composing techniques: chords-first, melody-first, structure-first
-        .list-title.fragment
+        .scope.fragment
             p Scales
             ul
                 li.fragment major scale - happy scale
                 li.fragment minor scale - sad scale (natural, harmonic, melodic)
-        .list-title.fragment
+        .scope.fragment
             p Keys
             ul
                 li.fragment most songs are in a Key
                 li.fragment key is a specific group of pitches that follow a scale
                 li.fragment <span class="highlight-2">melody shaping</span> - moving away from the starting note and back
-        .list-title.fragment
+        .scope.fragment
             p Bassline
             ul
                 li.fragment bottom notes of chords
@@ -207,5 +207,5 @@ include ../mixins/containers_aph.pug
                 li.fragment e.g. CGFA basslines gives chords CEG, GBD, FAC, ACE
     .bottom-100.right-0.fragment
         figure
-            img.height-450(src=imgAssets+'eastwest.jpg')
+            img.height-450(src=imgAssets+'eastwest.jpg' alt='EastWest Symphonic Orchestra')
             p EastWest Symphonic Orchestra

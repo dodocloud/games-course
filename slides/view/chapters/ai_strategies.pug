@@ -9,18 +9,18 @@ include ../mixins/containers_aph.pug
         ul
             li.italic.highlight-2.fragment Real-time strategy is a Bayesian, zero-sum game (Rubinstein, 1994)
                 .bottom-0.right-0
-                    img.height-500(src=imgAssets+'totalwar.jpg')
+                    img.height-500(src=imgAssets+'totalwar.jpg' alt='Total War')
             li.fragment a game where the player is in control of certain, usually military, assets, with which the player can manipulate in order to achieve victory
             li.fragment goal: build up a base, gather resources, produce army, destroy the enemy
             li.fragment <span class="highlight-2">methods:</span> layer-based AI, rule-based AI
-        .list-title.fragment
+        .scope.fragment
             p Main elements
             ul
                 li.fragment map, mini-map
                 li.fragment resources
                 li.fragment units and their attributes
                 li.fragment buildings
-        .list-title.fragment
+        .scope.fragment
             p Other features
             ul
                 li.fragment real-time aspect (no turns)
@@ -37,42 +37,43 @@ include ../mixins/containers_aph.pug
             +floppyApp(imgAssets+'rts_ashes.jpg', 'Ashes of the Singularity', '2016')
 +frameInbox('RTS Features')
     .important-orange
-        .list-title.fragment
-            p Resource Control
-            ul.leading-md
-                li.fragment minerals, gas, oil, trees,...
-                li.fragment controlling more resources increases the players' constsruction capabilities
-        .list-title.mt-5.fragment
-            p Tech tree
-            ul.leading-md
-                li.fragment a directed acyclic graph that contains the whole technological development of a faction
-        .list-title.mt-5.fragment
-            p Build order (opening)
-            ul.leading-md
-                li.fragment the timing at which the first buildings are constructed
-            .bottom-0.right-0
-                img.height-500(src=imgAssets+'rts.png')
-        .list-title.mt-5.fragment
-            p Fog of war
-            ul.leading-md
-                li.fragment fog that covers the parts of the map the player has not yet explored
-                li.fragment requires to scout unexplored areas to find enemy sources
-        .list-title.mt-5.fragment
-            p Micromanagement
-            ul.leading-md
-                li.fragment way of controlling units in detail while they are in combat
-        .list-title.mt-5.fragment
-            p Tactics
-            ul.leading-md
-                li.fragment a set of specific actions used when applying a strategy
-        .list-title.mt-5.fragment
-            p Strategy
-            ul.leading-md
-                li.fragment making decisions knowing what we saw from the opponent
+        .leading-md
+            .scope.fragment
+                p Resource Control
+                ul
+                    li.fragment minerals, gas, oil, trees,...
+                    li.fragment controlling more resources increases the players' constsruction capabilities
+            .scope.mt-5.fragment
+                p Tech tree
+                ul
+                    li.fragment a directed acyclic graph that contains the whole technological development of a faction
+            .scope.mt-5.fragment
+                p Build order (opening)
+                ul
+                    li.fragment the timing at which the first buildings are constructed
+                .bottom-0.right-0
+                    img.height-500(src=imgAssets+'rts.png' alt='RTS build order')
+            .scope.mt-5.fragment
+                p Fog of war
+                ul
+                    li.fragment fog that covers the parts of the map the player has not yet explored
+                    li.fragment requires to scout unexplored areas to find enemy sources
+            .scope.mt-5.fragment
+                p Micromanagement
+                ul
+                    li.fragment way of controlling units in detail while they are in combat
+            .scope.mt-5.fragment
+                p Tactics
+                ul
+                    li.fragment a set of specific actions used when applying a strategy
+            .scope.mt-5.fragment
+                p Strategy
+                ul
+                    li.fragment making decisions knowing what we saw from the opponent
 +frameInbox('Example: Starcraft 2 Tech-tree')
     div
         .text-center
-            img.height-760(src=imgAssets+'techtree_sc2.png')
+            img.height-760(src=imgAssets+'techtree_sc2.png' alt='Starcraft II Tech-tree')
 +frameInbox('RTS AI Layers')
     .important-green
         ul
@@ -80,7 +81,7 @@ include ../mixins/containers_aph.pug
             li.fragment tactics (army positions)
             li.fragment strategy (tech tree)
         .text-center
-            img.height-500(src=imgAssets+'rts_layers.svg')
+            img.height-500(src=imgAssets+'rts_layers.svg' alt='RTS AI layers')
 
 +frameInbox('Layer-based AI')
     .important-green
@@ -95,17 +96,17 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='8') <span class="highlight-2">Coordinator</span> - synchronizes groups of units
             li.fragment(data-fragment-index='9') <span class="highlight-2">Actuator</span> - executes actions by modifying the game state
         .text-center.mt-20.fragment(data-fragment-index='1')
-            img.height-120(src=imgAssets+'rts_event_flow.svg')
+            img.height-120(src=imgAssets+'rts_event_flow.svg' alt='Layer-based AI in games')
 +frameInbox('Example: Layer-based AI')
     .bottom-0.right-0
-        img.height-400(src=imgAssets+'layer_based_ai.png')
+        img.height-400(src=imgAssets+'layer_based_ai.png' alt='Hero')
     .top-80.left-200
-        img.height-500(src=imgAssets+'rts_layer_based_ai.svg')
+        img.height-500(src=imgAssets+'rts_layer_based_ai.svg' alt='Layer Based AI diagram')
 +frameInbox('Example: Layer-based AI')
     .top-20.left-20
-        img.height-700(src=imgAssets+'rts_layer_based_example.svg')
+        img.height-700(src=imgAssets+'rts_layer_based_example.svg' alt='Layer Based AI diagram')
     .top-20.right-0
-        img.height-480(src=imgAssets+'layer_based_ai_cossacks.jpg')
+        img.height-480(src=imgAssets+'layer_based_ai_cossacks.jpg' alt='Cossacks 3')
 +frameInbox('Example: Megaglest')
     .important-green
         ul
@@ -113,10 +114,10 @@ include ../mixins/containers_aph.pug
             li.fragment seven factions: tech, magic, egypt, indians, norsemen, persian, romans
             li.fragment rule-based AI
         .text-center.mt-40
-            img.height-550(src=imgAssets+'rule_based_megaglest.jpg')
+            img.height-550(src=imgAssets+'rule_based_megaglest.jpg' alt='Megaglest')
 +frameInbox('Megaglest architecture')
     div.text-center
-        img.height-780(src=imgAssets+'megaglest_arch.svg')
+        img.height-780(src=imgAssets+'megaglest_arch.svg' alt='Megaglest architecture')
 +frameInbox('Megaglest rules')
     div
         table.center

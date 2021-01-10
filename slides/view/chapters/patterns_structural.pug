@@ -34,14 +34,14 @@ include ../mixins/containers_aph.pug
             img.height-500(src=imgAssets+'brainbot.gif')
 +frameInbox('Locator and Blackboard')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Locator
             ul
                 li.fragment provides global or scoped services
                 li.fragment in component-based engines, the whole scene may work as a locator
                 li.fragment we can initialize the locator to provide a given set of services
                 li.fragment we can implement <span class="highlight">null service</span> to disable certain behavior (e.g. sound)
-        .list-title.fragment
+        .scope.fragment
             p Blackboard (Context)
             ul
                 li.fragment shared data structure for a scope (or the whole game)

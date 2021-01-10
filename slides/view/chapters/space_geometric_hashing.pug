@@ -74,20 +74,20 @@ include ../mixins/containers_aph.pug
 
 +frameInbox('Spatial partitioning')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Bounding volume
             ul
                 li.fragment groups objects or their parts together based on their positions and sizes
                 li.fragment if the object moves, so will the hierarchy
                 li.fragment used for physics, shape analysis, precise collision detection
-        .list-title.fragment
+        .scope.fragment
             p Spatial data structure
             ul
                 li.fragment a structure that stores objects by their position
                 li.fragment is locked to the world
                 li.fragment used for range queries, neighborhood searching, rough collision detection
                 li.highlight-2.fragment the more objects we have, the more benefits we get
-        .list-title.fragment
+        .scope.fragment
             p Implementations
             ul
                 li.fragment <span class="highlight-2">BSP</span> - binary-space partitioning

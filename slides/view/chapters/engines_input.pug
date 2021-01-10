@@ -11,20 +11,20 @@ include ../mixins/containers_aph.pug
         p.fragment(data-fragment-index="0") Detects input events from devices
         .flex-cols-2
             div
-                .list-title.fragment(data-fragment-index="1")
+                .scope.fragment(data-fragment-index="1")
                     p Atomic events
                     ul
                         li KEY_DOWN
                         li KEY_UP
                         li MOUSE_WHEEL
                         li JOYPAD_A
-                .list-title.fragment(data-fragment-index="2")
+                .scope.fragment(data-fragment-index="2")
                     p Compound events
                     ul
                         li FLING
                         li PINCH_TO_ZOOM
                         li DOUBLE_TAP
-                .list-title.fragment(data-fragment-index="3")
+                .scope.fragment(data-fragment-index="3")
                     p Special events
                     ul
                         li cheat codes
@@ -40,23 +40,23 @@ include ../mixins/containers_aph.pug
     .important-orange
         .flex.flex-row.flex-no-wrap
             div
-                .list-title
+                .scope
                     p.fragment Receiving the state of the device
                     ul
                         li.fragment <span class="highlight">polling</span> - compare against previous state
                         li.fragment <span class="highlight">callbacks</span> - handled by upper SW layer
-                .list-title.fragment
+                .scope.fragment
                     p Devices
                     ul
                         li keyboard, touch sensor, camera, Oculus Touch,...
                         li one-axis controller - single analog state
                         li two-axis controller - mouse and joystick
                         li three-axis controller - accelerometer
-                .list-title.fragment
+                .scope.fragment
                     p Dead zone
                     ul
                         li area of a control interface that has no input effect (analog joystick)
-                .list-title.fragment
+                .scope.fragment
                     p Normalization
                     ul
                         li analog axis are mapped to a Cartesian space, not a circular one
@@ -75,19 +75,19 @@ include ../mixins/containers_aph.pug
 +frameOutbox('Special Events')
     .flex.flex-row
         div.width-85p
-            .list-title
+            .scope
                 p.fragment(data-fragment-index="0") Sequence detection
                 ul
                     li.fragment(data-fragment-index="1") cheats: IDDQD, IDKFA
                     li.fragment(data-fragment-index="2") chords: combo moves in fighting games
             .space-md
-            .list-title.fragment(data-fragment-index="3")
+            .scope.fragment(data-fragment-index="3")
                 p Controller input remapping
                 ul
                     li button ID -> action ID mapping
                     li can be implemented as a table
             .space-md
-            .list-title.fragment(data-fragment-index="4")
+            .scope.fragment(data-fragment-index="4")
                 p Context-sensitive inputs
                 ul
                     li handlers vary by a mode (walking, driving, flying)

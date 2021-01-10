@@ -10,25 +10,25 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_green.jpg';
 
+html(lang='en')
+    +header('Audio', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture06.svg', themePath + 'theme_aph.scss')
 
-+header('Audio', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture06.svg', themePath + 'theme_aph.scss')
+    .reveal
+        .slides
+            +title('Lecture 6', 'Audio', 'color-emerald-light')
+            +frameInbox('Literature')
+                ul
+                    li
+                        a(href="https://www.amazon.com/Game-Sound-Introduction-History-Practice/dp/026203378X") Collins, Karen. 2008. Game Sound: An Introduction to the History, Theory, and Practice of Video Game Music and Sound Design
+                div.text-center
+                    img.height-500(src=globalAssets+'book_audio.jpg' alt='Collins, Karen. Game Sound: An Introduction to the History, Theory, and Practice of Video Game Music and Sound Design')
+            include ./chapters/audio_digital_sound.pug
+            include ./chapters/audio_synth.pug
+            include ./chapters/audio_music.pug
+            include ./chapters/audio_sounds.pug
+            include ./chapters/audio_apis.pug
+            +summary_lecture06()
+            +quote-kane()
 
-.reveal
-    .slides
-        +title('Lecture 6', 'Audio', 'color-emerald-light')
-        +frameInbox('Literature')
-            ul
-                li
-                    a(href="https://www.amazon.com/Game-Sound-Introduction-History-Practice/dp/026203378X") Collins, Karen. 2008. Game Sound: An Introduction to the History, Theory, and Practice of Video Game Music and Sound Design
-            div.text-center
-                img.height-500(src=globalAssets+'book_audio.jpg')
-        include ./chapters/audio_digital_sound.pug
-        include ./chapters/audio_synth.pug
-        include ./chapters/audio_music.pug
-        include ./chapters/audio_sounds.pug
-        include ./chapters/audio_apis.pug
-        +summary_lecture06()
-        +quote-kane()
-
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 6: Audio')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 6: Audio')
+    script(src!='../../scripts/reveal-setup.js')

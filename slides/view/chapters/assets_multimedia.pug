@@ -7,73 +7,73 @@ include ../mixins/containers_aph.pug
 +frameInbox('Music Formats')
     .important-green
         .flex-cols-2
-            div
-                .list-title.mt-5.fragment.fade-up
+            div.leading-md
+                .scope.mt-5.fragment.fade-up
                     p AIFF
-                    ul.leading-md
+                    ul
                         li Audio Interchange File Format
                         li uncompressed pulse-code modulation
                         li may contain loops and samples
-                .list-title.mt-5.fragment.fade-up
+                .scope.mt-5.fragment.fade-up
                     p MP3
-                    ul.leading-md
+                    ul
                         li MPEG-1 Audio Layer III
                         li lossy data-compression
-                .list-title.mt-5.fragment.fade-up
+                .scope.mt-5.fragment.fade-up
                     p OGG
-                    ul.leading-md
+                    ul
                         li more advanced and a bit smaller in size than MP3
                         li open-source (in sharp contrast with MP3)
-                .list-title.mt-5.fragment.fade-up
+                .scope.mt-5.fragment.fade-up
                     p WAV
-                    ul.leading-md
+                    ul
                         li linear pulse-code modulation
                         li used when time involved in compressing is a concern (short sounds)
-                .list-title.mt-5.fragment.fade-up
+                .scope.mt-5.fragment.fade-up
                     p Trackers
-                    ul.leading-md
+                    ul
                         li will be discussed in next lectures
             div.text-center
-                img.height-420.mt-80(src=imgAssets+'assets_music.svg')
+                img.height-420.mt-80(src=imgAssets+'assets_music.svg' alt='Music assets')
 +frameInbox('MP3')
     .important-green
         ul
             li lossy format
             li reduces accuracy by psychoacoustic analysis
         .center.mt-30
-            img.height-600(src=imgAssets+'formats_mp3.svg')
+            img.height-600(src=imgAssets+'formats_mp3.svg' alt='MP3 formats')
 +frameInbox('Image Formats')
     .important-orange
         .flex-cols-2
             div
-                .list-title.fragment(data-fragment-index="1")
+                .scope.fragment(data-fragment-index="1")
                     p JPEG
                     ul
                         li Joint Photographic Experts Group
                         li used for storing digital photography
                         li doesn't support alpha channel
-                .list-title.fragment(data-fragment-index="2")
+                .scope.fragment(data-fragment-index="2")
                     p PNG
                     ul
                         li Portable Network Graphics
                         li good results for simple images (not real pictures)
-                .list-title.fragment(data-fragment-index="3")
+                .scope.fragment(data-fragment-index="3")
                     p TGA
                     ul
                         li Truevision TGA
                         li favorite format for textures
-                .list-title.fragment(data-fragment-index="4")
+                .scope.fragment(data-fragment-index="4")
                     p SVG
                     ul
                         li Scalable Vector Graphics
                         li format for vector images
             div.text-center
                 div.fragment(data-fragment-index="1")
-                    img.height-300.mt-20(src=imgAssets+'assets_images_jpg.jpg')
+                    img.height-300.mt-20(src=imgAssets+'assets_images_jpg.jpg' alt='JPG image')
                 div.fragment(data-fragment-index="2")
-                    img.height-300.mt-20(src=imgAssets+'assets_images_png.png')
+                    img.height-300.mt-20(src=imgAssets+'assets_images_png.png' alt='PNG image')
                 div.fragment(data-fragment-index="4")
-                    img.height-100.mt-20(src=imgAssets+'assets_images_svg.svg')
+                    img.height-100.mt-20(src=imgAssets+'assets_images_svg.svg' alt='SVG image')
 
 +frameInbox('JPEG')
     .important-green
@@ -88,9 +88,9 @@ include ../mixins/containers_aph.pug
                             li <span class="highlight">Down-sampling</span> - chroma reduction
                             li <span class="highlight">DCT</span> - discrete cosine transform, from color domain into frequency domain
                             li <span class="highlight">Quantization</span> - removal of high-frequency components
-            img.height-780(src=imgAssets+'formats_jpeg.svg')
+            img.height-780(src=imgAssets+'formats_jpeg.svg' alt='JPEG format diagram')
         .bottom-100.right-580.absolute
-            img.ml-60.height-300(src=imgAssets+'DCT.png')
+            img.ml-60.height-300(src=imgAssets+'DCT.png' alt='DCT grid')
 +frameInbox('PNG')
     .important-green
         .flex-cols-2
@@ -106,7 +106,7 @@ include ../mixins/containers_aph.pug
                             li <span class="highlight">Alpha compaction</span> - optimizing - replaces the alpha channel with a color that is not present 
                             li <span class="highlight">Pass extraction</span> - splits an image into a few interlaced images
             div.text-center
-                img.height-780(src=imgAssets+'formats_png.svg')
+                img.height-780(src=imgAssets+'formats_png.svg' alt='PNG format diagram')
 +frameInbox('Videos and Cutscenes')
     .important-orange
         .flex-cols-2
@@ -124,26 +124,26 @@ include ../mixins/containers_aph.pug
                     li.fragment <span class="highlight">2000's</span> - in-game cutscenes
                     li.fragment <span class="highlight">2010's</span> - pre-rendered video cutscenes ¯\_(ツ)_/¯
             div.text-center
-                img.height-380(src=imgAssets+'cutscene_w3.jpg')
-                img.height-380(src=imgAssets+'cutscene_hellblade.jpg')
+                img.height-380(src=imgAssets+'cutscene_w3.jpg' alt='Warcraft cutscene')
+                img.height-380(src=imgAssets+'cutscene_hellblade.jpg' alt='Hellblade cutscene')
 +frameInbox('Videos and Cutscenes')
     div
         .flex-cols-2.mt-20
             figure.fragment
-                img.width-600(src=imgAssets+'cut_render_tombraider.jpg')
+                img.width-600(src=imgAssets+'cut_render_tombraider.jpg' alt='Tomb Raider cutscene')
                 p Shadow of the Tomb Raider, in-game
             figure.fragment
-                img.width-600(src=imgAssets+'cut_video_wolf2.jpg')
+                img.width-600(src=imgAssets+'cut_video_wolf2.jpg' alt='Wolfenstein New Collosus cutscene')
                 p Wolfenstein 2: New Colossus, video
         .flex-cols-2.mt-20
             figure.fragment
-                img.width-600(src=imgAssets+'w3_cutscene.jpg')
+                img.width-600(src=imgAssets+'w3_cutscene.jpg' alt='Warcraft cutscene')
                 p Warcraft 3, in-game
             figure.fragment
-                img.width-600(src=imgAssets+'w3_reforged_cutscene.jpg')
+                img.width-600(src=imgAssets+'w3_reforged_cutscene.jpg' alt='Warcraft reforged cutscene')
                 p Warcraft 3 Reforged, video
         .bottom-0.right-560.fragment.tip
-            img.height-400(src=globalAssets+'memes/ifonly.png')
+            img.height-400(src=globalAssets+'memes/ifonly.png' alt='meme ifonly')
 +frameInbox('Textures')
     .important-orange
         .flex-cols-2
@@ -151,7 +151,7 @@ include ../mixins/containers_aph.pug
                 ul
                     li.fragment(data-fragment-index="1") pieces of bitmap that are applied to an object
                     li.highlight-2.fragment(data-fragment-index="2") textures are ultimately converted to formats that are specific to platform and graphic API
-                .list-title.fragment(data-fragment-index="3")
+                .scope.fragment(data-fragment-index="3")
                     p Types
                     ul
                         li.fragment(data-fragment-index="4") diffuse texture
@@ -160,7 +160,7 @@ include ../mixins/containers_aph.pug
                         li.fragment(data-fragment-index="7") volumetric texture
                         li.fragment(data-fragment-index="8") tileable texture
                         li.fragment(data-fragment-index="9") sprite atlas
-                .list-title.fragment(data-fragment-index="10")
+                .scope.fragment(data-fragment-index="10")
                     p Formats
                     ul
                         li Desktop: BC6H, BC7, DXT1, DXT5
@@ -169,44 +169,45 @@ include ../mixins/containers_aph.pug
             .grid.grid-cols-2
                 div
                     figure.fragment(data-fragment-index="4")
-                        img.height-210(src=imgAssets+'texture_color.jpg')
+                        img.height-210(src=imgAssets+'texture_color.jpg' alt='Color texture')
                         p Diffuse
                     figure.fragment(data-fragment-index="5")
-                        img.height-210(src=imgAssets+'texture_displacement.jpg')
+                        img.height-210(src=imgAssets+'texture_displacement.jpg' alt='Displacement texture')
                         p Displacement
                     figure.fragment(data-fragment-index="6")
-                        img.height-210(src=imgAssets+'texture_normal.jpg')
+                        img.height-210(src=imgAssets+'texture_normal.jpg' alt='Normal texture')
                         p Normal
                 div
                     figure.fragment(data-fragment-index="7")
-                        img.height-210(src=imgAssets+'texture_volumetric.jpg')
+                        img.height-210(src=imgAssets+'texture_volumetric.jpg' alt='Volumetric texture')
                         p Volumetric
                     figure.fragment(data-fragment-index="8")
-                        img.height-210(src=imgAssets+'texture_tileable.jpg')
+                        img.height-210(src=imgAssets+'texture_tileable.jpg' alt='Tileable texture')
                         p Tileable
                     figure.fragment(data-fragment-index="9")
-                        img.height-210(src=imgAssets+'spriteanim.gif')
+                        img.height-210(src=imgAssets+'spriteanim.gif' alt='Sprite animation')
                         p Sprite atlas
 +frameInbox('Sprites')
     .important-orange
-        .list-title.fragment.fade-up
-            p Sprite
-            ul.leading-md
-                li a single graphic image that is incorporated into a scene
-                li allows to create large scenes as you can manipulate each sprite separately
-        .list-title.fragment.fade-up
-            p Spritesheet
-            ul.leading-md
-                li a set of corresponding sprites
-        .list-title.fragment.fade-up
-            p Sprite atlas
-            ul.leading-md
-                li a single texture image containing a list of spritesheets
+        .leading-md
+            .scope.fragment.fade-up
+                p Sprite
+                ul
+                    li a single graphic image that is incorporated into a scene
+                    li allows to create large scenes as you can manipulate each sprite separately
+            .scope.fragment.fade-up
+                p Spritesheet
+                ul
+                    li a set of corresponding sprites
+            .scope.fragment.fade-up
+                p Sprite atlas
+                ul
+                    li a single texture image containing a list of spritesheets
         .text-center.mt-30.fragment.fade-up
-            img.height-370(src=imgAssets+'prince2.png')
+            img.height-370(src=imgAssets+'prince2.png' alt='Prince of Persia sprites')
 +frameInbox('3D Objects')
     .important-green.text-center
-        img.height-700(src=imgAssets+'3Dship.png')
+        img.height-700(src=imgAssets+'3Dship.png' alt='3D ship example')
 +frameInbox('3D File Formats')
     .important-green
         ul

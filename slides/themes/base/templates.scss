@@ -51,31 +51,31 @@
         letter-spacing: 0.1em;
     }
 
-    .leading-base {
+    .leading-base, .leading-base ul, .leading-base ol {
         line-height: 1;
     }
-    .leading-md {
+    .leading-md, .leading-md ul, .leading-md ol {
         line-height: 1.15;
     }
-    .leading-lg {
+    .leading-lg, .leading-lg ul, .leading-lg ol {
         line-height: 1.25;
     }
-    .leading-xl {
+    .leading-xl, .leading-xl ul, .leading-xl ol {
         line-height: 1.5;
     }
-    .leading-2xl {
+    .leading-2xl, .leading-2xl ul, .leading-2xl ol {
         line-height: 2;
     }
-    .leading-3xl {
+    .leading-3xl, .leading-3xl ul, .leading-3xl ol {
         line-height: 3;
     }
-    .leading-4xl {
+    .leading-4xl, .leading-4xl ul, .leading-4xl ol {
         line-height: 4;
     }
-    .leading-5xl {
+    .leading-5xl, .leading-5xl ul, .leading-5xl ol {
         line-height: 5;
     }
-    .leading-6xl {
+    .leading-6xl, .leading-6xl ul, .leading-6xl ol {
         line-height: 6;
     }
 

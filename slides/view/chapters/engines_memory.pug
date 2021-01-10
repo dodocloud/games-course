@@ -12,7 +12,7 @@ include ../mixins/containers_aph.pug
             ul
                 li.fragment.fade-up default managers are not suitable for games (i.e. malloc function)
                 li.fragment.fade-up game engines usually have their own allocators
-        .list-title.mt-40.fragment.fade-up
+        .scope.mt-40.fragment.fade-up
             p Custom allocators
             ul
                 li.fragment.fade-up stack allocator
@@ -46,13 +46,13 @@ include ../mixins/containers_aph.pug
 +frameInboxMid('Other allocators')
     .important-orange
         div
-            .list-title.fragment.fade-up
+            .scope.fragment.fade-up
                 p Bucket allocator
                 ul
                     li several pool allocators for objects of various sizes
                     li.upside great solution for demanding games
                     li.downside difficult to manage
-            .list-title.fragment.fade-up
+            .scope.fragment.fade-up
                 p Heap allocator
                 ul
                     li more or less the same as heaps in virtual machines
@@ -67,20 +67,20 @@ include ../mixins/containers_aph.pug
         include ../../assets/engines_memory/snippets_generated/godot_allocator.html
 +frameInbox('Data loading')
     .important-orange
-        .list-title.fragment.fade-up 
+        .scope.fragment.fade-up 
             p Level loading
             ul
                 li used in <span class="highlight-2">Tomb Raider, Doom, Quake,...</span>
                 li requires a loading screen
                 li only one game chunk is loaded at a time
                 li appropriate for games with levels, separated scenes or star topology
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Air locks
             ul
                 li used in <span class="highlight-2">Half-Life, Inside, Portal (partially)</span>
                 li air lock is a small scene (room, hall)
                 li when the player enters the area from which can't see the previous one, next scene is loaded
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p World streams
             ul
                 li used in <span class="highlight-2">GTA, WoW, Arma, Spiderman</span>

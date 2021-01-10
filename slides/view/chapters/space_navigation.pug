@@ -8,7 +8,7 @@ include ../mixins/containers_aph.pug
     .important-green
         ul
             li.fragment(data-fragment-index='1') essential feature for many games
-        .list-title.mt-20.fragment(data-fragment-index='2')
+        .scope.mt-20.fragment(data-fragment-index='2')
             p Types
             ul
                 li.fragment(data-fragment-index='3') local navigation in the environment (collision avoidance, ORCA)
@@ -30,13 +30,13 @@ include ../mixins/containers_aph.pug
             img.height-450(src=imgAssets+'navigation_graph.svg')
 +frameInbox('Navigation graph')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Waypoint-based
             ul
                 li level designer places waypoints that are later linked up
             .text-center.mt-20
                 img.height-220(src=imgAssets+'nav_waypoint.svg')
-        .list-title.fragment
+        .scope.fragment
             p Mesh-based
             ul
                 li created from a polygonal representation of the environment's floor
@@ -57,7 +57,7 @@ include ../mixins/containers_aph.pug
             img.height-380(src=imgAssets+'cstrike_04.jpg')
 +frameInbox('Navigation graph')
     .important-orange
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Grid-based
             ul
                 li.fragment(data-fragment-index='2') created by superimposing a grid over a game environment
@@ -89,19 +89,19 @@ include ../mixins/containers_aph.pug
                 p Starcraft II
 +frameInbox('Pathfinding')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Properties
             ul
                 li.fragment <span class="highlight-2">completness</span> - whether a solution is found or not
                 li.fragment <span class="highlight-2">optimality</span> - quality of the solution found
                 li.fragment <span class="highlight-2">smoothing</span> - whether the agent could move along the path smoothly
-        .list-title.fragment
+        .scope.fragment
             p Environment type
             ul
                 li.fragment <span class="highlight-2">static</span> - the map never changes during the gameplay
                 li.fragment <span class="highlight-2">dynamic</span> - areas previously traversable can be obstructed later
                 li.fragment the higher the dynamicity, the higher the amount of replanning
-        .list-title.fragment
+        .scope.fragment
             p NPC movement
             ol
                 li.fragment find the closest graph node to the NPC's current location: A
@@ -114,7 +114,7 @@ include ../mixins/containers_aph.pug
             img.height-500(src=imgAssets+'pathfinding.gif')
 +frameInbox('Pathfinding algorithms')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Uniformed graph searches
             ul.leading-sm
                 li.fragment searches a graph without regard to any associated edge cost
@@ -125,7 +125,7 @@ include ../mixins/containers_aph.pug
                 li.fragment <span class="highlight-2">BFS (breadth-first-search)</span>
                     ul.leading-md
                         li.fragment fans out from the source node, always finds the best path
-        .list-title.fragment
+        .scope.fragment
             p Cost-based graph searches
             ul.leading-sm
                 li.fragment <span class="highlight-2">Dijkstra's Algorithm</span>
@@ -153,7 +153,7 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight-2">Heuristics:</span> Euclidean, Manhattan, adaptive, dynamic,...
                 ul
                     li.fragment Manhattan distance will work if almost no obstacles appear
-        .list-title.mt-20.fragment
+        .scope.mt-20.fragment
             p Improvements
             ul
                 li.fragment preprocess the map, calculate universal paths

@@ -10,23 +10,24 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_golden.jpg';
 
-+header('Physics', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture08.svg', themePath + 'theme_aph.scss')
+html(lang='en')
+    +header('Physics', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture08.svg', themePath + 'theme_aph.scss')
 
-.reveal
-    .slides
-        +title('Lecture 8', 'Physics', 'color-manhattan')
-        +frameInbox('Literature')
-            ul
-                li
-                    a(href="https://www.amazon.com/Game-Physics-Engine-Development-Commercial-Grade/dp/0123819768") Millington, Ian. 2010. Game Physics Engine Development
-            div.text-center
-                img.height-500(src=globalAssets+'book_physics.jpg')
-        include ./chapters/physics_dynamics.pug
-        include ./chapters/physics_steering.pug
-        include ./chapters/physics_engines.pug
-        include ./chapters/physics_collisions.pug
-        +summary_lecture08()
-        +quote-oregon()
+    .reveal
+        .slides
+            +title('Lecture 8', 'Physics', 'color-manhattan')
+            +frameInbox('Literature')
+                ul
+                    li
+                        a(href="https://www.amazon.com/Game-Physics-Engine-Development-Commercial-Grade/dp/0123819768") Millington, Ian. 2010. Game Physics Engine Development
+                div.text-center
+                    img.height-500(src=globalAssets+'book_physics.jpg' alt='Millington, Ian. Game Physics Engine Development')
+            include ./chapters/physics_dynamics.pug
+            include ./chapters/physics_steering.pug
+            include ./chapters/physics_engines.pug
+            include ./chapters/physics_collisions.pug
+            +summary_lecture08()
+            +quote-oregon()
 
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 8: Physics')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 8: Physics')
+    script(src!='../../scripts/reveal-setup.js')

@@ -6,7 +6,7 @@ include ../mixins/containers_aph.pug
 +mchapter('Collision Detection', imgAssets+'chapter_collisions.svg')
 +frameInbox('Collision Detection')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Steps
             ul
                 li.fragment positions for the next frame are determined
@@ -14,7 +14,7 @@ include ../mixins/containers_aph.pug
                 li.fragment collision candidates are filtered out into a set of real collision pairs
                 li.fragment collisions are resolved by the <span class="highlight-2">collision resolver</span>, by applying impulses or penalty forces
                 li.fragment constraints are satisfied by the <span class="highlight-2">constraint resolver</span>
-        .list-title.fragment
+        .scope.fragment
             p Collidable entities
             ul
                 li.fragment we need to provide a collision representation for each object
@@ -83,11 +83,11 @@ include ../mixins/containers_aph.pug
                 td.highlight-2 trigger
 +frameInbox('Primitives')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Sphere
             ul
                 li.fragment center point and radius (4 numbers for 3D)
-        .list-title.fragment
+        .scope.fragment
             p Capsule
             ul
                 li.fragment 2D: rectangle and two circles
@@ -95,7 +95,7 @@ include ../mixins/containers_aph.pug
                 li.fragment representation: two points and radius
             .text-center
                 img.height-120(src=imgAssets+'primitives_capsule.svg')
-        .list-title.fragment
+        .scope.fragment
             p AABB
             ul
                 li.fragment axis-aligned bounding box
@@ -104,7 +104,7 @@ include ../mixins/containers_aph.pug
                 li.downside.fragment AABB must be recalculated whenever the object rotates
 +frameInbox('Primitives')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p OBB
             ul
                 li.fragment oriented bounding box
@@ -112,7 +112,7 @@ include ../mixins/containers_aph.pug
                 li.fragment commonly used
             .top-50.right-100
                 img.width-350(src=imgAssets+'primitives_obb.svg')
-        .list-title.fragment
+        .scope.fragment
             p k-DOP
             ul
                 li.fragment discrete oriented polytope
@@ -120,7 +120,7 @@ include ../mixins/containers_aph.pug
                 li.fragment approximates the shape of an object
             .top-350.right-100
                 img.width-350(src=imgAssets+'primitives_kdop.svg')
-        .list-title.fragment
+        .scope.fragment
             p Convex volume
             ul
                 li.fragment more general shape
@@ -130,27 +130,27 @@ include ../mixins/containers_aph.pug
                 img.width-350(src=imgAssets+'primitives_convex.svg')
 +frameInbox('Primitives')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Poly Soup
             ul
                 li.fragment used to model complex static geometry (terrain)
                 li.fragment very expensive kind of collision test
             .top-80.right-200
                 img.height-200(src=imgAssets+'primitives_polysoup.svg')
-        .list-title.fragment
+        .scope.fragment
             p Compound shapes
             ul
                 li.fragment more efficient alternative to a poly-soup
                 li.fragment the system first tests bounding volumes of compound shapes
             .top-280.right-100
                 img.height-170(src=imgAssets+'primitives_compound.svg')
-        .list-title.fragment
+        .scope.fragment
             p Convex hull
             ul
                 li.fragment smallest convex volume containing the object
             .top-480.right-250
                 img.height-150(src=imgAssets+'primitives_convexhull.svg')
-        .list-title.fragment
+        .scope.fragment
             p Complex shape/volume
             ul
                 li.fragment not necessarily convex
@@ -174,14 +174,14 @@ include ../mixins/containers_aph.pug
             img.height-450(src=imgAssets+'bad overlapping.png')
 +frameInbox('Looking for collision candidates')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Naive solution
             ul
                 li.fragment each pair
                 li.fragment
                     include ../../assets/physics_collisions/equations_generated/collision_detection_01.svg
                     |&nbsp;-> 10 objects result in 100 checks, 100 in 10 000 etc.
-        .list-title.fragment
+        .scope.fragment
             p Quad-tree
             ul
                 li.fragment efficiency is 
@@ -192,19 +192,19 @@ include ../mixins/containers_aph.pug
                 li.fragment good for point-like small objects
                 li.fragment worst case: 
                     include ../../assets/physics_collisions/equations_generated/collision_detection_04.svg
-        .list-title.fragment
+        .scope.fragment
             p Sweep and Prune
             ul
                 li.fragment sorts the starts (lower bounds) and ends (upper bound) of bounding volumes of each solid along a number of axes
-        .list-title.fragment
+        .scope.fragment
             p BSP
             ul
                 li.fragment binary space partitioning, good for complex static geometries (buildings)
-        .list-title.fragment
+        .scope.fragment
             p Grid, Oct-tree, R-tree, R+tree, R*tree, X-tree, M-tree,...
 +frameInbox('Resolving collision candidates')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Sphere-Sphere
             ul
                 li.fragment
@@ -212,15 +212,15 @@ include ../mixins/containers_aph.pug
                     |, where 
                     include ../../assets/physics_collisions/equations_generated/resolving_candidates_02.svg
                     |&nbsp;is a central point
-        .list-title.fragment
+        .scope.fragment
             p Sphere-ray
             ul
                 li.fragment we just test the distance between a single sphere center and a ray
-        .list-title.fragment
+        .scope.fragment
             p AABB-AABB
             ul
                 li.fragment test the borders
-        .list-title.fragment
+        .scope.fragment
             p AABB-Ray
             ul
                 li.fragment intervals 
@@ -232,16 +232,16 @@ include ../mixins/containers_aph.pug
                 img.height-300(src=imgAssets+'aabb_ray.svg')
 +frameInbox('Resolving collision candidates')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Capsules
             ul
                 li.fragment <span class="highlight-2">capsule-capsule</span> - calculate the distance between two line segments
                 li.fragment <span class="highlight-2">capsule-ray</span> - find the distance between a ray and a line segment
-        .list-title.fragment
+        .scope.fragment
             p OBB-OBB
             ul
                 li.fragment axis-separating theorem by Gottschalk
-        .list-title.fragment
+        .scope.fragment
             p Triangles
             ul
                 li.fragment <span class="highlight-2">triangle-triangle</span> - compute the plane equation and test each point if it lies on the same side
@@ -250,7 +250,7 @@ include ../mixins/containers_aph.pug
                 img.height-300(src=imgAssets+'triangles.svg')
 +frameInbox('SAT')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p SAT (separating axis theorem)
             ul
                 li.fragment based on collection of intersection tests
@@ -259,7 +259,7 @@ include ../mixins/containers_aph.pug
                 li.fragment for 3D: AABB 3 axes, OBB 15 axes
             .bottom-0.right-50
                 img.height-600(src=imgAssets+'sat.svg')
-        .list-title.fragment
+        .scope.fragment
             p Other methods
             ul
                 li.fragment GJK, Line Sweep, Sphere test
@@ -271,14 +271,14 @@ include ../mixins/containers_aph.pug
             img.height-700(src=imgAssets+'sat_aabb.svg')
 +frameInbox('Tunneling problem')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Stepped world
             ul.leading-md
                 li.fragment time steps vary based on occurring situation
                 li.fragment collision time is calculated by doing binary search in time, moving object back and forth by 1/2 steps (5 iterations is usually enough)
             .text-center
                 img.height-230(src=imgAssets+'stepped_world.svg')
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Continuous Collision Detection (CCD)
             ul.leading-md
                 li.fragment uses <span class="highlight-2">Swept Shapes</span> technique
@@ -288,47 +288,47 @@ include ../mixins/containers_aph.pug
                 img.height-160(src=imgAssets+'ccd.svg')
 +frameInbox('Collision queries')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Queries:
             ul
                 li.fragment find the first target the bullet hits
                 li.fragment can the camera move without interpenetrating the wall?
                 li.fragment find all objects within a given radius
-        .list-title.fragment
+        .scope.fragment
             p Ray casting
             ul
                 li.fragment any game is going to need a good raycaster
                 li.fragment the cast line segment is tested against the collidable objects in the collision world; if it intersects any of them, the contact point is returned
                 li.fragment weapon systems, player mechanics, AI systems, vehicle systems, line-of-sight
                 li.fragment in addition, used in 80's and 90's for pseudo-3D rendering, nowadays is being replaced by raytracing
-        .list-title.fragment
+        .scope.fragment
             p Shape casting
             ul
                 li.fragment how far a shape would be able to travel along a directed line segment before it hits something
                 li.fragment <span class="highlight-2">sphere casts</span> - e.g. to determine whether the camera is in a collision
                 li.fragment <span class="highlight-2">capsule casts</span> - e.g. character movement on uneven terrain
 +frameInbox('Collision response')
-    .important-green
+    .important-green.leading-md
         p.highlight-2.fragment How to respond to a collision?
-        .list-title.fragment
+        .scope.fragment
             p Explosion
-            ul.leading-md
+            ul
                 li.fragment adding energy to a system of rigid bodies
-        .list-title.fragment
+        .scope.fragment
             p Fracturing
-            ul.leading-md
+            ul
                 li.fragment breaking objects apart
-        .list-title.fragment
+        .scope.fragment
             p Restitution
-            ul.leading-md
+            ul
                 li.fragment amount of bounce an object has when it hits something
-        .list-title.fragment
+        .scope.fragment
             p Impulsive response
-            ul.leading-md
+            ul
                 li.fragment when two bodies collide, they compress slightly and then rebound, changing their velocities, losing energy
-        .list-title.fragment
+        .scope.fragment
             p Friction
-            ul.leading-md
+            ul
                 li.fragment force that arises between two bodies that are in continuous contact, resisting their movement relative to one another
                 li.fragment removes energy from a system of rigid bodies
                 li.fragment static, dynamic, rolling
@@ -336,13 +336,13 @@ include ../mixins/containers_aph.pug
             img.height-400(src=imgAssets+'animation_2.gif')
 +frameInbox('Collision Resolver')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Collision Resolving
             ul
                 li.highlight-2.fragment LCP - Linear Complementarity Problem
                 li.fragment very complex numeric algorithms
                 li.fragment resolvers: PGS, Dantzig solver, Lemke method, Jacobi method
-        .list-title.fragment
+        .scope.fragment
             p Coming to rest
             ul
                 li.fragment all objects lose energy, leading to eventual rest

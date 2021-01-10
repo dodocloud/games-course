@@ -29,23 +29,23 @@ include ../mixins/containers_aph.pug
             img.height-500.mt-15(src=imgAssets+'ecs.svg')
 +frameInbox('Terms')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Entity
             ul
                 li a single entity/game object, usually incorporated into a scene graph
-        .list-title.fragment
+        .scope.fragment
             p Attribute
             ul
                 li data unit attached to an entity
-        .list-title.fragment
+        .scope.fragment
             p Property
             ul
                 li data unit attached to a component
-        .list-title.fragment
+        .scope.fragment
             p Component
             ul
                 li instantiable unit that defines <span class="highlight-2">simple</span> functional behavior
-        .list-title.fragment
+        .scope.fragment
             p System
             ul
                 li a superior component responsible for a bigger scope (HealthSystem, GameManager, AudioSystem)
@@ -70,24 +70,24 @@ include ../mixins/containers_aph.pug
             img.height-700.mt-20(src=imgAssets+'cmp_pacman.svg')
 +frameInbox('Pacman')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Stage
             ul
                 li parent of all game objects
-        .list-title.fragment
+        .scope.fragment
             p Maze
             ul
                 li model of the maze, contains location of dots, power-pellets etc.
-        .list-title.fragment
+        .scope.fragment
             p GameManager
             ul
                 li controls the game as a unified whole
                 li may be responsible for collision handling (e.g. by killing pacman or a ghost)
-        .list-title.fragment
+        .scope.fragment
             p BoxBehavior
             ul
                 li game logic of the center box
-        .list-title.fragment
+        .scope.fragment
             p PacmanBehavior
             ul
                 li controls the movement of Pacman using the <span class="highlight code">InputManager</span> 
@@ -97,13 +97,13 @@ include ../mixins/containers_aph.pug
             li.fragment we can put it in attributes, components or both
             li.fragment if it's an attribute, it can be detached and tested separately, but we need to keep it in sync
             li.fragment if it's a component/system, it can make full use of the architecture
-        .list-title.fragment
+        .scope.fragment
             p Simple games
             ul
                 li.fragment one tiny model that contains game rules and global attributes, stored in the root element
                 li.fragment game entities have their logic implemented in respective components
                 li.fragment game model can be used as an API layer by all components
-        .list-title.fragment
+        .scope.fragment
             p Complex games
             ul
                 li.fragment game rules are implemented in systems (physics, relations, triggers)

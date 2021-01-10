@@ -1,5 +1,6 @@
 ---
 title: Course requirements
+description: Requirements to finish the NI-APH course
 
 ---
 

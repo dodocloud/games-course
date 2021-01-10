@@ -1,5 +1,6 @@
 ---
 title: Brand
+description: NI-APH brand colors, fonts, and assets
 
 ---
 

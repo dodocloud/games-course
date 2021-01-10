@@ -83,18 +83,18 @@ include ../mixins/containers_aph.pug
             img.height-400(src=imgAssets+'rendering_raytracing.svg')
 +frameInbox('Other techniques')
     .important-orange
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p LOD
             ul
                 li.fragment(data-fragment-index='2') level of detail, boosts draw distance
                 li.fragment(data-fragment-index='3') pioneered with Spyro the Dragon Series
-        .list-title.fragment(data-fragment-index='4')
+        .scope.fragment(data-fragment-index='4')
             p Texture mapping
             ul
                 li.fragment(data-fragment-index='5') mapping of 2D surface (texture map) onto a 3D object
                 li.fragment(data-fragment-index='6') early games have issues with perspective correctness
                 li.fragment(data-fragment-index='7') common use - UV mapping
-        .list-title.fragment(data-fragment-index='8')
+        .scope.fragment(data-fragment-index='8')
             p Baking
             ul
                 li.fragment(data-fragment-index='9') a.k.a rendering to texture
@@ -113,29 +113,30 @@ include ../mixins/containers_aph.pug
         ul
             li.fragment there is not a clean one-to-one mapping between texels and pixels
             li.fragment GPU has to sample more than one texel and blend the resulting colors
-        .list-title.fragment
-            p Mipmapping
-            ul.leading-md
-                li.fragment for each texture, we create a sequence of lower-resolution bitmaps
-                li.fragment objects further from the camera will use low-res textures
-            .top-180.right-20
-                img.height-300(src=imgAssets+'mipmaps.svg')
-        .list-title.fragment
-            p Nearest neighbor
-            ul.leading-md
-                li.fragment the closest texel to the pixel center is selected
-        .list-title.fragment
-            p Bilinear filtering
-            ul.leading-md
-                li.fragment the four texels surrounding the pixel center are sampled, and the resulting color is a weighted average of their colors
-        .list-title.fragment
-            p Trilinear filtering
-            ul.leading-md
-                li.fragment bilinear filtering is used on each of the two nearest mipmap levels
-        .list-title.fragment
-            p Anisotropic filtering
-            ul.leading-md
-                li.fragment samples texels within a region corresponding to the view angle
+        .leading-md
+            .scope.fragment
+                p Mipmapping
+                ul
+                    li.fragment for each texture, we create a sequence of lower-resolution bitmaps
+                    li.fragment objects further from the camera will use low-res textures
+                .top-180.right-20
+                    img.height-300(src=imgAssets+'mipmaps.svg')
+            .scope.fragment
+                p Nearest neighbor
+                ul
+                    li.fragment the closest texel to the pixel center is selected
+            .scope.fragment
+                p Bilinear filtering
+                ul
+                    li.fragment the four texels surrounding the pixel center are sampled, and the resulting color is a weighted average of their colors
+            .scope.fragment
+                p Trilinear filtering
+                ul
+                    li.fragment bilinear filtering is used on each of the two nearest mipmap levels
+            .scope.fragment
+                p Anisotropic filtering
+                ul
+                    li.fragment samples texels within a region corresponding to the view angle
 +frameInbox('Texture filtering')
     div
         .grid.grid-cols-2.grid-rows-2
@@ -158,31 +159,32 @@ include ../mixins/containers_aph.pug
             li.highlight-2.fragment should be disabled for pixel-art games!
                 .top-20.right-20
                     img.width-450(src=imgAssets+'giggly effect.gif')
-        .list-title.fragment
-            p FSAA/SSAA (Super-Sampled Antialiasing)
-            ul.leading-md
-                li.fragment uses sub-pixel values to average out the final values
-            .bottom-20.right-20
-                img.width-450(src=imgAssets+'antialiasing.svg')
-        .list-title.fragment
-            p DSR (Dynamic Super Resolution)
-            ul.leading-md
-                li.fragment scene is rendered into a frame buffer that is larger than the  screen
-                li.fragment oversized image is downsampled
-        .list-title.fragment
-            p MSAA (Multisampled Antialiasing)
-            ul.leading-md
-                li.fragment comparable to DSR, half of the overhead
-                li.fragment the pixel shader only evaluates once per pixel
-        .list-title.fragment
-            p CSAA (Coverage sample Antialiasing)
-            ul.leading-md
-                li.fragment NVidia's optimization of MSAA
-                li.fragment new sample type: coverage sample
-        .list-title.fragment
-            p DLSS (Deep Learning Super Sampling)
-            ul.leading-md
-                li.fragment AI-based DSR, uses Tensor Cores
+        .leading-md
+            .scope.fragment
+                p FSAA/SSAA (Super-Sampled Antialiasing)
+                ul
+                    li.fragment uses sub-pixel values to average out the final values
+                .bottom-20.right-20
+                    img.width-450(src=imgAssets+'antialiasing.svg')
+            .scope.fragment
+                p DSR (Dynamic Super Resolution)
+                ul
+                    li.fragment scene is rendered into a frame buffer that is larger than the  screen
+                    li.fragment oversized image is downsampled
+            .scope.fragment
+                p MSAA (Multisampled Antialiasing)
+                ul
+                    li.fragment comparable to DSR, half of the overhead
+                    li.fragment the pixel shader only evaluates once per pixel
+            .scope.fragment
+                p CSAA (Coverage sample Antialiasing)
+                ul
+                    li.fragment NVidia's optimization of MSAA
+                    li.fragment new sample type: coverage sample
+            .scope.fragment
+                p DLSS (Deep Learning Super Sampling)
+                ul
+                    li.fragment AI-based DSR, uses Tensor Cores
 +frameInbox('Example: Anisotropic filtering')
     .center
         img.height-700(src=imgAssets+'antialiasing.jpg')

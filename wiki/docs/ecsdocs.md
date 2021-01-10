@@ -1,5 +1,7 @@
 ---
 title: PIXI-ECS Docs
+description: Documentation of PIX-ECS library
+
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

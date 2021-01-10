@@ -21,24 +21,24 @@ include ../mixins/containers_aph.pug
             img.height-200(src=imgAssets+'input_model_view.svg')
 +frameInbox('Game Model')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Domain Model
             ul
                 li contains rules, game mechanics and essential data to the gameplay
-        .list-title.fragment
+        .scope.fragment
             p Presentation Model
             ul
                 li a model represented to the player
                 li e.g. played sounds, animated sprites
-        .list-title.fragment
+        .scope.fragment
             p Physics model
             ul
                 li all entities that take part in physical interaction
-        .list-title.fragment
+        .scope.fragment
             p AI model
             ul
                 li all data and structures that are processed by AI (navigation maps, behavioral trees,...)
-        .list-title.fragment
+        .scope.fragment
             p Networking model
             ul
                 li everything that has to be in sync with other models on other devices

@@ -8,10 +8,10 @@ include ../mixins/containers_aph.pug
     +frameShard.width-70px.height-33p.top-220.center.z-index-100
         +quote('Randomness is one of the most critical factors in ensuring an engaging game. Random events turn the game into a strict uncertainty, causing players to analyze the opportunity costs of their choices.')
 +frameInbox('Random Generators')
-    .important-green
-        .list-title.fragment
+    .important-green.leading-lg
+        .scope.fragment
             p LCRNG
-            ul.leading-lg
+            ul
                 li.fragment Linear Congruential Random Number Generator
                 li.fragment
                     include ../../assets/space_randomness/equations_generated/random_generator_methods_01.svg
@@ -19,37 +19,37 @@ include ../mixins/containers_aph.pug
                 li.fragment works best with prime values
                 li.fragment chosen well, they won't cycle until they nearly exhaust their domain
                 li.fragment used in <span class="highlight code">rand()</span> from standard C library
-        .list-title.fragment
+        .scope.fragment
             p Lagged Fibonacci methods
-            ul.leading-lg
+            ul
                 li.fragment
                     include ../../assets/space_randomness/equations_generated/random_generator_methods_02.svg
                 li.fragment we are looking further back into the sequence of values
-        .list-title.fragment
+        .scope.fragment
             p Carry methods
-            ul.leading-lg
+            ul
                 li.fragment takes part of the result from the previous stage and carries it forward to the least significant bits in the next stage
                 li.fragment
                     include ../../assets/space_randomness/equations_generated/random_generator_methods_03.svg
 +frameInbox('Random Generators')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Mersenne Twister
             ul
                 li.fragment colossal period of <span class="highlight code">2^19937-1</span>
                 li.fragment passes <a href="https://webhome.phy.duke.edu/~rgb/General/rand_rate/rand_rate.abs">Diehard test
                 li.fragment uses SIMD vector instructions
-        .list-title.fragment
+        .scope.fragment
             p Mother of all
             ul
                 li.fragment multiply-with-carry technique
                 li.fragment faster than twister, period of <span class="highlight code">2^250</span>
-        .list-title.fragment
+        .scope.fragment
             p Xoroshiro128+
             ul
                 li.fragment improved MOA, faster but less random
                 li.fragment used in many browsers for <span class="highlight code">Math.random()</span>
-        .list-title.fragment
+        .scope.fragment
             p PCG Family
             ul
                 li.fragment simple fast space-efficient algorithms
@@ -82,12 +82,12 @@ include ../mixins/containers_aph.pug
                 p Xorshift
 +frameInbox('Random Functions Distribution')
     .important-orange
-        .list-title.fragment(data-fragment-index='1')
+        .scope.fragment(data-fragment-index='1')
             p Uniform distribution
             ul
                 li.fragment(data-fragment-index='2') most common distribution of random generators
                 li.fragment(data-fragment-index='3') <span class="highlight-2">applications:</span> noise, shuffling, dice
-        .list-title.fragment(data-fragment-index='4')
+        .scope.fragment(data-fragment-index='4')
             p Gaussian (normal) distribution
             ul
                 li.fragment(data-fragment-index='5') more common in games - every characteristic has some kind of average, with individuals varying with a normal distribution
@@ -102,80 +102,81 @@ include ../mixins/containers_aph.pug
                 p Gaussian distribution
 +frameInbox('Terms')
     .important-orange
-        .list-title.fragment
-            p Seed
-            ul.leading-md
-                li.fragment a hash that initializes random generators
-                li.fragment a good source of entropy is <span class="highlight-2">user input</span> or <span class="highlight-2">time</span>
-        .list-title.fragment
-            p Loot
-            ul.leading-md
-                li.fragment items obtained over the gameplay (money, spells, equipment, weapons,...)
-        .list-title.fragment
-            p Spinning
-            ul.leading-md
-                li.fragment calling the random function on a time-frame basis without using the result
-                li.fragment advances the game to a difficult-to-predict place
-        .list-title.fragment
-            p Rarity Slotting
-            ul.leading-md
-                li.fragment a method of standardization to determine rates (common, rare, epic, legendary)
-                li.fragment can be defined as a rarity table, calculated via weighted sum
-        .list-title.fragment
-            p Random encounter
-            ul.leading-md
-                li.fragment popular mechanics of RPG games (Final Fantasy, Pokémon, Golden Sun)
-                li.fragment the game suddenly shifts to battle mode, forcing the player to fight
-                li.fragment after winning the battle, the player receives a reward (skill upgrade, items, money)
+        .leading-md
+            .scope.fragment
+                p Seed
+                ul
+                    li.fragment a hash that initializes random generators
+                    li.fragment a good source of entropy is <span class="highlight-2">user input</span> or <span class="highlight-2">time</span>
+            .scope.fragment
+                p Loot
+                ul
+                    li.fragment items obtained over the gameplay (money, spells, equipment, weapons,...)
+            .scope.fragment
+                p Spinning
+                ul
+                    li.fragment calling the random function on a time-frame basis without using the result
+                    li.fragment advances the game to a difficult-to-predict place
+            .scope.fragment
+                p Rarity Slotting
+                ul
+                    li.fragment a method of standardization to determine rates (common, rare, epic, legendary)
+                    li.fragment can be defined as a rarity table, calculated via weighted sum
+            .scope.fragment
+                p Random encounter
+                ul
+                    li.fragment popular mechanics of RPG games (Final Fantasy, Pokémon, Golden Sun)
+                    li.fragment the game suddenly shifts to battle mode, forcing the player to fight
+                    li.fragment after winning the battle, the player receives a reward (skill upgrade, items, money)
 +frameInbox('Example: Random loot table')
     .text-center
         img.height-750(src=imgAssets+'loot_table.svg')
 
 +frameInbox('Randomness in games')
     div
-        .list-title.fragment
+        .scope.fragment
             p Final Fantasy 1 (1987)
             ul
                 li reading sequentially from a list of pre-generated numbers (256 values in ROM)
                 li we could encounter the same group of enemies -> <span class="highlight-2">surprise determination</span>
-        .list-title.fragment
+        .scope.fragment
             p Super Mario 64 (1996)
             ul
                 li used LCRNG with 65114 possible states
                 li no spinning, the algorithm cycles only during certain events
-        .list-title.fragment
+        .scope.fragment
             p Pokémon series for GBA (2002)
             ul
                 li in Ruby/Diamon/Emerald, the RNG is spun every frame
                 li Emerald sets the seed to zero on power-up
-        .list-title.fragment
+        .scope.fragment
             p Darkwing Duck
             ul
                 li delaying a frame causes a different drop
             .bottom-0.right-0
                 img.height-850(src=imgAssets+'dw_luck_manipulation.gif')
 +frameInbox('Randomness in games')
-    div
-        .list-title.fragment
+    div.leading-lg
+        .scope.fragment
             p Pitfall! (1982)
-            ul.leading-lg
+            ul
                 li used linear-feedback shift register
                 li every screen is defined by 1 byte - 256 screens in total
                 li e.g. if a certain bit is 1, there is a water in the level
             .top-0.right-0
                 img.height-400(src=imgAssets+'pitfall.gif')
-        .list-title.fragment
+        .scope.fragment
             p Doom (1993)
-            ul.leading-lg
+            ul
                 li the worst pseudo-random number generator ever
                 li a list of 256 random numbers cycled through
-        .list-title.fragment
+        .scope.fragment
             p XCOM: Enemy Unknown (2012)
-            ul.leading-lg
+            ul
                 li no random spinning - dangerous when saving the game before taking an important shot
-        .list-title.fragment
+        .scope.fragment
             p No Man's Sky (2016+)
-            ul.leading-lg
+            ul
                 li very little data is stored on the game's servers as all elements of the game are created through deterministic algorithms from a 64-bit seed
 +frameInbox('Example: Random Number Table in Doom')
     .flex.flex-row

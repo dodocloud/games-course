@@ -8,7 +8,7 @@ include ../mixins/containers_aph.pug
 +mchapter('Scene Graph', imgAssets+'chapter_engines_scene.svg')
 +frameInbox('Scene Graph')
     .important-orange
-        .list-title.fragment
+        .scope.fragment
             p Scene Graph
             ul
                 li.fragment essential structure of every interactive application
@@ -17,7 +17,7 @@ include ../mixins/containers_aph.pug
                 li.fragment implemented as an array, oct-tree, quad-tree, bounding volume hierarchy,...
                 li.highlight.fragment parent nodes affect child nodes (translation, rotation, scale,...)
                 li.fragment leaves represent atomic units (shapes, vertices, imported meshes)
-        .list-title.fragment
+        .scope.fragment
             p Scene Manager
             ul
                 li.fragment manages objects in the scene

@@ -6,21 +6,21 @@ include ../mixins/containers_aph.pug
 +mchapter('Real AI in games', imgAssets+'chapter_realai.svg')
 +frameInbox('Terms')
     .important-orange
-        .list-title
+        .scope
             p.fragment Planning
             ul
                 li.fragment a formalized process of searching for sequence of actions to satisfy a <span class="highlight-2">goal</span>
-        .list-title.fragment
+        .scope.fragment
             p Supervised learning
             ul
                 li.fragment works just like learning at schools
                 li.fragment for certain input, there is a <span class="highlight-2">correct output</span> the algorithm has to learn
-        .list-title.fragment
+        .scope.fragment
             p Unsupervised learning
             ul
                 li.fragment the output cannot be categorized as being either correct or false
                 li.fragment the algorithm learns <span class="highlight-2">patterns</span> instead
-        .list-title.fragment
+        .scope.fragment
             p Reinforcement learning
             ul
                 li.fragment an agent must learn the best possible output by using trial and error
@@ -33,14 +33,14 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight-2">Reward</span> - informs the agent to which outcome the selected action leads
             li.fragment <span class="highlight-2">Exploration</span> - probing new regions of the search space to find new promising solutions
             li.fragment <span class="highlight-2">Exploitation</span> - probing promising region of the search space to improve current solution
-        .list-title.fragment
+        .scope.fragment
             p Algorithms
             ul
                 li.fragment Genetic Evolution
                 li.fragment Q-Learning
                 li.fragment SARSA
                 li.fragment Monte-Carlo simulation
-        .list-title.fragment
+        .scope.fragment
             p Models
             ul
                 li.fragment Decision trees
@@ -48,7 +48,7 @@ include ../mixins/containers_aph.pug
                 li.fragment Neural networks
         .bottom-20.right-20.fragment
             figure
-                img.height-440(src=imgAssets+'montecarlo.svg')
+                img.height-440(src=imgAssets+'montecarlo.svg' alt='MonteCarlo tree search')
                 p Monte-Carlo tree search
 +frameInbox('Artificial neural network')
     .important-green
@@ -58,18 +58,18 @@ include ../mixins/containers_aph.pug
             li.fragment <span class="highlight">backpropagation</span> - measure of divergence between the observed and the desired output
         .fragment
             .text-center.mt-40
-                img.height-550(src=imgAssets+'neural_network.svg')
+                img.height-550(src=imgAssets+'neural_network.svg' alt='Neural network diagram')
             .bottom-0.left-0
-                img.height-250(src=imgAssets+'neural_net_dragon.png')
+                img.height-250(src=imgAssets+'neural_net_dragon.png' alt='dragon')
             .bottom-140.right-340
-                img.height-50(src=imgAssets+'neural_net_fireball.png')
+                img.height-50(src=imgAssets+'neural_net_fireball.png' alt='fireball')
             .bottom-80.right-180
-                img.height-140(src=imgAssets+'neural_net_mage.png')
+                img.height-140(src=imgAssets+'neural_net_mage.png' alt='mage')
             .bottom-0.right-0
-                img.height-80(src=imgAssets+'neural_net_platform.png')
+                img.height-80(src=imgAssets+'neural_net_platform.png' alt='platform')
 +frameInbox('Neural Network Applications')
     div
-        .list-title.fragment
+        .scope.fragment
             p MarI/O
             ul.leading-md
                 li.fragment NEAT - genetic algorithm for evolving neural networks (<a href="https://github.com/mam91/Neat-Genetic-Mario">LINK</a>)
@@ -77,25 +77,25 @@ include ../mixins/containers_aph.pug
                 li.fragment Output: pressed button (6 neurons)
                 li.fragment Max neurons: 1 000 000
             .top-300.right-580
-                    img.height-200(src=imgAssets+'mario_neural.svg')
+                    img.height-200(src=imgAssets+'mario_neural.svg' alt='MarI/O neural network')
             .top-150.right-20
-                img.height-380(src=imgAssets+'neural_network_mario.jpg')
+                img.height-380(src=imgAssets+'neural_network_mario.jpg' alt='MARI/O')
         .space-xl
-        .list-title.mt-40.fragment
+        .scope.mt-40.fragment
             p DeepMind 2014
             ul.leading-md
                 li.fragment neural network that can play Atari games (uses Q-learning)
                 li.fragment Inputs: 210x160 at 60Hz, terminal signal and game score
             .text-center.mt-10
-                img.height-220(src=imgAssets+'neural_network_atari.png')
+                img.height-220(src=imgAssets+'neural_network_atari.png' alt='DeepMind on Atari')
 +frameInbox('Case-based reasoning')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Main idea
             ul
                 li.fragment when making decisions, we remember previous experiences and then apply solutions that worked in previous situations
                 li.fragment if a certain situation hasn't been encountered yet, we recall <span class="highlight-2">similar experience</span> and adjust the solution to fit the current situation
-        .list-title.fragment
+        .scope.fragment
             p Steps
             ul
                 li.fragment <span class="highlight-2">Retrieve</span> - get the cases which are relevant to the given problem
@@ -110,7 +110,7 @@ include ../mixins/containers_aph.pug
             li.fragment stages: placing resources, fleet maneuvres, fighter attacks, final missile strikes
             li.fragment AI: decision tree learning and case-based reasoning
         .text-center.mt-40
-            img.height-500(src=imgAssets+'case_based_defcon.jpg')
+            img.height-500(src=imgAssets+'case_based_defcon.jpg' alt='DEFCON')
 +frameInbox('Defcon: Case structure')
     div
         ul
@@ -121,4 +121,4 @@ include ../mixins/containers_aph.pug
             li.fragment routes taken by opponent fleets
             li.fragment final scores of the two players
         .text-center.mt-20
-            img.height-420(src=imgAssets+'case_based_diagram.svg')
+            img.height-420(src=imgAssets+'case_based_diagram.svg' alt='DEFCON Case-Based diagram')

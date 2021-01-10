@@ -15,84 +15,85 @@ include ../mixins/containers_aph.pug
             li.fragment even though it’s interesting when AI does unpredictable things, it’s not necessarily fun for players
         .flex-cols-3.mt-80.fragment
             div.text-center
-                img.height-430(src=imgAssets+'ai_in_games_1.jpg')
+                img.height-430(src=imgAssets+'ai_in_games_1.jpg' alt='AI in games')
             div.text-center
-                img.height-430(src=imgAssets+'ai_in_games_2.jpg')
+                img.height-430(src=imgAssets+'ai_in_games_2.jpg' alt='AI in games')
             div.text-center
-                img.height-430(src=imgAssets+'ai_in_games_3.jpg')
+                img.height-430(src=imgAssets+'ai_in_games_3.jpg' alt='AI in games')
 +frameInbox('AI Techniques')
     div.text-center
-        img.height-760(src=imgAssets+'ai_techniques.svg')
+        img.height-760(src=imgAssets+'ai_techniques.svg' alt='AI techniques')
 +mcontainer('AI Techniques')
     +frameShard().top-20p.left-10p.width-80p
         div.text-center
-            img.height-250(src=imgAssets+'ai_flow.svg')
+            img.height-250(src=imgAssets+'ai_flow.svg' alt='AI flow')
 +frameInbox('AI in games')
     div
-        .list-title.fragment
+        .scope.fragment
             p Doom 1 (1993)
             ul
                 li monsters infighting (two AI characters encounter each other)
                 li state machines, intelligent map (SPECIAL attribute of map lines)
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Age of Empires (1997)
             ul
                 li AI is smart enough to find and revisit other kingdoms, poor in self-defense
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Half-life (1998)
             ul
                 li monsters can hear and track players, flee when getting defeated etc.
                 li soldiers had automated announcement system, ability to cover
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Starcraft (1998)
             ul
                 li particle model for hidden units' position estimation
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Unreal Tournament (1999)
             ul
                 li Bayesian networks
-        .list-title.mt-10.fragment
+        .scope.mt-10.fragment
             p Quake III (1999)
             ul
                 li HFSM for decisions, AAS (Area Awareness System) for collisions and pathfinding
         .bottom-0.right-40
-            img.height-600(src=imgAssets+'freeman.png')
+            img.height-600(src=imgAssets+'freeman.png' alt='Gordon Freeman')
 +frameInbox('AI techniques in games')
     div
-        .list-title.mt-10.fragment
-            p Halo 2 (2004)
-            ul.leading-md
-                li behavior trees and fuzzy logic
-        .list-title.mt-10.fragment
-            p F.E.A.R. (2005)
-            ul.leading-md
-                li GOAP for tactical coordinating with squad members, suppression fire, blind fire
-        .list-title.mt-10.fragment
-            p XCOM: Enemy Unknown (2012)
-            ul.leading-md
-                li utility-based system, measuring usefulness for every possible action
-        .list-title.mt-10.fragment
-            p ARMA 3 (2013)
-            ul.leading-md
-                li efficient issue ordering, situation-based decisions, retreats, ambush
-                li HTN (Hierarchical task network) for mission generator
-        .list-title.mt-10.fragment
-            p The Last Of Us (2013)
-            ul.leading-md
-                li Ellie - companion AI
-        .list-title.mt-10.fragment
-            p DOTA 2 (2013)
-            ul.leading-md
-                li OpenAI bot (since 2017) has beaten some of the greatest players
-        .list-title.mt-10.fragment
-            p Starcraft II (2013)
-            ul.leading-md
-                li AlphaStar deep neural network, released in 2019
+        .leading-md
+            .scope.mt-10.fragment
+                p Halo 2 (2004)
+                ul
+                    li behavior trees and fuzzy logic
+            .scope.mt-10.fragment
+                p F.E.A.R. (2005)
+                ul
+                    li GOAP for tactical coordinating with squad members, suppression fire, blind fire
+            .scope.mt-10.fragment
+                p XCOM: Enemy Unknown (2012)
+                ul
+                    li utility-based system, measuring usefulness for every possible action
+            .scope.mt-10.fragment
+                p ARMA 3 (2013)
+                ul
+                    li efficient issue ordering, situation-based decisions, retreats, ambush
+                    li HTN (Hierarchical task network) for mission generator
+            .scope.mt-10.fragment
+                p The Last Of Us (2013)
+                ul
+                    li Ellie - companion AI
+            .scope.mt-10.fragment
+                p DOTA 2 (2013)
+                ul
+                    li OpenAI bot (since 2017) has beaten some of the greatest players
+            .scope.mt-10.fragment
+                p Starcraft II (2013)
+                ul
+                    li AlphaStar deep neural network, released in 2019
         .bottom-0.right-0
-            img.height-600(src=imgAssets+'starcraft.png')
+            img.height-600(src=imgAssets+'starcraft.png' alt='Starcraft')
 +frameInbox('Challenges for Game AI')
     .important-orange
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Game AI features and limits
             ul
                 li.fragment.fade-up real-time
@@ -100,7 +101,7 @@ include ../mixins/containers_aph.pug
                 li.fragment.fade-up incomplete knowledge
                 li.fragment.fade-up planning
                 li.fragment.fade-up learning
-        .list-title.fragment.fade-up
+        .scope.fragment.fade-up
             p Game AI properties
             ul
                 li.fragment.fade-up predictability and unpredictability (surprise elements)
@@ -109,5 +110,5 @@ include ../mixins/containers_aph.pug
                 li.highlight-2.fragment.fade-up winning well and losing well
                 li.fragment.fade-up cheating - acceptable as long as it doesn't get detected by the player
         .top-20.right-20
-            img.height-400(src=imgAssets+'ai_challenges.png')
+            img.height-400(src=imgAssets+'ai_challenges.png' alt='AI challenges')
         +tipKeen('The AI must be fun to play against, not beat the player easily').bottom-0.left-0

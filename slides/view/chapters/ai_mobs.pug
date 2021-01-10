@@ -15,14 +15,14 @@ include ../mixins/containers_aph.pug
         .code.text-sm.mt-10.fragment(data-fragment-index='5')
             include ../../assets/gameai_mobs/snippets_generated/doom_chase.html
         .right-0.bottom-0.fragment(data-fragment-index='5')
-            img.height-500(src=imgAssets+'doom_chase.png')
+            img.height-500(src=imgAssets+'doom_chase.png' alt='Doom scripting')
 +frameInbox('Finite State Machine')
     .important-orange
         ul
             li.fragment the oldest and most commonly used formalism to model game AIs
             li.fragment useful for entities with a small set of distinct states
                 .bottom-300.right-20
-                    img.height-320(src=imgAssets+'dungeon.jpg')
+                    img.height-320(src=imgAssets+'dungeon.jpg' alt='Dungeon FSM')
             li.fragment each entity can be in <span class="highlight-2">exactly one</span> of a finite number of states at any time
             li.mt-20.fragment <span class="highlight font-bold">Definition</span>
                 ul
@@ -46,9 +46,9 @@ include ../mixins/containers_aph.pug
 +frameInbox('Example: Pacman FSM')
     .important-green
         .text-center
-            img.height-700(src=imgAssets+'fsm_pacman.svg')
+            img.height-700(src=imgAssets+'fsm_pacman.svg' alt='FSM pacman')
         .top-90.right-250
-            img.height-100(src=imgAssets+'fsm_pacman.png')
+            img.height-100(src=imgAssets+'fsm_pacman.png' alt='pacman')
 +frameInbox('Example: Pacman transition table')
     div.center
         .space-xl
@@ -89,17 +89,17 @@ include ../mixins/containers_aph.pug
 +frameInbox('Example: Doomguard')
     div
         .text-center
-            img.height-700(src=imgAssets+'fsm_doomguard.svg')
+            img.height-700(src=imgAssets+'fsm_doomguard.svg' alt='FSM doomguard')
         .bottom-40.right-20
-            img.height-400(src=imgAssets+'fsm_doomguard.png')
+            img.height-400(src=imgAssets+'fsm_doomguard.png' alt='doomguard')
 +frameInbox('Example: Doomguard')
     div
         ul
             li let's add an ability to fall asleep
     .bottom-40.right-20
-        img.height-400(src=imgAssets+'fsm_doomguard.png')
+        img.height-400(src=imgAssets+'fsm_doomguard.png' alt='doomguard')
     .bottom-0.right-240
-        img.height-700(src=imgAssets+'fsm_doomguard_2.svg')
+        img.height-700(src=imgAssets+'fsm_doomguard_2.svg' alt='FSM doomguard extended')
 +frameInbox('Hierarchical state machine')
     .important-orange
         ul
@@ -111,9 +111,9 @@ include ../mixins/containers_aph.pug
                     li.fragment push a low-level state on the stack when entered
                     li.fragment pop and move to the next state when finished
         .text-center.fragment
-            img.height-440(src=imgAssets+'hfsm_doomguard.svg')
+            img.height-440(src=imgAssets+'hfsm_doomguard.svg' alt='HFSM doomguard')
             .bottom-40.right-20
-                img.height-400(src=imgAssets+'fsm_doomguard.png')
+                img.height-400(src=imgAssets+'fsm_doomguard.png' alt='doomguard')
 +frameInbox('Fuzzy logic')
     .important-green
         ul
@@ -121,7 +121,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='2') instead of thresholding, we can blurry out state transitions
             li.fragment(data-fragment-index='3') used in Halo 3 for unit control, threat assessment and classification
         .text-center.mt-60.fragment(data-fragment-index='1')
-            img.height-500(src=imgAssets+'fuzzy.svg')
+            img.height-500(src=imgAssets+'fuzzy.svg' alt='fuzzy logic diagram')
 +frameInbox('Behavior Tree')
     .important-orange
         ul
@@ -134,11 +134,11 @@ include ../mixins/containers_aph.pug
                 ul
                     li.highlight.code SUCCESS, FAILURE, RUNNING, (SUSPENDED)
         .text-center.mt-20.fragment
-            img.height-400(src=imgAssets+'btree.jpg')
+            img.height-400(src=imgAssets+'btree.jpg' alt='behavior tree example')
 +frameInbox('Behavior Tree')
     .important-orange
         .text-center.fragment
-            img.height-350(src=imgAssets+'btree.svg')
+            img.height-350(src=imgAssets+'btree.svg' alt='behavior tree')
         .space-md
         .center.text-center
             table.fragment
@@ -179,17 +179,17 @@ include ../mixins/containers_aph.pug
                     td Never
 +frameInbox('Behavior Tree - Node Types')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Selector
             ul
                 li.fragment tries to execute its child nodes from left to right until it receives a successful response
                 li.fragment when a successful response is received, responds with a success
-        .list-title.fragment
+        .scope.fragment
             p Sequence
             ul
                 li.fragment will execute each of its child nodes in a sequence from left to right until a failure is received
                 li.fragment if every child node responds with a success, the sequence node itself will respond with a success
-        .list-title.fragment
+        .scope.fragment
             p Decorator
             ul
                 li.fragment allows for additional behavior to be added without modifying the code
@@ -198,45 +198,45 @@ include ../mixins/containers_aph.pug
                 li.fragment Example: <span class="highlight-2">Repeater, Invertor, Succeeder, Failer, UntilFail, UntilSucceed</span>
 +frameInbox('Behavior Tree - Node Types')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Parallel node
             ul
                 li.fragment a node that concurrently executes all of its children
-        .list-title.fragment
+        .scope.fragment
             p Condition
             ul
                 li.fragment a node that will observe the state of the game environment and respond with either a success or a failure based on the observation, condition etc.
                 li.fragment <span class="highlight-2">Instant Check condition</span> - the check is run once
                 li.fragment <span class="highlight-2">Monitoring condition</span> - keeps checking a condition over time
-        .list-title.fragment
+        .scope.fragment
             p Action
             ul
                 li.fragment a node used to interact with the game environment
                 li.fragment may represent an atomic action, a script or even another BT
-        .list-title.fragment
+        .scope.fragment
             p Blackboard
             ul
                 li.fragment a construct that stores whatever information is written to it
                 li.fragment any node inside or outside the tree has an access to the blackboard
 +frameInbox('Example: Unreal Engine BT Editor')
     .text-center
-        img.height-760(src=imgAssets+'bt_unreal.jpg')
+        img.height-760(src=imgAssets+'bt_unreal.jpg' alt='behavior tree in unrel engine')
 +frameInbox('Example: Doomguard')
     .text-center
-        img.height-770(src=imgAssets+'bt_doomguard.svg')
+        img.height-770(src=imgAssets+'bt_doomguard.svg' alt='behavior tree with doomguard')
 +frameInbox('BT Improvements')
     .important-green
         ul
             li we can define a conditional selector in order to simplify the diagram
         .text-center.mt-10
-            img.height-180(src=imgAssets+'bt_optimization.svg')
-            img.height-550.mt-10(src=imgAssets+'bt_doomguard_2.svg')
+            img.height-180(src=imgAssets+'bt_optimization.svg' alt="behavior tree optimization")
+            img.height-550.mt-10(src=imgAssets+'bt_doomguard_2.svg' alt='behavior tree optimization')
 +frameInbox('Example: Locked door')
     div
         .bottom-0.right-0
-            img.height-350(src=imgAssets+'door_open.gif')
+            img.height-350(src=imgAssets+'door_open.gif' alt='doom door opening')
         .top-170.left-260
-            img.height-500(src=imgAssets+'bt_door.svg')
+            img.height-500(src=imgAssets+'bt_door.svg' alt='behavior tree door')
 +frameInbox('Goal-Oriented Action Planning')
     .important-green
         ul.leading-md
@@ -244,14 +244,14 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='2') each action has a set of conditions it can satisfy, as well as a set of preconditions that must be true in order to be satisfied
             li.fragment(data-fragment-index='3') implemented for <span class="highlight">F.E.A.R (2005)</span> and <span class="highlight">Tomb Raider (2013)</span>
         .text-center.mt-20.fragment(data-fragment-index='3')
-            img.height-600(src=imgAssets+'goap.svg')
+            img.height-600(src=imgAssets+'goap.svg' alt='goal-oriented action planning diagram')
 +frameInbox('Example: F.E.A.R.')
     .important-green
         ul
             li.fragment(data-fragment-index='1') Advanced AI behavior: blind fire, dive through windows, take cover,...
             li.fragment(data-fragment-index='2') <span class="highlight">key idea:</span> to determine when to switch and what parameters to set
         .text-center.mt-20.fragment(data-fragment-index='1')
-            img.height-600(src=imgAssets+'fear.jpg')
+            img.height-600(src=imgAssets+'fear.jpg' alt='F.E.A.R.')
 +frameInbox('Example: F.E.A.R')
     .important-green
         ul
@@ -293,8 +293,8 @@ include ../mixins/containers_aph.pug
                     td AttackLungeUncloaked
                     td
             .top-270.left-450
-                img.height-150(src=imgAssets+'fear_soldier.png')
+                img.height-150(src=imgAssets+'fear_soldier.png' alt='FEAR soldier')
             .top-270.left-750
-                img.height-150(src=imgAssets+'fear_assassin.png')
+                img.height-150(src=imgAssets+'fear_assassin.png' alt='FEAR assassin')
             .top-330.left-970
-                img.height-70(src=imgAssets+'fear_rat.png')
+                img.height-70(src=imgAssets+'fear_rat.png' alt='FEAR rat')

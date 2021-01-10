@@ -10,24 +10,24 @@ include ../mixins/containers_aph.pug
             li.fragment cheating bots are not fun in general
             li.fragment bots shouldn't know where the player is
                 .bottom-0.right-0
-                    img.height-420(src=imgAssets+'predicting_opponents.jpg')
-        .list-title.mt-10.fragment
+                    img.height-420(src=imgAssets+'predicting_opponents.jpg' alt='predicting opponents')
+        .scope.mt-10.fragment.leading-lg
             p Partial observations of the game state
-            ul.leading-lg
+            ul
                 li.fragment AI is informed in the same way as the human player
                 li.fragment the mistakes these models make are more human-like
                 li.fragment <span class="highlight-2">Filtering problem</span> - estimating the internal states based on partial observations
                 li.fragment <span class="highlight-2">General methods:</span>
-                    ul.leading-lg
+                    ul
                         li.fragment Hidden semi-markov model
                         li.fragment Particle filters
                 li.fragment <span class="highlight-2">Methods for FPS:</span>
-                    ul.leading-lg
+                    ul
                         li.fragment Occupancy map
                         li.fragment SOAR cognitive architecture (used in Quake II)
                         li.fragment Vision Cone (used in Bioshock)
                 li.fragment <span class="highlight-2">Methods for strategies:</span>
-                    ul.leading-lg
+                    ul
                         li.fragment Threat map
                         li.fragment Influence map
                         li.fragment Bayesian networks
@@ -39,7 +39,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='3') probability represents the likelihood of an opponent presence
             li.fragment(data-fragment-index='4') when the opponent is not visible, the probabilities from the previous occupancy cells are propagated along the edges to neighboring cells
         .text-center.fragment(data-fragment-index='1')
-            img.height-500(src=imgAssets+'occupancy_map.gif')
+            img.height-500(src=imgAssets+'occupancy_map.gif' alt='occupancy map animation')
 +frameInbox('Threat map')
     .important-green
         ul
@@ -47,7 +47,7 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='2') can be easily integrated into pathfinding
             li.mt-30.fragment(data-fragment-index='3') Example: combat units bypass enemy defensive structure in order to attack their infrastructure
         .text-center.mt-80.fragment(data-fragment-index='1')
-            img.height-400(src=imgAssets+'threat_map.svg')
+            img.height-400(src=imgAssets+'threat_map.svg' alt='threat map diagram')
 +frameOutbox('Example: OpenTTD')
     .width-1000.height-550.bgr-rhino-100.opacity-7.absolute
     .width-1000.absolute
@@ -63,58 +63,59 @@ include ../mixins/containers_aph.pug
                     li.fragment pathfinding, partial reusability of existing roads
                     li.fragment vehicle utilization, failures, traffic
     .fill.nopadding
-        img.height-100p(src=imgAssets+'openttd.jpg')
+        img.height-100p(src=imgAssets+'openttd.jpg' alt='Transport Tycoon')
 +frameInbox('OpenTTD AI')
     .important-green
-        .list-title
-            p.fragment PathZilla AI
-            ul.leading-md
-                li.fragment advanced graph theory
-                li.highlight-2.fragment Delaunay Triangulation
-                li.fragment roads based on minimum spanning tree
-                li.fragment queue of planned actions
-        .list-title.fragment
-            p trAIns
-            ul.leading-md
-                li.fragment most scientific approach, evolved from a research project in 2008
-                li.fragment double railways support
-                li.fragment concentration on production
-        .list-title.fragment
-            p AdmiralAI
-            ul.leading-md
-                li.fragment attempt to implement as many features from game API as possible
-                li.fragment the oldest and most comprehensive AI for OpenTTD
-        .list-title.fragment
-            p NoCAB
-            ul.leading-md
-                li.fragment very fast network development and company value grow
-                li.fragment custom A* implementation designed for speed
-                li.fragment can upgrade vehicles
+        .leading-md
+            .scope.fragment
+                p PathZilla AI
+                ul
+                    li.fragment advanced graph theory
+                    li.highlight-2.fragment Delaunay Triangulation
+                    li.fragment roads based on minimum spanning tree
+                    li.fragment queue of planned actions
+            .scope.fragment
+                p trAIns
+                ul
+                    li.fragment most scientific approach, evolved from a research project in 2008
+                    li.fragment double railways support
+                    li.fragment concentration on production
+            .scope.fragment
+                p AdmiralAI
+                ul
+                    li.fragment attempt to implement as many features from game API as possible
+                    li.fragment the oldest and most comprehensive AI for OpenTTD
+            .scope.fragment
+                p NoCAB
+                ul
+                    li.fragment very fast network development and company value grow
+                    li.fragment custom A* implementation designed for speed
+                    li.fragment can upgrade vehicles
 +frameInbox('Example: Pathzilla Road Analysis')
     div
         .space-xl
         .grid.grid-cols-4.grid-rows-2.gap-15
             figure
-                img.height-220(src=imgAssets+'pathzilla_01.jpg')
+                img.height-220(src=imgAssets+'pathzilla_01.jpg' alt='Pathzilla')
                 p
             figure
-                img.height-220(src=imgAssets+'pathzilla_02.jpg')
+                img.height-220(src=imgAssets+'pathzilla_02.jpg' alt='Pathzilla')
                 p Triangulation
             figure
-                img.height-220(src=imgAssets+'pathzilla_04.jpg')
+                img.height-220(src=imgAssets+'pathzilla_04.jpg' alt='Pathzilla')
                 p Min spanning tree
             figure
-                img.height-220(src=imgAssets+'pathzilla_03.jpg')
+                img.height-220(src=imgAssets+'pathzilla_03.jpg' alt='Pathzilla')
                 p Shortest path tree
             figure
-                img.height-220(src=imgAssets+'pathzilla_05.jpg')
+                img.height-220(src=imgAssets+'pathzilla_05.jpg' alt='Pathzilla')
                 p Planning graph
             figure
-                img.height-220(src=imgAssets+'pathzilla_06.jpg')
+                img.height-220(src=imgAssets+'pathzilla_06.jpg' alt='Pathzilla')
                 p
             figure
-                img.height-220(src=imgAssets+'pathzilla_07.jpg')
+                img.height-220(src=imgAssets+'pathzilla_07.jpg' alt='Pathzilla')
                 p
             figure
-                img.height-220(src=imgAssets+'pathzilla_08.jpg')
+                img.height-220(src=imgAssets+'pathzilla_08.jpg' alt='Pathzilla')
                 p Final road network

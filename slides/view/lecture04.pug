@@ -10,19 +10,19 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_red.jpg';
 
+html(lang='en')
+    +header('Components', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture04.svg', themePath + 'theme_aph.scss')
 
-+header('Components', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture04.svg', themePath + 'theme_aph.scss')
+    .reveal
+        .slides
+            +title('Lecture 4', 'Components', 'color-tomato-light')
+            include ./chapters/components_model.pug
+            include ./chapters/components_objects.pug
+            include ./chapters/components_components.pug
+            include ./chapters/components_messaging.pug
+            include ./chapters/components_engines.pug
+            +summary_lecture04()
+            +quote-planescape()
 
-.reveal
-    .slides
-        +title('Lecture 4', 'Components', 'color-tomato-light')
-        include ./chapters/components_model.pug
-        include ./chapters/components_objects.pug
-        include ./chapters/components_components.pug
-        include ./chapters/components_messaging.pug
-        include ./chapters/components_engines.pug
-        +summary_lecture04()
-        +quote-planescape()
-
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 4: Components')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 4: Components')
+    script(src!='../../scripts/reveal-setup.js')

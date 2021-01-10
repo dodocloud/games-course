@@ -147,6 +147,11 @@ const config = {
 					to: '/docs/brand/',
 				},
 				{
+					label: 'Resources',
+					position: 'left',
+					to: '/resources',
+				},
+				{
 					label: 'Github',
 					position: 'right',
 					href: 'https://github.com/dodocloud/games-course',

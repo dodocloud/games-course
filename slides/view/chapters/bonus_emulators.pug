@@ -19,7 +19,7 @@ include ../mixins/containers_aph.pug
                     li.fragment(data-fragment-index='7') the only way how to play certain games (Pokémon ROM hacks, fan-made translations)            
                     li.fragment(data-fragment-index='8') legal issues (downloading games you don't own a copy of is illegal)
         .text-center.mt-30.fragment(data-fragment-index='2')
-            img.height-240(src=imgAssets+'snes.png')
+            img.height-240(src=imgAssets+'snes.png' alt='SNES')
 +frameInbox('History') 
     div
         ul
@@ -37,15 +37,15 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='12') 2016 - <span class="highlight-2">Raspberry 3</span> released, a new wave of retro-gaming emerged
             li.fragment(data-fragment-index='13') 2020 - <span class="highlight-2">3DSen</span> beta version of 3D Voxel NES emulator
         .top-20.right-20.fragment(data-fragment-index='2')
-            img.height-300(src=imgAssets+'vice.jpg')
+            img.height-300(src=imgAssets+'vice.jpg' alt='VICE emulator')
         .top-200.right-280.fragment(data-fragment-index='4')
-            img.height-300(src=imgAssets+'nesticle.png')
+            img.height-300(src=imgAssets+'nesticle.png' alt='Nesticle emulator')
         .top-300.right-20.fragment(data-fragment-index='9')
-            img.height-300(src=imgAssets+'dosbox.jpg')
+            img.height-300(src=imgAssets+'dosbox.jpg' alt='Dosbox emulator')
         .bottom-20.right-0.fragment(data-fragment-index='13')
-            img.height-300(src=imgAssets+'3dsen.jpg')
+            img.height-300(src=imgAssets+'3dsen.jpg' alt='3DSen emulator')
         .top-350.right-300.fragment(data-fragment-index='11')
-            img.height-400(src=imgAssets+'cabinet.png')
+            img.height-400(src=imgAssets+'cabinet.png' alt='Arcade cabinet')
 +frameInbox('Pokémon ROM hacks')
     div
         ul
@@ -57,17 +57,17 @@ include ../mixins/containers_aph.pug
             li.fragment(data-fragment-index='6') <span class="highlight">Pokémon Mega Power</span> - new areas and story
             li.fragment(data-fragment-index='7') <span class="highlight">Pokémon Glazed</span> - rewritten story
         .bottom-0.left-0.fragment(data-fragment-index='1')
-            img.height-420(src=imgAssets+'romhacks_posts.jpg')
+            img.height-420(src=imgAssets+'romhacks_posts.jpg' alt='Pokemon romhacks posts')
         .bottom-0.right-0.fragment(data-fragment-index='4')
-            img.height-520(src=imgAssets+'romhacks.png')
+            img.height-520(src=imgAssets+'romhacks.png' alt='Pokemon romhacks')
 +frameInbox('Raspberry')
     div
         ul
             li.fragment full-fledged (not only) retro-gaming device
                 .bottom-20.right-20
-                    img.height-460(src=imgAssets+'raspberry.png')
+                    img.height-460(src=imgAssets+'raspberry.png' alt='Raspberry')
             li.fragment Rpi 3 is capable of emulating C64, GBC, GBA, PSX, MegaDrive, NES, SNES, DOS (~486DX2 CPU)
             li.fragment Rpi 4 is also more or less capable of emulating PSP, N64, and Dreamcast
             li.fragment emulation is managed by <span class="highlight">libretro</span> framework with <span class="highlight">RetroArch gui</span>, running in <span class="highlight">Emulationstation</span> front-end, powered by <span class="highlight">RetroPie</span> OS 
                 .bottom-20.left-150
-                    img.height-500(src=imgAssets+'retropie.svg')
+                    img.height-500(src=imgAssets+'retropie.svg' alt='Retropie diagram')

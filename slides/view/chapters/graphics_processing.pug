@@ -38,7 +38,7 @@ include ../mixins/containers_aph.pug
             img.height-250(src=imgAssets+'history_turing.jpg')
 +frameInbox('Graphics API')
     div
-        .list-title.fragment
+        .scope.fragment
             p DirectX
             ul
                 li.fragment since 1995
@@ -46,7 +46,7 @@ include ../mixins/containers_aph.pug
                 li.fragment current version - DirectX 12 Ultimate
             .top-80.right-60
                 img.width-300(src=imgAssets+'logo_directx.png')
-        .list-title.fragment
+        .scope.fragment
             p OpenGL
             ul
                 li.fragment since 1992
@@ -55,7 +55,7 @@ include ../mixins/containers_aph.pug
                 li.fragment OpenGL ES - main graphics library for Android, iOS
             .top-460.right-60
                 img.width-300(src=imgAssets+'logo_opengl.png')
-        .list-title.fragment
+        .scope.fragment
             p Vulkan
             ul
                 li.fragment since 2015
@@ -69,7 +69,7 @@ include ../mixins/containers_aph.pug
         ul
             li.fragment the simplest type of polygons, always planar
             li.fragment all GPUs are designed around triangle rasterization
-        .list-title.fragment
+        .scope.fragment
             p Constructing a triangle mesh
             ul
                 li.fragment a) winding order (clockwise or counter-cw)
@@ -79,35 +79,36 @@ include ../mixins/containers_aph.pug
             img.height-400(src=imgAssets+'triangles.svg')
 +frameInbox('Terms')
     .important-orange
-        .list-title.fragment
-            p Vertex
-            ul.leading-md
-                li.fragment primarily a point in 3D space with x, y, z coordinates
-                li.fragment attributes: position vector, normal, color, uv coordinates, skinning weights,...
-        .list-title.fragment
-            p Fragment
-            ul.leading-md
-                li.fragment a sample-sized segment of a rasterized primitive
-                li.fragment its size depends on sampling method
-        .list-title.fragment
-            p Texture
-            ul.leading-md
-                li.fragment a piece of bitmap that is applied to a model
-        .list-title.fragment
-            p Occlusion
-            ul.leading-md
-                li.fragment rendering two triangles that overlap each others
-                li.fragment Z-fighting issue
-                    .right-60.top-500
-                        figure
-                            img.height-250(src=imgAssets+'zfighting.png')
-                            p Z-Fighting
-                li.fragment solution: more precise depth buffer
-        .list-title.fragment
-            p Culling
-            ul.leading-md
-                li.fragment process of removing triangles that aren't facing the camera
-                li.fragment frustum culling, portals, anti-portals,...
+        .leading-md
+            .scope.fragment
+                p Vertex
+                ul
+                    li.fragment primarily a point in 3D space with x, y, z coordinates
+                    li.fragment attributes: position vector, normal, color, uv coordinates, skinning weights,...
+            .scope.fragment
+                p Fragment
+                ul
+                    li.fragment a sample-sized segment of a rasterized primitive
+                    li.fragment its size depends on sampling method
+            .scope.fragment
+                p Texture
+                ul
+                    li.fragment a piece of bitmap that is applied to a model
+            .scope.fragment
+                p Occlusion
+                ul
+                    li.fragment rendering two triangles that overlap each others
+                    li.fragment Z-fighting issue
+                        .right-60.top-500
+                            figure
+                                img.height-250(src=imgAssets+'zfighting.png')
+                                p Z-Fighting
+                    li.fragment solution: more precise depth buffer
+            .scope.fragment
+                p Culling
+                ul
+                    li.fragment process of removing triangles that aren't facing the camera
+                    li.fragment frustum culling, portals, anti-portals,...
 +frameInbox('NVidia Amper Architecture')
     div
         .center
@@ -127,36 +128,37 @@ include ../mixins/containers_aph.pug
                 img.height-320(src=imgAssets+'gpu_process.svg')
 +frameInbox('Rendering pipeline')
     .important-green
-        .list-title.fragment
-            p Vertex shader phase
-            ul.leading-lg
-                li.fragment handles transformation from model space to view space
-                li.fragment full access to texture data (height maps)
-        .list-title.fragment
-            p Tessellation shader phase (optional)
-            ul.leading-lg
-                li.fragment subdivides geometry (e.g. for brick walls)
-                li.fragment <span class="highlight-2">Tessellation Control Shader</span> - determines the amount of tessellation
-                li.fragment <span class="highlight-2">Tessellation Evaluation Shader</span> - applies the interpolation
-        .list-title.fragment
-            p Geometry shader phase (optional)
-            ul.leading-lg
-                li.fragment operates on entire primitives in homogeneous clip space
-        .list-title.fragment
-            p Rasterization phase
-            ul.leading-lg
-                li.fragment <span class="highlight-2">Assembly</span> - converts a vertex stream into a sequence of base primitives
-                li.fragment <span class="highlight-2">Clipping</span> - transformation of clip space to window-space, discarding triangles that are outside
-                li.fragment <span class="highlight-2">Culling</span> - discards triangles facing away from the viewer
-                li.fragment <span class="highlight-2">Rasterization</span> - generates a sequence of fragments (window-space)
+        .leading-lg
+            .scope.fragment
+                p Vertex shader phase
+                ul
+                    li.fragment handles transformation from model space to view space
+                    li.fragment full access to texture data (height maps)
+            .scope.fragment
+                p Tessellation shader phase (optional)
+                ul
+                    li.fragment subdivides geometry (e.g. for brick walls)
+                    li.fragment <span class="highlight-2">Tessellation Control Shader</span> - determines the amount of tessellation
+                    li.fragment <span class="highlight-2">Tessellation Evaluation Shader</span> - applies the interpolation
+            .scope.fragment
+                p Geometry shader phase (optional)
+                ul
+                    li.fragment operates on entire primitives in homogeneous clip space
+            .scope.fragment
+                p Rasterization phase
+                ul
+                    li.fragment <span class="highlight-2">Assembly</span> - converts a vertex stream into a sequence of base primitives
+                    li.fragment <span class="highlight-2">Clipping</span> - transformation of clip space to window-space, discarding triangles that are outside
+                    li.fragment <span class="highlight-2">Culling</span> - discards triangles facing away from the viewer
+                    li.fragment <span class="highlight-2">Rasterization</span> - generates a sequence of fragments (window-space)
 +frameInbox('Rendering pipeline')
     .important-green
-        .list-title.fragment
+        .scope.fragment
             p Fragment shader phase
             ul
                 li.fragment input: fragment, output: color, depth value, stencil value
                 li.fragment can address texture maps and run per-pixel calculations
-        .list-title.fragment
+        .scope.fragment
             p Final phase
             ul
                 li.fragment <span class="highlight">Additional culling tests</span>
@@ -181,19 +183,19 @@ include ../mixins/containers_aph.pug
     .important-orange
         ul
             li.fragment programs that run on the video card in order to perform a variety of specialized functions (lighting, effects, post-processing, physics, AI)
-        .list-title.fragment
+        .scope.fragment
             p Vertex shader
             ul
                 li.fragment input is vertex, output is transformed vertex
-        .list-title.fragment
+        .scope.fragment
             p Geometry shader (optional)
             ul
                 li.fragment input is n-vertex primitive, output is zero or more primitives
-        .list-title.fragment
+        .scope.fragment
             p Tessellation shader (optional)
             ul
                 li.fragment input is primitive, output is subdivided primitive
-        .list-title.fragment
+        .scope.fragment
             p Pixel (fragment) shader
             ul
                 li.fragment input is fragment, output is color, depth value, stencil value
@@ -202,30 +204,30 @@ include ../mixins/containers_aph.pug
                 figure
                     img.height-500(src=imgAssets+'asciident.jpg')
                     p ASCIIdent
-        .list-title.fragment
+        .scope.fragment
             p Compute shader
             ul
                 li.fragment shader that runs outside of the rendering pipeline (e.g. CUDA)
 +frameInbox('Shader applications')
-    div
-        .list-title.fragment
+    div.leading-md
+        .scope.fragment
             p Vertex shader
-            ul.leading-md
+            ul
                 li.fragment 3D-to-2D transformation
                 li.fragment displacement mapping
                 li.fragment skinning
-        .list-title.fragment
+        .scope.fragment
             p Tessellation shader
-            ul.leading-md
+            ul
                 li.fragment Hull Shader - tessellation control
                 li.fragment Domain Shader - tessellation evaluation
             .top-40.right-40
                 figure
                     img.height-200(src=imgAssets+'tessellation.jpg')
                     p Surface Tessellation
-        .list-title.fragment
+        .scope.fragment
             p Geometry shader
-            ul.leading-md
+            ul
                 li.fragment sprite-from-point transformation
                 li.fragment cloth simulation
                 li.fragment fractal subdivision
@@ -233,9 +235,9 @@ include ../mixins/containers_aph.pug
                 figure
                     img.height-250(src=imgAssets+'geom_shader.gif')
                     p Geometry shader grass
-        .list-title.fragment
+        .scope.fragment
             p Pixel (fragment) shader
-            ul.leading-md
+            ul
                 li.fragment bump mapping
                 li.fragment particle systems
                 li.fragment visual effects

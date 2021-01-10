@@ -10,17 +10,18 @@ include ./mixins/summary.pug
 - var globalAssets = '../assets/all/';
 - var defaultBgr = 'backgrounds/hall_violet.jpg';
 
-+header('Graphics', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture09.svg', themePath + 'theme_aph.scss')
+html(lang='en')
+    +header('Graphics', 'Adam Vesecký', globalAssets + 'lectures/ic_lecture09.svg', themePath + 'theme_aph.scss')
 
-.reveal
-    .slides
-        +title('Lecture 9', 'Graphics', 'color-goldenrod')
-        include ./chapters/graphics_space.pug
-        include ./chapters/graphics_animations.pug
-        include ./chapters/graphics_processing.pug
-        include ./chapters/graphics_concepts.pug
-        +summary_lecture09()
-        +quote-ea()
+    .reveal
+        .slides
+            +title('Lecture 9', 'Graphics', 'color-goldenrod')
+            include ./chapters/graphics_space.pug
+            include ./chapters/graphics_animations.pug
+            include ./chapters/graphics_processing.pug
+            include ./chapters/graphics_concepts.pug
+            +summary_lecture09()
+            +quote-ea()
 
-+footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 9: Graphics')
-script(src!='../../scripts/reveal-setup.js')
+    +footer('Adam Vesecký (FIT CTU)', 'Architecture of Computer Games, Lecture 9: Graphics')
+    script(src!='../../scripts/reveal-setup.js')
